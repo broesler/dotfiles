@@ -1,0 +1,40 @@
+#~/.screenrc
+#==============================================================================
+#    File: ~/.screenrc
+# Created: 12/04/14
+#  Author: Bernie Roesler
+#
+# Description: allows GNU screen to use colors, and sets window caption footer
+#==============================================================================
+#
+# Set colors on
+# term "screen-256color"
+term "xterm-256color"
+
+# terminfo and termcap for nice 256 color terminal
+# allow bold colors - necessary for some reason
+attrcolor b ".I" 
+
+# tell screen how to set colors. AB = background, AF=foreground 
+termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm' 
+
+# erase background with current bg color 
+defbce "on" 
+
+# Set the default window name to empty string instead of the arbitrary "bash"
+shelltitle ''
+ 
+# Set the window caption.
+# I use caption instead of hardstatus, so it is available per split window too
+# (hardstatus is only per complete screen).
+caption always "%{= KW}%-Lw%{= wb}%n %t %{= KW}%+Lw %-=| ${USER}@%H | %M%d %c%{-}"
+
+# Some decryption hints:
+# %{= KW}     background light black (aka dark gray) with foreground light white
+# %{= wb}     background dark white (ake light gray) with foreground dark blue
+# %-Lw        all windows before the current window.
+# %n%f %t     current window number, flags and title.
+# %+Lw        all windows after the current window.
+# %-=         pad remaining spaces.
+# %H          hostname.
+# %M%d %s     month and day (MmmDD) and current time (HH:MM).

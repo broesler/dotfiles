@@ -1,0 +1,100 @@
+v,v
+  Please clone into it.,v
+(,v
+i,v
+,V
+set tags=./tags;    " read local tag file first, then search for others,V
+    ,2
+ and Shell,v
+Bernie's vimrc file,v
+04/16/2015,v
+~/.vimrc,v
+""""""",1
+"=============================================================================="    File: ~/.vimrc" Created: 04/16/2015"  Author: Bernie Roesler"" Description: Bernie's vimrc file"==============================================================================,79
+"=============================================================================="    File: ~/.vimrc" Created: 04/16/2015"  Author: Bernie Roesler"" Description: Bernie's vimrc file"==============================================================================,V
+c,v
+" also include _ i.e.  \label{fig:sys_closed,V
+" for *.tex files, or fortran files (subroutines like COVARIANCE_B),V
+,html,css,v
+_,v
+,,v
+b,v
+r,v
+" Underscore _ is considered part of a word ALWAYSset iskeyword+=_,V
+ ,v
+Bernie's .vimrc file,v
+symlink_dotfiles.sh,v
+global,v
+    ```    ```bash,V
+    ```,V
+    ```bash,V
+    ln -s ~/.vim/vimrc ~/.vimrc    ln -s ~/.vim/gvimrc ~/.gvimrc,V
+##Installation:    git clone git://github.com/nelstrom/dotvim.git ~/.vim##Create symlinks:    ln -s ~/.vim/vimrc ~/.vimrc    ln -s ~/.vim/gvimrc ~/.gvimrc##Switch to the `~/.vim` directory, and fetch submodules:    cd ~/.vim    git submodule init    git submodule update,V
+##Instructions##,V
+Installation:,V
+   border:1px solid #ccc;,V
+global_,v
+#  Author: Bernie Roesler,V
+:,v
+nnoremap <leader>] :call JumpToCSS()<CR>,V
+"------------------------------------------------------------------------------" Key Mappings"------------------------------------------------------------------------------" <Leader> is \ by default, so those commands can be invoked by doing \v and \snmap <Leader>s :source $MYVIMRC<CR>" opens $MYVIMRC for editing, or use :tabedit $MYVIMRCnmap <Leader>v :e $MYVIMRC<CR>" unmap Q from entering Ex modennoremap Q <nop>" Map Ctrl-s to save filennoremap <C-s> :w<CR>inoremap <C-s> <Esc>:w<CR>" Map ,b to change to next buffernnoremap ,b :bn!<CR>nnoremap ,v :bp!<CR>" Type gp to select the last changed (or pasted) textnnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'" Toggle spell checking on and off with `,s`nmap <silent> ,s :set spell!<CR>" Turn off highlight searchnmap <silent> ,/ :nohls<CR>" Search/Replace current word:nnoremap <Leader>* :%s/\<<C-r><C-w>\>/" Wrapped lines goes down/up to next row, rather than next line in file.nnoremap j gjnnoremap k gk" Make Y consistent with C and Dnnoremap Y y$" Toggle relative numbers with \nnnoremap <silent>,n :set relativenumber!<cr>,V
+" }}}1,v
+" automatically make and load view on document open/closeautocmd BufWinLeave *.* mkviewautocmd BufWinEnter *.* silent loadview,V
+set autoread        " Auto-read changes made outside of vimset autowrite       " Auto-write changes when switching buffers,V
+set iskeyword+=_,V
+" Underscore _ is considered part of a word ALWAYS,V
+" shorten delay switching to normal mode" keep undo history between files/saves/sessions,V
+set ttimeoutlen=10,V
+set undodir=~/.vim/undodir/ " directory MUST already existset undofileset undolevels=1000         " How many undosset undoreload=10000        " number of lines to save for undo,V
+" Enable syntax highlighting,V
+set complete=.,w,b,u,t,i" set complete+=k                         " Include dictionary search,V
+" set complete+=k                         " Include dictionary search,V
+set dictionary=/usr/share/dict/words,V
+,V
+font-,v
+set grepprg=grep\ -rnH\ --exclude='.*.swp'\ --exclude='*~'\ --exclude=tags,v
+font-variant,v
+,V
+" Underscore _ is considered part of a word ALWAYSsetglobal iskeyword+=_,V
+http://www.staywildmagazine.com/news/2015/2/24/the-slurpee-waves-of-nantucket,v
+http://nymag.com/daily/intelligencer/2015/02/jeff-wise-mh370-theory.html,v
+Anderson1998_4.matAnderson1998_5.matCarlton_KA470_19A.mat,v
+  font-color: ,V
+font-color: ,v
+ #222;,v
+  font-weight: bold;,V
+  font-size: 11px;,V
+  line-height: 0;,V
+  height: 1.2em;,V
+19px;,v
+1.25em;,v
+5,v
+%,v
+100,v
+0,v
+2,v
+650px,v
+27px;,v
+  margin: -0.0625em 0px 0px;,V
+  border: 1px solid #d9d9d9;  border-top-color: #c0c0c0;,V
+  padding: 6px 9px 0;,V
+6px 9px,v
+  font-family: arial,sans-serif;,V
+margin: -0.0625em 0px 0px;,v
+ arial,sans-serif,v
+8,v
+1.2em;,v
+25px;,v
+  top: 5px;,V
+  position: relative;,V
+" set a directory to store the undo history (MUST exist already),V
+*,v
+div,v
+d,v
+" tell it to use an undo fileset undofile" set a directory to store the undo historyset undodir=/home/yourname/.vimundo/,v
+" set encoding to universal standard" set encoding=utf-8,V
+" source $MYVIMRC reloads the saved $MYVIMRC,V
+" <Leader> is \ by default, so those commands can be invoked by doing \v and \s" source $MYVIMRC reloads the saved $MYVIMRCnmap <Leader>s :source $MYVIMRC<CR>" opens $MYVIMRC for editing, or use :tabedit $MYVIMRCnmap <Leader>v :e $MYVIMRC<CR>,V
+" Enable Omnicompletion,v
+" Enable syntax highlighting,v
+use an undo file,v
