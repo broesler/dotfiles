@@ -326,7 +326,7 @@ hi SpellLocal term=underline cterm=underline
 set laststatus=2                             " always show statusbar  
 set statusline=                              " clear default status line
 set statusline+=%-10.3n\                     " buffer number  
-" set statusline+=%{fugitive#statusline()}     " Fugitive will put current branch name in status line
+set statusline+=%{fugitive#statusline()}     " Fugitive will put current branch name in status line
 set statusline+=\ \ \                        " Separator
 set statusline+=%t\                          " tail of filename   
 set statusline+=%h%m%r%w                     " status flags  
