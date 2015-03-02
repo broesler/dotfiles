@@ -1,3 +1,8 @@
+ ,v
+ submodule foreach git pull origin master,v
+    up = submodule foreach git pull origin master,V
+    ```bash,V
+    ```,V
 [submodule "vim/bundle/solarized"]	path = vim/bundle/solarized	url = https://github.com/altercation/vim-colors-solarized.git,V
 vim/bundle/vim-colors-solarized/../../../.git/modules/vim/bundle/solarized,v
 ,V
@@ -59,6 +64,5 @@ https://www.youtube.com/watch?v=ZDR433b0HJY,v
 " ,t toggles taglist on/off,V
 autocmd BufEnter * silent! lcd %:p:h,v
 " let Tlist_Ctags_Cmd = '/usr/local/bin/ctags'   " Ensure exuberant-ctags is used,V
- ,v
 ,full,v
 https://github.com/altercation/vim-colors-solarized.git,v
