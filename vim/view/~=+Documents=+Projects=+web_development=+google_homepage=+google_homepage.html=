@@ -105,7 +105,7 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 22 - ((21 * winheight(0) + 47) / 95)
+let s:l = 22 - ((21 * winheight(0) + 48) / 96)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt

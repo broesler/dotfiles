@@ -1,26 +1,64 @@
-https://github.com/majutsushi/tagbar.git,v
-html,v
-TlistToggle,v
-let Tlist_Ctags_Cmd = '/usr/local/bin/ctags'   " Ensure exuberant-ctags is used,V
-TAGS options,v
-" ,t toggles taglist on/off,V
-nnoremap ,t :TlistToggle<CR>,V
-A git directory for 'vim/bundle/tagbar' is found locally with remote(s):  origin	https://github.com/vim-scripts/Tagbar.gitIf you want to reuse this local git directory instead of cloning again from  https://github.com/majutsushi/tagbar.gituse the '--force' option. If the local git directory is not the correct repoor you are unsure what this means choose another name with the '--name' option.,v
-set wildmode=list:full,full,V
-longest,v
+[submodule "vim/bundle/solarized"]	path = vim/bundle/solarized	url = https://github.com/altercation/vim-colors-solarized.git,V
+vim/bundle/vim-colors-solarized/../../../.git/modules/vim/bundle/solarized,v
 ,V
-" 21 == light blue,V
-                    \ ,v
-autocmd FileType text ,v
-autocmd FileType css,scss,sass      ,v
-" call pathogen#runtime_append_all_bundles(),V
-https://github.com/vim-scripts/Tagbar.git,v
---branch,v
-git ,v
-call,v
-git submodule foreach git pull origin master,v
-https://github.com/vim-scripts/tComment.git,v
-call pathogen#runtime_append_all_bundles(),V
-See attached. It’s from 2013,v
-v,v
-execute pathogen#infect(),v
+# *** setw is short for set-window-option ***,V
+    ,v
+# highlight window when it has new activitysetw -g monitor-activity onset -g visual-activity on,V
+# re-number windows when one is closed,v
+set -g visual-activity on,V
+# highlight window when it has new activity,v
+# start pane index at 1,v
+# start window index at 1,v
+# increase repeat time for repeatable commands,v
+# decrease command delay (increases vim responsiveness),v
+# Allow mouse to select which pane to use,v
+# enable mouse,v
+# use vim key bindings,v
+# increase scroll-back history,v
+unbind C-b ,V
+# # tmux prefix ,V
+#============================================================================== ,v
+#  Key Bindings ,V
+#============================================================================== ,V
+# change /bin/bash to zsh or other,v
+# enable pbcopy and pbpaste,v
+# re-number windows when one is closed ,v
+set -g renumber-windows on ,V
+# re-number windows when one is closed ,V
+# highlight window when it has new activity ,v
+setw -g monitor-activity on ,V
+# highlight window when it has new activity ,V
+# start window index at 1 ,v
+set -g base-index 1 ,V
+# start window index at 1 ,V
+# decrease command delay (increases vim responsiveness) ,v
+set -sg escape-time 1 ,V
+# decrease command delay (increases vim responsiveness) ,V
+# enable mouse ,v
+setw -g mode-mouse on ,V
+# enable mouse ,V
+set t_Co=256,V
+let g:solarized_termcolors=256,V
+"TERM=screen-256color-bce tmux",v
+alias tmux="TERM=screen-256color-bce tmux",v
+g:netrw_browsex_viewer,v
+Bernie Roesler \vspace{-1cm},v
+Engg 148 -- HW3 \vspace{-0.5cm},v
+%%%% TITLE ----------------------------\title{Engg 148 -- HW3 \vspace{-0.5cm}}\author{Bernie Roesler \vspace{-1cm}}%%%%,V
+{,v
+http://www.dartmouthre.com/proddir/prod/367/9593/?RedirectURL=%2FListPrice%2F20%2F20%2F%3FSearch%255BHousingType%255D%3D%26Search%255BRent%255D%255Bmax%255D%3D%26Search%255BBedroomsNum%255D%255Bmin%255D%3D3%26Search%255BFurnished%255D%3D%26Search%255BPets%255D%3D%26Search%255BFromCampusDistance%255D%3D%26Search%255BLeaseType%255D%3D,v
+~/.vimrc<CR>,v
+Project Narrative v8.docx,v
+find( t_gate_on_1,V
+    timevec( timevec == 0 ) = NaN;,V
+-,v
+http://www.grubstreet.com/2015/03/restaurants-taking-more-reservations.html,v
+https://www.youtube.com/watch?v=ZDR433b0HJY,v
+ (~10 pages),v
+#===============================================================================,V
+" ,t toggles taglist on/off,V
+autocmd BufEnter * silent! lcd %:p:h,v
+" let Tlist_Ctags_Cmd = '/usr/local/bin/ctags'   " Ensure exuberant-ctags is used,V
+ ,v
+,full,v
+https://github.com/altercation/vim-colors-solarized.git,v

@@ -1,8 +1,7 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =6
-let g:netrw_dirhist_1='/Users/bernardroesler/Desktop/dotfiles/vim/ftplugin'
-let g:netrw_dirhist_2='/Users/bernardroesler/Desktop/dotfiles/vim'
-let g:netrw_dirhist_3='/Users/bernardroesler/Desktop/dotfiles/vim/syntax'
-let g:netrw_dirhist_4='/Users/bernardroesler/Desktop/dotfiles/vim'
-let g:netrw_dirhist_5='/Users/bernardroesler/Desktop/dotfiles/vim/autoload'
-let g:netrw_dirhist_6='/Users/bernardroesler/Desktop/dotfiles/vim'
+let g:netrw_dirhist_cnt =5
+let g:netrw_dirhist_1='/Users/bernardroesler/.dotfiles/.git/modules/vim/bundle/vim-colors-solarized'
+let g:netrw_dirhist_2='/Users/bernardroesler/.dotfiles/.git/modules/vim/bundle'
+let g:netrw_dirhist_3='/Users/bernardroesler/.dotfiles/.git/modules/vim'
+let g:netrw_dirhist_4='/Users/bernardroesler/.dotfiles/.git/modules'
+let g:netrw_dirhist_5='/Users/bernardroesler/.dotfiles/.git'
