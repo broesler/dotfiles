@@ -8,14 +8,14 @@
 #   into ~/.dotfiles/
 #==============================================================================
 
-# Check if currently in ~/.dotfiles directory (and it exists)
-if [ "$PWD" != "$HOME/.dotfiles" ] && [ -d "$HOME/.dotfiles" ]
-then
-  cd $HOME/.dotfiles
-else
-  printf "~/.dotfiles does not exist!\n" 1>&2
-  exit 1
-fi
+# # Check if currently in ~/.dotfiles directory (and it exists)
+# if [ "$PWD" != "$HOME/.dotfiles" ] && [ -d "$HOME/.dotfiles" ]
+# then
+#   cd $HOME/.dotfiles
+# else
+#   printf "~/.dotfiles does not exist!\n" 1>&2
+#   exit 1
+# fi
 
 # Array of files in directory
 files=(*)
@@ -23,9 +23,12 @@ files=(*)
 # Symlink each file to correct file (adding . to filename)
 for f in "${files[@]}";
 do
-  if [[ $f != README.* ]]       # if file is NOT the README
+  # exclude README and this script 
+  if [[ $f != README.* ]] && [[ $f != `basename $0` ]]  
   then
-    ln -s $HOME/.dotfiles/$f $HOME/.$f
+    # symlink files, do not follow symbolic links that already exist 
+    # (i.e. directories)
+    ln -hs $HOME/.dotfiles/$f $HOME/.$f
   fi
 done
 
