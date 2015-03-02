@@ -1,3 +1,20 @@
+https://github.com/majutsushi/tagbar.git,v
+html,v
+TlistToggle,v
+let Tlist_Ctags_Cmd = '/usr/local/bin/ctags'   " Ensure exuberant-ctags is used,V
+TAGS options,v
+" ,t toggles taglist on/off,V
+nnoremap ,t :TlistToggle<CR>,V
+A git directory for 'vim/bundle/tagbar' is found locally with remote(s):  origin	https://github.com/vim-scripts/Tagbar.gitIf you want to reuse this local git directory instead of cloning again from  https://github.com/majutsushi/tagbar.gituse the '--force' option. If the local git directory is not the correct repoor you are unsure what this means choose another name with the '--name' option.,v
+set wildmode=list:full,full,V
+longest,v
+,V
+" 21 == light blue,V
+                    \ ,v
+autocmd FileType text ,v
+autocmd FileType css,scss,sass      ,v
+" call pathogen#runtime_append_all_bundles(),V
+https://github.com/vim-scripts/Tagbar.git,v
 --branch,v
 git ,v
 call,v
