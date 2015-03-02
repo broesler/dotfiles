@@ -3,16 +3,16 @@
 " Created: 04/16/2015
 "  Author: Bernie Roesler
 "
-" Description: Bernie's vimrc file 
+" Description: Bernie's vimrc file
 "==============================================================================
-
-" Run pathogen
-execute pathogen#infect()
-execute pathogen#helptags()
 
 " Use Vim settings, rather than Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
 set nocompatible
+
+" Run pathogen
+execute pathogen#infect()
+execute pathogen#helptags()
 
 " Set path to recursively include all directories below the current one for
 " quick searching, filename completion, etc.
@@ -23,6 +23,8 @@ if &diff == 'nodiff'
   set shellcmdflag=-ic
 endif
 
+" Ensure filetypes taken into account
+filetype plugin indent on              
 
 "------------------------------------------------------------------------------
 " Settings
@@ -47,7 +49,6 @@ set undoreload=10000        " number of lines to save for undo
 syntax on           
 
 " Enable Omnicompletion
-filetype plugin indent  on              
 set omnifunc=syntaxcomplete#Complete
 set complete=.,w,b,u,t,i
 " set complete+=k                         " Include dictionary search
@@ -61,9 +62,9 @@ set wildmode=list:full,full
 
 set number          " Turn on line numbers
 set ttyfast         " fast connection allows smoother scrolling
-set scrolloff=5     " cursor will never reach bottom of window
+set scrolloff=1     " cursor will never reach bottom of window
 set title           " Show the filename in the titlebar
-set history=100     " Keep command history
+set history=1000    " Keep command history
 set showcmd         " Show partial commands
 set hls             " highlight all search terms
 set incsearch       " highlight search as it's typed
@@ -106,13 +107,14 @@ iab THe The
 
 
 
-
 "------------------------------------------------------------------------------
 " FileType and Plugin options (autocommands)
 "------------------------------------------------------------------------------
+" set local directory of each buffer to the buffer's directory
+" autocmd BufEnter * silent! lcd %:p:h
 
 " automatically make and load view on document open/close
-autocmd BufWinLeave *.* mkview
+autocmd BufWinLeave *.* silent mkview
 autocmd BufWinEnter *.* silent loadview
 
 "--------------------------------------- HTML/CSS
@@ -122,15 +124,18 @@ autocmd FileType html,css setlocal shiftwidth=2 tabstop=2
 
 " Allow stylesheets to autocomplete hyphenated words
 autocmd FileType css,scss,sass,html setlocal iskeyword+=-,_
-                                  \ setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType css,scss,sass      setlocal omnifunc=csscomplete#CompleteCSS
 
 "--------------------------------------- plain text
 autocmd FileType text syn match Braces display '[{}\[\]]'
-                    \ hi Braces ctermfg=darkred
-                    \ syn match Quotes display '[\'\`\"]'
-                    \ hi Quotes ctermfg=6
-                    \ syn match Stars display '[\*]'
-                    \ hi Stars ctermfg=208
+autocmd FileType text hi Braces ctermfg=darkred
+
+autocmd FileType text syn match Quotes display '[\'\`\"]'
+autocmd FileType text hi Quotes ctermfg=6
+" 21 == light blue
+
+autocmd FileType text syn match Stars display '[\*]'
+autocmd FileType text hi Stars ctermfg=208
 
 
 "--------------------------------------- LaTeX
@@ -139,10 +144,10 @@ let g:tex_stylish=1
 " wrap \left( \right) around visually selected text
 vmap sp "zdi\left(<C-R>z\right)<Esc> 
 
-" Declare latex language for ctags, taglist.vim usage
-let tlist_tex_settings   = 'latex;s:sections;g:graphics;l:labels'
-let tlist_bib_settings   = 'bibtex;s:BiBTeX_strings;e:BibTeX-Entries;a:BibTeX-Authors;t:BibTeX-Titles'
-let tlist_make_settings  = 'make;m:macros;t:targets'
+" " Declare latex language for ctags, taglist.vim usage
+" let tlist_tex_settings   = 'latex;s:sections;g:graphics;l:labels'
+" let tlist_bib_settings   = 'bibtex;s:BiBTeX_strings;e:BibTeX-Entries;a:BibTeX-Authors;t:BibTeX-Titles'
+" let tlist_make_settings  = 'make;m:macros;t:targets'
 
 " : is included as keyword for fig: eqn: etc.,
 autocmd BufRead,BufNewFile *.tex set iskeyword+=_
@@ -162,9 +167,6 @@ autocmd FileType c set cindent
 
 
 "--------------------------------------- TAGS options
-let Tlist_Ctags_Cmd = '/usr/local/bin/ctags'   " Ensure exuberant-ctags is used
-
-" ,t toggles taglist on/off
 nnoremap ,t :TagbarToggle<CR>
 
 
@@ -200,50 +202,22 @@ function! Incr()
 endfunction
 vnoremap <C-a> :call Incr()<CR>
 
-" Swap two words instead of :%s/a/c then :%s/b/a then :%s/c/b
-" Example: :3,8call SwapWords({'foo':'bar'})
-"   will swap foo for bar on lines 3,8
-function! Mirror(dict)
-    for [key, value] in items(a:dict)
-        let a:dict[value] = key
-    endfor
-    return a:dict
-endfunction
-
-function! S(number)
-    return submatch(a:number)
-endfunction
-
-function! SwapWords(dict, ...) range
-    let words = keys(a:dict) + values(a:dict)
-    let words = map(words, 'escape(v:val, "|")')
-    if(a:0 == 1)
-        let delimiter = a:1
-    else
-        let delimiter = '/'
-    endif
-    let pattern = '\v(' . join(words, '|') . ')'
-    exe a:firstline . ',' . a:lastline . 's' . delimiter . pattern . delimiter
-        \ . '\=' . string(Mirror(a:dict)) . '[S(0)]'
-        \ . delimiter . 'g'
-endfunction
-
-" Jump from html class/id tag to definition in linked CSS file
-" use <leader>] to execute
-function! JumpToCSS()
-  let id_pos = searchpos("id", "nb", line('.'))[1]
-  let class_pos = searchpos("class", "nb", line('.'))[1]
-
-  if class_pos > 0 || id_pos > 0
-    if class_pos < id_pos
-      execute ":vim '#".expand('<cword>')."' **/*.css"
-    elseif class_pos > id_pos
-      execute ":vim '.".expand('<cword>')."' **/*.css"
-    endif
-  endif
-endfunction
-
-nnoremap <leader>] :call JumpToCSS()<CR>
+" " Jump from html class/id tag to definition in linked CSS file
+" " use <leader>] to execute
+" function! JumpToCSS()
+"   let id_pos = searchpos("id", "nb", line('.'))[1]
+"   let class_pos = searchpos("class", "nb", line('.'))[1]
+"
+"   if class_pos > 0 || id_pos > 0
+"     if class_pos < id_pos
+"       execute ":vim '#".expand('<cword>')."' **/*.css"
+"     elseif class_pos > id_pos
+"       execute ":vim '.".expand('<cword>')."' **/*.css"
+"     endif
+"   endif
+" endfunction
+"
+" nnoremap <leader>] :call JumpToCSS()<CR>
 
 
 "------------------------------------------------------------------------------
@@ -293,6 +267,7 @@ nnoremap <silent>,n :set relativenumber!<cr>
 " Colorscheme
 "------------------------------------------------------------------------------
 " Use solarized colorscheme
+set t_Co=256
 let g:solarized_termcolors=256
 set background=dark
 colorscheme solarized
@@ -322,7 +297,7 @@ hi SpellLocal term=underline cterm=underline
 set laststatus=2                             " always show statusbar  
 set statusline=                              " clear default status line
 set statusline+=%-10.3n\                     " buffer number  
-set statusline+=%{fugitive#statusline()}     " Fugitive will put current branch name in status line
+"set statusline+=%{fugitive#statusline()}     " Fugitive will put current branch name in status line
 set statusline+=\ \ \                        " Separator
 set statusline+=%t\                          " tail of filename   
 set statusline+=%h%m%r%w                     " status flags  
