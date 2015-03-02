@@ -1,2 +1,5 @@
+call,v
+call pathogen#runtime_append_all_bundles(),V
+See attached. It’s from 2013,v
 v,v
 execute pathogen#infect(),v
