@@ -3,12 +3,11 @@
 " Created: 04/16/2015
 "  Author: Bernie Roesler
 "
-" Description: Bernie's vimrc file
+" Description: Bernie's vimrc file 
 "==============================================================================
 
 " Run pathogen
 execute pathogen#infect()
-" call pathogen#runtime_append_all_bundles()
 execute pathogen#helptags()
 
 " Use Vim settings, rather than Vi settings (much better!).
@@ -58,7 +57,7 @@ set tags=./tags;    " read local tag file first, then search for others
 
 set wildmenu        " Enable tab to show all menu options
 set wildignorecase  " ignore case when tab completing
-set wildmode=list:full
+set wildmode=list:full,full
 
 set number          " Turn on line numbers
 set ttyfast         " fast connection allows smoother scrolling
@@ -123,18 +122,15 @@ autocmd FileType html,css setlocal shiftwidth=2 tabstop=2
 
 " Allow stylesheets to autocomplete hyphenated words
 autocmd FileType css,scss,sass,html setlocal iskeyword+=-,_
-autocmd FileType css,scss,sass      setlocal omnifunc=csscomplete#CompleteCSS
+                                  \ setlocal omnifunc=csscomplete#CompleteCSS
 
 "--------------------------------------- plain text
 autocmd FileType text syn match Braces display '[{}\[\]]'
-autocmd FileType text hi Braces ctermfg=darkred
-
-autocmd FileType text syn match Quotes display '[\'\`\"]'
-autocmd FileType text hi Quotes ctermfg=6
-" 21 == light blue
-
-autocmd FileType text syn match Stars display '[\*]'
-autocmd FileType text hi Stars ctermfg=208
+                    \ hi Braces ctermfg=darkred
+                    \ syn match Quotes display '[\'\`\"]'
+                    \ hi Quotes ctermfg=6
+                    \ syn match Stars display '[\*]'
+                    \ hi Stars ctermfg=208
 
 
 "--------------------------------------- LaTeX
@@ -169,7 +165,7 @@ autocmd FileType c set cindent
 let Tlist_Ctags_Cmd = '/usr/local/bin/ctags'   " Ensure exuberant-ctags is used
 
 " ,t toggles taglist on/off
-nnoremap ,t :TlistToggle<CR>
+nnoremap ,t :TagbarToggle<CR>
 
 
 "--------------------------------------- YankRing.vim Options
