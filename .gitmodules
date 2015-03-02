@@ -7,3 +7,6 @@
 [submodule "vim/bundle/tComment"]
 	path = vim/bundle/tComment
 	url = https://github.com/vim-scripts/tComment.git
+[submodule "vim/bundle/supertab"]
+	path = vim/bundle/supertab
+	url = https://github.com/ervandew/supertab.git
