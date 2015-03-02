@@ -4,3 +4,6 @@
 [submodule "vim/bundle/rename"]
 	path = vim/bundle/rename
 	url = https://github.com/danro/rename.vim.git
+[submodule "vim/bundle/tComment"]
+	path = vim/bundle/tComment
+	url = https://github.com/vim-scripts/tComment.git
