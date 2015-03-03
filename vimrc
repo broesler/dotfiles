@@ -3,16 +3,16 @@
 " Created: 04/16/2015
 "  Author: Bernie Roesler
 "
-" Description: Bernie's vimrc file
+" Description: Settings for vim. Source with \s while in vim
 "==============================================================================
+
+" Run pathogen
+call pathogen#infect()
+call pathogen#helptags()
 
 " Use Vim settings, rather than Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
 set nocompatible
-
-" Run pathogen
-execute pathogen#infect()
-execute pathogen#helptags()
 
 " Set path to recursively include all directories below the current one for
 " quick searching, filename completion, etc.
@@ -60,10 +60,10 @@ set wildmenu        " Enable tab to show all menu options
 set wildignorecase  " ignore case when tab completing
 set wildmode=list:full,full
 
+set title           " Show filename in title bar
 set number          " Turn on line numbers
 set ttyfast         " fast connection allows smoother scrolling
 set scrolloff=1     " cursor will never reach bottom of window
-set title           " Show the filename in the titlebar
 set history=1000    " Keep command history
 set showcmd         " Show partial commands
 set hls             " highlight all search terms
@@ -113,9 +113,9 @@ iab THe The
 " set local directory of each buffer to the buffer's directory
 " autocmd BufEnter * silent! lcd %:p:h
 
-" automatically make and load view on document open/close
-autocmd BufWinLeave *.* silent mkview
-autocmd BufWinEnter *.* silent loadview
+" " automatically make and load view on document open/close
+" autocmd BufWinLeave *.* silent mkview
+" autocmd BufWinEnter *.* silent loadview
 
 "--------------------------------------- HTML/CSS
 " Treat <li> and <p> tags like the block tags they are
@@ -124,6 +124,7 @@ autocmd FileType html,css setlocal shiftwidth=2 tabstop=2
 
 " Allow stylesheets to autocomplete hyphenated words
 autocmd FileType css,scss,sass,html setlocal iskeyword+=-,_
+autocmd FileType css,scss,sass,html setlocal iskeyword-=:
 autocmd FileType css,scss,sass      setlocal omnifunc=csscomplete#CompleteCSS
 
 "--------------------------------------- plain text

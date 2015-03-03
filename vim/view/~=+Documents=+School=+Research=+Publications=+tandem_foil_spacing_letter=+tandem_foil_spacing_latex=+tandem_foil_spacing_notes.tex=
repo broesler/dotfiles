@@ -1,5 +1,29 @@
 let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
 argglobal
+let s:cpo_save=&cpo
+set cpo&vim
+xmap <buffer> % <Plug>LatexBox_JumpToMatch
+nmap <buffer> % <Plug>LatexBox_JumpToMatch
+map <buffer> <silent> \lt :LatexTOC
+map <buffer> \lv :LatexView
+map <buffer> \le :LatexErrors
+map <buffer> \lk :LatexmkStop
+map <buffer> \lG :LatexmkStatus!
+map <buffer> \lg :LatexmkStatus
+map <buffer> \lC :LatexmkClean!
+map <buffer> \lc :LatexmkClean
+map <buffer> \lL :Latexmk!
+map <buffer> \ll :Latexmk
+omap <buffer> a$ :normal va$
+vmap <buffer> a$ <Plug>LatexBox_SelectInlineMathOuter
+omap <buffer> ae :normal vae
+vmap <buffer> ae <Plug>LatexBox_SelectCurrentEnvOuter
+omap <buffer> i$ :normal vi$
+vmap <buffer> i$ <Plug>LatexBox_SelectInlineMathInner
+omap <buffer> ie :normal vie
+vmap <buffer> ie <Plug>LatexBox_SelectCurrentEnvInner
+let &cpo=s:cpo_save
+unlet s:cpo_save
 setlocal keymap=
 setlocal noarabic
 setlocal autoindent
@@ -12,11 +36,11 @@ setlocal buflisted
 setlocal buftype=
 setlocal nocindent
 setlocal cinkeys=0{,0},0),:,0#,!^F,o,O,e
-setlocal cinoptions=j1,J1
+setlocal cinoptions=
 setlocal cinwords=if,else,while,do,for,switch
 setlocal colorcolumn=80
-setlocal comments=s:<!--,m:\ \ \ \ ,e:-->
-setlocal commentstring=<!--%s-->
+setlocal comments=sO:%\ -,mO:%\ \ ,eO:%%,:%
+setlocal commentstring=%%s
 setlocal complete=.,w,b,u,t,i
 setlocal concealcursor=
 setlocal conceallevel=0
@@ -26,14 +50,14 @@ setlocal cryptmethod=
 setlocal nocursorbind
 setlocal nocursorcolumn
 setlocal nocursorline
-setlocal define=
+setlocal define=\\\\\\([egx]\\|char\\|mathchar\\|count\\|dimen\\|muskip\\|skip\\|toks\\)\\=def\\|\\\\font\\|\\\\\\(future\\)\\=let\\|\\\\new\\(count\\|dimen\\|skip\\|muskip\\|box\\|toks\\|read\\|write\\|fam\\|insert\\)\\|\\\\\\(re\\)\\=new\\(boolean\\|command\\|counter\\|environment\\|font\\|if\\|length\\|savebox\\|theorem\\(style\\)\\=\\)\\s*\\*\\=\\s*{\\=\\|DeclareMathOperator\\s*{\\=\\s*
 setlocal dictionary=
 setlocal nodiff
 setlocal equalprg=
-setlocal errorformat=
+setlocal errorformat=%E%f:%l:%m,%-Cl.%l\ %m,%-G
 setlocal expandtab
-if &filetype != 'html'
-setlocal filetype=html
+if &filetype != 'tex'
+setlocal filetype=tex
 endif
 setlocal foldcolumn=0
 setlocal foldenable
@@ -51,19 +75,19 @@ setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
 setlocal grepprg=
 setlocal iminsert=0
 setlocal imsearch=0
-setlocal include=
-setlocal includeexpr=
-setlocal indentexpr=HtmlIndent()
-setlocal indentkeys=o,O,<Return>,<>>,{,},!^F
+setlocal include=\\\\input\\|\\\\include{
+setlocal includeexpr=substitute(v:fname,\ '^.\\{-}{\\|}.*',\ '',\ 'g')
+setlocal indentexpr=GetTeXIndent()
+setlocal indentkeys=0{,0},:,0#,!^F,o,O,e,[,(,{,),},],&,=^s*\\bibitem,=\\item
 setlocal noinfercase
-setlocal iskeyword=@,48-57,_,192-255
+setlocal iskeyword=48-57,a-z,A-Z,192-255,@-@
 setlocal keywordprg=
 setlocal linebreak
 setlocal nolisp
 setlocal lispwords=
 setlocal nolist
 setlocal makeprg=
-setlocal matchpairs=(:),{:},[:],<:>
+setlocal matchpairs=(:),{:},[:]
 setlocal modeline
 setlocal modifiable
 setlocal nrformats=octal,hex
@@ -88,11 +112,11 @@ setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
 setlocal spellfile=
 setlocal spelllang=en
 setlocal statusline=
-setlocal suffixesadd=
+setlocal suffixesadd=.tex
 setlocal swapfile
 setlocal synmaxcol=3000
-if &syntax != 'html'
-setlocal syntax=html
+if &syntax != 'tex'
+setlocal syntax=tex
 endif
 setlocal tabstop=4
 setlocal tags=
@@ -105,13 +129,16 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 22 - ((13 * winheight(0) + 29) / 58)
+5,438fold
+5
+normal! zo
+let s:l = 466 - ((94 * winheight(0) + 47) / 95)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-22
-normal! 023|
-lcd ~/Documents/Projects/web_development/google_homepage
+466
+normal! 0
+lcd ~/Documents/School/Research/Publications/tandem_foil_spacing_letter/tandem_foil_spacing_latex
 let &so = s:so_save | let &siso = s:siso_save
 doautoall SessionLoadPost
 " vim: set ft=vim :

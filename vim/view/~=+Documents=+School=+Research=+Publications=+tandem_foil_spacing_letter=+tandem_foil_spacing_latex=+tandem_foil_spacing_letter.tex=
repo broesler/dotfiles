@@ -54,7 +54,7 @@ setlocal define=\\\\\\([egx]\\|char\\|mathchar\\|count\\|dimen\\|muskip\\|
 setlocal dictionary=
 setlocal nodiff
 setlocal equalprg=
-setlocal errorformat=%E%f:%l:%m,%-Cl.%l\ %m,%-G
+setlocal errorformat=
 setlocal expandtab
 if &filetype != 'tex'
 setlocal filetype=tex
@@ -78,7 +78,7 @@ setlocal imsearch=0
 setlocal include=\\\\input\\|\\\\include{
 setlocal includeexpr=substitute(v:fname,\ '^.\\{-}{\\|}.*',\ '',\ 'g')
 setlocal indentexpr=GetTeXIndent()
-setlocal indentkeys=0{,0},:,0#,!^F,o,O,e,[,(,{,),},],&,=^s*\\bibitem,=\\item
+setlocal indentkeys=0{,0},:,0#,!^F,o,O,e,[,(,{,),},],&,=\\bibitem,=\\item
 setlocal noinfercase
 setlocal iskeyword=48-57,a-z,A-Z,192-255,@-@,_
 setlocal keywordprg=
@@ -93,7 +93,7 @@ setlocal modifiable
 setlocal nrformats=octal,hex
 setlocal number
 setlocal numberwidth=4
-setlocal omnifunc=LatexBox_Complete
+setlocal omnifunc=syntaxcomplete#Complete
 setlocal path=
 setlocal nopreserveindent
 setlocal nopreviewwindow
@@ -129,12 +129,12 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-5,438fold
-let s:l = 442 - ((437 * winheight(0) + 47) / 94)
+27,454fold
+let s:l = 462 - ((461 * winheight(0) + 47) / 95)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-442
+462
 normal! 0
 lcd ~/Documents/School/Research/Publications/tandem_foil_spacing_letter/tandem_foil_spacing_latex
 let &so = s:so_save | let &siso = s:siso_save
