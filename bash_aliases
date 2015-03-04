@@ -163,7 +163,7 @@ alias which='type -all'
 if [[ "$OSTYPE" == "darwin"* ]]; then
   alias lc='ls -hlpG'
 elif [[ "$OSTYPE" == "linux"* ]]; then
-  alias lc='gls -hlp --color=auto' # Linux ls options
+  alias lc='ls -hlp --color=auto' # Linux ls options
 fi
 
 alias lt='tree -C'
