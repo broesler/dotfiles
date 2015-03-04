@@ -1,0 +1,25 @@
+[user]
+	name = Bernard Roesler
+	email = bernard.roesler@gmail.com
+[color]
+	ui = true
+[alias]
+	lol = log --oneline --graph --decorate 
+	st = status -s --branch
+    co = checkout
+    br = branch
+	aa = add -A :/
+	conflicts = diff --name-only --diff-filter=U
+	dt = difftool
+    up = submodule foreach git pull origin master
+[push]
+	default = simple
+[merge]
+	tool = vimdiff
+[core]
+	excludesfile = ~/.gitignore_global
+	editor = /usr/local/bin/vim
+[diff]
+	tool = vimdiff
+[difftool]
+	prompt = false

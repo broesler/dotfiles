@@ -11,11 +11,11 @@
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
-if [[ $OSTYPE == darwin* ]]; then
+if [[ "$OSTYPE" == "darwin"* ]]; then
   # Set the prompt with green text -- include GNU screen window number
   PS1=$"\[\e[1;32m\][\u@\h: \W]${WINDOW}\$ \[\e[m\]"
 
-elif [[ $OSTYPE == linux* ]]
+elif [[ "$OSTYPE" == "linux"* ]]
   # Set to blue text for linux machines (easy tell on ssh to babylons)
   PS1=$"\[\e[1;36m\][\u@\h: \W]${WINDOW}\$ \[\e[m\]"
 else
@@ -55,7 +55,7 @@ set -o vi
 # Make sure tmux uses colors correctly
 alias tmux='tmux -2'
 
-if [[ $OSTYPE == darwin* ]]; then
+if [[ "$OSTYPE" == "darwin"* ]]; then
   # Set printer options to Duplex Long-Edge-Binding, syntax highlighting on
   lpoptions -d m128_1___thayercups -o Duplex=DuplexNoTumble -o prettyprint
 

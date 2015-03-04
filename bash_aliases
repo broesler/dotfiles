@@ -18,19 +18,22 @@ alias vimrc='vim ~/.vimrc'           # edit vim profile
 #-------------------------------------------------------
 #   FOLDER SHORTCUTS
 #-------------------------------------------------------
-alias cs174='cd ~/Documents/School/14F-15X/cs174_machine_learning/'
-alias es105='cd ~/Documents/School/13F-14X/Engs\ 105/Engs_105_practice/'
-alias es145='cd ~/Documents/School/13F-14X/Engs\ 145/'
-alias es148='cd ~/Documents/School/14F-15X/engg148_structural_mechanics/'
-alias es150='cd ~/Documents/School/13F-14X/Engs\ 150/'
-alias res='cd ~/Documents/School/Research/'
-alias sty='cd /Users/bernardroesler/Library/texmf/tex/latex/'
-alias web='cd ~/Documents/Projects/web_development/'
+
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  alias cs174='cd ~/Documents/School/14F-15X/cs174_machine_learning/'
+  alias es105='cd ~/Documents/School/13F-14X/Engs\ 105/Engs_105_practice/'
+  alias es145='cd ~/Documents/School/13F-14X/Engs\ 145/'
+  alias es148='cd ~/Documents/School/14F-15X/engg148_structural_mechanics/'
+  alias es150='cd ~/Documents/School/13F-14X/Engs\ 150/'
+  alias res='cd ~/Documents/School/Research/'
+  alias sty='cd /Users/bernardroesler/Library/texmf/tex/latex/'
+  alias web='cd ~/Documents/Projects/web_development/'
+fi
 
 # go to CS 50 lab #
 cs50()
 {
-  if [ "$#" -gt "0" ]
+  if [ $# -gt 0 ]
   then
       cd ~/Documents/School/cs50/labs/lab$1/
   else
@@ -157,12 +160,13 @@ alias :e='vim'
 alias which='type -all'
 
 # Color list
-alias lc='ls -hlpG'
-# alias lc='gls -hlp --color=auto' # Linux ls options
-alias lt='tree -C'
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  alias lc='ls -hlpG'
+elif [[ "$OSTYPE" == "linux"* ]]; then
+  alias lc='gls -hlp --color=auto' # Linux ls options
+fi
 
-# Only works with ``gls'' command, and turns off tree colors (use TREECOLORS)
-# export LS_COLORS='di=0:fi=0:ln=0:pi=0:so=0:bd=0:cd=0:or=0:*.eps=93'
+alias lt='tree -C'
 
 # back up multiple directories
 alias ..='cd ..'
@@ -170,6 +174,4 @@ alias .2='cd ../../'
 alias .3='cd ../../../'
 alias .4='cd ../../../../'
 
-
-
-
+#==============================================================================

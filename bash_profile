@@ -9,7 +9,7 @@
 #==============================================================================
 
 # Only on OSX, assumed OK on babylon machines
-if [[ $OSTYPE == darwin* ]]; then
+if [[ "$OSTYPE" == "darwin"* ]]; then
   # Set PATH variable correctly
   export PATH="/usr/local/git/bin:/usr/local/bin:$PATH"               # Enable homebrew and git
   export PATH="/usr/texbin:$PATH"                                     # Add texbin to path for LaTeX usage
