@@ -1,5 +1,5 @@
 #~/.bash_profile
-# vim:syntax=sh
+# Set vim syntax: vim:ft=sh syntax=sh
 #==============================================================================
 #    File: ~/.bash_profile
 # Created: 10/29/13
@@ -8,44 +8,32 @@
 # Description: Loads for all login shells. Sets path variable and others
 #==============================================================================
 
-# Enable homebrew formulas to be used, as well as most recent git version
-export PATH="/usr/local/git/bin:/usr/local/bin:$PATH"
+# Only on OSX, assumed OK on babylon machines
+if [[ $OSTYPE == darwin* ]]; then
+  # Set PATH variable correctly
+  export PATH="/usr/local/git/bin:/usr/local/bin:$PATH"               # Enable homebrew and git
+  export PATH="/usr/texbin:$PATH"                                     # Add texbin to path for LaTeX usage
+  export PATH="/Applications/Adobe\ Illustrator\ CS6/:$PATH"          # Add Illustrator to Path
+  export PATH="/Applications/Xfoil.app/Contents/Resources/:$PATH"     # Add XFOIL to path
 
-#------------------------------------------------------------------------------
-# Allow latex files to compile properly:
-# Add texbin to path
-export PATH="/usr/texbin:$PATH"
+  # Ruby setup:
+  eval "$(rbenv init -)"
+  export PATH="$HOME/.rbenv/shims:$PATH"
 
-# Allow sort to produce expected behavior
-export LC_ALL=C
+  # Set system-wide variables
+  export LC_ALL=C                             # Allow sort to produce expected behavior
+  export RES=~/Documents/School/Research/     # path to research folder
+  export STY=~/Library/texmf/tex/latex/       # path to latex style files
+fi
 
-# path to research folder
-export RES=~/Documents/School/Research/
-
-# path to latex style files
-export STY=~/Library/texmf/tex/latex/
-
-# Add Illustrator to Path
-export PATH="/Applications/Adobe\ Illustrator\ CS6/:$PATH"
-
-# Add XFOIL to path
-export PATH="/Applications/Xfoil.app/Contents/Resources/:$PATH"
-
-# tmux settings
-export TERM='screen-256color'
-
+# ensure tmux uses colors
+export TERM='screen-256color'               
 
 #------------------------------------------------------------------------------
 # If I have my own init file, then use that one, else use the
 # canonical one.
-
 if [ -f ~/.bashrc ]; then
-    source ~/.bashrc
+  source ~/.bashrc
 fi
-#------------------------------------------------------------------------------
-
-# Ruby setup:
-eval "$(rbenv init -)"
-export PATH="$HOME/.rbenv/shims:$PATH"
 
 #==============================================================================
