@@ -1,6 +1,6 @@
 ##Installation:
 
-    $ git clone git://github.com/nelstrom/dotvim.git ~/.vim
+    $ git clone git@bitbucket.org:broesler/dotfiles.git .dotfiles
 
 ##Create symlinks in home directory:
 
