@@ -15,7 +15,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   # Set the prompt with green text -- include GNU screen window number
   PS1=$"\[\e[1;32m\][\u@\h: \W]${WINDOW}\$ \[\e[m\]"
 
-elif [[ "$OSTYPE" == "linux"* ]]
+elif [[ "$OSTYPE" == "linux"* ]]; then
   # Set to blue text for linux machines (easy tell on ssh to babylons)
   PS1=$"\[\e[1;36m\][\u@\h: \W]${WINDOW}\$ \[\e[m\]"
 else
