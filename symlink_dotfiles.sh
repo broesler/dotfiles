@@ -27,8 +27,8 @@ do
   if [[ $f != README.* ]] && [[ $f != `basename $0` ]]  
   then
     # symlink files, do not follow symbolic links that already exist 
-    # (i.e. directories)
-    ln -hs $HOME/.dotfiles/$f $HOME/.$f
+    # (i.e. directories), check if user wants to overwrite existing files
+    ln -ins $HOME/.dotfiles/$f $HOME/.$f
   fi
 done
 
