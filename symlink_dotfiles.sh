@@ -28,7 +28,7 @@ do
   then
     # symlink files, do not follow symbolic links that already exist 
     # (i.e. directories), check if user wants to overwrite existing files
-    ln -ins $HOME/.dotfiles/$f $HOME/.$f
+    ln -insv $HOME/.dotfiles/$f $HOME/.$f
   fi
 done
 

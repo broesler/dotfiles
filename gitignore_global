@@ -1,0 +1,15 @@
+Icon
+Icon^M
+Icon^M^M
+Icon\r
+Icon?
+*~
+*.swp
+*.swo
+.DS_Store
+.DS_Store?
+tags
+Thumbs.db
+.Trashes
+\#*\#
+._*
