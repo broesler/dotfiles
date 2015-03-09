@@ -1,5 +1,12 @@
-References,v
+l,v
+,V
+<<<<<<< HEAD,V
+elif [[ "$OSTYPE" == "linux"* ]]; then  alias lc='ls -hlp --color=auto'       # Linux ls options,V
+=======  alias lc='ls -Ghlp',V
+>>>>>>> 6ec5f4aeecad94b39ab35cb0c34ecca663b02df1,V
 alias vimrc='vim ~/.vimrc'          # edit vim profile,V
+Transportation ReviewWave Energy Review,v
+References,v
  ,v
 blue,v
 .c 00;33,V
@@ -7,7 +14,6 @@ blue,v
 alias lt='tree -C',V
 [ -e "$HOME/.dircolors" ] && DIR_COLORS="$HOME/.dircolors"    [ -e "$DIR_COLORS" ] || DIR_COLORS="",v
   eval `gdircolors -b ~/.dircolors`,V
-,V
 alias :q='logout',V
  # make vim behavior work,v
 Cyn,V
@@ -92,9 +98,3 @@ $2\pi f s / U^*,v
 Here, U* = U + ux represents the total (free-stream plus spatially-averaged wake-induced) velocity in the region between the foils.  The ratio s/U* is the time required for vortex advection from upstream foil to downstream foil, and 1/f is the flapping period, so 2𝜋𝑓𝑠/𝑈* is the phase lag required for vortex advection. The phase offset ϕ0 is not a function of spacing s; it represents the actual choreography needed by the downstream foil for high efficiency (aside from waiting 2𝜋𝑓𝑠/𝑈* for the upstream vortices to arrive).,v
 Epps ,v
 PI ,v
-0–,v
-–,v
-θ(t) = θ0 sin(2πf t) + offset,v
-3,v
-K�rmán ,v
-�,v
