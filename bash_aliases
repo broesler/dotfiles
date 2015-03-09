@@ -170,6 +170,11 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   alias lc='gls -Ghlp --color=auto'
 
 elif [[ "$OSTYPE" == "linux"* ]]; then
+  # If ~/.dircolors exists, set custom colors file
+  [ -e "$HOME/.dircolors" ] && DIR_COLORS="$HOME/.dircolors"
+  [ -e "$DIR_COLORS" ] || DIR_COLORS=""
+  eval "`dircolors -b ~/.dircolors`"   # set custom colors file
+
   alias lc='ls -Ghlp --color=auto' # Linux ls options
 fi
 
