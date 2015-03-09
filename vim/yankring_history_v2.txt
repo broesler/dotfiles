@@ -1,3 +1,4 @@
+i,v
 l,v
 ,V
 <<<<<<< HEAD,V
@@ -97,4 +98,3 @@ $2\pi f s / U^*,v
 �,v
 Here, U* = U + ux represents the total (free-stream plus spatially-averaged wake-induced) velocity in the region between the foils.  The ratio s/U* is the time required for vortex advection from upstream foil to downstream foil, and 1/f is the flapping period, so 2𝜋𝑓𝑠/𝑈* is the phase lag required for vortex advection. The phase offset ϕ0 is not a function of spacing s; it represents the actual choreography needed by the downstream foil for high efficiency (aside from waiting 2𝜋𝑓𝑠/𝑈* for the upstream vortices to arrive).,v
 Epps ,v
-PI ,v
