@@ -13,7 +13,6 @@ alias erc='vim ~/.bashrc'
 alias ea='vim ~/.bash_aliases'      # edit aliases
 alias rp='source ~/.bash_profile'   # reload profile
 alias rrc='source ~/.bashrc'        # reload JUST rc file (more common)
-alias vimrc='vim ~/.vimrc'           # edit vim profile
 
 #-------------------------------------------------------
 #   FOLDER SHORTCUTS
@@ -155,18 +154,25 @@ alias mygcc='gcc -Wall -pedantic -std=c99'
 alias mygfortran='gfortran -Wall -pedantic -std=f95 -fbounds-check -ffree-line-length-0'
 alias r='rlogin'
 alias rm='rm -i'
+alias lt='tree -C'
 alias vi='vim'
 alias :e='vim'
 alias which='type -all'
 
 # Color list
 if [[ "$OSTYPE" == "darwin"* ]]; then
-  alias lc='ls -hlpG'
+  # # alias lc='ls -hlpG'               # Mac OS X alias
+  # If ~/.dircolors exists, set custom colors file
+  [ -e "$HOME/.dircolors" ] && DIR_COLORS="$HOME/.dircolors"
+  [ -e "$DIR_COLORS" ] || DIR_COLORS=""
+  eval "`gdircolors -b ~/.dircolors`"   # set custom colors file
+
+  alias lc='gls -hlp --color=auto'
+
 elif [[ "$OSTYPE" == "linux"* ]]; then
-  alias lc='ls -hlp --color=auto' # Linux ls options
+  alias lc='ls -hlp --color=auto'       # Linux ls options
 fi
 
-alias lt='tree -C'
 
 # back up multiple directories
 alias ..='cd ..'

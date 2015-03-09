@@ -1,100 +1,100 @@
-,V
-#==============================================================================,V
-# Only works with ``gls'' command, and turns off tree colors (use TREECOLORS)# export LS_COLORS='di=0:fi=0:ln=0:pi=0:so=0:bd=0:cd=0:or=0:*.eps=93',V
+References,v
+alias vimrc='vim ~/.vimrc'          # edit vim profile,V
  ,v
+blue,v
+.c 00;33,V
 #,v
-",v
-if [[ $OSTYPE == darwin* ]]; then,V
-if [[ "$OSTYPE" == "darwin"* ]]; then,V
--,_,v
-/bernardroesler,v
-/Users,v
-/Users/bernardroesler/,v
-if [[ $OSTYPE == darwin* ]]; thenfi,V
-# Set printer options to Duplex Long-Edge-Binding, syntax highlighting on,V
-  lpoptions -d m128_1___thayercups -o Duplex=DuplexNoTumble -o prettyprint,V
-# ensure tmux uses colors,v
+alias lt='tree -C',V
+[ -e "$HOME/.dircolors" ] && DIR_COLORS="$HOME/.dircolors"    [ -e "$DIR_COLORS" ] || DIR_COLORS="",v
+  eval `gdircolors -b ~/.dircolors`,V
 ,V
-#------------------------------------------------------------------------------,V
-# vim:syntax=sh,V
-# Set vim syntax: vim:ft=sh syntax=sh,V
-syntax,v
-# Ruby setup:eval "$(rbenv init -)"export PATH="$HOME/.rbenv/shims:$PATH",V
-                                                                                                            ,27
-                          #                          #                          #                          #,27
-export LC_ALL=C                                                     # Allow sort to produce expected behaviorexport RES=~/Documents/School/Research/                             # path to research folderexport STY=~/Library/texmf/tex/latex/                               # path to latex style files,V
-Enable homebrew formulas to be used, as well as most recent git version,v
-# Enable homebrew formulas to be used, as well as most recent git version,v
-export PATH="/usr/texbin:$PATH"                                     # Add texbin to path for LaTeX usage,V
-# Allow latex files to compile properly:,V
-# tmux settings,v
-# Add XFOIL to path,v
-# Add Illustrator to Path,v
-# path to latex style files,v
-# path to research folder,v
-# Allow sort to produce expected behavior,v
-# Add texbin to path,v
-whitespace,v
-# If not running interactively, don't do anything[ -z "$PS1" ] && return,V
-# default,v
-#PS1=$"[\u@\h: \W]\$ "      # default,V
-# Set the prompt with green text -- include GNU screen window number,V
-  # Set to blue text for linux machines (easy tell on ssh to babylons),V
-# Set to blue text for linux machines (easy tell on ssh to babylons),V
-  PS1=$"\[\e[1;32m\][\u@\h: \W]${WINDOW}\$ \[\e[m\]",V
-    PS1=$"\[\e[1;36m\][\u@\h: \W]${WINDOW}\$ \[\e[m\]",V
-elif [[ $OSTYPE == linux* ]],V
-if [[ $OSTYPE == darwin* ]],V
-  # Set printer options to Duplex Long-Edge-Binding, syntax highlighting on,V
-    elif [[ $OSTYPE == linux* ]]    then      ln -    fi,V
-    if [[ $OSTYPE == darwin* ]]    then,V
-LN(1)			  BSD General Commands Manual			 LN(1)NAME     link, ln -- make linksSYNOPSIS     ln [-Ffhinsv] source_file [target_file]     ln [-Ffhinsv] source_file ... target_dir     link source_file target_fileDESCRIPTION     The ln utility creates a new directory entry (linked file) which has the same modes as the original file.	It is use-     ful for maintaining multiple copies of a file in many places at once without using up storage for the ``copies'';     instead, a link ``points'' to the original copy.  There are two types of links; hard links and symbolic links.  How a     link ``points'' to a file is one of the differences between a hard and symbolic link.     The options are as follows:     -F    If the target file already exists and is a directory, then remove it so that the link may occur.  The -F option	   should be used with either -f or -i options.  If none is specified, -f is implied.  The -F option is a no-op	   unless -s option is specified.     -h    If the target_file or target_dir is a symbolic link, do not follow it.  This is most useful with the -f option,	   to replace a symlink which may point to a directory.     -f    If the target file already exists, then unlink it so that the link may occur.  (The -f option overrides any	   previous -i options.)     -i    Cause ln to write a prompt to standard error if the target file exists.  If the response from the standard	   input begins with the character `y' or `Y', then unlink the target file so that the link may occur.	Otherwise,	   do not attempt the link.  (The -i option overrides any previous -f options.)     -n    Same as -h, for compatibility with other ln implementations.     -s    Create a symbolic link.     -v    Cause ln to be verbose, showing files as they are processed.     By default, ln makes hard links.  A hard link to a file is indistinguishable from the original directory entry; any     changes to a file are effectively independent of the name used to reference the file.  Hard links may not normally     refer to directories and may not span file systems.     A symbolic link contains the name of the file to which it is linked.  The referenced file is used when an open(2)     operation is performed on the link.  A stat(2) on a symbolic link will return the linked-to file; an lstat(2) must be     done to obtain information about the link.  The readlink(2) call may be used to read the contents of a symbolic link.     Symbolic links may span file systems and may refer to directories.     Given one or two arguments, ln creates a link to an existing file source_file.  If target_file is given, the link has     that name; target_file may also be a directory in which to place the link; otherwise it is placed in the current     directory.  If only the directory is specified, the link will be made to the last component of source_file.     Given more than two arguments, ln makes links in target_dir to all the named source files.  The links made will have     the same name as the files being linked to.     When the utility is called as link, exactly two arguments must be supplied, neither of which may specify a directory.     No options may be supplied in this simple mode of operation, which performs a link(2) operation using the two passed     arguments.COMPATIBILITY     The -h, -i, -n and -v options are non-standard and their use in scripts is not recommended.  They are provided solely     for compatibility with other ln implementations.     The -F option is FreeBSD extention and should not be used in portable scripts.SEE ALSO     link(2), lstat(2), readlink(2), stat(2), symlink(2), symlink(7)STANDARDS     The ln utility conforms to IEEE Std 1003.2-1992 (``POSIX.2'').     The simplified link command conforms to Version 2 of the Single UNIX Specification (``SUSv2'').HISTORY     An ln command appeared in Version 1 AT&T UNIX.BSD			       February 14, 2006			   BSD,V
-unamestr=`uname`; # name of OS,V
-git clone git://github.com/nelstrom/dotvim.git ~/.vim,v
-git clone git@bitbucket.org:broesler/dotfiles.git,v
-autocmd FileType css,scss,sass,html setlocal iskeyword+=-,_,V
-left:,v
-  margin-left: 15px;,V
-  margin: 5px;,V
-1,v
-  position: relative;,V
-absolute,v
-  position: absolute;,V
-HEADER,v
-/*------------------------------------------------------------------------------ *      HEADER *----------------------------------------------------------------------------*/,V
-*,v
-*-----------------------------------------------------------------------------,v
-=,v
-==============================================================================,v
-/,v
- */,v
-/* <!-- header bar --> */,V
-    <!-- header bar -->,V
-  width: 400px;,V
-  right: 15px;,V
+alias :q='logout',V
+ # make vim behavior work,v
+Cyn,V
+NACA0012_v2,v
+`-- ~$UNH\ Tests\ 150307.xlsx,V
+|-- |-- ,4
+|-- walvisstaart_8990_2014_input_actual_geometry_150307.m|-- walvisstaart_8990_2014_usage_roesler_150307.m,V
+# above for 'input' vs ,V
+ See description,v
+|-- |-- |-- |-- |-- |-- ,4
+|-- fig_CFA_vs_lambda.pdf|-- fig_CQA_vs_lambda.pdf|-- fig_CQSA_vs_lambda.pdf|-- fig_CTA_vs_lambda.pdf|-- fig_ETA_vs_CTA.pdf|-- fig_ETA_vs_lambda.pdf,V
+|   |-- Icon\r,V
+|-- Icon\r,V
+1 directory, 36 files,V
+.|-- !README.txt|-- 150307_2007_walvisstaart_run_a20_c0150_b0375_OpenProp_elliptical.mat|-- 150307_2012_walvisstaart_run_a20_c0150_b0375_NACA0012v2_elliptical.mat|-- 150307_CyROD_data_elliptical_dCLdALPHA.xlsx|-- 150308_1722_walvisstaart_run_a20_c0150_b0750_OpenProp_rectangular.mat|-- 150308_1729_walvisstaart_run_a20_c0150_b0375_OpenProp_rectangular.mat|-- 150308_1739_walvisstaart_run_a20_c0150_b0750_OpenProp_elliptical.mat|-- CYinput.mat|-- Data\ used\ for\ 2014\ 89-89\ project\ design\ development|   |-- 141107_walvisstaart_run_a152025_CD015_b050.mat|   |-- 141107_walvisstaart_run_a152025_CD015_b075.mat|   |-- 141107_walvisstaart_run_amplitudes_CD015.mat|   |-- 141107_walvisstaart_run_amplitudes_CD015_b050.mat|   |-- 141107_walvisstaart_run_amplitudes_CD015_b075.mat|   |-- Icon\r|   |-- amplitude_plots.m|   |-- walvisstaart_8990_2014_input.m|   |-- walvisstaart_8990_2014_usage\ EPPS.m|   |-- walvisstaart_8990_2014_usage.m|   `-- walvisstaart_8990_2014_usage_amplitudes.m|-- UNH\ Tests\ 150306_Roesler.xlsx|-- UNH\ Tests\ 150307.xlsx|-- UNH_Testing_data_and_figures_150308.m|-- UNH_Testing_data_and_figures_150308.m~|-- fig_ETA_vs_CTA.pdf|-- fig_ETA_vs_lambda.pdf|-- temp.mat|-- ticks.m|-- walvisstaart_8990_2014_input_actual_geometry_150307.m`-- walvisstaart_8990_2014_usage_roesler_150307.m,V
+s,v
+|-- ,v
+|-- UNH_Testing_data_and_figures_150308.m,V
+paper,v
+|-- UNH\ Tests\ 150306_Roesler.xlsx|-- UNH\ Tests\ 150307.xlsx,V
+UNH_Testing_data_and_figures_150308.m,V
+ into the spreadsheet,v
+.,v
+UNH_Testing_data_and_figures_150308.m~,V
+|-- UNH_Testing_data_and_figures_150308.m|-- UNH_Testing_data_and_figures_150308.m~,V
+  Icon\r,V
+|   |--|   |--|   |--|   |--|   |--|   |--|   |--|   |--|   |--|   |--|   `--,7
+|   |-- 141107_walvisstaart_run_a152025_CD015_b050.mat|   |-- 141107_walvisstaart_run_a152025_CD015_b075.mat|   |-- 141107_walvisstaart_run_amplitudes_CD015.mat|   |-- 141107_walvisstaart_run_amplitudes_CD015_b050.mat|   |-- 141107_walvisstaart_run_amplitudes_CD015_b075.mat|   |-- Icon\r|   |-- amplitude_plots.m|   |-- walvisstaart_8990_2014_input.m|   |-- walvisstaart_8990_2014_usage\ EPPS.m|   |-- walvisstaart_8990_2014_usage.m|   `-- walvisstaart_8990_2014_usage_amplitudes.m,V
+|-- Data\ used\ for\ 2014\ 89-89\ project\ design\ development,V
+|-- |-- |-- |-- |-- ,4
+|-- 150308_1722_walvisstaart_run_a20_c0150_b0750_OpenProp_rectangular.mat|-- 150308_1729_walvisstaart_run_a20_c0150_b0375_OpenProp_rectangular.mat|-- 150308_1739_walvisstaart_run_a20_c0150_b0750_OpenProp_elliptical.mat,V
+|-- 150307_2007_walvisstaart_run_a20_c0150_b0375_OpenProp_elliptical.mat|-- 150307_2012_walvisstaart_run_a20_c0150_b0375_NACA0012v2_elliptical.mat,V
+#-------------------------------------------------------------------------------,V
+.,V
+1 directory, 31 files,V
+This ,V
+defaults write org.n8gray.QLColorCode fontSizePoints 9,v
+ of Walvisstaart_8990_2014,v
+#===============================================================================,V
+  setenv LS_COLORS=',V
+script,v
+\section{Introduction}The most promising non-traditional propulsor concept involves tandem flapping foils (two hydrofoils, one roughly aft of the other). Current DON-funded research with tandem foils shows promising results and indicates that the high efficiency of a single flapping foil may be possible with a tandem foil arrangement [1,17].The geometric and kinematic description of a tandem foil propulsor is given in Figure [TWO FOIL FIGURE ANNOTATED].  Including the induced velocities (ux, uy), the angle of attack is:\begin{equation}\alpha(t) = \tan^{-1}\(\ddfrac{\ddx{h(t)}{t} - u_y(t)}{U + u_x(t)}]\) - \theta(t)\end{equation}such that the maximum angle of attack is roughly\begin{equation}  \alpha_{max} \approx \tan^{-1} (\pi\mathit{St}) - \theta_0\end{equation}As evident from this long list [INSERT LIST OF PARAMETERS?] of geometric and kinematic parameters, the design space for tandem flapping foil propulsion is enormous. The following design methodology applies:\begin{itemize_packed}  \item Choose the geometry and kinematics of the forward foil based on those optimal for an isolated foil.  \item Choose inter-foil phase angle $\phi$ to mitigate unsteady variation in thrust and side force.  \item Choose inter-foil separation $s$ to yield high efficiency.  \item Choose the geometry (e.g. span $b_2$) and kinematics (e.g. heave amplitude $h_{02}$) of the aft foil such that the aft foil ``fits'' in the wake of the forward foil.\end{itemize_packed}Justification of this design methodology follows: Prior work with tandem pitching foils has shown that high efficiency occurs when the upstream foil performs motions similar to the high-performance motions of an isolated foil [17,20,111,129].  PI Epps postulates that this is true because the main effect of the downstream foil on the upstream foil is to induce axial inflow (i.e. the time-averaged $u_x > 0$, but $uy \approx 0$).  This is akin to contra-rotating propellers, where the downstream rotor induces axial- but not swirl velocity on the upstream rotor [26,63]. The physics of isolated flapping foils is well known.  Triantafyllou et al. [114] showed that the wake dynamics of flapping foils are dominated by the Strouhal number, $\mathit{St} = fA/U$ where $A=2h_0$ is the wake width. They suggest that optimal efficiency is achieved for $0.25 < \mathit{St} < 0.35$. Further, Triantafyllou et al. [113] observed that many live fish swim in this Strouhal range.The wake morphology associated with maximum propulsive efficiency is a reverse K\'{a}rm\'{a}n street; the choreography is such that a leading edge vortex forms, is shed, and combines with trailing edge vorticity to produce two vortices per cycle (see Figure [INSERT ANDERSON WAKE MORPHOLOGY FIGURE?]) [2,3].  Many more experimental [93,94,123,124]  and computational [14,15,33,83,95,109,131] studies have led to a deep understanding of the propulsive performance and wake morphology in both 2D and 3D.  Non-sinusoidal motions (higher-order harmonics, sawtooth waveform, etc.) have been shown to increase thrust, but reduce efficiency [64,67,82,99].  One comprehensive review is [115]. In the tandem foil scenario, the downstream foil interacts with the wake of the upstream foil with the goal of producing an enhanced thrust-type wake. The general vorticity control problem has been studied experimentally [11,60,74,109]; these studies show that the wake of an upstream body can in fact be modified in a deliberate manner by a downstream flapping foil.The tandem flapping foil arrangement occurs in nature: The dragonfly has been studied extensively by the aeronautics community for its superior propulsive and maneuvering ability [5,16,32,66,76,80,105,111,125,126,129].  One important theoretical result in this literature is that harmonic motions produce thrust with no net side force.  To produce a net side force (say, for maneuvering), linear theory only requires a non-zero pitch offset: $\theta(t) = \theta_0\sin(2\pi ft) + \text{offset}$  [13,73,80,130].  This implies that, say, the aft foil can be used for both propulsion and steering.The most comprehensive experimental study of tandem flapping foils to date was performed by Boschitsch et al. [17], who considered the pitching motions of 2D foils for a range of inter-foil spacings and phase lags.  Prior experimental [101] and computational [1,20,21,22] studies considered only a subset of these test conditions, but considered foils moving in both pitch and heave.  The primary results from all of these studies are consistent: Thrust and efficiency can be enhanced or diminished depending on the combination of inter-foil spacing and phase lag.  At best, a tandem foil system can produce 150--280\% of the thrust at 150--180\% of the efficiency of a single foil ([17] and [1], respectively). Moreover, maximum thrust and efficiency occur together [17,76], which confirms that a tandem foil system is a viable ship propulsor. \section{Key Insight}The key insight in this proposal is that these kinematics can be chosen without sacrificing efficiency.  To achieve high efficiency for a chosen inter-foil phase lag $\phi$, one must set the inter-foil spacing s appropriately. Although not yet discussed in the literature, we observe that there exists a natural relationship between the inter-foil spacing and the optimum inter-foil phase lag (to maximize efficiency):\begin{equation}  \phi_{\mathit{optimum}} = \phi_0 + 2\pi\frac{s/U^*}{T} = \phi_0 + \frac{2\pi fs}{U^*}\end{equation}Here, $U^* = U + u_x$ represents the total (free-stream plus spatially-averaged wake-induced) velocity in the region between the foils.  The ratio $\frac{s}{U*}$ is the time required for vortex advection from upstream foil to downstream foil, and $T = 1/f$ is the flapping period, so $2\pi f s / U^*$ is the phase lag required for vortex advection. The phase offset $\phi_0$ is not a function of spacing $s$; it represents the actual choreography needed by the downstream foil for high efficiency (aside from waiting $2\pi f s / U^*$ for the upstream vortices to arrive).[INSERT BOSCHITSCH FIGURE HERE]Figure [BOSCHITSCH FIGURE] shows experimental results with pitching tandem foils [17]. Contours of maximum thrust and efficiency occur when $\phi = 2\pi - 2\pi\frac{\frac{s}{c}}{1.2}$. In this case, $\frac{fc}{U} = 1.0$, and they report $U^* = 1.2U$. Also, they define $\phi$ as a phase lead (i.e.\ negative of that herein). Thus, their experimental data shows\begin{equation}  \phi_{\mathit{optimum}} = \phi_0 + \frac{2\pi fs}{U^*}\end{equation}(where in this case $\phi_0 = 2\pi$). Similar results by other researchers with a 2D numerical simulation were reported at the 2014 APS-DFD conference [88].[INCLUDE OTHER RESULTS HERE]\section{Conclusions},V
+150308_1530_walvisstaart_run_a20_c0150_b0375_OpenProp_LLdCLdALPHA,v
+A, b, c, D, Favg, Favg_expected, HHMM, nu, Qavg, Qavg_expected, R, rho, RPM, RPM_tach, S, salinity, Savg, Savg_expected, Tavg, Tavg_expected, U, water_temp, YYMMDD, Z,v
+150307_CyROD_data.xlsx,v
+defaults write com.apple.finder EmptyTrashSecurely -bool false,V
+Empty Trash securely by default,v
+],v
+http://journals.aps.org/revtex/,v
+This is my abstract where I talk about the paper.,V
+\section{Introduction},V
+\section{Introduction}The most promising non-traditional propulsor concept involves tandem flapping foils (two hydrofoils, one roughly aft of the other). Current DON-funded research with tandem foils shows promising results and indicates that the high efficiency of a single flapping foil may be possible with a tandem foil arrangement [1,17].The geometric and kinematic description of a tandem foil propulsor is given in Figure [TWO FOIL FIGURE ANNOTATED].  Including the induced velocities (ux, uy), the angle of attack is:\begin{equation}\alpha(t) = \tan^{-1}\(\ddfrac{\ddx{h(t)}{t} - u_y(t)}{U + u_x(t)}]\) - \theta(t)\end{equation}such that the maximum angle of attack is roughly\begin{equation}  \alpha_{max} \approx \tan^{-1} (\pi\mathit{St}) - \theta_0\end{equation}As evident from this long list [INSERT LIST OF PARAMETERS?] of geometric and kinematic parameters, the design space for tandem flapping foil propulsion is enormous. The following design methodology applies:\begin{itemize_packed}  \item Choose the geometry and kinematics of the forward foil based on those optimal for an isolated foil.  \item Choose inter-foil phase angle $\phi$ to mitigate unsteady variation in thrust and side force.  \item Choose inter-foil separation $s$ to yield high efficiency.  \item Choose the geometry (e.g. span $b_2$) and kinematics (e.g. heave amplitude $h_{02}$) of the aft foil such that the aft foil ``fits'' in the wake of the forward foil.\end{itemize_packed}Justification of this design methodology follows: Prior work with tandem pitching foils has shown that high efficiency occurs when the upstream foil performs motions similar to the high-performance motions of an isolated foil [17,20,111,129].  PI Epps postulates that this is true because the main effect of the downstream foil on the upstream foil is to induce axial inflow (i.e. the time-averaged $u_x > 0$, but $uy \approx 0$).  This is akin to contra-rotating propellers, where the downstream rotor induces axial- but not swirl velocity on the upstream rotor [26,63]. The physics of isolated flapping foils is well known.  Triantafyllou et al. [114] showed that the wake dynamics of flapping foils are dominated by the Strouhal number, $\mathit{St} = fA/U$ where $A=2h_0$ is the wake width. They suggest that optimal efficiency is achieved for $0.25 < \mathit{St} < 0.35$. Further, Triantafyllou et al. [113] observed that many live fish swim in this Strouhal range.The wake morphology associated with maximum propulsive efficiency is a reverse K\'{a}rm\'{a}n street; the choreography is such that a leading edge vortex forms, is shed, and combines with trailing edge vorticity to produce two vortices per cycle (see Figure [INSERT ANDERSON WAKE MORPHOLOGY FIGURE?]) [2,3].  Many more experimental [93,94,123,124]  and computational [14,15,33,83,95,109,131] studies have led to a deep understanding of the propulsive performance and wake morphology in both 2D and 3D.  Non-sinusoidal motions (higher-order harmonics, sawtooth waveform, etc.) have been shown to increase thrust, but reduce efficiency [64,67,82,99].  One comprehensive review is [115]. In the tandem foil scenario, the downstream foil interacts with the wake of the upstream foil with the goal of producing an enhanced thrust-type wake. The general vorticity control problem has been studied experimentally [11,60,74,109]; these studies show that the wake of an upstream body can in fact be modified in a deliberate manner by a downstream flapping foil.The tandem flapping foil arrangement occurs in nature: The dragonfly has been studied extensively by the aeronautics community for its superior propulsive and maneuvering ability [5,16,32,66,76,80,105,111,125,126,129].  One important theoretical result in this literature is that harmonic motions produce thrust with no net side force.  To produce a net side force (say, for maneuvering), linear theory only requires a non-zero pitch offset: $\theta(t) = \theta_0\sin(2\pi ft) + \text{offset}$  [13,73,80,130].  This implies that, say, the aft foil can be used for both propulsion and steering.The most comprehensive experimental study of tandem flapping foils to date was performed by Boschitsch et al. [17], who considered the pitching motions of 2D foils for a range of inter-foil spacings and phase lags.  Prior experimental [101] and computational [1,20,21,22] studies considered only a subset of these test conditions, but considered foils moving in both pitch and heave.  The primary results from all of these studies are consistent: Thrust and efficiency can be enhanced or diminished depending on the combination of inter-foil spacing and phase lag.  At best, a tandem foil system can produce 150--280\% of the thrust at 150--180\% of the efficiency of a single foil ([17] and [1], respectively). Moreover, maximum thrust and efficiency occur together [17,76], which confirms that a tandem foil system is a viable ship propulsor. \section{Key Insight}The key insight in this proposal is that these kinematics can be chosen without sacrificing efficiency.  To achieve high efficiency for a chosen inter-foil phase lag $\phi$, one must set the inter-foil spacing s appropriately. Although not yet discussed in the literature, we observe that there exists a natural relationship between the inter-foil spacing and the optimum inter-foil phase lag (to maximize efficiency):\begin{equation}  \phi_{\mathit{optimum}} = \phi_0 + 2\pi\frac{s/U^*}{T} = \phi_0 + \frac{2\pi fs}{U^*}\end{equation}Here, $U^* = U + u_x$ represents the total (free-stream plus spatially-averaged wake-induced) velocity in the region between the foils.  The ratio $\frac{s}{U*}$ is the time required for vortex advection from upstream foil to downstream foil, and $T = 1/f$ is the flapping period, so $2\pi f s / U^*$ is the phase lag required for vortex advection. The phase offset $\phi_0$ is not a function of spacing $s$; it represents the actual choreography needed by the downstream foil for high efficiency (aside from waiting $2\pi f s / U^*$ for the upstream vortices to arrive).[INSERT BOSCHITSCH FIGURE HERE]Figure [BOSCHITSCH FIGURE] shows experimental results with pitching tandem foils [17]. Contours of maximum thrust and efficiency occur when $\phi = 2\pi - 2\pi\frac{\frac{s}{c}}{1.2}$. In this case, $\frac{fc}{U} = 1.0$, and they report $U^* = 1.2U$. Also, they define $\phi$ as a phase lead (i.e.\ negative of that herein). Thus, their experimental data shows\begin{equation}  \phi_{\mathit{optimum}} = \phi_0 + \frac{2\pi fs}{U^*}\end{equation}(where in this case $\phi_0 = 2\pi$). Similar results by other researchers with a 2D numerical simulation were reported at the 2014 APS-DFD conference [88].[INCLUDE OTHER RESULTS HERE]\section{Conclusions}To recap, the hypothetical design procedure is to choose the phase lag $\phi$ to mitigate load variations, and then to choose the spacing $s$ to optimize efficiency.  For a given $\phi$, the spacing that optimizes efficiency is:  \begin{equation}  s_{\mathit{optimum}} = (\phi-\phi_0)\frac{U^*}{2\pi f} \end{equation}Although this is a simple relationship, it is not straightforward to use, because $\phi_0$ and $U^*$ are unknown.  However, these could be determined computationally using $s = \phi \frac{U}{2\pi f}$ as an initial guess, and then iterating over $s$ to find the maximum efficiency.This is a critical hypothesis to test, because it determines the viability of tandem flapping foils as a practical propulsor.  Recall, one major drawback of a single flapping foil is that it suffers large variation in instantaneous thrust and side force.  Tandem flapping foils do not necessarily solve this operational problem; in fact, researchers have reported higher fluctuations in instantaneous loads using tandem flapping foils, as compared to single foils (see Figure [NEED FIGURE OF INSTANTANTEOUS THRUST AND SIDE FORCE (NOT IN YIP ARTWORK FOLDER??]) [1].  However, we hypothesize that by deliberately choosing inter-foil phase lag $\phi$ and spacing $s$, one can design a tandem flapping foil propulsor that both \emph{(i)} produces high thrust at high efficiency, and \emph{(ii)} mitigates unsteady variation in thrust or side force.,V
+% Use for fractions with large terms\newcommand{\ddfrac}[2]{\frac{\displaystyle #1}{\displaystyle #2}},V
+%===============================================================================,V
+This is the introduction. Here is where we review the literature.\subsection{}\subsubsection{},V
+tandem_foil_spacing_letter.tex,v
+),v
+% Use for fractions with large terms\newcommand{\ddfrac}[2]{\frac{\displaystyle #1}{\displaystyle #2}},v
+(,v
+ϕ,v
+PI Epps ,v
+5,v
+s = ϕ 𝑈/2𝜋𝑓 ,v
+𝑈* ,v
+ϕ0 ,v
+s_{\mathit{optimum}} = (\phi-\phi_0)\frac{U^*}{2\pi f} ,v
+$,v
+(ϕ- ϕ0) 𝑈*/2𝜋𝑓.,v
+= \phi_0 + 2\pi\frac{s/U^*}{T} ,v
+Similar results by other researchers with a 2D numerical simulation were reported at the 2014 APS-DFD conference [88].,v
+\begin{equation}  \phi_{\mathit{optimum}} = \phi_0 + 2\pi\frac{s/U^*}{T} = \phi_0 + \frac{2\pi fs}{U^*}\end{equation},V
+\begin{equation}  \phi_{\mathit{optimum}} = \phi_0 + 2\pi\frac{s/U^*}{T} = \phi_0 + \frac{2\pi fs}{U^*}\end{equation}Here, $U^* = U + u_x$ represents the total (free-stream plus spatially-averaged wake-induced) velocity in the region between the foils.  The ratio $\frac{s}{U*}$ is the time required for vortex advection from upstream foil to downstream foil, and $T = 1/f$ is the flapping period, so $2\pi f s / U^*$ is the phase lag required for vortex advection. The phase offset $\phi_0$ is not a function of spacing $s$; it represents the actual choreography needed by the downstream foil for high efficiency (aside from waiting $2\pi f s / U^*$ for the upstream vortices to arrive).[INSERT BOSCHITSCH FIGURE HERE]Figure [BOSCHITSCH FIGURE] shows experimental results with pitching tandem foils [17]. Contours of maximum thrust and efficiency occur when $\phi = 2\pi - 2\pi\frac{\frac{s}{c}}{1.2}$. In this case, $\frac{fc}{U} = 1.0$, and they report $U^* = 1.2U$. Also, they define $\phi$ as a phase lead (i.e.\ negative of that herein). Thus, their experimental data shows,V
+\begin{equation}  \phi_{\mathit{optimum}} = \phi_0 + 2\pi\frac{s/U^*}{T} = \phi_0 + \frac{2\pi fs}{U^*}\end{equation}Here, $U^* = U + u_x$ represents the total (free-stream plus spatially-averaged wake-induced) velocity in the region between the foils.  The ratio $\frac{s}{U*}$ is the time required for vortex advection from upstream foil to downstream foil, and $T = 1/f$ is the flapping period, so $2\pi f s / U^*$ is the phase lag required for vortex advection. The phase offset $\phi_0$ is not a function of spacing $s$; it represents the actual choreography needed by the downstream foil for high efficiency (aside from waiting $2\pi f s / U^*$ for the upstream vortices to arrive).[INSERT BOSCHITSCH FIGURE HERE]Figure [BOSCHITSCH FIGURE] shows experimental results with pitching tandem foils [17]. Contours of maximum thrust and efficiency occur when $\phi = 2\pi - 2\pi\frac{\frac{s}{c}}{1.2}$. In this case, $\frac{fc}{U} = 1.0$, and they report $U^* = 1.2U$. Also, they define $\phi$ as a phase lead (i.e.\ negative of that herein). Thus, their experimental data shows\end{document},V
+\,v
+BOSCHTICH F,v
+Boschitsch ,v
+$2\pi f s / U^*,v
+2𝜋𝑓𝑠/𝑈* ,v
 0,v
-  /* position: relative; */,V
-inline;,v
-inline-block;,v
-  float: right;,V
-images,v
-.nav_images {  position: absolute;},V
-text,v
->,v
-class="nav_text">,v
-  &:ul {  },V
-  display: inline;,V
--block,v
-  margin-right: 15px;,V
-.nav {  float: right;  margin: 15px;  position: relative;},V
-/* .header_text { *//*   float: right; *//*   display: block; *//*   text-align: right; *//*   padding-top: 10px; *//*   padding-bottom: 8px; *//*   padding-right: 15px; *//* } *//*  *//* .header_images { *//*   float: right; *//*   display: block; *//*   text-align: right; *//*   padding-right: 15px; *//* } *//*  *//* .header_text ul { *//*   list-style-type: none; *//*   overflow: hidden; *//* } *//*  *//* .header_text li { *//*   vertical-align: middle; *//*   display: inline; *//*   padding-left: 15px; *//* } *//*  *//* .header_text a { *//*   text-decoration: none; *//*   color: #222; *//* } *//*  *//* .header_images li { *//*   display: inline; *//*   margin-left: 15px; *//* } */,V
-        <div class="header_images">          <ul>            <li><a href="#"><img src="https://raw.githubusercontent.com/Cedricgc/playground/master/The%20Odin%20Project/google-homepage/images/apps.png"/></a></li>            <li><a href="#"><img src="https://raw.githubusercontent.com/Cedricgc/playground/master/The%20Odin%20Project/google-homepage/images/notification.png"/></a></li>            <li><a href="#"><img src="https://raw.githubusercontent.com/Cedricgc/playground/master/The%20Odin%20Project/google-homepage/images/blueperson.jpg"/></a></li>          </ul>        </div>,V
-The effect of phase angle and wing spacing on tandem flapping wings,v
-            <li><a href="#">Share<img src=""/></a></li>,V
-8,v
-top,v
-  padding-top: 8px;,V
-auto,v
-  padding-bottom: auto;,V
-  padding-top: auto;,V
-15px;,v
+�,v
+�,v
+Here, U* = U + ux represents the total (free-stream plus spatially-averaged wake-induced) velocity in the region between the foils.  The ratio s/U* is the time required for vortex advection from upstream foil to downstream foil, and 1/f is the flapping period, so 2𝜋𝑓𝑠/𝑈* is the phase lag required for vortex advection. The phase offset ϕ0 is not a function of spacing s; it represents the actual choreography needed by the downstream foil for high efficiency (aside from waiting 2𝜋𝑓𝑠/𝑈* for the upstream vortices to arrive).,v
+Epps ,v
+PI ,v
+0–,v
+–,v
+θ(t) = θ0 sin(2πf t) + offset,v
+3,v
+K�rmán ,v
+�,v

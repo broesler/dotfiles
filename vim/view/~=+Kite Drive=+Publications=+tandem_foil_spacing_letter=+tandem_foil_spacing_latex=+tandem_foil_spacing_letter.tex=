@@ -1,13 +1,27 @@
 let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
 argglobal
-nnoremap <buffer>                
-nnoremap <buffer> O ?'\l\{2,\}'       
-nnoremap <buffer> S ?|\zs\S\+\ze|   
-nnoremap <buffer> o /'\l\{2,\}'       
-nnoremap <buffer> s /|\zs\S\+\ze|   
 let s:cpo_save=&cpo
 set cpo&vim
-nnoremap <buffer> <BS>               
+xmap <buffer> % <Plug>LatexBox_JumpToMatch
+nmap <buffer> % <Plug>LatexBox_JumpToMatch
+map <buffer> <silent> \lt :LatexTOC
+map <buffer> \lv :LatexView
+map <buffer> \le :LatexErrors
+map <buffer> \lk :LatexmkStop
+map <buffer> \lG :LatexmkStatus!
+map <buffer> \lg :LatexmkStatus
+map <buffer> \lC :LatexmkClean!
+map <buffer> \lc :LatexmkClean
+map <buffer> \lL :Latexmk!
+map <buffer> \ll :Latexmk
+omap <buffer> a$ :normal va$
+vmap <buffer> a$ <Plug>LatexBox_SelectInlineMathOuter
+omap <buffer> ae :normal vae
+vmap <buffer> ae <Plug>LatexBox_SelectCurrentEnvOuter
+omap <buffer> i$ :normal vi$
+vmap <buffer> i$ <Plug>LatexBox_SelectInlineMathInner
+omap <buffer> ie :normal vie
+vmap <buffer> ie <Plug>LatexBox_SelectCurrentEnvInner
 let &cpo=s:cpo_save
 unlet s:cpo_save
 setlocal keymap=
@@ -18,35 +32,35 @@ setlocal nobinary
 setlocal nobreakindent
 setlocal breakindentopt=
 setlocal bufhidden=
-setlocal nobuflisted
-setlocal buftype=help
+setlocal buflisted
+setlocal buftype=
 setlocal nocindent
 setlocal cinkeys=0{,0},0),:,0#,!^F,o,O,e
 setlocal cinoptions=
 setlocal cinwords=if,else,while,do,for,switch
 setlocal colorcolumn=80
-setlocal comments=s1:/*,mb:*,ex:*/,://,b:#,:%,:XCOMM,n:>,fb:-
-setlocal commentstring=/*%s*/
+setlocal comments=sO:%\ -,mO:%\ \ ,eO:%%,:%
+setlocal commentstring=%%s
 setlocal complete=.,w,b,u,t,i
-setlocal concealcursor=nc
-setlocal conceallevel=2
+setlocal concealcursor=
+setlocal conceallevel=0
 setlocal completefunc=
 setlocal nocopyindent
 setlocal cryptmethod=
 setlocal nocursorbind
 setlocal nocursorcolumn
 setlocal nocursorline
-setlocal define=
+setlocal define=\\\\\\([egx]\\|char\\|mathchar\\|count\\|dimen\\|muskip\\|skip\\|toks\\)\\=def\\|\\\\font\\|\\\\\\(future\\)\\=let\\|\\\\new\\(count\\|dimen\\|skip\\|muskip\\|box\\|toks\\|read\\|write\\|fam\\|insert\\)\\|\\\\\\(re\\)\\=new\\(boolean\\|command\\|counter\\|environment\\|font\\|if\\|length\\|savebox\\|theorem\\(style\\)\\=\\)\\s*\\*\\=\\s*{\\=\\|DeclareMathOperator\\s*{\\=\\s*
 setlocal dictionary=
 setlocal nodiff
 setlocal equalprg=
-setlocal errorformat=
+setlocal errorformat=%E%f:%l:%m,%-Cl.%l\ %m,%-G
 setlocal expandtab
-if &filetype != 'help'
-setlocal filetype=help
+if &filetype != 'tex'
+setlocal filetype=tex
 endif
 setlocal foldcolumn=0
-setlocal nofoldenable
+setlocal foldenable
 setlocal foldexpr=0
 setlocal foldignore=#
 setlocal foldlevel=0
@@ -56,17 +70,17 @@ setlocal foldminlines=1
 setlocal foldnestmax=20
 setlocal foldtext=foldtext()
 setlocal formatexpr=
-setlocal formatoptions=tcroql
+setlocal formatoptions=tcq
 setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
 setlocal grepprg=
 setlocal iminsert=0
 setlocal imsearch=0
-setlocal include=
-setlocal includeexpr=
-setlocal indentexpr=
-setlocal indentkeys=0{,0},:,0#,!^F,o,O,e
+setlocal include=\\\\input\\|\\\\include{
+setlocal includeexpr=substitute(v:fname,\ '^.\\{-}{\\|}.*',\ '',\ 'g')
+setlocal indentexpr=GetTeXIndent()
+setlocal indentkeys=0{,0},:,0#,!^F,o,O,e,[,(,{,),},],&,=\\bibitem,=\\item
 setlocal noinfercase
-setlocal iskeyword=!-~,^*,^|,^\"
+setlocal iskeyword=48-57,a-z,A-Z,192-255,@-@,_
 setlocal keywordprg=
 setlocal linebreak
 setlocal nolisp
@@ -75,16 +89,16 @@ setlocal nolist
 setlocal makeprg=
 setlocal matchpairs=(:),{:},[:]
 setlocal modeline
-setlocal nomodifiable
+setlocal modifiable
 setlocal nrformats=octal,hex
-setlocal nonumber
+setlocal number
 setlocal numberwidth=4
-setlocal omnifunc=syntaxcomplete#Complete
+setlocal omnifunc=LatexBox_Complete
 setlocal path=
 setlocal nopreserveindent
 setlocal nopreviewwindow
 setlocal quoteescape=\\
-setlocal readonly
+setlocal noreadonly
 setlocal norelativenumber
 setlocal norightleft
 setlocal rightleftcmd=search
@@ -98,15 +112,15 @@ setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
 setlocal spellfile=
 setlocal spelllang=en
 setlocal statusline=
-setlocal suffixesadd=
+setlocal suffixesadd=.tex
 setlocal swapfile
 setlocal synmaxcol=3000
-if &syntax != 'help'
-setlocal syntax=help
+if &syntax != 'tex'
+setlocal syntax=tex
 endif
-setlocal tabstop=8
+setlocal tabstop=4
 setlocal tags=
-setlocal textwidth=78
+setlocal textwidth=0
 setlocal thesaurus=
 setlocal undofile
 setlocal undolevels=-123456
@@ -115,13 +129,13 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 264 - ((5 * winheight(0) + 14) / 29)
+5,438fold
+let s:l = 5 - ((1 * winheight(0) + 29) / 58)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-264
-normal! 053|
-lcd ~/Documents/Projects/web_development/android_logo
+5
+normal! 0
 let &so = s:so_save | let &siso = s:siso_save
 doautoall SessionLoadPost
 " vim: set ft=vim :

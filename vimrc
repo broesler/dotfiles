@@ -113,9 +113,14 @@ iab THe The
 " set local directory of each buffer to the buffer's directory
 " autocmd BufEnter * silent! lcd %:p:h
 
-" " automatically make and load view on document open/close
-" autocmd BufWinLeave *.* silent mkview
-" autocmd BufWinEnter *.* silent loadview
+" automatically make and load view on document open/close
+" mkview saves local current directory, and consequently reloads it. If a
+" file is opened from another directory, it will no longer have the correct
+" directory when the view is reloaded. Disable options in viewoptions to only
+" save folds and cursor position
+" set viewoptions=folds,cursor    " NOT options
+" autocmd BufWinLeave ?* silent mkview
+" autocmd BufWinEnter ?* silent loadview
 
 "--------------------------------------- HTML/CSS
 " Treat <li> and <p> tags like the block tags they are
@@ -151,7 +156,6 @@ vmap sp "zdi\left(<C-R>z\right)<Esc>
 " let tlist_make_settings  = 'make;m:macros;t:targets'
 
 " : is included as keyword for fig: eqn: etc.,
-autocmd BufRead,BufNewFile *.tex set iskeyword+=_
 autocmd FileType tex,matlab,c,f95,sh,markdown set iskeyword+=_
 
 " Turn off matching paren highlighting for LaTeX files
@@ -203,22 +207,22 @@ function! Incr()
 endfunction
 vnoremap <C-a> :call Incr()<CR>
 
-" " Jump from html class/id tag to definition in linked CSS file
-" " use <leader>] to execute
-" function! JumpToCSS()
-"   let id_pos = searchpos("id", "nb", line('.'))[1]
-"   let class_pos = searchpos("class", "nb", line('.'))[1]
-"
-"   if class_pos > 0 || id_pos > 0
-"     if class_pos < id_pos
-"       execute ":vim '#".expand('<cword>')."' **/*.css"
-"     elseif class_pos > id_pos
-"       execute ":vim '.".expand('<cword>')."' **/*.css"
-"     endif
-"   endif
-" endfunction
-"
-" nnoremap <leader>] :call JumpToCSS()<CR>
+" Jump from html class/id tag to definition in linked CSS file
+" use <leader>] to execute
+function! JumpToCSS()
+  let id_pos = searchpos("id", "nb", line('.'))[1]
+  let class_pos = searchpos("class", "nb", line('.'))[1]
+
+  if class_pos > 0 || id_pos > 0
+    if class_pos < id_pos
+      execute ":vim '#".expand('<cword>')."' **/*.css"
+    elseif class_pos > id_pos
+      execute ":vim '.".expand('<cword>')."' **/*.css"
+    endif
+  endif
+endfunction
+
+nnoremap <leader>] :call JumpToCSS()<CR>
 
 
 "------------------------------------------------------------------------------
