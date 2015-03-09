@@ -161,16 +161,16 @@ alias which='type -all'
 
 # Color list
 if [[ "$OSTYPE" == "darwin"* ]]; then
-  # # alias lc='ls -hlpG'               # Mac OS X alias
+  # # alias lc='ls -hopG'               # Mac OS X alias
   # If ~/.dircolors exists, set custom colors file
   [ -e "$HOME/.dircolors" ] && DIR_COLORS="$HOME/.dircolors"
   [ -e "$DIR_COLORS" ] || DIR_COLORS=""
   eval "`gdircolors -b ~/.dircolors`"   # set custom colors file
 
-  alias lc='gls -hlp --color=auto'
+  alias lc='gls -Ghlp --color=auto'
 
 elif [[ "$OSTYPE" == "linux"* ]]; then
-  alias lc='ls -hlp --color=auto'       # Linux ls options
+  alias lc='ls -Ghlp --color=auto' # Linux ls options
 fi
 
 
