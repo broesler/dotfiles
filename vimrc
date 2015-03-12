@@ -50,15 +50,17 @@ syntax on
 
 " Enable Omnicompletion
 set omnifunc=syntaxcomplete#Complete
-set complete=.,w,b,u,t,i
-" set complete+=k                         " Include dictionary search
+set completeopt=longest,menu,preview        " make like bash completion
+set complete=.,w,b,u,t,i,k
 set dictionary=/usr/share/dict/words
-set tags=./tags;    " read local tag file first, then search for others
+set thesaurus=/usr/share/thes/mthesaur.txt  " use <C-X><C-T>
+" set thesaurus+=/usr/share/thes/roget13a.txt
 
+set tags=./tags;    " read local tag file first, then search for others
 
 set wildmenu        " Enable tab to show all menu options
 set wildignorecase  " ignore case when tab completing
-set wildmode=list:full,full
+set wildmode=longest,list,full  " like bash completion
 
 set title           " Show filename in title bar
 set number          " Turn on line numbers
@@ -195,6 +197,15 @@ hi link fortranTab NONE
 "------------------------------------------------------------------------------
 " Functions
 "------------------------------------------------------------------------------
+" Open explorer in new window
+function! MyExplore() 
+  new 
+  Explore
+endfunction 
+
+nmap <leader>E :call MyExplore()<CR> 
+
+
 " Incr increments numbers in a column (i.e. in Visual Block mode)
 "   To use: highlight in Visual Block, and press <C-a>
 function! Incr()

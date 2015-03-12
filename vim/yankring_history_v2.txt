@@ -1,100 +1,100 @@
-g,v
-  # If ~/.dircolors exists, set custom colors file  [ -e "$HOME/.dircolors" ] && DIR_COLORS="$HOME/.dircolors"  [ -e "$DIR_COLORS" ] || DIR_COLORS=""  eval "`gdircolors -b ~/.dircolors`"   # set custom colors file,V
-i,v
-l,v
-,V
-<<<<<<< HEAD,V
-elif [[ "$OSTYPE" == "linux"* ]]; then  alias lc='ls -hlp --color=auto'       # Linux ls options,V
-=======  alias lc='ls -Ghlp',V
->>>>>>> 6ec5f4aeecad94b39ab35cb0c34ecca663b02df1,V
-alias vimrc='vim ~/.vimrc'          # edit vim profile,V
-Transportation ReviewWave Energy Review,v
-References,v
- ,v
-blue,v
-.c 00;33,V
-#,v
-alias lt='tree -C',V
-[ -e "$HOME/.dircolors" ] && DIR_COLORS="$HOME/.dircolors"    [ -e "$DIR_COLORS" ] || DIR_COLORS="",v
-  eval `gdircolors -b ~/.dircolors`,V
-alias :q='logout',V
- # make vim behavior work,v
-Cyn,V
-NACA0012_v2,v
-`-- ~$UNH\ Tests\ 150307.xlsx,V
-|-- |-- ,4
-|-- walvisstaart_8990_2014_input_actual_geometry_150307.m|-- walvisstaart_8990_2014_usage_roesler_150307.m,V
-# above for 'input' vs ,V
- See description,v
-|-- |-- |-- |-- |-- |-- ,4
-|-- fig_CFA_vs_lambda.pdf|-- fig_CQA_vs_lambda.pdf|-- fig_CQSA_vs_lambda.pdf|-- fig_CTA_vs_lambda.pdf|-- fig_ETA_vs_CTA.pdf|-- fig_ETA_vs_lambda.pdf,V
-|   |-- Icon\r,V
-|-- Icon\r,V
-1 directory, 36 files,V
-.|-- !README.txt|-- 150307_2007_walvisstaart_run_a20_c0150_b0375_OpenProp_elliptical.mat|-- 150307_2012_walvisstaart_run_a20_c0150_b0375_NACA0012v2_elliptical.mat|-- 150307_CyROD_data_elliptical_dCLdALPHA.xlsx|-- 150308_1722_walvisstaart_run_a20_c0150_b0750_OpenProp_rectangular.mat|-- 150308_1729_walvisstaart_run_a20_c0150_b0375_OpenProp_rectangular.mat|-- 150308_1739_walvisstaart_run_a20_c0150_b0750_OpenProp_elliptical.mat|-- CYinput.mat|-- Data\ used\ for\ 2014\ 89-89\ project\ design\ development|   |-- 141107_walvisstaart_run_a152025_CD015_b050.mat|   |-- 141107_walvisstaart_run_a152025_CD015_b075.mat|   |-- 141107_walvisstaart_run_amplitudes_CD015.mat|   |-- 141107_walvisstaart_run_amplitudes_CD015_b050.mat|   |-- 141107_walvisstaart_run_amplitudes_CD015_b075.mat|   |-- Icon\r|   |-- amplitude_plots.m|   |-- walvisstaart_8990_2014_input.m|   |-- walvisstaart_8990_2014_usage\ EPPS.m|   |-- walvisstaart_8990_2014_usage.m|   `-- walvisstaart_8990_2014_usage_amplitudes.m|-- UNH\ Tests\ 150306_Roesler.xlsx|-- UNH\ Tests\ 150307.xlsx|-- UNH_Testing_data_and_figures_150308.m|-- UNH_Testing_data_and_figures_150308.m~|-- fig_ETA_vs_CTA.pdf|-- fig_ETA_vs_lambda.pdf|-- temp.mat|-- ticks.m|-- walvisstaart_8990_2014_input_actual_geometry_150307.m`-- walvisstaart_8990_2014_usage_roesler_150307.m,V
-s,v
-|-- ,v
-|-- UNH_Testing_data_and_figures_150308.m,V
-paper,v
-|-- UNH\ Tests\ 150306_Roesler.xlsx|-- UNH\ Tests\ 150307.xlsx,V
-UNH_Testing_data_and_figures_150308.m,V
- into the spreadsheet,v
 .,v
-UNH_Testing_data_and_figures_150308.m~,V
-|-- UNH_Testing_data_and_figures_150308.m|-- UNH_Testing_data_and_figures_150308.m~,V
-  Icon\r,V
-|   |--|   |--|   |--|   |--|   |--|   |--|   |--|   |--|   |--|   |--|   `--,7
-|   |-- 141107_walvisstaart_run_a152025_CD015_b050.mat|   |-- 141107_walvisstaart_run_a152025_CD015_b075.mat|   |-- 141107_walvisstaart_run_amplitudes_CD015.mat|   |-- 141107_walvisstaart_run_amplitudes_CD015_b050.mat|   |-- 141107_walvisstaart_run_amplitudes_CD015_b075.mat|   |-- Icon\r|   |-- amplitude_plots.m|   |-- walvisstaart_8990_2014_input.m|   |-- walvisstaart_8990_2014_usage\ EPPS.m|   |-- walvisstaart_8990_2014_usage.m|   `-- walvisstaart_8990_2014_usage_amplitudes.m,V
-|-- Data\ used\ for\ 2014\ 89-89\ project\ design\ development,V
-|-- |-- |-- |-- |-- ,4
-|-- 150308_1722_walvisstaart_run_a20_c0150_b0750_OpenProp_rectangular.mat|-- 150308_1729_walvisstaart_run_a20_c0150_b0375_OpenProp_rectangular.mat|-- 150308_1739_walvisstaart_run_a20_c0150_b0750_OpenProp_elliptical.mat,V
-|-- 150307_2007_walvisstaart_run_a20_c0150_b0375_OpenProp_elliptical.mat|-- 150307_2012_walvisstaart_run_a20_c0150_b0375_NACA0012v2_elliptical.mat,V
-#-------------------------------------------------------------------------------,V
-.,V
-1 directory, 31 files,V
-This ,V
-defaults write org.n8gray.QLColorCode fontSizePoints 9,v
- of Walvisstaart_8990_2014,v
-#===============================================================================,V
-  setenv LS_COLORS=',V
-script,v
-\section{Introduction}The most promising non-traditional propulsor concept involves tandem flapping foils (two hydrofoils, one roughly aft of the other). Current DON-funded research with tandem foils shows promising results and indicates that the high efficiency of a single flapping foil may be possible with a tandem foil arrangement [1,17].The geometric and kinematic description of a tandem foil propulsor is given in Figure [TWO FOIL FIGURE ANNOTATED].  Including the induced velocities (ux, uy), the angle of attack is:\begin{equation}\alpha(t) = \tan^{-1}\(\ddfrac{\ddx{h(t)}{t} - u_y(t)}{U + u_x(t)}]\) - \theta(t)\end{equation}such that the maximum angle of attack is roughly\begin{equation}  \alpha_{max} \approx \tan^{-1} (\pi\mathit{St}) - \theta_0\end{equation}As evident from this long list [INSERT LIST OF PARAMETERS?] of geometric and kinematic parameters, the design space for tandem flapping foil propulsion is enormous. The following design methodology applies:\begin{itemize_packed}  \item Choose the geometry and kinematics of the forward foil based on those optimal for an isolated foil.  \item Choose inter-foil phase angle $\phi$ to mitigate unsteady variation in thrust and side force.  \item Choose inter-foil separation $s$ to yield high efficiency.  \item Choose the geometry (e.g. span $b_2$) and kinematics (e.g. heave amplitude $h_{02}$) of the aft foil such that the aft foil ``fits'' in the wake of the forward foil.\end{itemize_packed}Justification of this design methodology follows: Prior work with tandem pitching foils has shown that high efficiency occurs when the upstream foil performs motions similar to the high-performance motions of an isolated foil [17,20,111,129].  PI Epps postulates that this is true because the main effect of the downstream foil on the upstream foil is to induce axial inflow (i.e. the time-averaged $u_x > 0$, but $uy \approx 0$).  This is akin to contra-rotating propellers, where the downstream rotor induces axial- but not swirl velocity on the upstream rotor [26,63]. The physics of isolated flapping foils is well known.  Triantafyllou et al. [114] showed that the wake dynamics of flapping foils are dominated by the Strouhal number, $\mathit{St} = fA/U$ where $A=2h_0$ is the wake width. They suggest that optimal efficiency is achieved for $0.25 < \mathit{St} < 0.35$. Further, Triantafyllou et al. [113] observed that many live fish swim in this Strouhal range.The wake morphology associated with maximum propulsive efficiency is a reverse K\'{a}rm\'{a}n street; the choreography is such that a leading edge vortex forms, is shed, and combines with trailing edge vorticity to produce two vortices per cycle (see Figure [INSERT ANDERSON WAKE MORPHOLOGY FIGURE?]) [2,3].  Many more experimental [93,94,123,124]  and computational [14,15,33,83,95,109,131] studies have led to a deep understanding of the propulsive performance and wake morphology in both 2D and 3D.  Non-sinusoidal motions (higher-order harmonics, sawtooth waveform, etc.) have been shown to increase thrust, but reduce efficiency [64,67,82,99].  One comprehensive review is [115]. In the tandem foil scenario, the downstream foil interacts with the wake of the upstream foil with the goal of producing an enhanced thrust-type wake. The general vorticity control problem has been studied experimentally [11,60,74,109]; these studies show that the wake of an upstream body can in fact be modified in a deliberate manner by a downstream flapping foil.The tandem flapping foil arrangement occurs in nature: The dragonfly has been studied extensively by the aeronautics community for its superior propulsive and maneuvering ability [5,16,32,66,76,80,105,111,125,126,129].  One important theoretical result in this literature is that harmonic motions produce thrust with no net side force.  To produce a net side force (say, for maneuvering), linear theory only requires a non-zero pitch offset: $\theta(t) = \theta_0\sin(2\pi ft) + \text{offset}$  [13,73,80,130].  This implies that, say, the aft foil can be used for both propulsion and steering.The most comprehensive experimental study of tandem flapping foils to date was performed by Boschitsch et al. [17], who considered the pitching motions of 2D foils for a range of inter-foil spacings and phase lags.  Prior experimental [101] and computational [1,20,21,22] studies considered only a subset of these test conditions, but considered foils moving in both pitch and heave.  The primary results from all of these studies are consistent: Thrust and efficiency can be enhanced or diminished depending on the combination of inter-foil spacing and phase lag.  At best, a tandem foil system can produce 150--280\% of the thrust at 150--180\% of the efficiency of a single foil ([17] and [1], respectively). Moreover, maximum thrust and efficiency occur together [17,76], which confirms that a tandem foil system is a viable ship propulsor. \section{Key Insight}The key insight in this proposal is that these kinematics can be chosen without sacrificing efficiency.  To achieve high efficiency for a chosen inter-foil phase lag $\phi$, one must set the inter-foil spacing s appropriately. Although not yet discussed in the literature, we observe that there exists a natural relationship between the inter-foil spacing and the optimum inter-foil phase lag (to maximize efficiency):\begin{equation}  \phi_{\mathit{optimum}} = \phi_0 + 2\pi\frac{s/U^*}{T} = \phi_0 + \frac{2\pi fs}{U^*}\end{equation}Here, $U^* = U + u_x$ represents the total (free-stream plus spatially-averaged wake-induced) velocity in the region between the foils.  The ratio $\frac{s}{U*}$ is the time required for vortex advection from upstream foil to downstream foil, and $T = 1/f$ is the flapping period, so $2\pi f s / U^*$ is the phase lag required for vortex advection. The phase offset $\phi_0$ is not a function of spacing $s$; it represents the actual choreography needed by the downstream foil for high efficiency (aside from waiting $2\pi f s / U^*$ for the upstream vortices to arrive).[INSERT BOSCHITSCH FIGURE HERE]Figure [BOSCHITSCH FIGURE] shows experimental results with pitching tandem foils [17]. Contours of maximum thrust and efficiency occur when $\phi = 2\pi - 2\pi\frac{\frac{s}{c}}{1.2}$. In this case, $\frac{fc}{U} = 1.0$, and they report $U^* = 1.2U$. Also, they define $\phi$ as a phase lead (i.e.\ negative of that herein). Thus, their experimental data shows\begin{equation}  \phi_{\mathit{optimum}} = \phi_0 + \frac{2\pi fs}{U^*}\end{equation}(where in this case $\phi_0 = 2\pi$). Similar results by other researchers with a 2D numerical simulation were reported at the 2014 APS-DFD conference [88].[INCLUDE OTHER RESULTS HERE]\section{Conclusions},V
-150308_1530_walvisstaart_run_a20_c0150_b0375_OpenProp_LLdCLdALPHA,v
-A, b, c, D, Favg, Favg_expected, HHMM, nu, Qavg, Qavg_expected, R, rho, RPM, RPM_tach, S, salinity, Savg, Savg_expected, Tavg, Tavg_expected, U, water_temp, YYMMDD, Z,v
-150307_CyROD_data.xlsx,v
-defaults write com.apple.finder EmptyTrashSecurely -bool false,V
-Empty Trash securely by default,v
-],v
-http://journals.aps.org/revtex/,v
-This is my abstract where I talk about the paper.,V
-\section{Introduction},V
-\section{Introduction}The most promising non-traditional propulsor concept involves tandem flapping foils (two hydrofoils, one roughly aft of the other). Current DON-funded research with tandem foils shows promising results and indicates that the high efficiency of a single flapping foil may be possible with a tandem foil arrangement [1,17].The geometric and kinematic description of a tandem foil propulsor is given in Figure [TWO FOIL FIGURE ANNOTATED].  Including the induced velocities (ux, uy), the angle of attack is:\begin{equation}\alpha(t) = \tan^{-1}\(\ddfrac{\ddx{h(t)}{t} - u_y(t)}{U + u_x(t)}]\) - \theta(t)\end{equation}such that the maximum angle of attack is roughly\begin{equation}  \alpha_{max} \approx \tan^{-1} (\pi\mathit{St}) - \theta_0\end{equation}As evident from this long list [INSERT LIST OF PARAMETERS?] of geometric and kinematic parameters, the design space for tandem flapping foil propulsion is enormous. The following design methodology applies:\begin{itemize_packed}  \item Choose the geometry and kinematics of the forward foil based on those optimal for an isolated foil.  \item Choose inter-foil phase angle $\phi$ to mitigate unsteady variation in thrust and side force.  \item Choose inter-foil separation $s$ to yield high efficiency.  \item Choose the geometry (e.g. span $b_2$) and kinematics (e.g. heave amplitude $h_{02}$) of the aft foil such that the aft foil ``fits'' in the wake of the forward foil.\end{itemize_packed}Justification of this design methodology follows: Prior work with tandem pitching foils has shown that high efficiency occurs when the upstream foil performs motions similar to the high-performance motions of an isolated foil [17,20,111,129].  PI Epps postulates that this is true because the main effect of the downstream foil on the upstream foil is to induce axial inflow (i.e. the time-averaged $u_x > 0$, but $uy \approx 0$).  This is akin to contra-rotating propellers, where the downstream rotor induces axial- but not swirl velocity on the upstream rotor [26,63]. The physics of isolated flapping foils is well known.  Triantafyllou et al. [114] showed that the wake dynamics of flapping foils are dominated by the Strouhal number, $\mathit{St} = fA/U$ where $A=2h_0$ is the wake width. They suggest that optimal efficiency is achieved for $0.25 < \mathit{St} < 0.35$. Further, Triantafyllou et al. [113] observed that many live fish swim in this Strouhal range.The wake morphology associated with maximum propulsive efficiency is a reverse K\'{a}rm\'{a}n street; the choreography is such that a leading edge vortex forms, is shed, and combines with trailing edge vorticity to produce two vortices per cycle (see Figure [INSERT ANDERSON WAKE MORPHOLOGY FIGURE?]) [2,3].  Many more experimental [93,94,123,124]  and computational [14,15,33,83,95,109,131] studies have led to a deep understanding of the propulsive performance and wake morphology in both 2D and 3D.  Non-sinusoidal motions (higher-order harmonics, sawtooth waveform, etc.) have been shown to increase thrust, but reduce efficiency [64,67,82,99].  One comprehensive review is [115]. In the tandem foil scenario, the downstream foil interacts with the wake of the upstream foil with the goal of producing an enhanced thrust-type wake. The general vorticity control problem has been studied experimentally [11,60,74,109]; these studies show that the wake of an upstream body can in fact be modified in a deliberate manner by a downstream flapping foil.The tandem flapping foil arrangement occurs in nature: The dragonfly has been studied extensively by the aeronautics community for its superior propulsive and maneuvering ability [5,16,32,66,76,80,105,111,125,126,129].  One important theoretical result in this literature is that harmonic motions produce thrust with no net side force.  To produce a net side force (say, for maneuvering), linear theory only requires a non-zero pitch offset: $\theta(t) = \theta_0\sin(2\pi ft) + \text{offset}$  [13,73,80,130].  This implies that, say, the aft foil can be used for both propulsion and steering.The most comprehensive experimental study of tandem flapping foils to date was performed by Boschitsch et al. [17], who considered the pitching motions of 2D foils for a range of inter-foil spacings and phase lags.  Prior experimental [101] and computational [1,20,21,22] studies considered only a subset of these test conditions, but considered foils moving in both pitch and heave.  The primary results from all of these studies are consistent: Thrust and efficiency can be enhanced or diminished depending on the combination of inter-foil spacing and phase lag.  At best, a tandem foil system can produce 150--280\% of the thrust at 150--180\% of the efficiency of a single foil ([17] and [1], respectively). Moreover, maximum thrust and efficiency occur together [17,76], which confirms that a tandem foil system is a viable ship propulsor. \section{Key Insight}The key insight in this proposal is that these kinematics can be chosen without sacrificing efficiency.  To achieve high efficiency for a chosen inter-foil phase lag $\phi$, one must set the inter-foil spacing s appropriately. Although not yet discussed in the literature, we observe that there exists a natural relationship between the inter-foil spacing and the optimum inter-foil phase lag (to maximize efficiency):\begin{equation}  \phi_{\mathit{optimum}} = \phi_0 + 2\pi\frac{s/U^*}{T} = \phi_0 + \frac{2\pi fs}{U^*}\end{equation}Here, $U^* = U + u_x$ represents the total (free-stream plus spatially-averaged wake-induced) velocity in the region between the foils.  The ratio $\frac{s}{U*}$ is the time required for vortex advection from upstream foil to downstream foil, and $T = 1/f$ is the flapping period, so $2\pi f s / U^*$ is the phase lag required for vortex advection. The phase offset $\phi_0$ is not a function of spacing $s$; it represents the actual choreography needed by the downstream foil for high efficiency (aside from waiting $2\pi f s / U^*$ for the upstream vortices to arrive).[INSERT BOSCHITSCH FIGURE HERE]Figure [BOSCHITSCH FIGURE] shows experimental results with pitching tandem foils [17]. Contours of maximum thrust and efficiency occur when $\phi = 2\pi - 2\pi\frac{\frac{s}{c}}{1.2}$. In this case, $\frac{fc}{U} = 1.0$, and they report $U^* = 1.2U$. Also, they define $\phi$ as a phase lead (i.e.\ negative of that herein). Thus, their experimental data shows\begin{equation}  \phi_{\mathit{optimum}} = \phi_0 + \frac{2\pi fs}{U^*}\end{equation}(where in this case $\phi_0 = 2\pi$). Similar results by other researchers with a 2D numerical simulation were reported at the 2014 APS-DFD conference [88].[INCLUDE OTHER RESULTS HERE]\section{Conclusions}To recap, the hypothetical design procedure is to choose the phase lag $\phi$ to mitigate load variations, and then to choose the spacing $s$ to optimize efficiency.  For a given $\phi$, the spacing that optimizes efficiency is:  \begin{equation}  s_{\mathit{optimum}} = (\phi-\phi_0)\frac{U^*}{2\pi f} \end{equation}Although this is a simple relationship, it is not straightforward to use, because $\phi_0$ and $U^*$ are unknown.  However, these could be determined computationally using $s = \phi \frac{U}{2\pi f}$ as an initial guess, and then iterating over $s$ to find the maximum efficiency.This is a critical hypothesis to test, because it determines the viability of tandem flapping foils as a practical propulsor.  Recall, one major drawback of a single flapping foil is that it suffers large variation in instantaneous thrust and side force.  Tandem flapping foils do not necessarily solve this operational problem; in fact, researchers have reported higher fluctuations in instantaneous loads using tandem flapping foils, as compared to single foils (see Figure [NEED FIGURE OF INSTANTANTEOUS THRUST AND SIDE FORCE (NOT IN YIP ARTWORK FOLDER??]) [1].  However, we hypothesize that by deliberately choosing inter-foil phase lag $\phi$ and spacing $s$, one can design a tandem flapping foil propulsor that both \emph{(i)} produces high thrust at high efficiency, and \emph{(ii)} mitigates unsteady variation in thrust or side force.,V
-% Use for fractions with large terms\newcommand{\ddfrac}[2]{\frac{\displaystyle #1}{\displaystyle #2}},V
-%===============================================================================,V
-This is the introduction. Here is where we review the literature.\subsection{}\subsubsection{},V
-tandem_foil_spacing_letter.tex,v
-),v
-% Use for fractions with large terms\newcommand{\ddfrac}[2]{\frac{\displaystyle #1}{\displaystyle #2}},v
-(,v
-ϕ,v
-PI Epps ,v
-5,v
-s = ϕ 𝑈/2𝜋𝑓 ,v
-𝑈* ,v
-ϕ0 ,v
-s_{\mathit{optimum}} = (\phi-\phi_0)\frac{U^*}{2\pi f} ,v
-$,v
-(ϕ- ϕ0) 𝑈*/2𝜋𝑓.,v
-= \phi_0 + 2\pi\frac{s/U^*}{T} ,v
-Similar results by other researchers with a 2D numerical simulation were reported at the 2014 APS-DFD conference [88].,v
-\begin{equation}  \phi_{\mathit{optimum}} = \phi_0 + 2\pi\frac{s/U^*}{T} = \phi_0 + \frac{2\pi fs}{U^*}\end{equation},V
-\begin{equation}  \phi_{\mathit{optimum}} = \phi_0 + 2\pi\frac{s/U^*}{T} = \phi_0 + \frac{2\pi fs}{U^*}\end{equation}Here, $U^* = U + u_x$ represents the total (free-stream plus spatially-averaged wake-induced) velocity in the region between the foils.  The ratio $\frac{s}{U*}$ is the time required for vortex advection from upstream foil to downstream foil, and $T = 1/f$ is the flapping period, so $2\pi f s / U^*$ is the phase lag required for vortex advection. The phase offset $\phi_0$ is not a function of spacing $s$; it represents the actual choreography needed by the downstream foil for high efficiency (aside from waiting $2\pi f s / U^*$ for the upstream vortices to arrive).[INSERT BOSCHITSCH FIGURE HERE]Figure [BOSCHITSCH FIGURE] shows experimental results with pitching tandem foils [17]. Contours of maximum thrust and efficiency occur when $\phi = 2\pi - 2\pi\frac{\frac{s}{c}}{1.2}$. In this case, $\frac{fc}{U} = 1.0$, and they report $U^* = 1.2U$. Also, they define $\phi$ as a phase lead (i.e.\ negative of that herein). Thus, their experimental data shows,V
-\begin{equation}  \phi_{\mathit{optimum}} = \phi_0 + 2\pi\frac{s/U^*}{T} = \phi_0 + \frac{2\pi fs}{U^*}\end{equation}Here, $U^* = U + u_x$ represents the total (free-stream plus spatially-averaged wake-induced) velocity in the region between the foils.  The ratio $\frac{s}{U*}$ is the time required for vortex advection from upstream foil to downstream foil, and $T = 1/f$ is the flapping period, so $2\pi f s / U^*$ is the phase lag required for vortex advection. The phase offset $\phi_0$ is not a function of spacing $s$; it represents the actual choreography needed by the downstream foil for high efficiency (aside from waiting $2\pi f s / U^*$ for the upstream vortices to arrive).[INSERT BOSCHITSCH FIGURE HERE]Figure [BOSCHITSCH FIGURE] shows experimental results with pitching tandem foils [17]. Contours of maximum thrust and efficiency occur when $\phi = 2\pi - 2\pi\frac{\frac{s}{c}}{1.2}$. In this case, $\frac{fc}{U} = 1.0$, and they report $U^* = 1.2U$. Also, they define $\phi$ as a phase lead (i.e.\ negative of that herein). Thus, their experimental data shows\end{document},V
-\,v
-BOSCHTICH F,v
-Boschitsch ,v
-$2\pi f s / U^*,v
-2𝜋𝑓𝑠/𝑈* ,v
+~/,v
+~/.vim/undodir/*,V
+,V
+,V
+# arrow up,V
+# arrow down,V
+"k": history-search-backward,V
+forward,v
+"j": history-search-forward,V
+incremental ,v
+ ,v
+incremental,v
+insert,v
+#==============================================================================#      Keymaps for vi-insert mode#==============================================================================,V
+#,v
+#==============================================================================,V
 0,v
-�,v
-�,v
+                                       ,v
+.                                       ,v
+   ,v
+                                                                                ,v
+                                                               ,v
+considerably,v
+## arrow up"\e[A":history-search-backward## arrow down"\e[B":history-search-forward,v
+bash,v
+Contains aliases and simple functions for use with the bash shell,v
+10/29/13,v
+#,V
+#==============================================================================#    File: ~/.bashrc# Created: 10/29/13#  Author: Bernie Roesler## Description: Contains aliases and simple functions for use with the bash shell#==============================================================================,V
+!/bin/bash,v
+Zyzomys,V
+shed,v
++,v
+mthesaur,v
+set thesaurus=/usr/share/thes/mthesaur.txt,V
+wget http://www.gutenberg.org/dirs/etext02/mthes10.zip,v
+design,v
+e,v
+h,v
+T,v
+),v
+(φ and s,v
+1,v
+relationship between the inter-foil spacing and phase lag ,v
+The problem of mechanical marine propulsion has existed for at least two millenia, since the time of Archimedes. Only relatively recently has the demand for greater propulsive efficiency pushed the envelope of novel propulsion mechanisms. One of the most promising such mechanisms is a system of tandem, in-line flapping foils.,V
+involving,v
+non-traditional propulsor concepts,v
+at least ,v
+been around,v
+a,v
+Mechanical marine propulsion,V
+alias :e='vim',V
+# alias myvalgrind='valgrind --leak-check=full --show-leak-kinds=all #                  '--track-origins=yes --dsymutil=yes --log-file=valout -v',V
+alias clc='clear',V
+alias grep='grep --color=auto'alias egrep='egrep --color=auto'alias fgrep='fgrep --color=auto'alias zgrep='zgrep --color=auto'alias zegrep='zegrep --color=auto'alias zfgrep='zfgrep --color=auto',V
+CT = linspace(0.1,1,1000);UstaroU = (-1 + sqrt(1+CT))/2;plot(CT,UstaroU)hold onslope=2*pi./UstaroU;plot(CT,slope),v
+ in turn,,v
+place lower bounds on friction losses, and,,v
+While screw propellers offer marvelous advantages with regards to mechanical simplicity (just need to turn the shaft!), they have practical limits (\eg cavitation) on foil aspect ratio that place lower bounds on friction losses, and, in turn, upper bounds on overall hydrodynamic efficiency.,V
+, in turn,,v
+While screw propellers offer marvelous advantages with regards to mechanical simplicity (just need to turn the shaft!),,v
+,v
+↵,v
+#===============================================================================,V
+plot([0 1],[0 2*pi],'--r'),V
+...,v
+,...,...,...,...,...,...,...,...,4
+gong2015_12b_150,v
+(:,1)(:,1)(:,1)(:,1)(:,1)(:,1)(:,1)(:,1),5
+                                                                                                                                                ,18
+gong2015_12a_050(:,1),...                        gong2015_12a_075(:,1),...                         gong2015_12a_100(:,1),...                        gong2015_12a_125(:,1),...                        gong2015_12a_150(:,1),...                        gong2015_12b_175(:,1),...                        gong2015_12b_200(:,1),...                        gong2015_12b_225(:,1),...                        gong2015_12b_250(:,1),v
+le,v
+nearly 0 to over 4 chordlengths.,v
+one chordlength,v
+ chordlengths,v
+both phase $\phi$ and ,v
+varying both phase $\phi$ and ,v
+were confirmed ,v
+of a dragonfly ,v
+stated,v
+showed experimentally that ,v
+By varying the relative phase difference between fore- and hindwing stroke cycles we found that the performance of the forewing remains approximately constant,v
+showed experimentally,v
+GOAL: Describe how upstream foil is affected by downstream foil ,v
+#===============================================================================#       GOAL: Describe how upstream foil is affected by downstream foil #===============================================================================,V
+  cite: ,V
+The hindwing has no noticeable effect on the propulsive efficiency of the forewing, regardless of phase angle. ,v
+ (Acta Mechanica Sinica),v
+ & Lian ,v
+    ,v
+GOAL: Describe how upstream foil is affected by downstream foil ,V
+#===============================================================================# #===============================================================================,V
+### Broering 2012c intro cites:Active (dragonfly) phase shifting:  -- 180 deg out of phase for ``cruising'' flight suggest eliminating side forces  -- 0 deg out of phase (i.e. in phase) during high accelerations and acrobatic maneuvers  cite: ### Thomas2004 (experimental)    ``controlled parametric experiments show that, provided the Strouhal number is appropriate and the natural interaction between left and right wings can occur, even a simple plunging plate can reproduce the detailed features of the flow seen in dragonflies.''###  Alexander1984 (films of real dragonflies)### Usherwood2008 - mechanical model dragonfly experiments)   -- no advantage in lift, aerodynamic efficiency highly improved, power reduced by 22\% compared to single pair of wings   -- ``achieved by recovering energy from the wake wasted as swirl in a manner analogous to coaxial contra-rotating helicopter rotors.''  ,V
+Thomas2004 (experimental),,v
+ Alexander1984 (films of real dragonflies),v
+, Maybury2004 ,v
+### Maybury 2004``By varying the relative phase difference between fore- and hindwing stroke cycles we found that the performance of the forewing remains approximately constant, while hindwing lift production may vary by a factor of two.'',V
+#===============================================================================#   Replace 'prior work with tandem pitching foils...' paragraph with:#===============================================================================,V
+    ### Isogai 2004 also hovering... not quite applicable to thrust performance.,V

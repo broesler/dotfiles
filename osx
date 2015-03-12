@@ -102,9 +102,9 @@ defaults write com.apple.helpviewer DevMode -bool true
 #echo "0x08000100:0" > ~/.CFUserTextEncoding
 
 # Options for QLColor (QuickLook syntax highlighting)
-defaults write org.n8gray.QLColorCode fontSizePoints 8
-defaults write org.n8gray.QLColorCode hlTheme pablo
-defaults write org.n8gray.QLColorCode extraHLFlags '-l -W --line-length=85 --kw-case=lower'
+# defaults write org.n8gray.QLColorCode fontSizePoints 8
+# defaults write org.n8gray.QLColorCode hlTheme pablo
+# defaults write org.n8gray.QLColorCode extraHLFlags '-l -W --line-length=85 --kw-case=lower'
 
 # Reveal IP address, hostname, OS version, etc. when clicking the clock
 # in the login window
