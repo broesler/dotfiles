@@ -1,0 +1,29 @@
+#~/.inputrc
+# vim:set ft=sh syntax=sh
+#==============================================================================
+#    File: ~/.inputrc
+# Created: 03/12/15
+#  Author: Bernie Roesler
+#
+# Description: Contains keyboard mappings for use on bash command line
+#==============================================================================
+
+
+#==============================================================================
+#      Keymaps for vi-insert mode
+#==============================================================================
+set keymap vi-insert
+
+# Set UP and DOWN arrows to incremental history search (based on what is typed)
+"\e[A":history-search-backward
+"\e[B":history-search-forward
+
+#==============================================================================
+#      Keymaps for vi-command mode
+#==============================================================================
+set keymap vi-command
+
+# Use j and k for history search
+"k": history-search-backward
+"j": history-search-forward
+

@@ -1,5 +1,5 @@
 #~/.bashrc
-# Set vim syntax: vim:ft=sh syntax=sh
+# Set vim syntax: vim: set ft=sh syntax=sh
 #==============================================================================
 #    File: ~/.bashrc
 # Created: 10/29/13
@@ -20,26 +20,26 @@ elif [[ "$OSTYPE" == "linux"* ]]; then
   PS1=$"\[\e[01;36m\][\u@\h: \W]${WINDOW}\$ \[\e[m\]"
 else
   # default
-  PS1=$"[\u@\h: \W]\$ "      
+  PS1=$"[\u@\h: \W]\$ "
 fi
 
 # Set the default editor to vim.
 export EDITOR=vim
- 
+
 # Avoid succesive duplicates and spaces in the bash command history.
 export HISTCONTROL=ignoredups:ignorespace
- 
+
 # Append commands to the bash command history file (~/.bash_history)
 # instead of overwriting it.
 shopt -s histappend
 
-# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)           
-HISTSIZE=1000                                                                   
-HISTFILESIZE=2000                                                               
-                                                                                
-# check the window size after each command and, if necessary,                   
-# update the values of LINES and COLUMNS.                                       
-shopt -s checkwinsize   
+# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+HISTSIZE=10000
+HISTFILESIZE=100000
+
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
 
 # Append commands to the history every time a prompt is shown,
 # instead of after closing the session.
@@ -47,10 +47,10 @@ PROMPT_COMMAND='history -a'
 
 # Turn off <C-s> terminal shortcut so it works in vim.
 # This option will turn back on after vim quits.
-stty -ixon 
+stty -ixon
 
 # Enable vim-style editing in terminal
-set -o vi                           
+set -o vi
 
 # Make sure tmux uses colors correctly
 alias tmux='tmux -2'

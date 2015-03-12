@@ -130,38 +130,40 @@ texclean()
 #-------------------------------------------------------
 #   UTILITIES
 #-------------------------------------------------------
-alias clc='clear'
-alias grep='grep --color=auto'
-alias egrep='egrep --color=auto'
-alias fgrep='fgrep --color=auto'
-alias zgrep='zgrep --color=auto'
-alias zegrep='zegrep --color=auto'
-alias zfgrep='zfgrep --color=auto'
-# alias myvalgrind='valgrind --leak-check=full --show-leak-kinds=all 
-#                  '--track-origins=yes --dsymutil=yes --log-file=valout -v'
-
 # Lifesavers
+alias clc='clear'
 alias cp='cp -i'
 alias df='df -kTh'
 alias du='du -kh'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias grep='grep --color=auto'
 alias h='history'
 alias j='jobs -l'
 alias ldir="ls -l | grep '^d'"
 alias lf="ls -l | grep -v '^d'"
+alias lt='tree -C'
 alias mkdir='mkdir -p'
 alias mv='mv -i'
 alias mygcc='gcc -Wall -pedantic -std=c99'
 alias mygfortran='gfortran -Wall -pedantic -std=f95 -fbounds-check -ffree-line-length-0'
 alias r='rlogin'
 alias rm='rm -i'
-alias lt='tree -C'
 alias vi='vim'
 alias :e='vim'
 alias which='type -all'
+alias zegrep='zegrep --color=auto'
+alias zfgrep='zfgrep --color=auto'
+alias zgrep='zgrep --color=auto'
+
+# alias myvalgrind='valgrind --leak-check=full --show-leak-kinds=all 
+#                  '--track-origins=yes --dsymutil=yes --log-file=valout -v'
+
 
 # Color list
 if [[ "$OSTYPE" == "darwin"* ]]; then
   # # alias lc='ls -hopG'               # Mac OS X alias
+  
   # If ~/.dircolors exists, set custom colors file
   [ -e "$HOME/.dircolors" ] && DIR_COLORS="$HOME/.dircolors"
   [ -e "$DIR_COLORS" ] || DIR_COLORS=""
@@ -173,9 +175,9 @@ elif [[ "$OSTYPE" == "linux"* ]]; then
   # If ~/.dircolors exists, set custom colors file
   [ -e "$HOME/.dircolors" ] && DIR_COLORS="$HOME/.dircolors"
   [ -e "$DIR_COLORS" ] || DIR_COLORS=""
-  eval "`dircolors -b ~/.dircolors`"   # set custom colors file
+  eval "`dircolors -b ~/.dircolors`"    # set custom colors file
 
-  alias lc='ls -Ghlp --color=auto' # Linux ls options
+  alias lc='ls -Ghlp --color=auto'      # Linux ls options
 fi
 
 
