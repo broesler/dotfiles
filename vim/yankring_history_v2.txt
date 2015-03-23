@@ -1,100 +1,100 @@
-.,v
-~/,v
-~/.vim/undodir/*,V
-,V
-,V
-# arrow up,V
-# arrow down,V
-"k": history-search-backward,V
-forward,v
-"j": history-search-forward,V
-incremental ,v
+      \',V
+\,v
+" Figure register (just "fp for figure template),V
+@,v
  ,v
-incremental,v
-insert,v
-#==============================================================================#      Keymaps for vi-insert mode#==============================================================================,V
-#,v
-#==============================================================================,V
-0,v
-                                       ,v
-.                                       ,v
-   ,v
-                                                                                ,v
-                                                               ,v
-considerably,v
-## arrow up"\e[A":history-search-backward## arrow down"\e[B":history-search-forward,v
-bash,v
-Contains aliases and simple functions for use with the bash shell,v
-10/29/13,v
-#,V
-#==============================================================================#    File: ~/.bashrc# Created: 10/29/13#  Author: Bernie Roesler## Description: Contains aliases and simple functions for use with the bash shell#==============================================================================,V
-!/bin/bash,v
-Zyzomys,V
-shed,v
-+,v
-mthesaur,v
-set thesaurus=/usr/share/thes/mthesaur.txt,V
-wget http://www.gutenberg.org/dirs/etext02/mthes10.zip,v
-design,v
-e,v
-h,v
-T,v
-),v
-(φ and s,v
+,V
+ 	,v
+let f="",V
+",v
+MS1973_22_CT_Z2:x	y0.286	1.8350.364	1.8080.453	1.7790.532	1.7370.620	1.6890.713	1.6330.833	1.5650.950	1.4901.083	1.4051.230	1.2961.365	1.1981.523	1.0791.679	0.9481.882	0.7682.030	0.6352.166	0.5172.283	0.4012.434	0.2272.531	0.1172.573	0.068MS1973_22_CQ_Z3:x	y0.469	2.2610.558	2.2090.657	2.1430.756	2.0650.839	1.9990.913	1.9491.023	1.8541.151	1.7381.268	1.6301.398	1.5101.514	1.3971.661	1.2431.786	1.1191.929	0.9582.142	0.732MS1973_22_CQ_Z6:x	y0.337	3.2700.476	3.1330.642	2.9570.836	2.7451.027	2.5331.241	2.2701.399	2.0961.596	1.8511.797	1.6161.959	1.4042.128	1.1932.253	1.0032.380	0.8012.487	0.6102.608	0.355,V
+ADVANCED UNSTEADY FLOW CONTROL,V
+bibliography,v
+},V
+  # # make sure first attempt exited successfully  # if [ $? -eq 0 ]; then  #   pdflatex $1  #   open $1.pdf  # else  #   return 1  # fi,V
+set ,v
+# vim: set ft=sh syntax=sh,V
+s,v
+usrguid3.pdfreadme.txt,v
+http://www.springer.com/materials/mechanics/journal/348?detailsPage=pltci_1888682,v
+\setlength{\tabcolsep}{8pt},v
+     ,v
+" compile once,v
+        ,v
+" get file root,v
+change current directory,v
 1,v
-relationship between the inter-foil spacing and phase lag ,v
-The problem of mechanical marine propulsion has existed for at least two millenia, since the time of Archimedes. Only relatively recently has the demand for greater propulsive efficiency pushed the envelope of novel propulsion mechanisms. One of the most promising such mechanisms is a system of tandem, in-line flapping foils.,V
-involving,v
-non-traditional propulsor concepts,v
-at least ,v
-been around,v
+6,v
+8,v
+;;,1
+Test matrix, number of data points, number of runs,v
+choose,v
+%,v
+this given,v
+ For a given choice of $\phi$,v
+phase lag,v
+, choose the optimum spacing,v
+{,v
+;,v
+relevant,v
+i,v
+This coefficient of variation is the relevant design parameter for a ship propulsor;  For a larger thrust, one would accept a larger variation in unsteady loads),v
+.,v
+  (\ie ,v
+(\ie for a larger thrust, one would accept a larger variation in unsteady loads),v
+\it{coefficient of variation},v
+Recall, ,v
+because,v
+Epps,v
+),v
+of inter-foil phase lag and separation ,v
+for particular choices of inter-foil phase lag and separation ,v
+n,v
+as yet unsynthesized design ,v
+systems,v
+the,v
+demand for greater propulsive efficiency ,v
+problem of mechanical ,v
+ shows the instantaneous thrust versus that of a single foil.,v
+unsteady variation in thrust or side force is correlated with the aft foil phase lag,v
+The unsteady variation in thrust or side force can be mitigated below that of a single foil ,v
+,,v
+, which have a fixed inter-wing spacing,v
+x,v
+i.e.,v
+very ,v
+3.25in,v
+\textwidth,v
+modeshapes,v
+First few vibrational mode shapes of a pinned-pinned bar.,v
+pinned_bar_modes.pdf,v
+ref,v
+Akhtar2005,v
+However, we hypothesize that by deliberately choosing inter-foil phase lag $\phi$ and spacing $s$, one can design a tandem flapping foil propulsor that both (\emph{i}) produces high thrust at high efficiency, and (\emph{ii}) mitigates unsteady variation in thrust or side force.,v
+(\emph{see} Figure~\ref{fig:broering}),v
+solve this operational problem,v
+Tandem flapping foils do not necessarily solve this operational problem,v
+below that of a single foil,v
+    ,1
+&    4.8324  &    4.4851  &    5.7911  &    5.7090  ,13
+\citet{Broering2012c},v
+\citet{Broering2012c,v
+``Unsteadiness'',v
+},v
+C,v
+sigma_,v
+Phase $\phi$,v
+\phi = ,v
+�,v
+     $  0\deg$ &     0.9281   &   0.8883 \\     $ 90\deg$ &     1.1984   &   1.3728 \\     $180\deg$ &     1.1814   &   0.9856 \\,V
+,V
+by the normalized ,v
+mean ,v
+always ,v
+ but ,v
+$\sigma/\mu$,v
+conventional ,v
+akin ,v
+standard,v
 a,v
-Mechanical marine propulsion,V
-alias :e='vim',V
-# alias myvalgrind='valgrind --leak-check=full --show-leak-kinds=all #                  '--track-origins=yes --dsymutil=yes --log-file=valout -v',V
-alias clc='clear',V
-alias grep='grep --color=auto'alias egrep='egrep --color=auto'alias fgrep='fgrep --color=auto'alias zgrep='zgrep --color=auto'alias zegrep='zegrep --color=auto'alias zfgrep='zfgrep --color=auto',V
-CT = linspace(0.1,1,1000);UstaroU = (-1 + sqrt(1+CT))/2;plot(CT,UstaroU)hold onslope=2*pi./UstaroU;plot(CT,slope),v
- in turn,,v
-place lower bounds on friction losses, and,,v
-While screw propellers offer marvelous advantages with regards to mechanical simplicity (just need to turn the shaft!), they have practical limits (\eg cavitation) on foil aspect ratio that place lower bounds on friction losses, and, in turn, upper bounds on overall hydrodynamic efficiency.,V
-, in turn,,v
-While screw propellers offer marvelous advantages with regards to mechanical simplicity (just need to turn the shaft!),,v
-,v
-↵,v
-#===============================================================================,V
-plot([0 1],[0 2*pi],'--r'),V
-...,v
-,...,...,...,...,...,...,...,...,4
-gong2015_12b_150,v
-(:,1)(:,1)(:,1)(:,1)(:,1)(:,1)(:,1)(:,1),5
-                                                                                                                                                ,18
-gong2015_12a_050(:,1),...                        gong2015_12a_075(:,1),...                         gong2015_12a_100(:,1),...                        gong2015_12a_125(:,1),...                        gong2015_12a_150(:,1),...                        gong2015_12b_175(:,1),...                        gong2015_12b_200(:,1),...                        gong2015_12b_225(:,1),...                        gong2015_12b_250(:,1),v
-le,v
-nearly 0 to over 4 chordlengths.,v
-one chordlength,v
- chordlengths,v
-both phase $\phi$ and ,v
-varying both phase $\phi$ and ,v
-were confirmed ,v
-of a dragonfly ,v
-stated,v
-showed experimentally that ,v
-By varying the relative phase difference between fore- and hindwing stroke cycles we found that the performance of the forewing remains approximately constant,v
-showed experimentally,v
-GOAL: Describe how upstream foil is affected by downstream foil ,v
-#===============================================================================#       GOAL: Describe how upstream foil is affected by downstream foil #===============================================================================,V
-  cite: ,V
-The hindwing has no noticeable effect on the propulsive efficiency of the forewing, regardless of phase angle. ,v
- (Acta Mechanica Sinica),v
- & Lian ,v
-    ,v
-GOAL: Describe how upstream foil is affected by downstream foil ,V
-#===============================================================================# #===============================================================================,V
-### Broering 2012c intro cites:Active (dragonfly) phase shifting:  -- 180 deg out of phase for ``cruising'' flight suggest eliminating side forces  -- 0 deg out of phase (i.e. in phase) during high accelerations and acrobatic maneuvers  cite: ### Thomas2004 (experimental)    ``controlled parametric experiments show that, provided the Strouhal number is appropriate and the natural interaction between left and right wings can occur, even a simple plunging plate can reproduce the detailed features of the flow seen in dragonflies.''###  Alexander1984 (films of real dragonflies)### Usherwood2008 - mechanical model dragonfly experiments)   -- no advantage in lift, aerodynamic efficiency highly improved, power reduced by 22\% compared to single pair of wings   -- ``achieved by recovering energy from the wake wasted as swirl in a manner analogous to coaxial contra-rotating helicopter rotors.''  ,V
-Thomas2004 (experimental),,v
- Alexander1984 (films of real dragonflies),v
-, Maybury2004 ,v
-### Maybury 2004``By varying the relative phase difference between fore- and hindwing stroke cycles we found that the performance of the forewing remains approximately constant, while hindwing lift production may vary by a factor of two.'',V
-#===============================================================================#   Replace 'prior work with tandem pitching foils...' paragraph with:#===============================================================================,V
-    ### Isogai 2004 also hovering... not quite applicable to thrust performance.,V
+akin to ,v

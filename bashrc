@@ -14,7 +14,6 @@
 if [[ "$OSTYPE" == "darwin"* ]]; then
   # Set the prompt with bright green text -- include GNU screen window number
   PS1=$"\[\e[01;32m\][\u@\h: \W]${WINDOW}\$ \[\e[m\]"
-
 elif [[ "$OSTYPE" == "linux"* ]]; then
   # Set to bright cyan text for linux machines (easy tell on ssh to babylons)
   PS1=$"\[\e[01;36m\][\u@\h: \W]${WINDOW}\$ \[\e[m\]"
@@ -28,18 +27,13 @@ export EDITOR=vim
 
 # Avoid succesive duplicates and spaces in the bash command history.
 export HISTCONTROL=ignoredups:ignorespace
-
-# Append commands to the bash command history file (~/.bash_history)
-# instead of overwriting it.
-shopt -s histappend
-
-# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=10000
 HISTFILESIZE=100000
 
-# check the window size after each command and, if necessary,
-# update the values of LINES and COLUMNS.
-shopt -s checkwinsize
+# shoptions
+shopt -s histappend     # append to ~/.bash_history instead of overwriting
+shopt -s checkwinsize   # auto reforemat command output
+shopt -s extglob        # extend glob to regexes i.e. ?(ab)
 
 # Append commands to the history every time a prompt is shown,
 # instead of after closing the session.
@@ -52,8 +46,7 @@ stty -ixon
 # Enable vim-style editing in terminal
 set -o vi
 
-# Make sure tmux uses colors correctly
-alias tmux='tmux -2'
+alias tmux='tmux -2'    # Force tmux to use 256 colors (get solarized right)
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
   # Set printer options to Duplex Long-Edge-Binding, syntax highlighting on

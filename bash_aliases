@@ -1,5 +1,5 @@
 #~/.bash_aliases
-# vim:syntax=sh
+# vim: ft=sh syntax=sh
 #==============================================================================
 #    File: ~/.bash_aliases
 # Created: 12/04/14
@@ -81,36 +81,25 @@ txt2pdf()
 # Compile LaTeX WITHOUT bibliography
 makepdf()
 {
-  texclean
-  pdflatex $1
-
-  # make sure first attempt exited successfully
-  if [ $? -eq 0 ]; then
-    pdflatex $1
-    open $1.pdf
-  else
-    return 1
-  fi
+  texclean && pdflatex $1 && pdflatex $1 && open $1.pdf
 }
 
 # Compile LaTeX WITH bibliography
 makepdfbib()
 {
-  texclean
-  pdflatex $1
+  texclean && pdflatex $1
   
   # make sure first attempt exited successfully
   if [ $? -eq 0 ]; then
-    # run BiBTeX
+    # run BiBTeX on each .bib file
     for i in `ls *.tex`
     do
       doc=$(echo $i | sed 's/\..*//')     # strip file extension
       bibtex $doc
     done
 
-    pdflatex $1
-    pdflatex $1
-    open $1.pdf
+    # compile twice more and open the pdf output
+    pdflatex $1 && pdflatex $1 && open $1.pdf
   else  # there are errors in the tex, exit
     return 1
   fi
