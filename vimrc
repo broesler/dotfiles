@@ -51,7 +51,7 @@ syntax on
 " Enable Omnicompletion
 set omnifunc=syntaxcomplete#Complete
 set completeopt=longest,menu,preview        " make like bash completion
-set complete=.,w,b,u,t,i,k
+set complete=.,w,b,u,t,i
 set dictionary=/usr/share/dict/words
 set thesaurus=/usr/share/thes/mthesaur.txt  " use <C-X><C-T>
 " set thesaurus+=/usr/share/thes/roget13a.txt
@@ -59,18 +59,19 @@ set thesaurus=/usr/share/thes/mthesaur.txt  " use <C-X><C-T>
 set tags=./tags;    " read local tag file first, then search for others
 
 set wildmenu        " Enable tab to show all menu options
-set wildignorecase  " ignore case when tab completing
+set nofileignorecase  " do NOT ignore case when tab completing
+" set nowildignorecase  " do NOT ignore case when tab completing
 set wildmode=longest,list,full  " like bash completion
 
 set title           " Show filename in title bar
 set number          " Turn on line numbers
 set ttyfast         " fast connection allows smoother scrolling
 set scrolloff=1     " cursor will never reach bottom of window
-set history=1000    " Keep command history
+set history=10000   " Keep command history
 set showcmd         " Show partial commands
 set hls             " highlight all search terms
 set incsearch       " highlight search as it's typed
-set ignorecase      " ignore case in searches
+set ignorecase      " ignore case when searching
 set smartcase       " case-sensitive if capital in search
 
 set tabstop=4       " tabs every 4 spaces
@@ -87,7 +88,7 @@ endif
 let g:loaded_matchparen=0       " Do not highlight matching parens if == 1
 set showmatch                   " Show matching parens
 set matchtime=3                 " Highlight for 3 miliseconds
-set tw=0 wrap linebreak         " Do not break words mid-word
+set textwidth=0 wrap linebreak  " Do not break words mid-word
 set backspace=indent,eol,start  " allow backspacing over everything in insert mode
 
 " Convenient command to see the difference between the current buffer and the
@@ -145,6 +146,8 @@ autocmd FileType text hi Quotes ctermfg=6
 autocmd FileType text syn match Stars display '[\*]'
 autocmd FileType text hi Stars ctermfg=208
 
+" set complete to include dictionary for text or latex files
+autocmd FileType text,tex set complete+=k
 
 "--------------------------------------- LaTeX
 let g:tex_stylish=1
@@ -203,9 +206,55 @@ function! MyExplore()
   Explore
 endfunction 
 
-nmap <leader>E :call MyExplore()<CR> 
+nmap <Leader>E :call MyExplore()<CR> 
 
+"------------------------------------------------------------------------------
+" make current .tex file
+function! LatexMakeOnce()
+  let fileext = expand("%:e")
+  if (fileext ==# "tex")
+    write                               " save file
+    lcd %:p:h                           " cd to that of tex file
+    let fileroot = expand("%:r")
+    execute "!pdflatex " . fileroot
+  else
+    echom "FileType is NOT .tex! Aborted pdflatex."
+  endif
+endfunction
 
+nnoremap <Leader>T :call LatexMakeOnce()<CR>
+
+" make current .tex file properly
+function! LatexMakeFull()
+  let fileext = expand("%:e")
+  if (fileext ==# "tex")
+    write
+    lcd %:p:h
+    let fileroot = expand("%:r")
+    execute "!makepdf " . fileroot
+  else
+    echom "FileType is NOT .tex! Aborted pdflatex."
+  endif
+endfunction
+
+nnoremap <Leader>F :call LatexMakeFull()<CR>
+
+" make current .tex file properly
+function! LatexMakeBib()
+  let fileext = expand("%:e")
+  if (fileext ==# "tex")
+    write
+    lcd %:p:h
+    let fileroot = expand("%:r")
+    execute "!makepdfbib " . fileroot
+  else
+    echom "FileType is NOT .tex! Aborted pdflatex."
+  endif
+endfunction
+
+nnoremap <Leader>B :call LatexMakeBib()<CR>
+"
+"------------------------------------------------------------------------------
 " Incr increments numbers in a column (i.e. in Visual Block mode)
 "   To use: highlight in Visual Block, and press <C-a>
 function! Incr()
@@ -218,8 +267,9 @@ function! Incr()
 endfunction
 vnoremap <C-a> :call Incr()<CR>
 
+"------------------------------------------------------------------------------
 " Jump from html class/id tag to definition in linked CSS file
-" use <leader>] to execute
+" use <Leader>] to execute
 function! JumpToCSS()
   let id_pos = searchpos("id", "nb", line('.'))[1]
   let class_pos = searchpos("class", "nb", line('.'))[1]
@@ -233,7 +283,7 @@ function! JumpToCSS()
   endif
 endfunction
 
-nnoremap <leader>] :call JumpToCSS()<CR>
+nnoremap <Leader>] :call JumpToCSS()<CR>
 
 
 "------------------------------------------------------------------------------
@@ -276,7 +326,7 @@ nnoremap k gk
 nnoremap Y y$
 
 " Toggle relative numbers with \n
-nnoremap <silent>,n :set relativenumber!<cr>
+nnoremap <silent>,n :set relativenumber!<CR>
 
 
 "------------------------------------------------------------------------------
