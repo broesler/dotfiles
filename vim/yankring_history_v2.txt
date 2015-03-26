@@ -1,100 +1,100 @@
-      \',V
-\,v
-" Figure register (just "fp for figure template),V
-@,v
- ,v
 ,V
- 	,v
-let f="",V
-",v
-MS1973_22_CT_Z2:x	y0.286	1.8350.364	1.8080.453	1.7790.532	1.7370.620	1.6890.713	1.6330.833	1.5650.950	1.4901.083	1.4051.230	1.2961.365	1.1981.523	1.0791.679	0.9481.882	0.7682.030	0.6352.166	0.5172.283	0.4012.434	0.2272.531	0.1172.573	0.068MS1973_22_CQ_Z3:x	y0.469	2.2610.558	2.2090.657	2.1430.756	2.0650.839	1.9990.913	1.9491.023	1.8541.151	1.7381.268	1.6301.398	1.5101.514	1.3971.661	1.2431.786	1.1191.929	0.9582.142	0.732MS1973_22_CQ_Z6:x	y0.337	3.2700.476	3.1330.642	2.9570.836	2.7451.027	2.5331.241	2.2701.399	2.0961.596	1.8511.797	1.6161.959	1.4042.128	1.1932.253	1.0032.380	0.8012.487	0.6102.608	0.355,V
-ADVANCED UNSTEADY FLOW CONTROL,V
-bibliography,v
-},V
-  # # make sure first attempt exited successfully  # if [ $? -eq 0 ]; then  #   pdflatex $1  #   open $1.pdf  # else  #   return 1  # fi,V
-set ,v
-# vim: set ft=sh syntax=sh,V
-s,v
-usrguid3.pdfreadme.txt,v
-http://www.springer.com/materials/mechanics/journal/348?detailsPage=pltci_1888682,v
-\setlength{\tabcolsep}{8pt},v
-     ,v
-" compile once,v
-        ,v
-" get file root,v
-change current directory,v
+################################################################################ Power Management###############################################################################,V
+# Set standby delay to 3 hours (default is 1 hour)sudo pmset -a standbydelay 10800# Restart automatically if the computer freezes# sudo systemsetup -setrestartfreeze on# Sleep after 20 minutes of inactivitysudo systemsetup -setcomputersleep 20 > /dev/null# Set PowerNap on while on battery power or A/C powersudo pmset -a darkwakes 1,V
 1,v
-6,v
-8,v
-;;,1
-Test matrix, number of data points, number of runs,v
-choose,v
-%,v
-this given,v
- For a given choice of $\phi$,v
-phase lag,v
-, choose the optimum spacing,v
-{,v
-;,v
-relevant,v
-i,v
-This coefficient of variation is the relevant design parameter for a ship propulsor;  For a larger thrust, one would accept a larger variation in unsteady loads),v
+4,v
+2,v
+86400,v
+SSD-specific tweaks                                                         #,v
+################################################################################ SSD-specific tweaks                                                         ################################################################################,V
+# Set standby delay to 24 hours (default is 1 hour)# sudo pmset -a standbydelay 86400# Restart automatically if the computer freezes# sudo systemsetup -setrestartfreeze on# Sleep after 20 minutes of inactivitysudo systemsetup -setcomputersleep 20 > /dev/null# Set PowerNap on while on battery power or A/C powersudo pmset -a darkwakes 1,V
+# Set standby delay to 24 hours (default is 1 hour)# sudo pmset -a standbydelay 86400,V
+	'{"enabled" = 0;"name" = "MENU_OTHER";}' \,V
+	'{"enabled" = 0;"name" = "MENU_CONVERSION";}' \	'{"enabled" = 0;"name" = "MENU_EXPRESSION";}' \,V
+	'{"enabled" = 1;"name" = "PRESENTATIONS";}' \	'{"enabled" = 1;"name" = "SPREADSHEETS";}' \,V
+	'{"enabled" = 0;"name" = "MENU_WEBSEARCH";}' \,V
+	'{"enabled" = 1;"name" = "SYSTEM_PREFS";}' \,V
+	'{"enabled" = 1;"name" = "DIRECTORIES";}' \,V
+	'{"enabled" = 1;"name" = "DOCUMENTS";}' \,V
+	'{"enabled" = 0;"name" = "MENU_WEBSEARCH";}' \	'{"enabled" = 0;"name" = "MENU_SPOTLIGHT_SUGGESTIONS";}',V
+	'{"enabled" = 1;"name" = "SOURCE";}' \,V
+	'{"enabled" = 1;"name" = "FONTS";}' \,V
+	'{"enabled" = 1;"name" = "PDF";}' \,V
+	'{"enabled" = 0;"name" = "MENU_DEFINITION";}' \,V
+Never go into computer sleep mode,v
+Off,v
+# # ,V
+> /dev/null,v
 .,v
-  (\ie ,v
-(\ie for a larger thrust, one would accept a larger variation in unsteady loads),v
-\it{coefficient of variation},v
-Recall, ,v
-because,v
-Epps,v
-),v
-of inter-foil phase lag and separation ,v
-for particular choices of inter-foil phase lag and separation ,v
-n,v
-as yet unsynthesized design ,v
-systems,v
-the,v
-demand for greater propulsive efficiency ,v
-problem of mechanical ,v
- shows the instantaneous thrust versus that of a single foil.,v
-unsteady variation in thrust or side force is correlated with the aft foil phase lag,v
-The unsteady variation in thrust or side force can be mitigated below that of a single foil ,v
-,,v
-, which have a fixed inter-wing spacing,v
-x,v
-i.e.,v
-very ,v
-3.25in,v
-\textwidth,v
-modeshapes,v
-First few vibrational mode shapes of a pinned-pinned bar.,v
-pinned_bar_modes.pdf,v
-ref,v
-Akhtar2005,v
-However, we hypothesize that by deliberately choosing inter-foil phase lag $\phi$ and spacing $s$, one can design a tandem flapping foil propulsor that both (\emph{i}) produces high thrust at high efficiency, and (\emph{ii}) mitigates unsteady variation in thrust or side force.,v
-(\emph{see} Figure~\ref{fig:broering}),v
-solve this operational problem,v
-Tandem flapping foils do not necessarily solve this operational problem,v
-below that of a single foil,v
-    ,1
-&    4.8324  &    4.4851  &    5.7911  &    5.7090  ,13
-\citet{Broering2012c},v
-\citet{Broering2012c,v
-``Unsteadiness'',v
-},v
-C,v
-sigma_,v
-Phase $\phi$,v
-\phi = ,v
-º,v
-     $  0\deg$ &     0.9281   &   0.8883 \\     $ 90\deg$ &     1.1984   &   1.3728 \\     $180\deg$ &     1.1814   &   0.9856 \\,V
-,V
-by the normalized ,v
-mean ,v
-always ,v
- but ,v
-$\sigma/\mu$,v
-conventional ,v
-akin ,v
-standard,v
-a,v
-akin to ,v
+Europe/Brussels,v
+#,v
+ ,v
+true,v
+B,v
+G,v
+Centimeters,v
+R,v
+U,v
+E,v
+Rotary Foil Propellers,v
+x-alignment only,v
+#-------------------------------------------------------------------------------CyROD 1.17 (Roesler) - x-alignment only#-------------------------------------------------------------------------------,V
+The NACA airfoil series.pdf,v
+*.aux*.bbl*.blg*.log*.out*.toc,5
+2014,v
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 TRANSITIONAL//EN""http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="content-type" content="text/html; charset=utf-8" /><link rel="stylesheet" href="htmlExportStyleSheet.css" /><title>! [Fluid Energy Lab] Master Bib_150309.bib</title> </head><body><div class="content"><h1>! [Fluid Energy Lab] Master Bib_150309.bib</h1><dl><dt class="Key" id="Zhu1981">Zhu1981</dt><dd class="Pub">	<span class="Title">A Computational Method for Cycloidal Propellers</span><br />	<span class="Author">Zhu, D.</span><br />	<span class="Journal">Int. Shipbuild. Progr</span>&nbsp;	<span class="Volume">28</span>&nbsp;	<span class="Pages">102--111</span>&nbsp;	(<span class="Date">1981</span>)<br />	<span class="File"><a href="file://localhost/Users/bernardroesler/Kite%20Drive/2013_Walvisstaart_(Roesler)/References/Cycloidal%20and%20trochoidal%20propellers/Zhu%201981%20-%20a%20computational%20method%20for%20cycloidal%20propellers.pdf">/Users/bernardroesler/Kite Drive/2013_Walvisstaart_(Roesler)/References/Cycloidal and trochoidal propellers/Zhu 1981 - a computational method for cycloidal propellers.pdf</a></span><br />	<div class="Abstract"></div></dd></dl></div></body></html>,V
+% You should use BibTeX and apsrev.bst for references% Choosing a journal automatically selects the correct APS% BibTeX style file (bst file), so only uncomment the line% below if necessary.%\bibliographystyle{apsrev4-1},V
+CyROD 1.16 Theory Document,v
+https://journals.aps.org/revtex,v
+% integrated design procedure, rather than linear design procedure outlined here.  % \it{Multi-objective optimization:}  Propulsors have a number of design requirements for different operational modes of the ship, and these design requirements may be at odds with one another  \citep{Carlton1994}: % \it{(i)} during cruise operation, the propulsor needs to produce the requisite thrust at high propulsive efficiency, produce constant thrust, and produce no side force;% \it{(ii)}   for docking and undocking operations, it must provide adequate thrust at low speeds; % \it{(iii)}  for maneuvering operations, it must afford thrust vectoring;  % \it{(iv)}   for survivability, it should provide mechanical redundancy;% \it{(v)}    for stealth, it should avoid cavitation.% What does a tandem foil propulsor optimized for each of these requirements look like?  What are the tradeoffs involved in multi-objective design optimization? % J. S. Carlton. Marine Propellers and Propulsion. Butterworth-Heinemann, 1994.% Bose propulsion book% Kerwin and Hadler% IMAREST book ,V
+%choose the aft foil phase lag $\phi \approx 90^\circ$ or $180^\circ$ to mitigate unsteady variation in thrust or side force, respectively.  ,V
+% Alternatively, for a given (target) thrust coefficient $C_T$, the induced velocity can be estimated from actuator disk theory: $u_x/U = (-1 + \sqrt{1+C_T})/2$, such that $U^\ast \approx U  (1 + \sqrt{1+C_T})/2$ could be used to initialize $s$.,v
+% However, we hypothesize that by deliberately choosing inter-foil phase lag $\phi$ and spacing $s$, one can design a tandem flapping foil propulsor that both (\emph{i}) produces high thrust at high efficiency, and (\emph{ii}) mitigates unsteady variation in thrust or side force.,V
+%         \caption{}         % \caption{Efficiency $\eta^\ast$ vs. foil spacing normalized by wake vortex advection distance $\frac{s}{UT}$.},V
+%        \caption{}        % \caption{Thrust coefficients $C_T^\ast$ vs. foil spacing normalized by wake vortex advection distance $\frac{s}{UT}$.},V
+% Thus, define the \it{coefficient of variation} (similar to the definition from statistics) as the standard deviation of the load normalized by the mean thrust:,V
+% {\color{red} Prior research with tandem flapping foils shows two trends that are useful for practical propulsor design: (1) the time-varying side force $Y_1(t)+Y_2(t)$ is minimized when the foils flap $180^\circ$ out of phase ($\phi \approx 180^\circ$), and (2) unsteady variations in thrust $X_1(t)+X_2(t)$ are minimized when the aft foil trails the forward foil by one quarter period ($\phi \approx 90^\circ$).},V
+,V
+% } % end blue,V
+% {\color{red} % Perhaps we delete the rest of this text:% }% {\color{blue} ,V
+% \citet{Boschitsch2014} performed a comprehensive experimental study, varying inter-foil spacing $s$ from $0 < s/c \le 4$ and phase lag from $0 \leq \phi \leq 2\pi$; they found that thrust production and propulsive efficiency of the upstream foil was nearly the same as that of an isolated foil for spacings $s/c > 0.5$ (independent of phase). %{\color{red} \it{Gabe:  What do you think of the following argument?}   We postulate that this is true because the main effect of the downstream foil on the upstream foil is to induce axial inflow (\emph{i.e.} the time-averaged $u_x > 0$, but $u_y \approx 0$).  This is akin to contra-rotating propellers, where the downstream rotor induces axial-, but not swirl velocity on the upstream rotor~\cite{Coney1989,Hough1964}. \it{The problem with this comparison, though, is that the forward propeller in a contra-rotating pair will have a much different load distribution that an isolated propeller would, so perhaps it's not a good analogy.}%},V
+% the engineering tradeoff between a single-foil propulsor and a tandem-foil propulsor  reason for accepting the added mechanical complexity of a tandem foil propulsor is to minimize the unsteady loads.% {\color{red} Has anyone shown that $\phi = 90^\circ$ minimize unsteady variation in thrust?}%% These observations stem from the work of \citet{Gopalkrishnan1994}, who was the first to observe that a flapping foil in the wake of an upstream body can actively cancel, reposition, or enhance incident vorticty.%,V
+%,V
+%% For example, dragonflies, which has a fixed inter-wing spacing, flap in phase ($\phi = 0$) for high acceleration (i.e.\ high thrust), and they flap out of phase ($\phi = 180^\circ$) during cruise (i.e.\ when zero net vertical force $Y(t)$ is desirable) \citep{Alexander1984,Thomas2004}.%,V
+% {\color{blue}% \it{3.\ The unsteady variation in thrust or side force is correlated with the aft foil phase lag $\phi$} \citep{Alexander1984,Thomas2004}.  Thus, these unsteady variations may be minimized by appropriate choice of $\phi$.% [150313 BROESLER]:,V
+% Thus, for a given $\phi$ chosen to mitigate unsteady loads, the spacing $s$ can be chosen to optimize the interactions of the downstream foil with incident vorticity (which was shed by the upstream foil).,v
+%We propose the following simplified design process:%The general steps in a simplified design process are as follows:,V
+%The lift and drag forces act roughly at the quarter-chord, added mass loads at the mid-chord, and acceleration reaction loads at the mass centroid.  The moment $Q_i(t)$ includes the $M_3$ and $-I\ddot\theta$ terms above and additional moments due to the above forces not acting through the pitching location, $p_i$.  It is evident then that the choice of pitching location affects the unsteady loads and moments acting on the propulsor and thus overall efficiency.,V
+%These forces and torques can be conceptualized as the resultant of six key physical effects \cite{Roesler2014OMAEconf}: quasi-steady lift $0.5\rho V^2 C_L c\, (= \rho V \Gamma)$, quasi-steady drag $0.5\rho V^2 C_D c$, lift modification due to flow curvature $0.5\rho V^2 C_L^* c$ \citep{migliore1980}, unsteady lift $\rho c \, d\Gamma/dt$, added mass loads (e.g.\ 2D flat plate $F_1$, $F_2$, and $M_3$), and acceleration reaction loads ($-ma$ and $-I\ddot\theta$), where $V$ is the total inflow speed. % (freestream plus wake-induced velocity).  %,V
+%These forces and torques can be conceptualized as the resultant of six key physical effects \cite{Roesler2014OMAEconf}: quasi-steady lift $0.5\rho V^2 C_L c\, (= \rho V \Gamma)$, quasi-steady drag $0.5\rho V^2 C_D c$, lift modification due to flow curvature $0.5\rho V^2 C_L^* c$ \citep{migliore1980}, unsteady lift $\rho c \, d\Gamma/dt$, added mass loads (e.g.\ 2D flat plate $F_1$, $F_2$, and $M_3$), and acceleration reaction loads ($-ma$ and $-I\ddot\theta$), where $V$ is the total inflow speed. % (freestream plus wake-induced velocity).  %%The lift and drag forces act roughly at the quarter-chord, added mass loads at the mid-chord, and acceleration reaction loads at the mass centroid.  The moment $Q_i(t)$ includes the $M_3$ and $-I\ddot\theta$ terms above and additional moments due to the above forces not acting through the pitching location, $p_i$.  It is evident then that the choice of pitching location affects the unsteady loads and moments acting on the propulsor and thus overall efficiency.,V
+%The time-averaged thrust force (per unit span) $F$ and power input (per unit span) $P$ are as follows:%\begin{equation}%F = \frac{1}{\tau}\int\limits_0^\tau \, \bigg(X_1(t)+X_2(t)\bigg) \, dt%\end{equation}%\begin{equation}%\begin{split}%P = &\frac{1}{\tau}\int\limits_0^\tau \, \bigg(Y_1(t) \dot h_1(t) + Y_2(t) \dot h_2(t)  \bigg) \, dt \\%  + & \frac{1}{\tau}\int\limits_0^\tau \, \bigg(Q_1(t) \dot \theta_1(t) + Q_2(t) \dot \theta_2(t)  \bigg) \, dt%\end{split}%\end{equation}%where the dot notation indicates the time derivative, and $\tau = 1/f$ is the period of oscillation.  ,V
+%Research with isolated flapping foils has demonstrated remarkable propulsion efficiency \citep{Anderson1996,Anderson1998}.,V
+%Research with isolated flapping foils has demonstrated remarkable propulsion efficiency \citep{Anderson1996,Anderson1998}.,V
+% reword this sentence!  ,v
+%       ROESLER/EPPS PREAMBLE,V
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%,V
+% \usepackage[sectionbib]{chapterbib},V
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% % Define colors for code -- MATLAB% \usepackage{listings} %% \definecolor{dkgreen}{rgb}{0,0.6,0}% \definecolor{gray}{rgb}{0.5,0.5,0.5}% \definecolor{mauve}{rgb}{0.58,0,0.82}%% \lstset{%   language=Matlab,                      % the language of the code%   basicstyle=\footnotesize\ttfamily,    % the size of the fonts that are used for the code%   numbers=left,                         % where to put the line-numbers%   numberstyle=\tiny\color{gray},        % the style that is used for the line-numbers%   stepnumber=2,                         % the step between two line-numbers.%   numbersep=5pt,                        % how far the line-numbers are from the code%   breaklines=true,                      % sets automatic line breaking%   showspaces=false,                     % show spaces adding particular underscores%   showstringspaces=false,               % underline spaces within strings%   showtabs=false,                       % show tabs within strings adding particular underscores%   keywordstyle=\color{blue},            % keyword style%   commentstyle=\color{dkgreen},         % comment style%   stringstyle=\color{mauve}             % string literal style% }% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% \numberwithin{equation}{section}	% Equation numbers have the format (section.number)% \numberwithin{figure}{section}% \numberwithin{table}{section}% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%,V
+Naval Architecture,v
+.J.,v
+J,v
+ernard,v
+onathon,v
+ric,v
+alia,v
+ooper,v
+Bernard T. Roesler \and        Jonathon Brink-Roby \and        Eric Clemmenson \and        Malia Kawamura \and        Cooper Keller \and        E.J. Miller \and        ,v
+\usepackage{graphicx},V
+\cal O,v
+\newcommand{\half}{\tfrac{1}{2}}\newcommand{\norm}[1]{\lVert #1 \rVert}\newcommand{\vect}[1]{\mathbf{#1}}\newcommand{\alfa}{\alpha}\newcommand{\code}{\texttt}\newcommand{\GB}{\Gamma_b}\newcommand{\GW}{\Gamma_w}\newcommand{\bp}{\beta(\phi)},V
+Text with citations \cite{RefB} and \cite{RefJ}.,V
+% % Non-BibTeX users please use% \begin{thebibliography}{}% %% % and use \bibitem to create references. Consult the Instructions% % for authors for reference list style.% %% \bibitem{RefJ}% % Format for Journal Reference% Author, Article title, Journal, Volume, page numbers (year)% % Format for books% \bibitem{RefB}% Author, Book title, page numbers. Publisher, place (year)% % etc% \end{thebibliography},V
+code{CyROD},v
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%,V
+\renewcommand{\i}{{\scriptstyle (i)}}\renewcommand{\j}{{\scriptstyle (j)}}\renewcommand{\ij}{{\scriptstyle (i,j)}}\newcommand{\Ij}{{\scriptstyle (I,j)}}\newcommand{\I}{{\scriptstyle (I)}}\newcommand{\J}{{\scriptstyle (J)}}\newcommand{\N}{{\scriptstyle (N)}}\newcommand{\ip}{{\scriptstyle (i+1)}}\newcommand{\im}{{\scriptstyle (i-1)}}\newcommand{\jm}{{\scriptstyle (j-1)}}\newcommand{\half}{\tfrac{1}{2}}\newcommand{\norm}[1]{\lVert #1 \rVert}\newcommand{\vect}[1]{\mathbf{#1}}\newcommand{\alfa}{\alpha}\newcommand{\code}{\texttt}\newcommand{\GB}{\Gamma_b}\newcommand{\GW}{\Gamma_w}\newcommand{\bp}{\beta(\phi)}\newcommand{\CR}{\texttt{CyROD} }\newcommand{\CRV}{\texttt{CyROD 1.12} }\newcommand{\Z}{{Z}},V
+\newcommand{\CR}{\texttt{CyROD} }\newcommand{\CRV}{\texttt{CyROD 1.12} },V
+If you'd like to thank anyone, place your comments hereand remove the percent signs.,V
+Text with citations \cite{RefB} and \cite{RefJ}.\subsection{Subsection title}\label{sec:2}as required. Don't forget to give each sectionand subsection a unique label (see Sect.~\ref{sec:1}).\paragraph{Paragraph headings} Use paragraph headings as needed.\begin{equation}a^2+b^2=c^2\end{equation},V
+Insert your abstract here. Include keywords, PACS and mathematicalsubject classification numbers as needed.,V
+Trochoidal propeller \and cycloidal propeller \and potential flow model \and wake alignment \and tow tank testing,v
+First keyword \and Second keyword \and More,v
