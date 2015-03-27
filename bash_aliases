@@ -17,7 +17,6 @@ alias rrc='source ~/.bashrc'        # reload JUST rc file (more common)
 #-------------------------------------------------------
 #   FOLDER SHORTCUTS
 #-------------------------------------------------------
-
 if [[ "$OSTYPE" == "darwin"* ]]; then
   alias cs174='cd ~/Documents/School/14F-15X/cs174_machine_learning/'
   alias es105='cd ~/Documents/School/13F-14X/Engs\ 105/Engs_105_practice/'

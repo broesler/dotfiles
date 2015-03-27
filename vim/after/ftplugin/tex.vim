@@ -1,3 +1,32 @@
+"------------------------------------------------------------------------------
+"       LaTeX Filetype Settings
+"------------------------------------------------------------------------------
+let g:tex_stylish=1
+
+" wrap \left( \right) around visually selected text
+vmap <buffer> sp "zdi\left(<C-R>z\right)<Esc> 
+
+" " Declare latex language for ctags, taglist.vim usage
+" let tlist_tex_settings   = 'latex;s:sections;g:graphics;l:labels'
+" let tlist_bib_settings   = 'bibtex;s:BiBTeX_strings;e:BibTeX-Entries;a:BibTeX-Authors;t:BibTeX-Titles'
+" let tlist_make_settings  = 'make;m:macros;t:targets'
+
+" : is included as keyword for fig: eqn: etc.,
+setlocal iskeyword+=_
+
+" dictionary search (for writing)
+setlocal complete+=k
+
+" Turn off matching paren highlighting for LaTeX files
+" Doesn't work...
+let g:LatexBox_loaded_matchparen=1
+
+" Change default SuperTabs completion to context (or try <C-x><C-o>)
+let g:SuperTabDefaultCompletionType="context"
+
+"------------------------------------------------------------------------------
+"       Macros
+"------------------------------------------------------------------------------
 " Align macro
 let @a='i\begin{align}\end{align}k'
 
@@ -51,3 +80,57 @@ let @t='o\begin{table}[h!]
       \0i\end{tabular}
       \0i  \end{center}
       \0i\end{table}'
+
+"------------------------------------------------------------------------------
+"       Local key mappings
+"------------------------------------------------------------------------------
+imap <buffer> [[ \begin{
+imap <buffer> ]] <Plug>LatexCloseCurEnv
+
+"------------------------------------------------------------------------------
+"       LaTeX-specific Functions
+"------------------------------------------------------------------------------
+" make current .tex file
+function! LatexMakeOnce()
+  let fileext = expand("%:e")
+  if (fileext ==# "tex")
+    write                               " save file
+    lcd %:p:h                           " cd to that of tex file
+    let fileroot = expand("%:r")
+    silent execute "!pdflatex " . fileroot
+  else
+    echom "FileType is NOT .tex! Aborted pdflatex."
+  endif
+endfunction
+
+nnoremap <buffer> <Leader>T :call LatexMakeOnce()<CR>
+
+" make current .tex file properly
+function! LatexMakeFull()
+  let fileext = expand("%:e")
+  if (fileext ==# "tex")
+    write
+    lcd %:p:h
+    let fileroot = expand("%:r")
+    silent execute "!makepdf " . fileroot
+  else
+    echom "FileType is NOT .tex! Aborted pdflatex."
+  endif
+endfunction
+
+nnoremap <buffer> <Leader>F :call LatexMakeFull()<CR>
+
+" make current .tex file properly
+function! LatexMakeBib()
+  let fileext = expand("%:e")
+  if (fileext ==# "tex")
+    write
+    lcd %:p:h
+    let fileroot = expand("%:r")
+    silent execute "!makepdfbib " . fileroot
+  else
+    echom "FileType is NOT .tex! Aborted pdflatex."
+  endif
+endfunction
+
+nnoremap <buffer> <Leader>B :call LatexMakeBib()<CR>
