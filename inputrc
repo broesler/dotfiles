@@ -8,6 +8,7 @@
 # Description: Contains keyboard mappings for use on bash command line
 #==============================================================================
 
+# NOTE: These maps require `set -o vi' in .bashrc in order to work!!!
 
 #==============================================================================
 #      Keymaps for vi-insert mode

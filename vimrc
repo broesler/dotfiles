@@ -63,6 +63,7 @@ set nofileignorecase  " do NOT ignore case when tab completing
 " set nowildignorecase  " do NOT ignore case when tab completing
 set wildmode=longest,list,full  " like bash completion
 
+autocmd BufEnter * let titlestring = expand("%:p")
 set title           " Show filename in title bar
 set number          " Turn on line numbers
 set ttyfast         " fast connection allows smoother scrolling
@@ -125,80 +126,38 @@ iab THe The
 " autocmd BufWinLeave ?* silent mkview
 " autocmd BufWinEnter ?* silent loadview
 
-"--------------------------------------- HTML/CSS
-" Treat <li> and <p> tags like the block tags they are
-let g:html_indent_tags = 'li\|p'
-autocmd FileType html,css setlocal shiftwidth=2 tabstop=2
+"--------------------------------------- assorted files
+autocmd FileType matlab,sh,markdown set iskeyword+=_
 
-" Allow stylesheets to autocomplete hyphenated words
-autocmd FileType css,scss,sass,html setlocal iskeyword+=-,_
-autocmd FileType css,scss,sass,html setlocal iskeyword-=:
-autocmd FileType css,scss,sass      setlocal omnifunc=csscomplete#CompleteCSS
-
-"--------------------------------------- plain text
-autocmd FileType text syn match Braces display '[{}\[\]]'
-autocmd FileType text hi Braces ctermfg=darkred
-
-autocmd FileType text syn match Quotes display '[\'\`\"]'
-autocmd FileType text hi Quotes ctermfg=6
-" 21 == light blue
-
-autocmd FileType text syn match Stars display '[\*]'
-autocmd FileType text hi Stars ctermfg=208
-
-" set complete to include dictionary for text or latex files
-autocmd FileType text,tex set complete+=k
-
-"--------------------------------------- LaTeX
-let g:tex_stylish=1
-
-" wrap \left( \right) around visually selected text
-vmap sp "zdi\left(<C-R>z\right)<Esc> 
-
-" " Declare latex language for ctags, taglist.vim usage
-" let tlist_tex_settings   = 'latex;s:sections;g:graphics;l:labels'
-" let tlist_bib_settings   = 'bibtex;s:BiBTeX_strings;e:BibTeX-Entries;a:BibTeX-Authors;t:BibTeX-Titles'
-" let tlist_make_settings  = 'make;m:macros;t:targets'
-
-" : is included as keyword for fig: eqn: etc.,
-autocmd FileType tex,matlab,c,f95,sh,markdown set iskeyword+=_
-
-" Turn off matching paren highlighting for LaTeX files
-" Doesn't work...
-let g:LatexBox_loaded_matchparen=1
-
-" Change default SuperTabs completion to context (or try <C-x><C-o>)
-let g:SuperTabDefaultCompletionType="context"
-
-
-"--------------------------------------- C
-autocmd FileType c setlocal iskeyword+=_
-autocmd FileType c set cindent
-
-
-"--------------------------------------- TAGS options
-nnoremap ,t :TagbarToggle<CR>
-
+"--------------------------------------- vimscript
+" Use K to search vim help for word under cursor only in vim files
+autocmd FileType vim setlocal keywordprg=:help
 
 "--------------------------------------- YankRing.vim Options
+let g:yankring_history_dir='~/.vim'
 " Use \yr 2 to get YankRing element 2, for example
 nnoremap <silent> <Leader>yr :YRGetElem<CR>
-let g:yankring_history_dir='~/.vim'
-
-
-"--------------------------------------- Fortran options
-autocmd FileType fortran setlocal iskeyword+=_
-
-let fortran_free_source=1                               " Enable free format
-au! BufRead,BufNewFile *.f9? let b:fortran_do_enddo=1   " indent do loops
-
-" Do not highlight tabs in fortran files
-hi link fortranTab NONE
-
 
 
 "------------------------------------------------------------------------------
 " Functions
+"------------------------------------------------------------------------------
+" Set terminal title the hard way...
+function! SetTermTitle()
+  let tstr = expand("%:p")
+  silent execute "!echo -n -e " . "\"\033]0;" . tstr . "\007\""
+endfunction
+autocmd BufEnter * silent call SetTermTitle()
+
+function! ResetTitle()
+    " disable vim's ability to set the title
+    silent execute "set title t_ts='' t_fs=''"
+
+    " and restore it to 'bash'
+    silent execute "!echo -n -e \"\033]0;bash\007\""
+endfunction
+autocmd VimLeave * silent call ResetTitle()
+
 "------------------------------------------------------------------------------
 " Open explorer in new window
 function! MyExplore() 
@@ -208,51 +167,6 @@ endfunction
 
 nmap <Leader>E :call MyExplore()<CR> 
 
-"------------------------------------------------------------------------------
-" make current .tex file
-function! LatexMakeOnce()
-  let fileext = expand("%:e")
-  if (fileext ==# "tex")
-    write                               " save file
-    lcd %:p:h                           " cd to that of tex file
-    let fileroot = expand("%:r")
-    execute "!pdflatex " . fileroot
-  else
-    echom "FileType is NOT .tex! Aborted pdflatex."
-  endif
-endfunction
-
-nnoremap <Leader>T :call LatexMakeOnce()<CR>
-
-" make current .tex file properly
-function! LatexMakeFull()
-  let fileext = expand("%:e")
-  if (fileext ==# "tex")
-    write
-    lcd %:p:h
-    let fileroot = expand("%:r")
-    execute "!makepdf " . fileroot
-  else
-    echom "FileType is NOT .tex! Aborted pdflatex."
-  endif
-endfunction
-
-nnoremap <Leader>F :call LatexMakeFull()<CR>
-
-" make current .tex file properly
-function! LatexMakeBib()
-  let fileext = expand("%:e")
-  if (fileext ==# "tex")
-    write
-    lcd %:p:h
-    let fileroot = expand("%:r")
-    execute "!makepdfbib " . fileroot
-  else
-    echom "FileType is NOT .tex! Aborted pdflatex."
-  endif
-endfunction
-
-nnoremap <Leader>B :call LatexMakeBib()<CR>
 "
 "------------------------------------------------------------------------------
 " Incr increments numbers in a column (i.e. in Visual Block mode)
@@ -312,6 +226,9 @@ nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
 " Toggle spell checking on and off with `,s`
 nmap <silent> ,s :set spell!<CR>
 
+" Tagbar toggle (RHS default)
+nnoremap ,t :TagbarToggle<CR>
+
 " Turn off highlight search
 nmap <silent> ,/ :nohls<CR>
 
@@ -362,15 +279,15 @@ hi SpellLocal term=underline cterm=underline
 " Status Line {  
 set laststatus=2                             " always show statusbar  
 set statusline=                              " clear default status line
-set statusline+=%-10.3n\                     " buffer number  
-"set statusline+=%{fugitive#statusline()}     " Fugitive will put current branch name in status line
-set statusline+=\ \ \                        " Separator
-set statusline+=%t\                          " tail of filename   
+set statusline+=%-4.3n\                      " buffer number  
+set statusline+=%{fugitive#statusline()}     " Fugitive will put current branch name in status line
+set statusline+=\ \                          " Separator
+set statusline+=%t\                          " %F is entire path
 set statusline+=%h%m%r%w                     " status flags  
 set statusline+=\[%{strlen(&ft)?&ft:'none'}] " file type  
 set statusline+=%=                           " right align remainder  
-set statusline+=0x%-8B                       " character value  
-set statusline+=%-14(%l,%c%V%)               " line, character  
+set statusline+=0x%-5B                       " character value  
+set statusline+=%-10(%l,%c%V%)               " line, character  
 set statusline+=%<%P                         " file position  
 "} 
 " hi StatusLine ctermfg=none ctermbg=none

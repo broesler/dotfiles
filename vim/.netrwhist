@@ -1,8 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =6
-let g:netrw_dirhist_1='/Users/bernardroesler/Documents/School/14F-15X/engg148_structural_mechanics/HW3/HW3_latex/Artwork'
-let g:netrw_dirhist_2='/Users/bernardroesler/Kite Drive/2015 Tandem foil phase lag letter (Roesler)/1a - first submission'
-let g:netrw_dirhist_3='/Users/bernardroesler/Kite Drive/2015 Tandem foil phase lag letter (Roesler)/1a - first submission/Artwork'
-let g:netrw_dirhist_4='/Users/bernardroesler/Kite Drive/2015 Tandem foil phase lag letter (Roesler)/1a - first submission'
-let g:netrw_dirhist_5='/Users/bernardroesler/Kite Drive/2015 Tandem foil phase lag letter (Roesler)/1a - first submission/Artwork'
-let g:netrw_dirhist_6='/Users/bernardroesler/Kite Drive/2015 Tandem foil phase lag letter (Roesler)/Notes'
+let g:netrw_dirhist_cnt =4
+let g:netrw_dirhist_1='/Users/bernardroesler/Documents/School/14F-15X'
+let g:netrw_dirhist_2='/Users/bernardroesler/Documents/School/14F-15X/engg148_structural_mechanics'
+let g:netrw_dirhist_3='/Users/bernardroesler/Documents/School/14F-15X/engg148_structural_mechanics/HW3'
+let g:netrw_dirhist_4='/Users/bernardroesler/Documents/School/14F-15X/engg148_structural_mechanics/HW3/HW3_latex'
