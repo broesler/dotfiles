@@ -1,4 +1,13 @@
+alias lh="ls -d .*",V
+g,v
+# Color output--color=auto,V
+,V
+Loads for all login shells. Sets path variable and others,v
+10/29/13,v
+bash_profile,v
+# Set vim syntax: vim:ft=sh syntax=sh#==============================================================================#    File: ~/.bash_profile# Created: 10/29/13#  Author: Bernie Roesler## Description: Loads for all login shells. Sets path variable and others#==============================================================================,V
 Thanks\ for\ flying\ Vim\!\,v
+(25º:5º:40º),v
     " let &titleold="Thanks for flying Vim!"    " set title,V
 bash,v
 &,v
@@ -8,7 +17,6 @@ bash,v
 keyword changes,v
 "--------------------------------------- ,v
 ",V
-,V
 setlocal omnifunc=csscomplete#CompleteCSS,v
 autocmd FileType css      ,v
 let g:html_indent_tags = 'li\|p',V
@@ -90,11 +98,3 @@ if &term == "screen-256color"  set t_ts=^[k  set t_fs=^[\endifif &term == "s
 set,v
 titlestring = "vim[" . expand("%:p") . "]",v
 -256color,v
-HTML/CSS,v
-if &term == "screen"  set t_ts=^[k  set t_fs=^[\endifif &term == "screen" || &term == "xterm"  set titleendif,v
-echo -n -e "\033]0;BUILD\007",v
-set title,V
-.,v
-hostname() ,v
-[,v
-),v

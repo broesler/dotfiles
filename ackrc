@@ -1,0 +1,16 @@
+#~/.ackrc
+# Set vim syntax: vim:ft=sh syntax=sh
+#==============================================================================
+#    File: ~/.ackrc
+# Created: 03/27/15
+#  Author: Bernie Roesler
+#
+# Description: Preferences for ack searching
+#==============================================================================
+
+# Always sort files
+--sort-files
+
+# Use less as pager
+--pager
+less -r
