@@ -42,11 +42,9 @@ cs50()
 #-------------------------------------------------------
 #   PROGRAM SHORTCUTS
 #-------------------------------------------------------
-# MATLAB alias
 alias matlab='/Applications/MATLAB_R2014b.app/bin/matlab'
-
-# add XFOIL to path
-alias xfoil='open -a xfoil'
+alias xfoil='/Applications/Xfoil.app/Contents/Resources/xfoil'
+alias skim='open -a /Applications/Skim.app'
 
 # ssh to babylon x
 sshx() 
@@ -72,59 +70,16 @@ txt2pdf()
   rm -f temp.ps
 }
 
-
-#-------------------------------------------------------
-#   FUNCTIONS
-#-------------------------------------------------------
-
-# Compile LaTeX WITHOUT bibliography
-makepdf()
-{
-  texclean && pdflatex $1 && pdflatex $1 && open $1.pdf
-}
-
-# Compile LaTeX WITH bibliography
-makepdfbib()
-{
-  texclean && pdflatex $1
-  
-  # make sure first attempt exited successfully
-  if [ $? -eq 0 ]; then
-    # run BiBTeX on each .bib file
-    for i in `ls *.tex`
-    do
-      doc=$(echo $i | sed 's/\..*//')     # strip file extension
-      bibtex $doc
-    done
-
-    # compile twice more and open the pdf output
-    pdflatex $1 && pdflatex $1 && open $1.pdf
-  else  # there are errors in the tex, exit
-    return 1
-  fi
-}
-
-# Remove all auxiliary files from tex directory
-texclean()
-{
-  rm -f *.aux
-  rm -f *.bbl
-  rm -f *.blg
-  rm -f *.log
-  rm -f *.out
-  rm -f *.toc
-}
-
 #-------------------------------------------------------
 #   UTILITIES
 #-------------------------------------------------------
-# Lifesavers
 alias clc='clear'
 alias cp='cp -i'
 alias df='df -kTh'
 alias du='du -kh'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
+alias gcc='gcc-4.9'
 alias grep='grep --color=auto'
 alias h='history'
 alias j='jobs -l'
@@ -137,8 +92,9 @@ alias mygcc='gcc -Wall -pedantic -std=c99'
 alias mygfortran='gfortran -Wall -pedantic -std=f95 -fbounds-check -ffree-line-length-0'
 alias r='rlogin'
 alias rm='rm -i'
-alias vi='vim'
-alias :e='vim'
+alias vi='vim -X'   # no server mode
+alias vim='vim -X'
+alias e='vim'
 alias which='type -all'
 alias zegrep='zegrep --color=auto'
 alias zfgrep='zfgrep --color=auto'
@@ -175,4 +131,58 @@ alias .2='cd ../../'
 alias .3='cd ../../../'
 alias .4='cd ../../../../'
 
+
+
+#-------------------------------------------------------
+#   FUNCTIONS
+#-------------------------------------------------------
+# vim with server (only for LaTeX really)
+vims()
+{
+  test=`"vim" --version | grep -w clientserver`
+  if [ "$test" ]; then
+    # Make compatible with Skim inverse-search command
+    "vim" --servername VIM --remote-silent $@
+  else
+    "vim" -X $@   # ensure no server used
+  fi
+}
+
+# Compile LaTeX WITHOUT bibliography
+makepdf()
+{
+  texclean && pdflatex $1 && pdflatex $1 && open $1.pdf
+}
+
+# Compile LaTeX WITH bibliography
+makepdfbib()
+{
+  texclean && pdflatex $1
+  
+  # make sure first attempt exited successfully
+  if [ $? -eq 0 ]; then
+    # run BiBTeX on each .bib file
+    for i in `"ls" *.tex`
+    do
+      doc=$(echo $i | sed 's/\..*//')     # strip file extension
+      bibtex $doc
+    done
+
+    # compile twice more and open the pdf output
+    pdflatex $1 && pdflatex $1 && open $1.pdf
+  else  # there are errors in the tex, exit
+    return 1
+  fi
+}
+
+# Remove all auxiliary files from tex directory
+texclean()
+{
+  rm -f *.aux
+  rm -f *.bbl
+  rm -f *.blg
+  rm -f *.log
+  rm -f *.out
+  rm -f *.toc
+}
 #==============================================================================

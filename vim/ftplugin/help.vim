@@ -1,9 +1,9 @@
 "------------------------------------------------------------------------------
-" help.vim commands
+"       help.vim commands
 "------------------------------------------------------------------------------
 
 " Navigation mappings:
-"
+
 " jump to topic under cursor
 nnoremap <buffer> <CR> <C-]>              
 

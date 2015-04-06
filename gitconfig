@@ -18,7 +18,7 @@
 	tool = vimdiff
 [core]
 	excludesfile = ~/.gitignore_global
-	editor = /usr/local/bin/vim
+	editor = /usr/local/bin/vim -X
 [diff]
 	tool = vimdiff
 [difftool]
