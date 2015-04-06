@@ -27,8 +27,8 @@ export EDITOR=vim
 
 # Avoid succesive duplicates and spaces in the bash command history.
 export HISTCONTROL=ignoredups:ignorespace
-HISTSIZE=10000
-HISTFILESIZE=100000
+export HISTSIZE=10000
+export HISTFILESIZE=100000
 
 # shoptions
 shopt -s histappend     # append to ~/.bash_history instead of overwriting

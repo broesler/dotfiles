@@ -10,15 +10,13 @@
 
 # Only on OSX, assumed OK on babylon machines
 if [[ "$OSTYPE" == "darwin"* ]]; then
-  # Set PATH variable correctly
-  export PATH="/usr/local/git/bin:/usr/local/bin:$PATH"               # Enable homebrew and git
-  export PATH="/usr/texbin:$PATH"                                     # Add texbin to path for LaTeX usage
-  export PATH="/Applications/Adobe\ Illustrator\ CS6/:$PATH"          # Add Illustrator to Path
-  export PATH="/Applications/Xfoil.app/Contents/Resources/:$PATH"     # Add XFOIL to path
-
   # Ruby setup:
   eval "$(rbenv init -)"
   export PATH="$HOME/.rbenv/shims:$PATH"
+
+  # Set PATH variable correctly (last line is at front of path)
+  export PATH="/usr/texbin:$PATH"                                    # Add texbin to path for LaTeX usage
+  export PATH="/usr/local/git/bin:/usr/local/bin:$PATH"              # Enable homebrew and git
 
   # Set system-wide variables
   export LC_ALL=C                             # Allow sort to produce expected behavior

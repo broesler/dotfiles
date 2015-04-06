@@ -27,7 +27,7 @@ endif
 filetype plugin indent on              
 
 "------------------------------------------------------------------------------
-" Settings
+"       Settings
 "------------------------------------------------------------------------------
 set autoread        " Auto-read changes made outside of vim
 set autowrite       " Auto-write changes when switching buffers
@@ -56,7 +56,7 @@ set dictionary=/usr/share/dict/words
 set thesaurus=/usr/share/thes/mthesaur.txt  " use <C-X><C-T>
 " set thesaurus+=/usr/share/thes/roget13a.txt
 
-set tags=./tags;    " read local tag file first, then search for others
+set tags=./tags;    " read local tag file first, then search for others 
 
 set wildmenu        " Enable tab to show all menu options
 set nofileignorecase  " do NOT ignore case when tab completing
@@ -76,8 +76,8 @@ set ignorecase      " ignore case when searching
 set smartcase       " case-sensitive if capital in search
 
 set tabstop=4       " tabs every 4 spaces
-set softtabstop=4   " let backspace delete indent
-set shiftwidth=2    " lines >> 2 spaces, use >>. for 4, etc.
+set softtabstop=0   " set to 4 to let backspace delete indent with expandtab
+set shiftwidth=4    " use >>, << for line shifting
 set expandtab       " use spaces instead of tab character (need for Fortran)
 set autoindent      " indent based on filetype
 
@@ -92,27 +92,30 @@ set matchtime=3                 " Highlight for 3 miliseconds
 set textwidth=0 wrap linebreak  " Do not break words mid-word
 set backspace=indent,eol,start  " allow backspacing over everything in insert mode
 
-" Convenient command to see the difference between the current buffer and the
-" file it was loaded from, thus the changes you made.
-" Only define it when not defined already.
-if !exists(":DiffOrig")
-  command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
-                  \ | wincmd p | diffthis
-endif
-
 " Use mouse if it exists
 " In many terminal emulators the mouse works just fine, thus enable it.
 if has('mouse')
   set mouse=a
 endif
 
-" Auto-correct list
-iab THe The
+" Use the_silver_searcher if available
+if executable('ag')
+    set grepprg=ag\ --nogroup\ --nocolor
+    set grepformat=%f:%l:%m
+endif
 
+" Create :Ag command for using silver searcher in subwindow
+if !exists(':Ag')
+  command -nargs=+ -complete=file -bar Ag silent! grep! <args> | cwindow
+endif
 
+" Use system clipboard properly with +X11 and +clientserver
+if has('unnamedplus')
+  set clipboard=unnamed,unnamedplus
+endif
 
 "------------------------------------------------------------------------------
-" FileType and Plugin options (autocommands)
+"       FileType and Plugin options (autocommands)
 "------------------------------------------------------------------------------
 " set local directory of each buffer to the buffer's directory
 " autocmd BufEnter * silent! lcd %:p:h
@@ -122,9 +125,19 @@ iab THe The
 " file is opened from another directory, it will no longer have the correct
 " directory when the view is reloaded. Disable options in viewoptions to only
 " save folds and cursor position
-" set viewoptions=folds,cursor    " NOT options
+" set viewoptions=folds,cursor    " NOT 'options'
 " autocmd BufWinLeave ?* silent mkview
 " autocmd BufWinEnter ?* silent loadview
+
+" Automatically open, but do not go to (if there are errors) the quickfix /
+" location list window, or close it when is has become empty.
+" Note: Must allow nesting of autocmds to enable any customizations for quickfix
+" buffers.
+" Note: Normally, :cwindow jumps to the quickfix window if the command opens it
+" (but not if it's already open). However, as part of the autocmd, this doesn't
+" seem to happen.
+autocmd QuickFixCmdPost [^l]* nested cwindow
+autocmd QuickFixCmdPost    l* nested lwindow
 
 "--------------------------------------- assorted files
 autocmd FileType matlab,sh,markdown set iskeyword+=_
@@ -135,28 +148,36 @@ autocmd FileType vim setlocal keywordprg=:help
 
 "--------------------------------------- YankRing.vim Options
 let g:yankring_history_dir='~/.vim'
-" Use \yr 2 to get YankRing element 2, for example
 nnoremap <silent> <Leader>yr :YRGetElem<CR>
 
 
 "------------------------------------------------------------------------------
-" Functions
+"       Functions
 "------------------------------------------------------------------------------
-" Set terminal title the hard way...
+" Set terminal title the hard way (SLOW), use only 80 chars
 function! SetTermTitle()
-  let tstr = expand("%:p")
+  let filename = expand("%:p")
+  let length = strlen(filename)
+  let cols = &columns - 20          " terminal window size
+  if (length < cols)                " show entire path
+      let tstr = filename
+  else                              " not going to use window < 82 cols
+      let tstr = strpart(filename,0,32) . "..." . strpart(filename, length-50)
+  endif
+  " Set terminal title
   silent execute "!echo -n -e " . "\"\033]0;" . tstr . "\007\""
 endfunction
-autocmd BufEnter * silent call SetTermTitle()
+autocmd BufEnter,VimEnter * silent call SetTermTitle()
 
-function! ResetTitle()
-    " disable vim's ability to set the title
-    silent execute "set title t_ts='' t_fs=''"
-
-    " and restore it to 'bash'
-    silent execute "!echo -n -e \"\033]0;bash\007\""
-endfunction
-autocmd VimLeave * silent call ResetTitle()
+" Reset title on vim exit
+" function! ResetTermTitle()
+"     " disable vim's ability to set the title
+"     silent execute "set title t_ts='' t_fs=''"
+"
+"     " and restore it to 'bash'
+"     silent execute "!echo -n -e \"\033]0;bash\007\""
+" endfunction
+" autocmd VimLeave * silent call ResetTermTitle()
 
 "------------------------------------------------------------------------------
 " Open explorer in new window
@@ -165,9 +186,8 @@ function! MyExplore()
   Explore
 endfunction 
 
-nmap <Leader>E :call MyExplore()<CR> 
+nmap <Leader>E :silent! call MyExplore()<CR> 
 
-"
 "------------------------------------------------------------------------------
 " Incr increments numbers in a column (i.e. in Visual Block mode)
 "   To use: highlight in Visual Block, and press <C-a>
@@ -201,38 +221,37 @@ nnoremap <Leader>] :call JumpToCSS()<CR>
 
 
 "------------------------------------------------------------------------------
-" Key Mappings
+"       Key Mappings
 "------------------------------------------------------------------------------
-" <Leader> is \ by default, so those commands can be invoked by doing \v and \s
-nmap <Leader>s :source $MYVIMRC<CR>
+" Quick access .vimrc
+nnoremap <Leader>s :source $MYVIMRC<CR>
+nnoremap <Leader>v :e $MYVIMRC<CR>
 
-" opens $MYVIMRC for editing, or use :tabedit $MYVIMRC
-nmap <Leader>v :e $MYVIMRC<CR>
-
-" unmap Q from entering Ex mode
+" unmap Q from entering Ex mode (batch isn't useful)
 nnoremap Q <nop>
 
-" Map Ctrl-s to save file
+" Save file
 nnoremap <C-s> :w<CR>
 inoremap <C-s> <Esc>:w<CR>
 
-" Map ,b to change to next buffer
+" Change between buffers quickly
 nnoremap ,b :bn!<CR>
 nnoremap ,v :bp!<CR>
 
-" Type gp to select the last changed (or pasted) text
+" Quickfix list movement
+nnoremap ,c :cn!<CR>
+nnoremap ,p :cp!<CR>
+
+" Select the last changed (or pasted) text
 nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
 
-" Toggle spell checking on and off with `,s`
+" Toggle spell checking 
 nmap <silent> ,s :set spell!<CR>
 
-" Tagbar toggle (RHS default)
-nnoremap ,t :TagbarToggle<CR>
-
 " Turn off highlight search
-nmap <silent> ,/ :nohls<CR>
+nnoremap <silent> ,/ :nohls<CR>
 
-" Search/Replace current word
+" Search/Replace current word (vs just * for search)
 nnoremap <Leader>* :%s/\<<C-r><C-w>\>/
 
 " Wrapped lines goes down/up to next row, rather than next line in file.
@@ -242,12 +261,22 @@ nnoremap k gk
 " Make Y consistent with C and D
 nnoremap Y y$
 
-" Toggle relative numbers with \n
+" Toggle relative numbers
 nnoremap <silent>,n :set relativenumber!<CR>
+
+" Shift-tab backs up one tab stop
+inoremap <S-Tab> <C-d>
 
 
 "------------------------------------------------------------------------------
-" Colorscheme
+"       Plugin specific maps
+"------------------------------------------------------------------------------
+" Tagbar toggle (RHS default)
+nnoremap ,t :TagbarToggle<CR>
+
+
+"------------------------------------------------------------------------------
+"       Colorscheme
 "------------------------------------------------------------------------------
 " Use solarized colorscheme
 set t_Co=256
@@ -256,11 +285,9 @@ set background=dark
 colorscheme solarized
 
 "*** UNCOMMENT 'hi' lines for default colorscheme
-" Green comments
 " hi Comment ctermfg=darkgreen
-" Dodgerblue Types (i.e. real*8)
 " hi Type ctermfg=33
-
+" hi StatusLine ctermfg=none ctermbg=none
 " hi  WildMenu ctermfg=yellow ctermbg=darkgrey
 
 " Spell check options -- need to be set AFTER colorscheme to work properly.
@@ -276,11 +303,11 @@ hi SpellLocal term=underline cterm=underline
 
 "-----------  Set status-line color based on mode
 " first, enable status line always
-" Status Line {  
+" Status Line
 set laststatus=2                             " always show statusbar  
 set statusline=                              " clear default status line
 set statusline+=%-4.3n\                      " buffer number  
-set statusline+=%{fugitive#statusline()}     " Fugitive will put current branch name in status line
+set statusline+=%{fugitive#statusline()}     " brance name (NEEDS FUGITIVE)
 set statusline+=\ \                          " Separator
 set statusline+=%t\                          " %F is entire path
 set statusline+=%h%m%r%w                     " status flags  
@@ -289,8 +316,6 @@ set statusline+=%=                           " right align remainder
 set statusline+=0x%-5B                       " character value  
 set statusline+=%-10(%l,%c%V%)               " line, character  
 set statusline+=%<%P                         " file position  
-"} 
-" hi StatusLine ctermfg=none ctermbg=none
 
 " now set it up to change the status line based on mode
 if version >= 700
