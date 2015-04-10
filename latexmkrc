@@ -15,7 +15,7 @@ $pdf_previewer = "open -a /Applications/Skim.app";
 $pdflatex = "pdflatex -synctex=1 -file-line-error -interaction=nonstopmode %O %S";
 
 # Extensions of files to clean
-$clean_ext = "paux lox pdfsync out";
+$clean_ext = "paux lox pdfsync";
 
 #==============================================================================
 #==============================================================================

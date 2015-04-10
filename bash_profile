@@ -10,6 +10,9 @@
 
 # Only on OSX, assumed OK on babylon machines
 if [[ "$OSTYPE" == "darwin"* ]]; then
+  # Set architecture flags
+  export ARCHFLAGS="-arch x86_64"
+
   # Ruby setup:
   eval "$(rbenv init -)"
   export PATH="$HOME/.rbenv/shims:$PATH"
@@ -35,3 +38,5 @@ if [ -f ~/.bashrc ]; then
 fi
 
 #==============================================================================
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*

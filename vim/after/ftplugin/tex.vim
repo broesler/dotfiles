@@ -1,7 +1,10 @@
-"------------------------------------------------------------------------------
+"==============================================================================
 "       LaTeX Filetype Settings
-"------------------------------------------------------------------------------
+"==============================================================================
 let g:tex_stylish=1
+setlocal tabstop=2            " tabs every 2 spaces
+setlocal softtabstop=2        " let backspace delete indent
+setlocal shiftwidth=2
 
 " wrap \left( \right) around visually selected text
 vmap <buffer> sp "zdi\left(<C-R>z\right)<Esc> 
@@ -20,6 +23,8 @@ setlocal complete+=k
 " Turn off matching paren highlighting for LaTeX files
 " Doesn't work...
 let g:LatexBox_loaded_matchparen=1
+let g:LatexBox_output_type="pdf"
+let g:LatexBox_viewer="skim"
 
 " Change default SuperTabs completion to context (or try <C-x><C-o>)
 let g:SuperTabDefaultCompletionType="context"
@@ -34,30 +39,54 @@ let b:tex_ignore_makefile=1       " ignore any makefiles in the tex dir
 
 " Call latexmk to build tex files properly. See ~/.latexmkrc for options
 set makeprg=latexmk\ \-pdf
-set errorformat=%f:%l:\ %m
+
+" Errors as produced by pdflatex
+let efm_errors="%E!\ LaTeX\ Error:\ %m,\%E!\ %m,%E!pdfTeX Error:\ %m"
+
+" Warmings output by latexmk script
+let efm_warnings="%W%.%#Citation\ %m on\ input\ line\ %l,
+      \%W%.%#Reference\ %m on\ input\ line\ %l"
+
+" " For use with normal pdflatex output (i.e. not via latexmk):
+" let efm_warnings="%WLaTeX\ Warning:\ Citation\ %m\ on\ input\ line\ %l%.%#,
+"             \%WPackage\ natbib\ Warning:\ Citation %m on\ input\ line\ %l%.%#,
+"             \%WPackage\ %.%#Warning:\ Citation %m,%C %m on input line %l%.%#,
+"             \%WLaTeX\ Warning:\ Reference %m on\ input\ line\ %l%.%#,
+"             \%WLaTeX\ %.%#Warning:\ Reference %m,%C %m on input line %l%.%#"
+
+let &l:errorformat = "%f:%l:%m" . "," . efm_errors . "," . efm_warnings
 
 "------------------------------------------------------------------------------
-"       Local key mappings
+"       Local autocmds
 "------------------------------------------------------------------------------
-imap <buffer> [[ \begin{
-imap <buffer> ]] <Plug>LatexCloseCurEnv
-
-" Make LaTeX file using latexmk (see .latexmkrc, and above makeprg)
-nnoremap <buffer> <Leader>L :make %<CR>
+" autocmd BufWritePost,FileWritePost <buffer> silent! call UpdateTags()
 
 "------------------------------------------------------------------------------
 "       LaTeX-specific Functions
 "------------------------------------------------------------------------------
-" Jump to PDF in Skim (for LaTeX files with synctex)
-function! JumpToSkim()
-    let linen = line('.')
-    let filen = expand("%:t:r") . ".pdf"
-    write
-    execute "!/Applications/Skim.app/Contents/SharedSupport/displayline " . linen . " " . filen
-    redraw!
+" Make LaTeX file using latexmk (see .latexmkrc, and above makeprg)
+function! LatexMakeLatexmk()
+  if (&ft != "tex")
+      echoe "File ". expand("%") . " is not a .tex file! Not compiling."
+  else
+      make %
+      redraw!
+  endif
 endfunction
 
-nnoremap <buffer> ,r :call JumpToSkim()<CR>
+" no ! on silent to display error message still
+nnoremap <buffer> <Leader>L :silent call LatexMakeLatexmk()<CR>
+
+" Jump to PDF in Skim (for LaTeX files with synctex)
+function! JumpToSkim()
+  let linen = line('.')
+  let filen = expand("%:t:r") . ".pdf"
+  write
+  execute "!/Applications/Skim.app/Contents/SharedSupport/displayline " . linen . " " . filen
+  redraw!
+endfunction
+
+nnoremap <buffer> ,r :silent! call JumpToSkim()<CR>
 
 " make current .tex file
 function! LatexMakeOnce()
@@ -161,3 +190,5 @@ let @t='o\begin{table}[h!]
       \0i  \end{center}
       \0i\end{table}'
 
+"==============================================================================
+"==============================================================================

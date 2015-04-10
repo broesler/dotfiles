@@ -27,7 +27,7 @@ endif
 filetype plugin indent on              
 
 "------------------------------------------------------------------------------
-"       Settings
+"       Global Settings
 "------------------------------------------------------------------------------
 set autoread        " Auto-read changes made outside of vim
 set autowrite       " Auto-write changes when switching buffers
@@ -56,14 +56,14 @@ set dictionary=/usr/share/dict/words
 set thesaurus=/usr/share/thes/mthesaur.txt  " use <C-X><C-T>
 " set thesaurus+=/usr/share/thes/roget13a.txt
 
-set tags=./tags;    " read local tag file first, then search for others 
+set tags=./tags;    " read local tag file first, then search for others
 
 set wildmenu        " Enable tab to show all menu options
 set nofileignorecase  " do NOT ignore case when tab completing
 " set nowildignorecase  " do NOT ignore case when tab completing
 set wildmode=longest,list,full  " like bash completion
 
-autocmd BufEnter * let titlestring = expand("%:p")
+" autocmd BufEnter * let titlestring = expand("%:p")
 set title           " Show filename in title bar
 set number          " Turn on line numbers
 set ttyfast         " fast connection allows smoother scrolling
@@ -110,12 +110,14 @@ if !exists(':Ag')
 endif
 
 " Use system clipboard properly with +X11 and +clientserver
-if has('unnamedplus')
-  set clipboard=unnamed,unnamedplus
+if (strlen(v:servername) > 0)
+  set clipboard=unnamedplus,unnamed
+else
+  set clipboard=autoselectplus,exclude:cons\|linux
 endif
 
 "------------------------------------------------------------------------------
-"       FileType and Plugin options (autocommands)
+"       Autocommands
 "------------------------------------------------------------------------------
 " set local directory of each buffer to the buffer's directory
 " autocmd BufEnter * silent! lcd %:p:h
@@ -129,27 +131,34 @@ endif
 " autocmd BufWinLeave ?* silent mkview
 " autocmd BufWinEnter ?* silent loadview
 
-" Automatically open, but do not go to (if there are errors) the quickfix /
-" location list window, or close it when is has become empty.
-" Note: Must allow nesting of autocmds to enable any customizations for quickfix
-" buffers.
-" Note: Normally, :cwindow jumps to the quickfix window if the command opens it
-" (but not if it's already open). However, as part of the autocmd, this doesn't
-" seem to happen.
-autocmd QuickFixCmdPost [^l]* nested cwindow
-autocmd QuickFixCmdPost    l* nested lwindow
+augroup quickfix_window
+  au!
+  " Automatically open, but do not go to (if there are errors) the quickfix /
+  " location list window, or close it when is has become empty.
+  " Note: Must allow nesting of autocmds to enable any customizations for quickfix
+  " buffers.
+  " Note: Normally, :cwindow jumps to the quickfix window if the command opens it
+  " (but not if it's already open). However, as part of the autocmd, this doesn't
+  " seem to happen.
+  autocmd QuickFixCmdPost [^l]* nested cwindow
+  autocmd QuickFixCmdPost    l* nested lwindow
 
-"--------------------------------------- assorted files
-autocmd FileType matlab,sh,markdown set iskeyword+=_
+  " Quickly open/close quickfix and location list
+  au! BufWinEnter quickfix nnoremap <silent> <buffer> q :cclose<cr>:lclose<cr>
+augroup END
+nnoremap <silent> <leader>q :botright copen 10<cr>
 
-"--------------------------------------- vimscript
-" Use K to search vim help for word under cursor only in vim files
-autocmd FileType vim setlocal keywordprg=:help
+augroup misc_cmds
+  au!
+  autocmd FileType matlab,sh,markdown set iskeyword+=_
+
+  " Use K to search vim help for word under cursor only in vim files
+  autocmd FileType vim setlocal keywordprg=:help
+augroup END
 
 "--------------------------------------- YankRing.vim Options
 let g:yankring_history_dir='~/.vim'
 nnoremap <silent> <Leader>yr :YRGetElem<CR>
-
 
 "------------------------------------------------------------------------------
 "       Functions
@@ -167,9 +176,9 @@ function! SetTermTitle()
   " Set terminal title
   silent execute "!echo -n -e " . "\"\033]0;" . tstr . "\007\""
 endfunction
-autocmd BufEnter,VimEnter * silent call SetTermTitle()
+autocmd BufEnter,VimEnter * silent! call SetTermTitle()
 
-" Reset title on vim exit
+" Reset title on vim exit (not needed apparently?)
 " function! ResetTermTitle()
 "     " disable vim's ability to set the title
 "     silent execute "set title t_ts='' t_fs=''"
@@ -178,6 +187,23 @@ autocmd BufEnter,VimEnter * silent call SetTermTitle()
 "     silent execute "!echo -n -e \"\033]0;bash\007\""
 " endfunction
 " autocmd VimLeave * silent call ResetTermTitle()
+
+"------------------------------------------------------------------------------
+" Auto-update tags file
+function! UpdateTags()
+  let alltagfiles = tagfiles()
+  if (len(alltagfiles) == 0)            " create new tags file
+      let tagsfile = './tags'           
+      exe 'silent !ctags -af ' . tagsfile . ' ' . expand("%")
+  else                                  " use first tags file found
+      let tagsfile = alltagfiles[0]    
+      exe 'silent !sed -i -e "\@' . expand("%") . '@d" ' . tagsfile . 
+                  \' && ctags -af ' . tagsfile . ' ' . expand("%")
+  endif
+  " -e on Mac causes backup tags file to be generated
+  exe 'silent !rm -rf ' . tagsfile . '-e'
+endfunction
+
 
 "------------------------------------------------------------------------------
 " Open explorer in new window
