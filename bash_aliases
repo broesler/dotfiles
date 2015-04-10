@@ -8,9 +8,9 @@
 # Description: Contains aliases and simple functions for use with the bash shell
 #==============================================================================
 
-alias ep='vim ~/.bash_profile'      # edit profile
-alias erc='vim ~/.bashrc'
-alias ea='vim ~/.bash_aliases'      # edit aliases
+alias ep='mvim -v ~/.bash_profile'    # edit profile (loaded with login)
+alias erc='mvim -v ~/.bashrc'         # edit rc file (loaded with bash)
+alias ea='mvim -v ~/.bash_aliases'    # edit aliases (loaded after rc)
 alias rp='source ~/.bash_profile'   # reload profile
 alias rrc='source ~/.bashrc'        # reload JUST rc file (more common)
 
@@ -19,7 +19,7 @@ alias rrc='source ~/.bashrc'        # reload JUST rc file (more common)
 #-------------------------------------------------------
 if [[ "$OSTYPE" == "darwin"* ]]; then
   alias cs174='cd ~/Documents/School/14F-15X/cs174_machine_learning/'
-  alias es105='cd ~/Documents/School/13F-14X/Engs\ 105/Engs_105_practice/'
+  alias es105='cd ~/Documents/School/13F-14X/Engs\ 105\ \-\ Numerical\ PDEs\ 1/Engs_105_practice/'
   alias es145='cd ~/Documents/School/13F-14X/Engs\ 145/'
   alias es148='cd ~/Documents/School/14F-15X/engg148_structural_mechanics/'
   alias es150='cd ~/Documents/School/13F-14X/Engs\ 150/'
@@ -28,14 +28,21 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   alias web='cd ~/Documents/Projects/web_development/'
 fi
 
-# go to CS 50 lab #
 cs50()
 {
-  if [ $# -gt 0 ]
-  then
+  if [ $# -gt 0 ]; then
       cd ~/Documents/School/cs50/labs/lab$1/
   else
       cd ~/Documents/School/cs50
+  fi
+}
+
+es205()
+{
+  if [ $# -gt 0 ]; then
+    cd ~/Documents/School/14F-15X/engs205_numerical_pdes_II/labs/lab$1
+  else
+    cd ~/Documents/School/14F-15X/engs205_numerical_pdes_II/labs
   fi
 }
 
@@ -92,9 +99,9 @@ alias mygcc='gcc -Wall -pedantic -std=c99'
 alias mygfortran='gfortran -Wall -pedantic -std=f95 -fbounds-check -ffree-line-length-0'
 alias r='rlogin'
 alias rm='rm -i'
-alias vi='vim -X'   # no server mode
-alias vim='vim -X'
-alias e='vim'
+alias vi='mvim -v'   # version -X11 -xterm_clipboard
+alias vim='mvim -v'
+alias e='mvim -v'
 alias which='type -all'
 alias zegrep='zegrep --color=auto'
 alias zfgrep='zfgrep --color=auto'
@@ -139,12 +146,12 @@ alias .4='cd ../../../../'
 # vim with server (only for LaTeX really)
 vims()
 {
-  test=`"vim" --version | grep -w clientserver`
+  test=`command vim --version | grep -w clientserver`
   if [ "$test" ]; then
     # Make compatible with Skim inverse-search command
-    "vim" --servername VIM --remote-silent $@
+    command vim --servername VIM --remote-silent ${@}
   else
-    "vim" -X $@   # ensure no server used
+    mvim -v $@   # ensure no server used
   fi
 }
 

@@ -618,6 +618,13 @@ sudo mdutil -i on / > /dev/null
 # end tell
 # EOD
 
+# Enable proper clipboard syncing with X11 windows
+defaults write org.x.X11 sync_clipboard_to_pasteboard -boolean true
+defaults write org.x.X11 sync_pasteboard -boolean true
+defaults write org.x.X11 sync_pasteboard_to_clipboard -boolean true
+defaults write org.x.X11 sync_pasteboard_to_primary -boolean true
+defaults write org.x.X11 sync_primary_on_select -boolean true
+
 # Enable ``focus follows mouse'' for Terminal.app and all X11 apps
 # i.e. hover over a window and start typing in it without clicking first
 #defaults write com.apple.terminal FocusFollowsMouse -bool true
