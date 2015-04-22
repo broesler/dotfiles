@@ -24,7 +24,7 @@ if s:extfname ==? "f"
 else
   let b:fortran_free_source=1
   unlet! fortran_fixed_source
-  set textwidth=80
+  set textwidth=0       " no fixed width necessary
   set colorcolumn=80
 endif
 
@@ -37,7 +37,7 @@ endif
 "       Compiling options
 "------------------------------------------------------------------------------
 " Map \M to make in background
-nnoremap <Leader>M :silent! make <bar> redraw!<CR>
+nnoremap <Leader>M :silent! make \| redraw!<CR>
 
 " Report warnings as well as errors
 set errorformat=%A%f:%l.%c:,%A%f:%l:,%C,%C%p%*[0123456789^],%Z%trror:\ %m,%Z%tarning:\ %m,%C%.%#

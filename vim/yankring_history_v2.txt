@@ -1,100 +1,100 @@
-# Use vim keybindings in copy modesetw -g mode-keys vi# Setup 'v' to begin selection as in Vimbind-key -t vi-copy v begin-selectionbind-key -t vi-copy y copy-pipe "reattach-to-user-namespace pbcopy"# Update default binding of `Enter` to also use copy-pipeunbind -t vi-copy Enterbind-key -t vi-copy Enter copy-pipe "reattach-to-user-namespace pbcopy",v
- ,v
+hi clear SpellBadhi SpellBad term=standout ctermfg=1 term=underline cterm=underlinehi clear SpellCaphi SpellCap term=underline cterm=underlinehi clear SpellRarehi SpellRare term=underline cterm=underlinehi clear SpellLocalhi SpellLocal term=underline cterm=underline,V
+let g:netrw_dirhistmax  =10let g:netrw_dirhist_cnt =0,v
+",v
+,,v
+*,v
+150421_Walvi,v
+fig_CTA_vs_lambda.pdf,v
+    BC(i,:) = (/ 1d0, cos(theta) /)          ! BC(:,2) == ej/cj    theta = theta + dth,V
+! REAL CaseBC(1,:) = (/ 1d0, 0d0 /)              ! first node, boundaries are Type Ido i = ceiling(dble(NN)/2d0)+1,NN     ! rest of nodes after Type II nodes    BC(i,:) = (/ 1d0, 0d0 /)          ! BC(:,2) == ej/cjenddo! Type II BCs (upper half of circle)theta = 1d0*dth             ! starting at the second node, type I at mergerdo i = 2,floor(dble(NN)/2d0)    BC(i,:) = (/ 2d0, Jos * sin(PI/2d0 - theta) /)  ! BC(:,2) == ej/dj    theta = theta + dthenddo,V
+! theta = 1d0*dth             ! starting at the second node, type I at merger! do i = 2,floor(dble(NN)/2d0)!     BC(i,:) = (/ 2d0, Jos * sin(PI/2d0 - theta) /)  ! BC(:,2) == ej/dj!     theta = theta + dth! enddo,V
+do i = 1,NN,V
+dth = 2d0*PI/dble(NN-1),V
+-DUSE_FORCING ,v
+1d0 * ,v
+0d0,v
+    BC(i,:) = (/ 1d0, 0d0 /)          ! BC(:,2) == ej/cj,V
+! theta = 1d0*dth             ! starting at the second node, type I at merger,V
+Christian Ortiz <christian.m.ortiz@gmail.com>,v
+_legend,v
+allocate(Uin(NY*NX), dUindx(NY*NX), dUindy(NY*NX), xin(NY*NX), yin(NY*NX)),V
+CQStot_exp_unsrt = CQStot_exp(data(:,1) == uniqueU(i));    CQStot_exp_Re{i} = CQStot_exp_unsrt(lambda_idx);,v
+CTA_exp_unsrt = CTA_exp(data(:,1) == uniqueU(i));    CTA_exp_Re{i} = CTA_exp_unsrt(lambda_idx);,v
+% These loads will produce moments about the rotor axis $\vec r = \vec R$ as follows:% \begin{equation}%   \begin{split}%   \vec m_0 =\ & (\vec r_q - \vec R) \times%   \left(%   \vec{f}_{SL} +%   \vec{f}_{SD} +%   \vec{f}_{FC} +%   \vec{f}_{UL}%   \right)  \\%   &+ (\vec r_m - \vec R) \times  \vec{f}_{AM}   \\ %   &+ (\vec r_a - \vec R) \times  \vec{f}_{AC}  \\ %   &+ \vec{m}_{AM} + \vec{m}_{AC}  % \end{split}% \end{equation}% Similarly, these loads will produce moments about the pitching point $\vec r_p$ as follows:% \begin{equation}% \begin{split}%   \vec m_p  =\ & (\vec r_q - \vec r_p) \times%   \left(%   \vec{f}_{SL} +%   \vec{f}_{SD} +%   \vec{f}_{FC} +%   \vec{f}_{UL}%   \right) \\%   &+ (\vec r_m - \vec r_p) \times  \vec{f}_{AM} \\%   &+ (\vec r_a - \vec r_p) \times  \vec{f}_{AC} \\ %   &+ \vec{m}_{AM} + \vec{m}_{AC}  % \end{split}% \end{equation},v
+fortran_pp,v
+f90,v
+% \clearpage\section*{\Matlab Plotting Script} \label{ap:1}\appendix,V
+% \clearpage\section*{Auxiliary Files} \label{ap:1}\appendix,V
+\section*{Main Solution Subroutines} \label{ap:1}\appendix,V
+% \clearpage,V
+\section*{Main Solution Script} \label{ap:1}\appendix,V
+\section*{Source Code}\appendix,V
+bem_f95.pdf,v
+header_h.pdf,v
+\includepdf[pages={-}]{header_h.pdf},V
 ,V
-(end points of elements),v
-        ! Load local node coordinates, global node #'s,V
-! XL(i), YL(i), JL(i),v
-Assemble Influence Coefficient Matrices,v
-!===============================================================================!       Assemble Influence Coefficient Matrices!===============================================================================,V
-n,v
-d,v
-                A(i,JL(i)) = A(i,JL(j)) + phi(j)*dGidn*(ds/2d0)*Wk,V
-x,v
-;,v
-            / ,V
- / (ds,v
-dist,v
-singularity,v
-    ,V
-! Loop over elements,v
-! Loop over nodes,v
-            xs = xl(1)*phi1 + xl(2)*phi2,V
-            phi1 = (1d0 - xi(k))/2d0,V
-            z = xi(k),V
-:,v
-            break;,V
-print *, PI,V
-real(8), parameter :: PI = 4*atan(1d0),V
-PARAMETERS:,v
-! use msolve,V
-! use fea_util,V
-use msolve,V
-use fea_util,V
-use ,v
-#,v
-Calculate [A^-1],v
--,v
-into,v
-    !---------------------,V
-        !---------------------,V
-    !print *,'Done.'    !print *,'',V
-!   nrow = size(Ain, 1)!   ncol = size(Ain, 2)!   dir = './output/'!   inquire(file=dir, exist=yn)                         ! check if output directory exists!   if (.not.yn) then                                   ! if it doesn't exist!       call system('mkdir '//trim(dir))                ! create it!   endif!   outfile = trim(dir)//trim(outfile)                  ! files will be moved in main script,V
-! real(8), dimension(3,3) :: A, Ainv! ! A = reshape((/1,2,3,4,5,6,7,8,9\),(/3,3/))! A = reshape((/1,2,3,4,5,6,7,8,9/), (/3,3/))! call INVERSE(A,Ainv)!! print *, "A = "! call PRINTREAL( A, 3, 3, 0 )! print *, "Ainv = "! call PRINTREAL( Ainv, 3, 3, 0 ),V
-],v
-[,v
-/,v
-(,v
-|,v
-=,v
-" Map \M to make in backgroundnnoremap <Leader>M :silent! make | redraw!,V
-EYE(3,3),v
-print *, "A = ",V
-call PRINTREAL( A, 5, 5, 0 ),V
-size_flag,v
-ncol,v
-nrow,v
-i,v
-PRINTREAL( Ain, nrow, ncol, size_flag ),v
-    !=======================================================================,V
-    !---------------------,V
-    ,V
+readwrite_f95.pdf,v
+\includepdf[pages={-}]{readwrite_f95.pdf},V
+\includepdf[pages={-}]{bem_f95.pdf},V
+% \begin{table}[h!]%   \setlength{\tabcolsep}{8pt}%   \def\arraystretch{1.1}%   \caption{Coefficient of variation of thrust and side force for the data presented in \citet{Broering2012c}}%   \label{tab:broering}%   \begin{center}%       \begin{tabular}{l r r}%         \firsthline%         \multicolumn{1}{c}{case} & \multicolumn{1}{c}{$\Upsilon_T$} & \multicolumn{1}{c}{$\Upsilon_S$} \\ \hline%         single foil         &    1.0800  &    4.8324  \\%           $\phi =   0\deg$  &    0.9593  &    4.4851  \\%           $\phi =  90\deg$  &    1.4826  &    5.7911  \\%           $\phi = 180\deg$  &    1.0644  &    5.7090  \\%         \lasthline%       \end{tabular}%   \end{center}% \end{table},V
+,V
+% \begin{figure}[thp]%   \centering%     \begin{subfigure}[c]{\textwidth}%       \centering%       \includegraphics[width=\textwidth]{BEM_soln_withforcing_2Dplate_pcolor.pdf}%       \caption{Boundary nodes and pcolor plot of interior values of $\Phi$. Boundary element values of $\partial \Phi / \partial n$ are shown with vectors.}%     \end{subfigure}%     \begin{subfigure}[c]{\textwidth}%       \centering%       \includegraphics[width=\textwidth]{BEM_soln_withforcing_2Dplate_gradient.pdf}%       \caption{Gradient of interior nodes, plotted on top of contours of interior values of $\Phi$.}%     \end{subfigure}%   \caption{2D plate geometry with boundary and interior solutions.}%   \label{fig:plate}% \end{figure},V
+\section{Boundary Element Data},V
+},v
+\multicolumn{1}{c}{,v
+\multicolumn{1}{c}{\bf{,v
+$\Phi$,v
+\multicolumn{1}{c}{$\Phi$},v
+& & & & & & & & & & & & & & & & & & & & & & & ,2
+\,v
+1 & 0.0000 & -1.4110 \\                      & 2 & 0.6440 & 1.9319 \\                       & 3 & 0.8231 & 1.7321 \\                       & 4 & 0.7111 & 1.4142 \\                       & 5 & 0.5073 & 1.0000 \\                       & 6 & 0.2442 & 0.5176 \\                       & 7 & -0.0475 & 0.0000 \\                      & 8 & -0.3372 & -0.5176 \\                     & 9 & -0.5946 & -1.0000 \\                     & 10 & -0.7887 & -1.4142 \\                    & 11 & -0.8868 & -1.7321 \\                    & 12 & -0.6824 & -1.9319 \\                    & 13 & 0.0000 & 1.5428 \\                      & 14 & 0.0000 & 0.0376 \\                      & 15 & 0.0000 & 0.2459 \\                      & 16 & 0.0000 & 0.0147 \\                      & 17 & 0.0000 & -0.0570 \\                     & 18 & 0.0000 & -0.1634 \\                     & 19 & 0.0000 & -0.2225 \\                     & 20 & 0.0000 & -0.2218 \\                     & 21 & 0.0000 & -0.2076 \\                     & 22 & 0.0000 & -0.1670 \\                     & 23 & 0.0000 & -0.3002 \\                     & 24 & 0.0000 & -0.0366 \\        ,v
+       0.0000 & -1.4110 \\                         0.6440 &  1.9319 \\                          0.8231 &  1.7321 \\                          0.7111 &  1.4142 \\                          0.5073 &  1.0000 \\                          0.2442 &  0.5176 \\                         -0.0475 &  0.0000 \\                        -0.3372 & -0.5176 \\                       -0.5946 & -1.0000 \\                       -0.7887 & -1.4142 \\                       -0.8868 & -1.7321 \\                       -0.6824 & -1.9319 \\                        0.0000 &  1.5428 \\                          0.0000 &  0.0376 \\                          0.0000 &  0.2459 \\                          0.0000 &  0.0147 \\                          0.0000 & -0.0570 \\                         0.0000 & -0.1634 \\                         0.0000 & -0.2225 \\                         0.0000 & -0.2218 \\                         0.0000 & -0.2076 \\                         0.0000 & -0.1670 \\                         0.0000 & -0.3002 \\                         0.0000 & -0.0366 \\                  ,V
+MyTableCaption,v
+ ,v
+%   \setlength{\tabcolsep}{8pt},V
+\centering                              ,V
+\caption{MyTableCaption}                \label{tab:data}                        ,V
+ &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & ,3
+\begin{table}[H!]                       \centering                              \begin{tabular}{rrr}                     & $\Phi$ & $\partial\Phi/\partial n$ \\ & 0.0000 & -1.4110 \\                   & 0.6440 & 1.9319 \\                    & 0.8231 & 1.7321 \\                    & 0.7111 & 1.4142 \\                    & 0.5073 & 1.0000 \\                    & 0.2442 & 0.5176 \\                    & -0.0475 & 0.0000 \\                   & -0.3372 & -0.5176 \\                  & -0.5946 & -1.0000 \\                  & -0.7887 & -1.4142 \\                  & -0.8868 & -1.7321 \\                  & -0.6824 & -1.9319 \\                  & 0.0000 & 1.5428 \\                    & 0.0000 & 0.0376 \\                    & 0.0000 & 0.2459 \\                    & 0.0000 & 0.0147 \\                    & 0.0000 & -0.0570 \\                   & 0.0000 & -0.1634 \\                   & 0.0000 & -0.2225 \\                   & 0.0000 & -0.2218 \\                   & 0.0000 & -0.2076 \\                   & 0.0000 & -0.1670 \\                   & 0.0000 & -0.3002 \\                   & 0.0000 & -0.0366 \\                  \end{tabular}                           \caption{MyTableCaption}                \label{tab:data}                        \end{table},v
+makefile.ps,v
+\begin{table}[H!]                       \centering                              \begin{tabular}{rrr}                     & $\Phi$ & $\partial\Phi/\partial n$ \\ & 0.000 & -1.411 \\                     & 0.644 & 1.932 \\                      & 0.823 & 1.732 \\                      & 0.711 & 1.414 \\                      & 0.507 & 1.000 \\                      & 0.244 & 0.518 \\                      & -0.047 & 0.000 \\                     & -0.337 & -0.518 \\                    & -0.595 & -1.000 \\                    & -0.789 & -1.414 \\                    & -0.887 & -1.732 \\                    & -0.682 & -1.932 \\                    & 0.000 & 1.543 \\                      & 0.000 & 0.038 \\                      & 0.000 & 0.246 \\                      & 0.000 & 0.015 \\                      & 0.000 & -0.057 \\                     & 0.000 & -0.163 \\                     & 0.000 & -0.222 \\                     & 0.000 & -0.222 \\                     & 0.000 & -0.208 \\                     & 0.000 & -0.167 \\                     & 0.000 & -0.300 \\                     & 0.000 & -0.037 \\                    \end{tabular}                           \caption{MyTableCaption}                \label{tab:data}                        \end{table} ,v
+makefile,v
+enscript -f Courier8 -C --color=1 -Ef90 ./makefile --output=makefile.ps,V
+! I worked with Johnny Sigman!===============================================================================,V
+Uin(NY*NX), dUindx(NY*NX), dUindy(NY*NX), xin(NY*NX), yin(NY*NX),v
+        ! Superimpose influence of forcing term,V
+e,v
+t,v
+! Engs 205 - Lab 1,V
 !=======================================================================,V
-end module mathops,V
-    end subroutine,V
-    print *, 'DGETRI INFO: ', INFO,V
-    call DGETRI( nrow, Ainv, nrow, IPIV, WORK, nrow, INFO )     ,V
-    Ainv = LR                       ! destructive inversion using factorization,V
-    WORK = 0d0; Ainv = 0d0,V
-    !--------------------------------------------------------------- Calculate [A^-1],V
-    print *, 'DGETRF INFO: ', INFO  ! If INFO > 0, matrix is singular,V
-    call DGETRF( nrow, nrow, LR, nrow, IPIV, INFO ),V
-    LR = A,V
-    ! Factorize Aglobal_full into [L][R] destructively,V
-    IPIV = 0; WORK = 0d0; LR = 0d0;,V
-    allocate( IPIV(nrow), WORK(nrow), LR(nrow, nrow) ),V
-    nrow = size(A,1),V
-    ! Allocate arrays,V
-    real(8), dimension(:,:) :: A, Ainv,V
-    real(8), dimension(:,:), allocatable :: LR       ! LU decomposition of A,V
-    real(8),   dimension(:), allocatable :: WORK     ! Working space for inversion,V
-    integer,  dimension(:), allocatable :: IPIV     ! Pivot indices from DGETRF for lapack solver,V
-    integer nrow, INFO,V
-    IMPLICIT NONE,V
-    ! INVERSE returns the inverse of full matrix [A] in [Ainv] using LAPACK subroutines,V
-    subroutine INVERSE( A, Ainv ),V
-    end function eye,V
-    RETURN,V
-    end function RMS,V
-    RMS = Vsqrmean**0.5,V
-    ! Take sqrt of mean,V
-    Vsqrmean = mean(Vsqr),V
-    ! Take mean of squared entries,V
-    Vsqr = V**2,V
-    ! Square all entries in array,V
-    Vsqr = 0d0; Vsqrmean = 0d0,V
-    allocate( Vsqr(N) ),V
-    N = size(V,1),V
-    real(8), dimension(:), allocatable :: Vsqr,V
-    real(8), dimension(:) :: V,V
-    real(8) Vsqrmean,V
-    integer N,V
+from,v
+object files ,v
+If individual source files are changed, update the corresponding OBJ,v
+ If Makefile or include files are changed, update,v
+! real(8), parameter :: R = 1d0       ! radius of plate! real(8), parameter :: Ios = 1d0     ! forcing current / conductivity! real(8), parameter :: Jos = 2d0     ! boundary current / conductivity,V
+mv *.ps ./bem_soln_latex/,V
+root,v
+each,v
+file,v
+  end do,V
+matlab and fortran ,v
+script to ,v
+bem_util_f95.ps,v
+../mod/bem_util.f95,v
+enscript -f Courier8 -C --color=1 -Ef90 ../mod/bem_util.f95 --output=bem_util_f95.ps,V
+General fortran makefile,v
+textwidth,v
+_2Dplate,v
+_gradient,v
+modeshapes,v
+First few vibrational mode shapes of a pinned-pinned bar.,v
+BEM_soln_withforcing_2Dplate_gradient.pdf,v
+pinned_bar_modes.pdf,v
+line,v
+plate,v
+  \includegraphics[width=\textwidth]{pinned_bar_modes.pdf}  \caption{First few vibrational mode shapes of a pinned-pinned bar.},V
+      \includegraphics[width=\textwidth]{BEM_soln_withforcing_2Dplate_gradient.pdf}      \caption{Gradient of interior nodes, plotted on top of contours of interior values of $\Phi$.},V
+      \includegraphics[width=\textwidth]{BEM_soln_withforcing_2Dplate_pcolor.pdf}      \caption{Boundary nodes and pcolor plot of interior values of $\Phi$. Boundary element values of $\partial \Phi / \partial n$ are shown with vectors.},V
+captionsize,v
+scriptsize,v
+  \hspace{0.1cm},V

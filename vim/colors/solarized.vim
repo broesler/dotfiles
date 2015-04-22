@@ -677,7 +677,7 @@ exe "hi! MatchParen"     .s:fmt_bold   .s:fg_red    .s:bg_base01
 "}}}
 " vim syntax highlighting "{{{
 " ---------------------------------------------------------------------
-"exe "hi! vimLineComment" . s:fg_base01 .s:bg_none   .s:fmt_ital
+" exe "hi! vimLineComment" . s:fg_base01 .s:bg_none   .s:fmt_ital
 "hi! link vimComment Comment
 "hi! link vimLineComment Comment
 hi! link vimVar Identifier

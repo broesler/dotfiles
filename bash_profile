@@ -18,8 +18,9 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   export PATH="$HOME/.rbenv/shims:$PATH"
 
   # Set PATH variable correctly (last line is at front of path)
-  export PATH="/usr/texbin:$PATH"                                    # Add texbin to path for LaTeX usage
-  export PATH="/usr/local/git/bin:/usr/local/bin:$PATH"              # Enable homebrew and git
+  export PATH="/usr/texbin:$PATH"                  # Add texbin to path for LaTeX usage
+  export PATH="/usr/local/git/bin:$PATH"           # Enable git
+  export PATH="/usr/local/bin:$PATH"               # Enable homebrew 
 
   # Set system-wide variables
   export LC_ALL=C                             # Allow sort to produce expected behavior
@@ -30,13 +31,13 @@ fi
 # ensure tmux uses colors
 export TERM='screen-256color'               
 
+# Load RVM into a shell session *as a function*
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" 
+
 #------------------------------------------------------------------------------
 # If I have my own init file, then use that one, else use the
 # canonical one.
 if [ -f ~/.bashrc ]; then
   source ~/.bashrc
 fi
-
 #==============================================================================
-
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*

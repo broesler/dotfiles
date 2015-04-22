@@ -16,12 +16,15 @@ set nocompatible
 
 " Set path to recursively include all directories below the current one for
 " quick searching, filename completion, etc.
-set path=.,/usr/include/,**
+set path=.,/usr/include/,/usr/local/include,**
 
 " Set interactive shell so :! behaves like bash prompt
 if &diff == 'nodiff'
   set shellcmdflag=-ic
 endif
+
+" Ensure files are universally readable
+set encoding=utf-8
 
 " Ensure filetypes taken into account
 filetype plugin indent on              
@@ -146,7 +149,6 @@ augroup quickfix_window
   " Quickly open/close quickfix and location list
   au! BufWinEnter quickfix nnoremap <silent> <buffer> q :cclose<cr>:lclose<cr>
 augroup END
-nnoremap <silent> <leader>q :botright copen 10<cr>
 
 augroup misc_cmds
   au!
@@ -190,29 +192,24 @@ autocmd BufEnter,VimEnter * silent! call SetTermTitle()
 
 "------------------------------------------------------------------------------
 " Auto-update tags file
-function! UpdateTags()
-  let alltagfiles = tagfiles()
-  if (len(alltagfiles) == 0)            " create new tags file
-      let tagsfile = './tags'           
-      exe 'silent !ctags -af ' . tagsfile . ' ' . expand("%")
-  else                                  " use first tags file found
-      let tagsfile = alltagfiles[0]    
-      exe 'silent !sed -i -e "\@' . expand("%") . '@d" ' . tagsfile . 
-                  \' && ctags -af ' . tagsfile . ' ' . expand("%")
-  endif
-  " -e on Mac causes backup tags file to be generated
-  exe 'silent !rm -rf ' . tagsfile . '-e'
-endfunction
+" function! UpdateTags()
+"   let alltagfiles = tagfiles()
+"   if (len(alltagfiles) == 0)            " create new tags file
+"     let tagsfile = './tags'           
+"     silent! exe '!ctags -af ' . tagsfile . ' ' . expand("%:t")
+"   else
+"     " for each tags file, remove old tags from current buffer
+"     for ff in alltagfiles
+"       silent! exe '!sed -i -e "\@' . expand("%:t") . '@d" ' . ff
+"     endfor
+"     " Refresh nearest tag file with most up-to-date tags
+"     silent! exe '!ctags -af ' . alltagfiles[0] . ' ' . expand("%")
+"     " -e on Mac causes backup tags file to be generated, remove it
+"     silent! exe '!rm -rf ' . alltagfiles[0] . '-e'
+"   endif
+" endfunction
 
 
-"------------------------------------------------------------------------------
-" Open explorer in new window
-function! MyExplore() 
-  new 
-  Explore
-endfunction 
-
-nmap <Leader>E :silent! call MyExplore()<CR> 
 
 "------------------------------------------------------------------------------
 " Incr increments numbers in a column (i.e. in Visual Block mode)
@@ -291,8 +288,29 @@ nnoremap Y y$
 nnoremap <silent>,n :set relativenumber!<CR>
 
 " Shift-tab backs up one tab stop
+execute "nnoremap <Tab> " . &tabstop ."l"
+execute "nnoremap <S-Tab> " . &tabstop ."h"
 inoremap <S-Tab> <C-d>
 
+" <C-[hjkl]> switches windows quickly
+nmap <silent> <C-h> <C-w>h
+nmap <silent> <C-j> <C-w>j
+nmap <silent> <C-k> <C-w>k
+nmap <silent> <C-l> <C-w>l
+
+" Open/close quickfix window
+nnoremap <silent> <leader>q :copen 10<CR>
+nnoremap <silent> <leader>c :cclose<CR>
+
+" Close buffer without closing split (# is 'alternate file')
+" NOTE: Does NOT work twice in a row!!
+nnoremap <silent> <C-c> :bp\|bd #<CR>
+
+" Move to middle of page when jumping to tag (easier viewing)
+nnoremap <silent> <C-]> <C-]>zz
+
+" Open explorer in new window
+nmap <silent> <Leader>E :Hexplore!<CR>
 
 "------------------------------------------------------------------------------
 "       Plugin specific maps
