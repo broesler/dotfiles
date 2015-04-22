@@ -525,6 +525,9 @@ defaults write com.apple.mail DisableInlineAttachmentViewing -bool true
 # Disable automatic spell checking
 # defaults write com.apple.mail SpellCheckingBehavior -string "NoSpellCheckingEnabled"
 
+# Set default encoding to UTF-8
+defaults write com.apple.mail NSPreferredMailCharset -string "UTF-8"
+
 ###############################################################################
 # Spotlight                                                                   #
 ###############################################################################

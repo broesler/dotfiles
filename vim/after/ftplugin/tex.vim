@@ -17,9 +17,6 @@ vmap <buffer> sp "zdi\left(<C-R>z\right)<Esc>
 " : is included as keyword for fig: eqn: etc.,
 setlocal iskeyword+=_
 
-" dictionary search (for writing)
-setlocal complete+=k
-
 " Turn off matching paren highlighting for LaTeX files
 " Doesn't work...
 let g:LatexBox_loaded_matchparen=1
@@ -38,7 +35,8 @@ let b:tex_ignore_makefile=1       " ignore any makefiles in the tex dir
 " set makeprg=pdflatex\ \-file\-line\-error\ \-interaction=nonstopmode
 
 " Call latexmk to build tex files properly. See ~/.latexmkrc for options
-set makeprg=latexmk\ \-pdf
+"  include % to use current filename as main latex file
+set makeprg=latexmk\ \-pdf\ %
 
 " Errors as produced by pdflatex
 let efm_errors="%E!\ LaTeX\ Error:\ %m,\%E!\ %m,%E!pdfTeX Error:\ %m"
@@ -83,7 +81,6 @@ function! JumpToSkim()
   let filen = expand("%:t:r") . ".pdf"
   write
   execute "!/Applications/Skim.app/Contents/SharedSupport/displayline " . linen . " " . filen
-  redraw!
 endfunction
 
 nnoremap <buffer> ,r :silent! call JumpToSkim()<CR>

@@ -54,13 +54,14 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 
   ### Added by the Heroku Toolbelt
   export PATH="/usr/local/heroku/bin:$PATH"
+
+  # Add RVM to PATH for scripting
+  export PATH="$PATH:$HOME/.rvm/bin" 
 fi
 
 # Add bash aliases.
 if [ -f ~/.bash_aliases ]; then
   source ~/.bash_aliases
 fi
-
 #==============================================================================
 
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting

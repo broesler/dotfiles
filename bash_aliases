@@ -96,7 +96,7 @@ alias lt='tree -C'
 alias mkdir='mkdir -p'
 alias mv='mv -i'
 alias mygcc='gcc -Wall -pedantic -std=c99'
-alias mygfortran='gfortran -Wall -pedantic -std=f95 -fbounds-check -ffree-line-length-0'
+alias mygfortran='gfortran -Wall -pedantic -std=f95 -fbounds-check -ffree-line-length-0 -fall-intrinsics'
 alias r='rlogin'
 alias rm='rm -i'
 alias vi='mvim -v'   # version -X11 -xterm_clipboard
@@ -148,8 +148,13 @@ vims()
 {
   test=`command vim --version | grep -w clientserver`
   if [ "$test" ]; then
-    # Make compatible with Skim inverse-search command
-    command vim --servername VIM --remote-silent ${@}
+    if [ $# -eq 0 ]; then
+      # No need to issue a remote command for no filename
+      command vim --servername VIM
+    else
+      # Make compatible with Skim inverse-search command
+      command vim --servername VIM --remote-silent ${@}
+    fi
   else
     mvim -v $@   # ensure no server used
   fi
@@ -191,5 +196,8 @@ texclean()
   rm -f *.log
   rm -f *.out
   rm -f *.toc
+  rm -f *.fls
+  rm -f *.fdb_latexmk
+  rm -f *.synctex*.gz
 }
 #==============================================================================
