@@ -61,12 +61,11 @@ set thesaurus=/usr/share/thes/mthesaur.txt  " use <C-X><C-T>
 
 set tags=./tags;    " read local tag file first, then search for others
 
-set wildmenu        " Enable tab to show all menu options
-set nofileignorecase  " do NOT ignore case when tab completing
+set wildmenu            " Enable tab to show all menu options
+set nofileignorecase    " do NOT ignore case when tab completing filenames
 " set nowildignorecase  " do NOT ignore case when tab completing
 set wildmode=longest,list,full  " like bash completion
 
-" autocmd BufEnter * let titlestring = expand("%:p")
 set title           " Show filename in title bar
 set number          " Turn on line numbers
 set ttyfast         " fast connection allows smoother scrolling
@@ -292,11 +291,31 @@ execute "nnoremap <Tab> " . &tabstop ."l"
 execute "nnoremap <S-Tab> " . &tabstop ."h"
 inoremap <S-Tab> <C-d>
 
-" <C-[hjkl]> switches windows quickly
-nmap <silent> <C-h> <C-w>h
-nmap <silent> <C-j> <C-w>j
-nmap <silent> <C-k> <C-w>k
-nmap <silent> <C-l> <C-w>l
+" Jump between tmux and vim windows with <C-[hjkl]>
+if exists('$TMUX')
+  function! TmuxOrSplitSwitch(wincmd, tmuxdir)
+    let previous_winnr = winnr()
+    silent! execute "wincmd " . a:wincmd
+    if previous_winnr == winnr()
+      call system("tmux select-pane -" . a:tmuxdir)
+      redraw!
+    endif
+  endfunction
+
+  let previous_title = substitute(system("tmux display-message -p '#{pane_title}'"), '\n', '', '')
+  let &t_ti = "\<Esc>]2;vim\<Esc>\\" . &t_ti
+  let &t_te = "\<Esc>]2;". previous_title . "\<Esc>\\" . &t_te
+
+  nnoremap <silent> <C-h> :call TmuxOrSplitSwitch('h', 'L')<cr>
+  nnoremap <silent> <C-j> :call TmuxOrSplitSwitch('j', 'D')<cr>
+  nnoremap <silent> <C-k> :call TmuxOrSplitSwitch('k', 'U')<cr>
+  nnoremap <silent> <C-l> :call TmuxOrSplitSwitch('l', 'R')<cr>
+else
+  map <C-h> <C-w>h
+  map <C-j> <C-w>j
+  map <C-k> <C-w>k
+  map <C-l> <C-w>l
+endif
 
 " Open/close quickfix window
 nnoremap <silent> <leader>q :copen 10<CR>

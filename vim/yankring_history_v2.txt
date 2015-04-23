@@ -1,100 +1,100 @@
-hi clear SpellBadhi SpellBad term=standout ctermfg=1 term=underline cterm=underlinehi clear SpellCaphi SpellCap term=underline cterm=underlinehi clear SpellRarehi SpellRare term=underline cterm=underlinehi clear SpellLocalhi SpellLocal term=underline cterm=underline,V
-let g:netrw_dirhistmax  =10let g:netrw_dirhist_cnt =0,v
-",v
-,,v
-*,v
-150421_Walvi,v
-fig_CTA_vs_lambda.pdf,v
-    BC(i,:) = (/ 1d0, cos(theta) /)          ! BC(:,2) == ej/cj    theta = theta + dth,V
-! REAL CaseBC(1,:) = (/ 1d0, 0d0 /)              ! first node, boundaries are Type Ido i = ceiling(dble(NN)/2d0)+1,NN     ! rest of nodes after Type II nodes    BC(i,:) = (/ 1d0, 0d0 /)          ! BC(:,2) == ej/cjenddo! Type II BCs (upper half of circle)theta = 1d0*dth             ! starting at the second node, type I at mergerdo i = 2,floor(dble(NN)/2d0)    BC(i,:) = (/ 2d0, Jos * sin(PI/2d0 - theta) /)  ! BC(:,2) == ej/dj    theta = theta + dthenddo,V
-! theta = 1d0*dth             ! starting at the second node, type I at merger! do i = 2,floor(dble(NN)/2d0)!     BC(i,:) = (/ 2d0, Jos * sin(PI/2d0 - theta) /)  ! BC(:,2) == ej/dj!     theta = theta + dth! enddo,V
-do i = 1,NN,V
-dth = 2d0*PI/dble(NN-1),V
--DUSE_FORCING ,v
-1d0 * ,v
-0d0,v
-    BC(i,:) = (/ 1d0, 0d0 /)          ! BC(:,2) == ej/cj,V
-! theta = 1d0*dth             ! starting at the second node, type I at merger,V
-Christian Ortiz <christian.m.ortiz@gmail.com>,v
-_legend,v
-allocate(Uin(NY*NX), dUindx(NY*NX), dUindy(NY*NX), xin(NY*NX), yin(NY*NX)),V
-CQStot_exp_unsrt = CQStot_exp(data(:,1) == uniqueU(i));    CQStot_exp_Re{i} = CQStot_exp_unsrt(lambda_idx);,v
-CTA_exp_unsrt = CTA_exp(data(:,1) == uniqueU(i));    CTA_exp_Re{i} = CTA_exp_unsrt(lambda_idx);,v
-% These loads will produce moments about the rotor axis $\vec r = \vec R$ as follows:% \begin{equation}%   \begin{split}%   \vec m_0 =\ & (\vec r_q - \vec R) \times%   \left(%   \vec{f}_{SL} +%   \vec{f}_{SD} +%   \vec{f}_{FC} +%   \vec{f}_{UL}%   \right)  \\%   &+ (\vec r_m - \vec R) \times  \vec{f}_{AM}   \\ %   &+ (\vec r_a - \vec R) \times  \vec{f}_{AC}  \\ %   &+ \vec{m}_{AM} + \vec{m}_{AC}  % \end{split}% \end{equation}% Similarly, these loads will produce moments about the pitching point $\vec r_p$ as follows:% \begin{equation}% \begin{split}%   \vec m_p  =\ & (\vec r_q - \vec r_p) \times%   \left(%   \vec{f}_{SL} +%   \vec{f}_{SD} +%   \vec{f}_{FC} +%   \vec{f}_{UL}%   \right) \\%   &+ (\vec r_m - \vec r_p) \times  \vec{f}_{AM} \\%   &+ (\vec r_a - \vec r_p) \times  \vec{f}_{AC} \\ %   &+ \vec{m}_{AM} + \vec{m}_{AC}  % \end{split}% \end{equation},v
-fortran_pp,v
-f90,v
-% \clearpage\section*{\Matlab Plotting Script} \label{ap:1}\appendix,V
-% \clearpage\section*{Auxiliary Files} \label{ap:1}\appendix,V
-\section*{Main Solution Subroutines} \label{ap:1}\appendix,V
-% \clearpage,V
-\section*{Main Solution Script} \label{ap:1}\appendix,V
-\section*{Source Code}\appendix,V
-bem_f95.pdf,v
-header_h.pdf,v
-\includepdf[pages={-}]{header_h.pdf},V
+" " <C-[hjkl]> switches windows quickly" nmap <silent> <C-h> <C-w>h" nmap <silent> <C-j> <C-w>j" nmap <silent> <C-k> <C-w>k" nmap <silent> <C-l> <C-w>l,V
+if exists('$TMUX')  function! TmuxOrSplitSwitch(wincmd, tmuxdir)    let previous_winnr = winnr()    silent! execute "wincmd " . a:wincmd    if previous_winnr == winnr()      call system("tmux select-pane -" . a:tmuxdir)      redraw!    endif  endfunction  let previous_title = substitute(system("tmux display-message -p '#{pane_title}'"), '\n', '', '')  let &t_ti = "\<Esc>]2;vim\<Esc>\\" . &t_ti  let &t_te = "\<Esc>]2;". previous_title . "\<Esc>\\" . &t_te  nnoremap <silent> <C-h> :call TmuxOrSplitSwitch('h', 'L')<cr>  nnoremap <silent> <C-j> :call TmuxOrSplitSwitch('j', 'D')<cr>  nnoremap <silent> <C-k> :call TmuxOrSplitSwitch('k', 'U')<cr>  nnoremap <silent> <C-l> :call TmuxOrSplitSwitch('l', 'R')<cr>else  map <C-h> <C-w>h  map <C-j> <C-w>j  map <C-k> <C-w>k  map <C-l> <C-w>lendif,v
 ,V
-readwrite_f95.pdf,v
-\includepdf[pages={-}]{readwrite_f95.pdf},V
-\includepdf[pages={-}]{bem_f95.pdf},V
-% \begin{table}[h!]%   \setlength{\tabcolsep}{8pt}%   \def\arraystretch{1.1}%   \caption{Coefficient of variation of thrust and side force for the data presented in \citet{Broering2012c}}%   \label{tab:broering}%   \begin{center}%       \begin{tabular}{l r r}%         \firsthline%         \multicolumn{1}{c}{case} & \multicolumn{1}{c}{$\Upsilon_T$} & \multicolumn{1}{c}{$\Upsilon_S$} \\ \hline%         single foil         &    1.0800  &    4.8324  \\%           $\phi =   0\deg$  &    0.9593  &    4.4851  \\%           $\phi =  90\deg$  &    1.4826  &    5.7911  \\%           $\phi = 180\deg$  &    1.0644  &    5.7090  \\%         \lasthline%       \end{tabular}%   \end{center}% \end{table},V
+bind -r C-h select-window -t :-bind -r C-l select-window -t :+,V
 ,V
-% \begin{figure}[thp]%   \centering%     \begin{subfigure}[c]{\textwidth}%       \centering%       \includegraphics[width=\textwidth]{BEM_soln_withforcing_2Dplate_pcolor.pdf}%       \caption{Boundary nodes and pcolor plot of interior values of $\Phi$. Boundary element values of $\partial \Phi / \partial n$ are shown with vectors.}%     \end{subfigure}%     \begin{subfigure}[c]{\textwidth}%       \centering%       \includegraphics[width=\textwidth]{BEM_soln_withforcing_2Dplate_gradient.pdf}%       \caption{Gradient of interior nodes, plotted on top of contours of interior values of $\Phi$.}%     \end{subfigure}%   \caption{2D plate geometry with boundary and interior solutions.}%   \label{fig:plate}% \end{figure},V
-\section{Boundary Element Data},V
-},v
-\multicolumn{1}{c}{,v
-\multicolumn{1}{c}{\bf{,v
-$\Phi$,v
-\multicolumn{1}{c}{$\Phi$},v
-& & & & & & & & & & & & & & & & & & & & & & & ,2
-\,v
-1 & 0.0000 & -1.4110 \\                      & 2 & 0.6440 & 1.9319 \\                       & 3 & 0.8231 & 1.7321 \\                       & 4 & 0.7111 & 1.4142 \\                       & 5 & 0.5073 & 1.0000 \\                       & 6 & 0.2442 & 0.5176 \\                       & 7 & -0.0475 & 0.0000 \\                      & 8 & -0.3372 & -0.5176 \\                     & 9 & -0.5946 & -1.0000 \\                     & 10 & -0.7887 & -1.4142 \\                    & 11 & -0.8868 & -1.7321 \\                    & 12 & -0.6824 & -1.9319 \\                    & 13 & 0.0000 & 1.5428 \\                      & 14 & 0.0000 & 0.0376 \\                      & 15 & 0.0000 & 0.2459 \\                      & 16 & 0.0000 & 0.0147 \\                      & 17 & 0.0000 & -0.0570 \\                     & 18 & 0.0000 & -0.1634 \\                     & 19 & 0.0000 & -0.2225 \\                     & 20 & 0.0000 & -0.2218 \\                     & 21 & 0.0000 & -0.2076 \\                     & 22 & 0.0000 & -0.1670 \\                     & 23 & 0.0000 & -0.3002 \\                     & 24 & 0.0000 & -0.0366 \\        ,v
-       0.0000 & -1.4110 \\                         0.6440 &  1.9319 \\                          0.8231 &  1.7321 \\                          0.7111 &  1.4142 \\                          0.5073 &  1.0000 \\                          0.2442 &  0.5176 \\                         -0.0475 &  0.0000 \\                        -0.3372 & -0.5176 \\                       -0.5946 & -1.0000 \\                       -0.7887 & -1.4142 \\                       -0.8868 & -1.7321 \\                       -0.6824 & -1.9319 \\                        0.0000 &  1.5428 \\                          0.0000 &  0.0376 \\                          0.0000 &  0.2459 \\                          0.0000 &  0.0147 \\                          0.0000 & -0.0570 \\                         0.0000 & -0.1634 \\                         0.0000 & -0.2225 \\                         0.0000 & -0.2218 \\                         0.0000 & -0.2076 \\                         0.0000 & -0.1670 \\                         0.0000 & -0.3002 \\                         0.0000 & -0.0366 \\                  ,V
-MyTableCaption,v
+#,v
+\appendix,V
+# Smart pane switching with awareness of vim splitsis_vim='echo "#{pane_current_command}" | grep -iqE "(^|\/)g?(view|n?vim?)(diff)?$"'bind -n C-h if-shell "$is_vim" "send-keys C-h" "select-pane -L"bind -n C-j if-shell "$is_vim" "send-keys C-j" "select-pane -D"bind -n C-k if-shell "$is_vim" "send-keys C-k" "select-pane -U"bind -n C-l if-shell "$is_vim" "send-keys C-l" "select-pane -R"bind -n C-\ if-shell "$is_vim" "send-keys C-\\" "select-pane -l",v
+https://github.com/christoomey/vim-tmux-navigator.git,v
+    ! A(jl(1),jl(1)) = A(jl(1),jl(1)) + alpha(jl(1))    ! A(jl(2),jl(2)) = A(jl(2),jl(2)) + alpha(jl(2)),V
+),v
+diag(,v
+F,v
+Forcing RHS =,v
+/2d0/2d0,4
+    A(jl(1),jl(1)) = A(jl(1),jl(1)) + alpha(jl(1))/2d0    A(jl(2),jl(2)) = A(jl(2),jl(2)) + alpha(jl(2))/2d0,V
++,v
+1,v
+-cpp,v
+! integer, parameter :: M = 4         ! number of Gauss points,V
+! real(8), dimension(M) :: xi, Wk              ! Gauss points, weights,V
+! ,V
  ,v
-%   \setlength{\tabcolsep}{8pt},V
-\centering                              ,V
-\caption{MyTableCaption}                \label{tab:data}                        ,V
- &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & ,3
-\begin{table}[H!]                       \centering                              \begin{tabular}{rrr}                     & $\Phi$ & $\partial\Phi/\partial n$ \\ & 0.0000 & -1.4110 \\                   & 0.6440 & 1.9319 \\                    & 0.8231 & 1.7321 \\                    & 0.7111 & 1.4142 \\                    & 0.5073 & 1.0000 \\                    & 0.2442 & 0.5176 \\                    & -0.0475 & 0.0000 \\                   & -0.3372 & -0.5176 \\                  & -0.5946 & -1.0000 \\                  & -0.7887 & -1.4142 \\                  & -0.8868 & -1.7321 \\                  & -0.6824 & -1.9319 \\                  & 0.0000 & 1.5428 \\                    & 0.0000 & 0.0376 \\                    & 0.0000 & 0.2459 \\                    & 0.0000 & 0.0147 \\                    & 0.0000 & -0.0570 \\                   & 0.0000 & -0.1634 \\                   & 0.0000 & -0.2225 \\                   & 0.0000 & -0.2218 \\                   & 0.0000 & -0.2076 \\                   & 0.0000 & -0.1670 \\                   & 0.0000 & -0.3002 \\                   & 0.0000 & -0.0366 \\                  \end{tabular}                           \caption{MyTableCaption}                \label{tab:data}                        \end{table},v
-makefile.ps,v
-\begin{table}[H!]                       \centering                              \begin{tabular}{rrr}                     & $\Phi$ & $\partial\Phi/\partial n$ \\ & 0.000 & -1.411 \\                     & 0.644 & 1.932 \\                      & 0.823 & 1.732 \\                      & 0.711 & 1.414 \\                      & 0.507 & 1.000 \\                      & 0.244 & 0.518 \\                      & -0.047 & 0.000 \\                     & -0.337 & -0.518 \\                    & -0.595 & -1.000 \\                    & -0.789 & -1.414 \\                    & -0.887 & -1.732 \\                    & -0.682 & -1.932 \\                    & 0.000 & 1.543 \\                      & 0.000 & 0.038 \\                      & 0.000 & 0.246 \\                      & 0.000 & 0.015 \\                      & 0.000 & -0.057 \\                     & 0.000 & -0.163 \\                     & 0.000 & -0.222 \\                     & 0.000 & -0.222 \\                     & 0.000 & -0.208 \\                     & 0.000 & -0.167 \\                     & 0.000 & -0.300 \\                     & 0.000 & -0.037 \\                    \end{tabular}                           \caption{MyTableCaption}                \label{tab:data}                        \end{table} ,v
-makefile,v
-enscript -f Courier8 -C --color=1 -Ef90 ./makefile --output=makefile.ps,V
-! I worked with Johnny Sigman!===============================================================================,V
-Uin(NY*NX), dUindx(NY*NX), dUindy(NY*NX), xin(NY*NX), yin(NY*NX),v
-        ! Superimpose influence of forcing term,V
-e,v
-t,v
+Engs 205 - Lab 1,v
 ! Engs 205 - Lab 1,V
-!=======================================================================,V
-from,v
-object files ,v
-If individual source files are changed, update the corresponding OBJ,v
- If Makefile or include files are changed, update,v
-! real(8), parameter :: R = 1d0       ! radius of plate! real(8), parameter :: Ios = 1d0     ! forcing current / conductivity! real(8), parameter :: Jos = 2d0     ! boundary current / conductivity,V
-mv *.ps ./bem_soln_latex/,V
-root,v
-each,v
-file,v
-  end do,V
-matlab and fortran ,v
-script to ,v
-bem_util_f95.ps,v
-../mod/bem_util.f95,v
-enscript -f Courier8 -C --color=1 -Ef90 ../mod/bem_util.f95 --output=bem_util_f95.ps,V
-General fortran makefile,v
-textwidth,v
-_2Dplate,v
-_gradient,v
-modeshapes,v
-First few vibrational mode shapes of a pinned-pinned bar.,v
-BEM_soln_withforcing_2Dplate_gradient.pdf,v
-pinned_bar_modes.pdf,v
-line,v
-plate,v
-  \includegraphics[width=\textwidth]{pinned_bar_modes.pdf}  \caption{First few vibrational mode shapes of a pinned-pinned bar.},V
-      \includegraphics[width=\textwidth]{BEM_soln_withforcing_2Dplate_gradient.pdf}      \caption{Gradient of interior nodes, plotted on top of contours of interior values of $\Phi$.},V
-      \includegraphics[width=\textwidth]{BEM_soln_withforcing_2Dplate_pcolor.pdf}      \caption{Boundary nodes and pcolor plot of interior values of $\Phi$. Boundary element values of $\partial \Phi / \partial n$ are shown with vectors.},V
-captionsize,v
+*,v
+,,v
+A,v
+    allocate(xi(M),,V
+  ! interior,v
+192192,v
+192192,3
+9696,2
+4848,2
+2424,2
+\section*{Figures}\lstinputlisting[language=matlab]{../es205_lab1_bem_figs.m},V
+Makefile,v
+\section*{Makefile},V
+Utility Functions,v
+\section*{Utility Functions},V
+\lstinputlisting[language=fortran]{../bem_plate.in},V
+_,v
+n,v
+l,v
+o,v
+s,v
+.pdf,v
+f,v
+d,v
+p,v
+.,v
+.pdf},v
+\textwidth  390pt\textheight 650pt,V
+%\textwidth  390pt\textheight 650pt,V
+7,v
+5,v
+% \lstinputlisting{../engg148_6_1_pinned_bar_modes.m},V
+tiny,v
 scriptsize,v
-  \hspace{0.1cm},V
+9,v
+},v
+-,v
+{,v
+% \includepdf[pages={-}]{bem_f95.pdf}% \includepdf[pages={-}]{bem_util_f95.pdf}% \includepdf[pages={-}]{bem_plate_in.pdf}% \includepdf[pages={-}]{header_h.pdf}% \includepdf[pages={-}]{mathops_f95.pdf}% \includepdf[pages={-}]{readwrite_f95.pdf}% \includepdf[pages={-}]{makefile.pdf}% \includepdf[pages={-}]{es205_bem_soln_figs_m.pdf},V
+\lssinput,V
+\vfill,V
+\columnbreak,V
+pagebreak,v
+newpage,v
+clearpage,v
+confirm or deny,v
+which ,v
+, which necessitates further experiments to confirm this prediction. ,v
+t,v
+TTT,1
+fig(1); clf, hold on, grid on, box on    plot(      d.phi*180/pi, CTA_cyrod,'b-')    plot(      d.phi*180/pi, CTA_rot_cyrod,'g-')    plot(phi_expt{1}*180/pi, CTA_expt,'k--')        xlabel('\phi [deg]')    ylabel('C_T^A')    legend('Theoretical model key blade','   "   "     net force','Experiment'),v
+_rot_rot_rot_rot,4
+% Convert CyROD data to coefficientsCTA_rot_cyrod = (d.Fx_rot)* i.b / (0.5 * in.rho * d.Vs^2 * d.A);CFA_rot_cyrod = (d.Fz_rot)* i.b / (0.5 * in.rho * d.Vs^2 * d.A);CQA_rot_cyrod = (d.My_rot)* i.b / (0.5 * in.rho * d.Vs^2 * d.A * in.R);CSA_rot_cyrod = (d.Mp_rot)* i.b / (0.5 * in.rho * d.Vs^2 * d.A * in.R);,V
+e,v
+a,v
+    exit 0,V
+  exit 0,V
+%===============================================================================,V
+%-------------------------------------------------------------------------------,v
+",v
+%===============================================================================,v
+" autocmd BufEnter * let titlestring = expand("%:p"),V
+{\color{red} Figure TO DO: annotate CAD images. Power flow schematic (on CAD image?). Possible sample test matrix (?). Add eta vs. cta curves for hh1961 and bl1989.} ,V
+are ,v
+Also shown,v
+$J_s$			& advance coefficient, $J_s = \frac{V_s}{nD} = \pi \lambda$	& \\[1 em],V
+thrust,v
+$C_T^A$ 		& thrust coefficient, $C_T^A = \frac{T}{\half\rho V_s^2 A}$ 	& \\[1 em],V
+0.45\textwidth,v
+(,v
+from,v
+$\lambda < 1$,v
+\color{red} NEED BEST EFFICIENCY CURVES FROM CYCLOIDAL (HH1961) and TROCHOIDAL (BL1989),v
+fig_ETA_vs_CTA.pdf,v
+fig_ETA_vs_lambda.pdf,v
