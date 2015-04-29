@@ -31,9 +31,14 @@ export HISTSIZE=10000
 export HISTFILESIZE=100000
 
 # shoptions
-shopt -s histappend     # append to ~/.bash_history instead of overwriting
+shopt -s autocd         # just type directory name to cd
+shopt -s cdspell        # checks for minor errors in cd typing
+shopt -s checkjobs      # displays stopped or running job status before exiting
 shopt -s checkwinsize   # auto reforemat command output
+shopt -s cmdhist        # save multi-line commands in history
 shopt -s extglob        # extend glob to regexes i.e. ?(ab)
+shopt -s globstar       # allows use of ** (like vim)
+shopt -s histappend     # append to ~/.bash_history instead of overwriting
 
 # Append commands to the history every time a prompt is shown,
 # instead of after closing the session.

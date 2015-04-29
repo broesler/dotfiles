@@ -291,6 +291,9 @@ execute "nnoremap <Tab> " . &tabstop ."l"
 execute "nnoremap <S-Tab> " . &tabstop ."h"
 inoremap <S-Tab> <C-d>
 
+" With new window mappings <C-l> no longer redraws...
+nmap <C-q> :redraw!<CR>
+
 " Jump between tmux and vim windows with <C-[hjkl]>
 if exists('$TMUX')
   function! TmuxOrSplitSwitch(wincmd, tmuxdir)

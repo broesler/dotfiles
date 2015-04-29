@@ -42,15 +42,15 @@ set makeprg=latexmk\ \-pdf\ %
 let efm_errors="%E!\ LaTeX\ Error:\ %m,\%E!\ %m,%E!pdfTeX Error:\ %m"
 
 " Warmings output by latexmk script
-let efm_warnings="%W%.%#Citation\ %m on\ input\ line\ %l,
-      \%W%.%#Reference\ %m on\ input\ line\ %l"
+" let efm_warnings="%W%.%#Citation\ %m on\ input\ line\ %l,
+"       \%W%.%#Reference\ %m on\ input\ line\ %l"
 
-" " For use with normal pdflatex output (i.e. not via latexmk):
-" let efm_warnings="%WLaTeX\ Warning:\ Citation\ %m\ on\ input\ line\ %l%.%#,
-"             \%WPackage\ natbib\ Warning:\ Citation %m on\ input\ line\ %l%.%#,
-"             \%WPackage\ %.%#Warning:\ Citation %m,%C %m on input line %l%.%#,
-"             \%WLaTeX\ Warning:\ Reference %m on\ input\ line\ %l%.%#,
-"             \%WLaTeX\ %.%#Warning:\ Reference %m,%C %m on input line %l%.%#"
+" For use with normal pdflatex output (i.e. not via latexmk):
+let efm_warnings="%WLaTeX\ Warning:\ Citation\ %m\ on\ input\ line\ %l%.%#,
+            \%WPackage\ natbib\ Warning:\ Citation %m on\ input\ line\ %l%.%#,
+            \%WPackage\ %.%#Warning:\ Citation %m,%C %m on input line %l%.%#,
+            \%WLaTeX\ Warning:\ Reference %m on\ input\ line\ %l%.%#,
+            \%WLaTeX\ %.%#Warning:\ Reference %m,%C %m on input line %l%.%#"
 
 let &l:errorformat = "%f:%l:%m" . "," . efm_errors . "," . efm_warnings
 
