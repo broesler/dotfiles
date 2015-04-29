@@ -1,100 +1,100 @@
-" " <C-[hjkl]> switches windows quickly" nmap <silent> <C-h> <C-w>h" nmap <silent> <C-j> <C-w>j" nmap <silent> <C-k> <C-w>k" nmap <silent> <C-l> <C-w>l,V
-if exists('$TMUX')  function! TmuxOrSplitSwitch(wincmd, tmuxdir)    let previous_winnr = winnr()    silent! execute "wincmd " . a:wincmd    if previous_winnr == winnr()      call system("tmux select-pane -" . a:tmuxdir)      redraw!    endif  endfunction  let previous_title = substitute(system("tmux display-message -p '#{pane_title}'"), '\n', '', '')  let &t_ti = "\<Esc>]2;vim\<Esc>\\" . &t_ti  let &t_te = "\<Esc>]2;". previous_title . "\<Esc>\\" . &t_te  nnoremap <silent> <C-h> :call TmuxOrSplitSwitch('h', 'L')<cr>  nnoremap <silent> <C-j> :call TmuxOrSplitSwitch('j', 'D')<cr>  nnoremap <silent> <C-k> :call TmuxOrSplitSwitch('k', 'U')<cr>  nnoremap <silent> <C-l> :call TmuxOrSplitSwitch('l', 'R')<cr>else  map <C-h> <C-w>h  map <C-j> <C-w>j  map <C-k> <C-w>k  map <C-l> <C-w>lendif,v
-,V
-bind -r C-h select-window -t :-bind -r C-l select-window -t :+,V
-,V
-#,v
-\appendix,V
-# Smart pane switching with awareness of vim splitsis_vim='echo "#{pane_current_command}" | grep -iqE "(^|\/)g?(view|n?vim?)(diff)?$"'bind -n C-h if-shell "$is_vim" "send-keys C-h" "select-pane -L"bind -n C-j if-shell "$is_vim" "send-keys C-j" "select-pane -D"bind -n C-k if-shell "$is_vim" "send-keys C-k" "select-pane -U"bind -n C-l if-shell "$is_vim" "send-keys C-l" "select-pane -R"bind -n C-\ if-shell "$is_vim" "send-keys C-\\" "select-pane -l",v
-https://github.com/christoomey/vim-tmux-navigator.git,v
-    ! A(jl(1),jl(1)) = A(jl(1),jl(1)) + alpha(jl(1))    ! A(jl(2),jl(2)) = A(jl(2),jl(2)) + alpha(jl(2)),V
-),v
-diag(,v
-F,v
-Forcing RHS =,v
-/2d0/2d0,4
-    A(jl(1),jl(1)) = A(jl(1),jl(1)) + alpha(jl(1))/2d0    A(jl(2),jl(2)) = A(jl(2),jl(2)) + alpha(jl(2))/2d0,V
-+,v
-1,v
--cpp,v
-! integer, parameter :: M = 4         ! number of Gauss points,V
-! real(8), dimension(M) :: xi, Wk              ! Gauss points, weights,V
-! ,V
- ,v
-Engs 205 - Lab 1,v
-! Engs 205 - Lab 1,V
-*,v
-,,v
-A,v
-    allocate(xi(M),,V
-  ! interior,v
-192192,v
-192192,3
-9696,2
-4848,2
-2424,2
-\section*{Figures}\lstinputlisting[language=matlab]{../es205_lab1_bem_figs.m},V
-Makefile,v
-\section*{Makefile},V
-Utility Functions,v
-\section*{Utility Functions},V
-\lstinputlisting[language=fortran]{../bem_plate.in},V
-_,v
-n,v
-l,v
-o,v
-s,v
-.pdf,v
-f,v
-d,v
-p,v
-.,v
-.pdf},v
-\textwidth  390pt\textheight 650pt,V
-%\textwidth  390pt\textheight 650pt,V
-7,v
-5,v
-% \lstinputlisting{../engg148_6_1_pinned_bar_modes.m},V
-tiny,v
-scriptsize,v
-9,v
-},v
+%\bibliographystyle{apsrev4-1},v
+%\bibliographystyle{apsrev4-1},V
+,author-year,v
+numerical,v
 -,v
-{,v
-% \includepdf[pages={-}]{bem_f95.pdf}% \includepdf[pages={-}]{bem_util_f95.pdf}% \includepdf[pages={-}]{bem_plate_in.pdf}% \includepdf[pages={-}]{header_h.pdf}% \includepdf[pages={-}]{mathops_f95.pdf}% \includepdf[pages={-}]{readwrite_f95.pdf}% \includepdf[pages={-}]{makefile.pdf}% \includepdf[pages={-}]{es205_bem_soln_figs_m.pdf},V
-\lssinput,V
-\vfill,V
-\columnbreak,V
-pagebreak,v
-newpage,v
-clearpage,v
-confirm or deny,v
-which ,v
-, which necessitates further experiments to confirm this prediction. ,v
-t,v
-TTT,1
-fig(1); clf, hold on, grid on, box on    plot(      d.phi*180/pi, CTA_cyrod,'b-')    plot(      d.phi*180/pi, CTA_rot_cyrod,'g-')    plot(phi_expt{1}*180/pi, CTA_expt,'k--')        xlabel('\phi [deg]')    ylabel('C_T^A')    legend('Theoretical model key blade','   "   "     net force','Experiment'),v
-_rot_rot_rot_rot,4
-% Convert CyROD data to coefficientsCTA_rot_cyrod = (d.Fx_rot)* i.b / (0.5 * in.rho * d.Vs^2 * d.A);CFA_rot_cyrod = (d.Fz_rot)* i.b / (0.5 * in.rho * d.Vs^2 * d.A);CQA_rot_cyrod = (d.My_rot)* i.b / (0.5 * in.rho * d.Vs^2 * d.A * in.R);CSA_rot_cyrod = (d.Mp_rot)* i.b / (0.5 * in.rho * d.Vs^2 * d.A * in.R);,V
-e,v
-a,v
-    exit 0,V
-  exit 0,V
-%===============================================================================,V
-%-------------------------------------------------------------------------------,v
-",v
-%===============================================================================,v
-" autocmd BufEnter * let titlestring = expand("%:p"),V
-{\color{red} Figure TO DO: annotate CAD images. Power flow schematic (on CAD image?). Possible sample test matrix (?). Add eta vs. cta curves for hh1961 and bl1989.} ,V
+author,v
+n,v
+i,v
+5,v
+.,v
+3,v
+aps,prl,reprint,groupedaddress,v
+\documentclass[aps,prl,reprint,groupedaddress]{revtex4-1},V
+% \section*{Nomenclature},v
+% \section*{Nomenclature},V
+\,v
+prl,v
+% \documentclass[aps,prl,reprint,groupedaddress]{revtex4-1},V
+shopt -s histappend     # append to ~/.bash_history instead of overwriting,V
+shopt -s checkwinsize   # auto reforemat command output,V
+shopt -s extglob        # extend glob to regexes i.e. ?(ab),V
+\pagebrake,V
+aapm4-1.rtxaip4-1.rtxaps4-1.rtxaps10pt4-1.rtxaps11pt4-1.rtxaps12pt4-1.rtxapsrmp4-1.rtxltxdocext.styltxfront.styltxgrid.styltxutil.styreftest4-1.texrevsymb4-1.styrevtex4-1.clssor4-1.rtx,v
+p,v
+l,v
+r,v
+     % Haberman Harley 1961    \begin{subfigure}[c]{\columnwidth}      \centering      \includegraphics[width=\columnwidth]{150420_HH1961_11a_v118_OpenProp_e06_Z2_ALL_vs_lambda.pdf}      \caption{\CR vs. \citet{Haberman1961}, $Z = 6$, $e = 0.6$, $\sigma = 0.133$, $\AR = 3$, elliptical planform. Legend included for Figures~\ref{fig:cycloidal_validation} and \ref{fig:trochoidal_validation}.}      \label{fig:hh1961}    \end{subfigure}    \hspace{0.05\columnwidth}    % Ficken Dickerson 1969    \begin{subfigure}[c]{\columnwidth}      \centering      \includegraphics[width=\columnwidth]{150412_FD1961_19_v118_camber_fullalignment_OpenProp_e07_Z6_ALL_vs_lambda.pdf}      \caption{\CR vs. \citet{Ficken1969}, $Z = 6$, $e = 0.7$, $\sigma = 0.334$, $\AR = 2.85$, rectangular planform. For legend, see Figure~\ref{fig:hh1961}. }      \label{fig:fd1969z6}    \end{subfigure}    % Nakonechny 1974, z = 6    \begin{subfigure}[c]{\columnwidth}      \centering      \includegraphics[width=\columnwidth]{150420_N1974_22_v118_OpenProp_e05_Z2_ALL_vs_lambda.pdf}      \caption{\CR vs. \citet{Nakonechny1974}, $Z = 2$, $e = 0.5$, $\sigma = 0.112$, $\AR = 2.85$, rectangular planform. For legend, see Figure~\ref{fig:hh1961}. }      \label{fig:n1974z2}    \end{subfigure}    \hspace{0.05\columnwidth}    % Nakonechny 1974, z = 6    \begin{subfigure}[c]{\columnwidth}      \centering      \includegraphics[width=\columnwidth]{150420_N1974_22_v118_OpenProp_e05_Z6_ALL_vs_lambda.pdf}      \caption{\CR vs. \citet{Nakonechny1974}, $Z = 6$, $e = 0.5$, $\sigma = 0.336$, $\AR = 2.85$, rectangular planform. For legend, see Figure~\ref{fig:hh1961}. }      \label{fig:n1974z6}    \end{subfigure}  \caption{Theoretical model validation cases versus cycloidal ($\lambda < 1$, $e < 1$) experiments previously published in literature.}  \label{fig:cycloidal_validation}\end{figure*}\begin{figure*}[htbp]  \centering    \begin{subfigure}[c]{\columnwidth}      \centering      \includegraphics[width=\columnwidth]{150420_DD1975_11_v118_OpenProp_e2_Z6_CALL_vs_lambda.pdf}      \caption{\CR vs. \citet{Dickerson1975}, $Z = 6$, $e = 2.0$, $\sigma = 0.336$, $\AR = 2.85$, rectangular planform. For legend, see Figure~\ref{fig:hh1961}. }      \label{fig:dd1975}    \end{subfigure}    \hspace{0.05\columnwidth}    \begin{subfigure}[c]{\columnwidth}      \centering      \includegraphics[width=\columnwidth]{150420_BoseLai1989_v118_e2924_Z3_CALL_vs_lambda.pdf},v
+0.211/0.709 * 2.05/2,v
+Actual $\eta$ ,v
+Actual $\,v
+point,v
+performance condition ,v
+q,v
+m,v
+s,v
+simleq ,v
+fit ,v
+ ,v
+Referring back to Figure~\ref{fig:bl1989},,v
+~,v
+included ,v
+ and $C_Q^A$,v
+ is ,v
+a fifth order polynomial fit,v
+the dashed line ,v
 are ,v
-Also shown,v
-$J_s$			& advance coefficient, $J_s = \frac{V_s}{nD} = \pi \lambda$	& \\[1 em],V
-thrust,v
-$C_T^A$ 		& thrust coefficient, $C_T^A = \frac{T}{\half\rho V_s^2 A}$ 	& \\[1 em],V
-0.45\textwidth,v
-(,v
-from,v
-$\lambda < 1$,v
-\color{red} NEED BEST EFFICIENCY CURVES FROM CYCLOIDAL (HH1961) and TROCHOIDAL (BL1989),v
-fig_ETA_vs_CTA.pdf,v
-fig_ETA_vs_lambda.pdf,v
+the ,v
+third order polynomials,v
+the dashed lines are ,v
+raw,v
+efficiency,v
+the authors ,v
+ and \cite{vanManen1996},v
+using ,v
+ The actuator disk limit is shown by the dashed line.,v
+% eta vs. cta figure (include highest efficiency from cycloidal and trochoidal previous experiments),V
+is,v
+is calculated correctly, ,v
+efficiency ,v
+,,v
+ or $\eta$,v
+Points marked with an `$\times$' fall on the expected trendline. ,v
+proper ,v
+The smooth blue curve ,v
+ %For legend, see Figure~\ref{fig:w2015CTA}.},v
+also ,v
+  \includegraphics[width=\columnwidth]{150421_Walvisstaart_Re_ETA_vs_CTA.pdf},V
+150421_Walvisstaart_Re_ETA_vs_CTA.pdf,v
+  % ETA vs lambda    \begin{subfigure}[c]{\columnwidth}      \centering      \includegraphics[width=\columnwidth]{150421_Walvisstaart_Re_ETA_vs_lambda.pdf}      \caption{$\eta$ versus $\lambda$, showing both the present experimental data, as well as the \CR model prediction. For legend, see Figure~\ref{fig:w2015CTA}.}      \label{fig:w2015ETA}    \end{subfigure},V
+a,v
+k,v
+  % CTA vs lambda,V
+  \caption{Torque data.}  \label{fig:torquedata},v
+  % \hspace{0.1cm},V
+    \hspace{0.05\columnwidth},V
+!,v
+h,v
+torquedata,v
+Torque,v
+  \caption{Torque data.}  \label{fig:torquedata},V
+\begin{figure}[ptbh]  \centering  \includegraphics[width=\columnwidth]{150421_Walvisstaart_Re_ETA_vs_lambda.pdf}  \caption{$\eta$ versus $\lambda$, showing both the present experimental data, as well as the \CR model prediction. For legend, see Figure~\ref{fig:w2015CTA}.}  \label{fig:w2015ETA}\end{figure},V
+  \includegraphics[width=\columnwidth]{150421_Walvisstaart_Re_ETA_vs_lambda.pdf}  \caption{$\eta$ versus $\lambda$, showing both the present experimental data, as well as the \CR model prediction. For legend, see Figure~\ref{fig:w2015CTA}.}  \label{fig:w2015ETA},V
+      \includegraphics[width=\columnwidth]{150421_Walvisstaart_Re_CQA_vs_lambda.pdf}      \caption{$C_Q^A$ versus $\lambda$, showing both the present experimental data, as well as the \CR model prediction. For legend, see Figure~\ref{fig:w2015CTA}. }      \label{fig:w2015CQA},V
+  \includegraphics[width=\columnwidth]{150421_Walvisstaart_Re_CTA_vs_lambda.pdf}  \caption{$C_T^A$ versus $\lambda$, showing both the present experimental data, as well as the \CR model prediction.}  \label{fig:w2015CTA},V
+%   \includegraphics[width=\columnwidth]{150421_Walvisstaart_Re_CTA_vs_lambda.pdf}%   \caption{$C_T^A$ versus $\lambda$, showing both the present experimental data, as well as the \CR model prediction.}%   \label{fig:w2015CTA},V
+    \begin{subfigure}[c]{\columnwidth}      \centering      \includegraphics[width=\columnwidth]{150421_Walvisstaart_Re_CQA_vs_lambda.pdf}      \caption{$C_Q^A$ versus $\lambda$, showing both the present experimental data, as well as the \CR model prediction. For legend, see Figure~\ref{fig:w2015CTA}. }      \label{fig:w2015CQA}    \end{subfigure},V
+%----------------------------------------% % Power flow schematic% \begin{figure}[h!]%   \centering%   \includegraphics[width=0.5\columnwidth]{walvisstaart_powerflow_schematic_v1.pdf}%   \caption{Power flows through the device from the motor, and is split between the main driveshaft and the crankshaft. The driveshaft rotates the rotor disk, and the crankshaft pitches the foils about their own axes, independent of the main drive shaft. There is some coupling between the crankshaft and driveshaft due to frictional losses, represented by the unfilled red arrows in the schematic. These frictional losses were characterized prior to tow tank testing.}%   \label{fig:powerflow}% \end{figure},v
+%----------------------------------------% % Power flow schematic% \begin{figure}[h!]%   \centering%   \includegraphics[width=0.5\columnwidth]{walvisstaart_powerflow_schematic_v1.pdf}%   \caption{Power flows through the device from the motor, and is split between the main driveshaft and the crankshaft. The driveshaft rotates the rotor disk, and the crankshaft pitches the foils about their own axes, independent of the main drive shaft. There is some coupling between the crankshaft and driveshaft due to frictional losses, represented by the unfilled red arrows in the schematic. These frictional losses were characterized prior to tow tank testing.}%   \label{fig:powerflow}% \end{figure},V
+% eta vs lambda figure\begin{figure}[ptbh]  \centering  \includegraphics[width=\columnwidth]{150421_Walvisstaart_Re_ETA_vs_lambda.pdf}  \caption{$\eta$ versus $\lambda$, showing both the present experimental data, as well as the \CR model prediction. For legend, see Figure~\ref{fig:w2015CTA}.}  \label{fig:w2015ETA}\end{figure},V
+  P_{in} = P_d + P_c \\  P_y = P_d - P_{fd} \\  P_p = P_c - P_{fc},v
+ (hard code to first, and half-way around),v
+         ! local coordinates,v
+corner_nodes,v
+ corner_nodes,V
+ corner_nodes = 1 ,V
+&,v
+D,v
+N,v
+!-------------------------------------------------------------------------------,V
+_' tag ',v
