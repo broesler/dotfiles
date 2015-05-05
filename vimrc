@@ -177,7 +177,8 @@ function! SetTermTitle()
   " Set terminal title
   silent execute "!echo -n -e " . "\"\033]0;" . tstr . "\007\""
 endfunction
-autocmd BufEnter,VimEnter * silent! call SetTermTitle()
+" Change title when switching between files
+autocmd VimEnter,WinEnter,TabEnter,BufEnter * silent! call SetTermTitle()
 
 " Reset title on vim exit (not needed apparently?)
 " function! ResetTermTitle()
@@ -287,8 +288,6 @@ nnoremap Y y$
 nnoremap <silent>,n :set relativenumber!<CR>
 
 " Shift-tab backs up one tab stop
-execute "nnoremap <Tab> " . &tabstop ."l"
-execute "nnoremap <S-Tab> " . &tabstop ."h"
 inoremap <S-Tab> <C-d>
 
 " With new window mappings <C-l> no longer redraws...
