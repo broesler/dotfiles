@@ -1,100 +1,100 @@
-" Jump between tmux and vim windows with <C-[hjkl]>if exists('$TMUX')  function! TmuxOrSplitSwitch(wincmd, tmuxdir)    let previous_winnr = winnr()    silent! execute "wincmd " . a:wincmd    if previous_winnr == winnr()      call system("tmux select-pane -" . a:tmuxdir)      redraw!    endif  endfunction  let previous_title = substitute(system("tmux display-message -p '#{pane_title}'"), '\n', '', '')  let &t_ti = "\<Esc>]2;vim\<Esc>\\" . &t_ti  let &t_te = "\<Esc>]2;". previous_title . "\<Esc>\\" . &t_te  nnoremap <silent> <C-h> :call TmuxOrSplitSwitch('h', 'L')<cr>  nnoremap <silent> <C-j> :call TmuxOrSplitSwitch('j', 'D')<cr>  nnoremap <silent> <C-k> :call TmuxOrSplitSwitch('k', 'U')<cr>  nnoremap <silent> <C-l> :call TmuxOrSplitSwitch('l', 'R')<cr>else,V
-pof,,v
-is_vim='echo "#{pane_current_command}" | grep -iqE "(^|\/)g?(view|n?vim?)(diff)?$"'bind -n C-h if-shell "$is_vim" "send-keys C-h" "select-pane -L"bind -n C-j if-shell "$is_vim" "send-keys C-j" "select-pane -D"bind -n C-k if-shell "$is_vim" "send-keys C-k" "select-pane -U"bind -n C-l if-shell "$is_vim" "send-keys C-l" "select-pane -R"bind -n C-\ if-shell "$is_vim" "send-keys C-\\" "select-pane -l",V
-41 South Main Street,v
-There is no clear dependence on,v
-p,v
-\usepackage{dm},V
-\u,V
-$PATH,v
-" let efm_errors="%E!\ LaTeX\ Error:\ %m,\%E!\ %m,%E!pdfTeX Error:\ %m",V
-\affiliation{$^1$Thayer School of Engineering, Dartmouth College, Hanover, NH, USA,},V
-\email[]{Brenden.Epps@Dartmouth.edu},V
-,V
-],v
-[,v
-\ignore{interfoil},v
-" let efm_errors="%E!\ LaTeX\ Error:\ %m,\%E!\ %m,%E!pdfTeX Error:\ %m",v
-r,v
- ,v
- amsmath,amssymb,,V
-,author-year,v
-%\bibliographystyle{apsrev4-1},v
-%\bibliographystyle{apsrev4-1},V
-numerical,v
--,v
-author,v
-n,v
-i,v
-5,v
-.,v
-3,v
-aps,prl,reprint,groupedaddress,v
-\documentclass[aps,prl,reprint,groupedaddress]{revtex4-1},V
-% \section*{Nomenclature},v
-% \section*{Nomenclature},V
-\,v
-prl,v
-% \documentclass[aps,prl,reprint,groupedaddress]{revtex4-1},V
-shopt -s histappend     # append to ~/.bash_history instead of overwriting,V
-shopt -s checkwinsize   # auto reforemat command output,V
-shopt -s extglob        # extend glob to regexes i.e. ?(ab),V
-\pagebrake,V
-aapm4-1.rtxaip4-1.rtxaps4-1.rtxaps10pt4-1.rtxaps11pt4-1.rtxaps12pt4-1.rtxapsrmp4-1.rtxltxdocext.styltxfront.styltxgrid.styltxutil.styreftest4-1.texrevsymb4-1.styrevtex4-1.clssor4-1.rtx,v
-l,v
-     % Haberman Harley 1961    \begin{subfigure}[c]{\columnwidth}      \centering      \includegraphics[width=\columnwidth]{150420_HH1961_11a_v118_OpenProp_e06_Z2_ALL_vs_lambda.pdf}      \caption{\CR vs. \citet{Haberman1961}, $Z = 6$, $e = 0.6$, $\sigma = 0.133$, $\AR = 3$, elliptical planform. Legend included for Figures~\ref{fig:cycloidal_validation} and \ref{fig:trochoidal_validation}.}      \label{fig:hh1961}    \end{subfigure}    \hspace{0.05\columnwidth}    % Ficken Dickerson 1969    \begin{subfigure}[c]{\columnwidth}      \centering      \includegraphics[width=\columnwidth]{150412_FD1961_19_v118_camber_fullalignment_OpenProp_e07_Z6_ALL_vs_lambda.pdf}      \caption{\CR vs. \citet{Ficken1969}, $Z = 6$, $e = 0.7$, $\sigma = 0.334$, $\AR = 2.85$, rectangular planform. For legend, see Figure~\ref{fig:hh1961}. }      \label{fig:fd1969z6}    \end{subfigure}    % Nakonechny 1974, z = 6    \begin{subfigure}[c]{\columnwidth}      \centering      \includegraphics[width=\columnwidth]{150420_N1974_22_v118_OpenProp_e05_Z2_ALL_vs_lambda.pdf}      \caption{\CR vs. \citet{Nakonechny1974}, $Z = 2$, $e = 0.5$, $\sigma = 0.112$, $\AR = 2.85$, rectangular planform. For legend, see Figure~\ref{fig:hh1961}. }      \label{fig:n1974z2}    \end{subfigure}    \hspace{0.05\columnwidth}    % Nakonechny 1974, z = 6    \begin{subfigure}[c]{\columnwidth}      \centering      \includegraphics[width=\columnwidth]{150420_N1974_22_v118_OpenProp_e05_Z6_ALL_vs_lambda.pdf}      \caption{\CR vs. \citet{Nakonechny1974}, $Z = 6$, $e = 0.5$, $\sigma = 0.336$, $\AR = 2.85$, rectangular planform. For legend, see Figure~\ref{fig:hh1961}. }      \label{fig:n1974z6}    \end{subfigure}  \caption{Theoretical model validation cases versus cycloidal ($\lambda < 1$, $e < 1$) experiments previously published in literature.}  \label{fig:cycloidal_validation}\end{figure*}\begin{figure*}[htbp]  \centering    \begin{subfigure}[c]{\columnwidth}      \centering      \includegraphics[width=\columnwidth]{150420_DD1975_11_v118_OpenProp_e2_Z6_CALL_vs_lambda.pdf}      \caption{\CR vs. \citet{Dickerson1975}, $Z = 6$, $e = 2.0$, $\sigma = 0.336$, $\AR = 2.85$, rectangular planform. For legend, see Figure~\ref{fig:hh1961}. }      \label{fig:dd1975}    \end{subfigure}    \hspace{0.05\columnwidth}    \begin{subfigure}[c]{\columnwidth}      \centering      \includegraphics[width=\columnwidth]{150420_BoseLai1989_v118_e2924_Z3_CALL_vs_lambda.pdf},v
-0.211/0.709 * 2.05/2,v
-Actual $\eta$ ,v
-Actual $\,v
-point,v
-performance condition ,v
-q,v
-m,v
-s,v
-simleq ,v
-fit ,v
-Referring back to Figure~\ref{fig:bl1989},,v
-~,v
-included ,v
- and $C_Q^A$,v
- is ,v
-a fifth order polynomial fit,v
-the dashed line ,v
-are ,v
-the ,v
-third order polynomials,v
-the dashed lines are ,v
-raw,v
-efficiency,v
-the authors ,v
- and \cite{vanManen1996},v
-using ,v
- The actuator disk limit is shown by the dashed line.,v
-% eta vs. cta figure (include highest efficiency from cycloidal and trochoidal previous experiments),V
-is,v
-is calculated correctly, ,v
-efficiency ,v
+% \clearpage,V
+similar ,v
 ,,v
- or $\eta$,v
-Points marked with an `$\times$' fall on the expected trendline. ,v
-proper ,v
-The smooth blue curve ,v
- %For legend, see Figure~\ref{fig:w2015CTA}.},v
-also ,v
-  \includegraphics[width=\columnwidth]{150421_Walvisstaart_Re_ETA_vs_CTA.pdf},V
-150421_Walvisstaart_Re_ETA_vs_CTA.pdf,v
-  % ETA vs lambda    \begin{subfigure}[c]{\columnwidth}      \centering      \includegraphics[width=\columnwidth]{150421_Walvisstaart_Re_ETA_vs_lambda.pdf}      \caption{$\eta$ versus $\lambda$, showing both the present experimental data, as well as the \CR model prediction. For legend, see Figure~\ref{fig:w2015CTA}.}      \label{fig:w2015ETA}    \end{subfigure},V
-a,v
-k,v
-  % CTA vs lambda,V
-  \caption{Torque data.}  \label{fig:torquedata},v
-  % \hspace{0.1cm},V
-    \hspace{0.05\columnwidth},V
-!,v
+and power ,v
+{,v
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%,V
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%       Example code%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% \subsection{Subsection title}% \label{sec:2}% as required. Don't forget to give each section% and subsection a unique label (see Sect.~\ref{sec:1}).% \paragraph{Paragraph headings} Use paragraph headings as needed.% \begin{equation}% a^2+b^2=c^2% \end{equation}%% % For one-column wide figures use% \begin{figure}% % Use the relevant command to insert your figure file.% % For example, with the graphicx package use%   \includegraphics{example.pdf}% % figure caption is below the figure% \caption{Please write your figure caption here}% \label{fig:1}       % Give a unique label% \end{figure}% %% % For two-column wide figures use% \begin{figure*}% % Use the relevant command to insert your figure file.% % For example, with the graphicx package use%   \includegraphics[width=0.75\textwidth]{example.eps}% % figure caption is below the figure% \caption{Please write your figure caption here}% \label{fig:2}       % Give a unique label% \end{figure*}% %% % For tables use% \begin{table}% % table caption is above the table% \caption{Please write your table caption here}% \label{tab:1}       % Give a unique label% % For LaTeX tables use% \begin{tabular}{lll}% \hline\noalign{\smallskip}% first & second & third  \\% \noalign{\smallskip}\hline\noalign{\smallskip}% number & number & number \\% number & number & number \\% \noalign{\smallskip}\hline% \end{tabular}% \end{table},V
+,V
+% % Thrust Figure% \begin{figure}[pbth]%   \centering%   \includegraphics[width=\columnwidth]{150421_Walvisstaart_Re_CTA_vs_lambda.pdf}%   \caption{$C_T^A$ versus $\lambda$, showing both the present experimental data, as well as the \CR model prediction.}%   \label{fig:w2015CTA}% \end{figure},V
+% \paragraph{Inner frame},V
+% \begin{figure}[h!]%   \centering%   \includegraphics[width=\columnwidth]{pitch_control_2_crop_annotated.pdf}%   \caption{Pitch control mechanism showing the crankshaft and $Z = 4$ concentric shafts. Each concentric shaft is coupled to each blade by a 1:1 gear ratio with a chain (not pictured). The concentric shafts allow each blade to be oscillated at at rate of $\dot\beta(\phi)$ independently of the rotation of the main drive shaft rotation rate $\w$. The crankshaft is also coupled to the main drive shaft with a 1:1 ratio.}%   \label{fig:pitchcontrol}% \end{figure},V
+% {\color{red} [BROESLER 150408 DISCREPANCY]: In the 2012/13 ENGS 89/90 report, we cite amplified cycloidal motion as%   $$ \beta = a \cdot \tan^{-1}\left(\frac{\frac{1}{e} \sin \phi}{1 + \frac{1}{e} \cos \phi}\right) $$%   I'm not sure where this came from, but it does match to Riijarvi's paper, where the pitch function was ``max angle $20\deg$'' corresponding to $e = 2.924 = \frac{1}{\sin20\deg}$, even though they report%   $$ \beta = a \cdot \tan^{-1}\left(\frac{\sin\beta_{max} \cos \phi}{1 + \sin\beta_{max} \sin \phi}\right) $$% This equation is wrong. The switching of the $\sin$ and $\cos$ terms is due to their definition of $\phi$ being offset $90\deg$ from the \CR definition. It does not affect the coefficients. If they were talking about $\beta_{abs}$ vs $\beta$, I don't think adding $\phi$ would change the eccentricity value, it just affects the wrapping to $\pi$.}%end color red% % [BROESLER 150420]: There is no discrepancy if you derive the formulae for {beta(phi),beta_abs(phi)} from the actual geometry, and THEN use the definition e = a/R = P/(pi*D).,V
+m,v
+red,v
+screw ,v
+.,v
+s,v
+e,v
+i,v
+When compared with screw propellers, the cycloidal propeller of \cite{Haberman1961} nearly matches the performance of screw propeller 4381. Some of the data presented herein also match the efficiencies of this screw propeller, and exceed it at low thrust coefficients.,V
+points ,v
+, showing that a sinusoidal pitch function trochoidal propeller can at least match the performance of a screw ,v
+In comparison ,v
+to,v
+ ,v
+steady ,v
+a ,v
+creating ,v
+the ,v
+Practically speaking, a ship designer,v
+the,v
+those,v
 h,v
-torquedata,v
-Torque,v
-  \caption{Torque data.}  \label{fig:torquedata},V
-\begin{figure}[ptbh]  \centering  \includegraphics[width=\columnwidth]{150421_Walvisstaart_Re_ETA_vs_lambda.pdf}  \caption{$\eta$ versus $\lambda$, showing both the present experimental data, as well as the \CR model prediction. For legend, see Figure~\ref{fig:w2015CTA}.}  \label{fig:w2015ETA}\end{figure},V
-  \includegraphics[width=\columnwidth]{150421_Walvisstaart_Re_ETA_vs_lambda.pdf}  \caption{$\eta$ versus $\lambda$, showing both the present experimental data, as well as the \CR model prediction. For legend, see Figure~\ref{fig:w2015CTA}.}  \label{fig:w2015ETA},V
-      \includegraphics[width=\columnwidth]{150421_Walvisstaart_Re_CQA_vs_lambda.pdf}      \caption{$C_Q^A$ versus $\lambda$, showing both the present experimental data, as well as the \CR model prediction. For legend, see Figure~\ref{fig:w2015CTA}. }      \label{fig:w2015CQA},V
+ref,v
+Drela1989,v
+F,v
+},v
+ to within NUMBER\%,v
+\begin{figure*}[thb!]  \centering  \mbox{\resizebox{!}{2.75 in}{\includegraphics[keepaspectratio]{D7K_0838_color.jpg}}}	\mbox{\resizebox{!}{2.75 in}{\includegraphics[keepaspectratio]{D7K_0891_crop.jpg}}}   \caption{Photos of the testing apparatus mounted on the tow carriage at the UNH testing facility. (The hydrofoils appear shorter than normal due to the index of refraction of water.)}  \label{fig:towtankphotos}\end{figure*},v
+the derivatives for ,v
+Experimental measurements were smoothed with splines to ensure coninuity in ,v
+foils,v
+~\ref{fig:airfoil},v
+, to minimize aerodynamic moment according to thin airfoil theory.,v
+\begin{figure*}[thb!]  \centering  \mbox{\resizebox{!}{2.75 in}{\includegraphics[keepaspectratio]{D7K_0838_color.jpg}}}	\mbox{\resizebox{!}{2.75 in}{\includegraphics[keepaspectratio]{D7K_0891_crop.jpg}}}   \caption{Photos of the testing apparatus mounted on the tow carriage at the UNH testing facility. (The hydrofoils appear shorter than normal due to the index of refraction of water.)}  \label{fig:towtankphotos}\end{figure*},V
+apparatus ,v
+The propeller used $Z = 4$ blades,,v
+with,v
+was ,v
+with  ,v
+Actual rotor diameter was $D = 0.3175$ m,,v
+r,v
+shown ,v
+itself was designed with the ,v
+Actual rotor diameter was $D = 0.3175$ m, with $c/D = 0.47$, and $b/D = 2.36$.,v
+The propeller itself was designed with the specifications shown in Table~\ref{tab:experiments}. ,v
+{\color{red}\subsection{Blade Design}The propeller itself was designed with the specifications shown in Table~\ref{tab:experiments}. ,v
+add,v
+The propeller itself was designed with the specifications shown in Table~\ref{tab:experiments}. The blade section geometry was chosen to be a NACA0015 at the root, linearly tapering to a NACA0008 at the tip. blades were milled from hardwood, and epoxy coated. Steel plates were embedded in the blades to add stiffness and provide a location on which to weld the blade shafts. The shafts were placed at $c_{pp} = 0.25c$. Actual rotor diameter was $D = 0.3175$ m, with $c/D = 0.47$, and $b/D = 2.36$.  ,V
+removed,v
+measureable powers and a fric,v
+and a friction ,V
+($\lambda > 1$),v
+  % \includegraphics[width=\columnwidth]{150421_Walvisstaart_Re_ETA_vs_CTA.pdf},V
+%----------------------------------------% % Power flow schematic% \begin{figure}[h!]%   \centering%   \includegraphics[width=0.5\columnwidth]{walvisstaart_powerflow_schematic_v1.pdf}%   \caption{Power flows through the device from the motor, and is split between the main driveshaft and the crankshaft. The driveshaft rotates the rotor disk, and the crankshaft pitches the foils about their own axes, independent of the main drive shaft. There is some coupling between the crankshaft and driveshaft due to frictional losses, represented by the unfilled red arrows in the schematic. These frictional losses were characterized prior to tow tank testing.}%   \label{fig:powerflow}% \end{figure}%----------------------------------------,V
+trend,v
+but ,v
+, similar to that of \cite{Bose1989a},,v
+cycloidal ,v
+trochoidal ,v
+different ,v
+_{max},v
+that ,v
+we note ,v
+our ,v
+The actual propeller efficiency, ,v
+{\color{red} What are actual efficiencies?},v
+Ios,v
+defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool truedefaults write NSGlobalDomain PMPrintingExpandedStateForPrint2 -bool true,V
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% [BROESLER 150415]: NOTE! I used the raw values of CQA + CSA to calculate efficiency,%   NOT the fitted curve (which I also took out of the figure). The fitted curve %   actually *added* noise to the efficiency plot because the torque points were %   not self-consistent with their corresponding thrust values. I think just using %   the actual data is preferable anyway to having to use a polynomial fit that %   has no physical intuition attached.%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%,v
+Do I need to lower any of these coverages for any reason?,v
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% [BROESLER 150415]: NOTE! I used the raw values of CQA + CSA to calculate efficiency,%   NOT the fitted curve (which I also took out of the figure). The fitted curve %   actually *added* noise to the efficiency plot because the torque points were %   not self-consistent with their corresponding thrust values. I think just using %   the actual data is preferable anyway to having to use a polynomial fit that %   has no physical intuition attached.%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%,V
+% Figure~\ref{fig:w2015CQSA} also contains an additional curve (dashed line), which is a fourth-order polynomial fit to the experimental data points. Given that $\eta$ is calculated with $C_Q^A$ in the denominator, any error in the measurement is magnified. Instead of using the raw data points, this best-fit curve is used in conjunction with $C_T^A$ to calculate $\eta$ \eqref{eq:eta}. This curve fitting technique was also employed by \citet{Bose1989a} to smooth noise in the $\eta$ curve. ,V
+% % Torque figure% \begin{figure}[ptbh]%   \centering%   \includegraphics[width=\columnwidth]{150421_Walvisstaart_Re_CQA_vs_lambda.pdf}%   \caption{$C_Q^A$ versus $\lambda$, showing both the present experimental data, as well as the \CR model prediction. For legend, see Figure~\ref{fig:w2015CTA}. }%   \label{fig:w2015CQA}% \end{figure}%% % Sum of Torques figure% \begin{figure}[ptbh]%   \centering%   \includegraphics[width=\columnwidth]{150421_Walvisstaart_Re_CQStot_vs_lambda.pdf}%   \caption{$C_Q^A + C_S^A$ versus $\lambda$, showing both the present experimental data, as well as the \CR model prediction. The sum of the two torques represents the total input power $P_{in}$ used to calculate efficiency. For legend, see Figure~\ref{fig:w2015CTA}.}%   \label{fig:w2015CQSA}% \end{figure}% eta vs lambda figure% \begin{figure}[ptbh]%   \centering%   \includegraphics[width=\columnwidth]{150421_Walvisstaart_Re_ETA_vs_lambda.pdf}%   \caption{$\eta$ versus $\lambda$, showing both the present experimental data, as well as the \CR model prediction. For legend, see Figure~\ref{fig:w2015CTA}.}%   \label{fig:w2015ETA}% \end{figure},V
+While our experiment tested a trochoidal propeller using a sinusoidal pitch function, ,v
+Topologically,v
+An interesting trend is the shape of the ,v
+{\color{red} ,v
+" execute "nnoremap <Tab> " . &tabstop ."l"" execute "nnoremap <S-Tab> " . &tabstop ."h",v
+VimEnter,v
+back ,v
+ While the concentric shafts allow independent control of the foil pitch functions, they are also the main source of friction in the device.,v
+This friction can be calibrated for given the power flow schematic.,v
+\label{app:cyrod}},v
+\label{app:validation},v
+%The model of the loads acting on the rotor is described, along with ,v
+The model of the loads acting on the rotor is described,,v
+Then, ,v
+Then, the numerical model is described, with attention paid to the lift and drag model, and wake model, including calculation of induced velocity. The model of the loads acting on the rotor is described, along with validation of model load predictions versus experimental data from published literature. ,v
+" execute "nnoremap <Tab> " . &tabstop ."l"" execute "nnoremap <S-Tab> " . &tabstop ."h",V
