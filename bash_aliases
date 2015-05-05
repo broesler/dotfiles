@@ -99,9 +99,6 @@ alias mygcc='gcc -Wall -pedantic -std=c99'
 alias mygfortran='gfortran -Wall -pedantic -std=f95 -fbounds-check -ffree-line-length-0 -fall-intrinsics'
 alias r='rlogin'
 alias rm='rm -i'
-alias vi='mvim -v'   # version -X11 -xterm_clipboard
-alias vim='mvim -v'
-alias e='mvim -v'
 alias which='type -all'
 alias zegrep='zegrep --color=auto'
 alias zfgrep='zfgrep --color=auto'
@@ -162,7 +159,7 @@ vims()
       command vim --servername VIM --remote-silent ${@}
     fi
   else
-    mvim -v $@   # ensure no server used
+    command vim $@ # ensure no server used
   fi
 }
 

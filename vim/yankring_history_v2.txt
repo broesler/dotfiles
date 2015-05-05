@@ -1,100 +1,100 @@
-% \clearpage,V
-similar ,v
-,,v
-and power ,v
-{,v
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%,V
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%       Example code%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% \subsection{Subsection title}% \label{sec:2}% as required. Don't forget to give each section% and subsection a unique label (see Sect.~\ref{sec:1}).% \paragraph{Paragraph headings} Use paragraph headings as needed.% \begin{equation}% a^2+b^2=c^2% \end{equation}%% % For one-column wide figures use% \begin{figure}% % Use the relevant command to insert your figure file.% % For example, with the graphicx package use%   \includegraphics{example.pdf}% % figure caption is below the figure% \caption{Please write your figure caption here}% \label{fig:1}       % Give a unique label% \end{figure}% %% % For two-column wide figures use% \begin{figure*}% % Use the relevant command to insert your figure file.% % For example, with the graphicx package use%   \includegraphics[width=0.75\textwidth]{example.eps}% % figure caption is below the figure% \caption{Please write your figure caption here}% \label{fig:2}       % Give a unique label% \end{figure*}% %% % For tables use% \begin{table}% % table caption is above the table% \caption{Please write your table caption here}% \label{tab:1}       % Give a unique label% % For LaTeX tables use% \begin{tabular}{lll}% \hline\noalign{\smallskip}% first & second & third  \\% \noalign{\smallskip}\hline\noalign{\smallskip}% number & number & number \\% number & number & number \\% \noalign{\smallskip}\hline% \end{tabular}% \end{table},V
-,V
-% % Thrust Figure% \begin{figure}[pbth]%   \centering%   \includegraphics[width=\columnwidth]{150421_Walvisstaart_Re_CTA_vs_lambda.pdf}%   \caption{$C_T^A$ versus $\lambda$, showing both the present experimental data, as well as the \CR model prediction.}%   \label{fig:w2015CTA}% \end{figure},V
-% \paragraph{Inner frame},V
-% \begin{figure}[h!]%   \centering%   \includegraphics[width=\columnwidth]{pitch_control_2_crop_annotated.pdf}%   \caption{Pitch control mechanism showing the crankshaft and $Z = 4$ concentric shafts. Each concentric shaft is coupled to each blade by a 1:1 gear ratio with a chain (not pictured). The concentric shafts allow each blade to be oscillated at at rate of $\dot\beta(\phi)$ independently of the rotation of the main drive shaft rotation rate $\w$. The crankshaft is also coupled to the main drive shaft with a 1:1 ratio.}%   \label{fig:pitchcontrol}% \end{figure},V
-% {\color{red} [BROESLER 150408 DISCREPANCY]: In the 2012/13 ENGS 89/90 report, we cite amplified cycloidal motion as%   $$ \beta = a \cdot \tan^{-1}\left(\frac{\frac{1}{e} \sin \phi}{1 + \frac{1}{e} \cos \phi}\right) $$%   I'm not sure where this came from, but it does match to Riijarvi's paper, where the pitch function was ``max angle $20\deg$'' corresponding to $e = 2.924 = \frac{1}{\sin20\deg}$, even though they report%   $$ \beta = a \cdot \tan^{-1}\left(\frac{\sin\beta_{max} \cos \phi}{1 + \sin\beta_{max} \sin \phi}\right) $$% This equation is wrong. The switching of the $\sin$ and $\cos$ terms is due to their definition of $\phi$ being offset $90\deg$ from the \CR definition. It does not affect the coefficients. If they were talking about $\beta_{abs}$ vs $\beta$, I don't think adding $\phi$ would change the eccentricity value, it just affects the wrapping to $\pi$.}%end color red% % [BROESLER 150420]: There is no discrepancy if you derive the formulae for {beta(phi),beta_abs(phi)} from the actual geometry, and THEN use the definition e = a/R = P/(pi*D).,V
-m,v
-red,v
-screw ,v
-.,v
 s,v
-e,v
-i,v
-When compared with screw propellers, the cycloidal propeller of \cite{Haberman1961} nearly matches the performance of screw propeller 4381. Some of the data presented herein also match the efficiencies of this screw propeller, and exceed it at low thrust coefficients.,V
-points ,v
-, showing that a sinusoidal pitch function trochoidal propeller can at least match the performance of a screw ,v
-In comparison ,v
-to,v
+o,v
+I,v
+effects. ,v
+3D ,v
+,V
+lumped ,v
+two-dimensional ,v
  ,v
-steady ,v
-a ,v
-creating ,v
-the ,v
-Practically speaking, a ship designer,v
-the,v
-those,v
-h,v
-ref,v
-Drela1989,v
-F,v
-},v
- to within NUMBER\%,v
-\begin{figure*}[thb!]  \centering  \mbox{\resizebox{!}{2.75 in}{\includegraphics[keepaspectratio]{D7K_0838_color.jpg}}}	\mbox{\resizebox{!}{2.75 in}{\includegraphics[keepaspectratio]{D7K_0891_crop.jpg}}}   \caption{Photos of the testing apparatus mounted on the tow carriage at the UNH testing facility. (The hydrofoils appear shorter than normal due to the index of refraction of water.)}  \label{fig:towtankphotos}\end{figure*},v
-the derivatives for ,v
-Experimental measurements were smoothed with splines to ensure coninuity in ,v
-foils,v
-~\ref{fig:airfoil},v
-, to minimize aerodynamic moment according to thin airfoil theory.,v
-\begin{figure*}[thb!]  \centering  \mbox{\resizebox{!}{2.75 in}{\includegraphics[keepaspectratio]{D7K_0838_color.jpg}}}	\mbox{\resizebox{!}{2.75 in}{\includegraphics[keepaspectratio]{D7K_0891_crop.jpg}}}   \caption{Photos of the testing apparatus mounted on the tow carriage at the UNH testing facility. (The hydrofoils appear shorter than normal due to the index of refraction of water.)}  \label{fig:towtankphotos}\end{figure*},V
-apparatus ,v
-The propeller used $Z = 4$ blades,,v
-with,v
-was ,v
-with  ,v
-Actual rotor diameter was $D = 0.3175$ m,,v
-r,v
-shown ,v
-itself was designed with the ,v
-Actual rotor diameter was $D = 0.3175$ m, with $c/D = 0.47$, and $b/D = 2.36$.,v
-The propeller itself was designed with the specifications shown in Table~\ref{tab:experiments}. ,v
-{\color{red}\subsection{Blade Design}The propeller itself was designed with the specifications shown in Table~\ref{tab:experiments}. ,v
-add,v
-The propeller itself was designed with the specifications shown in Table~\ref{tab:experiments}. The blade section geometry was chosen to be a NACA0015 at the root, linearly tapering to a NACA0008 at the tip. blades were milled from hardwood, and epoxy coated. Steel plates were embedded in the blades to add stiffness and provide a location on which to weld the blade shafts. The shafts were placed at $c_{pp} = 0.25c$. Actual rotor diameter was $D = 0.3175$ m, with $c/D = 0.47$, and $b/D = 2.36$.  ,V
-removed,v
-measureable powers and a fric,v
-and a friction ,V
-($\lambda > 1$),v
-  % \includegraphics[width=\columnwidth]{150421_Walvisstaart_Re_ETA_vs_CTA.pdf},V
-%----------------------------------------% % Power flow schematic% \begin{figure}[h!]%   \centering%   \includegraphics[width=0.5\columnwidth]{walvisstaart_powerflow_schematic_v1.pdf}%   \caption{Power flows through the device from the motor, and is split between the main driveshaft and the crankshaft. The driveshaft rotates the rotor disk, and the crankshaft pitches the foils about their own axes, independent of the main drive shaft. There is some coupling between the crankshaft and driveshaft due to frictional losses, represented by the unfilled red arrows in the schematic. These frictional losses were characterized prior to tow tank testing.}%   \label{fig:powerflow}% \end{figure}%----------------------------------------,V
-trend,v
-but ,v
-, similar to that of \cite{Bose1989a},,v
-cycloidal ,v
-trochoidal ,v
-different ,v
-_{max},v
-that ,v
-we note ,v
+and ,v
+We have presented ,v
+We have ,v
+,,v
+We have presented a two-dimensional lumped vortex model of cycloidal and trochoidal propellers,,v
+vorticity,v
+ is amplified in the efficiency calculation,v
+. Thus,v
+b,v
+ by a solid blue curve,v
+} by a solid blue curve,v
+tested in ,v
 our ,v
-The actual propeller efficiency, ,v
-{\color{red} What are actual efficiencies?},v
-Ios,v
-defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool truedefaults write NSGlobalDomain PMPrintingExpandedStateForPrint2 -bool true,V
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% [BROESLER 150415]: NOTE! I used the raw values of CQA + CSA to calculate efficiency,%   NOT the fitted curve (which I also took out of the figure). The fitted curve %   actually *added* noise to the efficiency plot because the torque points were %   not self-consistent with their corresponding thrust values. I think just using %   the actual data is preferable anyway to having to use a polynomial fit that %   has no physical intuition attached.%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%,v
-Do I need to lower any of these coverages for any reason?,v
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% [BROESLER 150415]: NOTE! I used the raw values of CQA + CSA to calculate efficiency,%   NOT the fitted curve (which I also took out of the figure). The fitted curve %   actually *added* noise to the efficiency plot because the torque points were %   not self-consistent with their corresponding thrust values. I think just using %   the actual data is preferable anyway to having to use a polynomial fit that %   has no physical intuition attached.%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%,V
-% Figure~\ref{fig:w2015CQSA} also contains an additional curve (dashed line), which is a fourth-order polynomial fit to the experimental data points. Given that $\eta$ is calculated with $C_Q^A$ in the denominator, any error in the measurement is magnified. Instead of using the raw data points, this best-fit curve is used in conjunction with $C_T^A$ to calculate $\eta$ \eqref{eq:eta}. This curve fitting technique was also employed by \citet{Bose1989a} to smooth noise in the $\eta$ curve. ,V
-% % Torque figure% \begin{figure}[ptbh]%   \centering%   \includegraphics[width=\columnwidth]{150421_Walvisstaart_Re_CQA_vs_lambda.pdf}%   \caption{$C_Q^A$ versus $\lambda$, showing both the present experimental data, as well as the \CR model prediction. For legend, see Figure~\ref{fig:w2015CTA}. }%   \label{fig:w2015CQA}% \end{figure}%% % Sum of Torques figure% \begin{figure}[ptbh]%   \centering%   \includegraphics[width=\columnwidth]{150421_Walvisstaart_Re_CQStot_vs_lambda.pdf}%   \caption{$C_Q^A + C_S^A$ versus $\lambda$, showing both the present experimental data, as well as the \CR model prediction. The sum of the two torques represents the total input power $P_{in}$ used to calculate efficiency. For legend, see Figure~\ref{fig:w2015CTA}.}%   \label{fig:w2015CQSA}% \end{figure}% eta vs lambda figure% \begin{figure}[ptbh]%   \centering%   \includegraphics[width=\columnwidth]{150421_Walvisstaart_Re_ETA_vs_lambda.pdf}%   \caption{$\eta$ versus $\lambda$, showing both the present experimental data, as well as the \CR model prediction. For legend, see Figure~\ref{fig:w2015CTA}.}%   \label{fig:w2015ETA}% \end{figure},V
-While our experiment tested a trochoidal propeller using a sinusoidal pitch function, ,v
-Topologically,v
-An interesting trend is the shape of the ,v
-{\color{red} ,v
-" execute "nnoremap <Tab> " . &tabstop ."l"" execute "nnoremap <S-Tab> " . &tabstop ."h",v
-VimEnter,v
-back ,v
- While the concentric shafts allow independent control of the foil pitch functions, they are also the main source of friction in the device.,v
-This friction can be calibrated for given the power flow schematic.,v
-\label{app:cyrod}},v
-\label{app:validation},v
-%The model of the loads acting on the rotor is described, along with ,v
-The model of the loads acting on the rotor is described,,v
-Then, ,v
-Then, the numerical model is described, with attention paid to the lift and drag model, and wake model, including calculation of induced velocity. The model of the loads acting on the rotor is described, along with validation of model load predictions versus experimental data from published literature. ,v
-" execute "nnoremap <Tab> " . &tabstop ."l"" execute "nnoremap <S-Tab> " . &tabstop ."h",V
+In validation section?,V
+it does ,v
+R,v
+C,v
+\,v
+%,v
+Previous experiments with flapping foil propellers have shown that high thrust and efficiency occur when the propeller wake forms a reverse Von K\'{a}rm\'{a}n vortex street by shedding vorticity from the blades \cite{Anderson1998}. ,v
+B,v
+d,v
+n,v
+a,v
+tend to ,v
+propeller ,v
+ Further work must be done in modeling these side forces.,v
+and measuring ,v
+alias e='mvim -v',V
+alias vim='mvim -v',V
+alias vi='mvim -v'   # version -X11 -xterm_clipboard,V
+    # mvim -v $@   ,V
+# ensure no server used,v
+We find the same trend in our experiment. ,v
+results,v
+In general, ,v
+a higher magnitude than the thrust forces ,v
+coefficient ,v
+When compared with thrust coefficient, the side force ,v
+These measurements are less prevalent in the literature than thrust and torque measurements, though they are generally of,v
+or side force,v
+Comments on thrust or side force?,V
+These measurements are less prevalent in the literature than thrust and torque measurements, though they are generally of a higher magnitude than the thrust forces \cite{Ficken1969,Dickerson1975}. We find the same trend in our experiment. The presence of large side forces presents a serious practical concern to the implementation of these propellers in commercial shipping ventures. A vertical-axis propeller will cause the stern of a ship to swing sidewards without proper resistive force, or the balancing force of a second propeller. A horizontal-axis propeller will tend to trim the ship either bow up or down, depending on the direction of propeller rotation. Further work must be done in modeling and measuring these side forces.,v
+present, ,v
+ though, where ,v
+also ,v
+Although efficiency results are generally lower than actual values due to compounding error, the accuracy of the thrust and torque predictions is high enough to allow for design and construction of propellers for experimental or commercial use. ,v
+$C_T^A$ and $C_Q^A$ match,v
+thrust coefficient and torque c,v
+as,v
+previously published ,v
+screw ,v
+the ,v
+previous cycloidal propellers,v
+corresponding ,v
+, we rem,v
+initially ,v
+%, the cycloidal propeller of \cite{Haberman1961} nearly matches the performance of DTMB propeller 4381. ,V
+The efficiency of the propeller tested herein compares well with that of DTMB propeller 4119 over the entire range of thrust coefficients.,V
+Some of the data presented herein also match the efficiency of this screw propeller, and exceed it at low thrust coefficients. ,v
+, confirming Sparenberg's lightly lo,v
+When compared with screw propellers, the cycloidal propeller of \cite{Haberman1961} nearly matches the performance of DTMB propeller 4381. ,v
+{\color{blue} Perhaps the most fascinating result of this experiment is that both trochoidal and cycloidal propellers, which generate thrust by shedding a vortex street in addition to a lift force, have nearly identical performance curves to screw propellers, which only generate thrust through lift, not vortex shedding.} When compared with screw propellers, the cycloidal propeller of \cite{Haberman1961} nearly matches the performance of DTMB propeller 4381. ,v
+(which also uses a cycloidal pitch function),v
+$,v
+=,v
+t,v
+e,v
+ $,v
+first ,v
+by,v
+first noted by ,v
+noted in ,v
+_{max},v
+The side forces ($\zhat$) were also measured in this experiment. Although the model overpredicted the side force magnitude, the trend is accurate, and results are on the same order of magnitude as those presented in \citet{Dickerson1975} and \citet{Ficken1969}.,V
+4 ,v
+Z,v
+from the experiment ,v
+The main results presented herein are measurements of thrust, torque, and side force coefficients for a trochoidal propeller with $Z = 4$ blades using a sinusoidal pitch function. ,V
+Comments on thrust data? Low noise?,V
+of ,v
+give a sense ,v
+\CR ,v
+  % ETA vs lambda,V
+% Side Force figure,V
+ \includegraphics[width=\columnwidth]{150421_Walvisstaart_Re_CFA_vs_lambda.pdf} \caption{Side force coefficient $C_F^A$ versus $\lambda$, showing both the present experimental data, as well as the theoretical model prediction. $C_F^A$ is defined similarly to $C_T^A$. For legend, see Figure~\ref{fig:w2015CTA}.} \label{fig:w2015CFA},V
+      \includegraphics[width=\columnwidth]{150421_Walvisstaart_Re_ETA_vs_lambda.pdf}      \caption{Hydrodynamic efficiency $\eta$ versus $\lambda$, showing both the present experimental data, as well as the \CR model prediction. For legend, see Figure~\ref{fig:w2015CTA}.}      \label{fig:w2015ETA},V
+     ,v
+% Side Force figure\begin{figure}[ptbh] \centering \includegraphics[width=\columnwidth]{150421_Walvisstaart_Re_CFA_vs_lambda.pdf} \caption{Side force coefficient $C_F^A$ versus $\lambda$, showing both the present experimental data, as well as the theoretical model prediction. $C_F^A$ is defined similarly to $C_T^A$. For legend, see Figure~\ref{fig:w2015CTA}.} \label{fig:w2015CFA}\end{figure},V
+},v
+\emph{,v
