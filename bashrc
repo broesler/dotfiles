@@ -51,6 +51,9 @@ stty -ixon
 # Enable vim-style editing in terminal
 set -o vi
 
+# Visual bell only
+set bell-style visible
+
 alias tmux='tmux -2'    # Force tmux to use 256 colors (get solarized right)
 
 if [[ "$OSTYPE" == "darwin"* ]]; then

@@ -1,100 +1,100 @@
-s,v
-o,v
-I,v
-effects. ,v
-3D ,v
+48,v
+dth = 2d0*PI / dble(NA)  ! increment angle between nodes,V
 ,V
-lumped ,v
-two-dimensional ,v
- ,v
-and ,v
-We have presented ,v
-We have ,v
-,,v
-We have presented a two-dimensional lumped vortex model of cycloidal and trochoidal propellers,,v
-vorticity,v
- is amplified in the efficiency calculation,v
-. Thus,v
-b,v
- by a solid blue curve,v
-} by a solid blue curve,v
-tested in ,v
-our ,v
-In validation section?,V
-it does ,v
-R,v
-C,v
-\,v
-%,v
-Previous experiments with flapping foil propellers have shown that high thrust and efficiency occur when the propeller wake forms a reverse Von K\'{a}rm\'{a}n vortex street by shedding vorticity from the blades \cite{Anderson1998}. ,v
-B,v
-d,v
-n,v
-a,v
-tend to ,v
-propeller ,v
- Further work must be done in modeling these side forces.,v
-and measuring ,v
-alias e='mvim -v',V
-alias vim='mvim -v',V
-alias vi='mvim -v'   # version -X11 -xterm_clipboard,V
-    # mvim -v $@   ,V
-# ensure no server used,v
-We find the same trend in our experiment. ,v
-results,v
-In general, ,v
-a higher magnitude than the thrust forces ,v
-coefficient ,v
-When compared with thrust coefficient, the side force ,v
-These measurements are less prevalent in the literature than thrust and torque measurements, though they are generally of,v
-or side force,v
-Comments on thrust or side force?,V
-These measurements are less prevalent in the literature than thrust and torque measurements, though they are generally of a higher magnitude than the thrust forces \cite{Ficken1969,Dickerson1975}. We find the same trend in our experiment. The presence of large side forces presents a serious practical concern to the implementation of these propellers in commercial shipping ventures. A vertical-axis propeller will cause the stern of a ship to swing sidewards without proper resistive force, or the balancing force of a second propeller. A horizontal-axis propeller will tend to trim the ship either bow up or down, depending on the direction of propeller rotation. Further work must be done in modeling and measuring these side forces.,v
-present, ,v
- though, where ,v
-also ,v
-Although efficiency results are generally lower than actual values due to compounding error, the accuracy of the thrust and torque predictions is high enough to allow for design and construction of propellers for experimental or commercial use. ,v
-$C_T^A$ and $C_Q^A$ match,v
-thrust coefficient and torque c,v
-as,v
-previously published ,v
-screw ,v
-the ,v
-previous cycloidal propellers,v
-corresponding ,v
-, we rem,v
-initially ,v
-%, the cycloidal propeller of \cite{Haberman1961} nearly matches the performance of DTMB propeller 4381. ,V
-The efficiency of the propeller tested herein compares well with that of DTMB propeller 4119 over the entire range of thrust coefficients.,V
-Some of the data presented herein also match the efficiency of this screw propeller, and exceed it at low thrust coefficients. ,v
-, confirming Sparenberg's lightly lo,v
-When compared with screw propellers, the cycloidal propeller of \cite{Haberman1961} nearly matches the performance of DTMB propeller 4381. ,v
-{\color{blue} Perhaps the most fascinating result of this experiment is that both trochoidal and cycloidal propellers, which generate thrust by shedding a vortex street in addition to a lift force, have nearly identical performance curves to screw propellers, which only generate thrust through lift, not vortex shedding.} When compared with screw propellers, the cycloidal propeller of \cite{Haberman1961} nearly matches the performance of DTMB propeller 4381. ,v
-(which also uses a cycloidal pitch function),v
-$,v
-=,v
-t,v
-e,v
- $,v
-first ,v
-by,v
-first noted by ,v
-noted in ,v
-_{max},v
-The side forces ($\zhat$) were also measured in this experiment. Although the model overpredicted the side force magnitude, the trend is accurate, and results are on the same order of magnitude as those presented in \citet{Dickerson1975} and \citet{Ficken1969}.,V
-4 ,v
-Z,v
-from the experiment ,v
-The main results presented herein are measurements of thrust, torque, and side force coefficients for a trochoidal propeller with $Z = 4$ blades using a sinusoidal pitch function. ,V
-Comments on thrust data? Low noise?,V
-of ,v
-give a sense ,v
-\CR ,v
-  % ETA vs lambda,V
-% Side Force figure,V
- \includegraphics[width=\columnwidth]{150421_Walvisstaart_Re_CFA_vs_lambda.pdf} \caption{Side force coefficient $C_F^A$ versus $\lambda$, showing both the present experimental data, as well as the theoretical model prediction. $C_F^A$ is defined similarly to $C_T^A$. For legend, see Figure~\ref{fig:w2015CTA}.} \label{fig:w2015CFA},V
-      \includegraphics[width=\columnwidth]{150421_Walvisstaart_Re_ETA_vs_lambda.pdf}      \caption{Hydrodynamic efficiency $\eta$ versus $\lambda$, showing both the present experimental data, as well as the \CR model prediction. For legend, see Figure~\ref{fig:w2015CTA}.}      \label{fig:w2015ETA},V
+ NE = 24,,V
+*,v
+2,v
+NE, ,v
+4,v
      ,v
-% Side Force figure\begin{figure}[ptbh] \centering \includegraphics[width=\columnwidth]{150421_Walvisstaart_Re_CFA_vs_lambda.pdf} \caption{Side force coefficient $C_F^A$ versus $\lambda$, showing both the present experimental data, as well as the theoretical model prediction. $C_F^A$ is defined similarly to $C_T^A$. For legend, see Figure~\ref{fig:w2015CTA}.} \label{fig:w2015CFA}\end{figure},V
+NA+NB,v
+yn,v
+(/ xn,v
+call WRITEREAL( (/ xn, yn /), NA+NB,2,outfile,0,1),V
++,v
 },v
-\emph{,v
+{\color{red},v
+0.050.9,v
+~,v
+equation,v
+eq:pin,v
+sec:load_measurement,v
+ ,v
+The,v
+\CRV ,v
+size(xn,1),v
+! Check if NN is oddif ( MOD(NA,2).NE.0 ) then    write(errmsg,'(A,I0,A)') 'Error: N = ', NA, ' is odd. Please make it even.'    LOG(trim(errmsg))    stopendif,V
+ NA = 24,,V
+! Zone 2 (inner zone),V
+t,v
+dth = 2d0*PI / dble(NN)  ! increment angle between nodes,V
+N,v
+#ifdef LOGSTATUS    call PRINTREAL(dble(jn),2*NN,4,1)#endif,V
+, corner_nodes,v
+! Declare corner nodes,V
+corner_nodes = (/ floor(dble(NN/2d0)) + 1, NN + 2 /),V
+double_nodes = (/ floor(dble(NN/2d0)) + 1, floor(dble(NN/2d0)) + 2, NN + 2, 1 /),V
+integer, dimension(4) :: double_nodes,V
+, sig,v
+),v
+(2,v
+bell-action ,v
+set-option -g bell-action visual,V
+\,v
+! Write interior node locations as (x,y) pairsoutfile = 'interior_nodes.dat'call WRITEREAL( (/ xin, yin /), NY*NX,2,outfile,0,1)! Write (xo,yo) locations and force strengths to file (second col is null)outfile = 'forces.dat'call WRITEREAL( (/   xo, yo  /), 1,2,outfile,0,1)call WRITEREAL( (/ -Ios /), 1,2,outfile,0,2)! Need boundary conditions for "knowns" and key to X vectoroutfile = 'boundary_conditions.dat'call WRITEREAL(BC,NN,2,outfile,0,1)! Unknowns (mixture of dUdn and U), use BC(:,1) as keyoutfile = 'boundary_solution.dat'call WRITEREAL((/ U, dUdn /),NN,2,outfile,0,1)! Known interior solutionoutfile = 'interior_solution.dat'call WRITEREAL((/ Uin, dUindx, dUindy /), &                  NY*NX,3,outfile,0,1)#ifdef LOGSTATUS    outfile = 'A.dat'    call WRITEREAL(A,NN,NN,outfile,0,1)    outfile = 'B.dat'    call WRITEREAL(B,NN,NN,outfile,0,1)    outfile = 'Ap.dat'    call WRITEREAL(Ap,NN,NN,outfile,0,1)    outfile = 'Fp.dat'    call WRITEREAL(Fp,NN,1,outfile,0,1)    LOG('Moving .dat files to ./output/ directory')#endif,V
+real(8), dimension(:) :: sig,V
+,,v
+(,v
+! ! ** METHOD I ** from notes ! do l = 1,NE  ! Loop over elements!     xl = xn(l,:)    ! local node coordinates (end points of element l)!     yl = yn(l,:)!     jl = jn(l,:)    ! global node numbers    (end points of element l)!!     do k = 1,M  ! Loop over Gauss points!         ! Basis functions!         phi(1) = (1d0 - xi(k)) / 2d0!         phi(2) = (1d0 + xi(k)) / 2d0!!         ! (x,y) location of Gauss point!         xs = xl(1)*phi(1) + xl(2)*phi(2)!         ys = yl(1)*phi(1) + yl(2)*phi(2)!!         do i = 1,NN      ! Loop over nodes!             ! if node i is in current element!             if (i.NE.jl(1) .AND. i.NE.jl(2)) then!                 ! distance from node i to Gauss point!                 !   [xy]n(i,1) gives end point 1 of element i == node i!                 ri = DIST(xs,ys, xn(i,1),yn(i,1))!                 dridn = ( (yl(2) - yl(1))*(xs - xn(i,1)) &!                         - (xl(2) - xl(1))*(ys - yn(i,1)) ) / (dse(l) * ri)!!                 ! Green's function and it's derivative!                 Gi = -log(ri)!                 dGidn = -(1d0/ri) * dridn!!                 ! Populate matrices!                 do j = 1,2!                     ! Influence of node i on element j!                     A(i,jl(j)) = A(i,jl(j)) + phi(j)*dGidn* (dse(l)/2d0) * Wk(k)!                     B(i,jl(j)) = B(i,jl(j)) + phi(j)* Gi  * (dse(l)/2d0) * Wk(k)!                 enddo!             endif!         enddo ! nodes!     enddo ! Gauss pts!!     ! integrate singularity analytically!     call ANALYTIC(A,B,dse(l),jl,alpha)!! enddo ! elements!! #ifdef USE_FORCING! do i = 1,NN     ! Loop over nodes!     ! Calculate forcing term influence!     ! Distance from forcing point to node!     ri = DIST(xo,yo, xn(i,1),yn(i,1))!     F(i) = - Ios * log(ri)! enddo! #endif! !--------------- end Method I,V
+R,v
+&,v
+ (or outside),v
+    ,v
+1,v
+jn(1:NN,3) = 1                  ! LHS is region 1jn(1:NN,4) = 0                  ! RHS is region 0 (or outside),V
+  ! implied DO loop,v
+  ! circular geometry means last node meets first,v
+jn(1:NN,1) = (/ (i, i=1,NN) /)  ! implied DO loopjn(1:NN,2) = cshift(jn(:,1),1)  ! circular geometry means last node meets first,V
+:,v
+theta = 0d0              ! initial angle,V
+do i = 1,NN    xn(i) = a*cos(theta)    yn(i) = b*sin(theta)    theta = theta + dthenddo,V
+ a = 1d0,,V
+! Global node numbersjn(:,1) = (/ (i, i=1,NN) /)  ! implied DO loopjn(:,2) = cshift(jn(:,1),1)  ! circular geometry means last node meets first! Build bottom half of circledo i = floor(dble(corner_nodes(1))+1),NN    xn(i) = R*cos(theta)    yn(i) = R*sin(theta)    theta = theta + dthenddo,V
+! NOTE: This scheme doesn't work for odd numbers of nodes...dx = 2d0*R / (dble(corner_nodes(1)) - 1d0)xx = R! Simple line across x-axisdo i = 1,floor(dble(corner_nodes(1)))    xn(i) = xx    yn(i) = 0d0    xx = xx - dxenddodth = PI / (dble(corner_nodes(1)) - 1d0)  ! increment angle between nodestheta = PI + dth                          ! initial angle,V
+!===============================================================================!       Create Geometry of semi-circular plate!===============================================================================,V
+!===============================================================================!       Create Geometry of semi-circular plate!===============================================================================!===============================================================================,V
+!===============================================================================!       Create Geometry of circular plate!===============================================================================theta = 0d0              ! initial angledth = 2d0*PI / dble(NN)  ! increment angle between nodesdo i = 1,NN    xn(i) = R*cos(theta)    yn(i) = R*sin(theta)    theta = theta + dthenddo! Global node numbersjn(:,1) = (/ (i, i=1,NN) /)  ! implied DO loopjn(:,2) = cshift(jn(:,1),1)  ! circular geometry means last node meets first,V
+, tag,v
+PRIVATE, ,v
+! Define PI real(8), PRIVATE, parameter :: PI = 3.1415926535897932 ,V
++NC,v
+! Create line from source to cornercall LINSPACE(xlin, xo, 1d0)ylin = yo/(1d0-xo) * (1 - xlin)! Append line points to rest of interior solutionxin(NX*NY+1:NX*NY+NC) = xlinyin(NX*NY+1:NX*NY+NC) = ylin,V
+allocate(xlin(NC),ylin(NC))xlin(:) = 0d0; ylin(:) = 0d0,V
+xlin,ylin,v
+, xlin,ylin,v
+(1:NY*NX),v
+(1:NY*NX) ,v
+! Write interior LINE node locations as (x,y) pairsoutfile = 'interior_line.dat'call WRITEREAL( (/ xin(NY*NX+1:NY*NX+NC), yin(NY*NX+1:NY*NX+NC) /), &                   NC,2,outfile,0,1),V
+! Known interior line solutionoutfile = 'interior_line_solution.dat'call WRITEREAL((/ Uin(NY*NX+1:NY*NX+NC), dUindx(NY*NX+1:NY*NX+NC), &                  dUindy(NY*NX+1:NY*NX+NC) /), NC,3,outfile,0,1),V
+tag = '_nosc',V
+endif,V
+if (special_corners) then    tag = '_sc'else,V
+if (special_corners) then    ! Explicitly enforce Type I or Type II element BC at double corner nodes    Ap(1,:) = 0d0    Ap(1,1) = 1d0    Fp(1) = 0d0     ! U(1) == U(26) explicit condition    Ap(13,:) = 0d0    Ap(13,13) = 1d0    Fp(13) = 0d0    ! U(13) == U(14) explicit condition    ! j = 1    ! do while (j < size(double_nodes,1))  ! loop over each corner node index    !     i = double_nodes(j)    !     Ap(i,:) = 0d0     !     if (BC(i,1) .EQ. 1d0) then    !         Ap(i,i) = 1d0    !         Fp(i) = Ios    !     else if (BC(i,1) .EQ. 2d0) then    !         Ap(i,i) = 1d0    !         Fp(i) = Jos    !     endif    !     j = j + 1    ! enddoendif,V
+! If using special corners treatment, force double nodes properlyif (special_corners) then    BC( 1,:) = (/ 2d0, Jos * sin(PI*xn(jn( 1,1))/2d0) /) ! Type II    BC(13,:) = (/ 2d0, Jos * sin(PI*xn(jn(13,1))/2d0) /) ! Type II    BC(14,:) = (/ 1d0, 0d0 /)                            ! Type I    BC(26,:) = (/ 1d0, 0d0 /)                            ! Type Iendif,V
+#ifdef LOGSTATUSif (special_corners) then    LOG('Corners check. These should == 0:')    print *, alpha(corner_nodes(1)) - alpha(corner_nodes(1)+1)    print *, alpha(corner_nodes(2)) - alpha(1)endif#endif,V
+if (special_corners) then    j = 1   ! element counter    do i = 2,NN-1         ! loop over nodes        alpha(i) = CALC_ALPHA(shat(j,:), shat(j+1,:))        if (.NOT. any(i.EQ.corner_nodes)) then  ! i.e. if j+1 is not a corner            j = j + 1        endif    enddo    ! First/last nodes are double nodes    alpha(1) = CALC_ALPHA(shat(NE,:), shat(1,:))    alpha(NN) = alpha(1)else,V
+#ifdef LOGSTATUS! NOTE: Nodes 14 and 26 are "double nodes", and their (x,y) values should!   be equal to those of (x,y) 13 and 1, respectivelyif (special_corners) then    LOG('Node check. These should == 0:')    print *, (xn(corner_nodes(1)) - xn(corner_nodes(1)+1)), &             (yn(corner_nodes(1)) - yn(corner_nodes(1)+1))    print *, (xn(1) - xn(NN)), (yn(1) - yn(NN))endif#endif,V
+endif ,V
+! If corners are treated specially, need to redefine incidence listif (special_corners) then    ! Need smaller dth, and theta starts at PI to create double nodes    dth = PI / (dble(corner_nodes(1)) - 1d0)  ! increment angle between nodes    theta = PI                                ! initial angle    ! Global node numbers    i = 1   ! node counter    j = 1   ! element counter    do while (j.LE.NE)         jn(j,1) = i        if (any(i+1.EQ.corner_nodes)) then            i = i + 2   ! skip "double node" element        else            i = i + 1        endif        j = j + 1    enddo    jn(:,2) = jn(:,1) + 1! if there are no special cornerselse,V
+! Augment node number to use double nodes at corners,V
+if (special_corners) then    NN = NN + 2endif,V
+special_corners,v
+logical special_corners,V
+! Allocate and assign Gauss pts. and weightsallocate(xi(M),Wk(M))if ( M.eq.2 ) then    ! Gauss points (hard code 2 points)    xi = (/ -1d0/sqrt(3d0), 1d0/sqrt(3d0) /)    ! Gauss weights (hard code)    Wk = (/ 1d0, 1d0 /)elseif (M.eq.4) then    ! Gauss points (hard code 4 points)    xi = (/ -(1d0/35d0)*sqrt(525d0 + 70d0*sqrt(30d0)), &            -(1d0/35d0)*sqrt(525d0 - 70d0*sqrt(30d0)), &             (1d0/35d0)*sqrt(525d0 - 70d0*sqrt(30d0)), &             (1d0/35d0)*sqrt(525d0 + 70d0*sqrt(30d0))  /)    ! Gauss weights (hard code)    Wk = (/ (1d0/36d0)*(18d0 - sqrt(30d0)), &            (1d0/36d0)*(18d0 + sqrt(30d0)), &            (1d0/36d0)*(18d0 + sqrt(30d0)), &            (1d0/36d0)*(18d0 - sqrt(30d0)) /)else    write(errmsg,"(I2,A)") M,' number of Gauss points is not valid! Terminating.'    LOG(trim(errmsg))endif,V
+! Allocate and assign Gauss pts. and weightsallocate(xi(M),Wk(M))call LGWT(M,-1d0,1d0,xi,Wk),V
+ NC = 1000   ! number of points on line from source to corner,V
+ special_corners = .TRUE.,V
+$J_s$			& advance coefficient, $J_s \equiv V_s / nD = \pi \lambda$	& \\,v
+Eq.,v
+Eqns.\,v
+.,v
