@@ -1,5 +1,5 @@
 #~/.inputrc
-# vim:set ft=sh syntax=sh
+# vim: set ft=sh syntax=sh:
 #==============================================================================
 #    File: ~/.inputrc
 # Created: 03/12/15
@@ -9,27 +9,33 @@
 #==============================================================================
 
 # NOTE: These maps require `set -o vi' in .bashrc in order to work!!!
+$if mode=vi
+  #============================================================================
+  #      Keymaps for vi-insert mode
+  #============================================================================
+  set keymap vi-insert
 
-#==============================================================================
-#      Keymaps for vi-insert mode
-#==============================================================================
-set keymap vi-insert
+  # Set UP and DOWN arrows to incremental history search
+  "\e[A":history-search-backward
+  "\e[B":history-search-forward
 
-# Set UP and DOWN arrows to incremental history search (based on what is typed)
-"\e[A":history-search-backward
-"\e[B":history-search-forward
+  #============================================================================
+  #      Keymaps for vi-command mode
+  #============================================================================
+  set keymap vi-command
 
-#==============================================================================
-#      Keymaps for vi-command mode
-#==============================================================================
-set keymap vi-command
+  # Use j and k for history search
+  "k": history-search-backward
+  "j": history-search-forward
 
-# Use j and k for history search
-"k": history-search-backward
-"j": history-search-forward
+  # Cycle through completions
+  "\C-a": menu-complete
 
-# Cycle through completions
-"\C-a": menu-complete
+  # Jump to beginning or end of history
+  "gg": beginning-of-history
+  "G": end-of-history
+
+$endif
 
 #==============================================================================
 #==============================================================================

@@ -5,6 +5,7 @@ let g:tex_stylish=1
 setlocal tabstop=2            " tabs every 2 spaces
 setlocal softtabstop=2        " let backspace delete indent
 setlocal shiftwidth=2
+setlocal foldmethod=marker    " fold between {{{ }}} comments
 
 " wrap \left( \right) around visually selected text
 vmap <buffer> sp "zdi\left(<C-R>z\right)<Esc> 
