@@ -8,9 +8,9 @@
 # Description: Contains aliases and simple functions for use with the bash shell
 #==============================================================================
 
-alias ep='mvim -v ~/.bash_profile'    # edit profile (loaded with login)
-alias erc='mvim -v ~/.bashrc'         # edit rc file (loaded with bash)
-alias ea='mvim -v ~/.bash_aliases'    # edit aliases (loaded after rc)
+alias ep='vim -v ~/.bash_profile'    # edit profile (loaded with login)
+alias erc='vim -v ~/.bashrc'         # edit rc file (loaded with bash)
+alias ea='vim -v ~/.bash_aliases'    # edit aliases (loaded after rc)
 alias rp='source ~/.bash_profile'   # reload profile
 alias rrc='source ~/.bashrc'        # reload JUST rc file (more common)
 
@@ -86,7 +86,7 @@ alias df='df -kTh'
 alias du='du -kh'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
-alias gcc='gcc-4.9'
+alias gcc='gcc-5'
 alias grep='grep --color=auto'
 alias h='history'
 alias j='jobs -l'
@@ -95,8 +95,8 @@ alias lf="ls -l | grep -v '^d'"
 alias lt='tree -C'
 alias mkdir='mkdir -p'
 alias mv='mv -i'
-alias mygcc='gcc -Wall -pedantic -std=c99'
-alias mygfortran='gfortran -cpp -Wall -pedantic -std=f95 -fbounds-check \
+alias mygcc='gcc-5 -Wall -pedantic -std=c99'
+alias mygfortran='gfortran-5 -cpp -Wall -pedantic -std=f95 -fbounds-check \
                   -ffree-line-length-0 -fall-intrinsics'
 alias r='rlogin'
 alias rm='rm -i'
@@ -144,7 +144,7 @@ alias .4='cd ../../../../'
 # Homebrew update all things
 brewup()
 {
-    brew prune && brew cleanup && brew update && brew upgrade --all
+    brew prune && brew update && brew cleanup && brew upgrade --all 
 }
 
 # vim with server (only for LaTeX really)

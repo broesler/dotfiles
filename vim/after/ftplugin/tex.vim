@@ -74,7 +74,7 @@ function! LatexMakeLatexmk()
 endfunction
 
 " no ! on silent to display error message still
-nnoremap <buffer> <Leader>L :silent call LatexMakeLatexmk()<CR>
+nnoremap <buffer> <Leader>M :silent call LatexMakeLatexmk()<CR>
 
 " Jump to PDF in Skim (for LaTeX files with synctex)
 function! JumpToSkim()

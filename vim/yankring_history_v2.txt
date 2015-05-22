@@ -1,100 +1,100 @@
-48,v
-dth = 2d0*PI / dble(NA)  ! increment angle between nodes,V
-,V
- NE = 24,,V
-*,v
-2,v
-NE, ,v
-4,v
-     ,v
-NA+NB,v
-yn,v
-(/ xn,v
-call WRITEREAL( (/ xn, yn /), NA+NB,2,outfile,0,1),V
-+,v
-},v
-{\color{red},v
-0.050.9,v
-~,v
-equation,v
-eq:pin,v
-sec:load_measurement,v
+m,v
+NNMabI\\,1
  ,v
-The,v
-\CRV ,v
-size(xn,1),v
-! Check if NN is oddif ( MOD(NA,2).NE.0 ) then    write(errmsg,'(A,I0,A)') 'Error: N = ', NA, ' is odd. Please make it even.'    LOG(trim(errmsg))    stopendif,V
- NA = 24,,V
-! Zone 2 (inner zone),V
-t,v
-dth = 2d0*PI / dble(NN)  ! increment angle between nodes,V
+j,v
+,V
+ \\,v
+\begin{center},V
+\end{center},V
+N_A &= 24 \\N_B &= 24 \\M &= 4 \\a &= 0.5 \\b &= 1.5 \\I &= 1 \\\sigi &= 1.5 \\\sigii &= 0.5,v
 N,v
-#ifdef LOGSTATUS    call PRINTREAL(dble(jn),2*NN,4,1)#endif,V
-, corner_nodes,v
-! Declare corner nodes,V
-corner_nodes = (/ floor(dble(NN/2d0)) + 1, NN + 2 /),V
-double_nodes = (/ floor(dble(NN/2d0)) + 1, floor(dble(NN/2d0)) + 2, NN + 2, 1 /),V
-integer, dimension(4) :: double_nodes,V
-, sig,v
-),v
-(2,v
-bell-action ,v
-set-option -g bell-action visual,V
+firsthline,v
+  \firsthline,V
+centering,v
+align,v
+\label{eq:phi},v
+eq:phi,v
+      ,v
+r,v
+    Br\cct + C \frac{1}{r} \cct & \text{if } a < r \le b,V
+& \text{if } r \le a \\,v
+\ppx{\Phi}{r} =,v
+equation,v
+ing a boundary element method ,v
+is solved us,v
+fig:contour1,v
+fig:nodesI,v
+pcolor1,v
+ compared to the analytic solution,v
+outer,v
+Gradient of interior nodes, plotted on top of contours of interior values of $\Phi$.,v
+Nodal values of $\Phi$ and $\ppx{\Phi}{n}$ on the outer boundary (Region I).,v
+Boundary nodes and pcolor plot of interior values of $\Phi$. Boundary element values of $\partial \Phi / \partial n$ are shown with vectors.,v
+BEM_soln_nosc_2Dplate_gradient.pdf,v
+BEM_soln_lineplot_I.pdf,v
+BEM_soln_nosc_2Dplate_pcolor.pdf,v
+\clearpage,V
+\section*{Solution without special treatment of corners},V
+f,v
+b,v
 \,v
-! Write interior node locations as (x,y) pairsoutfile = 'interior_nodes.dat'call WRITEREAL( (/ xin, yin /), NY*NX,2,outfile,0,1)! Write (xo,yo) locations and force strengths to file (second col is null)outfile = 'forces.dat'call WRITEREAL( (/   xo, yo  /), 1,2,outfile,0,1)call WRITEREAL( (/ -Ios /), 1,2,outfile,0,2)! Need boundary conditions for "knowns" and key to X vectoroutfile = 'boundary_conditions.dat'call WRITEREAL(BC,NN,2,outfile,0,1)! Unknowns (mixture of dUdn and U), use BC(:,1) as keyoutfile = 'boundary_solution.dat'call WRITEREAL((/ U, dUdn /),NN,2,outfile,0,1)! Known interior solutionoutfile = 'interior_solution.dat'call WRITEREAL((/ Uin, dUindx, dUindy /), &                  NY*NX,3,outfile,0,1)#ifdef LOGSTATUS    outfile = 'A.dat'    call WRITEREAL(A,NN,NN,outfile,0,1)    outfile = 'B.dat'    call WRITEREAL(B,NN,NN,outfile,0,1)    outfile = 'Ap.dat'    call WRITEREAL(Ap,NN,NN,outfile,0,1)    outfile = 'Fp.dat'    call WRITEREAL(Fp,NN,1,outfile,0,1)    LOG('Moving .dat files to ./output/ directory')#endif,V
-real(8), dimension(:) :: sig,V
-,,v
-(,v
-! ! ** METHOD I ** from notes ! do l = 1,NE  ! Loop over elements!     xl = xn(l,:)    ! local node coordinates (end points of element l)!     yl = yn(l,:)!     jl = jn(l,:)    ! global node numbers    (end points of element l)!!     do k = 1,M  ! Loop over Gauss points!         ! Basis functions!         phi(1) = (1d0 - xi(k)) / 2d0!         phi(2) = (1d0 + xi(k)) / 2d0!!         ! (x,y) location of Gauss point!         xs = xl(1)*phi(1) + xl(2)*phi(2)!         ys = yl(1)*phi(1) + yl(2)*phi(2)!!         do i = 1,NN      ! Loop over nodes!             ! if node i is in current element!             if (i.NE.jl(1) .AND. i.NE.jl(2)) then!                 ! distance from node i to Gauss point!                 !   [xy]n(i,1) gives end point 1 of element i == node i!                 ri = DIST(xs,ys, xn(i,1),yn(i,1))!                 dridn = ( (yl(2) - yl(1))*(xs - xn(i,1)) &!                         - (xl(2) - xl(1))*(ys - yn(i,1)) ) / (dse(l) * ri)!!                 ! Green's function and it's derivative!                 Gi = -log(ri)!                 dGidn = -(1d0/ri) * dridn!!                 ! Populate matrices!                 do j = 1,2!                     ! Influence of node i on element j!                     A(i,jl(j)) = A(i,jl(j)) + phi(j)*dGidn* (dse(l)/2d0) * Wk(k)!                     B(i,jl(j)) = B(i,jl(j)) + phi(j)* Gi  * (dse(l)/2d0) * Wk(k)!                 enddo!             endif!         enddo ! nodes!     enddo ! Gauss pts!!     ! integrate singularity analytically!     call ANALYTIC(A,B,dse(l),jl,alpha)!! enddo ! elements!! #ifdef USE_FORCING! do i = 1,NN     ! Loop over nodes!     ! Calculate forcing term influence!     ! Distance from forcing point to node!     ri = DIST(xo,yo, xn(i,1),yn(i,1))!     F(i) = - Ios * log(ri)! enddo! #endif! !--------------- end Method I,V
-R,v
-&,v
- (or outside),v
-    ,v
+%,v
+% The solution to the governing equation%   $$ \nabla^2 \Phi = -\frac{I}{\sigma}\delta(x_o,y_o) $$% with boundary conditions defined as% \begin{align*}%   \text{Nodes \{2--11\}} \quad & \ppx{\Phi}{n} = \frac{J}{\sigma}\sin\(\frac{\pi x}{2}\) \\%   \text{Nodes \{1, 12--24\}} \quad & \Phi = 0% \end{align*}% on a 2D semi-circular plate is shown in Figures~\ref{fig:pcolor1} and \ref{fig:contour1}. Figure~\ref{fig:line1} shows a line plot of the boundary values of each node. These figures have \emph{no} special treatment of the corner nodes. Figures~\ref{fig:pcolor2} and~\ref{fig:line2} show the solution \emph{with} special corner treatment. Figure~\ref{fig:scline} shows values of $\Phi$ on a line connecting the source point $(x_o,y_o)$ and the corner (1,0). ,V
+set,v
+[1.5ex],v
++ ,v
+a^2 (\sigi - \sigii) b^2(\sigi + \sigii),v
 1,v
-jn(1:NN,3) = 1                  ! LHS is region 1jn(1:NN,4) = 0                  ! RHS is region 0 (or outside),V
-  ! implied DO loop,v
-  ! circular geometry means last node meets first,v
-jn(1:NN,1) = (/ (i, i=1,NN) /)  ! implied DO loopjn(1:NN,2) = cshift(jn(:,1),1)  ! circular geometry means last node meets first,V
-:,v
-theta = 0d0              ! initial angle,V
-do i = 1,NN    xn(i) = a*cos(theta)    yn(i) = b*sin(theta)    theta = theta + dthenddo,V
- a = 1d0,,V
-! Global node numbersjn(:,1) = (/ (i, i=1,NN) /)  ! implied DO loopjn(:,2) = cshift(jn(:,1),1)  ! circular geometry means last node meets first! Build bottom half of circledo i = floor(dble(corner_nodes(1))+1),NN    xn(i) = R*cos(theta)    yn(i) = R*sin(theta)    theta = theta + dthenddo,V
-! NOTE: This scheme doesn't work for odd numbers of nodes...dx = 2d0*R / (dble(corner_nodes(1)) - 1d0)xx = R! Simple line across x-axisdo i = 1,floor(dble(corner_nodes(1)))    xn(i) = xx    yn(i) = 0d0    xx = xx - dxenddodth = PI / (dble(corner_nodes(1)) - 1d0)  ! increment angle between nodestheta = PI + dth                          ! initial angle,V
-!===============================================================================!       Create Geometry of semi-circular plate!===============================================================================,V
-!===============================================================================!       Create Geometry of semi-circular plate!===============================================================================!===============================================================================,V
-!===============================================================================!       Create Geometry of circular plate!===============================================================================theta = 0d0              ! initial angledth = 2d0*PI / dble(NN)  ! increment angle between nodesdo i = 1,NN    xn(i) = R*cos(theta)    yn(i) = R*sin(theta)    theta = theta + dthenddo! Global node numbersjn(:,1) = (/ (i, i=1,NN) /)  ! implied DO loopjn(:,2) = cshift(jn(:,1),1)  ! circular geometry means last node meets first,V
-, tag,v
-PRIVATE, ,v
-! Define PI real(8), PRIVATE, parameter :: PI = 3.1415926535897932 ,V
-+NC,v
-! Create line from source to cornercall LINSPACE(xlin, xo, 1d0)ylin = yo/(1d0-xo) * (1 - xlin)! Append line points to rest of interior solutionxin(NX*NY+1:NX*NY+NC) = xlinyin(NX*NY+1:NX*NY+NC) = ylin,V
-allocate(xlin(NC),ylin(NC))xlin(:) = 0d0; ylin(:) = 0d0,V
-xlin,ylin,v
-, xlin,ylin,v
-(1:NY*NX),v
-(1:NY*NX) ,v
-! Write interior LINE node locations as (x,y) pairsoutfile = 'interior_line.dat'call WRITEREAL( (/ xin(NY*NX+1:NY*NX+NC), yin(NY*NX+1:NY*NX+NC) /), &                   NC,2,outfile,0,1),V
-! Known interior line solutionoutfile = 'interior_line_solution.dat'call WRITEREAL((/ Uin(NY*NX+1:NY*NX+NC), dUindx(NY*NX+1:NY*NX+NC), &                  dUindy(NY*NX+1:NY*NX+NC) /), NC,3,outfile,0,1),V
-tag = '_nosc',V
-endif,V
-if (special_corners) then    tag = '_sc'else,V
-if (special_corners) then    ! Explicitly enforce Type I or Type II element BC at double corner nodes    Ap(1,:) = 0d0    Ap(1,1) = 1d0    Fp(1) = 0d0     ! U(1) == U(26) explicit condition    Ap(13,:) = 0d0    Ap(13,13) = 1d0    Fp(13) = 0d0    ! U(13) == U(14) explicit condition    ! j = 1    ! do while (j < size(double_nodes,1))  ! loop over each corner node index    !     i = double_nodes(j)    !     Ap(i,:) = 0d0     !     if (BC(i,1) .EQ. 1d0) then    !         Ap(i,i) = 1d0    !         Fp(i) = Ios    !     else if (BC(i,1) .EQ. 2d0) then    !         Ap(i,i) = 1d0    !         Fp(i) = Jos    !     endif    !     j = j + 1    ! enddoendif,V
-! If using special corners treatment, force double nodes properlyif (special_corners) then    BC( 1,:) = (/ 2d0, Jos * sin(PI*xn(jn( 1,1))/2d0) /) ! Type II    BC(13,:) = (/ 2d0, Jos * sin(PI*xn(jn(13,1))/2d0) /) ! Type II    BC(14,:) = (/ 1d0, 0d0 /)                            ! Type I    BC(26,:) = (/ 1d0, 0d0 /)                            ! Type Iendif,V
-#ifdef LOGSTATUSif (special_corners) then    LOG('Corners check. These should == 0:')    print *, alpha(corner_nodes(1)) - alpha(corner_nodes(1)+1)    print *, alpha(corner_nodes(2)) - alpha(1)endif#endif,V
-if (special_corners) then    j = 1   ! element counter    do i = 2,NN-1         ! loop over nodes        alpha(i) = CALC_ALPHA(shat(j,:), shat(j+1,:))        if (.NOT. any(i.EQ.corner_nodes)) then  ! i.e. if j+1 is not a corner            j = j + 1        endif    enddo    ! First/last nodes are double nodes    alpha(1) = CALC_ALPHA(shat(NE,:), shat(1,:))    alpha(NN) = alpha(1)else,V
-#ifdef LOGSTATUS! NOTE: Nodes 14 and 26 are "double nodes", and their (x,y) values should!   be equal to those of (x,y) 13 and 1, respectivelyif (special_corners) then    LOG('Node check. These should == 0:')    print *, (xn(corner_nodes(1)) - xn(corner_nodes(1)+1)), &             (yn(corner_nodes(1)) - yn(corner_nodes(1)+1))    print *, (xn(1) - xn(NN)), (yn(1) - yn(NN))endif#endif,V
-endif ,V
-! If corners are treated specially, need to redefine incidence listif (special_corners) then    ! Need smaller dth, and theta starts at PI to create double nodes    dth = PI / (dble(corner_nodes(1)) - 1d0)  ! increment angle between nodes    theta = PI                                ! initial angle    ! Global node numbers    i = 1   ! node counter    j = 1   ! element counter    do while (j.LE.NE)         jn(j,1) = i        if (any(i+1.EQ.corner_nodes)) then            i = i + 2   ! skip "double node" element        else            i = i + 1        endif        j = j + 1    enddo    jn(:,2) = jn(:,1) + 1! if there are no special cornerselse,V
-! Augment node number to use double nodes at corners,V
-if (special_corners) then    NN = NN + 2endif,V
-special_corners,v
-logical special_corners,V
-! Allocate and assign Gauss pts. and weightsallocate(xi(M),Wk(M))if ( M.eq.2 ) then    ! Gauss points (hard code 2 points)    xi = (/ -1d0/sqrt(3d0), 1d0/sqrt(3d0) /)    ! Gauss weights (hard code)    Wk = (/ 1d0, 1d0 /)elseif (M.eq.4) then    ! Gauss points (hard code 4 points)    xi = (/ -(1d0/35d0)*sqrt(525d0 + 70d0*sqrt(30d0)), &            -(1d0/35d0)*sqrt(525d0 - 70d0*sqrt(30d0)), &             (1d0/35d0)*sqrt(525d0 - 70d0*sqrt(30d0)), &             (1d0/35d0)*sqrt(525d0 + 70d0*sqrt(30d0))  /)    ! Gauss weights (hard code)    Wk = (/ (1d0/36d0)*(18d0 - sqrt(30d0)), &            (1d0/36d0)*(18d0 + sqrt(30d0)), &            (1d0/36d0)*(18d0 + sqrt(30d0)), &            (1d0/36d0)*(18d0 - sqrt(30d0)) /)else    write(errmsg,"(I2,A)") M,' number of Gauss points is not valid! Terminating.'    LOG(trim(errmsg))endif,V
-! Allocate and assign Gauss pts. and weightsallocate(xi(M),Wk(M))call LGWT(M,-1d0,1d0,xi,Wk),V
- NC = 1000   ! number of points on line from source to corner,V
- special_corners = .TRUE.,V
-$J_s$			& advance coefficient, $J_s \equiv V_s / nD = \pi \lambda$	& \\,v
-Eq.,v
-Eqns.\,v
+\sigma_{\mathit{II}},v
+\newcommand{\s1}{\sigma_I},V
+g,v
+i,v
+\newcommand{\sig}{\sigma},V
+},v
+{,v
+\frac{,v
+5,v
 .,v
+\def\arraystreth{1.5},V
+bmatrix,v
+  \def\arraystreth{1.5},V
+        ,v
+e,v
+. Th,v
+=,v
+= I\cct ,v
+\cos\theta,v
+\lstinputlisting[language=c]{../../util/header.h},v
+\Bigg|_{r = a},v
+two regions as,v
+s,v
+&,v
+  \Phi(a) = \Phi(a),V
+2,v
+4,v
+% \begin{table}[H!]%   \setlength{\tabcolsep}{8pt}%   \caption{Nodal values of $\Phi$ and $\partial\Phi/\partial n$ without special treatment of corner nodes.}%   \label{tab:data}%   \begin{center}%     \begin{tabular}{c r r r}%        \firsthline%        \bf{Node} & \multicolumn{1}{c}{$\Phi$} & \multicolumn{1}{c}{$\partial\Phi/\partial n$} \\%        \hline%         1 &  0.0000 & -1.1866 \\%         2 &  0.3953 &  1.9190 \\%         3 &  0.5700 &  1.6825 \\%         4 &  0.5781 &  1.3097 \\%         5 &  0.4865 &  0.8308 \\%         6 &  0.3223 &  0.2846 \\%         7 &  0.1056 & -0.2846 \\%         8 & -0.1259 & -0.8308 \\%         9 & -0.3162 & -1.3097 \\%        10 & -0.4083 & -1.6825 \\%        11 & -0.3242 & -1.9190 \\%        12 &  0.0000 &  1.0058 \\%        13 &  0.0000 &  0.7702 \\%        14 &  0.0000 &  0.2341 \\%        15 &  0.0000 &  0.0185 \\%        16 &  0.0000 & -0.1679 \\%        17 &  0.0000 & -0.3438 \\%        18 &  0.0000 & -0.4939 \\%        19 &  0.0000 & -0.5494 \\%        20 &  0.0000 & -0.5199 \\%        21 &  0.0000 & -0.4959 \\%        22 &  0.0000 & -0.5396 \\%        23 &  0.0000 & -0.6621 \\%        24 &  0.0000 & -1.1837 \\%        \lasthline%     \end{tabular}%   \end{center}% \end{table}% \begin{table}[H!]%   \setlength{\tabcolsep}{8pt}%   \caption{Nodal values of $\Phi$ and $\partial\Phi/\partial n$ with special treatment of corner nodes. Double nodes are marked with an *.}%   \label{tab:data}%   \begin{center}%     \begin{tabular}{c r r r}%        \firsthline%        \bf{Node} & \multicolumn{1}{c}{$\Phi$} & \multicolumn{1}{c}{$\partial\Phi/\partial n$} \\%        \hline%          *1 &  0.0000 &  2.0000 \\                      %          2 &  0.4216 &  1.9319 \\                      %          3 &  0.5741 &  1.7321 \\                      %          4 &  0.5970 &  1.4142 \\                      %          5 &  0.5318 &  1.0000 \\                      %          6 &  0.4010 &  0.5176 \\                      %          7 &  0.2188 &  0.0000 \\                      %          8 &  0.0054 & -0.5176 \\                     %          9 & -0.2023 & -1.0000 \\                    %         10 & -0.3602 & -1.4142 \\                   %         11 & -0.4273 & -1.7321 \\                   %         12 & -0.3547 & -1.9319 \\                   %         *13 &  0.0000 & -2.0000 \\                    %         *14 &  0.0000 &  3.6952 \\                     %         15 &  0.0000 &  0.3448 \\                     %         16 &  0.0000 &  0.2564 \\                     %         17 &  0.0000 & -0.0329 \\                    %         18 &  0.0000 & -0.2229 \\                    %         19 &  0.0000 & -0.4132 \\                    %         20 &  0.0000 & -0.5378 \\                    %         21 &  0.0000 & -0.5387 \\                    %         22 &  0.0000 & -0.5026 \\                    %         23 &  0.0000 & -0.5175 \\                    %         24 &  0.0000 & -0.6998 \\                    %         25 &  0.0000 & -0.7360 \\                    %         *26 &  0.0000 & -4.0475 \\     %        \lasthline%     \end{tabular}%   \end{center}% \end{table},v
+es205_lab2_bem_figs.m,v
+Note: \code{special\_corners} variable changed to \code{.TRUE.} or \code{.FALSE.} to produce corresponding plots.,V
+.f95,v
+corners,v
+% \begin{table}[H!]%   \setlength{\tabcolsep}{8pt}%   \caption{Nodal values of $\Phi$ and $\partial\Phi/\partial n$ without special treatment of corner nodes.}%   \label{tab:data}%   \begin{center}%     \begin{tabular}{c r r r}%        \firsthline%        \bf{Node} & \multicolumn{1}{c}{$\Phi$} & \multicolumn{1}{c}{$\partial\Phi/\partial n$} \\%        \hline%         1 &  0.0000 & -1.1866 \\%         2 &  0.3953 &  1.9190 \\%         3 &  0.5700 &  1.6825 \\%         4 &  0.5781 &  1.3097 \\%         5 &  0.4865 &  0.8308 \\%         6 &  0.3223 &  0.2846 \\%         7 &  0.1056 & -0.2846 \\%         8 & -0.1259 & -0.8308 \\%         9 & -0.3162 & -1.3097 \\%        10 & -0.4083 & -1.6825 \\%        11 & -0.3242 & -1.9190 \\%        12 &  0.0000 &  1.0058 \\%        13 &  0.0000 &  0.7702 \\%        14 &  0.0000 &  0.2341 \\%        15 &  0.0000 &  0.0185 \\%        16 &  0.0000 & -0.1679 \\%        17 &  0.0000 & -0.3438 \\%        18 &  0.0000 & -0.4939 \\%        19 &  0.0000 & -0.5494 \\%        20 &  0.0000 & -0.5199 \\%        21 &  0.0000 & -0.4959 \\%        22 &  0.0000 & -0.5396 \\%        23 &  0.0000 & -0.6621 \\%        24 &  0.0000 & -1.1837 \\%        \lasthline%     \end{tabular}%   \end{center}% \end{table}% \begin{table}[H!]%   \setlength{\tabcolsep}{8pt}%   \caption{Nodal values of $\Phi$ and $\partial\Phi/\partial n$ with special treatment of corner nodes. Double nodes are marked with an *.}%   \label{tab:data}%   \begin{center}%     \begin{tabular}{c r r r}%        \firsthline%        \bf{Node} & \multicolumn{1}{c}{$\Phi$} & \multicolumn{1}{c}{$\partial\Phi/\partial n$} \\%        \hline%          *1 &  0.0000 &  2.0000 \\                      %          2 &  0.4216 &  1.9319 \\                      %          3 &  0.5741 &  1.7321 \\                      %          4 &  0.5970 &  1.4142 \\                      %          5 &  0.5318 &  1.0000 \\                      %          6 &  0.4010 &  0.5176 \\                      %          7 &  0.2188 &  0.0000 \\                      %          8 &  0.0054 & -0.5176 \\                     %          9 & -0.2023 & -1.0000 \\                    %         10 & -0.3602 & -1.4142 \\                   %         11 & -0.4273 & -1.7321 \\                   %         12 & -0.3547 & -1.9319 \\                   %         *13 &  0.0000 & -2.0000 \\                    %         *14 &  0.0000 &  3.6952 \\                     %         15 &  0.0000 &  0.3448 \\                     %         16 &  0.0000 &  0.2564 \\                     %         17 &  0.0000 & -0.0329 \\                    %         18 &  0.0000 & -0.2229 \\                    %         19 &  0.0000 & -0.4132 \\                    %         20 &  0.0000 & -0.5378 \\                    %         21 &  0.0000 & -0.5387 \\                    %         22 &  0.0000 & -0.5026 \\                    %         23 &  0.0000 & -0.5175 \\                    %         24 &  0.0000 & -0.6998 \\                    %         25 &  0.0000 & -0.7360 \\                    %         *26 &  0.0000 & -4.0475 \\     %        \lasthline%     \end{tabular}%   \end{center}% \end{table},V
+\clearpage\section*{Solution with special treatment of corners}\begin{figure}[h!]  \centering  \includegraphics[width=\textwidth]{BEM_soln_sc_2Dplate_pcolor.pdf}  \caption{Boundary nodes and pcolor plot of interior values of $\Phi$. Boundary element values of $\partial \Phi / \partial n$ are shown with vectors.}  \label{fig:pcolor2}\end{figure}\begin{figure}[h!]  \centering  \includegraphics[width=\textwidth]{BEM_soln_sc_2Dplate_gradient.pdf}  \caption{Gradient of interior nodes, plotted on top of contours of interior values of $\Phi$.}  \label{fig:contour2}\end{figure}\clearpage\section*{Comparison of Solutions}\begin{figure}[h!]  \centering  \includegraphics[width=\textwidth]{BEM_soln_nosc_lineplot.pdf}  \caption{No special treatment of corners. Line plot of values of $\Phi$ and $\partial \Phi / \partial n$ at the boundary nodes.}  \label{fig:line1}\end{figure}\begin{figure}[h!]  \centering  \includegraphics[width=\textwidth]{BEM_soln_sc_lineplot.pdf}  \caption{Special treatment of corners. Line plot of values of $\Phi$ and $\partial \Phi / \partial n$ at the boundary nodes.}  \label{fig:line2}\end{figure}\begin{figure}[h!]  \centering  \includegraphics[width=0.7\textwidth]{BEM_soln_source_corner_line.pdf}  \caption{Values of $\Phi$ on a line from the source $(x_o,y_o)$ to the corner (1,0).}  \label{fig:scline}\end{figure},V
+following ,v
+modeshapes,v
+First few vibrational mode shapes of a pinned-pinned bar.,v
+pdf,v
+pinned_bar_modes,v
+be ,v
+can,v
+BEM Solution for Two Region Problem,v
+\section*{BEM Solution for Two Region Problem},V
+ with Corners,v
+BEM with corners,v
+# OPTIMIZATION CAN RUIN printf DEBUGGING!!!,V
+//,1
+    print *, rev_nodes, rev_elements    call PRINTREAL(alpha,1,1,0),V
+FALSE,v
+,,v
+rev_elements, ,v
+),v
+(,v

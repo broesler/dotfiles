@@ -82,6 +82,7 @@ set softtabstop=0   " set to 4 to let backspace delete indent with expandtab
 set shiftwidth=4    " use >>, << for line shifting
 set expandtab       " use spaces instead of tab character (need for Fortran)
 set autoindent      " indent based on filetype
+set modelines=20    " check 20 lines down for a modeline
 
 " set line length marker
 if exists('+colorcolumn')
