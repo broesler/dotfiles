@@ -40,7 +40,7 @@ endif
 nnoremap <Leader>M :silent! make \| redraw!<CR>
 
 " Report warnings as well as errors
-set errorformat=%A%f:%l.%c:,%A%f:%l:,%C,%C%p%*[0123456789^],%Z%trror:\ %m,%Z%tarning:\ %m,%C%.%#
+set errorformat=%A%f:%l:%c:,%A%f:%l:,%C,%C%p%*[0123456789^],%Z%trror:\ %m,%Z%tarning:\ %m,%C%.%#
 
 "==============================================================================
 "==============================================================================
