@@ -14,8 +14,11 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   export ARCHFLAGS="-arch x86_64"
 
   # Ruby setup:
+  [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" 
+
   eval "$(rbenv init -)"
   export PATH="$HOME/.rbenv/shims:$PATH"
+  export PATH="/usr/local/heroku/bin:$PATH"
 
   # Set PATH variable correctly (last line is at front of path)
   export PATH="/usr/texbin:$PATH"                  # Add texbin to path for LaTeX usage
@@ -30,9 +33,6 @@ fi
 
 # ensure tmux uses colors
 export TERM='screen-256color'               
-
-# Load RVM into a shell session *as a function*
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" 
 
 #------------------------------------------------------------------------------
 # If I have my own init file, then use that one, else use the

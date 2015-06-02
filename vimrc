@@ -119,6 +119,14 @@ else
   set clipboard=autoselectplus,exclude:cons\|linux
 endif
 
+" Settings for vimdiff mode
+if &diff
+  windo set wrap
+  set diffopt+=iwhite   " ignore trailing whitespace
+endif
+
+
+
 "------------------------------------------------------------------------------
 "       Autocommands
 "------------------------------------------------------------------------------
@@ -178,18 +186,9 @@ function! SetTermTitle()
   " Set terminal title
   silent execute "!echo -n -e " . "\"\033]0;" . tstr . "\007\""
 endfunction
+
 " Change title when switching between files
 autocmd VimEnter,WinEnter,TabEnter,BufEnter * silent! call SetTermTitle()
-
-" Reset title on vim exit (not needed apparently?)
-" function! ResetTermTitle()
-"     " disable vim's ability to set the title
-"     silent execute "set title t_ts='' t_fs=''"
-"
-"     " and restore it to 'bash'
-"     silent execute "!echo -n -e \"\033]0;bash\007\""
-" endfunction
-" autocmd VimLeave * silent call ResetTermTitle()
 
 "------------------------------------------------------------------------------
 " Auto-update tags file
@@ -294,31 +293,31 @@ inoremap <S-Tab> <C-d>
 " With new window mappings <C-l> no longer redraws...
 nmap <C-q> :redraw!<CR>
 
-" " Jump between tmux and vim windows with <C-[hjkl]>
-" if exists('$TMUX')
-"   function! TmuxOrSplitSwitch(wincmd, tmuxdir)
-"     let previous_winnr = winnr()
-"     silent! execute "wincmd " . a:wincmd
-"     if previous_winnr == winnr()
-"       call system("tmux select-pane -" . a:tmuxdir)
-"       redraw!
-"     endif
-"   endfunction
-"
-"   let previous_title = substitute(system("tmux display-message -p '#{pane_title}'"), '\n', '', '')
-"   let &t_ti = "\<Esc>]2;vim\<Esc>\\" . &t_ti
-"   let &t_te = "\<Esc>]2;". previous_title . "\<Esc>\\" . &t_te
-"
-"   nnoremap <silent> <C-h> :call TmuxOrSplitSwitch('h', 'L')<cr>
-"   nnoremap <silent> <C-j> :call TmuxOrSplitSwitch('j', 'D')<cr>
-"   nnoremap <silent> <C-k> :call TmuxOrSplitSwitch('k', 'U')<cr>
-"   nnoremap <silent> <C-l> :call TmuxOrSplitSwitch('l', 'R')<cr>
-" else
+" Jump between tmux and vim windows with <C-[hjkl]>
+if exists('$TMUX')
+  function! TmuxOrSplitSwitch(wincmd, tmuxdir)
+    let previous_winnr = winnr()
+    silent! execute "wincmd " . a:wincmd
+    if previous_winnr == winnr()
+      call system("tmux select-pane -" . a:tmuxdir)
+      redraw!
+    endif
+  endfunction
+
+  let previous_title = substitute(system("tmux display-message -p '#{pane_title}'"), '\n', '', '')
+  let &t_ti = "\<Esc>]2;vim\<Esc>\\" . &t_ti
+  let &t_te = "\<Esc>]2;". previous_title . "\<Esc>\\" . &t_te
+
+  nnoremap <silent> <C-h> :call TmuxOrSplitSwitch('h', 'L')<cr>
+  nnoremap <silent> <C-j> :call TmuxOrSplitSwitch('j', 'D')<cr>
+  nnoremap <silent> <C-k> :call TmuxOrSplitSwitch('k', 'U')<cr>
+  nnoremap <silent> <C-l> :call TmuxOrSplitSwitch('l', 'R')<cr>
+else
   map <C-h> <C-w>h
   map <C-j> <C-w>j
   map <C-k> <C-w>k
   map <C-l> <C-w>l
-" endif
+endif
 
 " Open/close quickfix window
 nnoremap <silent> <leader>q :copen 10<CR>

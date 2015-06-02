@@ -59,12 +59,6 @@ alias tmux='tmux -2'    # Force tmux to use 256 colors (get solarized right)
 if [[ "$OSTYPE" == "darwin"* ]]; then
   # Set printer options to Duplex Long-Edge-Binding, syntax highlighting on
   lpoptions -d m128_1___thayercups -o Duplex=DuplexNoTumble -o prettyprint
-
-  ### Added by the Heroku Toolbelt
-  export PATH="/usr/local/heroku/bin:$PATH"
-
-  # Add RVM to PATH for scripting
-  export PATH="$PATH:$HOME/.rvm/bin" 
 fi
 
 # Add bash aliases.
