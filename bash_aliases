@@ -65,7 +65,15 @@ alias illustrator='open -a Adobe\ Illustrator'
 # color printing
 lpcolor()
 {
-  lpoptions -d m128_color___thayercups -o Duplex=DuplexNoTumble -o prettyprint
+  lpoptions -d m128_color___thayercups \
+            -o Duplex=DuplexNoTumble \
+            -o prettyprint
+            -o cpi=14 \
+            -o lpi=8 \
+            -o page-top=18 \
+            -o page-right=18 \
+            -o page-bottom=36 \
+            -o page-left=36
   lpr -P m128_color___thayercups $1
 }
 

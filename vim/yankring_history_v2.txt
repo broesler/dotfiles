@@ -1,8 +1,65 @@
- | #(/usr/local/bin/power.sh),v
+Fourier collocation differentiation,v
+Given\begin{equation}  f(x) = e^{\sin x}\end{equation}evaluate $\ddx{f}{x}$ on the interval $\[0,2\pi\]$ using $N$ degrees of freedom. \subsection{Centered finite differences}We approximate the dervative using a first-order centered finite difference\begin{equation}  \ddx{f}{x} \approx \frac{f_{i+1} - f_{i-1}}{2h}\end{equation}In order to enforce periodicity, we assume $f(N+1) = f(1)$.\subsection{Galerkin finite element with linear bases}The Galerkin finite element matrix equation takes the form\begin{equation}\begin{bmatrix} \langle \phi_i \phi_j \rangle \end{bmatrix} \begin{bmatrix} g_j \end{bmatrix} = \begin{bmatrix} \sum_k f_k \langle \ddx{\phi_k}{x} \phi_i \rangle \end{bmatrix}\end{equation}where the inner product of $\phi_i\phi_j$ is a tri-diagonal matrix for linear elements. The diagonal is given by integrating $\phi_i\phi_i$ over the interval $\[0,1\]$\begin{equation}  \int_0^1 x^2 \dx{x} = \frac{x^3}{3}\Bigg|_0^1 = \frac{1}{3}\end{equation}The off-diagonal terms are given by\begin{equation}  \int_0^1 x(1-x) \dx{x} = \frac{x^2}{2} - \frac{x^3}{3}\Bigg|_0^1 = \frac{1}{2} - \frac{1}{3} = \frac{1}{6}\end{equation}\pagebreakThe RHS is a matrix-vector multiplication where the matrix is tridiagonal, with upper diagonal elements given by the inner product of $\ddx{\phi_i}{x} \phi_j$\begin{align}  \int_0^1 \phantom{-}1 \cdot x \dx{x} &= \frac{x^2}{2}\Bigg|_0^1 = \phantom{-}\half  \intertext{and the lower diagonal is given by}  \int_0^1 -1 \cdot x \dx{x} &= \frac{x^2}{2}\Bigg|_0^1 = -\half\end{align}giving the whole matrix equation\begin{equation}  \def\arraystretch{1.5}h \begin{bmatrix}   \frac{1}{3} & \frac{1}{6} &             &             &             & \frac{1}{6} \\  \frac{1}{6} & \frac{1}{3} & \frac{1}{6} &             &             & \\              &             & \ddots      & \ddots      & \ddots      & \\  \frac{1}{6} &             &             & \frac{1}{6} & \frac{1}{3} & \frac{1}{6}\end{bmatrix}\begin{bmatrix} \displaystyle{\ddx{f}{x}_1} \\ \vdots \\ \displaystyle{\ddx{f}{x}_N} \end{bmatrix}=\begin{bmatrix}   \phantom{-}0 & \half & & & -\half \\  -\half & 0 & \half \\         & \ddots & \ddots & \ddots \\  \phantom{-}\half  & & -\half & 0 & \half\end{bmatrix}\begin{bmatrix} f_1 \\ \vdots \\ f_N \end{bmatrix}\end{equation}where the LHS must be weighted by the element size $h$. To enforce periodicity, the corner elements of the matrices must be included. The off-diagonal matrix elements not explicitly specified are zero.,V
+Numerical Differentiation,v
+    if &term =~ '^screen'        set ttymouse=xterm2    endif,v
+    if &term =~ '^screen'        set ttymouse=xterm2    endif,V
+=,v
+clear; clearfigs(); clc;,V
+            -o cpi=14 \            -o lpi=8 \            -o page-top=18 \            -o page-right=18 \            -o page-bottom=36 \            -o page-left=36,v
+            -o cpi=14 \            -o lpi=8 \            -o page-top=18 \            -o page-right=18 \            -o page-bottom=36 \            -o page-left=36,V
+  lpoptions -d m128_1___thayercups \            -o Duplex=DuplexNoTumble \            -o prettyprint \            -o cpi=12 \            -o lpi=8 \            -o page-top=18 \            -o page-right=18 \            -o page-bottom=36 \            -o page-left=36,V
+  lpoptions -d m128_1___thayercups \            -o Duplex=DuplexNoTumble \            -o prettyprint \            -o cpi=12 \            -o lpi=8 \            -o page-top=18 \            -o page-right=18            -o page-bottom=36 \            -o page-left=36,V
+  lpoptions -d m128_1___thayercups \            -o Duplex=DuplexNoTumble \            -o prettyprint \            -o cpi=12 \            -o lpi=8 \            -o page-top=18 \            -o page-right=18            -o page-bottom=36 \            -o page-left=36 \,V
+            -o page-left=36 \,V
+            -o page-right=18,V
+            -o page-top=18 \,V
+36,v
+  lpoptions -d m128_1___thayercups -o Duplex=DuplexNoTumble -o prettyprint,v
+  lpoptions -d m128_1___thayercups -o Duplex=DuplexNoTumble -o prettyprint,V
+/duplex,v
+  lpoptions -p m128_1___thayercups/duplex -o Duplex=DuplexNoTumble -o prettyprint,V
+#-------------------------------------------------------------------------------,V
  ,v
+&,v
+real(8), allocatable, dimension(:,:) :: ,v
+real(8), allocatable, dimension(:) :: ,v
+integer, allocatable, dimension(:,:) :: ,v
+deallocate(xnA, xnB, ynA, ynB, dseA, dseB, alphaA, alphaB, shatA, shatB, &    xi, Wk, AaaI, BaaI, AabI, BabI, AbaI, BbaI, AbbI, BbbI, AbbII, BbbII) ,V
+integer, allocatable, dimension(:,:) :: jnA, jnBreal(8), allocatable, dimension(:) :: xi, Wk, xnA, xnB, ynA, ynB, &    alphaA, alphaB, dseA, dseB, FaI, FbI, FbII, UaI, UbI, qaI, qbI, &    dUdnAI, dUdnBI, dUdnBII, X, Fp, Uin, dUindx, dUindy, xin, yinreal(8), allocatable, dimension(:,:) :: shatA, shatB, AaaI, BaaI, AabI, BabI, &                                                      AbaI, BbaI, AbbI, BbbI, &                                                      AbbII, BbbII, Ap, Apinv,V
+On Wed, Jun 3, 2015 at 10:45 AM, Bernard Roesler <bernard.roesler@gmail.com> wrote:The difference between the main VLM2D_v2_7 folder and the "release" folder is all of the excess NACAXXXX data files. I just cleaned all of that out, and some of the excess comments in the code. The code in each should function identically (if it doesn't for some reason let me know).Do you know how to run a diff of two files/folders in Terminal? If not I can show you the basic way, and a way better method to compare/merge files.On Jun 3, 2015, at 10:31, Nick Laws <laws.nick@gmail.com> wrote:Thanks Bernie, it did work the second time around. Should I be using the version 2_8 in the VLM2D_v2_7_140730 folder? What is the difference between that folder and VLM2D_v2_7_release_150116?On Wed, Jun 3, 2015 at 10:24 AM, Bernard Roesler <bernard.roesler@gmail.com> wrote:I've attached a zipped, cleaned-up version of the VLM2D folder (the zip file is also in the VLM2D google drive folder if you did get access to that).> On Jun 2, 2015, at 21:14, Nick Laws <laws.nick@gmail.com> wrote:>> Hey Bernie, I still can't access the folder. Could you resend the share link (it says I no longer have permission or something like that) and email the latest version to me (in case it doesn't work the second time too)?>> Thanks,>> NIck,V
+From: Nick Laws <laws.nick@gmail.com>Subject: Re: VLM2dDate: June 3, 2015 at 13:33:10 EDTTo: Bernard Roesler <bernard.roesler@gmail.com>Another bullet:	•	adding wake roll up (it looks like now VLM2D convects the wake vortices with the freestream) and I believe that it is necessary to include the induced locations of the vortices to accurately capture dynamic stallI'm going to work on this one right now because it think it will help me understand the code better to figure out how to include this.,V
+set  -g  history-limit 10000     # increase scroll-back historysetw -g  mode-keys vi            # use vim key bindings,v
+,V
+this is some    indented        text!    to try outend,v
+set  -g  history-limit 10000     # increase scroll-back historysetw -g  mode-keys vi            # use vim key bindings,V
+if executable('ag')    set grepprg=ag\ --nogroup\ --nocolor    set grepformat=%f:%l:%mendif,V
+    set clipboard=autoselectplus,exclude:cons\|linux,V
+    set clipboard=unnamedplus,unnamed,exclude:cons\|linux,V
+if !exists(':Ag')    command -nargs=+ -complete=file -bar Ag silent! grep! <args> | cwindowendif,V
+,exclude:cons\|linux,v
+open(8, file='bem_plate.in', status='old', recl=80, delim='APOSTROPHE')read(8, nml=geometry)read(8, nml=interior)close(8),v
+indentedtext!to try outend,v
+indentedtext!to try outend,v
+# *** setw is short for set-window-option ***set  -g  history-limit 10000     # increase scroll-back historysetw -g  mode-keys vi            # use vim key bindingssetw -g  mode-mouse on           # enable mouseset  -g  mouse-resize-pane on    # Allow mouse to resize paneset  -g  m,v
+indentedtext!to try outend,V
+indentedtext!to try outend,v
+#==============================================================================#    File: ~/.tmux.conf# Created: 02/16/15,V
+# use homebrew newer bash version instead of /bin/bash,V
+real(8), parameter :: PI = 3.1415926535897932 ,V
+this is some,V
+! Acknowledgement: I worked with Johnny Sigman!===============================================================================! Acknowledgement: I worked with Johnny Sigman!===============================================================================! Acknowledgement: I worked with Johnny Sigman!===============================================================================,V
+real(8), parameter :: PI = 3.1415926535897932 ,V
+! Define PI ,V
+! Acknowledgement: I worked with Johnny Sigman!===============================================================================,V
+! Define PI real(8), parameter :: PI = 3.1415926535897932 ,V
+    " tmux knows the extended mouse mode,V
+recursively include all directories below the current one for" quick searching, filename completion, etc.set path=.,/usr/include/,/usr/local/include,**" Set interactive shell so :! behaves like bash promptif &diff == 'nodiff'    set shellcmdflag=-icendif" Ensure files are universally readableset encoding=utf-8" Ensure filetypes taken into accountfiletype plugin indent on              "------------------------------------------------------------------------------"       Global Settings"------------------------------------------------------------------------------set autoread        " Auto-read changes made outside of vimset autowrite       " Auto-write changes when switching buffers" load man plugin so manual pages can b,v
+    " " tmux knows the extended mouse mode    " if &term =~ '^screen'    "     set ttymouse=xterm2    " endif,V
+slogical rev_nodes, rev_elementscharacter(300) outfileinteger i, j, k, lreal(8) ri, theta, dth, xx, yy, dx, dy! Allocatablesinteger, allocatable, dimension(:,:) :: jnA, jnBreal(8), allocatable, dimension(:) :: xi, Wk, xnA, xnB, ynA, ynB, &    alphaA, alphaB, dseA, dseB, FaI, ,v
+\[\e[01;32m\],v
+ | #(/usr/local/bin/power.sh),v
 #,v
 # set-option -g status-right '#[fg=green]#H#[default] %m/%d/%y %R | #(/usr/local/bin/power.sh)',V
-\[\e[01;32m\],v
 /usr/sbin/ioreg -l,v
 #[fg=default],v
 yellow,v
@@ -21,7 +78,6 @@ green,v
 ],v
 [,v
 red,v
-,V
   # Load RVM into a shell session *as a function*,V
 # Load RVM into a shell session *as a function*[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" ,V
   export PATH="/usr/local/heroku/bin:$PATH",V
@@ -42,59 +98,3 @@ set-option -g status-right '#[fg=green]#H#[default] %m/%d/%y %R #[fg=red]#(batte
 #(battery discharging)#[default]#(battery charging),v
 # set-option -g status-right '#[fg=green]#H#[default] %m/%d/%y %R #[fg=red]#(battery discharging)#[default]#(battery charging)',V
 # add this string to status-right to show date,time,battery# '#[fg=red]#(battery discharging)#[default]#(battery charging)',V
-# set-option -g status-right '#[fg=green]#H#[default] %m/%d/%y %R #[fg=yellow][#(battery Discharging; battery Charging)]',V
-#[fg=red]#(battery discharging)#[default]#(battery charging),v
-#[fg=yellow][#(battery Discharging; battery Charging)],v
-set-option -g status-right '#[fg=green]#H#[default] %m/%d/%y %R #[fg=yellow][#(battery Discharging; battery Charging)]',V
-/usr/local/bin/,v
-bin/,v
-/usr/local/,v
-~,v
-/usr/local,v
-(,v
-),v
-/usr/local/bin/power.sh,v
-cyan,v
-set-option -g status-right '#[fg=green]#H#[default] %m/%d/%y %R #[fg=yellow][#(/usr/local/bin/power.sh)]',V
-      $0 ~ "CurrentCapacity" {b=$5;nextfile}      END{printf("%.2f%%", b/a * 100)}',v
-%R,v
-%H:%M ,v
-%m/%d/%y %I:%M\ ,v
-#[fg=red]#(battery discharging)#[default]#(battery charging)',V
-# set -g status-left '#[fg=green]#S #[default]',V
-\,v
-#[fg=yellow],v
-#[fg=yellow,v
-Battery: ,v
- #[default] Windows:,v
-%m/%d/%y %I:%M\ #[fg=red]#(battery discharging)#[default]#(battery charging),v
-  set mousehide,V
-" endif,v
-#[fg=blue],v
-#S#[fg=blue],v
-208,v
-d,v
-orange,v
-blue,v
-# is_vim='echo "#{pane_current_command}" | grep -iqE "(^|\/)g?(view|n?vim?)(diff)?$"'# bind -n C-h if-shell "$is_vim" "send-keys C-h" "select-pane -L"# bind -n C-j if-shell "$is_vim" "send-keys C-j" "select-pane -D"# bind -n C-k if-shell "$is_vim" "send-keys C-k" "select-pane -U"# bind -n C-l if-shell "$is_vim" "send-keys C-l" "select-pane -R"# bind -n C-\ if-shell "$is_vim" "send-keys C-\\" "select-pane -l",v
-w,v
-set  -g  mouse-select-pane on    # Allow mouse to select which pane to use,V
-vim: set ft=text syntax=text :,V
-              ",v
-\clearpage\lstinputlisting[language=c]{../../util/header.h},v
-",v
-bem_util,v
-!===============================================================================!    File: bem_util.f95!  Author: Bernie Roesler! Created: 05/07/15!! Description: Utility functions for use with BEM solutions!===============================================================================,V
-\clearpage\lstinputlisting[language=c]{../../util/header.h},V
-.,v
-m,v
-es205_lab2regions_bem_figs,v
-\lstinputlisting[language=matlab]{../es205_lab2regions_bem_figs.m},V
-setlocal tabstop=4setlocal softtabstop=4setlocal shiftwidth=4,v
-"==============================================================================,V
-setlocal cindent        " smarter indenting for C,V
-C,v
-"=============================================================================="       C settings"==============================================================================setlocal iskeyword+=_setlocal cindent        " smarter indenting for Csetlocal expandtabsetlocal tabstop=4setlocal softtabstop=4setlocal shiftwidth=4,V
-#===============================================================================,V
-            !   [xy]n(i,1) gives end point 1 of element i == node i,V
-, only need influence of inner boundary,v
