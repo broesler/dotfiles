@@ -20,7 +20,7 @@ set path=.,/usr/include/,/usr/local/include,**
 
 " Set interactive shell so :! behaves like bash prompt
 if &diff == 'nodiff'
-  set shellcmdflag=-ic
+    set shellcmdflag=-ic
 endif
 
 " Ensure files are universally readable
@@ -86,7 +86,7 @@ set modelines=20    " check 20 lines down for a modeline
 
 " set line length marker
 if exists('+colorcolumn')
-  set colorcolumn=80
+    set colorcolumn=80
 endif
 
 let g:loaded_matchparen=0       " Do not highlight matching parens if == 1
@@ -98,7 +98,11 @@ set backspace=indent,eol,start  " allow backspacing over everything in insert mo
 " Use mouse if it exists
 " In many terminal emulators the mouse works just fine, thus enable it.
 if has('mouse')
-  set mouse=a
+    set mouse=a
+    " tmux knows the extended mouse mode
+    if &term =~ '^screen'
+        set ttymouse=xterm2
+    endif
 endif
 
 " Use the_silver_searcher if available
@@ -109,22 +113,21 @@ endif
 
 " Create :Ag command for using silver searcher in subwindow
 if !exists(':Ag')
-  command -nargs=+ -complete=file -bar Ag silent! grep! <args> | cwindow
+    command -nargs=+ -complete=file -bar Ag silent! grep! <args> | cwindow
 endif
 
 " Use system clipboard properly with +X11 and +clientserver
 if (strlen(v:servername) > 0)
-  set clipboard=unnamedplus,unnamed
+    set clipboard=unnamedplus,unnamed,exclude:cons\|linux
 else
-  set clipboard=autoselectplus,exclude:cons\|linux
+    set clipboard=autoselectplus,exclude:cons\|linux
 endif
 
 " Settings for vimdiff mode
 if &diff
-  windo set wrap
-  set diffopt+=iwhite   " ignore trailing whitespace
+    windo set wrap
+    set diffopt+=iwhite   " ignore trailing whitespace
 endif
-
 
 
 "------------------------------------------------------------------------------
@@ -143,27 +146,27 @@ endif
 " autocmd BufWinEnter ?* silent loadview
 
 augroup quickfix_window
-  au!
-  " Automatically open, but do not go to (if there are errors) the quickfix /
-  " location list window, or close it when is has become empty.
-  " Note: Must allow nesting of autocmds to enable any customizations for quickfix
-  " buffers.
-  " Note: Normally, :cwindow jumps to the quickfix window if the command opens it
-  " (but not if it's already open). However, as part of the autocmd, this doesn't
-  " seem to happen.
-  autocmd QuickFixCmdPost [^l]* nested cwindow
-  autocmd QuickFixCmdPost    l* nested lwindow
+    au!
+    " Automatically open, but do not go to (if there are errors) the quickfix /
+    " location list window, or close it when is has become empty.
+    " Note: Must allow nesting of autocmds to enable any customizations for quickfix
+    " buffers.
+    " Note: Normally, :cwindow jumps to the quickfix window if the command opens it
+    " (but not if it's already open). However, as part of the autocmd, this doesn't
+    " seem to happen.
+    autocmd QuickFixCmdPost [^l]* nested cwindow
+    autocmd QuickFixCmdPost    l* nested lwindow
 
-  " Quickly open/close quickfix and location list
-  au! BufWinEnter quickfix nnoremap <silent> <buffer> q :cclose<cr>:lclose<cr>
+    " Quickly open/close quickfix and location list
+    au! BufWinEnter quickfix nnoremap <silent> <buffer> q :cclose<cr>:lclose<cr>
 augroup END
 
 augroup misc_cmds
-  au!
-  autocmd FileType matlab,sh,markdown set iskeyword+=_
+    au!
+    autocmd FileType matlab,sh,markdown set iskeyword+=_
 
-  " Use K to search vim help for word under cursor only in vim files
-  autocmd FileType vim setlocal keywordprg=:help
+    " Use K to search vim help for word under cursor only in vim files
+    autocmd FileType vim setlocal keywordprg=:help
 augroup END
 
 "--------------------------------------- YankRing.vim Options
@@ -175,16 +178,16 @@ nnoremap <silent> <Leader>yr :YRGetElem<CR>
 "------------------------------------------------------------------------------
 " Set terminal title the hard way (SLOW), use only 80 chars
 function! SetTermTitle()
-  let filename = expand("%:p")
-  let length = strlen(filename)
-  let cols = &columns - 20          " terminal window size
-  if (length < cols)                " show entire path
-      let tstr = filename
-  else                              " not going to use window < 82 cols
-      let tstr = strpart(filename,0,32) . "..." . strpart(filename, length-50)
-  endif
-  " Set terminal title
-  silent execute "!echo -n -e " . "\"\033]0;" . tstr . "\007\""
+    let filename = expand("%:p")
+    let length = strlen(filename)
+    let cols = &columns - 20          " terminal window size
+    if (length < cols)                " show entire path
+        let tstr = filename
+    else                              " not going to use window < 82 cols
+        let tstr = strpart(filename,0,32) . "..." . strpart(filename, length-50)
+    endif
+    " Set terminal title
+    silent execute "!echo -n -e " . "\"\033]0;" . tstr . "\007\""
 endfunction
 
 " Change title when switching between files
@@ -215,12 +218,12 @@ autocmd VimEnter,WinEnter,TabEnter,BufEnter * silent! call SetTermTitle()
 " Incr increments numbers in a column (i.e. in Visual Block mode)
 "   To use: highlight in Visual Block, and press <C-a>
 function! Incr()
-  let a = line('.') - line("'<")
-  let c = virtcol("'<")
-  if a > 0
-    execute 'normal! '.c.'|'.a."\<C-a>"
-  endif
-  normal `<
+    let a = line('.') - line("'<")
+    let c = virtcol("'<")
+    if a > 0
+        execute 'normal! '.c.'|'.a."\<C-a>"
+    endif
+    normal `<
 endfunction
 vnoremap <C-a> :call Incr()<CR>
 
@@ -228,16 +231,16 @@ vnoremap <C-a> :call Incr()<CR>
 " Jump from html class/id tag to definition in linked CSS file
 " use <Leader>] to execute
 function! JumpToCSS()
-  let id_pos = searchpos("id", "nb", line('.'))[1]
-  let class_pos = searchpos("class", "nb", line('.'))[1]
+    let id_pos = searchpos("id", "nb", line('.'))[1]
+    let class_pos = searchpos("class", "nb", line('.'))[1]
 
-  if class_pos > 0 || id_pos > 0
-    if class_pos < id_pos
-      execute ":vim '#".expand('<cword>')."' **/*.css"
-    elseif class_pos > id_pos
-      execute ":vim '.".expand('<cword>')."' **/*.css"
+    if class_pos > 0 || id_pos > 0
+        if class_pos < id_pos
+            execute ":vim '#".expand('<cword>')."' **/*.css"
+        elseif class_pos > id_pos
+            execute ":vim '.".expand('<cword>')."' **/*.css"
+        endif
     endif
-  endif
 endfunction
 
 nnoremap <Leader>] :call JumpToCSS()<CR>
@@ -295,28 +298,28 @@ nmap <C-q> :redraw!<CR>
 
 " Jump between tmux and vim windows with <C-[hjkl]>
 if exists('$TMUX')
-  function! TmuxOrSplitSwitch(wincmd, tmuxdir)
-    let previous_winnr = winnr()
-    silent! execute "wincmd " . a:wincmd
-    if previous_winnr == winnr()
-      call system("tmux select-pane -" . a:tmuxdir)
-      redraw!
-    endif
-  endfunction
+    function! TmuxOrSplitSwitch(wincmd, tmuxdir)
+        let previous_winnr = winnr()
+        silent! execute "wincmd " . a:wincmd
+        if previous_winnr == winnr()
+            call system("tmux select-pane -" . a:tmuxdir)
+            redraw!
+        endif
+    endfunction
 
-  let previous_title = substitute(system("tmux display-message -p '#{pane_title}'"), '\n', '', '')
-  let &t_ti = "\<Esc>]2;vim\<Esc>\\" . &t_ti
-  let &t_te = "\<Esc>]2;". previous_title . "\<Esc>\\" . &t_te
+    let previous_title = substitute(system("tmux display-message -p '#{pane_title}'"), '\n', '', '')
+    let &t_ti = "\<Esc>]2;vim\<Esc>\\" . &t_ti
+    let &t_te = "\<Esc>]2;". previous_title . "\<Esc>\\" . &t_te
 
-  nnoremap <silent> <C-h> :call TmuxOrSplitSwitch('h', 'L')<cr>
-  nnoremap <silent> <C-j> :call TmuxOrSplitSwitch('j', 'D')<cr>
-  nnoremap <silent> <C-k> :call TmuxOrSplitSwitch('k', 'U')<cr>
-  nnoremap <silent> <C-l> :call TmuxOrSplitSwitch('l', 'R')<cr>
+    nnoremap <silent> <C-h> :call TmuxOrSplitSwitch('h', 'L')<cr>
+    nnoremap <silent> <C-j> :call TmuxOrSplitSwitch('j', 'D')<cr>
+    nnoremap <silent> <C-k> :call TmuxOrSplitSwitch('k', 'U')<cr>
+    nnoremap <silent> <C-l> :call TmuxOrSplitSwitch('l', 'R')<cr>
 else
-  map <C-h> <C-w>h
-  map <C-j> <C-w>j
-  map <C-k> <C-w>k
-  map <C-l> <C-w>l
+    map <C-h> <C-w>h
+    map <C-j> <C-w>j
+    map <C-k> <C-w>k
+    map <C-l> <C-w>l
 endif
 
 " Open/close quickfix window
@@ -384,8 +387,8 @@ set statusline+=%<%P                         " file position
 
 " now set it up to change the status line based on mode
 if version >= 700
-  au InsertEnter * hi StatusLine term=reverse ctermfg=green ctermbg=black
-  au InsertLeave * hi StatusLine term=none    ctermfg=none  ctermbg=none
+    au InsertEnter * hi StatusLine term=reverse ctermfg=green ctermbg=black
+    au InsertLeave * hi StatusLine term=none    ctermfg=none  ctermbg=none
 endif
 
 

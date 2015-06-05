@@ -58,7 +58,15 @@ alias tmux='tmux -2'    # Force tmux to use 256 colors (get solarized right)
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
   # Set printer options to Duplex Long-Edge-Binding, syntax highlighting on
-  lpoptions -d m128_1___thayercups -o Duplex=DuplexNoTumble -o prettyprint
+  lpoptions -d m128_1___thayercups \
+            -o Duplex=DuplexNoTumble \
+            -o prettyprint \
+            -o cpi=14 \
+            -o lpi=8 \
+            -o page-top=18 \
+            -o page-right=18 \
+            -o page-bottom=36 \
+            -o page-left=36
 fi
 
 # Add bash aliases.
