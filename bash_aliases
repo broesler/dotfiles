@@ -152,7 +152,7 @@ alias .4='cd ../../../../'
 # Homebrew update all things
 brewup()
 {
-    brew prune && brew update && brew cleanup && brew upgrade --all 
+    brew update && brew prune && brew cleanup && brew upgrade --all 
 }
 
 # vim with server (only for LaTeX really)

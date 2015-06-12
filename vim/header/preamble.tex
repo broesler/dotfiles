@@ -1,0 +1,188 @@
+\usepackage[english]{babel}
+\usepackage[letterpaper]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{epsfig, epstopdf}
+\usepackage{amsmath, amssymb, latexsym, empheq, mathtools}
+\usepackage{mathrsfs} % script font for fancy math
+\usepackage{verbatim, url}
+\usepackage{fancyhdr, listings, color}
+\usepackage{parskip}
+\usepackage{array, multirow}
+\usepackage{hyperref}
+\hypersetup{
+    linktoc=all,    % link table of contents to sections
+    colorlinks,
+    allcolors=black }
+\usepackage[font=small,hypcap=true]{caption}                % link to top of figures and subfigures
+\usepackage[font=small,hypcap=true,list=true]{subcaption}   % use for subfigures
+
+% Include pdf pages directly in document
+% \usepackage{pdfpages}
+
+% \usepackage{mathptmx}  % Times font
+% \usepackage[arial-urw]{mathdesign}
+% \usepackage{ebgaramond}
+% \renewcommand{\familydefault}{ptm}    % Use times font
+
+\DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `dirname #1`/`basename #1 .tif`.png}
+
+% Define colors for code
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{
+  % language = Matlab,                      % the language of the code
+  basicstyle = \scriptsize\ttfamily,    % the size of the fonts that are used for the code
+  numbers = left,                         % where to put the line-numbers
+  numberstyle = \tiny\color{gray},        % the style that is used for the line-numbers
+  stepnumber = 1,                         % the step between two line-numbers.
+  numbersep = 10pt,                        % how far the line-numbers are from the code
+  breaklines = true,                      % sets automatic line breaking
+  showspaces = false,                     % show spaces adding particular underscores
+  showstringspaces = false,               % underline spaces within strings
+  showtabs = false,                       % show tabs within strings adding particular underscores
+  keywordstyle = \color{blue},            % keyword style
+  commentstyle = \color{dkgreen},         % comment style
+  stringstyle = \color{mauve}             % string literal style
+}
+
+\renewcommand{\baselinestretch}{1.15} 	% 1.15 spacing between lines
+
+\setlength{\parindent}{20 pt}
+
+% page layout
+%\textwidth  390pt
+\textheight 650pt
+
+% paperheight
+\voffset         0 in
+\topmargin -0.5 in
+%\headheight 0pt
+\headsep 2 em
+\footskip 36 pt
+\raggedbottom
+
+
+%% NO HYPHENATION
+\tolerance=1
+\emergencystretch=\maxdimen
+\hyphenpenalty=10000
+\hbadness=10000
+
+% MAKE SQRT CLOSE AT END
+\makeatletter
+\let\oldr@@t\r@@t
+\def\r@@t#1#2{%
+\setbox0=\hbox{$\oldr@@t#1{#2\,}$}\dimen0=\ht0
+\advance\dimen0-0.2\ht0
+\setbox2=\hbox{\vrule height\ht0 depth -\dimen0}%
+{\box0\lower0.4pt\box2}}
+\LetLtxMacro{\oldsqrt}{\sqrt}
+\renewcommand*{\sqrt}[2][\ ]{\oldsqrt[#1]{#2}}
+\makeatother
+
+\pagestyle{plain}
+
+%==============================================================================
+% General macros
+%==============================================================================
+% \renewcommand{\L}{\left}
+% \newcommand{\R}{\right}
+\renewcommand{\(}{\left(}
+\renewcommand{\)}{\right)}
+\renewcommand{\[}{\left[}
+\renewcommand{\]}{\right]}
+
+\newcommand{\T}{\top} % transpose symbol
+\newcommand{\norm}[1]{\lVert #1 \rVert}
+\newcommand{\code}[1]{\texttt{#1}}
+\newcommand{\vect}[1]{\mathbf{#1}}
+
+% fractions
+\newcommand{\half}{\frac{1}{2}}
+\newcommand{\quarter}{\frac{1}{4}}
+
+% Greek letters
+\newcommand{\z}{\zeta}
+\newcommand{\sig}{\sigma}
+\newcommand{\wn}{\omega_n}
+\newcommand{\w}{\omega}
+\newcommand{\wwd}{\omega_d}
+\renewcommand{\th}{\theta}
+\newcommand{\thd}{\dot{\theta}}
+\newcommand{\thdd}{\ddot{\theta}}
+
+% Trig functions
+\newcommand{\ccp}{\cos\phi}
+\newcommand{\ssp}{\sin\phi}
+\newcommand{\cwt}{\cos\w t}
+\newcommand{\swt}{\sin\w t}
+\newcommand{\cwtp}{\cos(\w t - \phi)}
+\newcommand{\swtp}{\sin(\w t - \phi)}
+
+% unit vectors:
+\newcommand{\er}{\textbf{e}_\textbf{r}}
+\newcommand{\et}{\textbf{e}_\mathbf{\theta}}
+\newcommand{\ex}{\textbf{e}_\textbf{x}}
+\newcommand{\ey}{\textbf{e}_\textbf{y}}
+\newcommand{\ez}{\textbf{e}_\textbf{z}}
+
+\newcommand{\chat}{\mathbf{\hat{c}}}
+\newcommand{\ihat}{\mathbf{\hat{i}}}
+\newcommand{\jhat}{\mathbf{\hat{j}}}
+\newcommand{\khat}{\mathbf{\hat{k}}}
+\newcommand{\nhat}{\mathbf{\hat{n}}}
+\newcommand{\phat}{\mathbf{\hat{\phi}}}
+\newcommand{\shat}{\mathbf{\hat{s}}}
+\newcommand{\that}{\mathbf{\hat{t}}}
+\newcommand{\xhat}{\mathbf{\hat{x}}}
+\newcommand{\yhat}{\mathbf{\hat{y}}}
+\newcommand{\zhat}{\mathbf{\hat{z}}}
+
+\newcommand{\dt}{\Delta t}
+
+% Misc.
+\newcommand{\Matlab}{\textsc{Matlab}}
+\newcommand{\ie}{{\it i.e.\ }}
+\newcommand{\eg}{{\it e.g.\ }}
+\renewcommand{\deg}{^\circ}
+\newcommand{\C}{\mathscr{C}}
+\renewcommand{\L}{\mathscr{L}}
+
+% Use for fractions with large terms
+\newcommand{\ddfrac}[2]{\frac{\displaystyle #1}{\displaystyle #2}}
+
+% Derivatives
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\ppx}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\psx}[2]{\frac{\partial^2 #1}{\partial #2^2}}
+\newcommand{\ddx}[2]{\frac{\dd #1}{\dd #2}}
+\newcommand{\dsx}[2]{\frac{\dd^2 #1}{\dd #2^2}}
+\newcommand{\DDx}[2]{\frac{\mathrm{\D}#1}{\mathrm{\D} #2}}
+\newcommand{\dx}[1]{\,\dd #1} % for inside integration
+
+\newcommand{\xd}{\dot{x}}
+\newcommand{\xdd}{\ddot{x}}
+\newcommand{\yd}{\dot{y}}
+\newcommand{\ydd}{\ddot{y}}
+\newcommand{\zd}{\dot{z}}
+\newcommand{\zdd}{\ddot{z}}
+\newcommand{\qd}{\dot{q}}
+\newcommand{\qdd}{\ddot{q}}
+\newcommand{\wwdd}{\ddot{w}}
+
+% Circled numbers
+\newcommand{\circled}[1]{\raisebox{.5pt}{\textcircled{\raisebox{-.9pt} {#1}}}}
+
+
+%==============================================================================
+%     File-specific Macros
+%==============================================================================
+% Eliminate section numbers -- make subsections letters
+\renewcommand{\thesection}{}
+\renewcommand{\thesubsection}{(\alph{subsection})}
+\renewcommand{\thesubsubsection}{}
+% \numberwithin{equation}{section}	% Eqn numbers (chapter.section.number)
+
