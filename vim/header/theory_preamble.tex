@@ -1,0 +1,330 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%           ROESLER EPPS PREAMBLE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{etex}
+\usepackage[english]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath, amssymb, latexsym, marvosym, mathrsfs}
+\usepackage{ulem, ar, textcomp} % ar gives AR aspect ratio symbol, textcomp for \textquotedbl "
+% \usepackage{natbib} 
+\usepackage[sort,square,comma,numbers,compress]{natbib} 
+% \usepackage[authoryear]{natbib} 
+\usepackage{color, fancybox}
+\usepackage{graphics, graphicx}
+\usepackage{epsfig, epstopdf}
+\usepackage{setspace}
+\usepackage{longtable}
+\usepackage{verbatim}
+\usepackage{mathtools,empheq}  % for boxed equations:    \Aboxed{...}
+% \usepackage[sectionbib]{chapterbib}   % use for multiple bibliographies
+% \usepackage{layouts,layout,fancyhdr,multicol}
+\usepackage[font=small,hypcap=true]{caption}                % link to top of figures and subfigures
+\usepackage[font=small,hypcap=true,list=true]{subcaption}   % use for subfigures
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{hyperref}   % use hyperref alone to use default article format
+% \usepackage[hidelinks]{hyperref}
+% \hypersetup{
+%     colorlinks=true, %set true if you want colored links
+%     linktoc=all,     %set to all if you want both sections and subsections linked
+%     citecolor=black,
+%     filecolor=black,
+%     linkcolor=black,
+%     urlcolor=black
+% }
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% NO HYPHENATION
+\tolerance=1
+\emergencystretch=\maxdimen
+\hyphenpenalty=10000
+\hbadness=10000
+
+
+
+
+  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\mbf}{\mathbf}
+\newcommand{\un}{\underline}  
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%--------------  Close sqrt over contents
+\makeatletter
+\let\oldr@@t\r@@t
+\def\r@@t#1#2{%
+  \setbox0=\hbox{$\oldr@@t#1{#2\,}$}\dimen0=\ht0
+  \advance\dimen0-0.2\ht0
+  \setbox2=\hbox{\vrule height\ht0 depth -\dimen0}%
+  {\box0\lower0.4pt\box2}}
+\LetLtxMacro{\oldsqrt}{\sqrt}
+\renewcommand*{\sqrt}[2][\ ]{\oldsqrt[#1]{#2}}
+\makeatother
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%-------------- code to create triple underline command
+\makeatletter
+\newcommand\uuuline{\bgroup\markoverwith%
+%   {%
+%     \textcolor{black}{\rule[-0.5ex]{2pt}{0.4pt}}%
+%     \llap{\textcolor{blue}{\rule[-0.7ex]{2pt}{0.4pt}}}%
+%     \llap{\textcolor{green}{\rule[-0.9ex]{2pt}{0.4pt}}}%
+%   }%
+   {%
+          {\rule[-0.5ex]{2pt}{0.4pt}}%
+     \llap{\rule[-0.7ex]{2pt}{0.4pt}}%
+     \llap{\rule[-0.9ex]{2pt}{0.4pt}}%
+   }%
+   \ULon}
+\makeatother
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% define partial and variational
+\newcommand{\p}{\partial}
+\renewcommand{\d}{\delta}
+\newcommand{\ddt}{\frac{d}{dt}}
+\newcommand{\ppt}{\frac{\partial}{\partial t}}
+\newcommand{\D}{{\scriptstyle \Delta}\hspace{-0.25 em}}
+
+% Derivatives
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\ppx}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\psx}[2]{\frac{\partial^2 #1}{\partial #2^2}}
+\newcommand{\ddx}[2]{\frac{\dd #1}{\dd #2}}
+\newcommand{\dsx}[2]{\frac{\dd^2 #1}{\dd #2^2}}
+\newcommand{\DDx}[2]{\frac{\mathrm{D}#1}{\mathrm{D} #2}}
+
+% Use for fractions with large terms
+\newcommand{\ddfrac}[2]{\frac{\displaystyle #1}{\displaystyle #2}}
+
+% define sine and cosine
+\renewcommand{\t}{\theta}
+\newcommand{\s}{\sin\theta}
+\renewcommand{\c}{\cos\theta}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% unit vectors:
+\newcommand{\ex}{\textbf{e}_\textbf{x}}
+\newcommand{\ey}{\textbf{e}_\textbf{y}}
+\newcommand{\ez}{\textbf{e}_\textbf{z}}
+\newcommand{\er}{\textbf{e}_\textbf{r}}
+\newcommand{\et}{\textbf{e}_\mbf{\theta}}
+
+
+\newcommand{\ntilde}{\mathbf{\tilde{n}}}
+\newcommand{\chat}{\mathbf{\hat{c}}}
+\newcommand{\shat}{\mathbf{\hat{s}}}
+\newcommand{\nhat}{\mathbf{\hat{n}}}
+\newcommand{\that}{\mathbf{\hat{t}}}
+\newcommand{\ihat}{\mathbf{\hat{i}}}
+\newcommand{\jhat}{\mathbf{\hat{j}}}
+\newcommand{\khat}{\mathbf{\hat{k}}}
+\newcommand{\xhat}{\mathbf{\hat{x}}}
+\newcommand{\yhat}{\mathbf{\hat{y}}}
+\newcommand{\zhat}{\mathbf{\hat{z}}}
+\newcommand{\phat}{\mathbf{\hat{\phi}}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Miscellaneous
+\newcommand{\gradv}{\uuline{\nabla\textbf{v}}}
+\newcommand{\gradV}{\uuline{\nabla\textbf{V}}}
+\renewcommand{\l}{\ell}
+\renewcommand{\v}{\textbf{v}}
+  \newcommand{\V}{\textbf{V}}
+\newcommand{\w}{\omega}
+\newcommand{\wn}{\omega_n}
+
+\newcommand{\Ln}{\text{Ln}}
+\newcommand{\Log}{\text{Log}}
+\newcommand{\argz}{\text{\,arg\,}}
+\newcommand{\cis}{\text{\,cis\,}}
+\newcommand{\cist}{\cos\theta+i\sin\theta}
+
+\newcommand{\TAU}{\mat{\tau}}
+\newcommand{\SIGMA}{\mat{\sigma}}
+
+\newcommand{\cc}[1]{\multicolumn{1}{c}{#1}}   % center one item in table
+\newcommand{\tqd}{\textquotedbl} % needs \usepackage{textcomp}!!!
+\newcommand{\ie}{{\it i.e.\ }}
+\newcommand{\eg}{{\it e.g.\ }}
+\renewcommand{\deg}{^\circ}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\let\real\Re
+\let\imag\Im
+  \newcommand{\De}{\mathit{De}}
+\renewcommand{\Re}{\mathit{Re}}
+  \newcommand{\Fr}{\mathit{Fr}}
+  \newcommand{\Ma}{\mathit{Ma}}
+  \newcommand{\Nu}{\mathit{Nu}}
+\renewcommand{\Pr}{\mathit{Pr}}
+  \newcommand{\St}{\mathit{St}}
+
+
+%\newcommand{\vol}{\text{\sout{\ensuremath{V}}}}   % volume == strikethrough V 
+ \newcommand{\vol}{{\cal V}}
+ \newcommand{\CV}{{\cal CV}}
+ \newcommand{\CS}{{\cal CS}} 
+ \newcommand{\MV}{{\cal MV}}
+ \newcommand{\MS}{{\cal MS}}
+  % \newcommand{\Z}{{\cal Z}}
+\renewcommand{\O}{{\cal O}}    % order of magnitude symbol
+%\renewcommand{\O}{\ensuremath{\mathcal{O}}}  % order of magnitude symbol
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\res}{{\cal R}}
+\renewcommand{\L}{\left}
+\newcommand{\R}{\right}
+\renewcommand{\(}{\left(}
+\renewcommand{\)}{\right)}
+\renewcommand{\[}{\left[}
+\renewcommand{\]}{\right]}
+\newcommand{\half}{\tfrac{1}{2}}
+\newcommand{\third}{\tfrac{1}{3}}
+\newcommand{\quarter}{\tfrac{1}{4}}
+\newcommand{\ra}{\rightarrow}
+\newcommand{\alfa}{\alpha}
+
+\newcommand{\T}{\intercal} % transpose symbol
+\renewcommand{\th}{{\text{th}}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% sums
+\newcommand{\Isum}[1]{\sum\limits_{#1=0}^\infty}
+\newcommand{\MIsum}[1]{\sum\limits_{#1=-\infty}^\infty}
+\newcommand{\Nsum}[1]{\sum\limits_{#1=1}^N}
+\newcommand{\Xsum}[2]{\sum\limits_{#1=1}^#2}
+
+% integrals
+\newcommand{\intc}{\int\limits_C}
+\newcommand{\intcn}[1]{\int\limits_{C_#1}}
+\newcommand{\ointc}{\oint\limits_C}
+
+\newcommand{\intX}[1]{\int\limits_{#1}}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % indices
+%   \newcommand{\m}{{\scriptstyle (m)}}
+%   \newcommand{\n}{{\scriptstyle (n)}}
+% \renewcommand{\i}{{\scriptstyle (i)}}
+% \renewcommand{\j}{{\scriptstyle (j)}}
+% \newcommand{\one}{{\scriptstyle (1)}}
+% \newcommand{\I}{{\scriptstyle (I)}}
+% \newcommand{\J}{{\scriptstyle (J)}}
+% \newcommand{\Mp}{{\scriptstyle (M)}}
+% \newcommand{\Np}{{\scriptstyle (N)}}
+% \newcommand{\N}{{\scriptstyle (N)}}
+%
+% \newcommand{\mm}{{\scriptstyle (m,m)}}
+% \newcommand{\nn}{{\scriptstyle (n,n)}}
+% \newcommand{\ii}{{\scriptstyle (i,i)}}
+% \renewcommand{\ij}{{\scriptstyle (i,j)}}
+% \newcommand{\mi}{{\scriptstyle (m,i)}}
+% \newcommand{\mj}{{\scriptstyle (m,j)}}
+% \newcommand{\mn}{{\scriptstyle (m,n)}}
+% \newcommand{\nm}{{\scriptstyle (n,m)}}
+% \newcommand{\im}{{\scriptstyle (i,m)}}
+%
+% \newcommand{\ipo}{{\scriptstyle (i+1)}}
+% \newcommand{\jpo}{{\scriptstyle (j+1)}}
+% \newcommand{\mpo}{{\scriptstyle (m+1)}}
+% \newcommand{\npo}{{\scriptstyle (n+1)}}
+\newcommand{\imo}{{\scriptstyle (i-1)}}
+% \newcommand{\jmo}{{\scriptstyle (j-1)}}
+% \newcommand{\mmo}{{\scriptstyle (m-1)}}
+% \newcommand{\nmo}{{\scriptstyle (n-1)}}
+%
+% \newcommand{\iip}{{\scriptstyle (i,i+1)}}
+% \newcommand{\mip}{{\scriptstyle (m,i+1)}}
+% \newcommand{\mnp}{{\scriptstyle (m,n+1)}}
+%
+% \newcommand{\Ij}{{\scriptstyle (I,j)}}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% From OMAE2014 PAPER
+\renewcommand{\i}{{\scriptstyle (i)}}
+\renewcommand{\j}{{\scriptstyle (j)}}
+\renewcommand{\ij}{{\scriptstyle (i,j)}}
+\newcommand{\Ij}{{\scriptstyle (I,j)}}
+\newcommand{\I}{{\scriptstyle (I)}}
+\newcommand{\J}{{\scriptstyle (J)}}
+\newcommand{\N}{{\scriptstyle (N)}}
+\newcommand{\ip}{{\scriptstyle (i+1)}}
+\newcommand{\im}{{\scriptstyle (i-1)}}
+\newcommand{\jm}{{\scriptstyle (j-1)}}
+
+\newcommand{\CR}{\texttt{CyROD} }
+\newcommand{\CRV}{\texttt{CyROD~1.18} }
+\newcommand{\Matlab}{\textsc{Matlab} }
+
+\newcommand{\Z}{\mathscr{Z}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\norm}[1]{\lVert #1 \rVert}
+\newcommand{\vect}[1]{\boldsymbol{#1}}
+\newcommand{\code}{\texttt}
+\newcommand{\GB}{\Gamma_b}
+\newcommand{\GS}{\Gamma_s}
+\newcommand{\GW}{\Gamma_w}
+\newcommand{\bp}{\beta(\phi)}
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% This code enables subequations within the align environment
+\usepackage{etoolbox}
+
+% let \theparentequation use the same definition as equation
+ \let\theparentequation\theequation
+
+% change every occurence of "equation" to "parentequation"
+\patchcmd{\theparentequation}{equation}{parentequation}{}{}
+
+\renewenvironment{subequations}[1][]{%              optional argument: label-name for (first) parent equation
+ \refstepcounter{equation}%
+%  \def\theparentequation{\arabic{parentequation}}  % we patched it already :)
+ \setcounter{parentequation}{\value{equation}}%    parentequation = equation
+ \setcounter{equation}{0}%                         (sub)equation  = 0
+ \def\theequation{\theparentequation\alph{equation}}% 
+ \let\parentlabel\label%                           Evade sanitation performed by amsmath
+ \ifx\\#1\\\relax\else\label{#1}\fi%               #1 given: \label{#1}, otherwise: nothing
+ \ignorespaces
+}{%
+ \setcounter{equation}{\value{parentequation}}%    equation = subequation
+ \ignorespacesafterend
+}
+
+\newcommand*{\nextParentEquation}[1][]{%            optional argument: label-name for (first) parent equation
+ \refstepcounter{parentequation}%                  parentequation++
+ \setcounter{equation}{0}%                         equation = 0
+ \ifx\\#1\\\relax\else\parentlabel{#1}\fi%         #1 given: \label{#1}, otherwise: nothing
+}
+
+%% Minimal Working Example:
+%%	\begin{equation}
+%%	  0 \neq 1
+%%	\end{equation}
+%%	\begin{subequations}[eq:2]% or: \label{eq:2}
+%%	\begin{align}%              or: \parentlabel{eq:2}
+%%	    A & = B+1 \label{eq:2a} \\
+%%	  B+1 & = C   \label{eq:2b}
+%%	\intertext{therefore}\nextParentEquation[eq:3]% or: \nextParentEquation\parentlabel{eq:3}
+%%	    A & = C   \label{eq:3a} \\
+%%	    B & = C-1 \label{eq:3b}
+%%	\end{align}
+%%	\end{subequations}
+%%	\eqref{eq:2}: \eqref{eq:2a}, \eqref{eq:2b} \\ \eqref{eq:3}: \eqref{eq:3a}, \eqref{eq:3b}
+%%	\begin{equation}
+%%	  1 \neq 2
+%%	\end{equation}
+%%===============================================================================

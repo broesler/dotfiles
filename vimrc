@@ -3,10 +3,13 @@
 " Created: 04/16/2015
 "  Author: Bernie Roesler
 "
-" Description: Settings for vim. Source with \s while in vim
+" Last Modified: 06/12/2015, 15:48
+
+" Description: Settings for vim. Source with \s while in vim. Functions called
+"   by autocommands are located in ~/.vim/plugin/util_functions.vim
 "==============================================================================
 
-" Run pathogen
+" Run pathogen to load plugins
 call pathogen#infect()
 call pathogen#helptags()
 
@@ -14,8 +17,7 @@ call pathogen#helptags()
 " This must be first, because it changes other options as a side effect.
 set nocompatible
 
-" Set path to recursively include all directories below the current one for
-" quick searching, filename completion, etc.
+" '**' recursively includes all directories below the current one
 set path=.,/usr/include/,/usr/local/include,**
 
 " Set interactive shell so :! behaves like bash prompt
@@ -59,19 +61,18 @@ set dictionary=/usr/share/dict/words
 set thesaurus=/usr/share/thes/mthesaur.txt  " use <C-X><C-T>
 " set thesaurus+=/usr/share/thes/roget13a.txt
 
-set tags=./tags;    " read local tag file first, then search for others
+set tags=./tags;    " read local tag file first, then search for others ';'
 
 set wildmenu            " Enable tab to show all menu options
-set nofileignorecase    " do NOT ignore case when tab completing filenames
-" set nowildignorecase  " do NOT ignore case when tab completing
+set nofileignorecase    " no == do NOT ignore case when completing filenames
 set wildmode=longest,list,full  " like bash completion
 
-set title           " Show filename in title bar
-set number          " Turn on line numbers
+set title           " show filename in title bar
+set number          " turn on line numbers
 set ttyfast         " fast connection allows smoother scrolling
 set scrolloff=1     " cursor will never reach bottom of window
-set history=10000   " Keep command history
-set showcmd         " Show partial commands
+set history=10000   " keep long command history
+set showcmd         " show partial commands
 set hls             " highlight all search terms
 set incsearch       " highlight search as it's typed
 set ignorecase      " ignore case when searching
@@ -133,18 +134,6 @@ endif
 "------------------------------------------------------------------------------
 "       Autocommands
 "------------------------------------------------------------------------------
-" set local directory of each buffer to the buffer's directory
-" autocmd BufEnter * silent! lcd %:p:h
-
-" automatically make and load view on document open/close
-" mkview saves local current directory, and consequently reloads it. If a
-" file is opened from another directory, it will no longer have the correct
-" directory when the view is reloaded. Disable options in viewoptions to only
-" save folds and cursor position
-" set viewoptions=folds,cursor    " NOT 'options'
-" autocmd BufWinLeave ?* silent mkview
-" autocmd BufWinEnter ?* silent loadview
-
 augroup quickfix_window
     au!
     " Automatically open, but do not go to (if there are errors) the quickfix /
@@ -154,8 +143,8 @@ augroup quickfix_window
     " Note: Normally, :cwindow jumps to the quickfix window if the command opens it
     " (but not if it's already open). However, as part of the autocmd, this doesn't
     " seem to happen.
-    autocmd QuickFixCmdPost [^l]* nested cwindow
-    autocmd QuickFixCmdPost    l* nested lwindow
+    au QuickFixCmdPost [^l]* nested cwindow
+    au QuickFixCmdPost    l* nested lwindow
 
     " Quickly open/close quickfix and location list
     au! BufWinEnter quickfix nnoremap <silent> <buffer> q :cclose<cr>:lclose<cr>
@@ -163,95 +152,31 @@ augroup END
 
 augroup misc_cmds
     au!
-    autocmd FileType matlab,sh,markdown set iskeyword+=_
+    au FileType matlab,sh,markdown setlocal iskeyword+=_
 
     " Use K to search vim help for word under cursor only in vim files
-    autocmd FileType vim setlocal keywordprg=:help
+    au FileType vim setlocal keywordprg=:help
 augroup END
 
-"--------------------------------------- YankRing.vim Options
-let g:yankring_history_dir='~/.vim/'
-nnoremap <silent> <Leader>yr :YRGetElem<CR>
+augroup code_cmds
+  au!
+  " Create template for new *.c files
+  au BufNewFile *.c   call MakeTemplate("$HOME/.vim/header/c_header")
+  au BufNewFile *.m   call MakeTemplate("$HOME/.vim/header/m_header")
+  au BufNewFile *.f95 call MakeTemplate("$HOME/.vim/header/f_header")
+  au BufNewFile *.vim call MakeTemplate("$HOME/.vim/header/vim_header")
 
-"------------------------------------------------------------------------------
-"       Functions
-"------------------------------------------------------------------------------
-" Set terminal title the hard way (SLOW), use only 80 chars
-function! SetTermTitle()
-    let filename = expand("%:p")
-    let length = strlen(filename)
-    let cols = &columns - 20          " terminal window size
-    if (length < cols)                " show entire path
-        let tstr = filename
-    else                              " not going to use window < 82 cols
-        let tstr = strpart(filename,0,32) . "..." . strpart(filename, length-50)
-    endif
-    " Set terminal title
-    silent execute "!echo -n -e " . "\"\033]0;" . tstr . "\007\""
-endfunction
-
-" Change title when switching between files
-autocmd VimEnter,WinEnter,TabEnter,BufEnter * silent! call SetTermTitle()
-
-"------------------------------------------------------------------------------
-" Auto-update tags file
-" function! UpdateTags()
-"   let alltagfiles = tagfiles()
-"   if (len(alltagfiles) == 0)            " create new tags file
-"     let tagsfile = './tags'           
-"     silent! exe '!ctags -af ' . tagsfile . ' ' . expand("%:t")
-"   else
-"     " for each tags file, remove old tags from current buffer
-"     for ff in alltagfiles
-"       silent! exe '!sed -i -e "\@' . expand("%:t") . '@d" ' . ff
-"     endfor
-"     " Refresh nearest tag file with most up-to-date tags
-"     silent! exe '!ctags -af ' . alltagfiles[0] . ' ' . expand("%")
-"     " -e on Mac causes backup tags file to be generated, remove it
-"     silent! exe '!rm -rf ' . alltagfiles[0] . '-e'
-"   endif
-" endfunction
-
-
-
-"------------------------------------------------------------------------------
-" Incr increments numbers in a column (i.e. in Visual Block mode)
-"   To use: highlight in Visual Block, and press <C-a>
-function! Incr()
-    let a = line('.') - line("'<")
-    let c = virtcol("'<")
-    if a > 0
-        execute 'normal! '.c.'|'.a."\<C-a>"
-    endif
-    normal `<
-endfunction
-vnoremap <C-a> :call Incr()<CR>
-
-"------------------------------------------------------------------------------
-" Jump from html class/id tag to definition in linked CSS file
-" use <Leader>] to execute
-function! JumpToCSS()
-    let id_pos = searchpos("id", "nb", line('.'))[1]
-    let class_pos = searchpos("class", "nb", line('.'))[1]
-
-    if class_pos > 0 || id_pos > 0
-        if class_pos < id_pos
-            execute ":vim '#".expand('<cword>')."' **/*.css"
-        elseif class_pos > id_pos
-            execute ":vim '.".expand('<cword>')."' **/*.css"
-        endif
-    endif
-endfunction
-
-nnoremap <Leader>] :call JumpToCSS()<CR>
-
+  " Update 'Last Modified:' line in code files
+  au BufWritePre *.c,*.m,*.f95,*.vim,$MYVIMRC call LastModified()
+augroup END
 
 "------------------------------------------------------------------------------
 "       Key Mappings
 "------------------------------------------------------------------------------
-" Quick access .vimrc
+" Quick access .vimrc and functions
 nnoremap <Leader>s :source $MYVIMRC<CR>
 nnoremap <Leader>v :e $MYVIMRC<CR>
+nnoremap <Leader>f :e $HOME/.vim/plugin/util_functions.vim<CR>
 
 " unmap Q from entering Ex mode (batch isn't useful)
 nnoremap Q <nop>
@@ -280,7 +205,7 @@ nnoremap <silent> ,/ :nohls<CR>
 " Search/Replace current word (vs just * for search)
 nnoremap <Leader>* :%s/\<<C-r><C-w>\>/
 
-" Wrapped lines goes down/up to next row, rather than next line in file.
+" Wrapped lines goes down/up to next row, rather than next line in file
 nnoremap j gj
 nnoremap k gk
 
@@ -336,12 +261,13 @@ nnoremap <silent> <C-]> <C-]>zz
 " Open explorer in new window
 nmap <silent> <Leader>E :Hexplore!<CR>
 
-"------------------------------------------------------------------------------
-"       Plugin specific maps
-"------------------------------------------------------------------------------
-" Tagbar toggle (RHS default)
-nnoremap ,t :TagbarToggle<CR>
+" Timestamp in format %y%m%d, %H:%M
+nnoremap <leader>t     "=strftime("%m/%d/%Y, %H:%M")<CR>P
+inoremap <leader>t <C-R>=strftime("%m/%d/%Y, %H:%M")<CR>
 
+" YankRing.vim map
+let g:yankring_history_dir='~/.vim/'
+nnoremap <silent> <Leader>yr :YRGetElem<CR>
 
 "------------------------------------------------------------------------------
 "       Colorscheme
@@ -352,7 +278,7 @@ let g:solarized_termcolors=256
 set background=dark
 colorscheme solarized
 
-"*** UNCOMMENT 'hi' lines for default colorscheme
+" NOTE: UNCOMMENT 'hi' lines for default colorscheme
 " hi Comment ctermfg=darkgreen
 " hi Type ctermfg=33
 " hi StatusLine ctermfg=none ctermbg=none
@@ -390,8 +316,6 @@ if version >= 700
     au InsertEnter * hi StatusLine term=reverse ctermfg=green ctermbg=black
     au InsertLeave * hi StatusLine term=none    ctermfg=none  ctermbg=none
 endif
-
-
 
 "==============================================================================
 "==============================================================================
