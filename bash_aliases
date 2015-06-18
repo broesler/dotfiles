@@ -104,8 +104,9 @@ alias lt='tree -C'
 alias mkdir='mkdir -p'
 alias mv='mv -i'
 alias mygcc='gcc-5 -Wall -pedantic -std=c99'
-alias mygfortran='gfortran-5 -cpp -Wall -pedantic -std=f95 -fbounds-check \
-                  -ffree-line-length-0 -fall-intrinsics'
+alias mygfortran='gfortran-5 -cpp -Wall -pedantic -std=f95 \
+                    -fbounds-check -ffree-line-length-0 -fbacktrace \
+                    -fall-intrinsics'
 alias r='rlogin'
 alias rm='rm -i'
 alias which='type -all'
