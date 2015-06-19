@@ -1,100 +1,100 @@
-General fortran utilities ,v
-lib_util,v
-!===============================================================================!    File: lib_util.f95!  Author: Bernie Roesler! Created: 05/07/14!! Last Modified: 06/17/2015, 13:45!! Description: General fortran utilities !===============================================================================,V
-25,v
-48,v
-16,v
-8,v
-4,v
-128,v
-Updated:,v
-!,v
-Modified:,v
-,V
-! ! Define PI ! real(8), parameter :: PI = 3.1415926535897932 ,V
-print *,V
-12,v
-,,v
-.,v
-write '(A,I4.4)','Iterations used: ',iter,v
-LGWT,v
-29,v
-    error = 1,V
-maxval(abs(y - y0)),v
-            print '(ES8.4)', maxval(abs(y - y0)),V
-break,v
-#endif,V
-#ifdef LOGSTATUS,V
-        ,v
-      ! print *,V
-33,v
-E,v
-%,v
-            print '(%8.4E)', maxval(abs(y - y0))        endif,V
-     ,v
-     ! for LOG statements, need "-Iutil" in makefile,v
-#include "header.h",V
-#include "../util/header.h",V
-*,v
- .GT. eps)            ,v
-maxval(abs(y - y0)) .GT. eps),v
-+,v
-    real(8), dimension(:) :: x, w,V
-real(8) a, b, ,v
-L,v
-N, ,v
-    ! ! Define PI     ! real(8), parameter :: PI = 3.1415926535897932 ,V
-(signed values are symmetric about 0),v
-absolute values of ,v
-are ,v
-absolute values ,v
- for unweighted,v
-use,v
-the,v
-Lagrange,v
-    ! This script is for computing definite integrals using Legendre-Gauss     ! Quadrature. Computes the Legendre-Gauss nodes and weights  on an interval    ! [a,b] with truncation order N    !    ! Suppose you have a continuous function f(x) which is defined on [a,b]    ! which you can evaluate at any x in [a,b]. Simply evaluate it at all of    ! the values contained in the x vector to obtain a vector f. Then compute    ! the definite integral using sum(f.*w);,V
-32 ,v
-integer, parameter :: M = 32 ,V
-24,v
-integer, parameter :: M = 16,V
-LIBS = ,V
-run,v
-run:,v
-all-,v
-/,v
--> MOD ,v
-, modules must be in ./mod directory,v
- * 1e5,v
-	# mv $(@F) ${SRCDIR},v
-	# mv $(@F) ${SRCDIR},V
-test_lgwt,v
-# MODDIR = ../mod,V
-	# rm -f $(MODDIR)/*.o	# rm -f $(MODDIR)/*.mod,V
-# $(OBJMOD):$(MODDIR)%.o : $(MODDIR)%.f95 # 	$(CC) $(OPT) -c $<# 	mv $(@F) ${MODDIR}# 	mv *.mod ${MODDIR},V
-# $(OBJMODUTIL) $(OBJMOD) $(OBJ) : makefile,V
-# Depends on OBJMOD, and OBJ,V
-# run: $(OBJMODUTIL) $(OBJMOD) $(OBJ)# 	$(CC) -o $@ $(FLAGS) $(OBJMODUTIL) $(OBJMOD) $(OBJ)   $(LIBS),V
-# SRCMOD = $(MODDIR)/bem_util.f95 	# specifically use bem_util.f95 module# OBJMOD = $(SRCMOD:%.f95=%.o),V
-# SRC    = $(wildcard $(SRCDIR)/*.f95),V
-intrinsics,v
--I$(MODDIR) ,v
-$(OBJMOD) ,v
-run: $(OBJMODUTIL) $(OBJMOD) $(OBJ)	$(CC) -o $@ $(FLAGS) $(OBJMODUTIL) $(OBJMOD) $(OBJ)   $(LIBS),V
-$(OBJMODUTIL) $(OBJMOD) $(OBJ) : makefile,V
-FLAGS += -DUSE_FORCING,V
-src,v
--g -ggdb ,v
-\,v
+On 06/17/2015 12:35:50, Amber Whelsky wrote:> Students,> > Need a break? Come play frisbee and football!> > > Location: tuck lawn outside of Thayer > > Time: 430> > > Drinks and snacks will be provided!!> ,v
+On 06/17/2015 12:35:50, Amber Whelsky wrote:> Students,> > Need a break? Come play frisbee and football!> > > Location: tuck lawn outside of Thayer > > Time: 430> > > Drinks and snacks will be provided!!> ,V
+Re: LAWN GAMES - come take a break TODAY, OUTSIDE 430,v
+set askcc                            # ask for CC:,v
+set askcc                            # ask for CC:,V
+given directory with E, save to downloads with W,v
+macro attach W <save-entry><kill-line>/Users/bernardroesler/Downloads ,V
+/home/gawron/attachments/<enter>,v
+/Users/bernardroesler/Downloads,v
+/home/gawron/attachments/,v
+set sig_dashes                       # dashes before sig,V
  ,v
-06/15/2015, 15:27,v
-06/15/2015, 15:27,V
-inoremap <leader>t <C-R>=strftime("%m/%d/%Y, %H:%M")<CR>,V
-06/15/2015, 15:26,V
-\nopagenumbers,V
-itemize,v
-Merrill Lynch ,v
- --- PAGES INCLUDING COVER,v
-[3] ,v
-FACSIMILE MESSAGE---3 ,v
-\nopagenumbers\rm\parindent=0 pt,V
-],v
+Steve Losh,v
+{,v
+,v
+,V
+#,v
+Editor,v
+#-------------------------------------------------------------------------------#       Editor Key Bindings#-------------------------------------------------------------------------------,V
+Pager,v
+#-------------------------------------------------------------------------------#       Pager Key Bindings#-------------------------------------------------------------------------------,V
+bernardroesler_gmail/[Mailbox].Later \,v
+          +bernardroesler_gmail/[Mailbox].Later \,V
+     ,v
+     ,1
+bind index N search-opposite,V
+1,v
+INBOX,v
+mailboxes ,v
+mailboxes +bernardroesler_gmail/INBOX \,V
+n,v
+u,v
+Down,v
+cnoremap <C-J> <Down>,V
+cnoremap <C-W> <S-Right>,V
+L,v
+F,v
+-,v
+C,v
+B,v
+b,v
+f,v
+c,v
+s,v
+E,v
+	:	:	:	:	:,5
+	:cnoremap <C-A> <Home>	:cnoremap <C-F> <Right>	:cnoremap <C-B> <Left>	:cnoremap <Esc>b <S-Left>	:cnoremap <Esc>f <S-Right>,V
+test,v
+# source ~/.mutt/colors/colors_test,V
+stevelosh,v
+steve@stevelosh.com,v
+bernard.roesler@gmail.com,v
+set editor = "vim",v
+set editor = "vim",V
+d,v
+w,v
+Index Key Bindings,v
+#-------------------------------------------------------------------------------#       Index Key Bindings#-------------------------------------------------------------------------------,V
+pjpeg,v
+# set signature        = ~/.mutt/sig           # my signature file,V
+#===============================================================================,V
+/colorscheme,v
+#-------------------------------------------------------------------------------,V
+#-------------------------------------------------------------------------------#       Sidebar Navigation#-------------------------------------------------------------------------------bind index,pager <down>   sidebar-nextbind index,pager <up>     sidebar-prevbind index,pager <right>  sidebar-open,V
+#-------------------------------------------------------------------------------#       Pager View Options#-------------------------------------------------------------------------------set pager_index_lines = 10 # number of index lines to showset pager_context = 3      # number of context lines to showset pager_stop             # don't go to next message automaticallyset menu_scroll            # scroll in menusset tilde                  # show tildes like in vimunset markers              # no ugly plus signsset quote_regexp = "^( {0,4}[>|:#%]| {0,4}[a-z0-9]+[>|]+)+"alternative_order text/plain text/enriched text/html,V
+─,v
+│,v
+ ---------------------------------,v
+ -----------------------------------,v
+ -------------------------------------,v
+ -----------------------------------------,v
+ --------------------------------------,v
+# --------------------------------------,V
+ ----------------------------------------------,v
+.,v
+                        ,12
+# Alternate email addresses.alternates ,V
+sjl@pculture.org still\.?life@gmail.com steve@ladyluckblues.com steve@pculture.org,v
+steve-stevelosh.com,v
+archive,v
+            +bernardroesler_gmail/[Gmail].All Mail \,V
+drafts,v
+            +bernardroesler_gmail/mercurial \            +bernardroesler_gmail/archive \            +bernardroesler_gmail/sent \            +bernardroesler_gmail/drafts \,V
+python,v
+clojure,v
+vim,v
+#       directories,V
+ Maps gmail folders to proper,v
+fflineimap,v
+06/18/2015, 10:37 ,v
+22:37,v
+offlineimap,v
+#===============================================================================#    File: .offlineimaprc# Created: 06/17/15, 22:37#  Author: Bernie Roesler## Last Modified: 06/18/2015, 10:37 ## Description: offlineimap configuration file. Maps gmail folders to proper#       directories#===============================================================================,V
+/,v
+~,v
+     # only sync 10 days' worth of mail,v
+,,v
+'[Gmail].Spam$':      'spam', ,v
+                            '[Gmail].All Mail$':  'archive',,V
+'spam':     '[Gmail].Spam$',        ,v

@@ -3,7 +3,7 @@
 " Created: 04/16/2015
 "  Author: Bernie Roesler
 "
-" Last Modified: 06/15/2015, 15:27
+" Last Modified: 06/18/2015, 23:31
 
 " Description: Settings for vim. Source with \s while in vim. Functions called
 "   by autocommands are located in ~/.vim/plugin/util_functions.vim
@@ -167,12 +167,21 @@ augroup code_cmds
   au BufNewFile *.vim call MakeTemplate("$HOME/.vim/header/vim_header")
 
   " Update 'Last Modified:' line in code files
-  au BufWritePre *.c,*.m,*.f95,*.vim,$MYVIMRC call LastModified()
+  au BufWritePre *.c,*.m,*.f95,*.vim,$MYVIMRC,.* call LastModified()
 augroup END
 
 "------------------------------------------------------------------------------
 "       Key Mappings
 "------------------------------------------------------------------------------
+" Command line mappings
+cnoremap <C-A> <Home>
+cnoremap <C-L> <Right>
+cnoremap <C-H> <Left>
+cnoremap <C-B> <S-Left>
+cnoremap <C-W> <S-Right>
+cnoremap <C-J> <Down>
+cnoremap <C-K> <Up>
+
 " Quick access .vimrc and functions
 nnoremap <Leader>s :source $MYVIMRC<CR>
 nnoremap <Leader>v :e $MYVIMRC<CR>
