@@ -1,0 +1,57 @@
+#===============================================================================
+#    File: .offlineimaprc
+# Created: 06/17/15, 22:37
+#  Author: Bernie Roesler
+#
+# Last Modified: 06/18/2015, 10:37 
+#
+# Description: offlineimap configuration file. Maps gmail folders to proper
+#       directories
+#===============================================================================
+[general]
+ui = ttyui
+accounts = BRgmail
+pythonfile = ~/.mutt/offlineimap.py
+fsync = False
+
+[Account BRgmail]
+localrepository = BRgmail_Local
+remoterepository = BRgmail_Remote
+status_backend = sqlite
+postsynchook = notmuch new
+maxage = 10
+
+[Repository BRgmail_Local]
+type = Maildir
+localfolders = ~/.mail/bernardroesler_gmail
+nametrans = lambda folder: {'archive':  '[Gmail].All Mail$'  
+                            # 'spam':     '[Gmail].Spam$',        
+                            # 'drafts':   '[Gmail].Drafts$',    
+                            # 'sent':     '[Gmail].Sent Mail$', 
+                            # 'flagged':  '[Gmail].Starred$',   
+                            # 'trash':    '[Gmail].Trash$',     
+                            # 'later':    '[Mailbox].Later',
+                            }.get(folder,folder)
+
+[Repository BRgmail_Remote]
+maxconnections = 1
+type = Gmail
+remoteuser = bernard.roesler@gmail.com
+remotepasseval = get_keychain_pass(account="bernard.roesler@gmail.com", server="imap.gmail.com")
+realdelete = no
+nametrans = lambda folder: { '[Gmail].All Mail$':  'archive'
+                            # '[Gmail].Spam$':      'spam', 
+                            # '[Gmail].Drafts$':    'drafts', 
+                            # '[Gmail].Sent Mail$': 'sent', 
+                            # '[Gmail].Starred$':   'flagged', 
+                            # '[Gmail].Trash$':     'trash', 
+                            # '[Mailbox].Later':    'later',
+                            }.get(folder,folder)
+folderfilter = lambda folder: folder not in ['[Gmail].Important',
+                                             '[Gmail].Chats',
+                                             '[Gmail].Notes',
+                                             '[Mailbox]',
+                                             '[Mailbox].To Buy',
+                                             '[Mailbox].To Read',
+                                             '[Mailbox].To Watch'
+                                            ]

@@ -128,6 +128,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   eval "`gdircolors -b ~/.dircolors`"   # set custom colors file
 
   alias lc='gls -Ghlp --color=auto'
+  alias lcd='lc -d .*'
 
 elif [[ "$OSTYPE" == "linux"* ]]; then
   # If ~/.dircolors exists, set custom colors file
@@ -136,6 +137,7 @@ elif [[ "$OSTYPE" == "linux"* ]]; then
   eval "`dircolors -b ~/.dircolors`"    # set custom colors file
 
   alias lc='ls -Ghlp --color=auto'      # Linux ls options
+  alias lcd='lc -d .*'
 fi
 
 
