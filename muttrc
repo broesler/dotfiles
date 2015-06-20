@@ -3,7 +3,7 @@
 # Created: 06/18/15, 18:29
 #  Author: Bernie Roesler
 #
-# Last Modified: 06/19/2015, 00:39
+# Last Modified: 06/20/2015, 01:43
 #
 # Description: mutt configuration file.
 #===============================================================================
@@ -20,7 +20,7 @@ set folder           = ~/.mail               # mailbox location
 # set header_cache     = ~/.mutt/cache/headers # where to store headers
 # set message_cachedir = ~/.mutt/cache/bodies  # where to store bodies
 # set certificate_file = ~/.mutt/certificates  # where to store certs
-# set mailcap_path     = ~/.mutt/mailcap       # entries for filetypes
+set mailcap_path     = ~/.mutt/mailcap       # entries for filetypes
 # set tmpdir           = ~/.mutt/temp          # where to keep temp files
 
 #-------------------------------------------------------------------------------
@@ -68,15 +68,19 @@ hdr_order from: to: cc: date: subject:  # and in this order
 set spoolfile = "+bernardroesler_gmail/INBOX"
 
 # Mailboxes to show in the sidebar
-mailboxes +bernardroesler_gmail/INBOX \
-          "+bernardroesler_gmail/[Gmail].All Mail" \
-          "+bernardroesler_gmail/[Gmail].Sent Mail" \
-          +bernardroesler_gmail/[Mailbox].Later \
+mailboxes +bernardroesler_gmail/inbox \
+          +bernardroesler_gmail/archive \
+          +bernardroesler_gmail/flagged \
+          +bernardroesler_gmail/later \
+          +bernardroesler_gmail/sent \
+          +bernardroesler_gmail/spam \
+          +bernardroesler_gmail/trash \
           +temporary/search \
 
 # Other special folders
-set mbox      = "+bernardroesler_gmail/[Gmail].All Mail"
-set postponed = "+bernardroesler_gmail/[Gmail].Drafts"
+set mbox      = "+bernardroesler_gmail/archive"
+set postponed = "+bernardroesler_gmail/drafts"
+set record    = "+bernardroesler_gmail/sent"
 
 #-------------------------------------------------------------------------------
 #       Index View Options
@@ -102,9 +106,14 @@ unset markers                   # no ugly plus signs
 set quote_regexp = "^( {0,4}[>|:#%]| {0,4}[a-z0-9]+[>|]+)+"
 alternative_order text/plain text/enriched text/html
 
+auto_view text/html
+
 #-------------------------------------------------------------------------------
 #       Compose View Options
 #-------------------------------------------------------------------------------
+# Use vim, jump to end of header
+set editor = "/usr/local/bin/vim -c 'normal! }' -c 'redraw'"
+
 set realname = "Bernard Roesler"     # who am i?
 set attribution = "On %d, %n wrote:" # format of quoting header
 set edit_headers                     # show headers when composing
@@ -121,13 +130,16 @@ unset mime_forward                   # forward attachments as part of body
 
 
 #-------------------------------------------------------------------------------
-#       Index Key Bindings
+#       Key Bindings
 #-------------------------------------------------------------------------------
+
+macro index \\i     "<change-folder> =bernardroesler_gmail/inbox<enter>" "go to inbox"
+macro index \\a     "<change-folder> =bernardroesler_gmail/archive<enter>" "go to archive"
 bind index gg       first-entry
 bind index G        last-entry
 bind index N        search-opposite
 bind index R        group-reply
-bind index <tab>    sync-mailbox
+bind index \Cs      sync-mailbox
 bind index <space>  collapse-thread
 bind index p        recall-message
 
@@ -135,61 +147,57 @@ bind index p        recall-message
 macro index \Cr "T~U<enter><tag-prefix><clear-flag>N<untag-pattern>.<enter>" "mark all messages as read"
 
 # Sync email
-macro index \Co "<shell-escape>offlineimap -q <enter>"           "run offlineimap to sync all mail"
-# macro index \Co "<shell-escape>offlineimap -qf INBOX<enter>" "run offlineimap to sync inbox"
+macro index \Co "<shell-escape>offlineimap -u quiet<enter>" "run offlineimap to sync all mail"
 
 # Saner copy/move dialogs
 macro index C "<copy-message>?<toggle-mailboxes>" "copy a message to a mailbox"
 macro index M "<save-message>?<toggle-mailboxes>" "move a message to a mailbox"
 
-# show all messages
+# Searching
+bind pager N   search-opposite
 macro index a "<limit>all\n" "show all messages (undo limit)"
 
 # Search ALL mail
-macro index S "<enter-command>unset wait_key<enter><shell-escape>mutt-notmuch-py ~/.mail/temporary/search<enter><change-folder-readonly>+temporary/search<enter>" "search mail (using notmuch)"
+macro index S "<enter-command>unset wait_key<enter><shell-escape>mutt-notmuch-py ~/.mail/temporary/search<enter><change-folder-readonly>+temporary/search<enter>" "search all mail (using notmuch)"
 
+# Open mail in vim
+macro index,pager V "|vim -c 'setlocal ft=mail' -c 'setlocal buftype=nofile' -<enter>"  "open in vim"
 
-#-------------------------------------------------------------------------------
-#       Pager Key Bindings
-#-------------------------------------------------------------------------------
-bind pager k  previous-line
-bind pager j  next-line
-bind pager gg top
-bind pager G  bottom
-bind pager N  search-opposite
+# Pager navigation
+bind pager k   previous-line
+bind pager j   next-line
+bind pager gg  top
+bind pager G   bottom
 
-bind pager R  group-reply
+bind pager R   group-reply
+
+bind index,pager \Cf next-page
+bind index,pager \Cb previous-page
 
 # View attachments properly.
 bind attach <return> view-mailcap
 
 # Open URLs
 macro pager \Cu "|urlview<enter>" "call urlview to open links"
+# macro pager \Cu ": unset wait_key; set pipe_decode\n|w3m\n: set wait_key; unset pipe_decode\n" "call w3m to extract URLs out of a message"
 
-#-------------------------------------------------------------------------------
-#       Editor Key Bindings
-#-------------------------------------------------------------------------------
+# Tab completion
 set query_command = "contacts -Sf '%eTOKEN%n' '%s' | sed -e 's/TOKEN/\t/g'"
 bind editor <Tab> complete-query
 bind editor ^T    complete
 
-#-------------------------------------------------------------------------------
-#       Composer Key Bindings
-#-------------------------------------------------------------------------------
 bind compose p postpone-message
 
 # Save attachments to downloads
-macro attach W <save-entry><kill-line>/Users/bernardroesler/Downloads/<enter>
+macro attach W <save-entry><kill-line>/Users/bernardroesler/Downloads/<enter><enter>
+
+# Sidebar navigation
+bind index,pager ,j     sidebar-next
+bind index,pager ,k     sidebar-prev
+bind index,pager ,<return>  sidebar-open
 
 #-------------------------------------------------------------------------------
-#       Sidebar Navigation
-#-------------------------------------------------------------------------------
-bind index,pager <down>   sidebar-next
-bind index,pager <up>     sidebar-prev
-bind index,pager <right>  sidebar-open
-
-#-------------------------------------------------------------------------------
-#       Colors
+#       Colorscheme
 #-------------------------------------------------------------------------------
 # source ~/.mutt/colors/colors_test
 source ~/.mutt/colors/colors_sjl
