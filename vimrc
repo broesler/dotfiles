@@ -3,7 +3,7 @@
 " Created: 04/16/2015
 "  Author: Bernie Roesler
 "
-" Last Modified: 06/18/2015, 23:31
+" Last Modified: 06/19/2015, 11:26
 
 " Description: Settings for vim. Source with \s while in vim. Functions called
 "   by autocommands are located in ~/.vim/plugin/util_functions.vim
@@ -160,14 +160,15 @@ augroup END
 
 augroup code_cmds
   au!
-  " Create template for new *.c files
+  " Create template for new files
   au BufNewFile *.c   call MakeTemplate("$HOME/.vim/header/c_header")
   au BufNewFile *.m   call MakeTemplate("$HOME/.vim/header/m_header")
   au BufNewFile *.f95 call MakeTemplate("$HOME/.vim/header/f_header")
+  au BufNewFile *.sh  call MakeTemplate("$HOME/.vim/header/sh_header")
   au BufNewFile *.vim call MakeTemplate("$HOME/.vim/header/vim_header")
 
   " Update 'Last Modified:' line in code files
-  au BufWritePre *.c,*.m,*.f95,*.vim,$MYVIMRC,.* call LastModified()
+  au BufWritePre *.c,*.m,*.f95,*.vim,$MYVIMRC,.*,*.sh call LastModified()
 augroup END
 
 "------------------------------------------------------------------------------
