@@ -1,3 +1,30 @@
+8,v
+sent,v
+macro index,pager \\s     "<change-folder> =bernardroesler_gmail/sent<enter>" "go to sent",V
+,,v
+no,v
+        # shut up, mutt,v
+VLM2D_UNSTEADY_v2_8_BEPPS_v6.m,v
+,pager,v
+,V
+ mai,v
+l,v
+archive,v
+macro index \\a     "<change-folder> =bernardroesler_gmail/archive<enter>" "go to archive",V
+                                re.sub('drafts',,v
+                                re.sub('drafts',,V
+                                re.sub('sent-mail',         'sent',,V
+all-mail,v
+                                re.sub('all-mail',          'archive',,V
+All Mail,v
+                                re.sub('archive',   '[Gmail].All Mail',,V
+),v
+                                re.sub('starred',         'flagged',,V
+	                            re.sub('flagged',   '[Gmail].Starred',,V
+                                re.sub('important', '[Gmail].Important',,V
+let g:netrw_dirhistmax  =10let g:netrw_dirhist_cnt =2let g:netrw_dirhist_1='/Users/bernardroesler/.vim'let g:netrw_dirhist_2='/Users/bernardroesler/.offlineimap',v
+1,v
+quiet,v
 inbox,v
 macro index \\i     "<change-folder> =bernardroesler_gmail/inbox<enter>" "go to inbox",V
  ,v
@@ -12,13 +39,11 @@ macro index,pager \cB ": unset wait_key; set pipe_decode\n|w3m\n: set wait_key; 
 macro index,pager \cB ": unset wait_key; set pipe_decode\n|w3m\n: set wait_key; unset pipe_decode\n" "call w3m to extract URLs out of a message",V
 macro index,pager \cB ": unset wait_key; set pipe_decode\n|w3m\n: set wait_key; unset pipe_decode\n" "call w3m to extract URLs out of a message"# macro pager \Cu ": unset wait_key; set pipe_decode\n|w3m\n: set wait_key; unset pipe_decode\n" "call w3m to extract URLs out of a message",V
 ,v
-,V
 index,,v
 extension "xls" "application/excel",V
 text/html; links %s; nametemplate=%s.htmltext/html; links -dump %s; nametemplate=%s.html; copiousoutput,v
 text/html; links %s; nametemplate=%s.htmltext/html; links -dump %s; nametemplate=%s.html; copiousoutput,V
                      ,v
-sent,v
           +bernardroesler_gmail/sent \,V
           +bernardroesler_gmail/flagged \,V
 spam,v
@@ -73,28 +98,3 @@ p,v
 <Esc>j,v
  show all messages,v
 bind pager N   search-opposite,V
-bind pager R   group-reply,V
-#-------------------------------------------------------------------------------#       Index Key Bindings#-------------------------------------------------------------------------------,V
-#-------------------------------------------------------------------------------#       Sidebar Navigation#-------------------------------------------------------------------------------,V
-#-------------------------------------------------------------------------------#       Composer Key Bindings#-------------------------------------------------------------------------------,V
-#       Editor Key Bindings,V
-#-------------------------------------------------------------------------------,V
-Pager ,v
-bind index,pager \Cf next-pagebind index,pager \Cb previous-page,V
-bind pager \Cf next-pagebind pager \Cb previous-page,V
-233,v
-color172,v
-~/.mutt/colors/colors_sjl,v
-bind pager N  search-opposite,V
-next-page,v
-bind pager \Cf next-page,V
-/,v
-\C<Enter>,v
-<leader>j,v
-<leader>k,v
-C,v
-c,v
-          ,v
-# macro index \Co "<shell-escape>offlineimap -qf INBOX<enter>" "run offlineimap to sync inbox",V
-return,v
-<right>,v

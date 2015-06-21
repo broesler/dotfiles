@@ -3,14 +3,14 @@
 # Created: 06/17/15, 22:37
 #  Author: Bernie Roesler
 #
-# Last Modified: 06/20/2015, 00:39
+# Last Modified: 06/20/2015, 22:57
 #
 # Description: offlineimap configuration file. Maps gmail folders to proper
 #       directories
 #===============================================================================
 
 [general]
-ui = quiet
+ui = basic
 accounts = BRgmail
 pythonfile = ~/.mutt/offlineimap.py
 fsync = False
@@ -20,38 +20,37 @@ localrepository = BRgmail_Local
 remoterepository = BRgmail_Remote
 status_backend = sqlite
 postsynchook = notmuch new
-maxage = 10
+maxage = 1400
 
 [Repository BRgmail_Local]
 type = Maildir
 localfolders = ~/.mail/bernardroesler_gmail
 nametrans = lambda foldername:  re.sub('sent',      '[Gmail].Sent Mail',
 	                            re.sub('drafts',    '[Gmail].Drafts',
-	                            re.sub('flagged',   '[Gmail].Starred',
-                                re.sub('important', '[Gmail].Important',
                                 re.sub('archive',   '[Gmail].All Mail',
+                                re.sub('flagged',   '[Gmail].Starred',
                                 re.sub('spam',      '[Gmail].Spam',
                                 re.sub('trash',     '[Gmail].Trash',
                                 re.sub('inbox',     'INBOX',
                                 re.sub('later',     '[Mailbox].Later',
                                 re.sub('-',         ' ',
-                                foldername))))))))))
+                                foldername)))))))))
 
 [Repository BRgmail_Remote]
-maxconnections = 1
+maxconnections = 4
 type = Gmail
 remoteuser = bernard.roesler@gmail.com
 remotepasseval = get_keychain_pass(account="bernard.roesler@gmail.com", server="imap.gmail.com")
 realdelete = no
-nametrans = lambda foldername:  re.sub('^\[gmail\].',     '',
-                                re.sub('sent-mail',       'sent',
-                                re.sub('all-mail',        'archive',
-                                re.sub('starred',         'flagged',
+nametrans = lambda foldername:  re.sub('^\[gmail\].',       '',
+                                re.sub('sent-mail',         'sent',
+                                re.sub('all-mail',          'archive',
+                                re.sub('starred',           'flagged',
                                 re.sub('\[mailbox\].later', 'later',
-                                re.sub(' ',               '-',
+                                re.sub(' ',                 '-',
                                 foldername.lower()))))))
-folderfilter = lambda folder: folder not in ['[Gmail].Important',
-                                             '[Gmail].Chats',
+folderfilter = lambda folder: folder not in ['[Gmail]/Important',
+                                             '[Gmail]/Chats',
                                              'Notes',
                                              '[Mailbox]',
                                              '[Mailbox]/To Buy',

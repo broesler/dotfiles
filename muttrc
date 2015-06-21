@@ -3,22 +3,25 @@
 # Created: 06/18/15, 18:29
 #  Author: Bernie Roesler
 #
-# Last Modified: 06/20/2015, 01:43
+# Last Modified: 06/20/2015, 22:43
 #
 # Description: mutt configuration file.
 #===============================================================================
+
+# General Settings
 set from     = "bernard.roesler@gmail.com"
 set sendmail = "/usr/local/bin/msmtp -a bernardroesler"
 set sendmail_wait = 0
 unset record
+set sleep_time = 0      # Don't wait when switching mailboxes
 
 #-------------------------------------------------------------------------------
 #       Paths
 #-------------------------------------------------------------------------------
 set folder           = ~/.mail               # mailbox location
 # set alias_file       = ~/.mutt/alias         # where to store aliases
-# set header_cache     = ~/.mutt/cache/headers # where to store headers
-# set message_cachedir = ~/.mutt/cache/bodies  # where to store bodies
+set header_cache     = ~/.mutt/cache/headers # where to store headers
+set message_cachedir = ~/.mutt/cache/bodies  # where to store bodies
 # set certificate_file = ~/.mutt/certificates  # where to store certs
 set mailcap_path     = ~/.mutt/mailcap       # entries for filetypes
 # set tmpdir           = ~/.mutt/temp          # where to keep temp files
@@ -26,7 +29,7 @@ set mailcap_path     = ~/.mutt/mailcap       # entries for filetypes
 #-------------------------------------------------------------------------------
 #       Basic Options
 #-------------------------------------------------------------------------------
-set wait_key = no        # shut up, mutt
+set wait_key = yes
 set mbox_type = Maildir  # mailbox type
 set timeout = 3          # idle time before scanning
 set mail_check = 0       # minimum time between scans
@@ -132,9 +135,10 @@ unset mime_forward                   # forward attachments as part of body
 #-------------------------------------------------------------------------------
 #       Key Bindings
 #-------------------------------------------------------------------------------
-
-macro index \\i     "<change-folder> =bernardroesler_gmail/inbox<enter>" "go to inbox"
-macro index \\a     "<change-folder> =bernardroesler_gmail/archive<enter>" "go to archive"
+macro index,pager \\i     "<change-folder> =bernardroesler_gmail/inbox<enter>" "go to inbox"
+macro index,pager \\a     "<change-folder> =bernardroesler_gmail/archive<enter>" "go to archive"
+macro index,pager \\s     "<change-folder> =bernardroesler_gmail/sent<enter>" "go to sent"
+macro index,pager \\f     "<change-folder> =bernardroesler_gmail/flagged<enter>" "go to flagged"
 bind index gg       first-entry
 bind index G        last-entry
 bind index N        search-opposite
@@ -192,9 +196,9 @@ bind compose p postpone-message
 macro attach W <save-entry><kill-line>/Users/bernardroesler/Downloads/<enter><enter>
 
 # Sidebar navigation
-bind index,pager ,j     sidebar-next
-bind index,pager ,k     sidebar-prev
-bind index,pager ,<return>  sidebar-open
+bind index,pager \\j     sidebar-next
+bind index,pager \\k     sidebar-prev
+bind index,pager \\<return>  sidebar-open
 
 #-------------------------------------------------------------------------------
 #       Colorscheme
