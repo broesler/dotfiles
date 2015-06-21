@@ -28,3 +28,6 @@ text/html; links -dump %s; nametemplate=%s.html; copiousoutput
 
 # Unidentified files
 application/octet-stream; ~/.mutt/view_attachment.sh %s "-"
+
+# Plain text
+text/plain; vim %s;
