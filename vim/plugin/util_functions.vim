@@ -3,7 +3,7 @@
 "  Created: 12/06/2015, 13:20
 "   Author: Bernie Roesler
 "
-" Last Modified: 06/17/2015, 13:39
+" Last Modified: 06/21/2015, 17:13
 "
 "  Description: Custom utility functions called from .vimrc autocmds, etc.
 "==============================================================================
@@ -66,7 +66,7 @@ function! LastModified()
     " Only check maximum of 20 lines, or to the end of the file (if < 20)
     let n = min([20, line("$")])
     " Update line without moving cursor, do not report errors
-    keepjumps exe '1,' . n . 's#\(Modified:\|Updated:\).*#\1 '
+    keepjumps exe '1,' . n . 's#\(Last Modified:\|Last Updated:\).*#\1 '
                 \ . strftime("%m/%d/%Y, %H:%M") . '#ie'
 
     " Remove update from cmd history and undo list

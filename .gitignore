@@ -1,2 +1,5 @@
 # Local .gitignore for my .dotfiles
 vim/view/*
+vim/undodir/*
+mutt/cache/*
+mutt/tmp/*

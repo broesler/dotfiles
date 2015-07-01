@@ -1,100 +1,100 @@
-8,v
-sent,v
-macro index,pager \\s     "<change-folder> =bernardroesler_gmail/sent<enter>" "go to sent",V
-,,v
-no,v
-        # shut up, mutt,v
-VLM2D_UNSTEADY_v2_8_BEPPS_v6.m,v
-,pager,v
+300,v
+probably ,v
+ at this point,v
 ,V
- mai,v
-l,v
-archive,v
-macro index \\a     "<change-folder> =bernardroesler_gmail/archive<enter>" "go to archive",V
-                                re.sub('drafts',,v
-                                re.sub('drafts',,V
-                                re.sub('sent-mail',         'sent',,V
-all-mail,v
-                                re.sub('all-mail',          'archive',,V
-All Mail,v
-                                re.sub('archive',   '[Gmail].All Mail',,V
-),v
-                                re.sub('starred',         'flagged',,V
-	                            re.sub('flagged',   '[Gmail].Starred',,V
-                                re.sub('important', '[Gmail].Important',,V
-let g:netrw_dirhistmax  =10let g:netrw_dirhist_cnt =2let g:netrw_dirhist_1='/Users/bernardroesler/.vim'let g:netrw_dirhist_2='/Users/bernardroesler/.offlineimap',v
-1,v
-quiet,v
-inbox,v
-macro index \\i     "<change-folder> =bernardroesler_gmail/inbox<enter>" "go to inbox",V
+still ,v
+Upgrading to an equivalent plan (i.e. not signing up as a new customer)would be $139.99/month + modem + HD + tax = ~$160/month,V
+.,v
++ DVR,v
  ,v
-\,v
-bind index '        ,V
-macro pager \Cu ": unset wait_key; set pipe_decode\n|links\n: set wait_key; unset pipe_decode\n" "call w3m to extract URLs out of a message",v
-macro pager \Cu ": unset wait_key; set pipe_decode\n|links\n: set wait_key; unset pipe_decode\n" "call w3m to extract URLs out of a message",V
-# macro pager \Cu ": unset wait_key; set pipe_decode\n|w3m\n: set wait_key; unset pipe_decode\n" "call w3m to extract URLs out of a message",V
-w3m,v
-macro pager \Cu ": unset wait_key; set pipe_decode\n|w3m\n: set wait_key; unset pipe_decode\n" "call w3m to extract URLs out of a message",V
-macro index,pager \cB ": unset wait_key; set pipe_decode\n|w3m\n: set wait_key; unset pipe_decode\n" "call w3m to extract URLs out of a message",v
-macro index,pager \cB ": unset wait_key; set pipe_decode\n|w3m\n: set wait_key; unset pipe_decode\n" "call w3m to extract URLs out of a message",V
-macro index,pager \cB ": unset wait_key; set pipe_decode\n|w3m\n: set wait_key; unset pipe_decode\n" "call w3m to extract URLs out of a message"# macro pager \Cu ": unset wait_key; set pipe_decode\n|w3m\n: set wait_key; unset pipe_decode\n" "call w3m to extract URLs out of a message",V
-,v
-index,,v
-extension "xls" "application/excel",V
-text/html; links %s; nametemplate=%s.htmltext/html; links -dump %s; nametemplate=%s.html; copiousoutput,v
-text/html; links %s; nametemplate=%s.htmltext/html; links -dump %s; nametemplate=%s.html; copiousoutput,V
-                     ,v
-          +bernardroesler_gmail/sent \,V
-          +bernardroesler_gmail/flagged \,V
-spam,v
-          +bernardroesler_gmail/spam \,V
-later,v
-          +bernardroesler_gmail/later \,V
-",v
-[Gmail].Drafts,v
-[Gmail].All Mail,v
-[Mailbox].Later \,v
-[Gmail].Sent Mail" \,v
-[Gmail].All Mail" \,v
-# nametrans = lambda folder: {'[Gmail]/All Mail$':  'archive',#                             '[Gmail]/Spam$':      'spam', #                             '[Gmail]/Drafts$':    'drafts', #                             '[Gmail]/Sent Mail$': 'sent', #                             '[Gmail]/Starred$':   'flagged', #                             '[Gmail]/Trash$':     'trash', #                             '[Mailbox]/Later':    'later',#                             }.get(folder,folder),v
-# nametrans = lambda folder: {'[Gmail]/All Mail$':  'archive',#                             '[Gmail]/Spam$':      'spam', #                             '[Gmail]/Drafts$':    'drafts', #                             '[Gmail]/Sent Mail$': 'sent', #                             '[Gmail]/Starred$':   'flagged', #                             '[Gmail]/Trash$':     'trash', #                             '[Mailbox]/Later':    'later',#                             }.get(folder,folder),V
-# nametrans = lambda folder: {'archive':  '[Gmail]/All Mail$',#                             'spam':     '[Gmail]/Spam$',        #                             'drafts':   '[Gmail]/Drafts$',    #                             'sent':     '[Gmail]/Sent Mail$', #                             'flagged':  '[Gmail]/Starred$',   #                             'trash':    '[Gmail]/Trash$',     #                             'later':    '[Mailbox]/Later',#                             }.get(folder,folder),V
-#                             'later':    '[Mailbox]/Later',,V
-         ,1
-     ,1
-                        ,v
-                    ,v
-                ,v
-            ,v
-        ,v
-    ,v
-					,v
-				    ,v
-				,v
-			    ,v
-			,v
- 		    ,v
-		,v
-[Gmail]/,v
-                                             '[Mailbox]',,V
-bind index \#       noop,V
-set quote_r,V
-Vim to compose email,v
-, with a few default options.,v
-e,v
-g,v
-x,v
-p,v
+~,v
+ (for 12 months),v
+-----------------------,V
+95.64,v
+        ,4
++ modem     $10.00+ "HD"      $ 9.95+ taxes & fees------------------            $95.64/month,V
+$7,v
+$69.99,v
+95.64/month,v
+Upgrading this to ,v
+*,v
+package, which gives us:,V
+ for the ,v
+"Blast Plus",v
+Our current pricing just went up to ,v
+determined the best deal...,v
+On 06/30/2015 11:49:21, Bernard Roesler wrote:> I just paid the electric bill for June.> > Total is $71.07 / 4 = $17.77 per person.> > I accept cash, check, iced caffeinated beverages, and OTPHJs.> > I'm going to switch the service address to the new place today (still> need a catchy name for it).> > -Bernie,V
+Re: It's electric!,v
+c,v
+54.91,v
+219.65,v
+April and May.,v
+s,v
+Electric bills,v
+Re: ,v
+On 05/28/2015 10:02:08, Bernard Roesler wrote:,V
+basic,v
+quiet,v
+o,v
+-,v
+Ferrieri 2013 Experimental Study on Ice Management through the use of PoddedPropeller Wash (SMP13),v
+Ferrieri 2013 Experimental Study on Ice Management through the use of PoddedPropeller Wash (SMP13),V
+Brouwer 2013 Propeller-ice impacts measurements with a six-component bladeload sensor (SMP13),V
+Lee 2007 Engineering Practice on Ice Propeller Strength Assessment Based onIACS Polar Ice Rule UR13,V
+Wang 2007 An Overview of Model Tests and Numerical Predictions forPropeller-Ice Interaction,V
+Wang 2007 An Overview of Model Tests and Numerical Predictions for,V
+Wang 2007 Ice Loads Acting on a Model Podded Propeller Blade,V
+Norhamo 2009 Challenges Related to Propulsor-Ice Interaction in ArcticWaters,V
+three ,v
+three,v
+itb,v
+itb,V
+Just let me know when you're thinking of going so I can planahead. ,v
+I'd actually be ,v
+>,v
+<enter,v
+<enter>,v
+/Users/bernardroesler,v
 =,v
-^,v
-(,v
-{0,4,v
-}[>|:#%]| ,v
-}[a-z0-9]+[>|]+)+",v
-#,v
-<tab>,v
-<Esc>,v
-<Esc>k,v
-<Esc>j,v
- show all messages,v
-bind pager N   search-opposite,V
+<kill-line>,v
+ "-" '/Applications/TextEdit.app',v
+application/msword; ~/.mutt/view_attachment.sh %s "-" '/Applications/TextEdit.app',V
+Teaching Assistant, ,v
+bragging rights,v
+shit,v
+  ,v
+"README" file in the VLM2D folder?  ,V
+ing,v
+also ,v
+, and it's probably a valuable skill to have,v
+world ,v
+real ,v
+Not everyone,v
+do this,v
+put,v
+/Users/bernardroesler/Kite Drive/Codes/VLM2D/VLM2D_v2.8_150605//Users/bernardroesler/Kite Drive/Codes/VLM2D/VLM2D_v2.8_150605//Users/bernardroesler/Kite Drive/Codes/VLM2D/VLM2D_v2.8_150605//Users/bernardroesler/Kite Drive/Codes/VLM2D/VLM2D_v2.8_150605//Users/bernardroesler/Kite Drive/Codes/VLM2D/VLM2D_v2.8_150605//Users/bernardroesler/Kite Drive/Codes/VLM2D/VLM2D_v2.8_150605//Users/bernardroesler/Kite Drive/Codes/VLM2D/VLM2D_v2.8_150605//Users/bernardroesler/Kite Drive/Codes/VLM2D/VLM2D_v2.8_150605//Users/bernardroesler/Kite Drive/Codes/VLM2D/VLM2D_v2.8_150605/,63
+Brian Doyle <bcdoyle16@gmail.com>,v
+150623_SNAME_H8_Bernie.key,v
+g,v
+just ,v
+  \Upsilon_T = \frac{\text{std}(C_T(t))}{\overline{C_T(t)}} \quad , \quad \Upsilon_S = \frac{\text{std}(C_S(t))}{\overline{C_T(t)}},V
+   \setlength{\tabcolsep}{8pt}    \def\arraystretch{1.2}  \begin{tabular}[t]{l*{5}{c}}%\hline{case} 				& $\phi$				& foil 		& \bf{$C_T$}	& \bf{$\Upsilon_T$} & \bf{$\Upsilon_S$}  \\\hline\multirow{3}{*}{(a)} &\multirow{3}{*}{$\phi = \pi$}				& 1			& 0.43			& 0.97   		& 3.51   			\\					&						& 2			& 0.55 			& 0.82 			& 3.60 				\\					&						& both		& 0.98 			& 0.77			& \bf{1.34}			\\\hline \multirow{3}{*}{(b)} &\multirow{3}{*}{$\phi = \pi/2$}				& 1			& 0.43  		& 0.96     		& 3.53    			\\					&						& 2			& 0.65 			& 1.14    		& 3.41   			\\					&						& both		& 1.08 			& \bf{0.35}		& 2.62				\\\hline\multirow{3}{*}{(c)} &\multirow{3}{*}{$\phi =  3\pi/4$}			& 1			& 0.43  		& 0.97    		& 3.54    			\\					&						& 2			& 0.61 			& 1.12  		& 3.51   			\\					&						& both		& 1.04			& 0.50			& 2.06		\\\hline\hline				&						& single	& 0.39			&  0.95			& 3.46		\\\hline%\end{tabular},V
+  \begin{tabular}[t]{l*{5}{c}}%\hline{case} 				& $\phi$				& foil 		& \bf{$C_T$}	& \bf{$\Upsilon_T$} & \bf{$\Upsilon_S$}  \\\hline\multirow{3}{*}{(a)} &\multirow{3}{*}{$\phi = \pi$}				& 1			& 0.43			& 0.97   		& 3.51   			\\					&						& 2			& 0.55 			& 0.82 			& 3.60 				\\					&						& both		& 0.98 			& 0.77			& \bf{1.34}			\\\hline \multirow{3}{*}{(b)} &\multirow{3}{*}{$\phi = \pi/2$}				& 1			& 0.43  		& 0.96     		& 3.53    			\\					&						& 2			& 0.65 			& 1.14    		& 3.41   			\\					&						& both		& 1.08 			& \bf{0.35}		& 2.62				\\\hline\multirow{3}{*}{(c)} &\multirow{3}{*}{$\phi =  3\pi/4$}			& 1			& 0.43  		& 0.97    		& 3.54    			\\					&						& 2			& 0.61 			& 1.12  		& 3.51   			\\					&						& both		& 1.04			& 0.50			& 2.06		\\\hline\hline				&						& single	& 0.39			&  0.95			& 3.46		\\\hline%\end{tabular},V
+aft foil,v
+Instantaneous thrust and side forces for three cases: low $\Upsilon_T$, low $\Upsilon_S$, and compromise. Legend: forward foil ({\color{blue} blue $- -$}), aft foil ({\color{red} red $-\!\cdot\!-$}) and total ({black} ---).,v
+pitchingonly,v
+the size correct,v
+),v
+",v
+used,v
+christian.m.ortiz@gmail.com, Austin.W.Boesch.TH@dartmouth.edu,v
+Fig1_fullframe.pdfFig2a_carriage.jpgFig2b_propeller.jpgFig3_angles_v2.pdfFig4a_pitchcontrol_full.pdfFig4b_pitchcontrol_cut.pdfFig5_innerframe.pdfFig6_animationframe.pdfFig7a_CT.pdfFig7b_CQ_CS.pdfFig7c_CQS.pdfFig7d_ETA.pdfFig8_ETAvsCT.pdf,v
+Cp_a2_thickness_chordline,v
+i,v
+macro index,pager gd     "<change-folder> =bernardroesler_gmail/drafts<enter>" "go to flagged",v
+macro index,pager gd     "<change-folder> =bernardroesler_gmail/drafts<enter>" "go to flagged",V
+flagged,v
+macro index,pager gf     "<change-folder> =bernardroesler_gmail/flagged<enter>" "go to flagged",V
+Austin.W.Boesch.TH@dartmouth.edu,v
+sent,v
+%--------------------------------------------------------------------------,v

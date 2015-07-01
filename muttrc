@@ -3,7 +3,7 @@
 # Created: 06/18/15, 18:29
 #  Author: Bernie Roesler
 #
-# Last Modified: 06/20/2015, 22:43
+# Last Modified: 06/30/2015, 11:44
 #
 # Description: mutt configuration file.
 #===============================================================================
@@ -19,12 +19,10 @@ set sleep_time = 0      # Don't wait when switching mailboxes
 #       Paths
 #-------------------------------------------------------------------------------
 set folder           = ~/.mail               # mailbox location
-# set alias_file       = ~/.mutt/alias         # where to store aliases
-set header_cache     = ~/.mutt/cache/headers # where to store headers
-set message_cachedir = ~/.mutt/cache/bodies  # where to store bodies
-# set certificate_file = ~/.mutt/certificates  # where to store certs
+set header_cache     = ~/.mutt/cache/headers
+set message_cachedir = ~/.mutt/cache/bodies
 set mailcap_path     = ~/.mutt/mailcap       # entries for filetypes
-# set tmpdir           = ~/.mutt/temp          # where to keep temp files
+set tmpdir           = ~/.mutt/tmp
 
 #-------------------------------------------------------------------------------
 #       Basic Options
@@ -48,7 +46,7 @@ set thorough_search      # strip headers and eval mimes before searching
 set sidebar_delim   = ' | '
 set sidebar_visible = yes
 set sidebar_width   = 24
-color sidebar_new color221 color233
+# color sidebar_new color221 color233
 
 #-------------------------------------------------------------------------------
 #       Status Bar
@@ -75,6 +73,7 @@ mailboxes +bernardroesler_gmail/inbox \
           +bernardroesler_gmail/archive \
           +bernardroesler_gmail/flagged \
           +bernardroesler_gmail/later \
+          +bernardroesler_gmail/drafts \
           +bernardroesler_gmail/sent \
           +bernardroesler_gmail/spam \
           +bernardroesler_gmail/trash \
@@ -135,10 +134,23 @@ unset mime_forward                   # forward attachments as part of body
 #-------------------------------------------------------------------------------
 #       Key Bindings
 #-------------------------------------------------------------------------------
-macro index,pager \\i     "<change-folder> =bernardroesler_gmail/inbox<enter>" "go to inbox"
-macro index,pager \\a     "<change-folder> =bernardroesler_gmail/archive<enter>" "go to archive"
-macro index,pager \\s     "<change-folder> =bernardroesler_gmail/sent<enter>" "go to sent"
-macro index,pager \\f     "<change-folder> =bernardroesler_gmail/flagged<enter>" "go to flagged"
+# Reload muttrc
+macro index,pager gr "<enter-command> source ~/.muttrc<enter>"
+
+# Go-to mailboxes
+macro index,pager gi     "<change-folder> =bernardroesler_gmail/inbox<enter>"   "go to inbox"
+macro index,pager ga     "<change-folder> =bernardroesler_gmail/archive<enter>" "go to archive"
+macro index,pager gd     "<change-folder> =bernardroesler_gmail/drafts<enter>"  "go to flagged"
+macro index,pager gs     "<change-folder> =bernardroesler_gmail/sent<enter>"    "go to sent"
+macro index,pager gl     "<change-folder> =bernardroesler_gmail/later<enter>"   "go to later"
+macro index,pager gf     "<change-folder> =bernardroesler_gmail/flagged<enter>" "go to flagged"
+
+# Sidebar navigation
+bind index,pager gj         sidebar-next
+bind index,pager gk         sidebar-prev
+bind index,pager g<return>  sidebar-open
+
+# General navigation
 bind index gg       first-entry
 bind index G        last-entry
 bind index N        search-opposite
@@ -147,7 +159,16 @@ bind index \Cs      sync-mailbox
 bind index <space>  collapse-thread
 bind index p        recall-message
 
-# Ctrl-R to mark all as read
+# Reverse the definitions of these keys from defaults
+bind index,pager \CN      next-undeleted
+bind index,pager \CP      previous-undeleted
+bind index,pager <Down>   next-thread
+bind index,pager <Up>     previous-thread
+
+# Send to Gmail Archive
+macro index,pager A "<save-message>=bernardroesler_gmail/archive<enter>" "archive message"
+
+# Mark all as read
 macro index \Cr "T~U<enter><tag-prefix><clear-flag>N<untag-pattern>.<enter>" "mark all messages as read"
 
 # Sync email
@@ -193,12 +214,8 @@ bind editor ^T    complete
 bind compose p postpone-message
 
 # Save attachments to downloads
-macro attach W <save-entry><kill-line>/Users/bernardroesler/Downloads/<enter><enter>
+macro attach W <save-entry><bol>~/Downloads/<eol><enter> "save attachment to Downloads"
 
-# Sidebar navigation
-bind index,pager \\j     sidebar-next
-bind index,pager \\k     sidebar-prev
-bind index,pager \\<return>  sidebar-open
 
 #-------------------------------------------------------------------------------
 #       Colorscheme
