@@ -3,7 +3,7 @@
 # Created: 06/17/15, 22:37
 #  Author: Bernie Roesler
 #
-# Last Modified: 06/20/2015, 22:57
+# Last Modified: 06/20/2015, 23:15
 #
 # Description: offlineimap configuration file. Maps gmail folders to proper
 #       directories
@@ -20,7 +20,7 @@ localrepository = BRgmail_Local
 remoterepository = BRgmail_Remote
 status_backend = sqlite
 postsynchook = notmuch new
-maxage = 1400
+# maxage = 2500
 
 [Repository BRgmail_Local]
 type = Maildir

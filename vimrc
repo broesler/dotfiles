@@ -3,7 +3,7 @@
 " Created: 04/16/2015
 "  Author: Bernie Roesler
 "
-" Last Modified: 06/19/2015, 11:26
+" Last Modified: 06/25/2015, 18:32
 
 " Description: Settings for vim. Source with \s while in vim. Functions called
 "   by autocommands are located in ~/.vim/plugin/util_functions.vim
@@ -95,6 +95,8 @@ set showmatch                   " Show matching parens
 set matchtime=3                 " Highlight for 3 miliseconds
 set textwidth=0 wrap linebreak  " Do not break words mid-word
 set backspace=indent,eol,start  " allow backspacing over everything in insert mode
+
+set printoptions=paper:letter
 
 " Use mouse if it exists
 " In many terminal emulators the mouse works just fine, thus enable it.
