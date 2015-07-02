@@ -1,12 +1,85 @@
+macro index,pager gf     "<change-folder> =bernardroesler_gmail/flagged<enter>" "go to flagged",v
+macro index,pager gf     "<change-folder> =bernardroesler_gmail/flagged<enter>" "go to flagged",V
+flagged,v
+          +bernardroesler_gmail/flagged \,V
+),v
+                                re.sub('starred',           'flagged',,V
+                                re.sub('flagged',   '[Gmail].Starred',,V
+=SuperTab('n'),v
+noticed,v
+ ,v
+in thread,v
+all ,v
+<tag-thread>;,v
+macro index,pager xa,V
+# set sort = threads# set sort_aux = reverse-last-date-received,v
+# set sort = threads# set sort_aux = reverse-last-date-received,V
+  # like gmail,v
+                         # like gmail,v
+,v
+,V
+# help screen,V
+and ,v
+Repair,v
+",v
+(,v
+the LANDLORD is responsible for making and executing "all major repairs to the premises and fixtures".,v
+Per the lease agreement, paragraph 5(a), the LANDLORD is responsible for making and executing "all major repairs to the premises and fixtures".,V
+section,v
+We performed the following maintenance ,v
+- no ventilation system for gas stove,V
+- front door replaced twice while we were living in the apartment,V
+ (at 7am),v
+ when we moved in,v
+itemized list of things that were unacceptable, which apparently they cannot provide for us,v
+we ,v
+in ,v
+s,v
+living ,v
+the ,v
+the state of the apartment ,v
+ with the state of the apartment upon our move-in and during our rental period,v
+in contrast with the current state of cleanliness,v
+but ,v
+but,v
+which was provided to us,v
+Please provide a list of items that we need to remove from the apartment. ,v
+e,v
+- refrigerator was not empty when we moved in,V
+my,v
+that,v
+asking you ,v
+attempts,v
+useless ,v
+Christian,v
+ and have a great day,v
+is,v
+fixed,v
+w,v
+a,v
+having,v
+with ,v
+literally ,v
+ever ,v
+I think ,v
+of ,v
+l,v
+The most gruesome work was the,v
+she simply said that ,v
+I think whose name is ,v
+large, ,v
+terrible ,v
+Draft to ,v
+> Draft to Trista,> > We moved into a terrible apartment that was left uncleaned and full of> large, useless furniture, garbage, and countless knick-knacks. You refused> to have it cleaned before we moved in, even after multiple attempts by us> asking to do so. We did our best to make it livable, including the removal> of the furniture and basic maintenance work. The most gruesome work was the> removal of the toxic black mold from the bathroom ceiling and walls. To> quote your staff, I think whose name is Jennifer, that was cleaning the> other apartments and offered to inspect our place, she simply said that the> state of the apartment was "unacceptable," and that "[we] should sue."> > When we moved out, we scrubbed the apartment top to bottom to a level that> exceeded that of which we moved in. Anything that was left behind was there> originally.> > Your claims of your "expectation" is insulting. You never met those> expectation yourself. We were never provided keys to the apartment, only to> find them hidden among the garbage weeks later. The apartment was never> cleaned, and I think we made it the cleanest it has ever been in years. We> literally moved in with the apartment having a broken window and a light> fixture hanging from the ceiling by the electrical wiring and duct tape.> > In light of all of this, and including the numerous breaches in contract> throughout our stay, my recommendation is that we get our deposit back in> full and no additional work on our part will be performed.> > Thank you and have a great day> > Christian,V
+g ,v
+-,v
 300,v
 probably ,v
  at this point,v
-,V
 still ,v
 Upgrading to an equivalent plan (i.e. not signing up as a new customer)would be $139.99/month + modem + HD + tax = ~$160/month,V
 .,v
 + DVR,v
- ,v
 ~,v
  (for 12 months),v
 -----------------------,V
@@ -25,76 +98,3 @@ Our current pricing just went up to ,v
 determined the best deal...,v
 On 06/30/2015 11:49:21, Bernard Roesler wrote:> I just paid the electric bill for June.> > Total is $71.07 / 4 = $17.77 per person.> > I accept cash, check, iced caffeinated beverages, and OTPHJs.> > I'm going to switch the service address to the new place today (still> need a catchy name for it).> > -Bernie,V
 Re: It's electric!,v
-c,v
-54.91,v
-219.65,v
-April and May.,v
-s,v
-Electric bills,v
-Re: ,v
-On 05/28/2015 10:02:08, Bernard Roesler wrote:,V
-basic,v
-quiet,v
-o,v
--,v
-Ferrieri 2013 Experimental Study on Ice Management through the use of PoddedPropeller Wash (SMP13),v
-Ferrieri 2013 Experimental Study on Ice Management through the use of PoddedPropeller Wash (SMP13),V
-Brouwer 2013 Propeller-ice impacts measurements with a six-component bladeload sensor (SMP13),V
-Lee 2007 Engineering Practice on Ice Propeller Strength Assessment Based onIACS Polar Ice Rule UR13,V
-Wang 2007 An Overview of Model Tests and Numerical Predictions forPropeller-Ice Interaction,V
-Wang 2007 An Overview of Model Tests and Numerical Predictions for,V
-Wang 2007 Ice Loads Acting on a Model Podded Propeller Blade,V
-Norhamo 2009 Challenges Related to Propulsor-Ice Interaction in ArcticWaters,V
-three ,v
-three,v
-itb,v
-itb,V
-Just let me know when you're thinking of going so I can planahead. ,v
-I'd actually be ,v
->,v
-<enter,v
-<enter>,v
-/Users/bernardroesler,v
-=,v
-<kill-line>,v
- "-" '/Applications/TextEdit.app',v
-application/msword; ~/.mutt/view_attachment.sh %s "-" '/Applications/TextEdit.app',V
-Teaching Assistant, ,v
-bragging rights,v
-shit,v
-  ,v
-"README" file in the VLM2D folder?  ,V
-ing,v
-also ,v
-, and it's probably a valuable skill to have,v
-world ,v
-real ,v
-Not everyone,v
-do this,v
-put,v
-/Users/bernardroesler/Kite Drive/Codes/VLM2D/VLM2D_v2.8_150605//Users/bernardroesler/Kite Drive/Codes/VLM2D/VLM2D_v2.8_150605//Users/bernardroesler/Kite Drive/Codes/VLM2D/VLM2D_v2.8_150605//Users/bernardroesler/Kite Drive/Codes/VLM2D/VLM2D_v2.8_150605//Users/bernardroesler/Kite Drive/Codes/VLM2D/VLM2D_v2.8_150605//Users/bernardroesler/Kite Drive/Codes/VLM2D/VLM2D_v2.8_150605//Users/bernardroesler/Kite Drive/Codes/VLM2D/VLM2D_v2.8_150605//Users/bernardroesler/Kite Drive/Codes/VLM2D/VLM2D_v2.8_150605//Users/bernardroesler/Kite Drive/Codes/VLM2D/VLM2D_v2.8_150605/,63
-Brian Doyle <bcdoyle16@gmail.com>,v
-150623_SNAME_H8_Bernie.key,v
-g,v
-just ,v
-  \Upsilon_T = \frac{\text{std}(C_T(t))}{\overline{C_T(t)}} \quad , \quad \Upsilon_S = \frac{\text{std}(C_S(t))}{\overline{C_T(t)}},V
-   \setlength{\tabcolsep}{8pt}    \def\arraystretch{1.2}  \begin{tabular}[t]{l*{5}{c}}%\hline{case} 				& $\phi$				& foil 		& \bf{$C_T$}	& \bf{$\Upsilon_T$} & \bf{$\Upsilon_S$}  \\\hline\multirow{3}{*}{(a)} &\multirow{3}{*}{$\phi = \pi$}				& 1			& 0.43			& 0.97   		& 3.51   			\\					&						& 2			& 0.55 			& 0.82 			& 3.60 				\\					&						& both		& 0.98 			& 0.77			& \bf{1.34}			\\\hline \multirow{3}{*}{(b)} &\multirow{3}{*}{$\phi = \pi/2$}				& 1			& 0.43  		& 0.96     		& 3.53    			\\					&						& 2			& 0.65 			& 1.14    		& 3.41   			\\					&						& both		& 1.08 			& \bf{0.35}		& 2.62				\\\hline\multirow{3}{*}{(c)} &\multirow{3}{*}{$\phi =  3\pi/4$}			& 1			& 0.43  		& 0.97    		& 3.54    			\\					&						& 2			& 0.61 			& 1.12  		& 3.51   			\\					&						& both		& 1.04			& 0.50			& 2.06		\\\hline\hline				&						& single	& 0.39			&  0.95			& 3.46		\\\hline%\end{tabular},V
-  \begin{tabular}[t]{l*{5}{c}}%\hline{case} 				& $\phi$				& foil 		& \bf{$C_T$}	& \bf{$\Upsilon_T$} & \bf{$\Upsilon_S$}  \\\hline\multirow{3}{*}{(a)} &\multirow{3}{*}{$\phi = \pi$}				& 1			& 0.43			& 0.97   		& 3.51   			\\					&						& 2			& 0.55 			& 0.82 			& 3.60 				\\					&						& both		& 0.98 			& 0.77			& \bf{1.34}			\\\hline \multirow{3}{*}{(b)} &\multirow{3}{*}{$\phi = \pi/2$}				& 1			& 0.43  		& 0.96     		& 3.53    			\\					&						& 2			& 0.65 			& 1.14    		& 3.41   			\\					&						& both		& 1.08 			& \bf{0.35}		& 2.62				\\\hline\multirow{3}{*}{(c)} &\multirow{3}{*}{$\phi =  3\pi/4$}			& 1			& 0.43  		& 0.97    		& 3.54    			\\					&						& 2			& 0.61 			& 1.12  		& 3.51   			\\					&						& both		& 1.04			& 0.50			& 2.06		\\\hline\hline				&						& single	& 0.39			&  0.95			& 3.46		\\\hline%\end{tabular},V
-aft foil,v
-Instantaneous thrust and side forces for three cases: low $\Upsilon_T$, low $\Upsilon_S$, and compromise. Legend: forward foil ({\color{blue} blue $- -$}), aft foil ({\color{red} red $-\!\cdot\!-$}) and total ({black} ---).,v
-pitchingonly,v
-the size correct,v
-),v
-",v
-used,v
-christian.m.ortiz@gmail.com, Austin.W.Boesch.TH@dartmouth.edu,v
-Fig1_fullframe.pdfFig2a_carriage.jpgFig2b_propeller.jpgFig3_angles_v2.pdfFig4a_pitchcontrol_full.pdfFig4b_pitchcontrol_cut.pdfFig5_innerframe.pdfFig6_animationframe.pdfFig7a_CT.pdfFig7b_CQ_CS.pdfFig7c_CQS.pdfFig7d_ETA.pdfFig8_ETAvsCT.pdf,v
-Cp_a2_thickness_chordline,v
-i,v
-macro index,pager gd     "<change-folder> =bernardroesler_gmail/drafts<enter>" "go to flagged",v
-macro index,pager gd     "<change-folder> =bernardroesler_gmail/drafts<enter>" "go to flagged",V
-flagged,v
-macro index,pager gf     "<change-folder> =bernardroesler_gmail/flagged<enter>" "go to flagged",V
-Austin.W.Boesch.TH@dartmouth.edu,v
-sent,v
-%--------------------------------------------------------------------------,v
