@@ -3,7 +3,7 @@
 # Created: 06/18/15, 18:29
 #  Author: Bernie Roesler
 #
-# Last Modified: 06/30/2015, 11:44
+# Last Modified: 07/01/2015, 20:53
 #
 # Description: mutt configuration file.
 #===============================================================================
@@ -71,7 +71,6 @@ set spoolfile = "+bernardroesler_gmail/INBOX"
 # Mailboxes to show in the sidebar
 mailboxes +bernardroesler_gmail/inbox \
           +bernardroesler_gmail/archive \
-          +bernardroesler_gmail/flagged \
           +bernardroesler_gmail/later \
           +bernardroesler_gmail/drafts \
           +bernardroesler_gmail/sent \
@@ -87,10 +86,10 @@ set record    = "+bernardroesler_gmail/sent"
 #-------------------------------------------------------------------------------
 #       Index View Options
 #-------------------------------------------------------------------------------
-set date_format = "%m/%d/%Y %T"
+set date_format  = "%m/%d/%Y %T"
 set index_format = "[%Z]  %D  %-20.20F  %s"
-set sort = threads                         # like gmail
-set sort_aux = reverse-last-date-received  # like gmail
+set sort         = reverse-threads
+set sort_aux     = last-date-received
 set uncollapse_jump                        # don't collapse on an unread message
 set sort_re                                # thread based on regex
 set reply_regexp = "^(([Rr][Ee]?(\[[0-9]+\])?: *)?(\[[^]]+\] *)?)*"
@@ -140,10 +139,9 @@ macro index,pager gr "<enter-command> source ~/.muttrc<enter>"
 # Go-to mailboxes
 macro index,pager gi     "<change-folder> =bernardroesler_gmail/inbox<enter>"   "go to inbox"
 macro index,pager ga     "<change-folder> =bernardroesler_gmail/archive<enter>" "go to archive"
-macro index,pager gd     "<change-folder> =bernardroesler_gmail/drafts<enter>"  "go to flagged"
+macro index,pager gd     "<change-folder> =bernardroesler_gmail/drafts<enter>"  "go to drafts"
 macro index,pager gs     "<change-folder> =bernardroesler_gmail/sent<enter>"    "go to sent"
 macro index,pager gl     "<change-folder> =bernardroesler_gmail/later<enter>"   "go to later"
-macro index,pager gf     "<change-folder> =bernardroesler_gmail/flagged<enter>" "go to flagged"
 
 # Sidebar navigation
 bind index,pager gj         sidebar-next
@@ -165,8 +163,8 @@ bind index,pager \CP      previous-undeleted
 bind index,pager <Down>   next-thread
 bind index,pager <Up>     previous-thread
 
-# Send to Gmail Archive
-macro index,pager A "<save-message>=bernardroesler_gmail/archive<enter>" "archive message"
+# Send individual message to Gmail Archive
+macro index,pager a "<save-message>=bernardroesler_gmail/archive<enter>" "archive messages"
 
 # Mark all as read
 macro index \Cr "T~U<enter><tag-prefix><clear-flag>N<untag-pattern>.<enter>" "mark all messages as read"
@@ -180,7 +178,7 @@ macro index M "<save-message>?<toggle-mailboxes>" "move a message to a mailbox"
 
 # Searching
 bind pager N   search-opposite
-macro index a "<limit>all\n" "show all messages (undo limit)"
+macro index A "<limit>all\n" "show all messages (undo limit)"
 
 # Search ALL mail
 macro index S "<enter-command>unset wait_key<enter><shell-escape>mutt-notmuch-py ~/.mail/temporary/search<enter><change-folder-readonly>+temporary/search<enter>" "search all mail (using notmuch)"
