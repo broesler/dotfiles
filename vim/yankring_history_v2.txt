@@ -1,3 +1,5 @@
+silent! ,v
+silent!,v
 macro index,pager gf     "<change-folder> =bernardroesler_gmail/flagged<enter>" "go to flagged",v
 macro index,pager gf     "<change-folder> =bernardroesler_gmail/flagged<enter>" "go to flagged",V
 flagged,v
@@ -96,5 +98,3 @@ package, which gives us:,V
 "Blast Plus",v
 Our current pricing just went up to ,v
 determined the best deal...,v
-On 06/30/2015 11:49:21, Bernard Roesler wrote:> I just paid the electric bill for June.> > Total is $71.07 / 4 = $17.77 per person.> > I accept cash, check, iced caffeinated beverages, and OTPHJs.> > I'm going to switch the service address to the new place today (still> need a catchy name for it).> > -Bernie,V
-Re: It's electric!,v

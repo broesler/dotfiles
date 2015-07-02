@@ -9,9 +9,9 @@
 "   by autocommands are located in ~/.vim/plugin/util_functions.vim
 "==============================================================================
 
-" Run pathogen to load plugins
-call pathogen#infect()
-call pathogen#helptags()
+" Run pathogen to load plugins (ignore errors on Linux machines)
+silent! call pathogen#infect()
+silent! call pathogen#helptags()
 
 " Use Vim settings, rather than Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
@@ -312,7 +312,8 @@ hi SpellLocal term=underline cterm=underline
 set laststatus=2                             " always show statusbar  
 set statusline=                              " clear default status line
 set statusline+=%-4.3n\                      " buffer number  
-set statusline+=%{fugitive#statusline()}     " brance name (NEEDS FUGITIVE)
+" set statusline+=%{fugitive#statusline()}     " brance name (NEEDS FUGITIVE)
+set statusline+=%{exists('g:loaded_fugitive')?fugitive#statusline():''}
 set statusline+=\ \                          " Separator
 set statusline+=%t\                          " %F is entire path
 set statusline+=%h%m%r%w                     " status flags  
