@@ -25,8 +25,10 @@ fi
 # Set the default editor to vim.
 export EDITOR=vim
 
-# Avoid succesive duplicates and spaces in the bash command history.
+# Avoid succesive duplicates and spaces in the bash command history, ignore
+# simple, commonly-used commands.
 export HISTCONTROL=ignoredups:ignorespace
+export HISTIGNORE='clc:lc:fg:git st:git lol'
 export HISTSIZE=10000
 export HISTFILESIZE=100000
 

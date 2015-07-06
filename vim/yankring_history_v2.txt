@@ -1,3 +1,45 @@
+export HISTSIZE=10000export HISTFILESIZE=100000,V
+Avoid succesive duplicates and spaces in the bash command history.,v
+Let me know what you ,v
+Meseguer and Trefethen 2003 JCP - linearized pipe flow.pdf,v
+m,v
+Take a look an,v
+This category would seem to fit our current tandem foil phase lag letter format of 2500 words, and the general scope of the journal ,V
+Our letter ,v
+would ,v
+which,v
+,,v
+ ,v
+(i.e. tandem foils),v
+tandem,v
+s,v
+http://arc.aiaa.org/page/typesofjournalcontent,v
+Platzer 2008 - Flapping-Wing Aerodynamics - Progress and Challenges.pdf,v
+GOPR0332.MP4,v
+(603) 227-4020,v
+as well as the cited pdfs,v
+0.0787,v
+the material exhibits thixotropy,v
+diameter,v
+ 2mm diameter == 0.0787 in,V
+#-------------------------------------------------------------------------------,V
+-,v
+--------------------------------------------------------------------------------,V
+,V
+From: Brenden Epps <brenden.epps@dartmouth.edu>To: "Gina M. Calabrese" <Gina.M.Calabrese@dartmouth.edu>, Bernie Roesler <Bernard.T.Roesler.TH@dartmouth.edu>Date: Fri, 26 Jun 2015 16:44:16 -0400Subject: Rheometer specsHi Gina,Here are the tentative specifications of the slurry materials (either oneor the other of these cases):1.  Switchgrass immersed in water.  Slurry is 15% solids by volume.  Solidsparticles are grass clippings roughly cylindrical shaped, 12 mm long and 2mm in diameter.2.  Corn stover immersed in water.  Slurry is 15% solids by volume.  Solidsparticles are roughly 2mm diameter spheres.Bernie,Can you please do a literature search and find out the viscosity of thesematerials?  I need to spec out a viscometer to measure the viscosity ofthis slurry mixture for Lee's project.   Can you please find viscosity ortorque data in the literature to help me spec out the viscometer?-Brenden,V
+Hi Gina,Here are the tentative specifications of the slurry materials (either one or the other of these cases):1.  Switchgrass immersed in water.  Slurry is 15% solids by volume.  Solids particles are grass clippings roughly cylindrical shaped, 12 mm long and 2 mm in diameter.2.  Corn stover immersed in water.  Slurry is 15% solids by volume.  Solids particles are roughly 2mm diameter spheres.Bernie,Can you please do a literature search and find out the viscosity of these materials?  I need to spec out a viscometer to measure the viscosity of this slurry mixture for Lee's project.   Can you please find viscosity or torque data in the literature to help me spec out the viscometer?-Brenden,v
+Davison2003,V
+probably ,v
+Measurements were made using a Brookfield R/S rheometer (Brookfield Engineering Laboratories Inc., Middleboro, MA) operated in controlled shear rate mode using a plate/plate geometry with a 1.5 mm gap,v
+set LC_CTYPE=en_US.ISO-8859-1,v
+ISBN-13: 9780314284365.,v
+set LC_CTYPE=en_US.ISO-8859-1,V
+.,v
+set LC_CTYPE=en_US.ISO-8859-1.,v
+be home.,v
+t,v
+I decided to get a full bed tohave some more space in my new apartmen,v
+set statusline+=%{exists('g:loaded_fugitive')?fugitive#statusline():''},v
 silent! ,v
 silent!,v
 macro index,pager gf     "<change-folder> =bernardroesler_gmail/flagged<enter>" "go to flagged",v
@@ -9,7 +51,6 @@ flagged,v
                                 re.sub('flagged',   '[Gmail].Starred',,V
 =SuperTab('n'),v
 noticed,v
- ,v
 in thread,v
 all ,v
 <tag-thread>;,v
@@ -19,7 +60,6 @@ macro index,pager xa,V
   # like gmail,v
                          # like gmail,v
 ,v
-,V
 # help screen,V
 and ,v
 Repair,v
@@ -36,7 +76,6 @@ We performed the following maintenance ,v
 itemized list of things that were unacceptable, which apparently they cannot provide for us,v
 we ,v
 in ,v
-s,v
 living ,v
 the ,v
 the state of the apartment ,v
@@ -59,42 +98,3 @@ is,v
 fixed,v
 w,v
 a,v
-having,v
-with ,v
-literally ,v
-ever ,v
-I think ,v
-of ,v
-l,v
-The most gruesome work was the,v
-she simply said that ,v
-I think whose name is ,v
-large, ,v
-terrible ,v
-Draft to ,v
-> Draft to Trista,> > We moved into a terrible apartment that was left uncleaned and full of> large, useless furniture, garbage, and countless knick-knacks. You refused> to have it cleaned before we moved in, even after multiple attempts by us> asking to do so. We did our best to make it livable, including the removal> of the furniture and basic maintenance work. The most gruesome work was the> removal of the toxic black mold from the bathroom ceiling and walls. To> quote your staff, I think whose name is Jennifer, that was cleaning the> other apartments and offered to inspect our place, she simply said that the> state of the apartment was "unacceptable," and that "[we] should sue."> > When we moved out, we scrubbed the apartment top to bottom to a level that> exceeded that of which we moved in. Anything that was left behind was there> originally.> > Your claims of your "expectation" is insulting. You never met those> expectation yourself. We were never provided keys to the apartment, only to> find them hidden among the garbage weeks later. The apartment was never> cleaned, and I think we made it the cleanest it has ever been in years. We> literally moved in with the apartment having a broken window and a light> fixture hanging from the ceiling by the electrical wiring and duct tape.> > In light of all of this, and including the numerous breaches in contract> throughout our stay, my recommendation is that we get our deposit back in> full and no additional work on our part will be performed.> > Thank you and have a great day> > Christian,V
-g ,v
--,v
-300,v
-probably ,v
- at this point,v
-still ,v
-Upgrading to an equivalent plan (i.e. not signing up as a new customer)would be $139.99/month + modem + HD + tax = ~$160/month,V
-.,v
-+ DVR,v
-~,v
- (for 12 months),v
------------------------,V
-95.64,v
-        ,4
-+ modem     $10.00+ "HD"      $ 9.95+ taxes & fees------------------            $95.64/month,V
-$7,v
-$69.99,v
-95.64/month,v
-Upgrading this to ,v
-*,v
-package, which gives us:,V
- for the ,v
-"Blast Plus",v
-Our current pricing just went up to ,v
-determined the best deal...,v
