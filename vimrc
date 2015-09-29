@@ -3,7 +3,7 @@
 " Created: 04/16/2015
 "  Author: Bernie Roesler
 "
-" Last Modified: 06/25/2015, 18:32
+" Last Modified: 07/31/2015, 12:01
 
 " Description: Settings for vim. Source with \s while in vim. Functions called
 "   by autocommands are located in ~/.vim/plugin/util_functions.vim
@@ -149,7 +149,7 @@ augroup quickfix_window
     au QuickFixCmdPost    l* nested lwindow
 
     " Quickly open/close quickfix and location list
-    au! BufWinEnter quickfix nnoremap <silent> <buffer> q :cclose<cr>:lclose<cr>
+    au! BufWinEnter quickfix nnoremap <silent> <buffer> q :cclose<CR>:lclose<CR>
 augroup END
 
 augroup misc_cmds
@@ -170,7 +170,7 @@ augroup code_cmds
   au BufNewFile *.vim call MakeTemplate("$HOME/.vim/header/vim_header")
 
   " Update 'Last Modified:' line in code files
-  au BufWritePre *.c,*.m,*.f95,*.vim,$MYVIMRC,.*,*.sh call LastModified()
+  au BufWritePre *.c,*.h,*.m,*.f95,*.vim,$MYVIMRC,.*,*.sh call LastModified()
 augroup END
 
 "------------------------------------------------------------------------------
@@ -279,6 +279,9 @@ nnoremap <leader>t     "=strftime("%m/%d/%Y, %H:%M")<CR>P
 " YankRing.vim map
 let g:yankring_history_dir='~/.vim/'
 nnoremap <silent> <Leader>yr :YRGetElem<CR>
+
+" Map \M to make in background
+nnoremap <Leader>M :silent! make <bar> redraw!<CR>
 
 "------------------------------------------------------------------------------
 "       Colorscheme

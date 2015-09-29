@@ -1,100 +1,100 @@
-export HISTSIZE=10000export HISTFILESIZE=100000,V
-Avoid succesive duplicates and spaces in the bash command history.,v
-Let me know what you ,v
-Meseguer and Trefethen 2003 JCP - linearized pipe flow.pdf,v
-m,v
-Take a look an,v
-This category would seem to fit our current tandem foil phase lag letter format of 2500 words, and the general scope of the journal ,V
-Our letter ,v
-would ,v
-which,v
-,,v
+!=======================================================================,V
+c,v
+    endif,v
+    endif,V
+            ,V
  ,v
-(i.e. tandem foils),v
-tandem,v
-s,v
-http://arc.aiaa.org/page/typesofjournalcontent,v
-Platzer 2008 - Flapping-Wing Aerodynamics - Progress and Challenges.pdf,v
-GOPR0332.MP4,v
-(603) 227-4020,v
-as well as the cited pdfs,v
-0.0787,v
-the material exhibits thixotropy,v
-diameter,v
- 2mm diameter == 0.0787 in,V
-#-------------------------------------------------------------------------------,V
--,v
---------------------------------------------------------------------------------,V
+            endif            ,V
+        ,V
+            ! PULL OUT OF LOOP! Only need to loop over diagonal terms if this            !   singleton value is 0...                if (i.eq.j) then            ! on diagonal ==> identity matrix                else                        ! off diagonals = 0                    covb(i,j) = 0                endif            else,V
+b(i),v
 ,V
-From: Brenden Epps <brenden.epps@dartmouth.edu>To: "Gina M. Calabrese" <Gina.M.Calabrese@dartmouth.edu>, Bernie Roesler <Bernard.T.Roesler.TH@dartmouth.edu>Date: Fri, 26 Jun 2015 16:44:16 -0400Subject: Rheometer specsHi Gina,Here are the tentative specifications of the slurry materials (either oneor the other of these cases):1.  Switchgrass immersed in water.  Slurry is 15% solids by volume.  Solidsparticles are grass clippings roughly cylindrical shaped, 12 mm long and 2mm in diameter.2.  Corn stover immersed in water.  Slurry is 15% solids by volume.  Solidsparticles are roughly 2mm diameter spheres.Bernie,Can you please do a literature search and find out the viscosity of thesematerials?  I need to spec out a viscometer to measure the viscosity ofthis slurry mixture for Lee's project.   Can you please find viscosity ortorque data in the literature to help me spec out the viscometer?-Brenden,V
-Hi Gina,Here are the tentative specifications of the slurry materials (either one or the other of these cases):1.  Switchgrass immersed in water.  Slurry is 15% solids by volume.  Solids particles are grass clippings roughly cylindrical shaped, 12 mm long and 2 mm in diameter.2.  Corn stover immersed in water.  Slurry is 15% solids by volume.  Solids particles are roughly 2mm diameter spheres.Bernie,Can you please do a literature search and find out the viscosity of these materials?  I need to spec out a viscometer to measure the viscosity of this slurry mixture for Lee's project.   Can you please find viscosity or torque data in the literature to help me spec out the viscometer?-Brenden,v
-Davison2003,V
-probably ,v
-Measurements were made using a Brookfield R/S rheometer (Brookfield Engineering Laboratories Inc., Middleboro, MA) operated in controlled shear rate mode using a plate/plate geometry with a 1.5 mm gap,v
-set LC_CTYPE=en_US.ISO-8859-1,v
-ISBN-13: 9780314284365.,v
-set LC_CTYPE=en_US.ISO-8859-1,V
-.,v
-set LC_CTYPE=en_US.ISO-8859-1.,v
-be home.,v
-t,v
-I decided to get a full bed tohave some more space in my new apartmen,v
-set statusline+=%{exists('g:loaded_fugitive')?fugitive#statusline():''},v
-silent! ,v
-silent!,v
-macro index,pager gf     "<change-folder> =bernardroesler_gmail/flagged<enter>" "go to flagged",v
-macro index,pager gf     "<change-folder> =bernardroesler_gmail/flagged<enter>" "go to flagged",V
-flagged,v
-          +bernardroesler_gmail/flagged \,V
-),v
-                                re.sub('starred',           'flagged',,V
-                                re.sub('flagged',   '[Gmail].Starred',,V
-=SuperTab('n'),v
-noticed,v
-in thread,v
-all ,v
-<tag-thread>;,v
-macro index,pager xa,V
-# set sort = threads# set sort_aux = reverse-last-date-received,v
-# set sort = threads# set sort_aux = reverse-last-date-received,V
-  # like gmail,v
-                         # like gmail,v
-,v
-# help screen,V
+                    covb(i,j) = b(i)*b(j),V
+            ! Check for division by 0 (l == 0)            if (l.eq.0)  then,V
+    ! "sigma^2" = b(i)*b(j)    do i=1,NNODE                do j=1,NNODE                    ! PULL OUT OF LOOP! Only need to loop over diagonal terms if this            !   singleton value is 0...            ! Check for division by 0 (l == 0)            if (l.eq.0)  then                if (i.eq.j) then            ! on diagonal ==> identity matrix                    covb(i,j) = b(i)*b(j)                else                        ! off diagonals = 0                    covb(i,j) = 0                endif            else                ! Use noise model                r = dist(x(i), y(i), x(j), y(j))                ! distance between nodes bi and bj                                covb(i,j) = b(i)*b(j) * ( 1 + r/l )*exp(-r/l)   ! calculate covariance            endif                    enddo    enddo,V
+=,v
+    covb(:,:) = 0d0,V
+singleton,v
+!=======================================================================,v
+Engs\ 145/',v
+Undefined symbols for architecture x86_64:  "_dgetrf_", referenced from:      ___mathops_MOD_inverse in mathops.o  "_dgetri_", referenced from:      ___mathops_MOD_inverse in mathops.old: symbol(s) not found for architecture x86_64c,v
+-O2 ,v
+sand,v
+saltated and ,v
+not only provide a ,v
+It is expected  ,v
+prevalence of ,v
+\,v
+-,v
+itemize,v
+\cite{Bhattacharyya1983} ,v
+ that serve a similar purpose, yet the su,v
 and ,v
-Repair,v
-",v
-(,v
-the LANDLORD is responsible for making and executing "all major repairs to the premises and fixtures".,v
-Per the lease agreement, paragraph 5(a), the LANDLORD is responsible for making and executing "all major repairs to the premises and fixtures".,V
-section,v
-We performed the following maintenance ,v
-- no ventilation system for gas stove,V
-- front door replaced twice while we were living in the apartment,V
- (at 7am),v
- when we moved in,v
-itemized list of things that were unacceptable, which apparently they cannot provide for us,v
-we ,v
-in ,v
-living ,v
-the ,v
-the state of the apartment ,v
- with the state of the apartment upon our move-in and during our rental period,v
-in contrast with the current state of cleanliness,v
-but ,v
-but,v
-which was provided to us,v
-Please provide a list of items that we need to remove from the apartment. ,v
+There are ,v
+performed rigorous experiments to determine the saltation and suspension of particulate matter in a turbulent boundary layer.,v
+t,v
+A rigorous theoretical investigation will be carried out ,v
+Scale,v
+ A second metric for viability of the proposed solution is the , in addition to mass of the proposed fluid deposition system.,v
+total volume and mass of fluid required to sufficiently suppress dust cloud formation,v
+In addition to the  ,v
+for the range of fluid properties tested,v
+provided ,v
+will be ,v
+s,v
+incipient ,v
+of,v
+landing zone,v
+l,v
+\endnote{A complete list of references and review of current literature will be provided in the proposal},v
+.,v
+Building on previous research on brownout flow-field measurement and modeling \cite{Wadcock2008}\endnote{A complete list of references and review of current literature will be provided in the proposal}, . ,v
+we seek ,v
+we seek to discover a brownout mitigation method that will suppress virtually all dust cloud formation in the vicinity of the aircraft,v
+ \cite{Judge2006,Pinkus2010},v
+ \cite{Milluzzo2010,Whitehouse2010},v
+\cite{Milluzzo2010,Whitehouse2010},v
+\cite{Milluzzo2010,v
+help,v
+Brownout mitigation via aircraft rotor design has been shown to have minimal effect, and enhanced vision systems for pilots help them avoid obstacles while landing, but do not prevent excessive amounts of dust from entering engine intakes and otherwise damaging the aircraft. ,v
+HYPHENATION\tolerance=1\emergencystretch=\maxdimen\hyphenpenalty=10000\hbadness=10000% MAKE SQRT CLOSE AT END\makeatletter\let\oldr@@t\r@@t\def\r@@t#1#2{%\setbox0=\hbox{$\oldr@@t#1{#2\,}$}\dimen0=\ht0\advance\dimen0-0.2\ht0\setbox2=\hbox{\vrule height\ht0 depth -\dimen0}%{\box0\lower0.4pt\box2}}\LetLtxMacro{\oldsqrt}{\sqrt}\renewcommand*{\sqrt}[2][\ ]{\oldsqrt[#1]{#2}}\makeatother%==============================================================================% General macros%==============================================================================% Eliminate section numbers -- make subsections letters% \renewcommand{\thesection}{}% \renewcommand{\thesubsection}{(\alph{subsection})}% \renewcommand{\thesubsubsection}{}% \renewcommand{\L}{\left}% \newcommand{\R}{\right}\renewcommand{\(}{\left(}\renewcommand{\)}{\right)}\renewcommand{\[}{\left[}\renewcommand{\]}{\right]}\newcommand{\T}{\top} % transpose symbol\newcommand{\code}[1]{\texttt{#1}}\newcommand{\vect}[1]{\mathbf{#1}}% Greek letters\newcommand{\z}{\zeta}\newcommand{\sig}{\sigma}\newcommand{\wn}{\omega_n}\newcommand{\w}{\omega}\newcommand{\wwd}{\omega_d}\renewcommand{\th}{\theta}\newcommand{\thd}{\dot{\theta}}\newcommand{\thdd}{\ddot{\theta}}% Trig functions\newcommand{\ccp}{\cos\phi}\newcommand{\ssp}{\sin\phi}\newcommand{\cwt}{\cos\w t}\newcommand{\swt}{\sin\w t}\newcommand{\cwtp}{\cos(\w t - \phi)}\newcommand{\swtp}{\sin(\w t - \phi)}% fractions\newcommand{\half}{\frac{1}{2}}\newcommand{\quarter}{\frac{1}{4}}% Misc.\newcommand{\C}{\mathscr{C}}\renewcommand{\L}{\mathscr{L}}\newcommand{\Matlab}{\textsc{Matlab}}\newcommand{\xhat}{\hat{x}}\newcommand{\yhat}{\hat{y}}\newcommand{\dt}{\Delta t}% Use for fractions with large terms\newcommand{\ddfrac}[2]{\frac{\displaystyle #1}{\displaystyle #2}}% Derivatives\newcommand{\dd}{\mathrm{d}}\newcommand{\ppx}[2]{\frac{\partial #1}{\partial #2}}\newcommand{\psx}[2]{\frac{\partial^2 #1}{\partial #2^2}}\newcommand{\ddx}[2]{\frac{\dd #1}{\dd #2}}\newcommand{\dsx}[2]{\frac{\dd^2 #1}{\dd #2^2}}\newcommand{\DDx}[2]{\frac{\mathrm{\D}#1}{\mathrm{\D} #2}}\newcommand{\dx}[1]{\,\dd #1} % for inside integration\newcommand{\xd}{\dot{x}}\newcommand{\xdd}{\ddot{x}}\newcommand{\yd}{\dot{y}}\newcommand{\ydd}{\ddot{y}}\newcommand{\zd}{\dot{z}}\newcommand{\zdd}{\ddot{z}}\newcommand{\qd}{\dot{q}}\newcommand{\qdd}{\ddot{q}}\newcommand{\wwdd}{\ddot{w}}\newcommand{\U}{\vect{U}}\newcommand{\D}{\vect{D}}% Circled numbers\newcommand{\circled}[1]{\raisebox{.5pt}{\textcircled{\raisebox{-.9pt} {#1}}}}% }}}1%----------------------------------------%%%% TITLE ----------------------------\title{\vspace{-2cm}{\bf \large Helicopter Brownout Mitigation Technique} \vspace{-0.5cm}}\author{{\bf \normalsize Dr. Brenden Epps and Bernard Roesler} \\ \normalsize Thayer School of Engineering, Dartmouth College, Hanover, NH, 03755, USA \\ \normalsize phone: 603-646-6656; email: bepps@dartmouth.edu}\date{}%%%%%%%%%%% BEGIN DOCUMENT ----------------\begin{document}\sloppy\normalem % use with ulem package to make \emph be itali,v
+4pt,v
+8em,v
+1,v
+                ,v
+% \def\enotesize{\normalsize},V
+% \endgroup,V
+% \begingroup\parindent -20pt\parskip 2ex,V
+{,v
+\renewcommand,v
+\newpage,V
+\theendnotes,V
+~,v
+propose ,v
+virtually ,v
+\kern1 ,v
+0,v
+%,v
+},v
+0pt,v
+\endgroup,V
+\begingroup,V
+\\ \hline,V
+\hrule width 2in,V
+\kern -3pt,V
+\kern 2.6pt,V
+\hline,V
+%===============================================================================% Notes:%===============================================================================\begingroup\theendnotes\endgroup,V
+\setlength{\parindent}{0 pt},V
+\def\enotesize{\normalsize},V
+\begingroup\parindent 0pt\parskip 2ex,V
+\section{,v
+References:,v
+%===============================================================================% \section{References:}%===============================================================================,V
+x,v
 e,v
-- refrigerator was not empty when we moved in,V
-my,v
-that,v
-asking you ,v
-attempts,v
-useless ,v
-Christian,v
- and have a great day,v
-is,v
-fixed,v
-w,v
-a,v
+],v
+[,v
+text,v
+foot,v
+unsrt,v

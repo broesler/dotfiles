@@ -59,8 +59,8 @@ set bell-style visible
 alias tmux='tmux -2'    # Force tmux to use 256 colors (get solarized right)
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
-  # Set printer options to Duplex Long-Edge-Binding, syntax highlighting on
-  lpoptions -d m128_1___thayercups \
+  # Set default printer options
+  lpoptions -d m209__bw___thayercups \
             -o Duplex=DuplexNoTumble \
             -o prettyprint \
             -o cpi=14 \
@@ -69,6 +69,9 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
             -o page-right=18 \
             -o page-bottom=36 \
             -o page-left=36
+
+  # Source history of directories function
+  source acd_func.sh
 fi
 
 # Add bash aliases.

@@ -221,11 +221,11 @@ sudo systemsetup -setnetworktimeserver time.apple.com > /dev/null
 defaults write com.apple.screensaver askForPassword -int 1
 defaults write com.apple.screensaver askForPasswordDelay -int 0
 
-# Save screenshots to the desktop
-defaults write com.apple.screencapture location -string "${HOME}/Desktop"
+# Save screenshots to the Downloads folder
+defaults write com.apple.screencapture location -string "${HOME}/Downloads"
 
-# Save screenshots in PDF format (other options: BMP, GIF, JPG, PNG, TIFF)
-defaults write com.apple.screencapture type -string "pdf"
+# Save screenshots in format (other options: BMP, GIF, JPG, PNG, TIFF)
+defaults write com.apple.screencapture type -string "png"
 
 # Disable shadow in screenshots
 defaults write com.apple.screencapture disable-shadow -bool true
