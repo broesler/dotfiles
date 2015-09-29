@@ -8,6 +8,6 @@ setlocal shiftwidth=4    " use >>, << for line shifting
 setlocal expandtab       " use spaces instead of tab character (need for Fortran)
 
 " set complete to include dictionary for text or latex files
-setlocal complete+=k
+" setlocal complete+=k
 
 setlocal commentstring="#%s"

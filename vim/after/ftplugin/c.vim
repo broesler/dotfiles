@@ -4,12 +4,13 @@
 setlocal iskeyword+=_
 setlocal cindent        " smarter indenting for C
 setlocal expandtab
-setlocal tabstop=4
-setlocal softtabstop=4
-setlocal shiftwidth=4
+setlocal tabstop=2
+setlocal softtabstop=2
+setlocal shiftwidth=2
 
 " Map \M to make in background
 nnoremap <Leader>M :silent! make | redraw!
+set makeprg=make
 
 " " Show directory of file in errorlist?
 " set errorformat+=%D%f

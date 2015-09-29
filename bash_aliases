@@ -8,9 +8,9 @@
 # Description: Contains aliases and simple functions for use with the bash shell
 #==============================================================================
 
-alias ep='vim -v ~/.bash_profile'    # edit profile (loaded with login)
-alias erc='vim -v ~/.bashrc'         # edit rc file (loaded with bash)
-alias ea='vim -v ~/.bash_aliases'    # edit aliases (loaded after rc)
+alias ep='mvim -v ~/.bash_profile'    # edit profile (loaded with login)
+alias erc='mvim -v ~/.bashrc'         # edit rc file (loaded with bash)
+alias ea='mvim -v ~/.bash_aliases'    # edit aliases (loaded after rc)
 alias rp='source ~/.bash_profile'   # reload profile
 alias rrc='source ~/.bashrc'        # reload JUST rc file (more common)
 
@@ -20,7 +20,7 @@ alias rrc='source ~/.bashrc'        # reload JUST rc file (more common)
 if [[ "$OSTYPE" == "darwin"* ]]; then
   alias cs174='cd ~/Documents/School/14F-15X/cs174_machine_learning/'
   alias es105='cd ~/Documents/School/13F-14X/Engs\ 105\ \-\ Numerical\ PDEs\ 1/Engs_105_practice/'
-  alias es145='cd ~/Documents/School/13F-14X/Engs\ 145/'
+  alias es145='cd ~/Documents/School/13F-14X/Engs\ 145\ \-\ Modern\ Control\ Theory/'
   alias es148='cd ~/Documents/School/14F-15X/engg148_structural_mechanics/'
   alias es150='cd ~/Documents/School/13F-14X/Engs\ 150/'
   alias res='cd ~/Documents/School/Research/'
@@ -53,37 +53,6 @@ alias matlab='/Applications/MATLAB_R2014b.app/bin/matlab'
 alias xfoil='/Applications/Xfoil.app/Contents/Resources/xfoil'
 alias skim='open -a /Applications/Skim.app'
 
-# ssh to babylon x
-sshx() 
-{
-    ssh -X d26725q@babylon$1.thayer.dartmouth.edu
-}
-
-# illustrator
-alias illustrator='open -a Adobe\ Illustrator'
-
-# color printing
-lpcolor()
-{
-  lpoptions -d m128_color___thayercups \
-            -o Duplex=DuplexNoTumble \
-            -o prettyprint
-            -o cpi=14 \
-            -o lpi=8 \
-            -o page-top=18 \
-            -o page-right=18 \
-            -o page-bottom=36 \
-            -o page-left=36
-  lpr -P m128_color___thayercups $1
-}
-
-# convert text file to pdf
-txt2pdf()
-{
-  enscript $1 -p temp.ps    # convert to postscript
-  ps2pdf temp.ps $1.pdf     # convert to pdf
-  rm -f temp.ps
-}
 
 #-------------------------------------------------------
 #   UTILITIES
@@ -94,7 +63,6 @@ alias df='df -kTh'
 alias du='du -kh'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
-alias gcc='gcc-5'
 alias grep='grep --color=auto'
 alias h='history'
 alias j='jobs -l'
@@ -103,7 +71,7 @@ alias lf="ls -l | grep -v '^d'"
 alias lt='tree -C'
 alias mkdir='mkdir -p'
 alias mv='mv -i'
-alias mygcc='gcc-5 -Wall -pedantic -std=c99'
+alias mygcc='gcc -Wall -pedantic -std=c99'
 alias mygfortran='gfortran-5 -cpp -Wall -pedantic -std=f95 \
                     -fbounds-check -ffree-line-length-0 -fbacktrace \
                     -fall-intrinsics'
@@ -125,7 +93,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   # If ~/.dircolors exists, set custom colors file
   [ -e "$HOME/.dircolors" ] && DIR_COLORS="$HOME/.dircolors"
   [ -e "$DIR_COLORS" ] || DIR_COLORS=""
-  eval "`gdircolors -b ~/.dircolors`"   # set custom colors file
+  eval "$(gdircolors -b ~/.dircolors)"   # set custom colors file
 
   alias lc='gls -Ghlp --color=auto'
   alias lcd='lc -d .*'
@@ -134,7 +102,7 @@ elif [[ "$OSTYPE" == "linux"* ]]; then
   # If ~/.dircolors exists, set custom colors file
   [ -e "$HOME/.dircolors" ] && DIR_COLORS="$HOME/.dircolors"
   [ -e "$DIR_COLORS" ] || DIR_COLORS=""
-  eval "`dircolors -b ~/.dircolors`"    # set custom colors file
+  eval "$(dircolors -b ~/.dircolors)"    # set custom colors file
 
   alias lc='ls -Ghlp --color=auto'      # Linux ls options
   alias lcd='lc -d .*'
@@ -152,16 +120,51 @@ alias .4='cd ../../../../'
 #-------------------------------------------------------
 #   FUNCTIONS
 #-------------------------------------------------------
+# ssh to babylon x
+sshx() 
+{
+    ssh -X d26725q@babylon$1.thayer.dartmouth.edu
+}
+
+# illustrator
+alias illustrator='open -a Adobe\ Illustrator'
+
+# color printing
+lpcolor()
+{
+  lpoptions -d m210__color___thayercups \
+            -o Duplex=DuplexNoTumble \
+            -o prettyprint
+            -o cpi=14 \
+            -o lpi=8 \
+            -o page-top=18 \
+            -o page-right=18 \
+            -o page-bottom=36 \
+            -o page-left=36
+  lpr -P m210__color___thayercups $1
+}
+
+# convert text file to pdf
+txt2pdf()
+{
+  enscript $1 -p temp.ps    # convert to postscript
+  ps2pdf temp.ps $1.pdf     # convert to pdf
+  rm -f temp.ps
+}
+
 # Homebrew update all things
 brewup()
 {
-    brew update && brew prune && brew cleanup && brew upgrade --all 
+  brew update           # update homebrew formulas
+  brew upgrade --all    # upgrade programs installed via homebrew
+  brew prune            # remove old versions of programs
+  brew cleanup          # remove old formulas
 }
 
 # vim with server (only for LaTeX really)
 vims()
 {
-  test=`command vim --version | grep -w clientserver`
+  test=$(command vim --version | grep -w clientserver)
   if [ "$test" ]; then
     if [ $# -eq 0 ]; then
       # No need to issue a remote command for no filename
@@ -178,25 +181,31 @@ vims()
 # Compile LaTeX WITHOUT bibliography
 makepdf()
 {
-  texclean && pdflatex $1 && pdflatex $1 && open $1.pdf
+  # include synctex zipped file for linking to pdf file
+  pdfcommand='pdflatex -synctex=1 -interaction=nonstopmode -file-line-error'
+  texclean && $pdfcommand $1 && $pdfcommand $1 && open $1.pdf
 }
 
 # Compile LaTeX WITH bibliography
 makepdfbib()
 {
-  texclean && pdflatex $1
+  # include synctex zipped file for linking to pdf file
+  pdfcommand='pdflatex -synctex=1 -interaction=nonstopmode -file-line-error'
+
+  # remove aux files and compile
+  texclean && $pdfcommand $1
   
   # make sure first attempt exited successfully
   if [ $? -eq 0 ]; then
     # run BiBTeX on each .bib file
-    for i in `"ls" *.tex`
+    for i in $("ls" *.tex)
     do
       doc=$(echo $i | sed 's/\..*//')     # strip file extension
       bibtex $doc
     done
 
     # compile twice more and open the pdf output
-    pdflatex $1 && pdflatex $1 && open $1.pdf
+    $pdfcommand $1 && $pdfcommand $1 && open $1.pdf
   else  # there are errors in the tex, exit
     return 1
   fi
@@ -215,4 +224,6 @@ texclean()
   rm -f *.fdb_latexmk
   rm -f *.synctex*.gz
 }
+
+#==============================================================================
 #==============================================================================
