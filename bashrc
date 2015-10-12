@@ -60,7 +60,7 @@ alias tmux='tmux -2'    # Force tmux to use 256 colors (get solarized right)
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
   # Set default printer options
-  lpoptions -d m209__bw___thayercups \
+  lpoptions -d m210__bw___thayercups \
             -o Duplex=DuplexNoTumble \
             -o prettyprint \
             -o cpi=14 \

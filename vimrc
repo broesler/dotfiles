@@ -190,7 +190,7 @@ nnoremap <Leader>s :source $MYVIMRC<CR>
 nnoremap <Leader>v :e $MYVIMRC<CR>
 nnoremap <Leader>f :e $HOME/.vim/plugin/util_functions.vim<CR>
 
-" unmap Q from entering Ex mode (batch isn't useful)
+" unmap Q from entering Ex mode to avoid hitting it by accident
 nnoremap Q <nop>
 
 " Save file
@@ -204,9 +204,6 @@ nnoremap ,v :bp!<CR>
 " Quickfix list movement
 nnoremap ,c :cn!<CR>
 nnoremap ,p :cp!<CR>
-
-" Select the last changed (or pasted) text
-nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
 
 " Toggle spell checking 
 nmap <silent> ,s :set spell!<CR>

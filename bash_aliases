@@ -1,12 +1,12 @@
 #~/.bash_aliases
 # vim: ft=sh syntax=sh
-#==============================================================================
+#===============================================================================
 #    File: ~/.bash_aliases
 # Created: 12/04/14
 #  Author: Bernie Roesler
 #
 # Description: Contains aliases and simple functions for use with the bash shell
-#==============================================================================
+#===============================================================================
 
 alias ep='mvim -v ~/.bash_profile'    # edit profile (loaded with login)
 alias erc='mvim -v ~/.bashrc'         # edit rc file (loaded with bash)
@@ -14,9 +14,9 @@ alias ea='mvim -v ~/.bash_aliases'    # edit aliases (loaded after rc)
 alias rp='source ~/.bash_profile'   # reload profile
 alias rrc='source ~/.bashrc'        # reload JUST rc file (more common)
 
-#-------------------------------------------------------
+#-------------------------------------------------------------------------------
 #   FOLDER SHORTCUTS
-#-------------------------------------------------------
+#-------------------------------------------------------------------------------
 if [[ "$OSTYPE" == "darwin"* ]]; then
   alias cs174='cd ~/Documents/School/14F-15X/cs174_machine_learning/'
   alias es105='cd ~/Documents/School/13F-14X/Engs\ 105\ \-\ Numerical\ PDEs\ 1/Engs_105_practice/'
@@ -46,17 +46,26 @@ es205()
   fi
 }
 
-#-------------------------------------------------------
+es250()
+{
+  if [ $# -gt 0 ]; then
+    cd ~/Documents/School/15F-16X/engs250_turbulence/hw/hw$1
+  else
+    cd ~/Documents/School/15F-16X/engs250_turbulence/hw
+  fi
+}
+
+#-------------------------------------------------------------------------------
 #   PROGRAM SHORTCUTS
-#-------------------------------------------------------
+#-------------------------------------------------------------------------------
 alias matlab='/Applications/MATLAB_R2014b.app/bin/matlab'
 alias xfoil='/Applications/Xfoil.app/Contents/Resources/xfoil'
 alias skim='open -a /Applications/Skim.app'
 
 
-#-------------------------------------------------------
+#-------------------------------------------------------------------------------
 #   UTILITIES
-#-------------------------------------------------------
+#-------------------------------------------------------------------------------
 alias clc='clear'
 alias cp='cp -i'
 alias df='df -kTh'
@@ -117,9 +126,9 @@ alias .4='cd ../../../../'
 
 
 
-#-------------------------------------------------------
+#-------------------------------------------------------------------------------
 #   FUNCTIONS
-#-------------------------------------------------------
+#-------------------------------------------------------------------------------
 # ssh to babylon x
 sshx() 
 {
@@ -152,7 +161,7 @@ txt2pdf()
   rm -f temp.ps
 }
 
-# Homebrew update all things
+# Homebrew update all the things
 brewup()
 {
   brew update           # update homebrew formulas
@@ -161,7 +170,7 @@ brewup()
   brew cleanup          # remove old formulas
 }
 
-# vim with server (only for LaTeX really)
+# vim with server (only for LaTeX + Skim really)
 vims()
 {
   test=$(command vim --version | grep -w clientserver)
@@ -174,10 +183,16 @@ vims()
       command vim --servername VIM --remote-silent ${@}
     fi
   else
-    command vim $@ # ensure no server used
+    command vim $@      # ensure no server used
   fi
 }
 
+#-------------------------------------------------------------------------------
+# The following functions work fine for compiling LaTeX documents the simplest,
+# most straightforward way; however, I now use command 'latexmk' with associated
+# ~/.latexmkrc file, which intelligently rebuilds the appropriate number of
+# times, with/without bibliography, depending on which files have been changed.
+#-------------------------------------------------------------------------------
 # Compile LaTeX WITHOUT bibliography
 makepdf()
 {
@@ -225,5 +240,5 @@ texclean()
   rm -f *.synctex*.gz
 }
 
-#==============================================================================
-#==============================================================================
+#===============================================================================
+#===============================================================================
