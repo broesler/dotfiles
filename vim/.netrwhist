@@ -1,4 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =2
+let g:netrw_dirhist_cnt =4
 let g:netrw_dirhist_1='/Users/bernardroesler/.vim'
 let g:netrw_dirhist_2='/Users/bernardroesler/.offlineimap'
+let g:netrw_dirhist_3='/Users/bernardroesler/Documents/School/13F-14X/Engs 105 - Numerical PDEs 1/Engs_105_practice/hw1'
+let g:netrw_dirhist_4='/Users/bernardroesler/Documents/School/13F-14X/Engs 105 - Numerical PDEs 1/Engs_105_practice/hw1/src'
