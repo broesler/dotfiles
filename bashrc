@@ -28,7 +28,7 @@ export EDITOR=vim
 # Avoid succesive duplicates and spaces in the bash command history, ignore
 # simple, commonly-used commands.
 export HISTCONTROL=ignoredups:ignorespace
-export HISTIGNORE='clc:lc:fg:git st:git lol'
+export HISTIGNORE='clc:fg:git st:git lol'
 export HISTSIZE=10000
 export HISTFILESIZE=100000
 
@@ -78,5 +78,6 @@ fi
 if [ -f ~/.bash_aliases ]; then
   source ~/.bash_aliases
 fi
-#==============================================================================
 
+#==============================================================================
+#==============================================================================
