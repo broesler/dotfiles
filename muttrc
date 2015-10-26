@@ -3,7 +3,7 @@
 # Created: 06/18/15, 18:29
 #  Author: Bernie Roesler
 #
-# Last Modified: 07/02/2015, 13:44
+# Last Modified: 10/21/2015, 17:37
 #
 # Description: mutt configuration file.
 #===============================================================================
@@ -43,9 +43,9 @@ set thorough_search      # strip headers and eval mimes before searching
 #-------------------------------------------------------------------------------
 #       Sidebar Patch
 #-------------------------------------------------------------------------------
-set sidebar_delim   = ' | '
-set sidebar_visible = yes
-set sidebar_width   = 24
+# set sidebar_delim   = ' | '
+# set sidebar_visible = yes
+# set sidebar_width   = 24
 # color sidebar_new color221 color233
 
 #-------------------------------------------------------------------------------
@@ -143,10 +143,10 @@ macro index,pager gd     "<change-folder> =bernardroesler_gmail/drafts<enter>"  
 macro index,pager gs     "<change-folder> =bernardroesler_gmail/sent<enter>"    "go to sent"
 macro index,pager gl     "<change-folder> =bernardroesler_gmail/later<enter>"   "go to later"
 
-# Sidebar navigation
-bind index,pager gj         sidebar-next
-bind index,pager gk         sidebar-prev
-bind index,pager g<return>  sidebar-open
+# Sidebar navigation -- requires sidebar-patch
+# bind index,pager gj         sidebar-next
+# bind index,pager gk         sidebar-prev
+# bind index,pager g<return>  sidebar-open
 
 # General navigation
 bind index gg       first-entry
