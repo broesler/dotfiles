@@ -3,7 +3,7 @@
 " Created: 04/16/2015
 "  Author: Bernie Roesler
 "
-" Last Modified: 07/31/2015, 12:01
+" Last Modified: 10/27/2015, 12:01
 
 " Description: Settings for vim. Source with \s while in vim. Functions called
 "   by autocommands are located in ~/.vim/plugin/util_functions.vim
@@ -285,8 +285,18 @@ nnoremap <Leader>M :silent! make <bar> redraw!<CR>
 "------------------------------------------------------------------------------
 " Use solarized colorscheme
 set t_Co=256
-let g:solarized_termcolors=256
 set background=dark
+
+" option name default optional
+"------------------------------------------------ 
+let g:solarized_termcolors = 256      " | 16
+let g:solarized_termtrans  = 0        " | 1  transparency
+let g:solarized_degrade    = 0        " | 1
+let g:solarized_bold       = 1        " | 0 
+let g:solarized_underline  = 1        " | 0 
+let g:solarized_italic     = 1        " | 1  Italics not supported in Terminal
+let g:solarized_contrast   = "normal" " | 'high' | 'low'
+let g:solarized_visibility = "normal" " | 'high' | 'low' = show extra chars
 colorscheme solarized
 
 " NOTE: UNCOMMENT 'hi' lines for default colorscheme

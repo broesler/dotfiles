@@ -3,7 +3,7 @@
 "  Created: 12/06/2015, 13:20
 "   Author: Bernie Roesler
 "
-" Last Modified: 06/21/2015, 17:13
+" Last Modified: 10/27/2015, 18:27
 "
 "  Description: Custom utility functions called from .vimrc autocmds, etc.
 "==============================================================================
@@ -53,7 +53,7 @@ autocmd VimEnter,WinEnter,TabEnter,BufEnter * silent! call SetTermTitle()
 function! MakeTemplate(filename)
   execute 'source' a:filename
   execute "1,10s@File:.*@File: " . expand("%:t")
-  execute "1,10s@Created:.*@Created: " . strftime("%d/%m/%Y, %H:%M")
+  execute "1,10s@Created:.*@Created: " . strftime("%m/%d/%Y, %H:%M")
 endfunction
 
 "------------------------------------------------------------------------------
