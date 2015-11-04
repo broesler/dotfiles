@@ -143,6 +143,9 @@ let @b='a\begin{m€kbbmatrix} \end{bmatrix}Bh'
 " Equation macro
 let @e='i\begin{equation}\end{equation}k'
 
+" gather macro
+let @g='i\begin{gather}\end{gather}k'
+
 " Figure macro
 let @f='o\begin{figure}[h!]
       \\centering

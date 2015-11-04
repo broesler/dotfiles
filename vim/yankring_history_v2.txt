@@ -1,100 +1,100 @@
-                                             'outbox',V
-let g:netrw_dirhistmax  =10let g:netrw_dirhist_cnt =9let g:netrw_dirhist_1='/Users/bernardroesler/.vim'let g:netrw_dirhist_2='/Users/bernardroesler/.offlineimap'let g:netrw_dirhist_3='/Users/bernardroesler/Documents/School/13F-14X/Engs 105 - Numerical PDEs 1/Engs_105_practice/hw1'let g:netrw_dirhist_4='/Users/bernardroesler/Documents/School/13F-14X/Engs 105 - Numerical PDEs 1/Engs_105_practice/hw1/src'let g:netrw_dirhist_5='/Users/bernardroesler/Kite Drive/2013_Walvisstaart_(Roesler)/Codes/CyROD_2D_Lumped/CyROD 1.18 (150324 roesler - full alignment planform flag)/Notes and Scrap Code/131113 cycloidal propeller animation'let g:netrw_dirhist_6='/Users/bernardroesler/Kite Drive/2013_Walvisstaart_(Roesler)/Codes/CyROD_2D_Lumped/CyROD 1.18 (150324 roesler - full alignment planform flag)/Notes and Scrap Code'let g:netrw_dirhist_7='/Users/bernardroesler/Kite Drive/2013_Walvisstaart_(Roesler)/Codes/CyROD_2D_Lumped/CyROD 1.18 (150324 roesler - full alignment planform flag)'let g:netrw_dirhist_8='/Users/bernardroesler/Kite Drive/2013_Walvisstaart_(Roesler)/Codes/CyROD_2D_Lumped/CyROD 1.18 (150324 roesler - full alignment planform flag)/SourceCode'let g:netrw_dirhist_9='/Users/bernardroesler/.offlineimap',v
-1_wallshear.m},v
-% INCLUDE CODE:\clearpage\subsection*{Code}\renewcommand{\baselinestretch}{1.0}\lstinputlisting[language=matlab]{../engs250_2_1_wallshear.m},V
-http://www2.cybergolf.com/sites/courses/flyover/tour.asp?id=110,v
-),v
-(,v
-text,v
-\Big|\ddx{\ub}{y}\Big|,v
-\overline{u'v'},v
-modeshapes,v
-First few vibrational mode shapes of a pinned-pinned bar.,v
-pinned_bar_modes,v
-\ddx{\ub}{y},v
-$\overline{u'v'}$,v
- ,v
-m,v
-p,v
+ Just call it with "clearfigs;" ,v
+macro index,pager u "<tag-thread>;u" "undelete/unmove messages",V
+<tag-thread>,v
+C,v
 \,v
-and ,v
-and  ,v
-$\Big|\ddx{\ub}{y}\Big|$,v
-1/2,v
-\rangle,v
-\langle ,v
-,,v
-eps,v
+<enter>,v
+macro index ,V
+<tag-save>,v
+save-message,v
+;,v
+individual message ,v
 pdf,v
-}{\rho},v
-\frac{,v
-is,v
-so Pope neglects,v
-\ppx{}{x}\overline{u'u'} ,v
-  \ppx{}{x}\overline{v'v'} - ,v
-\begin{equation}\ub \ppx{\ub}{x} + \vb \ppx{\ub}{y} =  \ppx{}{x}\overline{v'v'} - \ppx{}{x}\overline{u'u'} - \ppx{}{y}\overline{u'v'}\end{equation},V
-\ub \ppx{\ub}{x} + \vb \ppx{\ub}{y} =  \ppx{}{x}\overline{v'v'} - \ppx{}{x}\overline{u'u'} - \ppx{}{y}\overline{u'v'},V
- \ppx{}{x}\overline{v'v'}.,v
- \frac{1}{\rho}\ppx{\bar{p}}{x} = \ppx{}{x}\overline{v'v'}.,V
--\frac{1}{\rho} \ppx{\bar{p}}{x} ,v
-,  ,v
-\label{eq:ns1} \\,v
+\date{November ,v
+\date{November ,V
 ,V
-\ub \ppx{\ub}{x} + \vb \ppx{\ub}{y} = -\frac{1}{\rho} \ppx{\bar{p}}{x} - \ppx{}{x}\overline{u'u'} - \ppx{}{y}\overline{u'v'},  \label{eq:ns1} \\,V
-.,v
- \frac{1}{\rho}\ppx{\bar{p}}{y} = \ppx{}{y}\overline{v'v'}.,V
- \label{eq:ns2},v
-\ppx{}{y}\overline{v'v'} \label{eq:ns2},v
-\ub \ppx{\vb}{x} + \vb \ppx{\vb}{y} = -\frac{1}{\rho} \ppx{\bar{p}}{y} - \ppx{}{x}\overline{u'v'} - \ppx{}{y}\overline{v'v'} \label{eq:ns2},V
-\ppx{\bar{p}}{y} ,v
-\psx{\vb}{y} ,v
- + \nu ,v
-+,v
-\nu \psx{\ub}{y} ,v
-&,v
-align,v
-equation*,v
-\ub \ppx{\ub}{x} + \vb \ppx{\ub}{y} = -\frac{1}{\rho} \ppx{\bar{p}}{x} + \nu \psx{\ub}{y} - \ppx{}{x}\overline{u'u'} - \ppx{}{y}\overline{u'v'} \\,V
-\ppx{\ub}{x} + \ppx{\vb}{y} = 0 \\,V
-following ,v
-in the Navier-Stokes equations,v
-Assuming the ,v
-\newcommand{\ub}{\bar{u}},V
-\maketitle,V
-},v
+The first model is physically acceptable, at least in simple shear flow.,V
+The second model ,V
+defined,7
+it:c,v
+(c),v
+assumes,7
+(i),v
+enumerate,v
+enumeratepacked,v
+(\emph{i}),v
+  \item $ \overline{u'_i u'_j} = -\nu_T \ppx{\ub_i}{x_j} $,V
+  \item $ \overline{u'_i u'_j} = -\nu_T \( \ppx{\ub_i}{x_j} + \ppx{\ub_j}{x_i} \) $,V
+\ppx{\ub_i}{x_j},v
+  \item ,V
+turbulence ,v
+Eliminate section numbers -- make subsections letters,v
+HW 2,v
+\(\frac{\tau_2}{\rho}\)^2,v
+1,v
+P_{\text{max}} &= \frac{1}{4\nu}\(\frac{\tau_2}{\rho}\)^2\(\frac{\tau}{\tau_w}\)^2 \\,V
 2,v
 ^,v
-\bar{u}(10) ,v
- \bar{u}(10),v
-\boxed{ ,v
-\(\frac{1}{0.12 \frac{\log 5}{\log(5/2)} + 1}\),v
-(10/2),v
-\frac{\bar{u}(10) - \bar{u}(2)}{\log(10/2)} ,v
-\frac{0.12}{\log(5/2)}\bar{u}(2).,v
-\label{eq:m1} ,v
-equation,v
-and plot $\bar{u}(z)$ vs. $z$ on a semilog scale to ,v
-  \multicolumn,v
-  \lasthline,V
-  \firsthline,V
-   1.0644  &    5.7090  \\,v
-   1.4826  &    5.7911  \\,v
- \bar{u}(2),v
-   0.9593  &    4.4851  \\,v
-$\phi = 180\deg$,v
-$\phi =  90\deg$  ,v
-$\phi =   0\deg$  ,v
-  single foil         &    1.0800  &    4.8324  \\,V
-& \multicolumn{1}{c}{$\Upsilon_S$} ,v
-$\Upsilon_T$,v
-case,v
-l,v
-\begin{table}[h!]  \setlength{\tabcolsep}{8pt}  \def\arraystretch{1.1}  \caption{Coefficient of variation of thrust and side force for the data presented in \citet{Broering2012c}}  \label{tab:broering}  \begin{center},V
-  \end{center}\end{table},V
-ing,v
-e,v
-assume the velocity profile takes the log-law form for flow over a rough wall\begin{equation}  \bar{u}(z) = \frac{\us}{\k} \log \frac{z}{z_0}\end{equation}where $\k = 0.41$ is constant, and $z_0$ is the wall roughness height. We can rewrite this equation as\begin{equation}  \bar{u}(z) = \underbrace{\frac{\us}{\k}}_{m} \log z + \underbrace{ (-\frac{\us}{\k} \log z_0)}_{b} \\\end{equation}and plot $\bar{u}(z)$ vs. $z$ on a semilog scale to find the unknown slope ,v
+\frac{\tau^2}{4\nu^2\rho^2}\) \\,v
+(,v
+\nu ,v
+P_{\text{max}} &= \nu \(\frac{\tau^2}{4\nu^2\rho^2}\) \\,V
+  P_{\text{max}} &=,v
+  P_{\text{max}} ,v
+},v
+shear ,v
+  P_{\text{max}} =,v
+1 - \frac{2\nu S\rho}{\tau_w},v
+\frac{y}{\d},v
+ ,v
+P &=  ,v
+ P &=  \frac{\tau_w}{\rho}\(1 - \frac{y}{\d}\)S - \nu S^2 ,v
+.,v
+in ,v
+    \Aboxed{ ,v
+g,v
+_,v
+-,v
 =,v
-  z_0 = 10.25 \text{ m}.,V
-and wall roughness height,v
-gather,v
+= \frac{\tau_w}{\rho}\(1 - \frac{y}{\d}\) + \nu S },v
+, taken from the turbulent kinetic energy equation to be,v
+The turbulence production, taken from the turbulent kinetic energy equation to be,V
+is entirely due to shear production,v
+The because there is no buoyancy,,v
+To show the Reynolds stress in fully-developed turbulent channel flow is$$ -\overline{u'v'} = \frac{\tau_w}{\rho}\(1 - \frac{y}{\d}\) - \nu S, $$where $S = \ppx{\ub}{y}$, we look at the RANS equations:\begin{gather}  \ppx{\vb}{y} = 0, \label{eq:nsc} \\  \ppx{}{y}\Big(\ub\vb\Big) = -\frac{1}{\rho}\ppx{\bar{p}}{x} + \ppx{}{y}\Big(\nu \ppx{\ub}{y} - \overline{u'v'}\Big), \label{eq:nsx} \\  \ppx{}{y}\Big(\vb\vb\Big) = -\frac{1}{\rho}\ppx{\bar{p}}{y} + \ppx{}{y}\Big(\nu \ppx{\vb}{y} - \overline{v'v'}\Big). \label{eq:nsy}\end{gather}The $\ppx{}{t}$, and $\ppx{}{x}$ terms have been eliminated because the flow is steady and fully-developed in the $x$-direction (along the length of the channel).The continuity equation~\eqref{eq:nsc}, along with the no-through-flow boundary condition gives $\vb(y) = 0$, so we can rewrite the $y$-momentum equation~\eqref{eq:nsy} as\begin{align}  0 &= -\frac{1}{\rho}\ppx{\bar{p}}{y} - \ppx{}{y}\Big(\overline{v'v'}\Big) \\  0 &= \ppx{}{y}\Big(\frac{\bar{p}}{\rho} + \overline{v'v'}\Big)\end{align}which integrates to\begin{equation}  \frac{\bar{p}}{\rho} + \overline{v'v'} = \frac{p_w(x)}{\rho}\end{equation}where $p_w(x)$ is the wall pressure, $\bar{p}(y=0)$. Given the BC $\overline{v'v'}(y=0) = 0$, we can state that\begin{equation}  \ppx{\bar{p}}{x} = \ddx{p_w}{x}\end{equation}and substitute into the $x$-momentum equation \eqref{eq:nsx}\begin{equation}  0 = -\frac{1}{\rho}\ddx{p_w}{x} + \ppx{}{y}\Big(\nu \ppx{\ub}{y} - \overline{u'v'}\Big). \label{eq:nsx2}\end{equation}The terms in parentheses define the total shear stress, $\tau(y)/\rho = \Big(\nu \ppx{\ub}{y} - \overline{u'v'}\Big)$, so~\eqref{eq:nsx2} becomes\begin{equation}  \ddx{p_w(x)}{x} = \ppx{\tau(y)}{y}\end{equation}which is a separable differential equation, showing that each side must be constant. The shear stress at the wall is defined to be $\tau_w \equiv \tau(y=0)$, and antisymmetry about the midplane gives $\tau(2\d) = -\tau_w$, so\begin{align}  \ddx{p_w}{x} &= -\frac{\tau_w}{\d} \\  \tau(y) &= \tau_w\(1 - \frac{y}{\d}\)\end{align}Using these results, we can integrate \eqref{eq:nsx2} and solve for the Reynolds stress to get\begin{gather}  0 = \int\limits_0^y \frac{1}{\rho}\ppx{\tau(y)}{y} + \ppx{}{y}\Big(\nu S - \overline{u'v'}\Big) \dx{y} \\  -\overline{u'v'} = \frac{1}{\rho}\tau(y) + \nu S  \\  \boxed{ -\overline{u'v'} = \frac{\tau_w}{\rho}\(1 - \frac{y}{\d}\) + \nu S }\end{gather}The because there is no buoyancy, the turbulence production is entirely due to shear production, taken from the turbulent kinetic energy equation to be\begin{align}  P &= -\overline{u'v'}\ppx{\ub}{y} \\    &= -\overline{u'v'}S \\  \Aboxed{ P &=  \frac{\tau_w}{\rho}\(1 - \frac{y}{\d}\)S + \nu S^2 }\end{align},V
+If we assume the velocity profile in a turbulent boundary layer takes the power law form\begin{equation*}    \frac{\ub}{U_0} =    \begin{cases}        \(\dfrac{y}{\d}\)^{1/n} & \text{for } \dfrac{y}{\d} \le 1 \\[1.5ex]        \,\hphantom{\Big(} 1 & \text{for } \dfrac{y}{\d} > 1,    \end{cases}\end{equation*}we can find the displacement thickness from its definition\begin{equation}  \d^\ast = \int_0^\infty 1 - \frac{\ub}{U_0} \dx{y}.\end{equation}By plugging in our velocity profile,\begin{align}    \d^\ast &= \int_0^\infty 1 - \(\frac{y}{\d}\)^{1/n} \dx{y} \\            &= \delta - \int_0^\d \(\frac{y}{\d}\)^{1/n} \dx{y} \\            &= \delta - \frac{n}{n+1}\d^{-1/n}\d^{(n+1)/n} \\            &= \delta - \frac{n}{n+1}\d \label{eq:d1} \\    \frac{\d^\ast}{\d} &= 1 - \frac{n}{n+1} = \frac{n+1 - n}{n+1} \\    \Aboxed{ \frac{\d^\ast}{\d} &= \frac{1}{n+1} }\end{align}Similarly, we can find the momentum thickness from its definition\begin{equation}    \th^\ast = \int_0^\infty \frac{\ub}{U_0} \(1 - \frac{\ub}{U_0}\) \dx{y}\end{equation}By plugging in our velocity profile,\begin{align}    \th^\ast &= \int_0^\infty \(\frac{y}{\d}\)^{1/n} \(1 - \(\frac{y}{\d}\)^{1/n}\) \dx{y} \\             &= \int_0^\d     \(\frac{y}{\d}\)^{1/n}     - \(\frac{y}{\d}\)^{2/n}   \dx{y}    \intertext{the first term of the integral is known from equation~\eqref{eq:d1}, and the second term follows the same form, giving}    \th^\ast &= \frac{n}{n+1}\d - \frac{n}{n+2}\d \\    \frac{\th^\ast}{\d} &=  \frac{n}{n+1} - \frac{n}{n+2} = \frac{n^2 + 2n - n^2 -n }{(n+1)(n+2)} \\    \Aboxed{ \frac{\th^\ast}{\d} &= \frac{n}{(n+1)(n+2)} }\end{align}The shape factor is the ratio of displacement thickness to momentum thickness\begin{align}    H &= \frac{\d^\ast}{\th^\ast} = \frac{1}{n+1}\frac{(n+1)(n+2)}{n} \\    \Aboxed{ H &= 1 + \frac{2}{n} }\end{align}An appropriate compromise choice for $n$ would give a shape factor between the Blasius solution $H = 1.3$, and the Klebnoff solution $H = 2.6$. Choosing $H = 2$ gives a choice of\begin{equation}    \boxed{ n = 2 }\end{equation}which makes our power law profile a square root:\begin{equation}    \frac{\ub}{U_0} = \(\dfrac{y}{\d}\)^{1/2},  \text{ for } \dfrac{y}{\d} \le 1. \\[1.5ex]\end{equation},V
+&,v
+    \begin{cases},V
+        \,\hphantom{\Big(} 1 & \text{for } \dfrac{y}{\d} > 1,    \end{cases},V
+*,v
+\begin{equation*}    \frac{\ub}{U_0} =    \begin{cases}        \(\dfrac{y}{\d}\)^{1/n} & \text{for } \dfrac{y}{\d} \le 1 \\[1.5ex]        \,\hphantom{\Big(} 1 & \text{for } \dfrac{y}{\d} > 1,    \end{cases}\end{equation*},V
+equation,v
+    \boxed{ ,v
+    ,v
+^\ast,v
+(n+1)(n+2),v
+    \frac{\th^\ast}{\d} &=,v
+\d,v
+ \frac{n}{n+1}\d - \frac{n}{n+2}\d \\,v
+known from ,v
+),v
+             &= \int_0^\d     \(\frac{y}{\d}\)^{1/n}     - \(\frac{y}{\d}\)^{2/n}\) \dx{y},V
+infty,v
+\(1 ,v
+\th^\ast ,v
+    \th^\ast &= \int_0^\infty \(\frac{y}{\d}\)^{1/n} \(1 - \(\frac{y}{\d}\)^{1/n}\) \dx{y} \\,V
+\frac{\ub}{U_0},v
+\frac{\ub}{U_0}\,v
+\frac{\ub}{U_0} ,v
+\(\frac{y}{\d}\)^{1/n} ,v
+\begin{equation}    \th^\ast = \int_0^\infty \frac{\ub}{U_0} \(1 - \frac{\ub}{U_0}\) \dx{y}\end{equation},V
+By plugging in our velocity profile,,V
+d,v
+\begin{equation}  \d^\ast = \int_0^\infty 1 - \frac{\ub}{U_0} \dx{y}\end{equation},V
++,v
+1 - ,v
+    \frac{\d^\ast}{\d} = 1 - \frac{n}{n+1} \\,V
+&= \delta - \frac{n}{n+1}\d,v
+\[ ,v
+\],v
+1 - \(\dfrac{y}{\d}\)^{1/n} \dx{y} \\,v

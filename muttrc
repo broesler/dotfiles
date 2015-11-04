@@ -3,7 +3,7 @@
 # Created: 06/18/15, 18:29
 #  Author: Bernie Roesler
 #
-# Last Modified: 10/21/2015, 17:37
+# Last Modified: 11/04/2015, 13:27
 #
 # Description: mutt configuration file.
 #===============================================================================
@@ -88,7 +88,7 @@ set record    = "+bernardroesler_gmail/sent"
 #-------------------------------------------------------------------------------
 set date_format  = "%m/%d/%Y %T"
 set index_format = "[%Z]  %D  %-20.20F  %s"
-set sort         = reverse-threads
+set sort         = reverse-threads         # show most recent on top
 set sort_aux     = last-date-received
 set uncollapse_jump                        # don't collapse on an unread message
 set sort_re                                # thread based on regex
@@ -163,8 +163,8 @@ bind index,pager \CP      previous-undeleted
 bind index,pager <Down>   next-thread
 bind index,pager <Up>     previous-thread
 
-# Send individual message to Gmail Archive
-macro index,pager a "<save-message>=bernardroesler_gmail/archive<enter>" "archive messages"
+# Send entire thread (also works for individual messages) to Gmail Archive
+macro index,pager a "<tag-thread>;s=bernardroesler_gmail/archive<enter>" "archive messages"
 
 # Mark all as read
 macro index \Cr "T~U<enter><tag-prefix><clear-flag>N<untag-pattern>.<enter>" "mark all messages as read"
