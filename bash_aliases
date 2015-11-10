@@ -8,9 +8,9 @@
 # Description: Contains aliases and simple functions for use with the bash shell
 #===============================================================================
 
-alias ep='mvim -v ~/.bash_profile'    # edit profile (loaded with login)
-alias erc='mvim -v ~/.bashrc'         # edit rc file (loaded with bash)
-alias ea='mvim -v ~/.bash_aliases'    # edit aliases (loaded after rc)
+alias ep='vim ~/.bash_profile'      # edit profile (loaded with login)
+alias erc='vim ~/.bashrc'           # edit rc file (loaded with bash)
+alias ea='vim ~/.bash_aliases'      # edit aliases (loaded after rc)
 alias rp='source ~/.bash_profile'   # reload profile
 alias rrc='source ~/.bashrc'        # reload JUST rc file (more common)
 
@@ -26,8 +26,27 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   alias res='cd ~/Documents/School/Research/'
   alias sty='cd /Users/bernardroesler/Library/texmf/tex/latex/'
   alias web='cd ~/Documents/Projects/web_development/'
+
+  es205()
+  {
+    if [ $# -gt 0 ]; then
+      cd ~/Documents/School/14F-15X/engs205_numerical_pdes_II/labs/lab$1
+    else
+      cd ~/Documents/School/14F-15X/engs205_numerical_pdes_II/labs
+    fi
+  }
+
+  es250()
+  {
+    if [ $# -gt 0 ]; then
+      cd ~/Documents/School/15F-16X/engs250_turbulence/hw/hw$1
+    else
+      cd ~/Documents/School/15F-16X/engs250_turbulence/hw
+    fi
+  }
 fi
 
+# cs50 works on Mac and Linux
 cs50()
 {
   if [ $# -gt 0 ]; then
@@ -37,31 +56,14 @@ cs50()
   fi
 }
 
-es205()
-{
-  if [ $# -gt 0 ]; then
-    cd ~/Documents/School/14F-15X/engs205_numerical_pdes_II/labs/lab$1
-  else
-    cd ~/Documents/School/14F-15X/engs205_numerical_pdes_II/labs
-  fi
-}
-
-es250()
-{
-  if [ $# -gt 0 ]; then
-    cd ~/Documents/School/15F-16X/engs250_turbulence/hw/hw$1
-  else
-    cd ~/Documents/School/15F-16X/engs250_turbulence/hw
-  fi
-}
-
 #-------------------------------------------------------------------------------
 #   PROGRAM SHORTCUTS
 #-------------------------------------------------------------------------------
-alias matlab='/Applications/MATLAB_R2015b.app/bin/matlab'
-alias xfoil='/Applications/Xfoil.app/Contents/Resources/xfoil'
-alias skim='open -a /Applications/Skim.app'
-
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  alias matlab='/Applications/MATLAB_R2015b.app/bin/matlab'
+  alias xfoil='/Applications/Xfoil.app/Contents/Resources/xfoil'
+  alias skim='open -a /Applications/Skim.app'
+fi
 
 #-------------------------------------------------------------------------------
 #   UTILITIES
