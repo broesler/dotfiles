@@ -33,6 +33,10 @@ fi
 
 # ensure tmux uses colors
 export TERM='screen-256color'               
+export MANPAGER="col -b | vim -c 'set ft=man ts=8 nomod nolist nonu' \
+    -c 'nnoremap i <nop>' \
+    -c 'nnoremap <Space> <C-f>' \
+    -c 'noremap q :quit<CR>' -"
 
 #------------------------------------------------------------------------------
 # If I have my own init file, then use that one, else use the
@@ -40,4 +44,5 @@ export TERM='screen-256color'
 if [ -f ~/.bashrc ]; then
   source ~/.bashrc
 fi
+#==============================================================================
 #==============================================================================
