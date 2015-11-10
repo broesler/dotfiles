@@ -1,7 +1,15 @@
+,v
+,V
+  # If ~/.dircolors exists, set custom colors file,V
+  ,V
+  alias lcd='lc -d .*',V
+  # If ~/.dircolors exists, set custom colors file  [ -e "$HOME/.dircolors" ] && DIR_COLORS="$HOME/.dircolors"  [ -e "$DIR_COLORS" ] || DIR_COLORS="",V
+  [ -e "$HOME/.dircolors" ] && DIR_COLORS="$HOME/.dircolors"  [ -e "$DIR_COLORS" ] || DIR_COLORS="",V
+# Color list,V
+  # If ~/.dircolors exists, set custom colors file  [ -e "$HOME/.dircolors" ] && DIR_COLORS="$HOME/.dircolors"  [ -e "$DIR_COLORS" ] || DIR_COLORS=""  eval "$(gdircolors -b ~/.dircolors)"   # set custom colors file,V
 ! call PRINTREAL( xi(1:M/2), 1,M/2,0),v
 # Force tmux to use 256 colors (get solarized right),v
  git://github.com/AndrewRadev/linediff.vim.git,v
-,V
 cs50(){  if [ $# -gt 0 ]; then      cd ~/Documents/School/cs50/labs/lab$1/  else      cd ~/Documents/School/cs50  fi},V
 fi,V
 if [[ "$OSTYPE" == "darwin"* ]]; then,V
@@ -90,11 +98,3 @@ break,v
         exit,V
         print *, error,V
 LOG,v
-.EQ. ,v
-maxval,v
-dble,v
-&,v
-.EQ.,v
-.OR.,v
-.GT.,v
-do ,v

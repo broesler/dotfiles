@@ -98,27 +98,21 @@ alias zgrep='zgrep --color=auto'
 
 
 # Color list
+[ -e "$HOME/.dircolors" ] && DIR_COLORS="$HOME/.dircolors"
+[ -e "$DIR_COLORS" ] || DIR_COLORS=""
+
 if [[ "$OSTYPE" == "darwin"* ]]; then
   # # alias lc='ls -hopG'               # Mac OS X alias
-  
-  # If ~/.dircolors exists, set custom colors file
-  [ -e "$HOME/.dircolors" ] && DIR_COLORS="$HOME/.dircolors"
-  [ -e "$DIR_COLORS" ] || DIR_COLORS=""
   eval "$(gdircolors -b ~/.dircolors)"   # set custom colors file
-
   alias lc='gls -Ghlp --color=auto'
-  alias lcd='lc -d .*'
 
 elif [[ "$OSTYPE" == "linux"* ]]; then
-  # If ~/.dircolors exists, set custom colors file
-  [ -e "$HOME/.dircolors" ] && DIR_COLORS="$HOME/.dircolors"
-  [ -e "$DIR_COLORS" ] || DIR_COLORS=""
   eval "$(dircolors -b ~/.dircolors)"    # set custom colors file
-
   alias lc='ls -Ghlp --color=auto'      # Linux ls options
-  alias lcd='lc -d .*'
 fi
 
+# Show hidden files only
+alias lcd='lc -d .*'
 
 # back up multiple directories
 alias ..='cd ..'
