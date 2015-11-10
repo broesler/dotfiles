@@ -103,9 +103,9 @@ defaults write com.apple.helpviewer DevMode -bool true
 #echo "0x08000100:0" > ~/.CFUserTextEncoding
 
 # Options for QLColor (QuickLook syntax highlighting)
-# defaults write org.n8gray.QLColorCode fontSizePoints 8
-# defaults write org.n8gray.QLColorCode hlTheme pablo
-# defaults write org.n8gray.QLColorCode extraHLFlags '-l -W --line-length=85 --kw-case=lower'
+defaults write org.n8gray.QLColorCode fontSizePoints 8
+defaults write org.n8gray.QLColorCode hlTheme pablo
+defaults write org.n8gray.QLColorCode extraHLFlags '-l -W --line-length=85 --kw-case=lower'
 
 # Reveal IP address, hostname, OS version, etc. when clicking the clock
 # in the login window
@@ -207,9 +207,9 @@ sudo systemsetup -settimezone "America/New_York" > /dev/null
 sudo systemsetup -setusingnetworktime on > /dev/null
 sudo systemsetup -setnetworktimeserver time.apple.com > /dev/null
 
-# # Disable auto-correct
-# defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
-#
+# Disable auto-correct
+defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
+
 # # Stop iTunes from responding to the keyboard media keys
 # #launchctl unload -w /System/Library/LaunchAgents/com.apple.rcd.plist 2> /dev/null
 
@@ -224,7 +224,7 @@ defaults write com.apple.screensaver askForPasswordDelay -int 0
 # Save screenshots to the Downloads folder
 defaults write com.apple.screencapture location -string "${HOME}/Downloads"
 
-# Save screenshots in format (other options: BMP, GIF, JPG, PNG, TIFF)
+# Save screenshots in PDF format (other options: BMP, GIF, JPG, PNG, TIFF)
 defaults write com.apple.screencapture type -string "png"
 
 # Disable shadow in screenshots

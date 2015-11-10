@@ -58,7 +58,7 @@ es250()
 #-------------------------------------------------------------------------------
 #   PROGRAM SHORTCUTS
 #-------------------------------------------------------------------------------
-alias matlab='/Applications/MATLAB_R2014b.app/bin/matlab'
+alias matlab='/Applications/MATLAB_R2015b.app/bin/matlab'
 alias xfoil='/Applications/Xfoil.app/Contents/Resources/xfoil'
 alias skim='open -a /Applications/Skim.app'
 
