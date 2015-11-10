@@ -1,5 +1,27 @@
-,v
+else  # export MANPAGER="less -is"  export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man ts=8 nomod nolist nonu noma' \      -c 'nnoremap i <nop>' \      -c 'nnoremap <Space> <C-f>' \      -c 'noremap q :quit<CR>' -\""fi,v
+else  # export MANPAGER="less -is"  export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man ts=8 nomod nolist nonu noma' \      -c 'nnoremap i <nop>' \      -c 'nnoremap <Space> <C-f>' \      -c 'noremap q :quit<CR>' -\""fi,V
+# Use vim as MANPAGER if on Mac... need to find equivalent command on Linux,V
+if [[ "$OSTYPE" == "darwin"* ]]; then  # export MANPAGER="col -b | vim -c 'set ft=man ts=8 nomod nolist nonu noma' \  #     -c 'nnoremap i <nop>' \  #     -c 'nnoremap <Space> <C-f>' \  #     -c 'noremap q :quit<CR>' -",V
+  export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man ts=8 nomod nolist nonu noma' \      -c 'nnoremap i <nop>' \      -c 'nnoremap <Space> <C-f>' \      -c 'noremap q :quit<CR>' -\"",v
+  export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man ts=8 nomod nolist nonu noma' \      -c 'nnoremap i <nop>' \      -c 'nnoremap <Space> <C-f>' \      -c 'noremap q :quit<CR>' -\"",V
+      ,V
+-\"",v
+      -c 'nnoremap i <nop>' \      -c 'nnoremap <Space> <C-f>' \      -c 'noremap q :quit<CR>' -",V
 ,V
+  export MANPAGER="col -b | vim -c 'set ft=man ts=8 nomod nolist nonu noma' \      -c 'nnoremap i <nop>' \      -c 'nnoremap <Space> <C-f>' \      -c 'noremap q :quit<CR>' -",V
+t,v
+ ,v
+',v
+c,v
+-,v
+' -",v
+*,v
+i,v
+  export MANPAGER="/bin/bash -c \"col -b | vim -c 'set ft=man ts=8 nomod nolist nonu noma' -\"",V
+nnoremap i <nop> nnoremap <Space> <C-f> noremap q :quit<CR>,v
+fi,V
+-c 'nnoremap i <nop>',v
+,v
   # If ~/.dircolors exists, set custom colors file,V
   ,V
   alias lcd='lc -d .*',V
@@ -11,7 +33,6 @@
 # Force tmux to use 256 colors (get solarized right),v
  git://github.com/AndrewRadev/linediff.vim.git,v
 cs50(){  if [ $# -gt 0 ]; then      cd ~/Documents/School/cs50/labs/lab$1/  else      cd ~/Documents/School/cs50  fi},V
-fi,V
 if [[ "$OSTYPE" == "darwin"* ]]; then,V
 wE(n,i+1) = wE(n,i) + h*ratef(wE(n,i),t(i));,v
 , halfxi, halfWk,v
@@ -28,7 +49,6 @@ xi(1:M/2) + xi(M:(M/2+1):-1) ,v
 halfxi = ,v
 2,v
 call PRINTREAL( xi(1:2), 1,2,0),V
- ,v
 /,v
 (,v
 ),v
@@ -57,7 +77,6 @@ call PRINTREAL(,v
 call PRINTREAL(,V
 M:,v
 x,v
--,v
 (x(1:M/2) + x(M:(M/2+1))),v
 x(M:(M/2+1))),,v
 answers,v
@@ -79,22 +98,3 @@ SRCMODUTIL = $(MODUTILDIR)/lib_util.f95,v
 SRCMODUTIL = $(MODUTILDIR)/lib_util.f95,V
 OBJ    = test_lgwt.o,v
 OBJ    = test_lgwt.o,V
--5,v
-CC = gfortran-5,V
-,v
-%,v
-%==============================================================================% LGWT computes N Gauss point locations and weights between points a and b,V
-%==============================================================================% LGWT computes N Gauss point locations and weights between points a and b%% INPUTS:%   N     = number of points%   a,b   = lower and upper bounds of interval, default [-1,1]%   x     = Gauss point locations (symmetric about 0)%   w     = weights %% INTERNAL VARIABLES:%   L     = Legendre-Gauss Vandermonde Matrix%   Lp    = derivative of L%% Adapted from lgwt.m by Greg von Winckel - 02/25/2004%==============================================================================,V
-#endif,V
-LOG(trim(msg)),V
-write(msg,'(A,I3)')  'Iterations used: ',iter,V
-#ifdef LOGSTATUS,V
-0,v
-.,v
-.0,v
-.0      ,v
-do,v
-break,v
-        exit,V
-        print *, error,V
-LOG,v
