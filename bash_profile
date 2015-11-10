@@ -33,10 +33,14 @@ fi
 
 # ensure tmux uses colors
 export TERM='screen-256color'               
-export MANPAGER="col -b | vim -c 'set ft=man ts=8 nomod nolist nonu' \
-    -c 'nnoremap i <nop>' \
-    -c 'nnoremap <Space> <C-f>' \
-    -c 'noremap q :quit<CR>' -"
+
+# Use vim as MANPAGER if on Mac... need to find equivalent command on Linux
+if [[ "$OSTYPE" == "darwin*" ]]; then
+  export MANPAGER="col -b | vim -c 'set ft=man ts=8 nomod nolist nonu' \
+      -c 'nnoremap i <nop>' \
+      -c 'nnoremap <Space> <C-f>' \
+      -c 'noremap q :quit<CR>' -"
+fi
 
 #------------------------------------------------------------------------------
 # If I have my own init file, then use that one, else use the

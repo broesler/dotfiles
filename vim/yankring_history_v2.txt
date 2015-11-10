@@ -1,3 +1,8 @@
+,V
+cs50(){  if [ $# -gt 0 ]; then      cd ~/Documents/School/cs50/labs/lab$1/  else      cd ~/Documents/School/cs50  fi},V
+fi,V
+if [[ "$OSTYPE" == "darwin"* ]]; then,V
+wE(n,i+1) = wE(n,i) + h*ratef(wE(n,i),t(i));,v
 , halfxi, halfWk,v
 ,,v
  halfxi(M/2), halfWk(M/2),v
@@ -18,7 +23,6 @@ call PRINTREAL( xi(1:2), 1,2,0),V
 ),v
 testxi, testWk ,v
 ! call PRINTREAL( (/ testxi, testWk /), 1,2,0),V
-,V
 ! Check points are antisymmetric and weights are symmetric,V
  Wk(1:M/2) - Wk(M:(M/2+1)) ,v
  xi(1:M/2) + xi(M:(M/2+1)) ,v
@@ -94,7 +98,3 @@ do ,v
 (:) ,v
    y0 = zeros(N,1);,V
 ) /),v
-=,v
-i,v
-(/ (dble(i), ,v
-(/ (dble(i), i,v
