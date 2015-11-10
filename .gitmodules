@@ -19,6 +19,3 @@
 [submodule "vim/bundle/vim-colors-solarized"]
 	path = vim/bundle/vim-colors-solarized
 	url = https://github.com/altercation/vim-colors-solarized.git
-[submodule "vim/bundle/linediff"]
-	path = vim/bundle/linediff
-	url = git://github.com/AndrewRadev/linediff.vim.git
