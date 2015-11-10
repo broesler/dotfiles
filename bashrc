@@ -18,7 +18,7 @@ elif [[ "$OSTYPE" == "linux"* ]]; then
   # Set to bright cyan text for linux machines (easy tell on ssh to babylons)
   PS1=$"\[\e[01;36m\][\u@\h: \W]${WINDOW}\$ \[\e[m\]"
 else
-  # default
+  # default no color
   PS1=$"[\u@\h: \W]\$ "
 fi
 
@@ -56,7 +56,8 @@ set -o vi
 # Visual bell only
 set bell-style visible
 
-alias tmux='tmux -2'    # Force tmux to use 256 colors (get solarized right)
+# Force tmux to use 256 colors (get solarized right)
+alias tmux='tmux -2'    
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
   # Set default printer options

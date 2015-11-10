@@ -1,3 +1,5 @@
+# Force tmux to use 256 colors (get solarized right),v
+ git://github.com/AndrewRadev/linediff.vim.git,v
 ,V
 cs50(){  if [ $# -gt 0 ]; then      cd ~/Documents/School/cs50/labs/lab$1/  else      cd ~/Documents/School/cs50  fi},V
 fi,V
@@ -96,5 +98,3 @@ dble,v
 .GT.,v
 do ,v
 (:) ,v
-   y0 = zeros(N,1);,V
-) /),v

@@ -10,7 +10,7 @@
 
 # Only on OSX, assumed OK on babylon machines
 if [[ "$OSTYPE" == "darwin"* ]]; then
-  # Set architecture flags
+  # Set architecture flags for compilers
   export ARCHFLAGS="-arch x86_64"
 
   # Ruby setup:
