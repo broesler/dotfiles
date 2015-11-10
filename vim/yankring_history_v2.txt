@@ -1,3 +1,4 @@
+! call PRINTREAL( xi(1:M/2), 1,M/2,0),v
 # Force tmux to use 256 colors (get solarized right),v
  git://github.com/AndrewRadev/linediff.vim.git,v
 ,V
@@ -97,4 +98,3 @@ dble,v
 .OR.,v
 .GT.,v
 do ,v
-(:) ,v
