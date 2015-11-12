@@ -1,100 +1,100 @@
-else  # export MANPAGER="less -is"  export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man ts=8 nomod nolist nonu noma' \      -c 'nnoremap i <nop>' \      -c 'nnoremap <Space> <C-f>' \      -c 'noremap q :quit<CR>' -\""fi,v
-else  # export MANPAGER="less -is"  export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man ts=8 nomod nolist nonu noma' \      -c 'nnoremap i <nop>' \      -c 'nnoremap <Space> <C-f>' \      -c 'noremap q :quit<CR>' -\""fi,V
-# Use vim as MANPAGER if on Mac... need to find equivalent command on Linux,V
-if [[ "$OSTYPE" == "darwin"* ]]; then  # export MANPAGER="col -b | vim -c 'set ft=man ts=8 nomod nolist nonu noma' \  #     -c 'nnoremap i <nop>' \  #     -c 'nnoremap <Space> <C-f>' \  #     -c 'noremap q :quit<CR>' -",V
-  export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man ts=8 nomod nolist nonu noma' \      -c 'nnoremap i <nop>' \      -c 'nnoremap <Space> <C-f>' \      -c 'noremap q :quit<CR>' -\"",v
-  export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man ts=8 nomod nolist nonu noma' \      -c 'nnoremap i <nop>' \      -c 'nnoremap <Space> <C-f>' \      -c 'noremap q :quit<CR>' -\"",V
-      ,V
--\"",v
-      -c 'nnoremap i <nop>' \      -c 'nnoremap <Space> <C-f>' \      -c 'noremap q :quit<CR>' -",V
-,V
-  export MANPAGER="col -b | vim -c 'set ft=man ts=8 nomod nolist nonu noma' \      -c 'nnoremap i <nop>' \      -c 'nnoremap <Space> <C-f>' \      -c 'noremap q :quit<CR>' -",V
-t,v
+        ,v
  ,v
-',v
-c,v
--,v
-' -",v
-*,v
-i,v
-  export MANPAGER="/bin/bash -c \"col -b | vim -c 'set ft=man ts=8 nomod nolist nonu noma' -\"",V
-nnoremap i <nop> nnoremap <Space> <C-f> noremap q :quit<CR>,v
-fi,V
--c 'nnoremap i <nop>',v
-,v
-  # If ~/.dircolors exists, set custom colors file,V
-  ,V
-  alias lcd='lc -d .*',V
-  # If ~/.dircolors exists, set custom colors file  [ -e "$HOME/.dircolors" ] && DIR_COLORS="$HOME/.dircolors"  [ -e "$DIR_COLORS" ] || DIR_COLORS="",V
-  [ -e "$HOME/.dircolors" ] && DIR_COLORS="$HOME/.dircolors"  [ -e "$DIR_COLORS" ] || DIR_COLORS="",V
-# Color list,V
-  # If ~/.dircolors exists, set custom colors file  [ -e "$HOME/.dircolors" ] && DIR_COLORS="$HOME/.dircolors"  [ -e "$DIR_COLORS" ] || DIR_COLORS=""  eval "$(gdircolors -b ~/.dircolors)"   # set custom colors file,V
-! call PRINTREAL( xi(1:M/2), 1,M/2,0),v
-# Force tmux to use 256 colors (get solarized right),v
- git://github.com/AndrewRadev/linediff.vim.git,v
-cs50(){  if [ $# -gt 0 ]; then      cd ~/Documents/School/cs50/labs/lab$1/  else      cd ~/Documents/School/cs50  fi},V
-if [[ "$OSTYPE" == "darwin"* ]]; then,V
-wE(n,i+1) = wE(n,i) + h*ratef(wE(n,i),t(i));,v
-, halfxi, halfWk,v
-,,v
- halfxi(M/2), halfWk(M/2),v
- halfxi(:) = 0d0; halfWk(:) = 0d0;,v
-norm2(abs( xi(1:M/2) + xi(M:(M/2+1):-1) )),v
-,V
-halfWk,v
-Wk(1:M/2) - Wk(M:(M/2+1):-1) ,v
-halfWk =  ,v
-halfxi,v
-xi(1:M/2) + xi(M:(M/2+1):-1) ,v
-halfxi = ,v
-2,v
-call PRINTREAL( xi(1:2), 1,2,0),V
+The mixing length is given by Pope Eq. (7.88)--(7.89) as \begin{equation}  l_m = \ddfrac{\overline{u'v'}^{\half}}{\Big|\ddx{\ub}{y}\Big|}\end{equation}so we can extract the trends of $\Big|\ddx{\ub}{y}\Big|$ and $\overline{u'v'}$ from Figures 5.24 and 5.25, respectively. The slope of the mean velocity is roughly that of an error function, $\operatorname{erf}(\xi)$, so the reciprocal of the slope is infinite at $\xi = -1$, decreases to a minimum at $\xi = 0$, and increases back to $\infty$ at $\xi = +1$. The turbulent fluctuation value is 0 at $\xi = -1$, then increases to a maximum at $\xi = 0$, then decreases back to 0 at $\xi = +1$. The magnitude of $\overline{u'v'}$ is about 10\% of the magnitude of $\ddx{\ub}{y}$.The product of these two terms creates an intermediate curve, where $l_m$ increases towards $\xi = \pm 1$, reaching a minimum positive value at the center of the mixing zone. The mixing length becomes undefined a $\xi \rightarrow \infty$. A sketch of the trend is shown in Figure~\ref{fig:lm}.\begin{figure}[h!]  \centering  \includegraphics[width=0.8\textwidth]{lm_sketch.pdf}  \caption{Mixing length across a plane boundary layer.}  \label{fig:lm}\end{figure}% INCLUDE CODE:\clearpage\subsection*{Code}\renewcommand{\baselinestretch}{1.0}\lstinputlisting[language=matlab]{../engs250_2_4_planemixing.m},v
+/Library/TeX/Distributions/.DefaultTeX/Contents/Programs/texbin,v
+The mixing length is given by Pope Eq. (7.88)--(7.89) as \begin{equation}  l_m = \ddfrac{\overline{u'v'}^{\half}}{\Big|\ddx{\ub}{y}\Big|}\end{equation}so we can extract the trends of $\Big|\ddx{\ub}{y}\Big|$ and $\overline{u'v'}$ from Figures 5.24 and 5.25, respectively. The slope of the mean velocity is roughly that of an error function, $\operatorname{erf}(\xi)$, so the reciprocal of the slope is infinite at $\xi = -1$, decreases to a minimum at $\xi = 0$, and increases back to $\infty$ at $\xi = +1$. The turbulent fluctuation value is 0 at $\xi = -1$, then increases to a maximum at $\xi = 0$, then decreases back to 0 at $\xi = +1$. The magnitude of $\overline{u'v'}$ is about 10\% of the magnitude of $\ddx{\ub}{y}$.The product of these two terms creates an intermediate curve, where $l_m$ increases towards $\xi = \pm 1$, reaching a minimum positive value at the center of the mixing zone. The mixing length becomes undefined a $\xi \rightarrow \infty$. A sketch of the trend is shown in Figure~\ref{fig:lm}.\begin{figure}[h!]  \centering  \includegraphics[width=0.8\textwidth]{lm_sketch.pdf}  \caption{Mixing length across a plane boundary layer.}  \label{fig:lm}\end{figure}% INCLUDE CODE:\clearpage\subsection*{Code}\renewcommand{\baselinestretch}{1.0}\lstinputlisting[language=matlab]{../engs250_2_4_planemixing.m},V
+Given the following data points\begin{tabular}{c l}  \multicolumn{1}{c}{$z$ [m]} & \multicolumn{1}{c}{$\ub$ [m/s]} \\ \hline  2   &  $\ub(2)$ \\  5   &  $\ub(5) =  1.12\ub(2)$ \\  10  &  $\ub(10)$ \\\end{tabular}\noindent we look to find the wall shear stress, $\tau_w$, as a function of $\ub(10)$. We can assume the velocity profile takes the log-law form for flow over a rough wall\begin{equation}  \ub(z) = \frac{\us}{\k} \log \frac{z}{z_0}\end{equation}where $\k = 0.41$ is constant, and $z_0$ is the wall roughness height. We can rewrite this equation as\begin{equation}  \ub(z) = \underbrace{\frac{\us}{\k}}_{m} \log z + \underbrace{ (-\frac{\us}{\k} \log z_0)}_{b} \\\end{equation}and find the unknown slope, and turbulent friction velocity \begin{gather}  m = \frac{\us}{\k} = \frac{\ub(10) - \ub(2)}{\log(10/2)} \label{eq:m1} \\  \us = \frac{\k}{\log 5}\big(\ub(10) - \ub(2)\big). \label{eq:us1}\end{gather}We now need to find $\ub(2)$ in terms of $\ub(10)$. Using our remaining data point, we can also write the slope as\begin{equation}  m = \frac{1.12\ub(2) - \ub(2)}{\log(5/2)} = \frac{0.12}{\log(5/2)}\ub(2). \label{eq:m2} \end{equation}Equating \eqref{eq:m1} and \eqref{eq:m2}, we can solve for $\ub(2)$\begin{gather}  \frac{0.12}{\log(5/2)}\ub(2) = \frac{\ub(10) - \ub(2)}{\log 5} \\  \ub(2) = \(\frac{1}{0.12 \frac{\log 5}{\log(5/2)} + 1}\)\ub(10)\end{gather}and plug back into \eqref{eq:us1} to find\begin{gather}  \us = \frac{\k}{\log 5}\(1 - \frac{1}{0.12 \frac{\log 5}{\log(5/2)} + 1}\) \ub(10) \\  \us = 0.0443 \cdot \ub(10),\end{gather}which gives\begin{equation}  \boxed{ \tau_w = 1.96 \times 10^{-3} \big(\ub(10)\big)^2 \rho }\end{equation},V
+In order to determine the turbulent frictional velocity, $\us$, we assume the velocity profile takes the log-law form for flow over a rough wall\begin{equation}  \ub(z) = \frac{\us}{\k} \log \frac{z}{z_0}\end{equation}where $\k = 0.41$ is constant, and $z_0$ is the wall roughness height. We can rewrite this equation as\begin{equation}  \ub(z) = \underbrace{\frac{\us}{\k}}_{m} \log z + \underbrace{ (-\frac{\us}{\k} \log z_0)}_{b} \\\end{equation}and plot $\ub(z)$ vs. $z$ on a semilog scale to find the unknown slope and intercept via\begin{gather}  m = \ddfrac{\ub(z_2) - \ub(z_1)}{\log \frac{z_2}{z_1} } \\  b = z_1 - m\ub(z_1)\end{gather}The fitted curve and data points are shown in Figure~\ref{fig:wind_data}.\begin{figure}[h!]  \centering  \includegraphics[width=0.8\textwidth]{wind_data.pdf}  \caption{Wind data with fitted log-law curve}  \label{fig:wind_data}\end{figure}\clearpageGiven the slope and intercept, we can calculate the turbulent frictional velocity \begin{equation}  \boxed{ \us = m\k = 0.6623 \text{ m/s} }\end{equation}and wall roughness height\begin{equation}  z_0 = 10.25 \text{ m},\end{equation}corresponding to an area with hilly terrain.The ground stress is determined from\begin{gather}  \us \equiv \sqrt{\frac{\tau_w}{\rho}} \\  \boxed{ \tau_w = \rho \us^2 = 0.5308 \text{ N/m}^2 }\end{gather}Using the fitted curve, we can predict the velocity at 10 m above the ground\begin{equation}  \boxed{ \ub(z = 10 \text{ m}) = -0.0395 \text{ m/s} }\end{equation},V
+\date{October 22, 2015},V
+% Non-dimensional numbersRe = norm(Xdot0)*r/nu;                      % Reynolds numberB  = m*gg/(pi*r^2 * rho * norm(Xdot0)^2);   % Ballistic coefficientS  = norm(w)*r / norm(Xdot0);               % Spin coefficient,v
+,i,i,i,2
+,i,v
+h = 0.1;       % [s]    time stept_end = 5;     % [s]t = 0:h:t_end; % [s]    time vector,v
+step4_UNH_Testing_figures_150510_roesler.m,V
+/Users/bernardroesler/Kite Drive/,v
+/Users/bernardroesler/Kite\ Drive/,v
+#   -- artwork from CyROD theory document,V
+## Experiment Photos,V
 /,v
-(,v
-),v
-testxi, testWk ,v
-! call PRINTREAL( (/ testxi, testWk /), 1,2,0),V
-! Check points are antisymmetric and weights are symmetric,V
- Wk(1:M/2) - Wk(M:(M/2+1)) ,v
- xi(1:M/2) + xi(M:(M/2+1)) ,v
-%,V
-:,v
-(M/2+1),v
-  ,1
-, testxi, testWk,v
-), normWk(,v
-, normxi(M,v
-normWk,v
-testxi,v
-norm,v
-normxi,v
-norm2(abs(Wk(1:M/2) - Wk((M/2+1):M))) /),v
-norm2(abs(xi(1:M/2) + xi(M:(M/2+1)))),v
-call PRINTREAL( abs(xi(1)) - abs(xi(M/2)), 1, 1, 0),V
-call PRINTREAL( abs(xi(1:M/2)), ,v
-call PRINTREAL( abs(xi(1:M/2)), ,V
-call PRINTREAL(,v
-call PRINTREAL(,V
-M:,v
+/150505_SW_finalrenders/,v
+,V
+$KITE_DRIVE/2013_Walvisstaart_\(Roesler\)/Publications/2015\ Walvisstaart\ JSR\ article/1a\ JSR\ first\ submission/Artwork/150505_SW_finalrenders/,V
+%===============================================================================%     File: %  Created:%   Author: Bernie Roesler%% Last Modified: %%  Description: %%===============================================================================%===============================================================================%===============================================================================,V
+1,v
+-20+dist_left 20+dist_left,v
+20,v
+20+,v
+min([0 (20+dist_left)])  ,v
+max([0 -(20+dist_left)]) ,v
 x,v
-(x(1:M/2) + x(M:(M/2+1))),v
-x(M:(M/2+1))),,v
-answers,v
-!===============================================================================,v
-!===============================================================================,V
-                     ,v
-M,v
-, i,v
- = 16,v
-:: ,v
-, parameter ,v
-! run program using: ./run sor theta r OR ./run sor theta r,V
-method,v
-if (i.lt.1) then						! set defaults,V
-	method   = 'sor'					! iterative solution method	th	     = 0.6d0	rin      = 10d0	fileid   = 'midterm'							else if (i.lt.2) then					! read method from command line,V
-! Get N from command line argument! run program using: ./run sor theta r OR ./run sor theta ri = IARGC()			! number of command line argumentsif (i.lt.1) then						! set defaults	method   = 'sor'					! iterative solution method	th	     = 0.6d0	rin      = 10d0	fileid   = 'midterm'							else if (i.lt.2) then					! read method from command line	call GETARG(1, method),v
-! Get N from command line argument! run program using: ./run sor theta r OR ./run sor theta ri = IARGC()			! number of command line argumentsif (i.lt.1) then						! set defaults	method   = 'sor'					! iterative solution method	th	     = 0.6d0	rin      = 10d0	fileid   = 'midterm'							else if (i.lt.2) then					! read method from command line	call GETARG(1, method),V
-SRCMODUTIL = $(MODUTILDIR)/lib_util.f95,v
-SRCMODUTIL = $(MODUTILDIR)/lib_util.f95,V
-OBJ    = test_lgwt.o,v
-OBJ    = test_lgwt.o,V
+a,v
+n,v
+i,v
+-,v
+to_pin,v
+),v
++,v
+0,v
+2,v
+(,v
+-(20+dist_left) (20+dist_left) ,v
+zlim([0 40]),V
+axis square,V
+equal,v
+square,v
+cos,v
+x_p = (vo_p * cos(alpha) * t_p) * cos(theta);,V
+*,v
+% time when ball hits ground,v
+launch velocity n,v
+Plot results,v
+%-------------------------------------------------------------------------------%       Plot results%-------------------------------------------------------------------------------,V
+, 'filled',v
+;,v
+dist_to_pin,v
+, Xdot(0),v
+Solve system of ODEs using RK4 Method,v
+%-------------------------------------------------------------------------------%       Solve system of ODEs using RK4 Method%-------------------------------------------------------------------------------,V
+=,v
+, [m/s],v
+dist_left = 10 * yd2m;           % [m]   distance aimed left of pindist_to_pin = 175 * yd2m;       % [m]   distance to pin,V
+dt = 0.1;       % [s]       time step,V
+w = [0 2500 500]';   % [rad/s] spin rate (barrel-roll, backspin, sidespin),V
+speed,v
+% Tuneable parameters,V
+% Initial positionX0 = [0 0 0]';       % [m] always start at origin,V
+Initial conditions,v
+%-------------------------------------------------------------------------------,V
+MPH * m/s/MPH == ,v
+)*(pi/180),v
+9,v
+          ,v
+15,v
+                    ,v
+yds,v
+yd * m/yd == ,v
+0.44704,v
+0.9144,v
+yd * m/yd,v
+% May make U = U(z) later...,V
+% Initial positionX0 = [0 0 0];,V
+% May make U = U(z) later...U = [-5 0 0];       % [m/s]   free-stream windspeed [u,v,w]w = [0 2500 500];   % [rad/s] spin rate (barrel-roll, backspin, sidespin)X0 = [0 0 0];V0 = launch_speed*[sin(phi)*cos(theta) sin(phi)*sin(theta) cos(phi)];,V
+%-------------------------------------------------------------------------------%       Constants%-------------------------------------------------------------------------------,V
+cos(alpha) launch_speed*sin(alpha),v
+120,v
+15*pi/180,v
+(x,y,z)-direction, i.e. ,v
+   ,v
+= ,v
+%===============================================================================,V
+%,V
+11/10/2015, 21:26 ,v
+03/07/2015, 11:46,v
+This script detects and tracks a round object.,v
+(:),v
+plot(tstar_Ramesh, theta_Ramesh,'r'),V
+        ,4
+       ,v
+/180 * pi,v
+%         if isnan(data2) % Ramesh 2014 cases%             %------------------------------------------------------------------%             tstar_Ramesh = data(:,1);  % time*c/U%             theta_Ramesh = data(:,2);  % kinematic angle of attack, [deg]%               TGv_Ramesh = data(:,5);  % total bound circulation%              LESP_Ramesh = data(:,6);  % LESP%                CN_Ramesh = data(:,7);  % normal force coefficient%                CS_Ramesh = data(:,8);  % suction force coefficient%                CL_Ramesh = data(:,9);  % CL total (steady, unsteady, and friction)%                CD_Ramesh = data(:,10); % CD total (steady, unsteady, and friction)% %                Nf_Ramesh = data(:,11); % Number of leading  edge vortices at each timestep% %                Nw_Ramesh = data(:,12); % Number of trailing edge vortices at each timestep%               tstar_exp  = data4(:,1);  %                   CL_exp = data4(:,2);%             %------------------------------------------------------------------%         else  % Ramesh 2011 cases (NO LE SHEDDING)%               tstar_exp  = data2(:,1);%                  CL_exp  = data2(:,2);%             tstar_Ramesh = data3(:,1);%                CL_Ramesh = data3(:,2);%         end    ,V
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              ,19

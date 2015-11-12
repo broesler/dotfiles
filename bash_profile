@@ -21,7 +21,9 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   export PATH="/usr/local/heroku/bin:$PATH"
 
   # Set PATH variable correctly (last line is at front of path)
-  export PATH="/usr/texbin:$PATH"                  # Add texbin to path for LaTeX usage
+  export PATH="/Library/TeX/Distributions/.DefaultTeX/Contents/Programs/texbin:$PATH"
+  # The following line does NOT work as of OS X 10.11 (El Capitan):
+  #   export PATH="/usr/texbin:$PATH"      # Add texbin to path for LaTeX usage
   export PATH="/usr/local/git/bin:$PATH"           # Enable git
   export PATH="/usr/local/bin:$PATH"               # Enable homebrew 
 
