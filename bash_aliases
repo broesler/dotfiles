@@ -44,6 +44,8 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
       cd ~/Documents/School/15F-16X/engs250_turbulence/hw
     fi
   }
+else
+  alias gambit='/thayerfs/research/epps/Fluent.Inc/bin/gambit'
 fi
 
 # cs50 works on Mac and Linux
