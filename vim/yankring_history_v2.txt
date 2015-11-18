@@ -1,100 +1,100 @@
-        ,v
+  # As of bash 4.3, can trim directories in prompt!,V
+  PROMPT_DIRTRIM=2,V
+  PROMPT_DIRTRIM=3,v
+  PROMPT_DIRTRIM=3,V
+set ,v
+hold on; box on; grid on;,V
+http://blog.sanctum.geek.nz/vim-command-window/,v
+ure,v
+subplot(2,1,1),V
+e,v
+r,v
+u,v
+hold on; grid on; box on;,V
+subplot(2,1,2),V
  ,v
-The mixing length is given by Pope Eq. (7.88)--(7.89) as \begin{equation}  l_m = \ddfrac{\overline{u'v'}^{\half}}{\Big|\ddx{\ub}{y}\Big|}\end{equation}so we can extract the trends of $\Big|\ddx{\ub}{y}\Big|$ and $\overline{u'v'}$ from Figures 5.24 and 5.25, respectively. The slope of the mean velocity is roughly that of an error function, $\operatorname{erf}(\xi)$, so the reciprocal of the slope is infinite at $\xi = -1$, decreases to a minimum at $\xi = 0$, and increases back to $\infty$ at $\xi = +1$. The turbulent fluctuation value is 0 at $\xi = -1$, then increases to a maximum at $\xi = 0$, then decreases back to 0 at $\xi = +1$. The magnitude of $\overline{u'v'}$ is about 10\% of the magnitude of $\ddx{\ub}{y}$.The product of these two terms creates an intermediate curve, where $l_m$ increases towards $\xi = \pm 1$, reaching a minimum positive value at the center of the mixing zone. The mixing length becomes undefined a $\xi \rightarrow \infty$. A sketch of the trend is shown in Figure~\ref{fig:lm}.\begin{figure}[h!]  \centering  \includegraphics[width=0.8\textwidth]{lm_sketch.pdf}  \caption{Mixing length across a plane boundary layer.}  \label{fig:lm}\end{figure}% INCLUDE CODE:\clearpage\subsection*{Code}\renewcommand{\baselinestretch}{1.0}\lstinputlisting[language=matlab]{../engs250_2_4_planemixing.m},v
-/Library/TeX/Distributions/.DefaultTeX/Contents/Programs/texbin,v
-The mixing length is given by Pope Eq. (7.88)--(7.89) as \begin{equation}  l_m = \ddfrac{\overline{u'v'}^{\half}}{\Big|\ddx{\ub}{y}\Big|}\end{equation}so we can extract the trends of $\Big|\ddx{\ub}{y}\Big|$ and $\overline{u'v'}$ from Figures 5.24 and 5.25, respectively. The slope of the mean velocity is roughly that of an error function, $\operatorname{erf}(\xi)$, so the reciprocal of the slope is infinite at $\xi = -1$, decreases to a minimum at $\xi = 0$, and increases back to $\infty$ at $\xi = +1$. The turbulent fluctuation value is 0 at $\xi = -1$, then increases to a maximum at $\xi = 0$, then decreases back to 0 at $\xi = +1$. The magnitude of $\overline{u'v'}$ is about 10\% of the magnitude of $\ddx{\ub}{y}$.The product of these two terms creates an intermediate curve, where $l_m$ increases towards $\xi = \pm 1$, reaching a minimum positive value at the center of the mixing zone. The mixing length becomes undefined a $\xi \rightarrow \infty$. A sketch of the trend is shown in Figure~\ref{fig:lm}.\begin{figure}[h!]  \centering  \includegraphics[width=0.8\textwidth]{lm_sketch.pdf}  \caption{Mixing length across a plane boundary layer.}  \label{fig:lm}\end{figure}% INCLUDE CODE:\clearpage\subsection*{Code}\renewcommand{\baselinestretch}{1.0}\lstinputlisting[language=matlab]{../engs250_2_4_planemixing.m},V
-Given the following data points\begin{tabular}{c l}  \multicolumn{1}{c}{$z$ [m]} & \multicolumn{1}{c}{$\ub$ [m/s]} \\ \hline  2   &  $\ub(2)$ \\  5   &  $\ub(5) =  1.12\ub(2)$ \\  10  &  $\ub(10)$ \\\end{tabular}\noindent we look to find the wall shear stress, $\tau_w$, as a function of $\ub(10)$. We can assume the velocity profile takes the log-law form for flow over a rough wall\begin{equation}  \ub(z) = \frac{\us}{\k} \log \frac{z}{z_0}\end{equation}where $\k = 0.41$ is constant, and $z_0$ is the wall roughness height. We can rewrite this equation as\begin{equation}  \ub(z) = \underbrace{\frac{\us}{\k}}_{m} \log z + \underbrace{ (-\frac{\us}{\k} \log z_0)}_{b} \\\end{equation}and find the unknown slope, and turbulent friction velocity \begin{gather}  m = \frac{\us}{\k} = \frac{\ub(10) - \ub(2)}{\log(10/2)} \label{eq:m1} \\  \us = \frac{\k}{\log 5}\big(\ub(10) - \ub(2)\big). \label{eq:us1}\end{gather}We now need to find $\ub(2)$ in terms of $\ub(10)$. Using our remaining data point, we can also write the slope as\begin{equation}  m = \frac{1.12\ub(2) - \ub(2)}{\log(5/2)} = \frac{0.12}{\log(5/2)}\ub(2). \label{eq:m2} \end{equation}Equating \eqref{eq:m1} and \eqref{eq:m2}, we can solve for $\ub(2)$\begin{gather}  \frac{0.12}{\log(5/2)}\ub(2) = \frac{\ub(10) - \ub(2)}{\log 5} \\  \ub(2) = \(\frac{1}{0.12 \frac{\log 5}{\log(5/2)} + 1}\)\ub(10)\end{gather}and plug back into \eqref{eq:us1} to find\begin{gather}  \us = \frac{\k}{\log 5}\(1 - \frac{1}{0.12 \frac{\log 5}{\log(5/2)} + 1}\) \ub(10) \\  \us = 0.0443 \cdot \ub(10),\end{gather}which gives\begin{equation}  \boxed{ \tau_w = 1.96 \times 10^{-3} \big(\ub(10)\big)^2 \rho }\end{equation},V
-In order to determine the turbulent frictional velocity, $\us$, we assume the velocity profile takes the log-law form for flow over a rough wall\begin{equation}  \ub(z) = \frac{\us}{\k} \log \frac{z}{z_0}\end{equation}where $\k = 0.41$ is constant, and $z_0$ is the wall roughness height. We can rewrite this equation as\begin{equation}  \ub(z) = \underbrace{\frac{\us}{\k}}_{m} \log z + \underbrace{ (-\frac{\us}{\k} \log z_0)}_{b} \\\end{equation}and plot $\ub(z)$ vs. $z$ on a semilog scale to find the unknown slope and intercept via\begin{gather}  m = \ddfrac{\ub(z_2) - \ub(z_1)}{\log \frac{z_2}{z_1} } \\  b = z_1 - m\ub(z_1)\end{gather}The fitted curve and data points are shown in Figure~\ref{fig:wind_data}.\begin{figure}[h!]  \centering  \includegraphics[width=0.8\textwidth]{wind_data.pdf}  \caption{Wind data with fitted log-law curve}  \label{fig:wind_data}\end{figure}\clearpageGiven the slope and intercept, we can calculate the turbulent frictional velocity \begin{equation}  \boxed{ \us = m\k = 0.6623 \text{ m/s} }\end{equation}and wall roughness height\begin{equation}  z_0 = 10.25 \text{ m},\end{equation}corresponding to an area with hilly terrain.The ground stress is determined from\begin{gather}  \us \equiv \sqrt{\frac{\tau_w}{\rho}} \\  \boxed{ \tau_w = \rho \us^2 = 0.5308 \text{ N/m}^2 }\end{gather}Using the fitted curve, we can predict the velocity at 10 m above the ground\begin{equation}  \boxed{ \ub(z = 10 \text{ m}) = -0.0395 \text{ m/s} }\end{equation},V
-\date{October 22, 2015},V
-% Non-dimensional numbersRe = norm(Xdot0)*r/nu;                      % Reynolds numberB  = m*gg/(pi*r^2 * rho * norm(Xdot0)^2);   % Ballistic coefficientS  = norm(w)*r / norm(Xdot0);               % Spin coefficient,v
-,i,i,i,2
-,i,v
-h = 0.1;       % [s]    time stept_end = 5;     % [s]t = 0:h:t_end; % [s]    time vector,v
-step4_UNH_Testing_figures_150510_roesler.m,V
-/Users/bernardroesler/Kite Drive/,v
-/Users/bernardroesler/Kite\ Drive/,v
-#   -- artwork from CyROD theory document,V
-## Experiment Photos,V
-/,v
-/150505_SW_finalrenders/,v
+;,v
+; hold on; box on; grid on;,v
+grid on,V
+     ,v
 ,V
-$KITE_DRIVE/2013_Walvisstaart_\(Roesler\)/Publications/2015\ Walvisstaart\ JSR\ article/1a\ JSR\ first\ submission/Artwork/150505_SW_finalrenders/,V
-%===============================================================================%     File: %  Created:%   Author: Bernie Roesler%% Last Modified: %%  Description: %%===============================================================================%===============================================================================%===============================================================================,V
+mycolors;,V
+,'color',color_grover,v
+.,v
+-,v
+[h1 h2], ,v
+h1 = plot(x,partc,'--');,V
+h2 = plot(x,w(:,k));,V
+% % plot time-series% for k = 1:time-1%     plot(x,w(:,k),'--','color',colormat(k,:))% end,V
+...,v
+hold on;,V
+,,v
+'--'),v
+colormat = colorfade(0.8*ones(1,3),color_beaker,time);,V
+),v
+(,v
+length,v
+    % molecule is (1)--(-2 - h^2*lambda^2)--(1), A is tridiagonal,V
+set(0, 'DefaultLineLineWidth', 1),V
+ % function,v
+log(,v
+plot,v
+log10(,v
 1,v
--20+dist_left 20+dist_left,v
-20,v
-20+,v
-min([0 (20+dist_left)])  ,v
-max([0 -(20+dist_left)]) ,v
-x,v
-a,v
+end,v
+0,v
+5,v
+\n\n,v
+c = [z(2)     (S*z(2)/D + q*x*(x-L)*z(1)/(2*D))*(1+z(2)^2)^1.5];,V
+% define constants of equationL = 50; % inD = 8.8e7; % lb-inS = 100; % lb in^-1q = 1000; % lb in^-2,V
+2,v
+close all,v
+# Allow sort to produce expected behavior,v
+sort <<< $'a\nb\nA\nB',v
+C                             #,v
+  export LC_ALL=C                             # Allow sort to produce expected behavior,V
+Error: invalid byte sequence in US-ASCII,V
+% h_exact = round(h_exact, 1, 'significant'),V
+3 200,v
+h,v
+% h3 = loglog(1./hvec, hvec.^4, 'k--');,V
+t(2) - t(1),v
+   ,v
+,1),v
+ - error_N(1,v
+hvec.^4,v
++ ,v
+rror_N(1,1) + ,v
+1./(,v
+ 32 64,v
+, 'color', color_grover, 'color', color_beaker,23
 n,v
 i,v
--,v
-to_pin,v
-),v
-+,v
-0,v
-2,v
-(,v
--(20+dist_left) (20+dist_left) ,v
-zlim([0 40]),V
-axis square,V
-equal,v
-square,v
-cos,v
-x_p = (vo_p * cos(alpha) * t_p) * cos(theta);,V
-*,v
-% time when ball hits ground,v
-launch velocity n,v
-Plot results,v
-%-------------------------------------------------------------------------------%       Plot results%-------------------------------------------------------------------------------,V
-, 'filled',v
-;,v
-dist_to_pin,v
-, Xdot(0),v
-Solve system of ODEs using RK4 Method,v
-%-------------------------------------------------------------------------------%       Solve system of ODEs using RK4 Method%-------------------------------------------------------------------------------,V
-=,v
-, [m/s],v
-dist_left = 10 * yd2m;           % [m]   distance aimed left of pindist_to_pin = 175 * yd2m;       % [m]   distance to pin,V
-dt = 0.1;       % [s]       time step,V
-w = [0 2500 500]';   % [rad/s] spin rate (barrel-roll, backspin, sidespin),V
-speed,v
-% Tuneable parameters,V
-% Initial positionX0 = [0 0 0]';       % [m] always start at origin,V
-Initial conditions,v
-%-------------------------------------------------------------------------------,V
-MPH * m/s/MPH == ,v
-)*(pi/180),v
+3,v
+hvec = [2 4 8 16 32 64] * h_exact;,V
+        h = 10/1024;,V
+1e-5;,v
+6.67,v
+h / 2;,v
+        h = h / 2;,V
+1e-2 ,v
+9.5e-5,v
 9,v
-          ,v
-15,v
-                    ,v
-yds,v
-yd * m/yd == ,v
-0.44704,v
-0.9144,v
-yd * m/yd,v
-% May make U = U(z) later...,V
-% Initial positionX0 = [0 0 0];,V
-% May make U = U(z) later...U = [-5 0 0];       % [m/s]   free-stream windspeed [u,v,w]w = [0 2500 500];   % [rad/s] spin rate (barrel-roll, backspin, sidespin)X0 = [0 0 0];V0 = launch_speed*[sin(phi)*cos(theta) sin(phi)*sin(theta) cos(phi)];,V
-%-------------------------------------------------------------------------------%       Constants%-------------------------------------------------------------------------------,V
-cos(alpha) launch_speed*sin(alpha),v
-120,v
-15*pi/180,v
-(x,y,z)-direction, i.e. ,v
-   ,v
-= ,v
-%===============================================================================,V
-%,V
-11/10/2015, 21:26 ,v
-03/07/2015, 11:46,v
-This script detects and tracks a round object.,v
-(:),v
-plot(tstar_Ramesh, theta_Ramesh,'r'),V
-        ,4
-       ,v
-/180 * pi,v
-%         if isnan(data2) % Ramesh 2014 cases%             %------------------------------------------------------------------%             tstar_Ramesh = data(:,1);  % time*c/U%             theta_Ramesh = data(:,2);  % kinematic angle of attack, [deg]%               TGv_Ramesh = data(:,5);  % total bound circulation%              LESP_Ramesh = data(:,6);  % LESP%                CN_Ramesh = data(:,7);  % normal force coefficient%                CS_Ramesh = data(:,8);  % suction force coefficient%                CL_Ramesh = data(:,9);  % CL total (steady, unsteady, and friction)%                CD_Ramesh = data(:,10); % CD total (steady, unsteady, and friction)% %                Nf_Ramesh = data(:,11); % Number of leading  edge vortices at each timestep% %                Nw_Ramesh = data(:,12); % Number of trailing edge vortices at each timestep%               tstar_exp  = data4(:,1);  %                   CL_exp = data4(:,2);%             %------------------------------------------------------------------%         else  % Ramesh 2011 cases (NO LE SHEDDING)%               tstar_exp  = data2(:,1);%                  CL_exp  = data2(:,2);%             tstar_Ramesh = data3(:,1);%                CL_Ramesh = data3(:,2);%         end    ,V
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              ,19
+(1./hvec, error_N(1,:), 'x-'),v
+          ,2
+0.01 0.05 0.1 0.2 0.4 0.8 2,v
+0.01 0.1 0.5 ,v
+0.1 0.2 0.4 0.8 ,v
+min(1./hvec) max(1./hvec),v
+200,v
+, 'x-',v
+xlim([10 200]),V
+h1 = ,v
+ll = legend([h1 h2], 'N1(t)','N2(t)');,V
+:,v
+M,v
+    step_N,V
+step = 1./hvec;,V
+step_N = zeros(M,1);,V
+cell,v
+      ,v

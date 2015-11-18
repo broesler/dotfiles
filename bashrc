@@ -13,10 +13,18 @@
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
   # Set the prompt with bright green text -- include GNU screen window number
-  PS1=$"\[\e[01;32m\][\u@\h: \W]${WINDOW}\$ \[\e[m\]"
+  PS1=$"\[\e[01;32m\][\u@\h: \w]${WINDOW}\$ \[\e[0m\]"
+
+  # As of bash 4.3, can trim directories in prompt!
+  PROMPT_DIRTRIM=2
+
 elif [[ "$OSTYPE" == "linux"* ]]; then
   # Set to bright cyan text for linux machines (easy tell on ssh to babylons)
-  PS1=$"\[\e[01;36m\][\u@\h: \W]${WINDOW}\$ \[\e[m\]"
+  PS1=$"\[\e[01;36m\][\u@\h: \w]${WINDOW}\$ \[\e[0m\]"
+
+  # As of bash 4.3, can trim directories in prompt!
+  PROMPT_DIRTRIM=2
+
 else
   # default no color
   PS1=$"[\u@\h: \W]\$ "
