@@ -65,6 +65,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   alias matlab='/Applications/MATLAB_R2015b.app/bin/matlab'
   alias xfoil='/Applications/Xfoil.app/Contents/Resources/xfoil'
   alias skim='open -a /Applications/Skim.app'
+  alias illustrator='open -a Adobe\ Illustrator'
 fi
 
 #-------------------------------------------------------------------------------
@@ -127,14 +128,14 @@ alias .4='cd ../../../../'
 #-------------------------------------------------------------------------------
 #   FUNCTIONS
 #-------------------------------------------------------------------------------
-# ssh to babylon x
-sshx() 
+# Homebrew update all the things
+brewup()
 {
-    ssh -X d26725q@babylon$1.thayer.dartmouth.edu
+  brew update           # update homebrew formulas
+  brew upgrade --all    # upgrade programs installed via homebrew
+  brew prune            # remove old versions of programs
+  brew cleanup          # remove old formulas
 }
-
-# illustrator
-alias illustrator='open -a Adobe\ Illustrator'
 
 # color printing
 lpcolor()
@@ -151,21 +152,50 @@ lpcolor()
   lpr -P m210__color___thayercups $1
 }
 
+# ssh to babylon x
+sshx() 
+{
+    ssh -X d26725q@babylon$1.thayer.dartmouth.edu
+}
+
+# Remove all auxiliary files from tex directory
+texclean()
+{
+  rm -f *.aux
+  rm -f *.bbl
+  rm -f *.blg
+  rm -f *.log
+  rm -f *.out
+  rm -f *.toc
+  rm -f *.fls
+  rm -f *.fdb_latexmk
+  rm -f *.synctex*.gz
+}
+
+# Attach to existing tmux session rather than create a new one if possible
+tmux() 
+{
+  # Force tmux to use 256 colors with -2 option (get solarized right)
+  # If given any arguments, just use them as they are
+  if (($#)) ; then
+    command tmux -2 "$@"
+
+  # If a session exists, just attach to it
+  elif command tmux has-session 2>/dev/null ; then
+    command tmux -2 attach-session -d
+
+  # Create a new session with an appropriate name
+  else
+    command tmux -2 new-session -s "${TMUX_SESSION:-default}"
+  fi
+}
+
 # convert text file to pdf
 txt2pdf()
 {
   enscript $1 -p temp.ps    # convert to postscript
   ps2pdf temp.ps $1.pdf     # convert to pdf
   rm -f temp.ps
-}
-
-# Homebrew update all the things
-brewup()
-{
-  brew update           # update homebrew formulas
-  brew upgrade --all    # upgrade programs installed via homebrew
-  brew prune            # remove old versions of programs
-  brew cleanup          # remove old formulas
 }
 
 # vim with server (only for LaTeX + Skim really)
@@ -184,6 +214,7 @@ vims()
     command vim $@      # ensure no server used
   fi
 }
+
 
 #-------------------------------------------------------------------------------
 # The following functions work fine for compiling LaTeX documents the simplest,
@@ -222,20 +253,6 @@ makepdfbib()
   else  # there are errors in the tex, exit
     return 1
   fi
-}
-
-# Remove all auxiliary files from tex directory
-texclean()
-{
-  rm -f *.aux
-  rm -f *.bbl
-  rm -f *.blg
-  rm -f *.log
-  rm -f *.out
-  rm -f *.toc
-  rm -f *.fls
-  rm -f *.fdb_latexmk
-  rm -f *.synctex*.gz
 }
 
 #===============================================================================

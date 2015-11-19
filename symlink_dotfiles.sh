@@ -8,15 +8,6 @@
 #   into ~/.dotfiles/
 #==============================================================================
 
-# # Check if currently in ~/.dotfiles directory (and it exists)
-# if [ "$PWD" != "$HOME/.dotfiles" ] && [ -d "$HOME/.dotfiles" ]
-# then
-#   cd $HOME/.dotfiles
-# else
-#   printf "~/.dotfiles does not exist!\n" 1>&2
-#   exit 1
-# fi
-
 # Array of files in directory
 files=(*)
 
@@ -24,7 +15,7 @@ files=(*)
 for f in "${files[@]}";
 do
   # exclude README and this script 
-  if [[ $f != README.* ]] && [[ $f != `basename $0` ]]  
+  if [[ $f != README.* ]] && [[ $f != $(basename $0) ]]  
   then
     # symlink files, do not follow symbolic links that already exist 
     # (i.e. directories), check if user wants to overwrite existing files

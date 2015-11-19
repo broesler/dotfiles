@@ -1,3 +1,67 @@
+  read -r OLDPWD < "${OLDPWD_FILE:-$HOME/.oldpwd}",V
+ ,v
+r,v
+-,v
+(pwd),v
+$,v
+# # Check if currently in ~/.dotfiles directory (and it exists)# if [ "$PWD" != "$HOME/.dotfiles" ] && [ -d "$HOME/.dotfiles" ]# then#   cd $HOME/.dotfiles# else#   printf "~/.dotfiles does not exist!\n" 1>&2#   exit 1# fi,V
+`,v
+s,v
+# If we can read ~/.oldpwd, make its contents our OLDPWD,V
+  read -r OLDPWD < "${OLDPWD_FILE:-$HOME/.oldpwd}"  export OLDPWD,V
+# If we can read ~/.oldpwd, make its contents our OLDPWD# saves OLDPWD between sessionsif [ -r "${OLDPWD_FILE:-$HOME/.oldpwd}" ]; then  read -r OLDPWD < "${OLDPWD_FILE:-$HOME/.oldpwd}"  export OLDPWDfi,V
+#==============================================================================,V
+ commands,v
+Loads for all login shells. Sets path variable and others,v
+10/29/15,v
+profile,v
+#~/.bash_profile# Set vim syntax: vim:ft=sh syntax=sh#==============================================================================#    File: ~/.bash_profile# Created: 10/29/13#  Author: Bernie Roesler## Description: Loads for all login shells. Sets path variable and others#==============================================================================,V
+if [ -f ~/.LESS_TERMCAP ]; then  source ~/.LESS_TERMCAPfi,v
+if [ -f ~/.LESS_TERMCAP ]; then  source ~/.LESS_TERMCAPfi,V
+colors,v
+# less colors for man pagesexport LESS_TERMCAP_so=$'\e[30;47m'export LESS_TERMCAP_se=$'\e[0m',v
+# less colors for man pagesexport LESS_TERMCAP_so=$'\e[30;47m'export LESS_TERMCAP_se=$'\e[0m',V
+1,v
+\e[0;30m,v
+4,v
+3,v
+;,v
+,v
+,V
+Ensure less highlights searches properly,v
+# less colors for man pages,V
+#==============================================================================#==============================================================================,V
+# Ensure less highlights searches properlyexport LESS_TERMCAP_so=$'\E[01;33m'export LESS_TERMCAP_se=$'\E[0m',V
+export MANPAGER,v
+export MANPAGER,V
+.tmux.bash,v
+.,v
+# Attach to existing tmux session rather than create a new one if possibletmux() {  # Force tmux to use 256 colors with -2 option (get solarized right)  # If given any arguments, just use them as they are  if (($#)) ; then    command tmux -2 "$@"  # If a session exists, just attach to it  elif command tmux has-session 2>/dev/null ; then    command tmux -2 attach-session -d  # Create a new session with an appropriate name  else    command tmux -2 new-session -s "${TMUX_SESSION:-default}"  fi},V
+# # Force tmux to use 256 colors (get solarized right),V
+# alias tmux='tmux -2'    ,V
+# Attach to existing tmux session rather than create a new one if possibletmux() {  # If given any arguments, just use them as they are  if (($#)) ; then    command tmux "$@"  # If a session exists, just attach to it  elif command tmux has-session 2>/dev/null ; then    command tmux attach-session -d  # Create a new session with an appropriate name  else    command tmux new-session -s "${TMUX_SESSION:-default}"  fi},V
+x,v
+# Attach to existing tmux session rather than create a new one if possibletmux() {  # If given any arguments, just use them as they are  if (($#)) ; then    command tmux "$@"    # If a session exists, just attach to it  elif command tmux has-session 2>/dev/null ; then    command tmux attach-session -d    # Create a new session with an appropriate name  else    command tmux new-session -s "${TMUX_SESSION:-default}"  fi},v
+# Attach to existing tmux session rather than create a new one if possibletmux() {  # If given any arguments, just use them as they are  if (($#)) ; then    command tmux "$@"    # If a session exists, just attach to it  elif command tmux has-session 2>/dev/null ; then    command tmux attach-session -d    # Create a new session with an appropriate name  else    command tmux new-session -s "${TMUX_SESSION:-default}"  fi},V
+# ssh to babylon xsshx() {    ssh -X d26725q@babylon$1.thayer.dartmouth.edu},V
+# Homebrew update all the thingsbrewup(){  brew update           # update homebrew formulas  brew upgrade --all    # upgrade programs installed via homebrew  brew prune            # remove old versions of programs  brew cleanup          # remove old formulas},V
+{  brew update           # update homebrew formulas  brew upgrade --all    # upgrade programs installed via homebrew  brew prune            # remove old versions of programs  brew cleanup          # remove old formulas},V
+# convert text file to pdftxt2pdf(){  enscript $1 -p temp.ps    # convert to postscript  ps2pdf temp.ps $1.pdf     # convert to pdf  rm -f temp.ps},V
+# Remove all auxiliary files from tex directorytexclean(){  rm -f *.aux  rm -f *.bbl  rm -f *.blg  rm -f *.log  rm -f *.out  rm -f *.toc  rm -f *.fls  rm -f *.fdb_latexmk  rm -f *.synctex*.gz},V
+# Remove all auxiliary files from tex directorytexclean(){  rm -f *.aux  rm -f *.bbl  rm -f *.blg  rm -f *.log  rm -f *.out  rm -f *.toc  rm -f *.fls  rm -f *.fdb_latexmk  rm -f *.synctex*.gz},V
+# illustrator,V
+# illustratoralias illustrator='open -a Adobe\ Illustrator',V
+1000000000,v
+1000000,v
+logins,v
+fig(7); clf, hold on, grid on, box on; %set(gcf, 'Position', [1083 558 800 600]);    plot([0 360],[0 0],'k-','LineWidth',1)    hCT = plot(d.phi*180/pi, CTA_rot_cyrod,'-',  'color', 'k');    hCF = plot(d.phi*180/pi, CFA_rot_cyrod,'-',  'color', 'b');    hCQ = plot(d.phi*180/pi, CQA_rot_cyrod,'-.', 'color', 'r');    hCS = plot(d.phi*180/pi, CSA_rot_cyrod,'--', 'color', [0.95  0.45  0.0]);              ticks(gca,[0:45/2:360],[-1:0.25:1.5])    xlim([0 360])    ylim([-1 1.5])    xlabel('\phi [deg]')    ylabel('Non-dimensional Coefficient')    %     legend([hCT, hCF, hCQ, hCS], 'C_T', 'C_F', 'C_Q', 'C_S', 'Location', 'NorthEast')    if blackfig_flag == 1        set(hCT,'color','w')        set(hCF,'color',[20 151 252]./255)        blackfig;    end        if saveFigures_flag == 1        saveastight(7,[filename 'timeseries_CyROD_rotor_rpm30_mps1'],'pdf')    end   ,V
+clear; clearfigs(); clc;saveFigures_flag = 0;blackfig_flag = 1;if blackfig_flag == 1    filename = 'black_';else    filename = '';end,v
+% MATLAB 2014b ColorOrder% color_grover      =  [ 0         0.4470    0.7410 ];  % i.e. faded blue% color_beaker      =  [ 0.8500    0.3250    0.0980 ];  % i.e. orange% color_extracheesy =  [ 0.9290    0.6940    0.1250 ];  % i.e. yellowish orange% color_grimace     =  [ 0.4940    0.1840    0.5560 ];  % i.e. purple% color_kermit      =  [ 0.4660    0.6740    0.1880 ];  % i.e. faded green% color_twitter     =  [ 0.3010    0.7450    0.9330 ];  % i.e. sky blue% color_pumbaa      =  [ 0.6350    0.0780    0.1840 ];  % i.e. chipotle red,v
+set(0, 'DefaultFigurePosition', [100 700 800 600]);set(0, 'DefaultAxesFontName', 'Times')set(0, 'DefaultTextFontName', 'Times')set(0, 'DefaultAxesFontSize',  28)set(0, 'DefaultLineLineWidth',  2)set(0, 'DefaultLineMarkerSize', 8),v
+  tol = 1e-5;  % tolerance for "exact" solution,v
+setterm -bfreq 0,V
+  tol = 1e-5;  % tolerance for "exact" solution,V
+http://apsdfd2015.mit.edu/sites/default/files/documents/15APS-DFD_SynopticComposite.pdf,v
   # As of bash 4.3, can trim directories in prompt!,V
   PROMPT_DIRTRIM=2,V
   PROMPT_DIRTRIM=3,v
@@ -8,20 +72,14 @@ http://blog.sanctum.geek.nz/vim-command-window/,v
 ure,v
 subplot(2,1,1),V
 e,v
-r,v
 u,v
 hold on; grid on; box on;,V
 subplot(2,1,2),V
- ,v
-;,v
 ; hold on; box on; grid on;,v
 grid on,V
      ,v
-,V
 mycolors;,V
 ,'color',color_grover,v
-.,v
--,v
 [h1 h2], ,v
 h1 = plot(x,partc,'--');,V
 h2 = plot(x,w(:,k));,V
@@ -40,61 +98,3 @@ set(0, 'DefaultLineLineWidth', 1),V
 log(,v
 plot,v
 log10(,v
-1,v
-end,v
-0,v
-5,v
-\n\n,v
-c = [z(2)     (S*z(2)/D + q*x*(x-L)*z(1)/(2*D))*(1+z(2)^2)^1.5];,V
-% define constants of equationL = 50; % inD = 8.8e7; % lb-inS = 100; % lb in^-1q = 1000; % lb in^-2,V
-2,v
-close all,v
-# Allow sort to produce expected behavior,v
-sort <<< $'a\nb\nA\nB',v
-C                             #,v
-  export LC_ALL=C                             # Allow sort to produce expected behavior,V
-Error: invalid byte sequence in US-ASCII,V
-% h_exact = round(h_exact, 1, 'significant'),V
-3 200,v
-h,v
-% h3 = loglog(1./hvec, hvec.^4, 'k--');,V
-t(2) - t(1),v
-   ,v
-,1),v
- - error_N(1,v
-hvec.^4,v
-+ ,v
-rror_N(1,1) + ,v
-1./(,v
- 32 64,v
-, 'color', color_grover, 'color', color_beaker,23
-n,v
-i,v
-3,v
-hvec = [2 4 8 16 32 64] * h_exact;,V
-        h = 10/1024;,V
-1e-5;,v
-6.67,v
-h / 2;,v
-        h = h / 2;,V
-1e-2 ,v
-9.5e-5,v
-9,v
-(1./hvec, error_N(1,:), 'x-'),v
-          ,2
-0.01 0.05 0.1 0.2 0.4 0.8 2,v
-0.01 0.1 0.5 ,v
-0.1 0.2 0.4 0.8 ,v
-min(1./hvec) max(1./hvec),v
-200,v
-, 'x-',v
-xlim([10 200]),V
-h1 = ,v
-ll = legend([h1 h2], 'N1(t)','N2(t)');,V
-:,v
-M,v
-    step_N,V
-step = 1./hvec;,V
-step_N = zeros(M,1);,V
-cell,v
-      ,v
