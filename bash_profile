@@ -40,6 +40,7 @@ export TERM='screen-256color'
 # less highlighting for man pages
 export LESS_TERMCAP_so=$'\e[30;47m'
 export LESS_TERMCAP_se=$'\e[0m'
+export LESS=-Asix8
 
 # # Use vim as man pager -- nicer searching, but SLOW to load vs less
 # export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man ts=8 nomod nolist nonu noma' \

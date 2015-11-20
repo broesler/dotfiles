@@ -85,16 +85,13 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   source acd_func.sh
 fi
 
-# Add bash aliases.
-if [ -f ~/.bash_aliases ]; then
-  source ~/.bash_aliases
-fi
-
-# # Source subconfig files
-# for config in "$HOME"/.bashrc.d/*.bash ; do
-#   source "$config"
-# done
-# unset -v config
+# Source subconfig files
+for config in "$HOME"/.bashrc.d/*.bash ; do
+  # if [ -f "$config" ]; then
+    source "$config"
+  # fi
+done
+unset -v config
 
 #==============================================================================
 #==============================================================================
