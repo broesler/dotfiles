@@ -1,100 +1,100 @@
-  read -r OLDPWD < "${OLDPWD_FILE:-$HOME/.oldpwd}",V
+If we assume the velocity profile in a turbulent boundary layer takes the power law form\begin{equation*}    \frac{\ub}{U_0} =    \begin{cases}        \(\dfrac{y}{\d}\)^{1/n} & \text{for } \dfrac{y}{\d} \le 1 \\[1.5ex]        \,\hphantom{\Big(} 1 & \text{for } \dfrac{y}{\d} > 1,    \end{cases}\end{equation*}we can find the displacement thickness from its definition\begin{equation}  \d^\ast = \int_0^\infty 1 - \frac{\ub}{U_0} \dx{y}.\end{equation}By plugging in our velocity profile,\begin{align}    \d^\ast &= \int_0^\infty 1 - \(\frac{y}{\d}\)^{1/n} \dx{y} \\            &= \delta - \int_0^\d \(\frac{y}{\d}\)^{1/n} \dx{y} \\            &= \delta - \frac{n}{n+1}\d^{-1/n}\d^{(n+1)/n} \\            &= \delta - \frac{n}{n+1}\d \label{eq:d1} \\    \frac{\d^\ast}{\d} &= 1 - \frac{n}{n+1} = \frac{n+1 - n}{n+1} \\    \Aboxed{ \frac{\d^\ast}{\d} &= \frac{1}{n+1} }\end{align}Similarly, we can find the momentum thickness from its definition\begin{equation}    \th^\ast = \int_0^\infty \frac{\ub}{U_0} \(1 - \frac{\ub}{U_0}\) \dx{y}\end{equation}By plugging in our velocity profile,\begin{align}    \th^\ast &= \int_0^\infty \(\frac{y}{\d}\)^{1/n} \(1 - \(\frac{y}{\d}\)^{1/n}\) \dx{y} \\             &= \int_0^\d     \(\frac{y}{\d}\)^{1/n}     - \(\frac{y}{\d}\)^{2/n}   \dx{y}    \intertext{the first term of the integral is known from equation~\eqref{eq:d1}, and the second term follows the same form, giving}    \th^\ast &= \frac{n}{n+1}\d - \frac{n}{n+2}\d \\    \frac{\th^\ast}{\d} &=  \frac{n}{n+1} - \frac{n}{n+2} = \frac{n^2 + 2n - n^2 -n }{(n+1)(n+2)} \\    \Aboxed{ \frac{\th^\ast}{\d} &= \frac{n}{(n+1)(n+2)} }\end{align}The shape factor is the ratio of displacement thickness to momentum thickness\begin{align}    H &= \frac{\d^\ast}{\th^\ast} = \frac{1}{n+1}\frac{(n+1)(n+2)}{n} \\    \Aboxed{ H &= 1 + \frac{2}{n} }\end{align}An appropriate compromise choice for $n$ would give a shape factor between the Blasius solution $H = 1.3$, and the Klebnoff solution $H = 2.6$. Choosing $H = 2$ gives a choice of\begin{equation}    \boxed{ n = 2 }\end{equation}which makes our power law profile a square root:\begin{equation}    \frac{\ub}{U_0} = \(\dfrac{y}{\d}\)^{1/2},  \text{ for } \dfrac{y}{\d} \le 1. \\[1.5ex]\end{equation},v
+If we assume the velocity profile in a turbulent boundary layer takes the power law form\begin{equation*}    \frac{\ub}{U_0} =    \begin{cases}        \(\dfrac{y}{\d}\)^{1/n} & \text{for } \dfrac{y}{\d} \le 1 \\[1.5ex]        \,\hphantom{\Big(} 1 & \text{for } \dfrac{y}{\d} > 1,    \end{cases}\end{equation*}we can find the displacement thickness from its definition\begin{equation}  \d^\ast = \int_0^\infty 1 - \frac{\ub}{U_0} \dx{y}.\end{equation}By plugging in our velocity profile,\begin{align}    \d^\ast &= \int_0^\infty 1 - \(\frac{y}{\d}\)^{1/n} \dx{y} \\            &= \delta - \int_0^\d \(\frac{y}{\d}\)^{1/n} \dx{y} \\            &= \delta - \frac{n}{n+1}\d^{-1/n}\d^{(n+1)/n} \\            &= \delta - \frac{n}{n+1}\d \label{eq:d1} \\    \frac{\d^\ast}{\d} &= 1 - \frac{n}{n+1} = \frac{n+1 - n}{n+1} \\    \Aboxed{ \frac{\d^\ast}{\d} &= \frac{1}{n+1} }\end{align}Similarly, we can find the momentum thickness from its definition\begin{equation}    \th^\ast = \int_0^\infty \frac{\ub}{U_0} \(1 - \frac{\ub}{U_0}\) \dx{y}\end{equation}By plugging in our velocity profile,\begin{align}    \th^\ast &= \int_0^\infty \(\frac{y}{\d}\)^{1/n} \(1 - \(\frac{y}{\d}\)^{1/n}\) \dx{y} \\             &= \int_0^\d     \(\frac{y}{\d}\)^{1/n}     - \(\frac{y}{\d}\)^{2/n}   \dx{y}    \intertext{the first term of the integral is known from equation~\eqref{eq:d1}, and the second term follows the same form, giving}    \th^\ast &= \frac{n}{n+1}\d - \frac{n}{n+2}\d \\    \frac{\th^\ast}{\d} &=  \frac{n}{n+1} - \frac{n}{n+2} = \frac{n^2 + 2n - n^2 -n }{(n+1)(n+2)} \\    \Aboxed{ \frac{\th^\ast}{\d} &= \frac{n}{(n+1)(n+2)} }\end{align}The shape factor is the ratio of displacement thickness to momentum thickness\begin{align}    H &= \frac{\d^\ast}{\th^\ast} = \frac{1}{n+1}\frac{(n+1)(n+2)}{n} \\    \Aboxed{ H &= 1 + \frac{2}{n} }\end{align}An appropriate compromise choice for $n$ would give a shape factor between the Blasius solution $H = 1.3$, and the Klebnoff solution $H = 2.6$. Choosing $H = 2$ gives a choice of\begin{equation}    \boxed{ n = 2 }\end{equation}which makes our power law profile a square root:\begin{equation}    \frac{\ub}{U_0} = \(\dfrac{y}{\d}\)^{1/2},  \text{ for } \dfrac{y}{\d} \le 1. \\[1.5ex]\end{equation},V
+To show the Reynolds stress in fully-developed turbulent channel flow is$$ -\overline{u'v'} = \frac{\tau_w}{\rho}\(1 - \frac{y}{\d}\) - \nu S, $$where $S = \ppx{\ub}{y}$, we look at the RANS equations:\begin{gather}  \ppx{\vb}{y} = 0, \label{eq:nsc} \\  \ppx{}{y}\Big(\ub\vb\Big) = -\frac{1}{\rho}\ppx{\bar{p}}{x} + \ppx{}{y}\Big(\nu \ppx{\ub}{y} - \overline{u'v'}\Big), \label{eq:nsx} \\  \ppx{}{y}\Big(\vb\vb\Big) = -\frac{1}{\rho}\ppx{\bar{p}}{y} + \ppx{}{y}\Big(\nu \ppx{\vb}{y} - \overline{v'v'}\Big). \label{eq:nsy}\end{gather}The $\ppx{}{t}$, and $\ppx{}{x}$ terms have been eliminated because the flow is steady and fully-developed in the $x$-direction (along the length of the channel).The continuity equation~\eqref{eq:nsc}, along with the no-through-flow boundary condition gives $\vb(y) = 0$, so we can rewrite the $y$-momentum equation~\eqref{eq:nsy} as\begin{align}  0 &= -\frac{1}{\rho}\ppx{\bar{p}}{y} - \ppx{}{y}\Big(\overline{v'v'}\Big) \\  0 &= \ppx{}{y}\Big(\frac{\bar{p}}{\rho} + \overline{v'v'}\Big)\end{align}which integrates to\begin{equation}  \frac{\bar{p}}{\rho} + \overline{v'v'} = \frac{p_w(x)}{\rho}\end{equation}where $p_w(x)$ is the wall pressure, $\bar{p}(y=0)$. Given the BC $\overline{v'v'}(y=0) = 0$, we can state that\begin{equation}  \ppx{\bar{p}}{x} = \ddx{p_w}{x}\end{equation}and substitute into the $x$-momentum equation \eqref{eq:nsx}\begin{equation}  0 = -\frac{1}{\rho}\ddx{p_w}{x} + \ppx{}{y}\Big(\nu \ppx{\ub}{y} - \overline{u'v'}\Big). \label{eq:nsx2}\end{equation}The terms in parentheses define the total shear stress, $\tau(y)/\rho = \Big(\nu \ppx{\ub}{y} - \overline{u'v'}\Big)$, so~\eqref{eq:nsx2} becomes\begin{equation}  \ddx{p_w(x)}{x} = \ppx{\tau(y)}{y}\end{equation}which is a separable differential equation, showing that each side must be constant. The shear stress at the wall is defined to be $\tau_w \equiv \tau(y=0)$, and antisymmetry about the midplane gives $\tau(2\d) = -\tau_w$, so\begin{align}  \ddx{p_w}{x} &= -\frac{\tau_w}{\d} \\  \tau(y) &= \tau_w\(1 - \frac{y}{\d}\)\end{align}Using these results, we can integrate \eqref{eq:nsx2} and solve for the Reynolds stress to get\begin{gather}  0 = \int\limits_0^y -\frac{1}{\rho}\ppx{\tau(y)}{y} + \ppx{}{y}\Big(\nu S - \overline{u'v'}\Big) \dx{y} \\  -\overline{u'v'} = \frac{1}{\rho}\tau(y) - \nu S  \\  \boxed{ -\overline{u'v'} = \frac{\tau_w}{\rho}\(1 - \frac{y}{\d}\) - \nu S }\end{gather}The turbulence production is then\begin{align}  P &= -\overline{u'v'}\ppx{\ub}{y} \\    &= -\overline{u'v'}S \\    \Aboxed{ P &=  \frac{\tau_w}{\rho}\(1 - \frac{y}{\d}\)S - \nu S^2 } \label{eq:p}\end{align}The maximum production occurs when the viscous stress and Reynolds shear stress are equal:\begin{align}    \rho \nu S &= -\rho\overline{u'v'} \\         \nu S &= \frac{\tau_w}{\rho}\(1 - \frac{y}{\d}\) - \nu S \\    \frac{y}{\d}\Big|_{P_{\text{max}}} &= 1 - \frac{2\nu S\rho}{\tau_w} \label{eq:ypmax}\end{align}Plugging this result into \eqref{eq:p} gives our expression for maximum power\begin{align}  P_{\text{max}} &= \frac{\tau_w}{\rho}\(1 - 1 + \frac{2\nu S\rho}{\tau_w}\)S - \nu S^2  \\                 &= \nu S^2\intertext{because viscous stress and Reynolds shear stress are the same, we can write $\tau = 2\nu\rho S$, giving}P_{\text{max}} &= \nu \(\frac{\tau^2}{4\nu^2\rho^2}\) \\\intertext{to put in terms of $\us$ and $\tau_w$, we can multiply and divide the above expression by $\tau_w^2$ to give}P_{\text{max}} &= \frac{1}{4\nu}\(\frac{\tau_2}{\rho}\)^2\(\frac{\tau}{\tau_w}\)^2 \\\Aboxed{ P_{\text{max}} &= \frac{\us}{4\nu}\(\frac{\tau}{\tau_w}\)^2 }\end{align}where\begin{equation}    \us \equiv \sqrt{\frac{\tau_w}{\rho}}.\end{equation},V
+We consider the three possible closure models for the Reynolds stresses:\begin{enumerate}[(a)]  \item $ \displaystyle{ \overline{u'_i u'_j} = -\nu_T    \ppx{\ub_i}{x_j} }$  \item $ \displaystyle{ \overline{u'_i u'_j} = -\nu_T \( \ppx{\ub_i}{x_j} + \ppx{\ub_j}{x_i} \) }$  \item $ \displaystyle{ \overline{u'_i u'_j} = -\nu_T \( \ppx{\ub_i}{x_j} + \ppx{\ub_j}{x_i} \) + \frac{2}{3}k\d_{ij} }$ \label{it:c}\end{enumerate}The third closure model, \eqref{it:c}, is physically unacceptable. This closure model is the \emph{turbulent-viscosity hypothesis}, which makes the \emph{intrinsic} that the Reynolds-stress anisotropy is determined by the mean velocity gradients, as well as the \emph{specific} assumption that the relationship between the anisotropy and those mean gradients is linear, shown by \eqref{it:c}. The intrinsic assumption has been shown by experiment to be incorrect in general. The specific assumption has also been shown to be clearly incorrect for even simple shear flows (such as a jet).,V
+For a convecting fluid, we can make an analogous assumption to Kolmogorov's $1^{\textit{st}}$ assumption that all vortices of a certain size have the same energy, such that $u = \us(d)$ only. We can also make an assumption analogous to Kolmogorov's $3^{\textit{rd}}$ that eddies of intermediate size know only their size,~$d$, and the buoyancy force caused by temperature difference between surrounding eddies,~$\alpha g \d T$, and are oblivious to the energy dissipation by viscosity and conduction ($\nu$ and $\k$, which are assumed to be of the same order of magnitude). Thus, we can use dimensional analysis to find that the eddy orbital velocity is related to the diameter scale by\begin{gather}    \us = f(\underset{\text{1/$\deg$C}}{\alpha}, \quad \underset{\text{m/s}^2}{g}, \quad \underset{\deg C}{\d T}, \quad \underset{\text{m}}{d}) \\  \boxed{ \us = \(\alpha g \d T d\)^{1/2} }\end{gather}The shortest length scale occurs when the Raleigh number,~$\Ra$, falls to unity. Assuming that the temperature fluctuations on all scales are proportional to the externally imposed temperature difference,~$\d T$,\begin{gather}  \Ra = 1 = \frac{\alpha g \d T \dmin^3}{\nu \k} \\  \boxed{ \dmin = \(\frac{\nu \k}{\alpha g \d T}\)^{1/3} }\end{gather}The ratio between maximum and minimum length scales is then\begin{gather}  \frac{\dmax}{\dmin} = \ddfrac{H}{\(\frac{\nu \k}{\alpha g \d T}\)^{1/3}} = \( \frac{\alpha g \d T H^3}{\nu \k} \)^{1/3} \\  \boxed{ \frac{\dmax}{\dmin} = \Ra^{1/3} }\end{gather},V
+Midterm,v
+          printf("You lose!\n\n");        } else {,V
+" Map \M to make in backgroundnnoremap <Leader>M :silent! make<bar>:redraw!<CR>,V
+set makeprg=make,V
+ (mapped in .vimrc),v
+" Map \M to make in backgroundnnoremap <Leader>M :silent! make<bar>:redraw!<CR>,V
+nnoremap <Leader>M :silent! make \| redraw!<CR>,V
+nnoremap <Leader>M :silent! make <bar> redraw!<CR>,V
+|,v
  ,v
-r,v
--,v
-(pwd),v
-$,v
-# # Check if currently in ~/.dotfiles directory (and it exists)# if [ "$PWD" != "$HOME/.dotfiles" ] && [ -d "$HOME/.dotfiles" ]# then#   cd $HOME/.dotfiles# else#   printf "~/.dotfiles does not exist!\n" 1>&2#   exit 1# fi,V
-`,v
-s,v
-# If we can read ~/.oldpwd, make its contents our OLDPWD,V
-  read -r OLDPWD < "${OLDPWD_FILE:-$HOME/.oldpwd}"  export OLDPWD,V
-# If we can read ~/.oldpwd, make its contents our OLDPWD# saves OLDPWD between sessionsif [ -r "${OLDPWD_FILE:-$HOME/.oldpwd}" ]; then  read -r OLDPWD < "${OLDPWD_FILE:-$HOME/.oldpwd}"  export OLDPWDfi,V
-#==============================================================================,V
- commands,v
-Loads for all login shells. Sets path variable and others,v
-10/29/15,v
-profile,v
-#~/.bash_profile# Set vim syntax: vim:ft=sh syntax=sh#==============================================================================#    File: ~/.bash_profile# Created: 10/29/13#  Author: Bernie Roesler## Description: Loads for all login shells. Sets path variable and others#==============================================================================,V
-if [ -f ~/.LESS_TERMCAP ]; then  source ~/.LESS_TERMCAPfi,v
-if [ -f ~/.LESS_TERMCAP ]; then  source ~/.LESS_TERMCAPfi,V
-colors,v
-# less colors for man pagesexport LESS_TERMCAP_so=$'\e[30;47m'export LESS_TERMCAP_se=$'\e[0m',v
-# less colors for man pagesexport LESS_TERMCAP_so=$'\e[30;47m'export LESS_TERMCAP_se=$'\e[0m',V
-1,v
-\e[0;30m,v
-4,v
-3,v
-;,v
+" Open/close quickfix window (not really necessary)" nnoremap <silent> <leader>q :copen 10<CR>" nnoremap <silent> <leader>c :cclose<CR>,v
+" Open/close quickfix window (not really necessary)" nnoremap <silent> <leader>q :copen 10<CR>" nnoremap <silent> <leader>c :cclose<CR>,V
+<C-R>,v
+" nnoremap <Leader>M :silent! make<bar>:redraw!<CR>,V
+ :redraw!<CR>,v
+<CR>,v
+nnoremap <Leader>M :silent! make<CR> :redraw!<CR>,V
+<bar>,v
+:,v
+!,v
+<bar> ,v
 ,v
 ,V
-Ensure less highlights searches properly,v
-# less colors for man pages,V
-#==============================================================================#==============================================================================,V
-# Ensure less highlights searches properlyexport LESS_TERMCAP_so=$'\E[01;33m'export LESS_TERMCAP_se=$'\E[0m',V
-export MANPAGER,v
-export MANPAGER,V
-.tmux.bash,v
-.,v
-# Attach to existing tmux session rather than create a new one if possibletmux() {  # Force tmux to use 256 colors with -2 option (get solarized right)  # If given any arguments, just use them as they are  if (($#)) ; then    command tmux -2 "$@"  # If a session exists, just attach to it  elif command tmux has-session 2>/dev/null ; then    command tmux -2 attach-session -d  # Create a new session with an appropriate name  else    command tmux -2 new-session -s "${TMUX_SESSION:-default}"  fi},V
-# # Force tmux to use 256 colors (get solarized right),V
-# alias tmux='tmux -2'    ,V
-# Attach to existing tmux session rather than create a new one if possibletmux() {  # If given any arguments, just use them as they are  if (($#)) ; then    command tmux "$@"  # If a session exists, just attach to it  elif command tmux has-session 2>/dev/null ; then    command tmux attach-session -d  # Create a new session with an appropriate name  else    command tmux new-session -s "${TMUX_SESSION:-default}"  fi},V
-x,v
-# Attach to existing tmux session rather than create a new one if possibletmux() {  # If given any arguments, just use them as they are  if (($#)) ; then    command tmux "$@"    # If a session exists, just attach to it  elif command tmux has-session 2>/dev/null ; then    command tmux attach-session -d    # Create a new session with an appropriate name  else    command tmux new-session -s "${TMUX_SESSION:-default}"  fi},v
-# Attach to existing tmux session rather than create a new one if possibletmux() {  # If given any arguments, just use them as they are  if (($#)) ; then    command tmux "$@"    # If a session exists, just attach to it  elif command tmux has-session 2>/dev/null ; then    command tmux attach-session -d    # Create a new session with an appropriate name  else    command tmux new-session -s "${TMUX_SESSION:-default}"  fi},V
-# ssh to babylon xsshx() {    ssh -X d26725q@babylon$1.thayer.dartmouth.edu},V
-# Homebrew update all the thingsbrewup(){  brew update           # update homebrew formulas  brew upgrade --all    # upgrade programs installed via homebrew  brew prune            # remove old versions of programs  brew cleanup          # remove old formulas},V
-{  brew update           # update homebrew formulas  brew upgrade --all    # upgrade programs installed via homebrew  brew prune            # remove old versions of programs  brew cleanup          # remove old formulas},V
-# convert text file to pdftxt2pdf(){  enscript $1 -p temp.ps    # convert to postscript  ps2pdf temp.ps $1.pdf     # convert to pdf  rm -f temp.ps},V
-# Remove all auxiliary files from tex directorytexclean(){  rm -f *.aux  rm -f *.bbl  rm -f *.blg  rm -f *.log  rm -f *.out  rm -f *.toc  rm -f *.fls  rm -f *.fdb_latexmk  rm -f *.synctex*.gz},V
-# Remove all auxiliary files from tex directorytexclean(){  rm -f *.aux  rm -f *.bbl  rm -f *.blg  rm -f *.log  rm -f *.out  rm -f *.toc  rm -f *.fls  rm -f *.fdb_latexmk  rm -f *.synctex*.gz},V
-# illustrator,V
-# illustratoralias illustrator='open -a Adobe\ Illustrator',V
-1000000000,v
-1000000,v
-logins,v
-fig(7); clf, hold on, grid on, box on; %set(gcf, 'Position', [1083 558 800 600]);    plot([0 360],[0 0],'k-','LineWidth',1)    hCT = plot(d.phi*180/pi, CTA_rot_cyrod,'-',  'color', 'k');    hCF = plot(d.phi*180/pi, CFA_rot_cyrod,'-',  'color', 'b');    hCQ = plot(d.phi*180/pi, CQA_rot_cyrod,'-.', 'color', 'r');    hCS = plot(d.phi*180/pi, CSA_rot_cyrod,'--', 'color', [0.95  0.45  0.0]);              ticks(gca,[0:45/2:360],[-1:0.25:1.5])    xlim([0 360])    ylim([-1 1.5])    xlabel('\phi [deg]')    ylabel('Non-dimensional Coefficient')    %     legend([hCT, hCF, hCQ, hCS], 'C_T', 'C_F', 'C_Q', 'C_S', 'Location', 'NorthEast')    if blackfig_flag == 1        set(hCT,'color','w')        set(hCF,'color',[20 151 252]./255)        blackfig;    end        if saveFigures_flag == 1        saveastight(7,[filename 'timeseries_CyROD_rotor_rpm30_mps1'],'pdf')    end   ,V
-clear; clearfigs(); clc;saveFigures_flag = 0;blackfig_flag = 1;if blackfig_flag == 1    filename = 'black_';else    filename = '';end,v
-% MATLAB 2014b ColorOrder% color_grover      =  [ 0         0.4470    0.7410 ];  % i.e. faded blue% color_beaker      =  [ 0.8500    0.3250    0.0980 ];  % i.e. orange% color_extracheesy =  [ 0.9290    0.6940    0.1250 ];  % i.e. yellowish orange% color_grimace     =  [ 0.4940    0.1840    0.5560 ];  % i.e. purple% color_kermit      =  [ 0.4660    0.6740    0.1880 ];  % i.e. faded green% color_twitter     =  [ 0.3010    0.7450    0.9330 ];  % i.e. sky blue% color_pumbaa      =  [ 0.6350    0.0780    0.1840 ];  % i.e. chipotle red,v
-set(0, 'DefaultFigurePosition', [100 700 800 600]);set(0, 'DefaultAxesFontName', 'Times')set(0, 'DefaultTextFontName', 'Times')set(0, 'DefaultAxesFontSize',  28)set(0, 'DefaultLineLineWidth',  2)set(0, 'DefaultLineMarkerSize', 8),v
-  tol = 1e-5;  % tolerance for "exact" solution,v
-setterm -bfreq 0,V
-  tol = 1e-5;  % tolerance for "exact" solution,V
-http://apsdfd2015.mit.edu/sites/default/files/documents/15APS-DFD_SynopticComposite.pdf,v
-  # As of bash 4.3, can trim directories in prompt!,V
-  PROMPT_DIRTRIM=2,V
-  PROMPT_DIRTRIM=3,v
-  PROMPT_DIRTRIM=3,V
-set ,v
-hold on; box on; grid on;,V
-http://blog.sanctum.geek.nz/vim-command-window/,v
-ure,v
-subplot(2,1,1),V
+#==============================================================================,V
+#------------------------------------------------------------------------------,V
+t_start = 0;t_stop = 5;,V
+echom,v
+exe,v
+*10,v
+    execute "silent !ts \"" . . "\"",V
+ @",v
+getline(".") ,v
+"     let mcom = @""     " Remove trailing newline, but not interior newlines"     let mcom = substitute(mcom, '\n$', "", "g")"     " Need to escape `;' for tmux"     let mcom = substitute(mcom, ';', '\\;', "g")"     exe "silent !ts \"" . mcom . "\"",V
+" " vnoremap <Leader>r y:call EvaluateSelection()<CR>,V
+"" " " ,v
+hvec = [0.001 0.5 1];M = length(hvec);,V
+execute,v
+    " echom "silent !ts \"" . mcom . "\"",V
 e,v
-u,v
-hold on; grid on; box on;,V
-subplot(2,1,2),V
-; hold on; box on; grid on;,v
-grid on,V
-     ,v
-mycolors;,V
-,'color',color_grover,v
-[h1 h2], ,v
-h1 = plot(x,partc,'--');,V
-h2 = plot(x,w(:,k));,V
-% % plot time-series% for k = 1:time-1%     plot(x,w(:,k),'--','color',colormat(k,:))% end,V
-...,v
-hold on;,V
+hvec = [0.001 0.5 1];,v
+",v
+',v
+hvec = [0.001 0.5 1];,V
+silent ,v
+hvec = [0.001 0.5 1];M = length(hvec);tmax = t_start:min(hvec):t_stop;N = length(tmax);% create z matrixz = zeros(M,N);,V
+    echom mcom,V
+    execute "silent !ts \"" . mcom . "\"",V
+:redraw!<CR>,v
+vnoremap <Leader>r y:call EvaluateSelection()<CR>:redraw!<CR>,V
+R,v
+    " echom "silent !ts \"" . getline(".") . "\"",V
+ <bar> redraw!,v
+0,v
+vnoremap <Leader>r :norm! y <bar> execute 'silent !ts \"<C-r>"\"'<C-M>:redraw!<C-M>,V
+EvaluateSelection<C-M>,v
+vnoremap <Leader>r :EvaluateSelection<C-M>,V
+hvec = [.001 .5 1];M = length(hvec);,V
+:redraw!<C-M>,v
+    execute "silent !ts \"" . getline(".") . "\"",V
+bar,v
+w <bar> ,v
+<CR> ,v
 ,,v
-'--'),v
-colormat = colorfade(0.8*ones(1,3),color_beaker,time);,V
-),v
-(,v
-length,v
-    % molecule is (1)--(-2 - h^2*lambda^2)--(1), A is tridiagonal,V
-set(0, 'DefaultLineLineWidth', 1),V
- % function,v
-log(,v
-plot,v
-log10(,v
+echom ,v
+quit,v
+nnoremap <Leader>q :execute 'silent !ts "dbquit"' <bar> redraw!<C-M>,V
+unmap <Leader>c,V
+unmap <Leader>q,V
+" dbquit,V
+" dbstep (i.e. next line),V
+" dbclear all,V
+nnoremap <Leader>d :w <bar> call Dbstop() <bar> redraw!<C-M>,V
+stop,v
+" Debugging stopfunction! Dbstop()  let mcom = "dbstop in " . expand("%:r") . " at " . line(".")  " call command (ts already has carriage return built-in  execute "silent !ts \"" . mcom . "\""endfunction,V
+step,v
+step (i.e. next line),v
+" dbstep (i.e. next line)nnoremap <Leader>n :execute 'silent !ts "dbstep"' <bar> redraw!<C-M>,V
+clear all,v
+dbclear all,v
+" dbclear allnnoremap <Leader>c :execute 'silent !ts "dbclear all"' <bar> redraw!<C-M>,V
+\,v
+ C-m",v
+ <bar> redraw!<C-M>,v
+ | redraw!<C-M>,v
+:execute 'silent !ts "dbstop in %:r at line('.')" C-m'<Bar>redraw!<C-M>,v
+>,v
+M,v
+  echom mcom,V
+nnoremap <Leader>d :execute 'silent !ts "dbstop in %:r at line('.')" C-m'<Bar>redraw!<C-M>,V
+nnoremap <Leader>d :execute 'silent !ts dbstop in %:r at line(".") C-m'<Bar>redraw!<C-M>,v
+nnoremap <Leader>d :execute 'silent !ts dbstop in %:r at line(".") C-m'<Bar>redraw!<C-M>,V
+w<Bar>,v
+nnoremap <Leader>d :w<Bar>execute 'silent !ts dbstop in %:r at line('.') C-m'<Bar>redraw!<C-M>,V
+maps,v
+r,v
