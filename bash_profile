@@ -37,11 +37,26 @@ fi
 # ensure tmux uses colors
 export TERM='screen-256color'               
 
-# Use vim as man pager
-export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man ts=8 nomod nolist nonu noma' \
-    -c 'nnoremap i <nop>' \
-    -c 'nnoremap <Space> <C-f>' \
-    -c 'noremap q :quit<CR>' -\""
+# less highlighting for man pages
+export LESS_TERMCAP_so=$'\e[30;47m'
+export LESS_TERMCAP_se=$'\e[0m'
+export LESS=-Asix8
+
+# # Use vim as man pager -- nicer searching, but SLOW to load vs less
+# export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man ts=8 nomod nolist nonu noma' \
+#                                            -c 'nnoremap i <nop>' \
+#                                            -c 'nnoremap <Space> <C-f>' \
+#                                            -c 'noremap q :quit<CR>' -\""
+
+# If we can read ~/.oldpwd, make its contents our OLDPWD
+# saves OLDPWD between sessions
+if [ -r "${OLDPWD_FILE:-$HOME/.oldpwd}" ]; then
+  read -r OLDPWD < "${OLDPWD_FILE:-$HOME/.oldpwd}"
+  export OLDPWD
+
+  # add to stack without changing into it, so 'cd -' works
+  pushd -n "$OLDPWD" > /dev/null
+fi
 
 #------------------------------------------------------------------------------
 # If I have my own init file, then use that one, else use the
