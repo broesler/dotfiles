@@ -3,7 +3,7 @@
 " Created: 04/16/2015
 "  Author: Bernie Roesler
 "
-" Last Modified: 11/06/2015, 13:39
+" Last Modified: 11/20/2015, 13:44
 
 " Description: Settings for vim. Source with \s while in vim. Functions called
 "   by autocommands are located in ~/.vim/plugin/util_functions.vim
@@ -161,16 +161,16 @@ augroup misc_cmds
 augroup END
 
 augroup code_cmds
-  au!
-  " Create template for new files
-  au BufNewFile *.c   call MakeTemplate("$HOME/.vim/header/c_header")
-  au BufNewFile *.m   call MakeTemplate("$HOME/.vim/header/m_header")
-  au BufNewFile *.f95 call MakeTemplate("$HOME/.vim/header/f_header")
-  au BufNewFile *.sh  call MakeTemplate("$HOME/.vim/header/sh_header")
-  au BufNewFile *.vim call MakeTemplate("$HOME/.vim/header/vim_header")
+    au!
+    " Create template for new files
+    au BufNewFile *.c   call MakeTemplate("$HOME/.vim/header/c_header")
+    au BufNewFile *.m   call MakeTemplate("$HOME/.vim/header/m_header")
+    au BufNewFile *.f95 call MakeTemplate("$HOME/.vim/header/f_header")
+    au BufNewFile *.sh  call MakeTemplate("$HOME/.vim/header/sh_header")
+    au BufNewFile *.vim call MakeTemplate("$HOME/.vim/header/vim_header")
 
-  " Update 'Last Modified:' line in code files
-  au BufWritePre *.c,*.h,*.m,*.f95,*.vim,$MYVIMRC,.*,*.sh call LastModified()
+    " Update 'Last Modified:' line in code files
+    au BufWritePre *.c,*.h,*.m,*.f95,*.vim,$MYVIMRC,.*,*.sh call LastModified()
 augroup END
 
 "------------------------------------------------------------------------------
@@ -245,20 +245,16 @@ if exists('$TMUX')
     let &t_ti = "\<Esc>]2;vim\<Esc>\\" . &t_ti
     let &t_te = "\<Esc>]2;". previous_title . "\<Esc>\\" . &t_te
 
-    nnoremap <silent> <C-h> :call TmuxOrSplitSwitch('h', 'L')<cr>
-    nnoremap <silent> <C-j> :call TmuxOrSplitSwitch('j', 'D')<cr>
-    nnoremap <silent> <C-k> :call TmuxOrSplitSwitch('k', 'U')<cr>
-    nnoremap <silent> <C-l> :call TmuxOrSplitSwitch('l', 'R')<cr>
+    nnoremap <silent> <C-h> :call TmuxOrSplitSwitch('h', 'L')<CR>
+    nnoremap <silent> <C-j> :call TmuxOrSplitSwitch('j', 'D')<CR>
+    nnoremap <silent> <C-k> :call TmuxOrSplitSwitch('k', 'U')<CR>
+    nnoremap <silent> <C-l> :call TmuxOrSplitSwitch('l', 'R')<CR>
 else
     map <C-h> <C-w>h
     map <C-j> <C-w>j
     map <C-k> <C-w>k
     map <C-l> <C-w>l
 endif
-
-" Open/close quickfix window
-nnoremap <silent> <leader>q :copen 10<CR>
-nnoremap <silent> <leader>c :cclose<CR>
 
 " Close buffer without closing split (# is 'alternate file')
 " NOTE: Does NOT work twice in a row!!
@@ -271,14 +267,11 @@ nnoremap <silent> <C-]> <C-]>zz
 nmap <silent> <Leader>E :Hexplore!<CR>
 
 " Timestamp in format %y%m%d, %H:%M
-nnoremap <leader>t     "=strftime("%m/%d/%Y, %H:%M")<CR>P
+nnoremap <leader>t "=strftime("%m/%d/%Y, %H:%M")<CR>P
 
 " YankRing.vim map
 let g:yankring_history_dir='~/.vim/'
 nnoremap <silent> <Leader>yr :YRGetElem<CR>
-
-" Map \M to make in background
-nnoremap <Leader>M :silent! make <bar> redraw!<CR>
 
 "------------------------------------------------------------------------------
 "       Colorscheme
@@ -317,12 +310,10 @@ hi SpellLocal term=underline cterm=underline
 
 
 "-----------  Set status-line color based on mode
-" first, enable status line always
 " Status Line
 set laststatus=2                             " always show statusbar  
 set statusline=                              " clear default status line
 set statusline+=%-4.3n\                      " buffer number  
-" set statusline+=%{fugitive#statusline()}     " brance name (NEEDS FUGITIVE)
 set statusline+=%{exists('g:loaded_fugitive')?fugitive#statusline():''}
 set statusline+=\ \                          " Separator
 set statusline+=%t\                          " %F is entire path

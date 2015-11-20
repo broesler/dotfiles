@@ -42,7 +42,8 @@ hi link Notes PreProc
 "       Compiling options
 "------------------------------------------------------------------------------
 " Map \M to make in background
-nnoremap <Leader>M :silent! make \| redraw!<CR>
+nnoremap <Leader>M :silent! make <bar> :redraw!<CR>
+set makeprg=make
 
 " Report warnings as well as errors
 set errorformat=%A%f:%l:%c:,%A%f:%l:,%C,%C%p%*[0123456789^],%Z%trror:\ %m,%Z%tarning:\ %m,%C%.%#

@@ -37,11 +37,12 @@ export EDITOR=vim
 # simple, commonly-used commands.
 export HISTCONTROL=ignoredups:ignorespace
 export HISTIGNORE='clc:fg:git st:git lol'
-export HISTSIZE=10000
-export HISTFILESIZE=100000
+export HISTSIZE=$((1 << 12))                # 4096 lines in memory
+export HISTFILESIZE=$((1 << 24))            # 16e6 lines in file
 
 # shoptions
 shopt -s autocd         # just type directory name to cd
+shopt -s direxpand      # expand variables in directory complete
 shopt -s cdspell        # checks for minor errors in cd typing
 shopt -s checkjobs      # displays stopped or running job status before exiting
 shopt -s checkwinsize   # auto reforemat command output
@@ -49,6 +50,8 @@ shopt -s cmdhist        # save multi-line commands in history
 shopt -s extglob        # extend glob to regexes i.e. ?(ab)
 shopt -s globstar       # allows use of ** (like vim)
 shopt -s histappend     # append to ~/.bash_history instead of overwriting
+shopt -s no_empty_cmd_completion  # ignore completion on empty line
+shopt -s shift_verbose  # warn when trying to shift if nothing is there
 
 # Append commands to the history every time a prompt is shown,
 # instead of after closing the session.
@@ -63,9 +66,8 @@ set -o vi
 
 # Visual bell only
 set bell-style visible
+# setterm -bfreq 0
 
-# Force tmux to use 256 colors (get solarized right)
-alias tmux='tmux -2'    
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
   # Set default printer options
@@ -83,10 +85,13 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   source acd_func.sh
 fi
 
-# Add bash aliases.
-if [ -f ~/.bash_aliases ]; then
-  source ~/.bash_aliases
-fi
+# Source subconfig files
+for config in "$HOME"/.bashrc.d/*.bash ; do
+  # if [ -f "$config" ]; then
+    source "$config"
+  # fi
+done
+unset -v config
 
 #==============================================================================
 #==============================================================================
