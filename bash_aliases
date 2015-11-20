@@ -45,7 +45,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     fi
   }
 else
-  alias gambit='/thayerfs/research/epps/Fluent.Inc/bin/gambit'
+  alias flu1='/thayerfs/research/epps/VLM2D/Ramesh_FLUENT_cases/'
 fi
 
 # cs50 works on Mac and Linux
@@ -65,6 +65,8 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   alias matlab='/Applications/MATLAB_R2015b.app/bin/matlab'
   alias xfoil='/Applications/Xfoil.app/Contents/Resources/xfoil'
   alias skim='open -a /Applications/Skim.app'
+else
+  alias gambit='/thayerfs/research/epps/Fluent.Inc/bin/gambit'
 fi
 
 #-------------------------------------------------------------------------------
