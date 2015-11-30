@@ -3,3 +3,4 @@ vim/view/*
 vim/undodir/*
 mutt/cache/*
 mutt/tmp/*
+vim/yankring_history_v2.txt
