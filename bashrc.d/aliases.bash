@@ -65,12 +65,9 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   alias matlab='/Applications/MATLAB_R2015b.app/bin/matlab'
   alias xfoil='/Applications/Xfoil.app/Contents/Resources/xfoil'
   alias skim='open -a /Applications/Skim.app'
-<<<<<<< HEAD:bash_aliases
+  alias illustrator='open -a Adobe\ Illustrator'
 else
   alias gambit='/thayerfs/research/epps/Fluent.Inc/bin/gambit'
-=======
-  alias illustrator='open -a Adobe\ Illustrator'
->>>>>>> cfd7d9bb2e3b24807fd9f3a3914747e791671a85:bashrc.d/aliases.bash
 fi
 
 #-------------------------------------------------------------------------------

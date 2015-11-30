@@ -1,3 +1,9 @@
+_v2.txt,v
+  alias illustrator='open -a Adobe\ Illustrator',v
+  alias illustrator='open -a Adobe\ Illustrator',V
+>>>>>>> cfd7d9bb2e3b24807fd9f3a3914747e791671a85:bashrc.d/aliases.bash,V
+=======,V
+<<<<<<< HEAD:bash_aliases,V
 	pager = ,v
 <<<<<<< HEAD
  Add basic Matlab+vim+tmux interface commands.,v
@@ -92,9 +98,3 @@ tty.,v
 {3},v
 .,v
 y,v
-t,v
-    read -r -a panetty <<< $(echo "$lsp" | \grep -oP "(?<=tty.)[0-9]{3}"),V
-    lsp=$(tmux list-panes -F "#{pane_tty} #{window_id} #{pane_id}"),V
-    read -r -a panetty <<< ,V
-$ttys,v
-    ttys=,v
