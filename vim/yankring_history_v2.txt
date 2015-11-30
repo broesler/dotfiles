@@ -1,3 +1,4 @@
+ Add basic Matlab+vim+tmux interface commands.,v
 	pager = ,V
 s,v
     echo "$tmuxswp",v
@@ -97,4 +98,3 @@ tmux list-panes -F "#{pane_tty} #{window_id} #{pane_id}",v
         fg /Applications/MATLAB_R2015b.app/bin/matlab ,v
         fg /Applications/MATLAB_R2015b.app/bin/matlab ,V
 && ,v
-&,v
