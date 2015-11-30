@@ -19,7 +19,7 @@ do
   then
     # symlink files, do not follow symbolic links that already exist 
     # (i.e. directories), check if user wants to overwrite existing files
-    ln -nsvf $HOME/.dotfiles/$f $HOME/.$f
+    command ln -nsvfh $HOME/.dotfiles/$f $HOME/.$f
   fi
 done
 

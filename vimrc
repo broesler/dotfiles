@@ -3,7 +3,7 @@
 " Created: 04/16/2015
 "  Author: Bernie Roesler
 "
-" Last Modified: 11/20/2015, 13:44
+" Last Modified: 11/25/2015, 19:28
 
 " Description: Settings for vim. Source with \s while in vim. Functions called
 "   by autocommands are located in ~/.vim/plugin/util_functions.vim
@@ -154,7 +154,7 @@ augroup END
 
 augroup misc_cmds
     au!
-    au FileType matlab,sh,markdown setlocal iskeyword+=_
+    au FileType matlab,sh,markdown,vim setlocal iskeyword+=_
 
     " Use K to search vim help for word under cursor only in vim files
     au FileType vim setlocal keywordprg=:help
@@ -166,11 +166,11 @@ augroup code_cmds
     au BufNewFile *.c   call MakeTemplate("$HOME/.vim/header/c_header")
     au BufNewFile *.m   call MakeTemplate("$HOME/.vim/header/m_header")
     au BufNewFile *.f95 call MakeTemplate("$HOME/.vim/header/f_header")
-    au BufNewFile *.sh  call MakeTemplate("$HOME/.vim/header/sh_header")
     au BufNewFile *.vim call MakeTemplate("$HOME/.vim/header/vim_header")
+    au BufNewFile *.sh,*.bash  call MakeTemplate("$HOME/.vim/header/sh_header")
 
     " Update 'Last Modified:' line in code files
-    au BufWritePre *.c,*.h,*.m,*.f95,*.vim,$MYVIMRC,.*,*.sh call LastModified()
+    au BufWritePre *.c,*.h,*.m,*.f95,*.vim,$MYVIMRC,.*,*.sh,*.bash call LastModified()
 augroup END
 
 "------------------------------------------------------------------------------
@@ -186,7 +186,7 @@ cnoremap <C-J> <Down>
 cnoremap <C-K> <Up>
 
 " Quick access .vimrc and functions
-nnoremap <Leader>s :source $MYVIMRC<CR>
+" nnoremap <Leader>s :source $MYVIMRC<CR>
 nnoremap <Leader>v :e $MYVIMRC<CR>
 nnoremap <Leader>f :e $HOME/.vim/plugin/util_functions.vim<CR>
 

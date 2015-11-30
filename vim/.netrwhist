@@ -1,11 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =9
-let g:netrw_dirhist_1='/Users/bernardroesler/.vim'
-let g:netrw_dirhist_2='/Users/bernardroesler/.offlineimap'
-let g:netrw_dirhist_3='/Users/bernardroesler/Documents/School/13F-14X/Engs 105 - Numerical PDEs 1/Engs_105_practice/hw1'
-let g:netrw_dirhist_4='/Users/bernardroesler/Documents/School/13F-14X/Engs 105 - Numerical PDEs 1/Engs_105_practice/hw1/src'
-let g:netrw_dirhist_5='/Users/bernardroesler/Kite Drive/2013_Walvisstaart_(Roesler)/Codes/CyROD_2D_Lumped/CyROD 1.18 (150324 roesler - full alignment planform flag)/Notes and Scrap Code/131113 cycloidal propeller animation'
-let g:netrw_dirhist_6='/Users/bernardroesler/Kite Drive/2013_Walvisstaart_(Roesler)/Codes/CyROD_2D_Lumped/CyROD 1.18 (150324 roesler - full alignment planform flag)/Notes and Scrap Code'
-let g:netrw_dirhist_7='/Users/bernardroesler/Kite Drive/2013_Walvisstaart_(Roesler)/Codes/CyROD_2D_Lumped/CyROD 1.18 (150324 roesler - full alignment planform flag)'
-let g:netrw_dirhist_8='/Users/bernardroesler/Kite Drive/2013_Walvisstaart_(Roesler)/Codes/CyROD_2D_Lumped/CyROD 1.18 (150324 roesler - full alignment planform flag)/SourceCode'
-let g:netrw_dirhist_9='/Users/bernardroesler/.offlineimap'
+let g:netrw_dirhist_cnt =4
+let g:netrw_dirhist_1='/Users/bernardroesler/.dotfiles/vim/after/ftplugin'
+let g:netrw_dirhist_2='/Users/bernardroesler/Kite Drive/2013_Walvisstaart_(Roesler)/Codes/CyROD_2D_Lumped/CyROD 1.18 (150324 roesler - full alignment planform flag)/Examples/Walvisstaart_JSR_Figures_150408'
+let g:netrw_dirhist_3='/Users/bernardroesler/Kite Drive/2013_Walvisstaart_(Roesler)/Codes/CyROD_2D_Lumped/CyROD 1.18 (150324 roesler - full alignment planform flag)/Examples/Walvisstaart_JSR_Figures_150408/time_series_data'
+let g:netrw_dirhist_4='/Users/bernardroesler/.bashrc.d'
