@@ -3,7 +3,7 @@
 " Created: 04/16/2015
 "  Author: Bernie Roesler
 "
-" Last Modified: 11/25/2015, 19:28
+" Last Modified: 11/30/2015, 16:11
 
 " Description: Settings for vim. Source with \s while in vim. Functions called
 "   by autocommands are located in ~/.vim/plugin/util_functions.vim
@@ -116,7 +116,7 @@ endif
 
 " Create :Ag command for using silver searcher in subwindow
 if !exists(':Ag')
-    command -nargs=+ -complete=file -bar Ag silent! grep! <args> | cwindow
+    command -nargs=+ -complete=file -bar Ag silent! grep! <args> <bar> cwindow
 endif
 
 " Use system clipboard properly with +X11 and +clientserver
@@ -198,8 +198,8 @@ nnoremap <C-s> :w<CR>
 inoremap <C-s> <Esc>:w<CR>
 
 " Change between buffers quickly
-nnoremap ,b :bn!<CR>
-nnoremap ,v :bp!<CR>
+nnoremap ,b :bn!<bar>redraw!<CR>
+nnoremap ,v :bp!<bar>redraw!<CR>
 
 " Quickfix list movement
 nnoremap ,c :cn!<CR>
@@ -258,7 +258,7 @@ endif
 
 " Close buffer without closing split (# is 'alternate file')
 " NOTE: Does NOT work twice in a row!!
-nnoremap <silent> <C-c> :bp\|bd #<CR>
+nnoremap <silent> <C-c> :bp<bar>bd #<bar>redraw!<CR>
 
 " Move to middle of page when jumping to tag (easier viewing)
 nnoremap <silent> <C-]> <C-]>zz

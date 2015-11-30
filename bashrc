@@ -20,7 +20,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 
 elif [[ "$OSTYPE" == "linux"* ]]; then
   # Set to bright cyan text for linux machines (easy tell on ssh to babylons)
-  PS1=$"\[\e[01;36m\][\u@\h: \w]${WINDOW}\$ \[\e[0m\]"
+  PS1=$"\[\e[00;36m\][\u@\h: \w]${WINDOW}\$ \[\e[0m\]"
 
   # As of bash 4.3, can trim directories in prompt!
   PROMPT_DIRTRIM=2
