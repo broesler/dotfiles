@@ -16,6 +16,7 @@
 	default = simple
 [merge]
 	tool = vimdiff
+    conflictstyle = diff3
 [core]
 	excludesfile = ~/.gitignore_global
 	editor = /usr/local/bin/vim -X
