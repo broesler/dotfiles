@@ -216,6 +216,6 @@ EXEC 00;32
 .oga 00;36
 .spx 00;36
 .xspf 00;36
-# code files
-.c 00;31
-.m 00;31
+# source code files
+# .c 00;31
+# .m 00;31
