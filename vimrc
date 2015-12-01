@@ -3,7 +3,7 @@
 " Created: 04/16/2015
 "  Author: Bernie Roesler
 "
-" Last Modified: 12/01/2015, 13:36
+" Last Modified: 12/01/2015, 14:18
 
 " Description: Settings for vim. Source with \s while in vim. Functions called
 "   by autocommands are located in ~/.vim/plugin/util_functions.vim
@@ -269,6 +269,9 @@ nmap <Leader>E :Hexplore!<CR>
 
 " Timestamp in format %y%m%d, %H:%M
 nnoremap <Leader>t "=strftime("%m/%d/%Y, %H:%M")<CR>P
+
+" Run :make
+nnoremap <Leader>M :make<bar>redraw!<CR>
 
 " YankRing.vim map
 let g:yankring_history_dir='~/.vim/'
