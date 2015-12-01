@@ -82,8 +82,8 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
             -o page-bottom=36 \
             -o page-left=36
 
-  # Source history of directories function
-  source acd_func.sh
+  # # Source history of directories function
+  # source acd_func.sh
 fi
 
 # Source subconfig files
