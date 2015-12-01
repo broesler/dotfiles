@@ -3,13 +3,7 @@
 " Created: 04/16/2015
 "  Author: Bernie Roesler
 "
-<<<<<<< HEAD
-" Last Modified: 12/01/2015, 13:34
-||||||| merged common ancestors
-" Last Modified: 11/30/2015, 16:11
-=======
 " Last Modified: 12/01/2015, 13:36
->>>>>>> 0c7340b5039615c92296ff784f37e37660cec611
 
 " Description: Settings for vim. Source with \s while in vim. Functions called
 "   by autocommands are located in ~/.vim/plugin/util_functions.vim
@@ -26,29 +20,12 @@ set nocompatible
 " '**' recursively includes all directories below the current one
 set path=.,/usr/include/,/usr/local/include,**
 
-<<<<<<< HEAD
 " Set interactive shell so :! behaves like bash prompt
 " if &diff == 'nodiff'
 "     set shellcmdflag=-lc
 " endif
 " let $BASH_ENV="~/.bashrc"
 set shell=/usr/local/bin/bash\ --rcfile\ ~/.bashrc
-||||||| merged common ancestors
-" Set interactive shell so :! behaves like bash prompt
-if &diff == 'nodiff'
-    set shellcmdflag=-ic
-endif
-=======
-" THIS SETTING CAUSES ISSUES WHEN RUNNING IN SSH!!!
-" Set interactive shell so :! behaves like bash prompt (recognizes aliases)
-" if &diff == 'nodiff'
-"     " set shellcmdflag=-ic
-"     set shellcmdflag=-lc
-" endif
-" Instead, use `shopt -s expand_aliases' in .bashrc, and include it to load
-" all aliases and functions for use in vim
-" let $BASH_ENV = "~/.bashrc"
->>>>>>> 0c7340b5039615c92296ff784f37e37660cec611
 
 " Ensure files are universally readable
 set encoding=utf-8
@@ -144,12 +121,12 @@ if !exists(':Ag')
     command -nargs=+ -complete=file -bar Ag silent! grep! <args> <bar> cwindow
 endif
 
-" " Use system clipboard properly with +X11 and +clientserver
-" " if (strlen(v:servername) > 0)
-"     set clipboard=unnamedplus,unnamed,exclude:cons\|linux
-" " else
-" "     set clipboard=autoselectplus,exclude:cons\|linux
-" " endif
+" Use system clipboard properly with +X11 and +clientserver
+if (strlen(v:servername) > 0)
+    set clipboard=unnamedplus,unnamed,exclude:cons\|linux
+else
+    set clipboard=autoselectplus,exclude:cons\|linux
+endif
 
 " Settings for vimdiff mode
 if &diff
