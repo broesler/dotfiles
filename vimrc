@@ -3,7 +3,7 @@
 " Created: 04/16/2015
 "  Author: Bernie Roesler
 "
-" Last Modified: 11/30/2015, 16:11
+" Last Modified: 12/01/2015, 13:36
 
 " Description: Settings for vim. Source with \s while in vim. Functions called
 "   by autocommands are located in ~/.vim/plugin/util_functions.vim
@@ -20,10 +20,15 @@ set nocompatible
 " '**' recursively includes all directories below the current one
 set path=.,/usr/include/,/usr/local/include,**
 
-" Set interactive shell so :! behaves like bash prompt
-if &diff == 'nodiff'
-    set shellcmdflag=-ic
-endif
+" THIS SETTING CAUSES ISSUES WHEN RUNNING IN SSH!!!
+" Set interactive shell so :! behaves like bash prompt (recognizes aliases)
+" if &diff == 'nodiff'
+"     " set shellcmdflag=-ic
+"     set shellcmdflag=-lc
+" endif
+" Instead, use `shopt -s expand_aliases' in .bashrc, and include it to load
+" all aliases and functions for use in vim
+" let $BASH_ENV = "~/.bashrc"
 
 " Ensure files are universally readable
 set encoding=utf-8
@@ -119,12 +124,12 @@ if !exists(':Ag')
     command -nargs=+ -complete=file -bar Ag silent! grep! <args> <bar> cwindow
 endif
 
-" Use system clipboard properly with +X11 and +clientserver
-" if (strlen(v:servername) > 0)
-    set clipboard=unnamedplus,unnamed,exclude:cons\|linux
-" else
-"     set clipboard=autoselectplus,exclude:cons\|linux
-" endif
+" " Use system clipboard properly with +X11 and +clientserver
+" " if (strlen(v:servername) > 0)
+"     set clipboard=unnamedplus,unnamed,exclude:cons\|linux
+" " else
+" "     set clipboard=autoselectplus,exclude:cons\|linux
+" " endif
 
 " Settings for vimdiff mode
 if &diff
@@ -198,8 +203,8 @@ nnoremap <C-s> :w<CR>
 inoremap <C-s> <Esc>:w<CR>
 
 " Change between buffers quickly
-nnoremap ,b :bn!<bar>redraw!<CR>
-nnoremap ,v :bp!<bar>redraw!<CR>
+nnoremap ,b :bn!<CR>
+nnoremap ,v :bp!<CR>
 
 " Quickfix list movement
 nnoremap ,c :cn!<CR>
@@ -234,44 +239,44 @@ nmap <C-q> :redraw!<CR>
 if exists('$TMUX')
     function! TmuxOrSplitSwitch(wincmd, tmuxdir)
         let previous_winnr = winnr()
-        silent! execute "wincmd " . a:wincmd
+        silent! execute "wincmd ".a:wincmd
         if previous_winnr == winnr()
-            call system("tmux select-pane -" . a:tmuxdir)
+            call system("tmux select-pane -".a:tmuxdir)
             redraw!
         endif
     endfunction
 
     let previous_title = substitute(system("tmux display-message -p '#{pane_title}'"), '\n', '', '')
-    let &t_ti = "\<Esc>]2;vim\<Esc>\\" . &t_ti
-    let &t_te = "\<Esc>]2;". previous_title . "\<Esc>\\" . &t_te
+    let &t_ti = "\<Esc>]2;vim\<Esc>\\".&t_ti
+    let &t_te = "\<Esc>]2;".previous_title."\<Esc>\\".&t_te
 
     nnoremap <silent> <C-h> :call TmuxOrSplitSwitch('h', 'L')<CR>
     nnoremap <silent> <C-j> :call TmuxOrSplitSwitch('j', 'D')<CR>
     nnoremap <silent> <C-k> :call TmuxOrSplitSwitch('k', 'U')<CR>
     nnoremap <silent> <C-l> :call TmuxOrSplitSwitch('l', 'R')<CR>
 else
-    map <C-h> <C-w>h
-    map <C-j> <C-w>j
-    map <C-k> <C-w>k
-    map <C-l> <C-w>l
+    nnoremap <C-h> <C-w>h
+    nnoremap <C-j> <C-w>j
+    nnoremap <C-k> <C-w>k
+    nnoremap <C-l> <C-w>l
 endif
 
 " Close buffer without closing split (# is 'alternate file')
 " NOTE: Does NOT work twice in a row!!
-nnoremap <silent> <C-c> :bp<bar>bd #<bar>redraw!<CR>
+nnoremap <C-c> :bp<bar>bd #<CR>
 
 " Move to middle of page when jumping to tag (easier viewing)
-nnoremap <silent> <C-]> <C-]>zz
+nnoremap <C-]> <C-]>zz
 
 " Open explorer in new window
-nmap <silent> <Leader>E :Hexplore!<CR>
+nmap <Leader>E :Hexplore!<CR>
 
 " Timestamp in format %y%m%d, %H:%M
-nnoremap <leader>t "=strftime("%m/%d/%Y, %H:%M")<CR>P
+nnoremap <Leader>t "=strftime("%m/%d/%Y, %H:%M")<CR>P
 
 " YankRing.vim map
 let g:yankring_history_dir='~/.vim/'
-nnoremap <silent> <Leader>yr :YRGetElem<CR>
+nnoremap <Leader>yr :YRGetElem<CR>
 
 "------------------------------------------------------------------------------
 "       Colorscheme
