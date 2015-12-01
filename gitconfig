@@ -15,7 +15,7 @@
 [push]
 	default = simple
 [merge]
-	tool = vimdiff
+	tool = vim -c ":Gdiff"
     conflictstyle = diff3
 [core]
 	excludesfile = ~/.gitignore_global
