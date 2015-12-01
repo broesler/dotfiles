@@ -4,11 +4,14 @@
 " Use sh syntax, then add some custom options
 " runtime! syntax/sh.vim
 
+" Keywords
+syn keyword myKeywords create delete add subtract modify mesh
+
 " All braces
-syn match Braces display '[{}()\[\]]'
+syn match myBraces display '[{}()\[\]]'
 
 " Variable names
-syn match Variables display '\$\<\w\{-}\>'
+syn match myVariables display '\$\<\w\{-}\>'
 
 " Strings
 syn region myString start=+'+ end=+'+
@@ -22,16 +25,18 @@ syn match myConst display '\<\d\+\.\d*\>'
 syn match myOperators display '[\*\=\+-/]'
 
 " Important callouts in notes
-syn keyword Important TODO: NOTE: contained 
+syn keyword myImportant TODO: NOTE: contained 
 
 " Comments are lines starting with '/'
-syn match myComments display "^//.*$" contains=Important
+syn match myComments display "^//.*$" contains=myImportant
+syn match myComments display "^/.*$" contains=myImportant
 
 " Map syntax groups to colors
-hi Braces ctermfg=208
-hi def link Variables       Special
+hi myBraces ctermfg=208
+hi def link myKeywords      Keyword
+hi def link myVariables     Special
 hi def link myString        String
 hi def link myConst         Constant
 hi def link myOperators     Operator
-hi def link Important       PreProc
-hi def link myComments    Comment
+hi def link myImportant     PreProc
+hi def link myComments      Comment
