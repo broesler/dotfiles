@@ -1,3 +1,14 @@
+ ,v
+    " set shellcmdflag=-ic,V
+",v
+alias,v
+alias lf="ls -l | grep -v '^d'",V
+    set shellcmdflag=-ic,v
+    set shellcmdflag=-ic,V
+"     set shellcmdflag=-ic,v
+set shellcmdflag=-ic,v
+"     set shellcmdflag=-ic,V
+Foil,v
 vim/,v
 |,v
 " syn match allCaps '\<\u\{-}\>' contained ,V
@@ -37,7 +48,6 @@ hi def link Quotes          Operator,V
 " Quotes themselvessyn match Quotes display '[\'\"]',V
 region,v
 " Quotes themselves,V
- ,v
 containedcontained,9
 s,v
 ss,1
@@ -88,13 +98,3 @@ sh:,v
 sh,v
 gjou,v
 gjou:,v
- syn match myComment "^/.*$" syn link myComment Comment:,v
-"------------------------------------------------------------------------------"       Text file settings"------------------------------------------------------------------------------setlocal iskeyword+=_setlocal tabstop=4       " tabs every 4 spacessetlocal softtabstop=0   " set to 4 to let backspace delete indent with expandtabsetlocal shiftwidth=4    " use >>, << for line shiftingsetlocal expandtab       " use spaces instead of tab character (need for Fortran)" set complete to include dictionary for text or latex files" setlocal complete+=ksetlocal commentstring="#%s",V
-cpp,v
-=,v
-/*  * this is * a comment * - * * */,V
- comments=n\://:,v
-// this is a new comment,V
-that is ,V
-set ,v
-":,v

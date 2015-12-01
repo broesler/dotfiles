@@ -9,7 +9,9 @@
 #==============================================================================
 
 # If not running interactively, don't do anything
-[ -z "$PS1" ] && return
+#   in order to use shopt -s expand_aliases, and access aliases within vim,
+#   need to allow .bashrc to run for non-interactive shells!
+# [ -z "$PS1" ] && return
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
   # Set the prompt with bright green text -- include GNU screen window number
@@ -42,11 +44,12 @@ export HISTFILESIZE=$((1 << 24))            # 16e6 lines in file
 
 # shoptions
 shopt -s autocd         # just type directory name to cd
-shopt -s direxpand      # expand variables in directory complete
 shopt -s cdspell        # checks for minor errors in cd typing
 shopt -s checkjobs      # displays stopped or running job status before exiting
 shopt -s checkwinsize   # auto reforemat command output
 shopt -s cmdhist        # save multi-line commands in history
+shopt -s direxpand      # expand variables in directory complete
+shopt -s expand_aliases # expand aliases for use in vim :! commands
 shopt -s extglob        # extend glob to regexes i.e. ?(ab)
 shopt -s globstar       # allows use of ** (like vim)
 shopt -s histappend     # append to ~/.bash_history instead of overwriting

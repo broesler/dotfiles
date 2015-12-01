@@ -3,7 +3,7 @@
 " Created: 04/16/2015
 "  Author: Bernie Roesler
 "
-" Last Modified: 11/30/2015, 16:11
+" Last Modified: 12/01/2015, 13:34
 
 " Description: Settings for vim. Source with \s while in vim. Functions called
 "   by autocommands are located in ~/.vim/plugin/util_functions.vim
@@ -21,9 +21,11 @@ set nocompatible
 set path=.,/usr/include/,/usr/local/include,**
 
 " Set interactive shell so :! behaves like bash prompt
-if &diff == 'nodiff'
-    set shellcmdflag=-ic
-endif
+" if &diff == 'nodiff'
+"     set shellcmdflag=-lc
+" endif
+" let $BASH_ENV="~/.bashrc"
+set shell=/usr/local/bin/bash\ --rcfile\ ~/.bashrc
 
 " Ensure files are universally readable
 set encoding=utf-8

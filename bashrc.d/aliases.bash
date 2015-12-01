@@ -83,7 +83,8 @@ alias grep='grep --color=auto'
 alias h='history'
 alias j='jobs -l'
 alias ldir="ls -l | grep '^d'"
-alias lf="ls -l | grep -v '^d'"
+# alias lf="ls -l | grep -v '^d'"
+function lf { ls -l | grep -v '^d'; }
 alias lt='tree -C'
 alias mkdir='mkdir -p'
 alias mv='mv -i'
@@ -92,7 +93,7 @@ alias mygfortran='gfortran-5 -cpp -Wall -pedantic -std=f95 \
                     -fbounds-check -ffree-line-length-0 -fbacktrace \
                     -fall-intrinsics'
 alias rm='rm -i'
-# alias which='type -all'
+alias which='type -all'
 alias zegrep='zegrep --color=auto'
 alias zfgrep='zfgrep --color=auto'
 alias zgrep='zgrep --color=auto'
