@@ -3,7 +3,7 @@
 #  Created: 11/25/2015, 19:28
 #   Author: Bernie Roesler
 #
-# Last Modified: 11/26/2015, 00:29
+# Last Modified: 12/01/2015, 14:50
 #
 #  Description: Run Matlab script from tmux 
 #===============================================================================
@@ -11,56 +11,8 @@ run_matlab_tmux()
 {
   # First check if TMUX is running
   if [ -n "$TMUX" ]; then
-    #---------------------------------------------------------------------------
-    #       See if matlab is running in this tmux window
-    #---------------------------------------------------------------------------
+    # See if matlab is running in this tmux window
     tmuxswp=$(tpg "[A]pplications/MATLAB")
-
-    # # list pane tty, window id, pane id:
-    # #   /dev/ttys001 $1 @5 %10 /dev/ttys002 $1 @5 %12
-    # lsp=$(tmux list-panes -F "#{pane_tty} #{session_id} #{window_id} #{pane_id}")
-    #
-    # # read ttys, windows, panes into array
-    # read -r -a panetty  <<< $(echo "$lsp" | \grep -o "tty.[0-9]\{3\}")
-    # read -r -a sessid   <<< $(echo "$lsp" | \grep -o "\$[0-9]\+")
-    # read -r -a windowid <<< $(echo "$lsp" | \grep -o "@[0-9]\+")
-    # read -r -a paneid   <<< $(echo "$lsp" | \grep -o "%[0-9]\+")
-    #
-    # # NOTE: to do the same without Perl regex (-P), need to do 2 greps to
-    # #   ensure you are getting what is immediately following tty.:
-    # # read -r -a panetty  <<< $(echo "$lsp" | \grep -o "tty.[0-9]\{3\}" | \grep -o "[0-9]\{3\}")
-    #
-    # # Build regex pattern to search all tty's
-    # pat="("
-    # i=1
-    # for pane in ${panetty[@]}; do
-    #   pat+=$pane
-    #   if [ "$i" -ne "${#panetty[@]}" ]; then
-    #     pat+='|'
-    #   fi
-    #   let i+=1
-    # done 
-    # pat+=')'
-    #
-    # # grep for matlab running in one of the pane tty's
-    # test=$(\ps | \egrep "$pat" | \grep  "[A]pplications/MATLAB")
-    #
-    # # extract tty of pane running matlab
-    # mtty=$(echo "$test" | \grep -o "tty.[0-9]\{3\}")
-    #
-    # # find array index matching mtty
-    # i=0
-    # for k in ${panetty[@]}; do
-    #     if [ "$k" == "$mtty" ]; then
-    #       mind=$i
-    #     fi
-    #     let i+=1
-    # done
-    #
-    # # extract window and pane id's (window is current window)
-    # msid=${sessid[$mind]}
-    # mwid=${windowid[$mind]}
-    # mpid=${paneid[$mind]}
 
     #---------------------------------------------------------------------------
     #       Determine how to run matlab
@@ -73,8 +25,7 @@ run_matlab_tmux()
         tmux send-keys -t "$tmuxswp" "$@" C-m
       else
         # move to pane with instance of matlab
-        # echo "Matlab is running in $mtty, tmux session: $msid:$mwid.$mpid."
-        # tmux select-pane -t "$msid:$mwid.$mpid" 
+        # echo "Matlab is running in $mtty, tmux session: $tmuxswp"
         tmux select-pane -t "$tmuxswp" 
       fi
     else
@@ -90,7 +41,7 @@ run_matlab_tmux()
     fi
 
   else
-    echo 'Usage: run_matlab_tmux() must be run inside tmux session.' 2>&1
+    echo 'Usage: run_matlab_tmux() must be run inside tmux session.' 1>&2
     return 1
   fi
 
