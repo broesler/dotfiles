@@ -25,7 +25,7 @@ elif [[ "$OSTYPE" == "linux"* ]]; then
   PS1=$"\[\e[00;36m\][\u@\h: \w]${WINDOW}\$ \[\e[0m\]"
 
   # As of bash 4.3, can trim directories in prompt!
-  PROMPT_DIRTRIM=2
+  PROMPT_DIRTRIM=3
 
 else
   # default no color

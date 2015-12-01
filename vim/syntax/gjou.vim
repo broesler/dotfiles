@@ -11,7 +11,7 @@ syn keyword myKeywords create delete add subtract modify mesh
 syn match myBraces display '[{}()\[\]]'
 
 " Variable names
-syn match myVariables display '\$\<\w\{-}\>'
+syn match myVariables display '\$\<[_a-zA-Z0-9]\+\>'
 
 " Strings
 syn region myString start=+'+ end=+'+

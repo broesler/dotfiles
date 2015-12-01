@@ -3,7 +3,7 @@
 " Created: 04/16/2015
 "  Author: Bernie Roesler
 "
-" Last Modified: 12/01/2015, 14:18
+" Last Modified: 12/01/2015, 15:09
 
 " Description: Settings for vim. Source with \s while in vim. Functions called
 "   by autocommands are located in ~/.vim/plugin/util_functions.vim
@@ -121,11 +121,11 @@ if !exists(':Ag')
 endif
 
 " Use system clipboard properly with +X11 and +clientserver
-if (strlen(v:servername) > 0)
+" if (strlen(v:servername) > 0)
     set clipboard=unnamedplus,unnamed,exclude:cons\|linux
-else
-    set clipboard=autoselectplus,exclude:cons\|linux
-endif
+" else
+"     set clipboard=autoselectplus,exclude:cons\|linux
+" endif
 
 " Settings for vimdiff mode
 if &diff
