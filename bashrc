@@ -70,6 +70,7 @@ set -o vi
 # Visual bell only
 set bell-style visible
 
+# Mac-only options
 if [[ "$OSTYPE" == "darwin"* ]]; then
   # Set default printer options
   lpoptions -d m210__bw___thayercups \
@@ -82,8 +83,10 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
             -o page-bottom=36 \
             -o page-left=36
 
-  # # Source history of directories function
-  # source acd_func.sh
+  # allow git auto-completion
+  if [ -f `brew --prefix`/etc/bash_completion ]; then
+    source `brew --prefix`/etc/bash_completion
+  fi
 fi
 
 # Source subconfig files
