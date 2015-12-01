@@ -48,8 +48,14 @@ shopt -s cdspell        # checks for minor errors in cd typing
 shopt -s checkjobs      # displays stopped or running job status before exiting
 shopt -s checkwinsize   # auto reforemat command output
 shopt -s cmdhist        # save multi-line commands in history
+<<<<<<< HEAD
 shopt -s direxpand      # expand variables in directory complete
 shopt -s expand_aliases # expand aliases for use in vim :! commands
+||||||| merged common ancestors
+=======
+shopt -s direxpand      # expand variables in directory complete
+shopt -s expand_aliases # expand aliases (needed for vim :!)
+>>>>>>> 0c7340b5039615c92296ff784f37e37660cec611
 shopt -s extglob        # extend glob to regexes i.e. ?(ab)
 shopt -s globstar       # allows use of ** (like vim)
 shopt -s histappend     # append to ~/.bash_history instead of overwriting
@@ -69,8 +75,6 @@ set -o vi
 
 # Visual bell only
 set bell-style visible
-# setterm -bfreq 0
-
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
   # Set default printer options
