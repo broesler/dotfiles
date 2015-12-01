@@ -24,8 +24,7 @@ set path=.,/usr/include/,/usr/local/include,**
 " if &diff == 'nodiff'
 "     set shellcmdflag=-lc
 " endif
-" let $BASH_ENV="~/.bashrc"
-set shell=/usr/local/bin/bash\ --rcfile\ ~/.bashrc
+let $BASH_ENV="~/.bashrc"
 
 " Ensure files are universally readable
 set encoding=utf-8
