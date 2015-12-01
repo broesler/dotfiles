@@ -48,6 +48,11 @@ export LESS=-Airsx8
 #                                            -c 'nnoremap <Space> <C-f>' \
 #                                            -c 'noremap q :quit<CR>' -\""
 
+# allow git auto-completion
+if [ -f `brew --prefix`/etc/bash_completion ]; then
+  source `brew --prefix`/etc/bash_completion
+fi
+
 # If we can read ~/.oldpwd, make its contents our OLDPWD
 # saves OLDPWD between sessions
 if [ -r "${OLDPWD_FILE:-$HOME/.oldpwd}" ]; then
