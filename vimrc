@@ -3,7 +3,7 @@
 " Created: 04/16/2015
 "  Author: Bernie Roesler
 "
-" Last Modified: 12/01/2015, 15:09
+" Last Modified: 12/02/2015, 15:22
 
 " Description: Settings for vim. Source with \s while in vim. Functions called
 "   by autocommands are located in ~/.vim/plugin/util_functions.vim
@@ -20,10 +20,7 @@ set nocompatible
 " '**' recursively includes all directories below the current one
 set path=.,/usr/include/,/usr/local/include,**
 
-" Set interactive shell so :! behaves like bash prompt
-" if &diff == 'nodiff'
-"     set shellcmdflag=-lc
-" endif
+" Set vim's environment to load my .bashrc so functions/aliases are available
 let $BASH_ENV="~/.bashrc"
 
 " Ensure files are universally readable
@@ -167,8 +164,8 @@ augroup code_cmds
     au BufNewFile *.c   call MakeTemplate("$HOME/.vim/header/c_header")
     au BufNewFile *.m   call MakeTemplate("$HOME/.vim/header/m_header")
     au BufNewFile *.f95 call MakeTemplate("$HOME/.vim/header/f_header")
+    au BufNewFile *.sh  call MakeTemplate("$HOME/.vim/header/sh_header")
     au BufNewFile *.vim call MakeTemplate("$HOME/.vim/header/vim_header")
-    au BufNewFile *.sh,*.bash  call MakeTemplate("$HOME/.vim/header/sh_header")
 
     " Update 'Last Modified:' line in code files
     au BufWritePre *.c,*.h,*.m,*.f95,*.vim,$MYVIMRC,.*,*.sh,*.bash call LastModified()
