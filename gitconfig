@@ -19,7 +19,7 @@
     conflictstyle = diff3
 [core]
 	excludesfile = ~/.gitignore_global
-	editor = /usr/local/bin/vim -X
+	editor = vim -X
 	pager = less -F -X
 [diff]
 	tool = vimdiff
