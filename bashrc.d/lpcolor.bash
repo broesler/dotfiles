@@ -1,5 +1,5 @@
 # color printing
-lpcolor()
+function lpcolor()
 {
   lpoptions -d m210__color___thayercups \
             -o Duplex=DuplexNoTumble \
@@ -12,3 +12,4 @@ lpcolor()
             -o page-left=36
   lp -d m210__color___thayercups $1
 }
+export -f lpcolor

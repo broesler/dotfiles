@@ -34,6 +34,9 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   export STY=~/Library/texmf/tex/latex/       # path to latex style files
 fi
 
+# Use ^D twice to logout
+export IGNOREEOF=1
+
 # ensure tmux uses colors
 export TERM='screen-256color'               
 

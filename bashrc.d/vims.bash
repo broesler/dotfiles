@@ -1,5 +1,5 @@
 # vim with server (only for LaTeX + Skim really)
-vims()
+function vims()
 {
   test=$(command vim --version | grep -w clientserver)
   if [ "$test" ]; then
@@ -14,3 +14,4 @@ vims()
     command vim $@      # ensure no server used
   fi
 }
+export -f vims
