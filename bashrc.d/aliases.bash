@@ -80,26 +80,18 @@ alias du='du -kh'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias grep='grep --color=auto'
-alias h='history'
 alias j='jobs -l'
 alias ldir="ls -l | grep '^d'"
-# alias lf="ls -l | grep -v '^d'"
-function lf { ls -l | grep -v '^d'; }
+alias lf="ls -l | grep -v '^d'"
 alias lt='tree -C'
 alias mkdir='mkdir -p'
 alias mv='mv -i'
 alias mygcc='gcc -Wall -pedantic -std=c99'
-alias mygfortran='gfortran-5 -cpp -Wall -pedantic -std=f95 \
-                    -fbounds-check -ffree-line-length-0 -fbacktrace \
-                    -fall-intrinsics'
 alias rm='rm -i'
 alias which='type -all'
 alias zegrep='zegrep --color=auto'
 alias zfgrep='zfgrep --color=auto'
 alias zgrep='zgrep --color=auto'
-
-# alias myvalgrind='valgrind --leak-check=full --show-leak-kinds=all 
-#                  '--track-origins=yes --dsymutil=yes --log-file=valout -v'
 
 # Color list
 [ -e "$HOME/.dircolors" ] && DIR_COLORS="$HOME/.dircolors"

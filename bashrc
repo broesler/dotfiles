@@ -38,9 +38,10 @@ export EDITOR=vim
 # Avoid succesive duplicates and spaces in the bash command history, ignore
 # simple, commonly-used commands.
 export HISTCONTROL=ignoredups:ignorespace
-export HISTIGNORE='clc:fg:git st:git lol'
+export HISTIGNORE='clc:bg:fg:git st:git lol:history:h:hr'
 export HISTSIZE=$((1 << 12))                # 4096 lines in memory
 export HISTFILESIZE=$((1 << 24))            # 16e6 lines in file
+export HISTTIMEFORMAT="%F %T "
 
 # shoptions
 shopt -s autocd         # just type directory name to cd
@@ -60,8 +61,7 @@ shopt -s shift_verbose  # warn when trying to shift if nothing is there
 # instead of after closing the session.
 PROMPT_COMMAND='history -a'
 
-# Turn off <C-s> terminal shortcut so it works in vim.
-# This option will turn back on after vim quits.
+# Turn off <C-S> flow control (stops all I/O until <C-Q> is pressed)
 stty -ixon
 
 # Enable vim-style editing in terminal
@@ -83,17 +83,17 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
             -o page-bottom=36 \
             -o page-left=36
 
-  # allow git auto-completion
-  if [ -f `brew --prefix`/etc/bash_completion ]; then
-    source `brew --prefix`/etc/bash_completion
+  # allow auto-completion
+  if [ -f $(brew --prefix)/etc/bash_completion ]; then
+    source $(brew --prefix)/etc/bash_completion
   fi
 fi
 
 # Source subconfig files
 for config in "$HOME"/.bashrc.d/*.bash ; do
-  # if [ -f "$config" ]; then
+  if [ -f "$config" ]; then
     source "$config"
-  # fi
+  fi
 done
 unset -v config
 
