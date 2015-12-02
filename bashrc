@@ -89,13 +89,13 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   fi
 fi
 
-# Source subconfig files
-for config in "$HOME"/.bashrc.d/*.bash ; do
-  if [ -f "$config" ]; then
-    source "$config"
+# Source function files and aliases
+for func in "$HOME"/.bashrc.d/*.bash ; do
+  if [ -f "$func" ]; then
+    source "$func"
   fi
 done
-unset -v config
+unset -v func
 
 #==============================================================================
 #==============================================================================

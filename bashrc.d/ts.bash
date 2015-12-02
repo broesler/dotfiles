@@ -1,15 +1,5 @@
-#===============================================================================
-#     File: ts.bash
-#  Created: 11/25/2015, 19:28
-#   Author: Bernie Roesler
-#
-# Last Modified: 12/01/2015, 14:42
-#
-#  Description: Shortcut for tmux send-keys to bottom-left
-#  Usage: ts [-t target_pane] 'keys to send'
-#         "ts 'ls -l'" runs 'ls -l' in bottom-left pane of current window
-#===============================================================================
-ts()
+# Shortcut for tmux send-keys to bottom-left
+function ts()
 {
   if [ -n "$TMUX" ]; then
       args=$@
@@ -21,5 +11,4 @@ ts()
 
   return 0
 }
-#===============================================================================
-#===============================================================================
+export -f ts

@@ -6,3 +6,4 @@ function myvalgrind()
 
   command valgrind "$options" -v "$@"
 }
+export -f myvalgrind

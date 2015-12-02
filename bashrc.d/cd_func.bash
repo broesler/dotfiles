@@ -1,8 +1,7 @@
-# do ". acd_func.sh"
 # acd_func 1.0.5, 10-nov-2004
 # petar marinov, http:/geocities.com/h2428, this is public domain
-
-cd_func ()
+# keeps history of directories. Usage: cd --; cd -3; etc.
+function cd_func()
 {
   local x2 the_new_dir adir index
   local -i cnt
@@ -49,10 +48,5 @@ cd_func ()
   return 0
 }
 
-alias cd=cd_func
-
-if [[ $BASH_VERSION > "2.05a" ]]; then
-  # ctrl+w shows the menu
-  bind -x "\"\C-w\":cd_func -- ;"
-fi
-
+# function cd { cd_func "$@"; }
+export -f cd_func

@@ -1,4 +1,3 @@
-#~/.bash_aliases
 # vim: ft=sh syntax=sh
 #===============================================================================
 #    File: ~/.bash_aliases
@@ -27,7 +26,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   alias sty='cd /Users/bernardroesler/Library/texmf/tex/latex/'
   alias web='cd ~/Documents/Projects/web_development/'
 
-  es205()
+  function es205()
   {
     if [ $# -gt 0 ]; then
       cd ~/Documents/School/14F-15X/engs205_numerical_pdes_II/labs/lab$1
@@ -36,7 +35,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     fi
   }
 
-  es250()
+  function es250()
   {
     if [ $# -gt 0 ]; then
       cd ~/Documents/School/15F-16X/engs250_turbulence/hw/hw$1
@@ -48,8 +47,8 @@ else
   alias flu1='/thayerfs/research/epps/VLM2D/Ramesh_FLUENT_cases/'
 fi
 
-# cs50 works on Mac and Linux
-cs50()
+# cs50 works on Mac and ThayerFS (Linux)
+function cs50()
 {
   if [ $# -gt 0 ]; then
       cd ~/Documents/School/cs50/labs/lab$1/
@@ -85,6 +84,7 @@ alias ldir="ls -l | grep '^d'"
 alias lf="ls -l | grep -v '^d'"
 alias lt='tree -C'
 alias mkdir='mkdir -p'
+alias h='history | less +G'
 alias mv='mv -i'
 alias mygcc='gcc -Wall -pedantic -std=c99'
 alias rm='rm -i'

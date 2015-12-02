@@ -1,12 +1,4 @@
-#===============================================================================
-#     File: hr.bash
-#  Created: 12/02/2015, 00:08
-#   Author: Bernie Roesler
-#
-# Last Modified: 12/02/2015, 11:12
-#
-#  Description: recent history (show command number and command, exclude time)
-#===============================================================================
+# Recent history (show command number and command, exclude time)
 function hr()  
 { 
   # number of commands to print
@@ -32,5 +24,4 @@ function hr()
 
 # Replace `printf' line with this one to include actual history index:
 # printf "%2.0d %5.0d  %s\n", j, $1, s
-#===============================================================================
-#===============================================================================
+export -f hr
