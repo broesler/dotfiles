@@ -11,7 +11,8 @@
 # If not running interactively, don't do anything
 #   in order to use shopt -s expand_aliases, and access aliases within vim,
 #   need to allow .bashrc to run for non-interactive shells!
-# [ -z "$PS1" ] && return
+#   ...OR `export -f' all functions required in vim!
+[ -z "$PS1" ] && return
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
   # Set the prompt with bright green text -- include GNU screen window number

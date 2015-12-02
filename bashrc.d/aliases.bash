@@ -43,6 +43,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
       cd ~/Documents/School/15F-16X/engs250_turbulence/hw
     fi
   }
+
 else
   alias flu1='/thayerfs/research/epps/VLM2D/Ramesh_FLUENT_cases/'
 fi
@@ -56,18 +57,6 @@ function cs50()
       cd ~/Documents/School/cs50
   fi
 }
-
-#-------------------------------------------------------------------------------
-#   PROGRAM SHORTCUTS
-#-------------------------------------------------------------------------------
-if [[ "$OSTYPE" == "darwin"* ]]; then
-  alias matlab='/Applications/MATLAB_R2015b.app/bin/matlab'
-  alias xfoil='/Applications/Xfoil.app/Contents/Resources/xfoil'
-  alias skim='open -a /Applications/Skim.app'
-  alias illustrator='open -a Adobe\ Illustrator'
-else
-  alias gambit='/thayerfs/research/epps/Fluent.Inc/bin/gambit'
-fi
 
 #-------------------------------------------------------------------------------
 #   UTILITIES
