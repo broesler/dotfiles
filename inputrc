@@ -17,25 +17,31 @@ $if mode=vi
   #============================================================================
   set keymap vi-insert
 
-  # Command-line expansions
-  "\C-g": glob-expand-word
+  # Expand history, aliases, and shell constructs
   "\C-x": shell-expand-line
+
+  # Use * in vi-command mode for glob-expand-word 
+  "\C-g": glob-expand-word
 
   # Set UP and DOWN arrows to incremental history search
   "\e[A": history-search-backward
   "\e[B": history-search-forward
+
+  # Space expands history
+  $if Bash
+    Space: magic-space
+  $endif
 
   #============================================================================
   #      Keymaps for vi-command mode
   #============================================================================
   set keymap vi-command
 
-  # Command-line expansions
-  "\C-g": glob-expand-word
+  # Expand history, aliases, and shell constructs
   "\C-x": shell-expand-line
 
-  # Add flag to previous command
-  "\M-o": "\e\C-p0ea "
+  # Edit previous line options
+  "\C-o": "\e-0ea "
 
   # Use j and k for history search
   "k": history-search-backward

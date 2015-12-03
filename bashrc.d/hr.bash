@@ -10,7 +10,7 @@ function hr()
 
   # Print n commands with decreasing index for use in !-# construction
   # NOTE: `i=4' depends on the HISTTIMEFORMAT="%F %T " set in .bashrc
-  history | tail -n $n | \
+  history $n |\
   awk -v j=$n \
   '{
      s="" 
