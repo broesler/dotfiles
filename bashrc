@@ -33,6 +33,9 @@ else
   PS1=$"[\u@\h: \W]\$ "
 fi
 
+# Set CDPATH to quickly change to neighbor directories
+CDPATH='.:..:../..:~'
+
 # Set the default editor to vim.
 export EDITOR=vim
 
@@ -57,6 +60,9 @@ shopt -s globstar       # allows use of ** (like vim)
 shopt -s histappend     # append to ~/.bash_history instead of overwriting
 shopt -s no_empty_cmd_completion  # ignore completion on empty line
 shopt -s shift_verbose  # warn when trying to shift if nothing is there
+
+# Completion options
+set match-hidden-files off
 
 # Append commands to the history every time a prompt is shown,
 # instead of after closing the session.
@@ -84,7 +90,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
             -o page-bottom=36 \
             -o page-left=36
 
-  # allow auto-completion
+  # enable better auto-completion
   if [ -f $(brew --prefix)/etc/bash_completion ]; then
     source $(brew --prefix)/etc/bash_completion
   fi
