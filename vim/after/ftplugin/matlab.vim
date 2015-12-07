@@ -6,49 +6,100 @@ setlocal softtabstop=4        " let backspace delete indent
 setlocal shiftwidth=4
 
 "-------------------------------------------------------------------------------
-" Macros for running MATLAB in tmux (LEFT PANE ONLY!!)
+"       Macros for running MATLAB in tmux (LEFT PANE ONLY!!)
 "-------------------------------------------------------------------------------
+
+let g:matlab_pane = ""
+augroup update
+    au! 
+    " Save global variable of which pane matlab is running in
+    au BufEnter     *.m let g:matlab_pane = substitute(system('tpg /Applications/MATLAB'), "\n",'','g')
+    au BufWritePost *.m let g:matlab_pane = substitute(system('tpg /Applications/MATLAB'), "\n",'','g')
+augroup END
+
 " Map \M to make in background
-nnoremap <Leader>M :w <bar> silent! make<bar>:redraw!<CR>
+nnoremap <Leader>M :w <bar> silent! make<bar>redraw!<CR>
 
 " Run current file with \M
-setlocal makeprg=run_matlab_tmux\ %:r
+setlocal makeprg=rmt\ \-p\ %:r
 
-" Debugging stop
+" Declare signs to mark debugging stops, and cursor
+hi clear SignColumn
+hi default DebugStopHL ctermfg=red
+hi link DebugCursorHL Search
+sign define dbstop text=$$ texthl=DebugStopHL
+sign define piet   text=>> texthl=DebugCursorHL
+
+"-------------------------------------------------------------------------------
+"       Debugging stop
+"-------------------------------------------------------------------------------
 function! Dbstop()
-  let mcom = "dbstop in ".expand("%")." at ".line(".")
-  " call command (ts already has carriage return built-in)
-  call system('ts "'.mcom.'"')
+  let lnr = line('.')
+  let mcom = "dbstop in ".expand("%")." at ".lnr
+  call system('ts -t '''.g:matlab_pane.''' '.mcom)
+  " place sign at dbstop current line, use lnr as ID
+  exe ":silent sign place ".lnr." line=".lnr." name=dbstop file=".expand("%:p")
 endfunction
 
-" Clear debugging stop on specific line
+"-------------------------------------------------------------------------------
+"       Clear debugging stop on specific line
+"-------------------------------------------------------------------------------
 function! Dbclear()
   let mcom = "dbclear in " . expand("%") . " at " . line(".")
-  " call command (ts already has carriage return built-in)
-  call system('ts "'.mcom.'"')
+  call system('ts -t '''.g:matlab_pane.''' '.mcom)
+  silent! sign unplace
 endfunction
 
-" Dbstep and move cursor to next line of executable code
+"-------------------------------------------------------------------------------
+"       Clear all debugging stops in all files
+"-------------------------------------------------------------------------------
+function! Dbclearall()
+  call system('ts -t '''.g:matlab_pane.''' dbclear all')
+  silent! sign unplace *
+endfunction
+
+"-------------------------------------------------------------------------------
+"       Quit debugging mode
+"-------------------------------------------------------------------------------
+function! Dbquit()
+  call system('ts -t '''.g:matlab_pane.''' dbquit')
+  " Remove debugging cursor marker
+  silent! sign unplace 1
+  " Make file modifiable again
+  set ma
+endfunction
+
+"-------------------------------------------------------------------------------
+"       Dbstep and move cursor to next line of executable code
+"-------------------------------------------------------------------------------
 function! Dbstep()
+  " keep file from being modified during debugging (TEMPORARY!!)
+  set noma
+
+  " Unplace sign at current cursor position
+  silent! sign unplace 1
+
   " Make debugging step
-  call system('ts dbstep')
+  call system('ts -t '''.g:matlab_pane.''' dbstep')
 
   " Return line on which debugger has stopped
-  "   Read MATLAB window debugger output i.e.:
-  "     37      f1 = f(z(:,:,i));
-  "     K>> dbstep
-  "     38      f2 = f(z(:,:,i)+(h/2)*f1);
-  "     K>>
-  "
-  "   and grep for lines starting with numbers, then read last number
-  let ln = system('tmux capture-pane -t bottom-left -p | command grep -o "^\<\d\+\>" | tail -n 1')
+  "+   Read MATLAB window debugger output i.e.:
+  "+     37      f1 = f(z(:,:,i));
+  "+     K>> dbstep
+  "+     38      f2 = f(z(:,:,i)+(h/2)*f1);
+  "+     K>>
+  "+   and grep for lines starting with numbers, then read last number
+  let lnr = system('tmux capture-pane -p -t '''.g:matlab_pane.''' | grep -o "^\<[0-9]\+\>" | tail -n 1')
 
-  " move cursor to next line, first column with non-whitespace character
-  call cursor(ln,0) | norm! ^
+  " " move cursor to next line, first column with non-whitespace character
+  " call cursor(lnr,0) | norm! ^
+  exe ":silent sign place 1 line=".lnr." name=piet file=".expand("%:p")
 endfunction
 
-" Evaluate current selection (Cmd+Opt+Enter in MATLAB)
-" Following function/command/map do NOT seem to work properly:
+"-------------------------------------------------------------------------------
+"       Evaluate current selection (Cmd+Opt+Enter in MATLAB)
+"       Following function/command/map do NOT seem to work properly:
+"-------------------------------------------------------------------------------
 function! EvaluateSelection()
   let mcom = getline('.')
   " Remove trailing newline, but not interior newlines
@@ -57,16 +108,11 @@ function! EvaluateSelection()
   let mcom = substitute(mcom, ';', '; ', 'g')
   " Need to escape `%' so vim doesn't insert filename
   let mcom = substitute(mcom, '%', '\%', 'g')
+  echom mcom
 
-  " NOTE: Need to double-quote argument to ts so single-quoted MATLAB strings 
-  " are interpreted correctly!!
-  " exe 'silent !ts "'.mcom.'"'
-  call system('ts "'.mcom.'"')
+  " call system('ts -t '''.g:matlab_pane.''' '.mcom)
 endfunction
 command! -range EvaluateSelection <line1>,<line2>call EvaluateSelection()
-
-" Evaluate current selection
-vnoremap <Leader>e :EvaluateSelection<CR>:redraw!<CR>
 
 " Attempt at passing one LOOOOONG string to ts for faster MATLAB interpretation
 " function! EvaluateSelection()
@@ -81,17 +127,25 @@ vnoremap <Leader>e :EvaluateSelection<CR>:redraw!<CR>
 " " vnoremap <Leader>e y:call EvaluateSelection()<CR>:redraw!<CR>
 
 
-" Debugging maps
+"-------------------------------------------------------------------------------
+"       Keymaps
+"-------------------------------------------------------------------------------
+" Evaluate Current selection
+" vnoremap <Leader>e :EvaluateSelection<CR>:redraw!<CR>
+vnoremap <Leader>e :EvaluateSelection<CR>
+
+" Debugging
 nnoremap <Leader>s :w <bar> call Dbstop()<CR>
+nnoremap <Leader>S :call system('ts -t '''.g:matlab_pane.''' dbstatus')<CR>
 nnoremap <Leader>c :w <bar> call Dbclear()<CR>
-nnoremap <Leader>C :call system('ts "dbclear all"')<CR>
-nnoremap <Leader>q :call system('ts "dbquit"')<CR>
+nnoremap <Leader>C :w <bar> call Dbclearall()<CR>
+nnoremap <Leader>q :call Dbquit()<CR>
 nnoremap <Leader>n :call Dbstep()<CR>
-nnoremap <Leader>r :call system('ts "dbcont"')<CR>
+nnoremap <Leader>r :w <bar> call system('ts -t '''.g:matlab_pane.''' dbcont')<CR>
 
 " Call Matlab help on current word, or whos on variable
-nnoremap <Leader>h :call system('ts ''help <C-R><C-W>''')<CR>
-nnoremap <Leader>w :call system('ts ''whos <C-R><C-W>''')<CR>
+nnoremap <Leader>h :w <bar> call system('ts -t '''.g:matlab_pane.''' "help <C-R><C-W>"')<CR>
+nnoremap <Leader>w :w <bar> call system('ts -t '''.g:matlab_pane.''' "whos <C-R><C-W>"')<CR>
 
 "==============================================================================
 "==============================================================================

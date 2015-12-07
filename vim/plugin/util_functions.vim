@@ -3,7 +3,7 @@
 "  Created: 12/06/2015, 13:20
 "   Author: Bernie Roesler
 "
-" Last Modified: 10/27/2015, 18:27
+" Last Modified: 12/03/2015, 09:54
 "
 "  Description: Custom utility functions called from .vimrc autocmds, etc.
 "==============================================================================
@@ -69,8 +69,12 @@ function! LastModified()
     keepjumps exe '1,' . n . 's#\(Last Modified:\|Last Updated:\).*#\1 '
                 \ . strftime("%m/%d/%Y, %H:%M") . '#ie'
 
-    " Remove update from cmd history and undo list
+    " Remove update from cmd history
     call histdel('search', -1)      
+
+    " These commands are suggested in the help, but do not seem to work when
+    "+  using an undo history file... need to find a way to delete this change
+    "+  from the undo history file.
     " let old_undolevels = &undolevels
     " set undolevels=&undolevels-1
     " exe "normal a \<BS>\<Esc>"

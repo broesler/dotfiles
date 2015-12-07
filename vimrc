@@ -3,7 +3,7 @@
 " Created: 04/16/2015
 "  Author: Bernie Roesler
 "
-" Last Modified: 12/02/2015, 15:22
+" Last Modified: 12/03/2015, 19:45
 
 " Description: Settings for vim. Source with \s while in vim. Functions called
 "   by autocommands are located in ~/.vim/plugin/util_functions.vim
@@ -20,8 +20,9 @@ set nocompatible
 " '**' recursively includes all directories below the current one
 set path=.,/usr/include/,/usr/local/include,**
 
+" Do not need following lines if we `export' required functions in .bashrc!
 " Set vim's environment to load my .bashrc so functions/aliases are available
-let $BASH_ENV="~/.bashrc"
+" let $BASH_ENV="~/.bashrc"
 
 " Ensure files are universally readable
 set encoding=utf-8

@@ -13,22 +13,19 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   # Set architecture flags for compilers
   export ARCHFLAGS="-arch x86_64"
 
+  # Default PATH
+  export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin"
+
   # Ruby setup:
   [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" 
-
   eval "$(rbenv init -)"
-  export PATH="$HOME/.rbenv/shims:$PATH"
-  export PATH="/usr/local/heroku/bin:$PATH"
+  export PATH="$PATH:$HOME/.rbenv/shims"
+  export PATH="$PATH:/usr/local/heroku/bin"
 
   # Set PATH variable correctly (last line is at front of path)
-  export PATH="/Library/TeX/texbin:$PATH"
-  # The following line does NOT work as of OS X 10.11 (El Capitan):
-  #   export PATH="/usr/texbin:$PATH"      # Add texbin to path for LaTeX usage
-  export PATH="/usr/local/git/bin:$PATH"           # Enable git
-  export PATH="/usr/local/bin:$PATH"               # Enable homebrew 
+  export PATH="$PATH:/Library/TeX/texbin"          # LaTeX
+  export PATH="$PATH:/usr/local/git/bin"           # git
 
-  # Set system-wide variables
-  # export LC_ALL=C                             # Allow sort to produce expected behavior
   export LC_ALL=en_US.UTF-8                   # brew doctor needs this line as of El Cap update 11/17/15 
   export RES=~/Documents/School/Research/     # path to research folder
   export STY=~/Library/texmf/tex/latex/       # path to latex style files
