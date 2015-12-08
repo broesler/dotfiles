@@ -50,8 +50,8 @@ export LESS=-Airsx8
 
 # If we can read ~/.oldpwd, make its contents our OLDPWD
 # saves OLDPWD between sessions
-if [ -r "${OLDPWD_FILE:-$HOME/.oldpwd}" ]; then
-  read -r OLDPWD < "${OLDPWD_FILE:-$HOME/.oldpwd}"
+if [ -r "$HOME/.oldpwd" ]; then
+  read -r OLDPWD < "$HOME/.oldpwd"
   export OLDPWD
 
   # add to stack without changing into it, so 'cd -' works

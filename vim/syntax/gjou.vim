@@ -5,7 +5,7 @@
 " runtime! syntax/sh.vim
 
 " Keywords
-syn keyword myKeywords create delete add subtract modify mesh
+syn keyword myKeywords create delete add subtract modify mesh attach
 
 " All braces
 syn match myBraces display '[{}()\[\]]'
