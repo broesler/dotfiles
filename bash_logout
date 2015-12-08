@@ -9,7 +9,7 @@
 #==============================================================================
 
 # save OLDPWD between sessions
-if [ -r "${OLDPWD_FILE:-$HOME/.oldpwd}" ]; then
+if [ -r "$HOME/.oldpwd" ]; then
   echo "$PWD" > ~/.oldpwd
 fi
 
