@@ -34,12 +34,14 @@ sign define piet   text=>> texthl=DebugCursorHL
 "       Debugging stop
 "-------------------------------------------------------------------------------
 function! Dbstop()
+  write %
   let lnr = line('.')
   let mcom = "dbstop in ".expand("%")." at ".lnr
   call system('ts -t '''.g:matlab_pane.''' '.mcom)
   " place sign at dbstop current line, use lnr as ID
   exe ":silent sign place ".lnr." line=".lnr." name=dbstop file=".expand("%:p")
 endfunction
+command! Dbstop :call Dbstop()
 
 "-------------------------------------------------------------------------------
 "       Clear debugging stop on specific line
@@ -49,6 +51,7 @@ function! Dbclear()
   call system('ts -t '''.g:matlab_pane.''' '.mcom)
   silent! sign unplace
 endfunction
+command! Dbclear :call Dbclear()
 
 "-------------------------------------------------------------------------------
 "       Clear all debugging stops in all files
@@ -57,17 +60,22 @@ function! Dbclearall()
   call system('ts -t '''.g:matlab_pane.''' dbclear all')
   silent! sign unplace *
 endfunction
+command! Dbclearall :call Dbclearall()
 
 "-------------------------------------------------------------------------------
 "       Quit debugging mode
 "-------------------------------------------------------------------------------
 function! Dbquit()
+  " Send dbquit to matlab
   call system('ts -t '''.g:matlab_pane.''' dbquit')
+
   " Remove debugging cursor marker
   silent! sign unplace 1
+
   " Make file modifiable again
   set ma
 endfunction
+command! Dbquit :call Dbquit()
 
 "-------------------------------------------------------------------------------
 "       Dbstep and move cursor to next line of executable code
@@ -93,59 +101,59 @@ function! Dbstep()
 
   " " move cursor to next line, first column with non-whitespace character
   " call cursor(lnr,0) | norm! ^
-  exe ":silent sign place 1 line=".lnr." name=piet file=".expand("%:p")
+  exe ":silent! sign place 1 line=".lnr." name=piet file=".expand("%:p")
 endfunction
+command! Dbstep :call Dbstep()
 
 "-------------------------------------------------------------------------------
 "       Evaluate current selection (Cmd+Opt+Enter in MATLAB)
-"       Following function/command/map do NOT seem to work properly:
+"       Following! function/command/map do NOT seem to work properly:
 "-------------------------------------------------------------------------------
 function! EvaluateSelection()
-  let mcom = getline('.')
-  " Remove trailing newline, but not interior newlines
-  let mcom = substitute(mcom, "\n$", '', 'g')
+  let mcom = s:GetVisualSelection()
   " Only need to escape ; if there is no space after it (not sure why?)
   let mcom = substitute(mcom, ';', '; ', 'g')
   " Need to escape `%' so vim doesn't insert filename
   let mcom = substitute(mcom, '%', '\%', 'g')
-  echom mcom
+  " Change newlines to literal carriage return so shellescape() does not
+  "+ escape them (sends literal \ to tmux send-keys)
+  let mcom = substitute(mcom, "\n", '', 'g')
 
-  " call system('ts -t '''.g:matlab_pane.''' '.mcom)
+  " Call shellescape() for proper treatment of string characters
+  call system('ts -t '''.g:matlab_pane.''' '.shellescape(mcom))
 endfunction
-command! -range EvaluateSelection <line1>,<line2>call EvaluateSelection()
+command! -range EvaluateSelection :call EvaluateSelection()
 
-" Attempt at passing one LOOOOONG string to ts for faster MATLAB interpretation
-" function! EvaluateSelection()
-"     let mcom = @"
-"     " Remove trailing newline, but not interior newlines
-"     let mcom = substitute(mcom, '\n$', "", "g")
-"     " Need to escape `;' for tmux
-"     let mcom = substitute(mcom, '[;%]', '\\&', "g")
-"     exe "silent !ts \"" . mcom . "\""
-" endfunction
-" vnoremap <Leader>e y:call EvaluateSelection()<CR>
-" " vnoremap <Leader>e y:call EvaluateSelection()<CR>:redraw!<CR>
-
+"------------------------------------------------------------------------------
+"       Return string of visual selection
+"------------------------------------------------------------------------------
+function! s:GetVisualSelection()
+  let [lnum1, col1] = getpos("'<")[1:2]
+  let [lnum2, col2] = getpos("'>")[1:2]
+  let lines = getline(lnum1, lnum2)
+  let lines[-1] = lines[-1][: col2 - (&selection == 'inclusive' ? 1 : 2)]
+  let lines[0] = lines[0][col1 - 1:]
+  return join(lines, "\n")
+endfunction
 
 "-------------------------------------------------------------------------------
 "       Keymaps
 "-------------------------------------------------------------------------------
 " Evaluate Current selection
-" vnoremap <Leader>e :EvaluateSelection<CR>:redraw!<CR>
 vnoremap <Leader>e :EvaluateSelection<CR>
 
 " Debugging
-nnoremap <Leader>s :w <bar> call Dbstop()<CR>
+nnoremap <Leader>s :Dbstop<CR>
 nnoremap <Leader>S :call system('ts -t '''.g:matlab_pane.''' dbstatus')<CR>
-nnoremap <Leader>c :w <bar> call Dbclear()<CR>
-nnoremap <Leader>C :w <bar> call Dbclearall()<CR>
-nnoremap <Leader>q :call Dbquit()<CR>
-nnoremap <Leader>n :call Dbstep()<CR>
-nnoremap <Leader>r :w <bar> call system('ts -t '''.g:matlab_pane.''' dbcont')<CR>
+nnoremap <Leader>c :Dbclear<CR>
+nnoremap <Leader>C :Dbclearall<CR>
+nnoremap <Leader>q :Dbquit<CR>
+nnoremap <Leader>n :Dbstep<CR>
+nnoremap <Leader>r :call system('ts -t '''.g:matlab_pane.''' dbcont')<CR>
 
 " Call Matlab help on current word, or whos on variable
-nnoremap <Leader>h :w <bar> call system('ts -t '''.g:matlab_pane.''' "help <C-R><C-W>"')<CR>
-nnoremap <Leader>w :w <bar> call system('ts -t '''.g:matlab_pane.''' "whos <C-R><C-W>"')<CR>
+nnoremap <Leader>h :call system('ts -t '''.g:matlab_pane.''' "help <C-R><C-W>"')<CR>
+nnoremap <Leader>w :call system('ts -t '''.g:matlab_pane.''' "whos <C-R><C-W>"')<CR>
 
 "==============================================================================
 "==============================================================================

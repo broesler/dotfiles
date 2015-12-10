@@ -1,5 +1,5 @@
 # Attach to existing tmux session rather than create a new one if possible
-function tmux() 
+function tmuxx() 
 {
   # Force tmux to use 256 colors with -2 option (get solarized right)
   # If given any arguments, just use them as they are
@@ -15,4 +15,4 @@ function tmux()
     command tmux -2 new-session -s "${TMUX_SESSION:-default}"
   fi
 }
-export -f tmux
+export -f tmuxx

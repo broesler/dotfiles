@@ -9,9 +9,9 @@
 #==============================================================================
 
 # If not running interactively, don't do anything
-#   in order to use shopt -s expand_aliases, and access aliases within vim,
-#   need to allow .bashrc to run for non-interactive shells!
-#   ...OR `export -f' all functions required in vim!
+#+ in order to use shopt -s expand_aliases, and access aliases within vim,
+#+ need to allow .bashrc to run for non-interactive shells!
+#+ ...OR `export -f' all functions required in vim!
 [ -z "$PS1" ] && return
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
@@ -40,7 +40,7 @@ CDPATH='.:..:../..:~'
 export EDITOR=vim
 
 # Avoid succesive duplicates and spaces in the bash command history, ignore
-# simple, commonly-used commands.
+#+ simple, commonly-used commands.
 export HISTCONTROL=ignoredups:ignorespace
 export HISTIGNORE='clc:bg:fg:git st:git lol:history:h:hr'
 export HISTSIZE=$((1 << 12))                # 4096 lines in memory
@@ -65,7 +65,7 @@ shopt -s shift_verbose  # warn when trying to shift if nothing is there
 set match-hidden-files off
 
 # Append commands to the history every time a prompt is shown,
-# instead of after closing the session.
+#+ instead of after closing the session.
 PROMPT_COMMAND='history -a'
 
 # Turn off <C-S> flow control (stops all I/O until <C-Q> is pressed)
