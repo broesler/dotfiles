@@ -3,11 +3,11 @@ function ts()
 {
   if [ -n "$TMUX" ]; then
     if [ "$1" == "-t" ]; then
-      target=$2
-      args=${@:3}
+      local target=$2
+      local args=${@:3}
     else
-      target="bottom-left"
-      args=$@
+      local target="bottom-left"
+      local args=$@
     fi
 
     # Execute command literally, then send carriage return

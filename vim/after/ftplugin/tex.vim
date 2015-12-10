@@ -32,12 +32,9 @@ let b:tex_flavor="pdflatex"
 let b:tex_ignore_makefile=1       " ignore any makefiles in the tex dir
 " compiler tex                    " just this line gives defaults
 
-" Only make tex file once
-" set makeprg=pdflatex\ \-file\-line\-error\ \-interaction=nonstopmode
-
 " Call latexmk to build tex files properly. See ~/.latexmkrc for options
-"  include % to use current filename as main latex file
-set makeprg=latexmk\ \-pdf\ %
+"  include %:S to use shell-escaped current filename as main latex file
+setlocal makeprg=latexmk\ \-pdf\ %
 
 " Errors as produced by pdflatex
 let efm_errors="%E!\ LaTeX\ Error:\ %m,\%E!\ %m,%E!pdfTeX Error:\ %m"
@@ -79,7 +76,7 @@ nnoremap <buffer> <Leader>M :silent call LatexMakeLatexmk()<CR>
 " Jump to PDF in Skim (for LaTeX files with synctex)
 function! JumpToSkim()
   let linen = line('.')
-  let filen = expand("%:t:r") . ".pdf"
+  let filen = expand("%:r").".pdf"
   write
   execute "!/Applications/Skim.app/Contents/SharedSupport/displayline " . linen . " " . filen
 endfunction
