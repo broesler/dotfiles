@@ -1,11 +1,9 @@
 "------------------------------------------------------------------------------
 "       Gambit journal file syntax
 "------------------------------------------------------------------------------
-" Use sh syntax, then add some custom options
-" runtime! syntax/sh.vim
-
 " Keywords
-syn keyword myKeywords create delete add subtract modify mesh attach
+syn keyword myKeywords create delete add subtract modify mesh attach set select
+syn keyword myKeywords COS SIN TAN ACOS ASIN ATAN
 
 " All braces
 syn match myBraces display '[{}()\[\]]'
@@ -18,8 +16,13 @@ syn region myString start=+'+ end=+'+
 syn region myString start=+"+ end=+"+
 
 " Constants
-syn match myConst display '\<\d\+\>'
-syn match myConst display '\<\d\+\.\d*\>'
+"  Negative lookbehind to not include numbers in variable names or commands
+syn match myConst display '\([a-zA-Z]\)\@<!\d\+'
+syn match myConst display '\([a-zA-Z]\)\@<!\d\+\.\d*'
+syn match myConst display '\([a-zA-Z]\)\@<![-+]\d\+\.\d*'
+syn match myConst display '\([a-zA-Z]\)\@<!\d\+[eE][-+]\=\d\+'
+syn match myConst display '\([a-zA-Z]\)\@<!\d\+\.\d\+[eE][-+]\=\d\+'
+syn match myConst display '\<PI\>'
 
 " Operators
 syn match myOperators display '[\*\=\+-/]'
