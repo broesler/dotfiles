@@ -3,7 +3,7 @@
 " Created: 04/16/2015
 "  Author: Bernie Roesler
 "
-" Last Modified: 12/03/2015, 19:45
+" Last Modified: 12/10/2015, 11:20
 
 " Description: Settings for vim. Source with \s while in vim. Functions called
 "   by autocommands are located in ~/.vim/plugin/util_functions.vim
@@ -77,6 +77,7 @@ set incsearch       " highlight search as it's typed
 set ignorecase      " ignore case when searching
 set smartcase       " case-sensitive if capital in search
 
+set iskeyword+=_    " always include underscore in keyword
 set tabstop=4       " tabs every 4 spaces
 set softtabstop=0   " set to 4 to let backspace delete indent with expandtab
 set shiftwidth=4    " use >>, << for line shifting
@@ -97,9 +98,8 @@ set backspace=indent,eol,start  " allow backspacing over everything in insert mo
 
 set printoptions=paper:letter
 
-" Use mouse if it exists
-" In many terminal emulators the mouse works just fine, thus enable it.
-if has('mouse')
+" Use mouse if it exists -- mouse is weird in ssh
+if has('mouse') && !exists("$SSH_TTY") 
     set mouse=a
     " tmux knows the extended mouse mode
     if &term =~ '^screen'
