@@ -62,7 +62,6 @@ function cs50()
 #   UTILITIES
 #-------------------------------------------------------------------------------
 alias clc='clear'
-alias cp='cp -i'
 alias df='df -kTh'
 alias du='du -kh'
 alias egrep='egrep --color=auto'
@@ -74,9 +73,7 @@ alias lf="ls -l | grep -v '^d'"
 alias lt='tree -C'
 alias mkdir='mkdir -p'
 alias h='history | less +G'
-alias mv='mv -i'
 alias mygcc='gcc -Wall -pedantic -std=c99'
-alias rm='rm -i'
 alias which='type -all'
 alias zegrep='zegrep --color=auto'
 alias zfgrep='zfgrep --color=auto'
