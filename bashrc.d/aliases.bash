@@ -68,11 +68,11 @@ alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias grep='grep --color=auto'
 alias j='jobs -l'
-alias ldir="ls -l | grep '^d'"
-alias lf="ls -l | grep -v '^d'"
+alias ldir="command ls -l | command grep '^d'"
+alias lf="command ls -l | command grep -v '^\(d\|total\)'"
 alias lt='tree -C'
 alias mkdir='mkdir -p'
-alias h='history | less +G'
+alias h='history | command less +G'
 alias mygcc='gcc -Wall -pedantic -std=c99'
 alias which='type -all'
 alias zegrep='zegrep --color=auto'
