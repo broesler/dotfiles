@@ -29,6 +29,8 @@ $if mode=vi
   # Set UP and DOWN arrows to incremental history search
   "\e[A": history-search-backward
   "\e[B": history-search-forward
+  "\C-k": history-search-backward
+  "\C-j": history-search-forward
 
   # Space expands history
   $if Bash
