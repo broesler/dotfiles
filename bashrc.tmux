@@ -10,7 +10,6 @@
 
 # Source actual bashrc
 if [ -f ~/.bashrc ]; then
-  echo sourcing bashrc
   source ~/.bashrc
 fi
 
