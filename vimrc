@@ -3,7 +3,7 @@
 " Created: 04/16/2015
 "  Author: Bernie Roesler
 "
-" Last Modified: 12/15/2015, 11:47
+" Last Modified: 12/17/2015, 13:47
 
 " Description: Settings for vim. Source with \s while in vim. Functions called
 "   by autocommands are located in ~/.vim/plugin/util_functions.vim
@@ -233,6 +233,7 @@ if exists('$TMUX')
     function! TmuxOrSplitSwitch(wincmd, tmuxdir)
         let previous_winnr = winnr()
         silent! execute "wincmd ".a:wincmd
+        " If we didn't change vim windows, we must want to change tmux panes
         if previous_winnr == winnr()
             call system("tmux select-pane -".a:tmuxdir)
             redraw!
