@@ -94,6 +94,9 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   if [ -f $(brew --prefix)/etc/bash_completion ]; then
     source $(brew --prefix)/etc/bash_completion
   fi
+
+  # Disable tilde expansion upon tab completion
+  _expand() { return 0; }
 fi
 
 # Source function files and aliases

@@ -10,6 +10,9 @@
 # use vi mode for ALL applications that use GNU Readline
 set editing-mode vi
 
+# Do NOT expand ~ in command line completions
+set expand-tilde off
+
 # NOTE: These maps require `set -o vi' in .bashrc in order to work!!!
 $if mode=vi
   #============================================================================
