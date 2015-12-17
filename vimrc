@@ -3,7 +3,7 @@
 " Created: 04/16/2015
 "  Author: Bernie Roesler
 "
-" Last Modified: 12/10/2015, 11:20
+" Last Modified: 12/17/2015, 13:47
 
 " Description: Settings for vim. Source with \s while in vim. Functions called
 "   by autocommands are located in ~/.vim/plugin/util_functions.vim
@@ -77,7 +77,6 @@ set incsearch       " highlight search as it's typed
 set ignorecase      " ignore case when searching
 set smartcase       " case-sensitive if capital in search
 
-set iskeyword+=_    " always include underscore in keyword
 set tabstop=4       " tabs every 4 spaces
 set softtabstop=0   " set to 4 to let backspace delete indent with expandtab
 set shiftwidth=4    " use >>, << for line shifting
@@ -153,7 +152,7 @@ augroup END
 
 augroup misc_cmds
     au!
-    au FileType matlab,sh,markdown,vim setlocal iskeyword+=_
+    au FileType matlab,sh,markdown,vim,perl setlocal iskeyword+=_
 
     " Use K to search vim help for word under cursor only in vim files
     au FileType vim setlocal keywordprg=:help
@@ -234,6 +233,7 @@ if exists('$TMUX')
     function! TmuxOrSplitSwitch(wincmd, tmuxdir)
         let previous_winnr = winnr()
         silent! execute "wincmd ".a:wincmd
+        " If we didn't change vim windows, we must want to change tmux panes
         if previous_winnr == winnr()
             call system("tmux select-pane -".a:tmuxdir)
             redraw!
