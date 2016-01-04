@@ -31,7 +31,6 @@ endif
 " Syntax highlight 'NOTE:' in comments for clarity
 syn match Notes display 'NOTE:'
 hi link Notes PreProc
-" hi Notes ctermfg=208
 
 "------------------------------------------------------------------------------
 "       Local autocmds
