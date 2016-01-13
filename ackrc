@@ -13,4 +13,4 @@
 
 # Use less as pager
 --pager
-less -r
+less -FRSX

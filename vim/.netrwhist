@@ -1,6 +1,8 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =4
-let g:netrw_dirhist_1='/Users/bernardroesler'
-let g:netrw_dirhist_2='/Users'
-let g:netrw_dirhist_3='/Users/bernardroesler'
-let g:netrw_dirhist_4='/Users/bernardroesler/.bashrc.d'
+let g:netrw_dirhist_cnt =6
+let g:netrw_dirhist_1='/Users/bernardroesler/Documents/School/14F-15X'
+let g:netrw_dirhist_2='/Users/bernardroesler/Documents/School'
+let g:netrw_dirhist_3='/Users/bernardroesler/Documents/School/13F-14X'
+let g:netrw_dirhist_4='/Users/bernardroesler/Documents/School/13F-14X/Engs_145_Modern_Control_Theory'
+let g:netrw_dirhist_5='/Users/bernardroesler/Documents/School/13F-14X/Engs_145_Modern_Control_Theory/HW6'
+let g:netrw_dirhist_6='/Users/bernardroesler/Documents/School/13F-14X/Engs_145_Modern_Control_Theory/HW6/HW6_latex'
