@@ -3,13 +3,16 @@
 " Created: 04/16/2015
 "  Author: Bernie Roesler
 "
-" Last Modified: 12/18/2015, 00:32
+" Last Modified: 01/12/2016, 18:19
 
 " Description: Settings for vim. Source with \s while in vim. Functions called
 "   by autocommands are located in ~/.vim/plugin/util_functions.vim
 "==============================================================================
 
 " Run pathogen to load plugins (ignore errors on Linux machines)
+" let g:pathogen_disabled = []
+" call add(g:pathogen_disabled, 'yankring')
+"
 silent! call pathogen#infect()
 silent! call pathogen#helptags()
 
@@ -118,11 +121,11 @@ if !exists(':Ag')
 endif
 
 " Use system clipboard properly with +X11 and +clientserver
-" if (strlen(v:servername) > 0)
+if (strlen(v:servername) > 0)
     set clipboard=unnamedplus,unnamed,exclude:cons\|linux
-" else
-"     set clipboard=autoselectplus,exclude:cons\|linux
-" endif
+else
+    set clipboard=autoselectplus,exclude:cons\|linux
+endif
 
 " Settings for vimdiff mode
 if &diff
@@ -229,6 +232,9 @@ inoremap <S-Tab> <C-d>
 " With new window mappings <C-l> no longer redraws...
 nmap <C-q> :redraw!<CR>
 
+" Swap word under cursor with next word, including linebreaks
+nnoremap <Leader>t :s/\v(<\k*%#\k*>)(\_.{-})(<\k+>)/\3\2\1/<CR>
+
 " Jump between tmux and vim windows with <C-[hjkl]>
 if (exists('$TMUX') || exists('$SSH_IN_TMUX'))
     function! TmuxOrSplitSwitch(wincmd, tmuxdir)
@@ -267,10 +273,10 @@ nnoremap <C-]> <C-]>zz
 nmap <Leader>E :Hexplore!<CR>
 
 " Timestamp in format %y%m%d, %H:%M
-nnoremap <Leader>t "=strftime("%m/%d/%Y, %H:%M")<CR>P
+nnoremap <Leader>T "=strftime("%m/%d/%Y, %H:%M")<CR>P
 
-" Run :make
-nnoremap <Leader>M :make<bar>redraw!<CR>
+" " Run :make
+" nnoremap <Leader>M :make<bar>redraw!<CR>
 
 " YankRing.vim map
 let g:yankring_history_dir='~/.vim/'

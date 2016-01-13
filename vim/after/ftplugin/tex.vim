@@ -10,11 +10,6 @@ setlocal foldmethod=marker    " fold between {{{ }}} comments
 " wrap \left( \right) around visually selected text
 vmap <buffer> sp "zdi\left(<C-R>z\right)<Esc> 
 
-" " Declare latex language for ctags, taglist.vim usage
-" let tlist_tex_settings   = 'latex;s:sections;g:graphics;l:labels'
-" let tlist_bib_settings   = 'bibtex;s:BiBTeX_strings;e:BibTeX-Entries;a:BibTeX-Authors;t:BibTeX-Titles'
-" let tlist_make_settings  = 'make;m:macros;t:targets'
-
 " : is included as keyword for fig: eqn: etc.,
 setlocal iskeyword+=_
 

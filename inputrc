@@ -10,7 +10,6 @@
 # use vi mode for ALL applications that use GNU Readline
 set editing-mode vi
 
-
 # tab completion options
 set expand-tilde off            # Do NOT expand ~ in command line completions
 set show-all-if-ambiguous on    # one tab to show list of suggestions
