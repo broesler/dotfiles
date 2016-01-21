@@ -3,7 +3,7 @@
 " Created: 04/16/2015
 "  Author: Bernie Roesler
 "
-" Last Modified: 01/12/2016, 18:19
+" Last Modified: 01/21/2016, 13:49
 
 " Description: Settings for vim. Source with \s while in vim. Functions called
 "   by autocommands are located in ~/.vim/plugin/util_functions.vim
@@ -171,7 +171,7 @@ augroup code_cmds
     au BufNewFile *.vim call MakeTemplate("$HOME/.vim/header/vim_header")
 
     " Update 'Last Modified:' line in code files
-    au FileType c,cpp,m,fortran,vim,sh,perl
+    au FileType c,cpp,matlab,fortran,vim,sh,perl
         \ au BufWritePre <buffer> call LastModified()
 augroup END
 
@@ -233,7 +233,7 @@ inoremap <S-Tab> <C-d>
 nmap <C-q> :redraw!<CR>
 
 " Swap word under cursor with next word, including linebreaks
-nnoremap <Leader>t :s/\v(<\k*%#\k*>)(\_.{-})(<\k+>)/\3\2\1/<CR>
+nnoremap <Leader>t :s/\v(<\S*%#\S*>)(\_.{-})(<\S+>)/\3\2\1/<CR>
 
 " Jump between tmux and vim windows with <C-[hjkl]>
 if (exists('$TMUX') || exists('$SSH_IN_TMUX'))
