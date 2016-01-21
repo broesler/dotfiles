@@ -6,7 +6,14 @@
 #
 # Description: allows GNU screen to use colors, and sets window caption footer
 #==============================================================================
-#
+
+# don't display lengthy license and version information on startup
+startup_message off
+
+# automatically detach on terminal hangup (so that one can attach again and
+# continue working)
+autodetach on
+
 # Set colors on
 # term "screen-256color"
 term "xterm-256color"
@@ -23,11 +30,55 @@ defbce "on"
 
 # Set the default window name to empty string instead of the arbitrary "bash"
 shelltitle ''
- 
-# Set the window caption.
+
+# use big scrollback buffer
+defscrollback 10000
+
+# suppress trailing blank lines when scrolling up text into the history buffer
+compacthist on
+
+#-------------------------------------------------------------------------------
+#       Key mappings
+#-------------------------------------------------------------------------------
+# remove delay after pressing escape key inside screen
+maptimeout 0
+
+# vim-like navigation between windows
+bind h focus left
+bind j focus down
+bind k focus up
+bind l focus right
+
+# reload configuration file (note that this creates extra layout)
+bind r source ~/.screenrc
+
+# create new window with a shell prompt
+bind C screen
+
+# split horizontally creating new shell prompt
+bind - eval split 'focus down' screen
+
+# split vertically creating new shell prompt
+bind | eval 'split -v' 'focus right' screen
+
+# copy-mode
+# http://snarfed.org/synchronizing_gnu_screens_paste_buffer_and_the_x_selection
+
+# v - start selection
+# y - start line-wise selection
+# J - scroll down
+# K - scroll up
+markkeys "^M=v:y=V:^E=J:^Y=K"
+
+# > - copy selection to system clipboard
+bindkey -m > eval "stuff ' '" writebuf "exec sh -c 'xsel < /tmp/screen-exchange'"
+
+#-------------------------------------------------------------------------------
+#       Set the statusline
+#-------------------------------------------------------------------------------
 # I use caption instead of hardstatus, so it is available per split window too
 # (hardstatus is only per complete screen).
-caption always "%{= KW}%-Lw%{= wb}%n %t %{= KW}%+Lw %-=| ${USER}@%H | %M%d %c%{-}"
+hardstatus alwayslastline "%{= KW}%-Lw%{= wb}%n %t %{= KW}%+Lw %-=| ${USER}@%H | %M%d %c%{-}"
 
 # Some decryption hints:
 # %{= KW}     background light black (aka dark gray) with foreground light white
