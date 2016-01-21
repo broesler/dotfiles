@@ -13,8 +13,10 @@ let g:matlab_pane = ""
 augroup update
     au! 
     " Save global variable of which pane matlab is running in
-    au BufEnter     *.m let g:matlab_pane = substitute(system('tpg /Applications/MATLAB'), "\n",'','g')
-    au BufWritePost *.m let g:matlab_pane = substitute(system('tpg /Applications/MATLAB'), "\n",'','g')
+    " au BufEnter     *.m let g:matlab_pane = substitute(system('tpg /Applications/MATLAB'), "\n",'','g')
+    " au BufWritePost *.m let g:matlab_pane = substitute(system('tpg /Applications/MATLAB'), "\n",'','g')
+    au BufEnter     *.m call GetMatlabPane() 
+    au BufWritePost *.m call GetMatlabPane() 
 augroup END
 
 " Map \M to make in background
@@ -29,6 +31,19 @@ hi default DebugStopHL ctermfg=red
 hi link DebugCursorHL Search
 sign define dbstop text=$$ texthl=DebugStopHL
 sign define piet   text=>> texthl=DebugCursorHL
+
+"-------------------------------------------------------------------------------
+"       Find Matlab pane
+"-------------------------------------------------------------------------------
+function! GetMatlabPane()
+  let matlp = substitute(system('tpg /Applications/MATLAB'), "\n",'','g')
+  " If tpg is not found for some reason
+  if matlp =~ "command not found"
+    let g:matlab_pane = "bottom-left"
+  else
+    let g:matlab_pane = matlp
+  endif
+endfunction
 
 "-------------------------------------------------------------------------------
 "       Debugging stop
