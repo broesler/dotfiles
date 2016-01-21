@@ -18,10 +18,10 @@ alias rrc='source ~/.bashrc'                 # reload JUST rc file (more common)
 #-------------------------------------------------------------------------------
 if [[ "$OSTYPE" == "darwin"* ]]; then
   alias cs174='cd ~/Documents/School/14F-15X/cs174_machine_learning/'
-  alias es105='cd ~/Documents/School/13F-14X/Engs\ 105\ \-\ Numerical\ PDEs\ 1/Engs_105_practice/'
-  alias es145='cd ~/Documents/School/13F-14X/Engs\ 145\ \-\ Modern\ Control\ Theory/'
+  alias es105='cd ~/Documents/School/13F-14X/Engs_105_Numerical_PDEs_1/Engs_105_practice/'
+  alias es145='cd ~/Documents/School/13F-14X/Engs_145_Modern_Control_Theory/'
   alias es148='cd ~/Documents/School/14F-15X/engg148_structural_mechanics/'
-  alias es150='cd ~/Documents/School/13F-14X/Engs\ 150/'
+  alias es150='cd ~/Documents/School/13F-14X/Engs_150/'
   alias res='cd ~/Documents/School/Research/'
   alias sty='cd /Users/bernardroesler/Library/texmf/tex/latex/'
   alias web='cd ~/Documents/Projects/web_development/'
@@ -32,6 +32,15 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
       cd ~/Documents/School/14F-15X/engs205_numerical_pdes_II/labs/lab$1
     else
       cd ~/Documents/School/14F-15X/engs205_numerical_pdes_II/labs
+    fi
+  }
+
+  function es149()
+  {
+    if [ $# -gt 0 ]; then
+      cd ~/Documents/School/15F-16X/engg149_system_identification/hw/hw$1
+    else
+      cd ~/Documents/School/15F-16X/engg149_system_identification/hw
     fi
   }
 

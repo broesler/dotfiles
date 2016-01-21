@@ -10,11 +10,6 @@ setlocal foldmethod=marker    " fold between {{{ }}} comments
 " wrap \left( \right) around visually selected text
 vmap <buffer> sp "zdi\left(<C-R>z\right)<Esc> 
 
-" " Declare latex language for ctags, taglist.vim usage
-" let tlist_tex_settings   = 'latex;s:sections;g:graphics;l:labels'
-" let tlist_bib_settings   = 'bibtex;s:BiBTeX_strings;e:BibTeX-Entries;a:BibTeX-Authors;t:BibTeX-Titles'
-" let tlist_make_settings  = 'make;m:macros;t:targets'
-
 " : is included as keyword for fig: eqn: etc.,
 setlocal iskeyword+=_
 
@@ -70,9 +65,6 @@ function! LatexMakeLatexmk()
   endif
 endfunction
 
-" no ! on silent to display error message still
-nnoremap <buffer> <Leader>M :silent call LatexMakeLatexmk()<CR>
-
 " Jump to PDF in Skim (for LaTeX files with synctex)
 function! JumpToSkim()
   let linen = line('.')
@@ -80,8 +72,6 @@ function! JumpToSkim()
   write
   execute "!/Applications/Skim.app/Contents/SharedSupport/displayline " . linen . " " . filen
 endfunction
-
-nnoremap <buffer> ,r :silent! call JumpToSkim()<CR>
 
 " make current .tex file
 function! LatexMakeOnce()
@@ -96,8 +86,6 @@ function! LatexMakeOnce()
   endif
 endfunction
 
-nnoremap <buffer> <Leader>T :call LatexMakeOnce()<CR>
-
 " make current .tex file properly
 function! LatexMakeFull()
   let fileext = expand("%:e")
@@ -110,8 +98,6 @@ function! LatexMakeFull()
     echom "FileType is NOT .tex! Aborted pdflatex."
   endif
 endfunction
-
-nnoremap <buffer> <Leader>F :call LatexMakeFull()<CR>
 
 " make current .tex file properly
 function! LatexMakeBib()
@@ -126,6 +112,13 @@ function! LatexMakeBib()
   endif
 endfunction
 
+"-------------------------------------------------------------------------------
+"       Keymaps
+"-------------------------------------------------------------------------------
+nnoremap <buffer> <Leader>M :silent call LatexMakeLatexmk()<CR>
+nnoremap <buffer> ,r :silent! call JumpToSkim()<CR>
+nnoremap <buffer> <Leader>F :call LatexMakeFull()<CR>
+nnoremap <buffer> <Leader>T :call LatexMakeOnce()<CR>
 nnoremap <buffer> <Leader>B :call LatexMakeBib()<CR>
 
 "------------------------------------------------------------------------------
@@ -187,6 +180,9 @@ let @t='o\begin{table}[h!]
       \0i\end{tabular}
       \0i  \end{center}
       \0i\end{table}'
+
+" Make comment header with equals signs
+let @h="o%79a=yypO%"
 
 "==============================================================================
 "==============================================================================
