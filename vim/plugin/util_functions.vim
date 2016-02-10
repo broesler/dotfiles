@@ -3,7 +3,7 @@
 "  Created: 12/06/2015, 13:20
 "   Author: Bernie Roesler
 "
-" Last Modified: 12/10/2015, 00:05
+" Last Modified: 02/09/2016, 18:14
 "
 "  Description: Custom utility functions called from .vimrc autocmds, etc.
 "==============================================================================
@@ -21,7 +21,7 @@ function! SetTermTitle()
         let tstr = strpart(filename,0,32) . "..." . strpart(filename, length-50)
     endif
     " Set terminal title
-    silent execute "!echo -n -e " . "\"\033]0;" . tstr . "\007\""
+    silent execute "!echo -ne " . "\"\033]0;" . tstr . "\007\""
 endfunction
 
 " Change title when switching between files
@@ -75,8 +75,8 @@ endfunction
 function! LastModified()
   if &modified
     let save_cursor = getpos(".")
-    " Only check maximum of 20 lines, or to the end of the file (if < 20)
-    let n = min([20, line("$")])
+    " Only check maximum of 50 lines, or to the end of the file (if < 20)
+    let n = min([50, line("$")])
     " Update line without moving cursor, do not report errors
     keepjumps exe '1,' . n . 's#\(Last Modified:\|Last Updated:\).*#\1 '
                 \ . strftime("%m/%d/%Y, %H:%M") . '#ie'

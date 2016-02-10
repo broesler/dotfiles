@@ -18,7 +18,7 @@ alias rrc='source ~/.bashrc'                 # reload JUST rc file (more common)
 #-------------------------------------------------------------------------------
 if [[ "$OSTYPE" == "darwin"* ]]; then
   alias cs174='cd ~/Documents/School/14F-15X/cs174_machine_learning/'
-  alias es105='cd ~/Documents/School/13F-14X/Engs_105_Numerical_PDEs_1/Engs_105_practice/'
+  alias es105='cd ~/Documents/School/13F-14X/Engs_105_Numerical_PDEs_1/hw/'
   alias es145='cd ~/Documents/School/13F-14X/Engs_145_Modern_Control_Theory/'
   alias es148='cd ~/Documents/School/14F-15X/engg148_structural_mechanics/'
   alias es150='cd ~/Documents/School/13F-14X/Engs_150/'
@@ -77,8 +77,6 @@ alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias grep='grep --color=auto'
 alias j='jobs -l'
-alias ldir="command ls -l | command grep '^d'"
-alias lf="command ls -l | command grep -v '^\(d\|total\)'"
 alias lt='tree -C'
 alias mkdir='mkdir -p'
 alias h='history | command less +G'
@@ -96,10 +94,14 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   # # alias lc='ls -hopG'               # Mac OS X alias
   eval "$(gdircolors -b ~/.dircolors)"   # set custom colors file
   alias lc='gls -Ghlp --color=auto'
+  alias ldir="gls -Ghlp --color=always | command grep '^d'"
+  alias lf="gls -Ghlp --color=always | command grep -v '^\(d\|total\)'"
 
 elif [[ "$OSTYPE" == "linux"* ]]; then
   eval "$(dircolors -b ~/.dircolors)"    # set custom colors file
   alias lc='ls -Ghlp --color=auto'      # Linux ls options
+  alias ldir="ls -Ghlp --color=always | command grep '^d'"
+  alias lf="ls -Ghlp --color=always | command grep -v '^\(d\|total\)'"
 fi
 
 # Show hidden files only
