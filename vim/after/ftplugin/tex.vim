@@ -45,7 +45,7 @@ let efm_warnings="%W%.%#Citation\ %m on\ input\ line\ %l,
 "             \%WLaTeX\ Warning:\ Reference %m on\ input\ line\ %l%.%#,
 "             \%WLaTeX\ %.%#Warning:\ Reference %m,%C %m on input line %l%.%#"
 
-let &l:errorformat = "%f:%l:%m" . "," . efm_errors . "," . efm_warnings
+let &l:errorformat = "%f:%l:%m".",".efm_errors.",".efm_warnings
 
 "------------------------------------------------------------------------------
 "       Local autocmds
@@ -71,6 +71,7 @@ function! JumpToSkim()
   let filen = expand("%:r").".pdf"
   write
   execute "!/Applications/Skim.app/Contents/SharedSupport/displayline " . linen . " " . filen
+  redraw!
 endfunction
 
 " make current .tex file
