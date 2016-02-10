@@ -1,21 +1,18 @@
 [submodule "vim/bundle/fugitive"]
 	path = vim/bundle/fugitive
 	url = http://github.com/tpope/vim-fugitive.git
-[submodule "vim/bundle/rename"]
-	path = vim/bundle/rename
-	url = https://github.com/danro/rename.vim.git
-[submodule "vim/bundle/tComment"]
-	path = vim/bundle/tComment
-	url = https://github.com/vim-scripts/tComment.git
+[submodule "vim/bundle/commentary"]
+	path = vim/bundle/commentary
+	url = git://github.com/tpope/vim-commentary.git
 [submodule "vim/bundle/supertab"]
 	path = vim/bundle/supertab
 	url = https://github.com/ervandew/supertab.git
-[submodule "vim/bundle/yankring"]
-	path = vim/bundle/yankring
-	url = https://github.com/vim-scripts/YankRing.vim.git
-[submodule "vim/bundle/latex-box"]
-	path = vim/bundle/latex-box
-	url = https://github.com/vim-scripts/LaTeX-Box.git
+[submodule "vim/bundle/LaTeX-Box"]
+	path = vim/bundle/LaTeX-Box
+	url = git://github.com/LaTeX-Box-Team/LaTeX-Box.git
+[submodule "vim/bundle/rename"]
+	path = vim/bundle/rename
+	url = https://github.com/danro/rename.vim.git
 [submodule "vim/bundle/vim-colors-solarized"]
 	path = vim/bundle/vim-colors-solarized
-	url = https://github.com/altercation/vim-colors-solarized.git
+	url = git://github.com/altercation/vim-colors-solarized.git
