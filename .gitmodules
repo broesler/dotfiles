@@ -1,9 +1,6 @@
 [submodule "vim/bundle/fugitive"]
 	path = vim/bundle/fugitive
 	url = http://github.com/tpope/vim-fugitive.git
-[submodule "vim/bundle/commentary"]
-	path = vim/bundle/commentary
-	url = git://github.com/tpope/vim-commentary.git
 [submodule "vim/bundle/supertab"]
 	path = vim/bundle/supertab
 	url = https://github.com/ervandew/supertab.git
@@ -16,3 +13,6 @@
 [submodule "vim/bundle/vim-colors-solarized"]
 	path = vim/bundle/vim-colors-solarized
 	url = git://github.com/altercation/vim-colors-solarized.git
+[submodule "vim/bundle/tComment"]
+	path = vim/bundle/tComment
+	url = https://github.com/vim-scripts/tComment.git
