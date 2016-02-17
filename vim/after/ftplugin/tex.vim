@@ -13,11 +13,8 @@ vmap <buffer> sp "zdi\left(<C-R>z\right)<Esc>
 " : is included as keyword for fig: eqn: etc.,
 setlocal iskeyword+=_
 
-" Turn off matching paren highlighting for LaTeX files
-" Doesn't work...
-let g:LatexBox_loaded_matchparen=1
-let g:LatexBox_output_type="pdf"
-let g:LatexBox_viewer="skim"
+" 1 == Turn off matching paren highlighting for LaTeX files
+" let g:LatexBox_loaded_matchparen=1
 
 " Change default SuperTabs completion to context (or try <C-x><C-o>)
 let g:SuperTabDefaultCompletionType="context"
@@ -140,9 +137,9 @@ let @g='i\begin{gather}\end{gather}k'
 " Figure macro
 let @f='o\begin{figure}[h!]
       \\centering
-      \\includegraphics[width=\textwidth]{pinned_bar_modes.pdf}
-      \\caption{First few vibrational mode shapes of a pinned-pinned bar.}
-      \\label{fig:modeshapes}
+      \\includegraphics[width=0.85\textwidth]{myfilename.pdf}
+      \\caption{My caption goes here.}
+      \\label{fig:label}
       \0i\end{figure}'
 
 " Subfigure macro
@@ -150,17 +147,17 @@ let @s='o\begin{figure}[h!]
       \\centering
       \  \begin{subfigure}[c]{0.45\textwidth}
       \\centering
-      \\includegraphics[width=\textwidth]{state_errorr.pdf}
-      \\caption{Linear error vs.\ time plot.}
+      \\includegraphics[width=\textwidth]{myfilename_a.pdf}
+      \\caption{My caption for subfigure (a).}
       \\end{subfigure}
       \0i  \hspace{0.1cm}
       \  \begin{subfigure}[c]{0.45\textwidth}
       \\centering
-      \\includegraphics[width=\textwidth]{state_errorr_semilog.pdf}
-      \\caption{Semilog error vs.\ time plot.}
+      \\includegraphics[width=\textwidth]{myfilename_b.pdf}
+      \\caption{My caption for subfigure (b).}
       \\end{subfigure}
-      \0i  \caption{Two error plots to compare linear and semilog plot. The semilog plot shows $|e(k)|$ for ease of determining the order of convergence.}
-      \\label{fig:error_r1}
+      \0i  \caption{My caption for the entire figure.}
+      \\label{fig:whole_figure}
       \0i\end{figure}'
 
 " Table macro

@@ -3,7 +3,7 @@
 " Created: 04/16/2015
 "  Author: Bernie Roesler
 "
-" Last Modified: 02/10/2016, 13:29
+" Last Modified: 02/16/2016, 22:39
 
 " Description: Settings for vim. Source with \s while in vim. Functions called
 "   by autocommands are located in ~/.vim/plugin/util_functions.vim
@@ -35,6 +35,7 @@ filetype plugin indent on
 "------------------------------------------------------------------------------
 "       Global Settings                                                    "{{{
 "------------------------------------------------------------------------------
+set autochdir       " Locally change directory
 set autoread        " Auto-read changes made outside of vim
 set autowrite       " Auto-write changes when switching buffers
 set encoding=utf-8  " Ensure files are universally readable
@@ -61,9 +62,10 @@ set completeopt=longest,menuone,preview     " make like bash completion
 set complete=.,w,b,u,t                      " use <C-X><C-I> for included files
 set dictionary=/usr/share/dict/words
 set thesaurus=/usr/share/thes/mthesaur.txt  " use <C-X><C-T>
-" set thesaurus+=/usr/share/thes/roget13a.txt
+" set thesaurus+=/usr/share/thes/roget13a.txt   " slow search comment out
 
-set tags=./tags;    " read local tag file first, then search for others ';'
+" read local tag file first, then search for others ';'
+set tags=./tags,tags,~/Documents/MATLAB/tags;    
 
 set wildmenu            " Enable tab to show all menu options
 set nofileignorecase    " no == do NOT ignore case when completing filenames
@@ -87,9 +89,11 @@ set expandtab       " use spaces instead of tab character (need for Fortran)
 set autoindent      " indent based on filetype
 set modelines=20    " check 20 lines down for a modeline
 
-let g:loaded_matchparen=0       " Do not highlight matching parens if == 1
+let g:LatexBox_loaded_matchparen=1
+let g:loaded_matchparen=1       " Do not highlight matching parens if == 1
 set showmatch                   " Show matching parens
 set matchtime=3                 " Highlight for 3 miliseconds
+
 set textwidth=0                 " set to 0 for no auto-newlines
 set colorcolumn=80              " mark 80th column
 set wrap                        " autowrap text to screen
@@ -97,6 +101,7 @@ set linebreak                   " Do not break words mid-word
 set backspace=indent,eol,start  " allow backspacing over everything
 
 set formatoptions+=rn1j         " tcq default
+set foldmethod=marker           " auto-fold code
 set printoptions=paper:letter
 
 " Use mouse if it exists -- mouse is weird in ssh
@@ -145,8 +150,8 @@ augroup quickfix_window
     " Note: Normally, :cwindow jumps to the quickfix window if the command opens it
     " (but not if it's already open). However, as part of the autocmd, this doesn't
     " seem to happen.
-    au QuickFixCmdPost [^l]* nested cwindow
-    au QuickFixCmdPost    l* nested lwindow
+    au QuickFixCmdPost [^l]* nested botright cwindow
+    au QuickFixCmdPost    l* nested botright lwindow
 
     " Quickly open/close quickfix and location list
     au! BufWinEnter quickfix nnoremap <silent> <buffer> q :cclose<CR>:lclose<CR>
@@ -161,6 +166,7 @@ augroup misc_cmds
 
     " Treat buffers from stdin (i.e. echo foo | vim -) as scratch buffers
     au StdinReadPost * :set buftype=nofile
+
 augroup END
 
 augroup code_cmds
@@ -234,9 +240,6 @@ inoremap <S-Tab> <C-d>
 
 " Swap word under cursor with next word, including linebreaks
 nnoremap <Leader>t :s/\v(<\S*%#\S*>)(\_.{-})(<\S+>)/\3\2\1/<CR>
-
-" Insert new lines in normal mode
-nnoremap <CR> o<ESC>
 
 " Completion in insert mode
 inoremap <C-f> <C-X><C-F>
