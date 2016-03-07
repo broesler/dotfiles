@@ -1,8 +1,11 @@
+#!/bin/bash
 # vim: ft=sh syntax=sh
 #===============================================================================
-#    File: ~/.bash_aliases
+#    File: ~/.bashrc.d/aliases.bash
 # Created: 12/04/14
 #  Author: Bernie Roesler
+#
+# Last Modified: 02/25/2016, 20:02
 #
 # Description: Contains aliases and simple functions for use with the bash shell
 #===============================================================================
@@ -76,13 +79,14 @@ alias du='du -kh'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias grep='grep --color=auto'
+alias h='history | command less +G'
 alias j='jobs -l'
 alias lpbw='lpr -P m210__bw___thayercups/duplex'
 alias lpcolor='lpr -P m210__color___thayercups/duplex'
 alias lt='tree -C'
 alias mkdir='mkdir -p'
-alias h='history | command less +G'
 alias mygcc='gcc -Wall -pedantic -std=c99'
+alias path='echo $PATH | tr -s ":" "\n"'
 alias which='type -all'
 alias zegrep='zegrep --color=auto'
 alias zfgrep='zfgrep --color=auto'
