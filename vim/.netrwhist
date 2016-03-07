@@ -1,7 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =5
-let g:netrw_dirhist_1='/Users/bernardroesler/Documents/School/15F-16X/engg149_system_identification/hw/hw3'
-let g:netrw_dirhist_2='/Users/bernardroesler/Kite Drive/2013_Walvisstaart_(Roesler)/Codes/CyROD_2D_Lumped/CyROD 1.18 (150324 roesler - full alignment planform flag)/Examples/ORPC_demo'
-let g:netrw_dirhist_3='/Users/bernardroesler/Kite Drive/2013_Walvisstaart_(Roesler)/Codes/CyROD_2D_Lumped/CyROD 1.18 (150324 roesler - full alignment planform flag)/Examples'
-let g:netrw_dirhist_4='/Users/bernardroesler/Kite Drive/2013_Walvisstaart_(Roesler)/Codes/CyROD_2D_Lumped/CyROD 1.18 (150324 roesler - full alignment planform flag)'
-let g:netrw_dirhist_5='/Users/bernardroesler/Kite Drive/2013_Walvisstaart_(Roesler)/Codes/CyROD_2D_Lumped/CyROD 1.18 (150324 roesler - full alignment planform flag)/SourceCode'
