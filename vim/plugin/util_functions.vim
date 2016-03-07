@@ -3,7 +3,7 @@
 "  Created: 12/06/2015, 13:20
 "   Author: Bernie Roesler
 "
-" Last Modified: 02/19/2016, 14:39
+" Last Modified: 02/22/2016, 14:55
 "
 "  Description: Custom utility functions called from .vimrc autocmds, etc.
 "==============================================================================
@@ -12,19 +12,23 @@
 "       CommentHeader create the header seen here {{{
 "-------------------------------------------------------------------------------
 function! CommentHeader(comment, ...)
-    " If 1 or more optional args, first optional arg is introducer
-    let introducer =  a:0 >= 1  ?  a:1  :  "#"
-
-    " If 2 or more optional args, second optional arg is boxing character
-    let box_char   =  a:0 >= 2  ?  a:2  :  "-"
-
-    " If 3 or more optional args, third optional arg is comment width
-    let width      =  a:0 >= 3  ?  a:3 :  strlen(a:comment) + 2
+    " a:0 is optional argument number (not total argument number)
+    let introducer = a:0 >= 1 ? a:1 : "#"
+    let box_char   = a:0 >= 2 ? a:2 : "-"
+    let width      = a:0 >= 3 ? a:3 : &textwidth - 2
 
     " Build the comment box and put the comment inside it...
-    return introducer . repeat(box_char,width) . "\<CR>"
-    \    . introducer . " " . a:comment        . "\<CR>"
-    \    . introducer . repeat(box_char,width) . "\<CR>"
+    " If comments is set, do not need introducer every time
+    if len(&comments) > 0
+      let header =   introducer.repeat(box_char,width)."\n"
+                  \ .introducer."\t\t".a:comment      ."\n"
+                  \ .introducer.repeat(box_char,width)."\n"
+    else
+      let header = introducer.repeat(box_char,width)."\n"
+                            \."\t\t".a:comment      ."\n"
+                            \.repeat(box_char,width)."\n"
+    endif
+    return header
 endfunction "}}}
 
 "-------------------------------------------------------------------------------
