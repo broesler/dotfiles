@@ -5,13 +5,11 @@
 "          Preben "Peppe" Guldberg <c928400@student.dtu.dk>
 "          Original author: Mario Eusebio
 "
-" Last Updated: 02/18/2016, 00:55
+" Last Updated: 02/23/2016, 19:04
 "===============================================================================
-" For version 5.x: Clear all syntax items
-" For version 6.x: Quit when a syntax file was already loaded
-if version < 600
-  syntax clear
-elseif exists("b:current_syntax")
+
+" Quit when a (custom) syntax file was already loaded
+if exists("b:current_syntax")
   finish
 endif
 
@@ -20,31 +18,37 @@ endif
 " To highlight structure field names, use i.e.
 "+ syn keyword DotKeys contained Keyword1 Keyword2
 
-syn keyword matlabConditional           else elseif end if otherwise
-syn keyword matlabExceptions            try catch
-syn keyword matlabFunction              warning error eval function
+syn keyword matlabConditional           if else elseif end otherwise
+syn keyword matlabExceptions            try catch throw rethrow
+syn keyword matlabFunction              function warning error eval 
 syn keyword matlabImplicit              clear clc clf clr
 syn keyword matlabLabel                 case switch
 syn keyword matlabOO                    classdef properties events methods
-syn keyword matlabRepeat                do for while 
-syn keyword matlabTodo                  TODO: NOTE: contained
+syn keyword matlabRepeat                for while 
 syn keyword matlabScope                 global persistent
 syn keyword matlabStatement             return break 
 
-" If you do not want these operators lit, uncommment them and the "hi link" below
 syn match matlabArithmeticOperator      display "[-+]"
 syn match matlabArithmeticOperator      display "\.\=[*/\\^]"
 syn match matlabRelationalOperator      display "[=~]="
 syn match matlabRelationalOperator      display "[<>]=\="
 syn match matlabLogicalOperator         display "[&|~]"
 
-syn match matlabLineContinuation        display "\.\{3}"
+" Highlight callouts in comments
+syn match matlabTodo contained "\(TODO\|NOTE\|FIXME\):\="
+syn match matlabTab display "\t"
 
-" String
+syn match matlabComment display "%.*$" contains=matlabTodo,matlabTab,matlabCommentTitle
+syn match matlabComment display "\.\.\..*$" contains=matlabTodo,matlabCommentTitle
+syn match matlabCommentTitle '%\s*\%([sS]:\|\h\w*#\)\=\u\w*\(\s\+\u\w*\)*:'hs=s+1 contained contains=matlabTodo
+
+" NOTE: To match block comments '%{' and '%}' must start lines by themselves,
+"+  with no other non-spaces before or after them
+syn region matlabMultilineComment start=/^%{\s*$/ end=/^%}\s*$/ contains=matlabTodo,matlabTab
+
+syn match matlabContinueLine  display "\.\{3}"
+
 syn region matlabString display start=+'+ end=+'+ oneline skip=+''+
-
-" If you don't like tabs
-syn match matlabTab                     "\t"
 
 " Standard numbers
 syn match matlabNumber   "\<\d\+[ij]\=\>"
@@ -52,26 +56,19 @@ syn match matlabFloat    "\<\d\+\(\.\d*\)\=\([edED][-+]\=\d\+\)\=[ij]\=\>"
 syn match matlabFloat    "\.\d\+\([edED][-+]\=\d\+\)\=[ij]\=\>"
 
 " Transpose character and delimiters: Either use just [...] or (...) as well
-syn match matlabDelimiter               "[][]"
-" syn match matlabDelimiter               "[][()]"
-syn match matlabTransposeOperator       "[])a-zA-Z0-9.]'"lc=1
+syn match matlabDelimiter          "[][]"
+syn match matlabTransposeOperator  display "\([])a-zA-Z0-9.]\)\@<='"
+syn match matlabSemicolon          display ";"
 
-syn match matlabSemicolon               ";"
-
-syn match  matlabComment  display       "%.*$"                  contains=matlabTodo,matlabTab
-syn match  matlabComment  display       "\.\.\..*$"             contains=matlabTodo,matlabTab
-syn region matlabMultilineComment       start=+%{+ end=+%}+     contains=matlabTodo,matlabTab
-
-
-" Field names are preceded by a dot
+" FIXME Field names are preceded by a dot
 syn match matlabFieldName       "\.\I\i*" transparent
 
-" Match FIXME
+" Match 
 syn match matlabError   "-\=\<\d\+\.\d\+\.[^*/\\^]"
 syn match matlabError   "-\=\<\d\+\.\d\+[eEdD][-+]\=\d\+\.\([^*/\\^]\)"
 
 "-------------------------------------------------------------------------------
-"       List of ALL Matlab functions -- comment out, unnecessary
+"       List of ALL Matlab functions -- comment out, unnecessary    {{{
 "-------------------------------------------------------------------------------
 " syn keyword matlabImplicit              abs acos acosh acot acoth acsc acsch actxcontrol actxserver addframe addpath addproperty  airy alim all allchild alpha alphamap angle ans any area asec asech asin asinh assignin atan atan2 atanh audiodevinfo audioplayer audiorecorder auread auwrite avifile aviinfo aviread axes Axes Properties axis
 " syn keyword matlabImplicit              balance bar barh bar3 bar3h base2dec beep besselh besseli besselj besselk bessely beta betainc betaln bicg bicgstab bin2dec bitand bitcmp bitget bitmax bitor bitset bitshift bitxor blanks blkdiag box break brighten builtin bvp4c bvpget bvpinit bvpset bvpval
@@ -99,54 +96,47 @@ syn match matlabError   "-\=\<\d\+\.\d\+[eEdD][-+]\=\d\+\.\([^*/\\^]\)"
 " syn keyword matlabImplicit              xlabel ylabel zlabel xlim ylim zlim xlsfinfo xlsread xmlread xmlwrite xor xslt zeros zip zoom
 " " Control System Toolbox functions
 " syn keyword matlabImplicit              acker allmargin append augstate balreal bandwidth bode bodemag c2d canon care chgunits conj connect covar ctrb ctrbf d2c d2d damp dare dcgain delay2z dlqr dlyap drss dsort dss dssdata esort estim evalfr feedback filt frd frdata freqresp gensig get gram hasdelay impulse initial interp inv iopzmap isct isdt isempty isproper issiso kalman kalmd lft lqgreg lqr lqrd lqry lsim ltimodels ltiprops ltiview lyap margin minreal modred ndims ngrid nichols norm nyquist obsv obsvf ord2 pade parallel place pole pzmap reg reshape rlocus rss series set sgrid sigma sisotool size sminreal ss ss2ss ssbal ssdata stack step tf tfdata totaldelay zero zgrid zpk zpkdata
+" }}}
 
+"-------------------------------------------------------------------------------
+"       Link highlights to colors
+"-------------------------------------------------------------------------------
+hi def link matlabArithmeticOperator    matlabOperator
+hi def link matlabComment               Comment
+hi def link matlabCommentTitle          PreProc
+hi def link matlabConditional           Conditional
+hi def link matlabDelimiter             Identifier
+hi def link matlabError                 Error
+hi def link matlabExceptions            Conditional
+hi def link matlabFloat                 Float
+hi def link matlabFunction              Function
+hi def link matlabImplicit              matlabStatement
+hi def link matlabLabel                 Label
+hi def link matlabContinueLine          matlabStatement
+hi def link matlabLogicalOperator       matlabOperator
+hi def link matlabMultilineComment      Comment
+hi def link matlabNumber                Number
+hi def link matlabOO                    Statement
+hi def link matlabOperator              Operator
+hi def link matlabRelationalOperator    matlabOperator
+hi def link matlabRepeat                matlabOperator
+hi def link matlabScope                 Type
+hi def link matlabSemicolon             matlabStatement
+hi def link matlabStatement             Statement
+hi def link matlabString                String
+hi def link matlabTodo                  Todo
+hi def link matlabTransposeOperator     matlabOperator
+hi def link matlabTransposeOther        Identifier
 
-" Define the default highlighting.
-" For version 5.7 and earlier: only when not done already
-" For version 5.8 and later: only when an item doesn't have highlighting yet
-if version >= 508 || !exists("did_matlab_syntax_inits")
-  if version < 508
-    let did_matlab_syntax_inits = 1
-    command -nargs=+ HiLink hi link <args>
-  else
-    command -nargs=+ HiLink hi def link <args>
-  endif
+" Use magenta like in actual MATLAB instead of standard blue
+" hi matlabString                         ctermfg=125
 
-  HiLink matlabArithmeticOperator       matlabOperator
-  HiLink matlabComment                  Comment
-  HiLink matlabConditional              Conditional
-  HiLink matlabDelimiter                Identifier
-  HiLink matlabError                    Error
-  HiLink matlabExceptions               Conditional
-  HiLink matlabFloat                    Float
-  HiLink matlabFunction                 Define
-  HiLink matlabImplicit                 matlabStatement
-  HiLink matlabLabel                    Label
-  HiLink matlabLineContinuation         matlabStatement
-  HiLink matlabLogicalOperator          matlabOperator
-  HiLink matlabMultilineComment         Comment
-  HiLink matlabNumber                   Number
-  HiLink matlabOO                       Statement
-  HiLink matlabOperator                 Operator
-  HiLink matlabRelationalOperator       matlabOperator
-  HiLink matlabRepeat                   matlabOperator
-  HiLink matlabScope                    Type
-  HiLink matlabSemicolon                matlabStatement
-  HiLink matlabStatement                Statement
-  HiLink matlabTodo                     Todo
-  HiLink matlabTransposeOperator        matlabOperator
-  HiLink matlabTransposeOther           Identifier
+" optional highlighting
+hi def link matlabIdentifier            Identifier
+hi def link matlabTab                   Error
 
-  HiLink matlabString                   String
-  hi matlabString                       ctermfg=125
-
-"optional highlighting
-  HiLink matlabIdentifier               Identifier
-  HiLink matlabTab                      Error
-
-  delcommand HiLink
-endif
-
+" Set syntax file for current buffer
 let b:current_syntax = "matlab"
 
-"EOF    vim: ts=8 tw=100 sw=8 sts=0
+"===============================================================================
+"===============================================================================

@@ -1,13 +1,13 @@
-"==============================================================================
+"===============================================================================
 "    File: ~/.vimrc
 " Created: 04/16/2015
 "  Author: Bernie Roesler
 "
-" Last Modified: 02/16/2016, 22:39
+" Last Modified: 03/03/2016, 15:38
 
 " Description: Settings for vim. Source with \s while in vim. Functions called
 "   by autocommands are located in ~/.vim/plugin/util_functions.vim
-"==============================================================================
+"===============================================================================
 
 "-------------------------------------------------------------------------------
 "       Preamble                                                           "{{{
@@ -32,10 +32,10 @@ filetype plugin indent on
 
 "}}}
 
-"------------------------------------------------------------------------------
+"-------------------------------------------------------------------------------
 "       Global Settings                                                    "{{{
-"------------------------------------------------------------------------------
-set autochdir       " Locally change directory
+"-------------------------------------------------------------------------------
+" set autochdir       " Locally change directory
 set autoread        " Auto-read changes made outside of vim
 set autowrite       " Auto-write changes when switching buffers
 set encoding=utf-8  " Ensure files are universally readable
@@ -59,13 +59,14 @@ syntax on
 " Enable Omnicompletion
 set omnifunc=syntaxcomplete#Complete
 set completeopt=longest,menuone,preview     " make like bash completion
-set complete=.,w,b,u,t                      " use <C-X><C-I> for included files
+set complete=.,w,b,u,t,kspell
 set dictionary=/usr/share/dict/words
 set thesaurus=/usr/share/thes/mthesaur.txt  " use <C-X><C-T>
 " set thesaurus+=/usr/share/thes/roget13a.txt   " slow search comment out
 
-" read local tag file first, then search for others ';'
-set tags=./tags,tags,~/Documents/MATLAB/tags;    
+" read local tag file first, then look up the tree from current file ';', then
+" search in specified directories
+set tags=./tags,tags;,~/Documents/MATLAB/tags
 
 set wildmenu            " Enable tab to show all menu options
 set nofileignorecase    " no == do NOT ignore case when completing filenames
@@ -85,22 +86,29 @@ set smartcase       " case-sensitive if capital in search
 set tabstop=4       " tabs every 4 spaces
 set softtabstop=0   " set to 4 to let backspace delete indent with expandtab
 set shiftwidth=4    " use >>, << for line shifting
+set shiftround      " shift to round # of tabstops
 set expandtab       " use spaces instead of tab character (need for Fortran)
 set autoindent      " indent based on filetype
+set nojoinspaces    " use one space, not two, after punctuation
 set modelines=20    " check 20 lines down for a modeline
 
-let g:LatexBox_loaded_matchparen=1
-let g:loaded_matchparen=1       " Do not highlight matching parens if == 1
+set nosplitbelow    " split new windows to top right of current one
+set splitright
+
+" let g:LatexBox_loaded_matchparen=0
+let g:loaded_matchparen=0       " Do not highlight matching parens if == 1
 set showmatch                   " Show matching parens
 set matchtime=3                 " Highlight for 3 miliseconds
 
 set textwidth=0                 " set to 0 for no auto-newlines
-set colorcolumn=80              " mark 80th column
 set wrap                        " autowrap text to screen
 set linebreak                   " Do not break words mid-word
 set backspace=indent,eol,start  " allow backspacing over everything
 
-set formatoptions+=rn1j         " tcq default
+" Don't save settings from session, usually we want to reset these to defaults
+" when closing/reopening a bunch of files
+set sessionoptions=blank,buffers,curdir,folds,help,resize,winsize
+set formatoptions+=lrn1j        " tcq default
 set foldmethod=marker           " auto-fold code
 set printoptions=paper:letter
 
@@ -115,8 +123,8 @@ endif
 
 " Use the_silver_searcher if available
 if executable('ag')
-    set grepprg=ag\ --nogroup\ --nocolor
-    set grepformat=%f:%l:%m
+    set grepprg=ag\ --nogroup\ --nocolor\ --column
+    set grepformat=%f:%l:%c%m
 endif
 
 " Create :Ag command for using silver searcher in subwindow
@@ -138,23 +146,23 @@ if &diff
 endif
 "}}}
 
-"------------------------------------------------------------------------------
+"-------------------------------------------------------------------------------
 "       Autocommands                                                       "{{{
-"------------------------------------------------------------------------------
+"-------------------------------------------------------------------------------
 augroup quickfix_window
     au!
-    " Automatically open, but do not go to (if there are errors) the quickfix /
-    " location list window, or close it when is has become empty.
-    " Note: Must allow nesting of autocmds to enable any customizations for quickfix
-    " buffers.
-    " Note: Normally, :cwindow jumps to the quickfix window if the command opens it
-    " (but not if it's already open). However, as part of the autocmd, this doesn't
-    " seem to happen.
+    " Automatically open, but do not go to (if there are errors) the quickfix
+    " / location list window, or close it when is has become empty.
+    " Note: Must allow nesting of autocmds to enable any customizations for
+    " quickfix buffers.
+    " Note: Normally, :cwindow jumps to the quickfix window if the command
+    " opens it (but not if it's already open); however, as part of the
+    " autocmd, this doesn't seem to happen.
     au QuickFixCmdPost [^l]* nested botright cwindow
     au QuickFixCmdPost    l* nested botright lwindow
 
     " Quickly open/close quickfix and location list
-    au! BufWinEnter quickfix nnoremap <silent> <buffer> q :cclose<CR>:lclose<CR>
+    au BufWinEnter quickfix nnoremap <silent> <buffer> q :cclose<CR>:lclose<CR>
 augroup END
 
 augroup misc_cmds
@@ -167,6 +175,12 @@ augroup misc_cmds
     " Treat buffers from stdin (i.e. echo foo | vim -) as scratch buffers
     au StdinReadPost * :set buftype=nofile
 
+    " Follow symlinks to actual files
+    au BufRead * call FollowSymlink()
+
+    " Adjust colorcolumn to textwidth for every filetype
+    au BufEnter * set colorcolumn=+0
+
 augroup END
 
 augroup code_cmds
@@ -175,18 +189,19 @@ augroup code_cmds
     au BufNewFile *.c   call MakeTemplate("$HOME/.vim/header/c_header")
     au BufNewFile *.m   call MakeTemplate("$HOME/.vim/header/m_header")
     au BufNewFile *.f95 call MakeTemplate("$HOME/.vim/header/f_header")
+    au BufNewFile *.py  call MakeTemplate("$HOME/.vim/header/py_header")
     au BufNewFile *.sh  call MakeTemplate("$HOME/.vim/header/sh_header")
     au BufNewFile *.vim call MakeTemplate("$HOME/.vim/header/vim_header")
 
     " Update 'Last Modified:' line in code files
-    au FileType c,cpp,matlab,fortran,vim,sh,perl
+    au FileType c,cpp,python,matlab,fortran,vim,sh,perl
         \ au BufWritePre <buffer> call LastModified()
 augroup END
 "}}}
 "
-"------------------------------------------------------------------------------
+"-------------------------------------------------------------------------------
 "       Key Mappings                                                       "{{{
-"------------------------------------------------------------------------------
+"-------------------------------------------------------------------------------
 " Command line mappings
 cnoremap <C-A> <Home>
 cnoremap <C-L> <Right>
@@ -200,6 +215,14 @@ cnoremap <C-K> <Up>
 " nnoremap <Leader>s :source $MYVIMRC<CR>
 nnoremap <Leader>v :e $MYVIMRC<CR>
 nnoremap <Leader>f :e $HOME/.vim/plugin/util_functions.vim<CR>
+
+" Open URL's in browswer
+nnoremap <Leader>U :silent !open "<C-R><C-F>"<CR><bar>:redraw!<CR><CR>
+
+" Change vim's directory to that of current file (':cd -' changes back)
+" Use '%%/...' on command line to open files in directory of current file
+nnoremap <Leader>D :cd %:p:h<CR>:pwd<CR>
+cabbr <expr> %% expand("%:p:h")
 
 " unmap Q from entering Ex mode to avoid hitting it by accident
 nnoremap Q <nop>
@@ -292,29 +315,28 @@ nnoremap <Leader>T "=strftime("%m/%d/%Y, %H:%M")<CR>P
 " " Run :make
 " nnoremap <Leader>M :make<bar>redraw!<CR>
 
-" YankRing.vim map
-let g:yankring_history_dir='~/.vim/'
-nnoremap <Leader>yr :YRGetElem<CR>
-
+" " YankRing.vim map
+" let g:yankring_history_dir='~/.vim/'
+" nnoremap <Leader>yr :YRGetElem<CR>
 "}}}
 
-"------------------------------------------------------------------------------
+"-------------------------------------------------------------------------------
 "       Colorscheme                                                        "{{{
-"------------------------------------------------------------------------------
+"-------------------------------------------------------------------------------
 " Use solarized colorscheme
 set t_Co=256
 set background=dark
 
 " option name default optional
 "------------------------------------------------
-let g:solarized_termcolors = 256      " | 16
-let g:solarized_termtrans  = 0        " | 1  transparency
-let g:solarized_degrade    = 0        " | 1
-let g:solarized_bold       = 1        " | 0
-let g:solarized_underline  = 1        " | 0
-let g:solarized_italic     = 1        " | 1  Italics not supported in Terminal
-let g:solarized_contrast   = "normal" " | 'high' | 'low'
-let g:solarized_visibility = "normal" " | 'high' | 'low' = show extra chars
+let g:solarized_termcolors = 256        " 256 | 16
+let g:solarized_termtrans  = 0          " 0 | 1  transparency
+let g:solarized_degrade    = 0          " 0 | 1
+let g:solarized_bold       = 1          " 1 | 0
+let g:solarized_underline  = 1          " 1 | 0
+let g:solarized_italic     = 1          " 0 | 1  Italics not supported in Terminal
+let g:solarized_contrast   = "normal"   " 'normal' | 'high' | 'low'
+let g:solarized_visibility = "normal"   " 'normal' | 'high' | 'low' = show extra chars
 colorscheme solarized
 
 " NOTE: UNCOMMENT 'hi' lines for default colorscheme
@@ -356,5 +378,5 @@ if version >= 700
 endif
 "}}}
 
-"==============================================================================
-"==============================================================================
+"===============================================================================
+"===============================================================================
