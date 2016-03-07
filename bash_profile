@@ -1,9 +1,11 @@
-#~/.bash_profile
+#!/bin/bash
 # Set vim syntax: vim:ft=sh syntax=sh
 #==============================================================================
 #    File: ~/.bash_profile
 # Created: 10/29/13
 #  Author: Bernie Roesler
+#
+# Last Modified: 02/25/2016, 20:02
 #
 # Description: Loads for all login shells. Sets path variable and others
 #==============================================================================
