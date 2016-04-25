@@ -8,10 +8,10 @@ function vims()
       command vim --servername VIM
     else
       # Make compatible with Skim inverse-search command
-      command vim --servername VIM --remote-silent ${@}
+      command vim --servername VIM --remote-silent "$@"
     fi
   else
-    command vim $@      # ensure no server used
+    command vim "$@"      # ensure no server used
   fi
 }
 export -f vims

@@ -21,7 +21,7 @@ let b:tex_ignore_makefile=1       " ignore any makefiles in the tex dir
 
 " Call latexmk to build tex files properly. See ~/.latexmkrc for options
 "  include %:S to use shell-escaped current filename as main latex file
-setlocal makeprg=latexmk\ \-pdf\ %
+setlocal makeprg=latexmk\ \-pdf\ '%'
 
 " Errors as produced by pdflatex
 let efm_errors="%E!\ LaTeX\ Error:\ %m,\%E!\ %m,%E!pdfTeX Error:\ %m"
@@ -138,7 +138,7 @@ let @g='i\begin{gather}\end{gather}k'
 " Figure macro
 let @f='o\begin{figure}[h!]
       \\centering
-      \\includegraphics[width=0.85\textwidth]{myfilename.pdf}
+      \\includegraphics[width=0.75\textwidth]{myfilename.pdf}
       \\caption{My caption goes here.}
       \\label{fig:label}
       \0i\end{figure}'
@@ -146,13 +146,13 @@ let @f='o\begin{figure}[h!]
 " Subfigure macro
 let @s='o\begin{figure}[h!]
       \\centering
-      \  \begin{subfigure}[c]{0.45\textwidth}
+      \  \begin{subfigure}[c]{0.48\textwidth}
       \\centering
       \\includegraphics[width=\textwidth]{myfilename_a.pdf}
       \\caption{My caption for subfigure (a).}
       \\end{subfigure}
-      \0i  \hspace{0.1cm}
-      \  \begin{subfigure}[c]{0.45\textwidth}
+      \0i  \hspace{0.01cm}
+      \  \begin{subfigure}[c]{0.48\textwidth}
       \\centering
       \\includegraphics[width=\textwidth]{myfilename_b.pdf}
       \\caption{My caption for subfigure (b).}

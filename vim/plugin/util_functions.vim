@@ -96,8 +96,10 @@ nnoremap <Leader>] :call JumpToCSS()<CR>
 function! LastModified()
     if &modified
         let save_cursor = getpos(".")
+
         " Only check maximum of 50 lines, or to the end of the file (if < 20)
         let n = min([50, line("$")])
+
         " Update line without moving cursor, do not report errors
         keepjumps exe '1,' . n . 's#\(Last Modified:\|Last Updated:\).*#\1 '
                     \ . strftime("%m/%d/%Y, %H:%M") . '#ie'

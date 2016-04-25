@@ -1,3 +1,4 @@
+# General Mac filesystem crap:
 Icon
 Icon^M
 Icon^M^M
@@ -13,3 +14,23 @@ Thumbs.db
 .Trashes
 \#*\#
 ._*
+# ignore all latex auxiliary files:
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+*.toc
+*.fls
+*.fdb_latexmk
+*.synctex*.gz
+*.4ct
+*.4tc
+*.css
+*.dvi
+*.html
+*.idv
+*.lg
+*.tmp
+*.xref
+*x.png
