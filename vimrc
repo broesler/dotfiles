@@ -3,7 +3,7 @@
 " Created: 04/16/2015
 "  Author: Bernie Roesler
 "
-" Last Modified: 03/03/2016, 15:38
+" Last Modified: 04/11/2016, 22:39
 
 " Description: Settings for vim. Source with \s while in vim. Functions called
 "   by autocommands are located in ~/.vim/plugin/util_functions.vim
@@ -101,6 +101,7 @@ set showmatch                   " Show matching parens
 set matchtime=3                 " Highlight for 3 miliseconds
 
 set textwidth=0                 " set to 0 for no auto-newlines
+set colorcolumn=80              " default is 80, autocmd changes for filetype
 set wrap                        " autowrap text to screen
 set linebreak                   " Do not break words mid-word
 set backspace=indent,eol,start  " allow backspacing over everything
@@ -110,6 +111,7 @@ set backspace=indent,eol,start  " allow backspacing over everything
 set sessionoptions=blank,buffers,curdir,folds,help,resize,winsize
 set formatoptions+=lrn1j        " tcq default
 set foldmethod=marker           " auto-fold code
+set foldcolumn=0                " show locations of folds in left-most column
 set printoptions=paper:letter
 
 " Use mouse if it exists -- mouse is weird in ssh
@@ -123,8 +125,9 @@ endif
 
 " Use the_silver_searcher if available
 if executable('ag')
-    set grepprg=ag\ --nogroup\ --nocolor\ --column
-    set grepformat=%f:%l:%c%m
+    " set grepprg=ag\ --nogroup\ --nocolor\ --column
+    set grepprg=ag\ --vimgrep\ $*
+    set grepformat=%f:%l:%c:%m
 endif
 
 " Create :Ag command for using silver searcher in subwindow
@@ -194,8 +197,9 @@ augroup code_cmds
     au BufNewFile *.vim call MakeTemplate("$HOME/.vim/header/vim_header")
 
     " Update 'Last Modified:' line in code files
-    au FileType c,cpp,python,matlab,fortran,vim,sh,perl
-        \ au BufWritePre <buffer> call LastModified()
+    au BufUnload 
+        \ au FileType c,cpp,python,matlab,fortran,vim,sh,perl <buffer> call LastModified()
+        " \ au BufWritePre <buffer> call LastModified()
 augroup END
 "}}}
 "
@@ -249,8 +253,8 @@ nnoremap <silent> ,/ :nohls<CR>
 nnoremap <Leader>* :%s/\<<C-r><C-w>\>/
 
 " Wrapped lines goes down/up to next row, rather than next line in file
-nnoremap j gj
-nnoremap k gk
+" nnoremap j gj
+" nnoremap k gk
 
 " Make Y consistent with C and D
 nnoremap Y y$
@@ -311,6 +315,9 @@ nmap <Leader>E :Hexplore!<CR>
 
 " Timestamp in format %y%m%d, %H:%M
 nnoremap <Leader>T "=strftime("%m/%d/%Y, %H:%M")<CR>P
+
+" Use spacebar to open/close folds
+nnoremap <space> za
 
 " " Run :make
 " nnoremap <Leader>M :make<bar>redraw!<CR>
