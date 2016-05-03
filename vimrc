@@ -3,7 +3,7 @@
 " Created: 04/16/2015
 "  Author: Bernie Roesler
 "
-" Last Modified: 03/03/2016, 15:38
+" Last Modified: 04/29/2016, 14:15
 
 " Description: Settings for vim. Source with \s while in vim. Functions called
 "   by autocommands are located in ~/.vim/plugin/util_functions.vim
@@ -48,7 +48,7 @@ set ttimeoutlen=10
 set timeoutlen=1000
 
 " keep undo history between files/saves/sessions
-set undofile
+set noundofile
 set undodir=~/.vim/undodir/ " directory MUST already exist
 set undolevels=1000         " How many undos
 set undoreload=10000        " number of lines to save for undo
@@ -101,6 +101,7 @@ set showmatch                   " Show matching parens
 set matchtime=3                 " Highlight for 3 miliseconds
 
 set textwidth=0                 " set to 0 for no auto-newlines
+set colorcolumn=80              " default is 80, autocmd changes for filetype
 set wrap                        " autowrap text to screen
 set linebreak                   " Do not break words mid-word
 set backspace=indent,eol,start  " allow backspacing over everything
@@ -110,6 +111,7 @@ set backspace=indent,eol,start  " allow backspacing over everything
 set sessionoptions=blank,buffers,curdir,folds,help,resize,winsize
 set formatoptions+=lrn1j        " tcq default
 set foldmethod=marker           " auto-fold code
+set foldcolumn=0                " show locations of folds in left-most column
 set printoptions=paper:letter
 
 " Use mouse if it exists -- mouse is weird in ssh
@@ -123,8 +125,9 @@ endif
 
 " Use the_silver_searcher if available
 if executable('ag')
-    set grepprg=ag\ --nogroup\ --nocolor\ --column
-    set grepformat=%f:%l:%c%m
+    " set grepprg=ag\ --nogroup\ --nocolor\ --column
+    set grepprg=ag\ --vimgrep\ $*
+    set grepformat=%f:%l:%c:%m
 endif
 
 " Create :Ag command for using silver searcher in subwindow
@@ -179,7 +182,8 @@ augroup misc_cmds
     au BufRead * call FollowSymlink()
 
     " Adjust colorcolumn to textwidth for every filetype
-    au BufEnter * set colorcolumn=+0
+    au BufEnter * if &textwidth == 0 | set colorcolumn=80 | else | set colorcolumn=+0 | endif
+    " au BufEnter * set colorcolumn = &textwidth == 0 ? 80 : +0
 
 augroup END
 
@@ -194,7 +198,7 @@ augroup code_cmds
     au BufNewFile *.vim call MakeTemplate("$HOME/.vim/header/vim_header")
 
     " Update 'Last Modified:' line in code files
-    au FileType c,cpp,python,matlab,fortran,vim,sh,perl
+    au FileType c,cpp,python,matlab,fortran,vim,sh,perl 
         \ au BufWritePre <buffer> call LastModified()
 augroup END
 "}}}
@@ -214,6 +218,7 @@ cnoremap <C-K> <Up>
 " Quick access .vimrc and functions
 " nnoremap <Leader>s :source $MYVIMRC<CR>
 nnoremap <Leader>v :e $MYVIMRC<CR>
+nnoremap <Leader>s :so $MYVIMRC<CR>
 nnoremap <Leader>f :e $HOME/.vim/plugin/util_functions.vim<CR>
 
 " Open URL's in browswer
@@ -249,8 +254,8 @@ nnoremap <silent> ,/ :nohls<CR>
 nnoremap <Leader>* :%s/\<<C-r><C-w>\>/
 
 " Wrapped lines goes down/up to next row, rather than next line in file
-nnoremap j gj
-nnoremap k gk
+" nnoremap j gj
+" nnoremap k gk
 
 " Make Y consistent with C and D
 nnoremap Y y$
@@ -312,6 +317,9 @@ nmap <Leader>E :Hexplore!<CR>
 " Timestamp in format %y%m%d, %H:%M
 nnoremap <Leader>T "=strftime("%m/%d/%Y, %H:%M")<CR>P
 
+" Use spacebar to open/close folds
+nnoremap <space> za
+
 " " Run :make
 " nnoremap <Leader>M :make<bar>redraw!<CR>
 
@@ -343,7 +351,7 @@ colorscheme solarized
 " hi Comment ctermfg=darkgreen
 " hi Type ctermfg=33
 " hi StatusLine ctermfg=none ctermbg=none
-" hi  WildMenu ctermfg=yellow ctermbg=darkgrey
+" hi WildMenu ctermfg=yellow ctermbg=darkgrey
 
 " Spell check options -- need to be set AFTER colorscheme to work properly.
 hi clear SpellBad
@@ -367,7 +375,7 @@ set statusline+=%t\                          " %t filename, %F entire path
 set statusline+=%h%m%r%w                     " status flags
 set statusline+=\[%{strlen(&ft)?&ft:'none'}] " file type
 set statusline+=%=                           " right align remainder
-set statusline+=0x%-5B                       " character value
+set statusline+=0x%-5B                       " character value under cursor
 set statusline+=%-10(%l,%c%V%)               " line, character
 set statusline+=%<%P                         " file position
 
