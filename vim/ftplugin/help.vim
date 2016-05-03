@@ -1,23 +1,26 @@
-"------------------------------------------------------------------------------
-"       help.vim commands
-"------------------------------------------------------------------------------
+"==============================================================================
+"    File: ~/.vim/ftplugin/help.vim
+"  Author: Bernie Roesler
+" Created: 02/19/2016, 13:39 
+"
+" Description: keymaps for vim help window
+"==============================================================================
 
 " Navigation mappings:
 
-" jump to topic under cursor
+" Navigate topics (quick tag jumps)
 nnoremap <buffer> <CR> <C-]>              
-
-" return from last jump
 nnoremap <buffer> <BS> <C-T>              
 
-" o to find next     option
+" [oO] to find option
 nnoremap <buffer> o /'\l\{2,\}'<CR>       
-
-" O to find previous option
 nnoremap <buffer> O ?'\l\{2,\}'<CR>       
 
-" s to find next     subject
+" [sS] to find subject
 nnoremap <buffer> s /\|\zs\S\+\ze\|<CR>   
-
-" S to find previous subject
 nnoremap <buffer> S ?\|\zs\S\+\ze\|<CR>   
+
+" q to close window
+nnoremap <buffer> q <C-w>q
+"==============================================================================
+"==============================================================================

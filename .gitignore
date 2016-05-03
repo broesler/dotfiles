@@ -4,3 +4,4 @@ vim/undodir/*
 mutt/cache/*
 mutt/tmp/*
 *yankring_history*
+*.netrwhist

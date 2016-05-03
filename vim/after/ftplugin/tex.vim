@@ -2,22 +2,15 @@
 "       LaTeX Filetype Settings
 "==============================================================================
 let g:tex_stylish=1
+setlocal textwidth=80         " no auto-newlines
 setlocal tabstop=2            " tabs every 2 spaces
 setlocal softtabstop=2        " let backspace delete indent
 setlocal shiftwidth=2
 setlocal foldmethod=marker    " fold between {{{ }}} comments
-
-" wrap \left( \right) around visually selected text
-vmap <buffer> sp "zdi\left(<C-R>z\right)<Esc> 
+setlocal fo-=t                " only wrap comments, not text
 
 " : is included as keyword for fig: eqn: etc.,
 setlocal iskeyword+=_
-
-" Turn off matching paren highlighting for LaTeX files
-" Doesn't work...
-let g:LatexBox_loaded_matchparen=1
-let g:LatexBox_output_type="pdf"
-let g:LatexBox_viewer="skim"
 
 " Change default SuperTabs completion to context (or try <C-x><C-o>)
 let g:SuperTabDefaultCompletionType="context"
@@ -25,7 +18,6 @@ let g:SuperTabDefaultCompletionType="context"
 " Compiler options. Use ':make mydocument' to compile
 let b:tex_flavor="pdflatex"
 let b:tex_ignore_makefile=1       " ignore any makefiles in the tex dir
-" compiler tex                    " just this line gives defaults
 
 " Call latexmk to build tex files properly. See ~/.latexmkrc for options
 "  include %:S to use shell-escaped current filename as main latex file
@@ -35,17 +27,17 @@ setlocal makeprg=latexmk\ \-pdf\ %
 let efm_errors="%E!\ LaTeX\ Error:\ %m,\%E!\ %m,%E!pdfTeX Error:\ %m"
 
 " Warmings output by latexmk script
-let efm_warnings="%W%.%#Citation\ %m on\ input\ line\ %l,
-      \%W%.%#Reference\ %m on\ input\ line\ %l"
+let efm_warnings="%W%.%#Citation\ %m on\ input\ line\ %l,"
+               \."%W%.%#Reference\ %m on\ input\ line\ %l"
 
-" For use with normal pdflatex output (i.e. not via latexmk):
-" let efm_warnings="%WLaTeX\ Warning:\ Citation\ %m\ on\ input\ line\ %l%.%#,
-"             \%WPackage\ natbib\ Warning:\ Citation %m on\ input\ line\ %l%.%#,
-"             \%WPackage\ %.%#Warning:\ Citation %m,%C %m on input line %l%.%#,
-"             \%WLaTeX\ Warning:\ Reference %m on\ input\ line\ %l%.%#,
-"             \%WLaTeX\ %.%#Warning:\ Reference %m,%C %m on input line %l%.%#"
+" " For use with normal pdflatex output (i.e. not via latexmk):
+" let efm_warnings="%WLaTeX\ Warning:\ Citation\ %m\ on\ input\ line\ %l%.%#,"
+"                \."%WPackage\ natbib\ Warning:\ Citation %m on\ input\ line\ %l%.%#,"
+"                \."%WPackage\ %.%#Warning:\ Citation %m,%C %m on input line %l%.%#,"
+"                \."%WLaTeX\ Warning:\ Reference %m on\ input\ line\ %l%.%#,"
+"                \."%WLaTeX\ %.%#Warning:\ Reference %m,%C %m on input line %l%.%#"
 
-let &l:errorformat = "%f:%l:%m" . "," . efm_errors . "," . efm_warnings
+let &l:errorformat="%f:%l:%m".",".efm_errors.",".efm_warnings
 
 "------------------------------------------------------------------------------
 "       Local autocmds
@@ -53,15 +45,18 @@ let &l:errorformat = "%f:%l:%m" . "," . efm_errors . "," . efm_warnings
 " autocmd BufWritePost,FileWritePost <buffer> silent! call UpdateTags()
 
 "------------------------------------------------------------------------------
-"       LaTeX-specific Functions
+"       LaTeX-specific functions
 "------------------------------------------------------------------------------
 " Make LaTeX file using latexmk (see .latexmkrc, and above makeprg)
 function! LatexMakeLatexmk()
   if (&ft != "tex")
-      echoe "File ". expand("%") . " is not a .tex file! Not compiling."
+    echoe "File ". expand("%") . " is not a .tex file! Not compiling."
   else
-      make %
-      redraw!
+    write
+    lcd %:p:h
+    silent! make %
+    redraw!
+    lcd -
   endif
 endfunction
 
@@ -71,6 +66,7 @@ function! JumpToSkim()
   let filen = expand("%:r").".pdf"
   write
   execute "!/Applications/Skim.app/Contents/SharedSupport/displayline " . linen . " " . filen
+  redraw!
 endfunction
 
 " make current .tex file
@@ -86,7 +82,7 @@ function! LatexMakeOnce()
   endif
 endfunction
 
-" make current .tex file properly
+" make current .tex file with 2 latex runs
 function! LatexMakeFull()
   let fileext = expand("%:e")
   if (fileext ==# "tex")
@@ -99,7 +95,7 @@ function! LatexMakeFull()
   endif
 endfunction
 
-" make current .tex file properly
+" make current .tex file with 2 latex runs + bibtex + latex
 function! LatexMakeBib()
   let fileext = expand("%:e")
   if (fileext ==# "tex")
@@ -116,10 +112,13 @@ endfunction
 "       Keymaps
 "-------------------------------------------------------------------------------
 nnoremap <buffer> <Leader>M :silent call LatexMakeLatexmk()<CR>
-nnoremap <buffer> ,r :silent! call JumpToSkim()<CR>
+nnoremap <buffer>        ,r :silent! call JumpToSkim()<CR>
 nnoremap <buffer> <Leader>F :call LatexMakeFull()<CR>
 nnoremap <buffer> <Leader>T :call LatexMakeOnce()<CR>
 nnoremap <buffer> <Leader>B :call LatexMakeBib()<CR>
+
+" wrap \left( \right) around visually selected text
+vnoremap <buffer> sp "zdi\left(<C-R>z\right)<Esc> 
 
 "------------------------------------------------------------------------------
 "       Macros -- All special characters are intentional
@@ -139,9 +138,9 @@ let @g='i\begin{gather}\end{gather}k'
 " Figure macro
 let @f='o\begin{figure}[h!]
       \\centering
-      \\includegraphics[width=\textwidth]{pinned_bar_modes.pdf}
-      \\caption{First few vibrational mode shapes of a pinned-pinned bar.}
-      \\label{fig:modeshapes}
+      \\includegraphics[width=0.85\textwidth]{myfilename.pdf}
+      \\caption{My caption goes here.}
+      \\label{fig:label}
       \0i\end{figure}'
 
 " Subfigure macro
@@ -149,17 +148,17 @@ let @s='o\begin{figure}[h!]
       \\centering
       \  \begin{subfigure}[c]{0.45\textwidth}
       \\centering
-      \\includegraphics[width=\textwidth]{state_errorr.pdf}
-      \\caption{Linear error vs.\ time plot.}
+      \\includegraphics[width=\textwidth]{myfilename_a.pdf}
+      \\caption{My caption for subfigure (a).}
       \\end{subfigure}
       \0i  \hspace{0.1cm}
       \  \begin{subfigure}[c]{0.45\textwidth}
       \\centering
-      \\includegraphics[width=\textwidth]{state_errorr_semilog.pdf}
-      \\caption{Semilog error vs.\ time plot.}
+      \\includegraphics[width=\textwidth]{myfilename_b.pdf}
+      \\caption{My caption for subfigure (b).}
       \\end{subfigure}
-      \0i  \caption{Two error plots to compare linear and semilog plot. The semilog plot shows $|e(k)|$ for ease of determining the order of convergence.}
-      \\label{fig:error_r1}
+      \0i  \caption{My caption for the entire figure.}
+      \\label{fig:whole_figure}
       \0i\end{figure}'
 
 " Table macro

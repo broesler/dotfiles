@@ -1,6 +1,18 @@
-"------------------------------------------------------------------------------
-"       Gambit journal file syntax
-"------------------------------------------------------------------------------
+"===============================================================================
+"     File: ~/.vim/syntax/gjou.vim
+"  Created: 02/17/2016, 15:42
+"   Author: Bernie Roesler
+"
+" Last Modified: 02/18/2016, 01:16
+"
+"  Description: Syntax highlighting for Gambit journal files
+"
+"==============================================================================
+" Quit when a (custom) syntax file was already loaded
+if exists("b:current_syntax")
+  finish
+endif
+
 " Keywords
 syn keyword myKeywords create delete add subtract modify mesh attach set select
 syn keyword myKeywords COS SIN TAN ACOS ASIN ATAN
@@ -41,5 +53,11 @@ hi def link myVariables     Special
 hi def link myString        String
 hi def link myConst         Constant
 hi def link myOperators     Operator
-hi def link myImportant     PreProc
+hi def link myImportant     Todo
 hi def link myComments      Comment
+
+" Set syntax file for current buffer
+let b:current_syntax = "gjou"
+
+"==============================================================================
+"==============================================================================

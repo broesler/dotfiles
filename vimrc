@@ -1,18 +1,18 @@
-"==============================================================================
+"===============================================================================
 "    File: ~/.vimrc
 " Created: 04/16/2015
 "  Author: Bernie Roesler
 "
-" Last Modified: 01/21/2016, 13:49
+" Last Modified: 03/03/2016, 15:38
 
 " Description: Settings for vim. Source with \s while in vim. Functions called
 "   by autocommands are located in ~/.vim/plugin/util_functions.vim
-"==============================================================================
+"===============================================================================
 
+"-------------------------------------------------------------------------------
+"       Preamble                                                           "{{{
+"-------------------------------------------------------------------------------
 " Run pathogen to load plugins (ignore errors on Linux machines)
-" let g:pathogen_disabled = []
-" call add(g:pathogen_disabled, 'yankring')
-"
 silent! call pathogen#infect()
 silent! call pathogen#helptags()
 
@@ -27,17 +27,18 @@ set path=.,/usr/include/,/usr/local/include,**
 " Set vim's environment to load my .bashrc so functions/aliases are available
 " let $BASH_ENV="~/.bashrc"
 
-" Ensure files are universally readable
-set encoding=utf-8
-
 " Ensure filetypes taken into account
-filetype plugin indent on              
+filetype plugin indent on
 
-"------------------------------------------------------------------------------
-"       Global Settings
-"------------------------------------------------------------------------------
+"}}}
+
+"-------------------------------------------------------------------------------
+"       Global Settings                                                    "{{{
+"-------------------------------------------------------------------------------
+" set autochdir       " Locally change directory
 set autoread        " Auto-read changes made outside of vim
 set autowrite       " Auto-write changes when switching buffers
+set encoding=utf-8  " Ensure files are universally readable
 
 " load man plugin so manual pages can be read in a vim window
 runtime! ftplugin/man.vim
@@ -53,17 +54,19 @@ set undolevels=1000         " How many undos
 set undoreload=10000        " number of lines to save for undo
 
 " Enable syntax highlighting
-syntax on           
+syntax on
 
 " Enable Omnicompletion
 set omnifunc=syntaxcomplete#Complete
-set completeopt=longest,menu,preview        " make like bash completion
-set complete=.,w,b,u,t,i
+set completeopt=longest,menuone,preview     " make like bash completion
+set complete=.,w,b,u,t,kspell
 set dictionary=/usr/share/dict/words
 set thesaurus=/usr/share/thes/mthesaur.txt  " use <C-X><C-T>
-" set thesaurus+=/usr/share/thes/roget13a.txt
+" set thesaurus+=/usr/share/thes/roget13a.txt   " slow search comment out
 
-set tags=./tags;    " read local tag file first, then search for others ';'
+" read local tag file first, then look up the tree from current file ';', then
+" search in specified directories
+set tags=./tags,tags;,~/Documents/MATLAB/tags
 
 set wildmenu            " Enable tab to show all menu options
 set nofileignorecase    " no == do NOT ignore case when completing filenames
@@ -83,25 +86,34 @@ set smartcase       " case-sensitive if capital in search
 set tabstop=4       " tabs every 4 spaces
 set softtabstop=0   " set to 4 to let backspace delete indent with expandtab
 set shiftwidth=4    " use >>, << for line shifting
+set shiftround      " shift to round # of tabstops
 set expandtab       " use spaces instead of tab character (need for Fortran)
 set autoindent      " indent based on filetype
+set nojoinspaces    " use one space, not two, after punctuation
 set modelines=20    " check 20 lines down for a modeline
 
-" set line length marker
-if exists('+colorcolumn')
-    set colorcolumn=80
-endif
+set nosplitbelow    " split new windows to top right of current one
+set splitright
 
+" let g:LatexBox_loaded_matchparen=0
 let g:loaded_matchparen=0       " Do not highlight matching parens if == 1
 set showmatch                   " Show matching parens
 set matchtime=3                 " Highlight for 3 miliseconds
-set textwidth=0 wrap linebreak  " Do not break words mid-word
-set backspace=indent,eol,start  " allow backspacing over everything in insert mode
 
+set textwidth=0                 " set to 0 for no auto-newlines
+set wrap                        " autowrap text to screen
+set linebreak                   " Do not break words mid-word
+set backspace=indent,eol,start  " allow backspacing over everything
+
+" Don't save settings from session, usually we want to reset these to defaults
+" when closing/reopening a bunch of files
+set sessionoptions=blank,buffers,curdir,folds,help,resize,winsize
+set formatoptions+=lrn1j        " tcq default
+set foldmethod=marker           " auto-fold code
 set printoptions=paper:letter
 
 " Use mouse if it exists -- mouse is weird in ssh
-if has('mouse') && !exists("$SSH_TTY") 
+if has('mouse') && !exists("$SSH_TTY")
     set mouse=a
     " tmux knows the extended mouse mode
     if &term =~ '^screen'
@@ -111,8 +123,8 @@ endif
 
 " Use the_silver_searcher if available
 if executable('ag')
-    set grepprg=ag\ --nogroup\ --nocolor
-    set grepformat=%f:%l:%m
+    set grepprg=ag\ --nogroup\ --nocolor\ --column
+    set grepformat=%f:%l:%c%m
 endif
 
 " Create :Ag command for using silver searcher in subwindow
@@ -132,25 +144,25 @@ if &diff
     windo set wrap
     set diffopt+=iwhite   " ignore trailing whitespace
 endif
+"}}}
 
-
-"------------------------------------------------------------------------------
-"       Autocommands
-"------------------------------------------------------------------------------
+"-------------------------------------------------------------------------------
+"       Autocommands                                                       "{{{
+"-------------------------------------------------------------------------------
 augroup quickfix_window
     au!
-    " Automatically open, but do not go to (if there are errors) the quickfix /
-    " location list window, or close it when is has become empty.
-    " Note: Must allow nesting of autocmds to enable any customizations for quickfix
-    " buffers.
-    " Note: Normally, :cwindow jumps to the quickfix window if the command opens it
-    " (but not if it's already open). However, as part of the autocmd, this doesn't
-    " seem to happen.
-    au QuickFixCmdPost [^l]* nested cwindow
-    au QuickFixCmdPost    l* nested lwindow
+    " Automatically open, but do not go to (if there are errors) the quickfix
+    " / location list window, or close it when is has become empty.
+    " Note: Must allow nesting of autocmds to enable any customizations for
+    " quickfix buffers.
+    " Note: Normally, :cwindow jumps to the quickfix window if the command
+    " opens it (but not if it's already open); however, as part of the
+    " autocmd, this doesn't seem to happen.
+    au QuickFixCmdPost [^l]* nested botright cwindow
+    au QuickFixCmdPost    l* nested botright lwindow
 
     " Quickly open/close quickfix and location list
-    au! BufWinEnter quickfix nnoremap <silent> <buffer> q :cclose<CR>:lclose<CR>
+    au BufWinEnter quickfix nnoremap <silent> <buffer> q :cclose<CR>:lclose<CR>
 augroup END
 
 augroup misc_cmds
@@ -159,6 +171,16 @@ augroup misc_cmds
 
     " Use K to search vim help for word under cursor only in vim files
     au FileType vim setlocal keywordprg=:help
+
+    " Treat buffers from stdin (i.e. echo foo | vim -) as scratch buffers
+    au StdinReadPost * :set buftype=nofile
+
+    " Follow symlinks to actual files
+    au BufRead * call FollowSymlink()
+
+    " Adjust colorcolumn to textwidth for every filetype
+    au BufEnter * set colorcolumn=+0
+
 augroup END
 
 augroup code_cmds
@@ -167,17 +189,19 @@ augroup code_cmds
     au BufNewFile *.c   call MakeTemplate("$HOME/.vim/header/c_header")
     au BufNewFile *.m   call MakeTemplate("$HOME/.vim/header/m_header")
     au BufNewFile *.f95 call MakeTemplate("$HOME/.vim/header/f_header")
+    au BufNewFile *.py  call MakeTemplate("$HOME/.vim/header/py_header")
     au BufNewFile *.sh  call MakeTemplate("$HOME/.vim/header/sh_header")
     au BufNewFile *.vim call MakeTemplate("$HOME/.vim/header/vim_header")
 
     " Update 'Last Modified:' line in code files
-    au FileType c,cpp,matlab,fortran,vim,sh,perl
+    au FileType c,cpp,python,matlab,fortran,vim,sh,perl
         \ au BufWritePre <buffer> call LastModified()
 augroup END
-
-"------------------------------------------------------------------------------
-"       Key Mappings
-"------------------------------------------------------------------------------
+"}}}
+"
+"-------------------------------------------------------------------------------
+"       Key Mappings                                                       "{{{
+"-------------------------------------------------------------------------------
 " Command line mappings
 cnoremap <C-A> <Home>
 cnoremap <C-L> <Right>
@@ -191,6 +215,14 @@ cnoremap <C-K> <Up>
 " nnoremap <Leader>s :source $MYVIMRC<CR>
 nnoremap <Leader>v :e $MYVIMRC<CR>
 nnoremap <Leader>f :e $HOME/.vim/plugin/util_functions.vim<CR>
+
+" Open URL's in browswer
+nnoremap <Leader>U :silent !open "<C-R><C-F>"<CR><bar>:redraw!<CR><CR>
+
+" Change vim's directory to that of current file (':cd -' changes back)
+" Use '%%/...' on command line to open files in directory of current file
+nnoremap <Leader>D :cd %:p:h<CR>:pwd<CR>
+cabbr <expr> %% expand("%:p:h")
 
 " unmap Q from entering Ex mode to avoid hitting it by accident
 nnoremap Q <nop>
@@ -207,7 +239,7 @@ nnoremap ,v :bp!<CR>
 nnoremap ,c :cn!<CR>
 nnoremap ,p :cp!<CR>
 
-" Toggle spell checking 
+" Toggle spell checking
 nmap <silent> ,s :set spell!<CR>
 
 " Turn off highlight search
@@ -229,11 +261,13 @@ nnoremap <silent>,n :set relativenumber!<CR>
 " Shift-tab backs up one tab stop
 inoremap <S-Tab> <C-d>
 
-" With new window mappings <C-l> no longer redraws...
-nmap <C-q> :redraw!<CR>
-
 " Swap word under cursor with next word, including linebreaks
 nnoremap <Leader>t :s/\v(<\S*%#\S*>)(\_.{-})(<\S+>)/\3\2\1/<CR>
+
+" Completion in insert mode
+inoremap <C-f> <C-X><C-F>
+inoremap <C-]> <C-X><C-]>
+inoremap <C-l> <C-X><C-L>
 
 " Jump between tmux and vim windows with <C-[hjkl]>
 if (exists('$TMUX') || exists('$SSH_IN_TMUX'))
@@ -251,6 +285,9 @@ if (exists('$TMUX') || exists('$SSH_IN_TMUX'))
     let &t_ti = "\<Esc>]2;vim\<Esc>\\".&t_ti
     let &t_te = "\<Esc>]2;".previous_title."\<Esc>\\".&t_te
 
+    " autocmd BufReadPost,FileReadPost,BufNewFile * call system("tmux rename-window %")
+    " autocmd BufEnter * let &titlestring=' '.expand("%:p")
+
     nnoremap <silent> <C-h> :call TmuxOrSplitSwitch('h', 'L')<CR>
     nnoremap <silent> <C-j> :call TmuxOrSplitSwitch('j', 'D')<CR>
     nnoremap <silent> <C-k> :call TmuxOrSplitSwitch('k', 'U')<CR>
@@ -264,10 +301,10 @@ endif
 
 " Close buffer without closing split (# is 'alternate file')
 " NOTE: Does NOT work twice in a row!!
-nnoremap <C-c> :bp<bar>bd #<CR>
+nnoremap <C-q> :bp<bar>bd #<CR>
 
-" Move to middle of page when jumping to tag (easier viewing)
-nnoremap <C-]> <C-]>zz
+" Move to top of page when jumping to tag (easier viewing)
+nnoremap <C-]> <C-]>zt
 
 " Open explorer in new window
 nmap <Leader>E :Hexplore!<CR>
@@ -278,27 +315,28 @@ nnoremap <Leader>T "=strftime("%m/%d/%Y, %H:%M")<CR>P
 " " Run :make
 " nnoremap <Leader>M :make<bar>redraw!<CR>
 
-" YankRing.vim map
-let g:yankring_history_dir='~/.vim/'
-nnoremap <Leader>yr :YRGetElem<CR>
+" " YankRing.vim map
+" let g:yankring_history_dir='~/.vim/'
+" nnoremap <Leader>yr :YRGetElem<CR>
+"}}}
 
-"------------------------------------------------------------------------------
-"       Colorscheme
-"------------------------------------------------------------------------------
+"-------------------------------------------------------------------------------
+"       Colorscheme                                                        "{{{
+"-------------------------------------------------------------------------------
 " Use solarized colorscheme
 set t_Co=256
 set background=dark
 
 " option name default optional
-"------------------------------------------------ 
-let g:solarized_termcolors = 256      " | 16
-let g:solarized_termtrans  = 0        " | 1  transparency
-let g:solarized_degrade    = 0        " | 1
-let g:solarized_bold       = 1        " | 0 
-let g:solarized_underline  = 1        " | 0 
-let g:solarized_italic     = 1        " | 1  Italics not supported in Terminal
-let g:solarized_contrast   = "normal" " | 'high' | 'low'
-let g:solarized_visibility = "normal" " | 'high' | 'low' = show extra chars
+"------------------------------------------------
+let g:solarized_termcolors = 256        " 256 | 16
+let g:solarized_termtrans  = 0          " 0 | 1  transparency
+let g:solarized_degrade    = 0          " 0 | 1
+let g:solarized_bold       = 1          " 1 | 0
+let g:solarized_underline  = 1          " 1 | 0
+let g:solarized_italic     = 1          " 0 | 1  Italics not supported in Terminal
+let g:solarized_contrast   = "normal"   " 'normal' | 'high' | 'low'
+let g:solarized_visibility = "normal"   " 'normal' | 'high' | 'low' = show extra chars
 colorscheme solarized
 
 " NOTE: UNCOMMENT 'hi' lines for default colorscheme
@@ -320,24 +358,25 @@ hi SpellLocal term=underline cterm=underline
 
 "-----------  Set status-line color based on mode
 " Status Line
-set laststatus=2                             " always show statusbar  
+set laststatus=2                             " always show statusbar
 set statusline=                              " clear default status line
-set statusline+=%-4.3n\                      " buffer number  
+set statusline+=%-4.3n\                      " buffer number
 set statusline+=%{exists('g:loaded_fugitive')?fugitive#statusline():''}
 set statusline+=\ \                          " Separator
-set statusline+=%t\                          " %F is entire path
-set statusline+=%h%m%r%w                     " status flags  
-set statusline+=\[%{strlen(&ft)?&ft:'none'}] " file type  
-set statusline+=%=                           " right align remainder  
-set statusline+=0x%-5B                       " character value  
-set statusline+=%-10(%l,%c%V%)               " line, character  
-set statusline+=%<%P                         " file position  
+set statusline+=%t\                          " %t filename, %F entire path
+set statusline+=%h%m%r%w                     " status flags
+set statusline+=\[%{strlen(&ft)?&ft:'none'}] " file type
+set statusline+=%=                           " right align remainder
+set statusline+=0x%-5B                       " character value
+set statusline+=%-10(%l,%c%V%)               " line, character
+set statusline+=%<%P                         " file position
 
 " now set it up to change the status line based on mode
 if version >= 700
     au InsertEnter * hi StatusLine term=reverse ctermfg=green ctermbg=black
     au InsertLeave * hi StatusLine term=none    ctermfg=none  ctermbg=none
 endif
+"}}}
 
-"==============================================================================
-"==============================================================================
+"===============================================================================
+"===============================================================================
