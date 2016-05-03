@@ -13,6 +13,7 @@ set editing-mode vi
 # tab completion options
 set expand-tilde off            # Do NOT expand ~ in command line completions
 set show-all-if-ambiguous on    # one tab to show list of suggestions
+set menu-complete-display-prefix on     # just list candidates on first tab
 set completion-display-width 1  # show suggestions in one-column list
 set completion-map-case on      # auto-figure-out case mistakes, - vs _
 
@@ -22,6 +23,9 @@ $if mode=vi
   #      Keymaps for vi-insert mode
   #============================================================================
   set keymap vi-insert
+
+  # Tab completes menu
+  # "\t": menu-complete
 
   # Expand history, aliases, and shell constructs
   "\C-x": shell-expand-line

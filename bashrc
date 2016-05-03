@@ -1,5 +1,5 @@
 #~/.bashrc
-# Set vim syntax: vim: set ft=sh syntax=sh
+# vim: set ft=sh syntax=sh
 #==============================================================================
 #    File: ~/.bashrc
 # Created: 10/29/13
@@ -79,8 +79,18 @@ set bell-style visible
 
 # Mac-only options
 if [[ "$OSTYPE" == "darwin"* ]]; then
-  # Set default printer options
-  lpoptions -d m210__bw___thayercups \
+  # Create instance of m210 B/W printer for duplex printing
+  lpoptions -p m210__bw___thayercups/duplex \
+            -o Duplex=DuplexNoTumble \
+            -o prettyprint \
+            -o cpi=14 \
+            -o lpi=8 \
+            -o page-top=18 \
+            -o page-right=18 \
+            -o page-bottom=36 \
+            -o page-left=36
+
+  lpoptions -p m210__color___thayercups/duplex \
             -o Duplex=DuplexNoTumble \
             -o prettyprint \
             -o cpi=14 \
