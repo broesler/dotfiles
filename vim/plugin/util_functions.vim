@@ -3,7 +3,7 @@
 "  Created: 12/06/2015, 13:20
 "   Author: Bernie Roesler
 "
-" Last Modified: 02/22/2016, 14:55
+" Last Modified: 05/01/2016, 18:35
 "
 "  Description: Custom utility functions called from .vimrc autocmds, etc.
 "==============================================================================
@@ -107,9 +107,9 @@ function! LastModified()
         " Remove update from cmd history
         call histdel('search', -1)      
 
-        " These commands are suggested in the help, but do not seem to work when
-        "+  using an undo history file... need to find a way to delete this change
-        "+  from the undo history file.
+        " These commands are suggested in the help to remove the last chnage
+        " from the undo history/tree. We turn off 'undofile' before the change
+        " and turn it back on after the change so it is not recorded
         " let old_undolevels = &undolevels
         " set undolevels=&undolevels-1
         " exe "normal a \<BS>\<Esc>"
@@ -117,6 +117,9 @@ function! LastModified()
         " unlet old_undolevels
 
         call setpos('.', save_cursor)
+
+        " Keep other changes in undofile
+        " set undofile
     endif
 endfunction "}}}
 
