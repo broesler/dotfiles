@@ -3,7 +3,7 @@
 " Created: 04/16/2015
 "  Author: Bernie Roesler
 "
-" Last Modified: 04/11/2016, 22:39
+" Last Modified: 04/29/2016, 14:15
 
 " Description: Settings for vim. Source with \s while in vim. Functions called
 "   by autocommands are located in ~/.vim/plugin/util_functions.vim
@@ -48,7 +48,7 @@ set ttimeoutlen=10
 set timeoutlen=1000
 
 " keep undo history between files/saves/sessions
-set undofile
+set noundofile
 set undodir=~/.vim/undodir/ " directory MUST already exist
 set undolevels=1000         " How many undos
 set undoreload=10000        " number of lines to save for undo
@@ -182,7 +182,8 @@ augroup misc_cmds
     au BufRead * call FollowSymlink()
 
     " Adjust colorcolumn to textwidth for every filetype
-    au BufEnter * set colorcolumn=+0
+    au BufEnter * if &textwidth == 0 | set colorcolumn=80 | else | set colorcolumn=+0 | endif
+    " au BufEnter * set colorcolumn = &textwidth == 0 ? 80 : +0
 
 augroup END
 
@@ -197,9 +198,8 @@ augroup code_cmds
     au BufNewFile *.vim call MakeTemplate("$HOME/.vim/header/vim_header")
 
     " Update 'Last Modified:' line in code files
-    au BufUnload 
-        \ au FileType c,cpp,python,matlab,fortran,vim,sh,perl <buffer> call LastModified()
-        " \ au BufWritePre <buffer> call LastModified()
+    au FileType c,cpp,python,matlab,fortran,vim,sh,perl 
+        \ au BufWritePre <buffer> call LastModified()
 augroup END
 "}}}
 "
@@ -218,6 +218,7 @@ cnoremap <C-K> <Up>
 " Quick access .vimrc and functions
 " nnoremap <Leader>s :source $MYVIMRC<CR>
 nnoremap <Leader>v :e $MYVIMRC<CR>
+nnoremap <Leader>s :so $MYVIMRC<CR>
 nnoremap <Leader>f :e $HOME/.vim/plugin/util_functions.vim<CR>
 
 " Open URL's in browswer
@@ -350,7 +351,7 @@ colorscheme solarized
 " hi Comment ctermfg=darkgreen
 " hi Type ctermfg=33
 " hi StatusLine ctermfg=none ctermbg=none
-" hi  WildMenu ctermfg=yellow ctermbg=darkgrey
+" hi WildMenu ctermfg=yellow ctermbg=darkgrey
 
 " Spell check options -- need to be set AFTER colorscheme to work properly.
 hi clear SpellBad
@@ -374,7 +375,7 @@ set statusline+=%t\                          " %t filename, %F entire path
 set statusline+=%h%m%r%w                     " status flags
 set statusline+=\[%{strlen(&ft)?&ft:'none'}] " file type
 set statusline+=%=                           " right align remainder
-set statusline+=0x%-5B                       " character value
+set statusline+=0x%-5B                       " character value under cursor
 set statusline+=%-10(%l,%c%V%)               " line, character
 set statusline+=%<%P                         " file position
 

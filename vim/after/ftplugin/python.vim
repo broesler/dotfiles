@@ -20,7 +20,7 @@ setlocal iskeyword+=_
 setlocal iskeyword-=:
 
 setlocal foldmethod=indent
-setlocal foldnestmax=1
+setlocal foldnestmax=2
 setlocal foldignore=
 
 let python_highlight_all = 1
