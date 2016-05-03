@@ -55,6 +55,8 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 
 else
   alias flu1='/thayerfs/research/epps/VLM2D/Ramesh_FLUENT_cases/'
+  alias fluent16='/thayerfs/research/epps/ansys_inc/v162/fluent/bin/fluent'
+  alias nicefluent='nice -n19 /thayerfs/research/epps/ansys_inc/v162/fluent/bin/fluent 2ddp -t15 -g'
 fi
 
 # cs50 works on Mac and ThayerFS (Linux)

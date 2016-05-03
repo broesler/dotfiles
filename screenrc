@@ -78,7 +78,7 @@ bindkey -m > eval "stuff ' '" writebuf "exec sh -c 'xsel < /tmp/screen-exchange'
 #-------------------------------------------------------------------------------
 # I use caption instead of hardstatus, so it is available per split window too
 # (hardstatus is only per complete screen).
-hardstatus alwayslastline "%{= KW}%-Lw%{= wb}%n %t %{= KW}%+Lw %-=| ${USER}@%H | %M%d %c%{-}"
+hardstatus alwayslastline "%{= KW}%-Lw%{= wb}%n %t %{= KW}%+Lw %-=| ${USER}@%H | %M %d %c%{-}"
 
 # Some decryption hints:
 # %{= KW}     background light black (aka dark gray) with foreground light white
