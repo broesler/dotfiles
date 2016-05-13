@@ -8,24 +8,27 @@
 # Description: mutt configuration file.
 #===============================================================================
 
-# General Settings
+# General Settings {{{
 set from     = "bernard.roesler@gmail.com"
 set sendmail = "/usr/local/bin/msmtp -a bernardroesler"
 set sendmail_wait = 0
 unset record
 set sleep_time = 0      # Don't wait when switching mailboxes
-
+# }}}
+#
 #-------------------------------------------------------------------------------
-#       Paths
+#       Paths {{{
 #-------------------------------------------------------------------------------
+set alias_file="~/.mutt/aliases.txt"
 set folder           = ~/.mail               # mailbox location
 set header_cache     = ~/.mutt/cache/headers
 set message_cachedir = ~/.mutt/cache/bodies
 set mailcap_path     = ~/.mutt/mailcap       # entries for filetypes
 set tmpdir           = ~/.mutt/tmp
+# }}}
 
 #-------------------------------------------------------------------------------
-#       Basic Options
+#       Basic Options {{{
 #-------------------------------------------------------------------------------
 set wait_key = yes
 set mbox_type = Maildir  # mailbox type
@@ -39,31 +42,37 @@ unset mark_old           # read/new is good enough for me
 set beep_new             # bell on new mails
 set pipe_decode          # strip headers and eval mimes when piping
 set thorough_search      # strip headers and eval mimes before searching
+set sort_alias=alias
+set reverse_alias=yes
+# }}}
 
 #-------------------------------------------------------------------------------
-#       Sidebar Patch
-#-------------------------------------------------------------------------------
+# #       Sidebar Patch {{{
+# #-------------------------------------------------------------------------------
 # set sidebar_delim   = ' | '
 # set sidebar_visible = yes
 # set sidebar_width   = 24
 # color sidebar_new color221 color233
+# # }}}
 
 #-------------------------------------------------------------------------------
-#       Status Bar
+#       Status Bar {{{
 #-------------------------------------------------------------------------------
 set status_chars  = " *%A"
 set status_format = "---[ Folder: %f ]---[%r%m messages%?n? (%n new)?%?d? (%d to delete)?%?t? (%t tagged)? ]---%>-%?p?( %p postponed )?---"
+# }}}
 
 #-------------------------------------------------------------------------------
-#       Header Options
+#       Header Options {{{
 #-------------------------------------------------------------------------------
 ignore *                                # ignore all headers
 unignore from: to: cc: date: subject:   # show only these
 unhdr_order *                           # some distros order things by default
 hdr_order from: to: cc: date: subject:  # and in this order
+# }}}
 
 #-------------------------------------------------------------------------------
-#       Account Settings
+#       Account Settings {{{
 #-------------------------------------------------------------------------------
 # Default inbox.
 set spoolfile = "+bernardroesler_gmail/INBOX"
@@ -82,9 +91,10 @@ mailboxes +bernardroesler_gmail/inbox \
 set mbox      = "+bernardroesler_gmail/archive"
 set postponed = "+bernardroesler_gmail/drafts"
 set record    = "+bernardroesler_gmail/sent"
+# }}}
 
 #-------------------------------------------------------------------------------
-#       Index View Options
+#       Index View Options {{{
 #-------------------------------------------------------------------------------
 set date_format  = "%m/%d/%Y %T"
 set index_format = "[%Z]  %D  %-20.20F  %s"
@@ -93,10 +103,12 @@ set sort_aux     = last-date-received
 set uncollapse_jump                        # don't collapse on an unread message
 set sort_re                                # thread based on regex
 set reply_regexp = "^(([Rr][Ee]?(\[[0-9]+\])?: *)?(\[[^]]+\] *)?)*"
+# }}}
 
 #-------------------------------------------------------------------------------
-#       Pager View Options
+#       Pager View Options {{{
 #-------------------------------------------------------------------------------
+set display_filter="~/src/mutt/build_contact_alias.sh"
 set pager_index_lines = 0       # number of index lines to show
 set pager_context = 3           # number of context lines to show
 set pager_stop                  # don't go to next message automatically
@@ -108,9 +120,10 @@ set quote_regexp = "^( {0,4}[>|:#%]| {0,4}[a-z0-9]+[>|]+)+"
 alternative_order text/plain text/enriched text/html
 
 auto_view text/html
+# }}}
 
 #-------------------------------------------------------------------------------
-#       Compose View Options
+#       Compose View Options {{{
 #-------------------------------------------------------------------------------
 # Use vim, jump to end of header
 set editor = "/usr/local/bin/vim -c 'normal! }' -c 'redraw'"
@@ -127,11 +140,12 @@ set forward_quote                    # include message in forwards
 set include                          # include message in replies
 set reply_to                         # reply to Reply to: field
 set reverse_name                     # reply as whomever it was to
+set text_flowed=yes                  # make sure plain text looks good
 unset mime_forward                   # forward attachments as part of body
-
+# }}}
 
 #-------------------------------------------------------------------------------
-#       Key Bindings
+#       Key Bindings {{{
 #-------------------------------------------------------------------------------
 # Reload muttrc
 macro index,pager gr "<enter-command> source ~/.muttrc<enter>"
@@ -206,20 +220,25 @@ macro pager \Cu "|urlview<enter>" "call urlview to open links"
 
 # Tab completion
 set query_command = "contacts -Sf '%eTOKEN%n' '%s' | sed -e 's/TOKEN/\t/g'"
-bind editor <Tab> complete-query
-bind editor ^T    complete
+# These keybindings are reversed by default:
+# bind editor <Tab> complete-query
+# bind editor ^T    complete
 
 bind compose p postpone-message
 
 # Save attachments to downloads
 macro attach W <save-entry><bol>~/Downloads/<eol><enter> "save attachment to Downloads"
+# }}}
 
 
 #-------------------------------------------------------------------------------
-#       Colorscheme
+#       Source files {{{
 #-------------------------------------------------------------------------------
 # source ~/.mutt/colors/colors_test
-source ~/.mutt/colors/colors_sjl
+# source ~/.mutt/colors/colors_sjl
+source ~/.mutt/colors/mutt-colors-solarized/mutt-colors-solarized-light-256.muttrc
+source $alias_file
+# }}}
 
 #===============================================================================
 #===============================================================================
