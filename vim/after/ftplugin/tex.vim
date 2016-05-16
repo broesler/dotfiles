@@ -6,11 +6,15 @@ setlocal textwidth=80         " no auto-newlines
 setlocal tabstop=2            " tabs every 2 spaces
 setlocal softtabstop=2        " let backspace delete indent
 setlocal shiftwidth=2
-setlocal foldmethod=marker    " fold between {{{ }}} comments
 setlocal fo-=t                " only wrap comments, not text
 
 " : is included as keyword for fig: eqn: etc.,
 setlocal iskeyword+=_
+
+" setlocal foldmethod=marker    " fold between {{{ }}} comments
+setlocal foldmethod=syntax
+setlocal foldnestmax=3          " allow folds down to subsections
+let g:tex_fold_enabled=1
 
 " Change default SuperTabs completion to context (or try <C-x><C-o>)
 let g:SuperTabDefaultCompletionType="context"

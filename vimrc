@@ -3,7 +3,7 @@
 " Created: 04/16/2015
 "  Author: Bernie Roesler
 "
-" Last Modified: 05/11/2016, 14:43
+" Last Modified: 05/15/2016, 17:56
 
 " Description: Settings for vim. Source with \s while in vim. Functions called
 "   by autocommands are located in ~/.vim/plugin/util_functions.vim
@@ -147,6 +147,11 @@ if &diff
     windo set wrap
     set diffopt+=iwhite   " ignore trailing whitespace
 endif
+
+" Allow italics (reset terminal escape codes)
+"   test: $ echo -e "\e[3m foo \e[23m"
+set t_ZH=[3m
+set t_ZR=[23m
 "}}}
 
 "-------------------------------------------------------------------------------
@@ -329,7 +334,7 @@ nnoremap <space> za
 "}}}
 
 "-------------------------------------------------------------------------------
-"       Colorscheme                                                        "{{{
+"       Colorscheme and statusline                                         "{{{
 "-------------------------------------------------------------------------------
 " Use solarized colorscheme
 set t_Co=256
@@ -363,8 +368,9 @@ hi SpellRare term=underline cterm=underline
 hi clear SpellLocal
 hi SpellLocal term=underline cterm=underline
 
+" Make comments italics
+hi Comment cterm=italic
 
-"-----------  Set status-line color based on mode
 " Status Line
 set laststatus=2                             " always show statusbar
 set statusline=                              " clear default status line
