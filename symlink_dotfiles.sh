@@ -17,10 +17,17 @@ do
   # exclude README and this script 
   if [[ $f != README.* ]] && [[ $f != $(basename $0) ]]  
   then
-    # symlink files, do not follow symbolic links that already exist 
-    # (i.e. directories), check if user wants to overwrite existing files
-    command ln -nsvf $HOME/.dotfiles/$f $HOME/.$f
+    if [ "$1" == "-f" ]; then
+      # symlink files, do not follow symbolic links that already exist 
+      # (i.e. directories)
+      command ln -nsvf $HOME/.dotfiles/$f $HOME/.$f
+    else
+      # Check before overwriting
+      command ln -nsvi $HOME/.dotfiles/$f $HOME/.$f
+    fi
   fi
 done
 
 exit 0
+#==============================================================================
+#==============================================================================

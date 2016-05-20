@@ -1,39 +1,16 @@
-"===============================================================================
+"============================================================================
 "     File: ~/.vim/plugin/util_functions.vim
 "  Created: 12/06/2015, 13:20
 "   Author: Bernie Roesler
 "
-" Last Modified: 05/01/2016, 18:35
+" Last Modified: 05/16/2016, 10:28
 "
 "  Description: Custom utility functions called from .vimrc autocmds, etc.
-"==============================================================================
+"============================================================================
 
-"-------------------------------------------------------------------------------
-"       CommentHeader create the header seen here {{{
-"-------------------------------------------------------------------------------
-function! CommentHeader(comment, ...)
-    " a:0 is optional argument number (not total argument number)
-    let introducer = a:0 >= 1 ? a:1 : "#"
-    let box_char   = a:0 >= 2 ? a:2 : "-"
-    let width      = a:0 >= 3 ? a:3 : &textwidth - 2
-
-    " Build the comment box and put the comment inside it...
-    " If comments is set, do not need introducer every time
-    if len(&comments) > 0
-      let header =   introducer.repeat(box_char,width)."\n"
-                  \ .introducer."\t\t".a:comment      ."\n"
-                  \ .introducer.repeat(box_char,width)."\n"
-    else
-      let header = introducer.repeat(box_char,width)."\n"
-                            \."\t\t".a:comment      ."\n"
-                            \.repeat(box_char,width)."\n"
-    endif
-    return header
-endfunction "}}}
-
-"-------------------------------------------------------------------------------
+"----------------------------------------------------------------------------
 "       FollowSymlink Follow symlinks when opening files {{{
-"-------------------------------------------------------------------------------
+"----------------------------------------------------------------------------
 " Copied from here:
 "   <http://inlehmansterms.net/2014/09/04/sane-vim-working-directories/>
 function! FollowSymlink()
@@ -45,12 +22,11 @@ function! FollowSymlink()
         let actual_file = resolve(current_file)
         silent! execute 'file ' . actual_file
     end
-endfunction "}}}
+endfunction
 
-
-"------------------------------------------------------------------------------
+"}}}-------------------------------------------------------------------------
 "       GetVisualSelection Return string of visual selection {{{
-"------------------------------------------------------------------------------
+"----------------------------------------------------------------------------
 function! GetVisualSelection()
     let [lnum1, col1] = getpos("'<")[1:2]
     let [lnum2, col2] = getpos("'>")[1:2]
@@ -58,11 +34,11 @@ function! GetVisualSelection()
     let lines[-1] = lines[-1][: col2 - (&selection == 'inclusive' ? 1 : 2)]
     let lines[0] = lines[0][col1 - 1:]
     return join(lines, "\n")
-endfunction "}}}
+endfunction
 
-"------------------------------------------------------------------------------
+"}}}-------------------------------------------------------------------------
 "       Incr increments numbers in a column (i.e. in Visual Block mode) {{{
-"------------------------------------------------------------------------------
+"----------------------------------------------------------------------------
 function! Incr()
     let a = line('.') - line("'<")
     let c = virtcol("'<")
@@ -70,12 +46,12 @@ function! Incr()
         execute 'normal! '.c.'|'.a."\<C-a>"
     endif
     normal `<
-endfunction "}}}
+endfunction
 vnoremap <C-a> :call Incr()<CR>
 
-"------------------------------------------------------------------------------
+"}}}-------------------------------------------------------------------------
 "       JumpToCSS Jump from html tag to definition in linked CSS file {{{
-"------------------------------------------------------------------------------
+"----------------------------------------------------------------------------
 function! JumpToCSS()
     let id_pos = searchpos("id", "nb", line('.'))[1]
     let class_pos = searchpos("class", "nb", line('.'))[1]
@@ -87,12 +63,12 @@ function! JumpToCSS()
             execute ":vim '.".expand('<cword>')."' **/*.css"
         endif
     endif
-endfunction "}}}
+endfunction
 nnoremap <Leader>] :call JumpToCSS()<CR>
 
-"------------------------------------------------------------------------------
+"}}}-------------------------------------------------------------------------
 "       LastModified If buffer modified, update any 'Last modified: ' {{{
-"------------------------------------------------------------------------------
+"----------------------------------------------------------------------------
 function! LastModified()
     if &modified
         let save_cursor = getpos(".")
@@ -121,20 +97,20 @@ function! LastModified()
         " Keep other changes in undofile
         " set undofile
     endif
-endfunction "}}}
+endfunction
 
-"------------------------------------------------------------------------------
+"}}}-------------------------------------------------------------------------
 "       MakeTemplate Make template for code file {{{
-"------------------------------------------------------------------------------
+"----------------------------------------------------------------------------
 function! MakeTemplate(filename)
     execute 'source' a:filename
     execute "1,10s@File:.*@File: " . expand("%:t")
     execute "1,10s@Created:.*@Created: " . strftime("%m/%d/%Y, %H:%M")
-endfunction "}}}
+endfunction
 
-"------------------------------------------------------------------------------
+"}}}-------------------------------------------------------------------------
 "       SetTermTitle Set terminal title the hard way (SLOW)    {{{
-"------------------------------------------------------------------------------
+"----------------------------------------------------------------------------
 function! SetTermTitle()
     let filename = expand("%:p")
     let length = strlen(filename)
@@ -146,14 +122,14 @@ function! SetTermTitle()
     endif
     " Set terminal title
     silent execute "!echo -ne " . "\"\033]0;" . tstr . "\007\""
-endfunction "}}}
+endfunction
 
-" Change title when switching between files
+"}}}ange title when switching between files
 autocmd VimEnter,WinEnter,TabEnter,BufEnter * silent! call SetTermTitle()
 
-"------------------------------------------------------------------------------
+"----------------------------------------------------------------------------
 " FIXME UpdateTags Auto-update tags file {{{
-"------------------------------------------------------------------------------
+"----------------------------------------------------------------------------
 " function! UpdateTags()
 "   let alltagfiles = tagfiles()
 "   if (len(alltagfiles) == 0)            " create new tags file
@@ -172,5 +148,5 @@ autocmd VimEnter,WinEnter,TabEnter,BufEnter * silent! call SetTermTitle()
 " endfunction "}}}
 
 
-"===============================================================================
-"===============================================================================
+"============================================================================
+"============================================================================
