@@ -1,17 +1,17 @@
-"===============================================================================
+"=============================================================================
 "    File: ~/.vimrc
 " Created: 04/16/2015
 "  Author: Bernie Roesler
 "
-" Last Modified: 05/15/2016, 17:56
+" Last Modified: 05/18/2016, 18:20
 
 " Description: Settings for vim. Source with \s while in vim. Functions called
 "   by autocommands are located in ~/.vim/plugin/util_functions.vim
-"===============================================================================
+"=============================================================================
 
-"-------------------------------------------------------------------------------
-"       Preamble                                                           "{{{
-"-------------------------------------------------------------------------------
+"-----------------------------------------------------------------------------
+"       Preamble                                                         "{{{
+"-----------------------------------------------------------------------------
 " Run pathogen to load plugins (ignore errors on Linux machines)
 silent! call pathogen#infect()
 silent! call pathogen#helptags()
@@ -30,11 +30,10 @@ set path=.,/usr/include/,/usr/local/include,**
 " Ensure filetypes taken into account
 filetype plugin indent on
 
-"}}}
 
-"-------------------------------------------------------------------------------
-"       Global Settings                                                    "{{{
-"-------------------------------------------------------------------------------
+"}}}--------------------------------------------------------------------------
+"       Global Settings                                                  "{{{
+"-----------------------------------------------------------------------------
 " set autochdir       " Locally change directory
 set autoread        " Auto-read changes made outside of vim
 set autowrite       " Auto-write changes when switching buffers
@@ -121,6 +120,12 @@ if has('mouse') && !exists("$SSH_TTY")
     if &term =~ '^screen'
         set ttymouse=xterm2
     endif
+
+    " if has("mouse_sgr")
+    "   set ttymouse=sgr
+    " else
+    "   ttymouse=xterm2
+    " endif
 endif
 
 " Use the_silver_searcher if available
@@ -152,11 +157,10 @@ endif
 "   test: $ echo -e "\e[3m foo \e[23m"
 set t_ZH=[3m
 set t_ZR=[23m
-"}}}
 
-"-------------------------------------------------------------------------------
-"       Autocommands                                                       "{{{
-"-------------------------------------------------------------------------------
+"}}}--------------------------------------------------------------------------
+"       Autocommands                                                     "{{{
+"-----------------------------------------------------------------------------
 augroup quickfix_window
     au!
     " Automatically open, but do not go to (if there are errors) the quickfix
@@ -206,11 +210,10 @@ augroup code_cmds
     au FileType c,cpp,python,matlab,fortran,vim,sh,perl 
         \ au BufWritePre <buffer> call LastModified()
 augroup END
-"}}}
 "
-"-------------------------------------------------------------------------------
-"       Key Mappings                                                       "{{{
-"-------------------------------------------------------------------------------
+"}}}--------------------------------------------------------------------------
+"       Key Mappings                                                     "{{{
+"-----------------------------------------------------------------------------
 " Command line mappings
 cnoremap <C-A> <Home>
 cnoremap <C-L> <Right>
@@ -325,23 +328,25 @@ nnoremap <Leader>T "=strftime("%m/%d/%Y, %H:%M")<CR>P
 " Use spacebar to open/close folds
 nnoremap <space> za
 
+" Use \L to redraw the screen
+nnoremap <Leader>L :redraw!<CR>
+
 " " Run :make
 " nnoremap <Leader>M :make<bar>redraw!<CR>
 
 " " YankRing.vim map
 " let g:yankring_history_dir='~/.vim/'
 " nnoremap <Leader>yr :YRGetElem<CR>
-"}}}
 
-"-------------------------------------------------------------------------------
-"       Colorscheme and statusline                                         "{{{
-"-------------------------------------------------------------------------------
+"}}}--------------------------------------------------------------------------
+"       Colorscheme and statusline                                       "{{{
+"-----------------------------------------------------------------------------
 " Use solarized colorscheme
 set t_Co=256
 set background=dark
 
 " option name default optional
-"------------------------------------------------
+"----------------------------------------------
 let g:solarized_termcolors = 256        " 256 | 16
 let g:solarized_termtrans  = 0          " 0 | 1  transparency
 let g:solarized_degrade    = 0          " 0 | 1
@@ -392,5 +397,5 @@ if version >= 700
 endif
 "}}}
 
-"===============================================================================
-"===============================================================================
+"=============================================================================
+"=============================================================================
