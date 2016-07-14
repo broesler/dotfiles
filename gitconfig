@@ -15,8 +15,9 @@
 [push]
 	default = simple
 [merge]
-	tool = vim -c ":Gvdiff"
+	# tool = vimdiff
     conflictstyle = diff3
+	tool = fugitive
 [core]
 	excludesfile = ~/.gitignore_global
 	editor = vim -X
@@ -25,3 +26,9 @@
 	tool = vimdiff
 [difftool]
 	prompt = false
+[filter "lfs"]
+	smudge = git-lfs smudge %f
+	required = true
+	clean = git-lfs clean %f
+[mergetool "fugitive"]
+	cmd = vim -f -c \"Gvdiff\" \"$MERGED\"

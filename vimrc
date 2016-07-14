@@ -3,7 +3,7 @@
 " Created: 04/16/2015
 "  Author: Bernie Roesler
 "
-" Last Modified: 05/18/2016, 18:20
+" Last Modified: 05/26/2016, 11:31
 
 " Description: Settings for vim. Source with \s while in vim. Functions called
 "   by autocommands are located in ~/.vim/plugin/util_functions.vim
@@ -47,7 +47,7 @@ set ttimeoutlen=10
 set timeoutlen=1000
 
 " keep undo history between files/saves/sessions
-set noundofile
+set undofile
 set undodir=~/.vim/undodir/ " directory MUST already exist
 set undolevels=1000         " How many undos
 set undoreload=10000        " number of lines to save for undo
@@ -65,7 +65,7 @@ set thesaurus=/usr/share/thes/mthesaur.txt  " use <C-X><C-T>
 
 " read local tag file first, then look up the tree from current file ';', then
 " search in specified directories
-set tags=./tags,tags;,~/Documents/MATLAB/tags
+set tags=./tags,tags;,~/.dotfiles/tags,~/Documents/MATLAB/tags
 
 set wildmenu            " Enable tab to show all menu options
 set nofileignorecase    " no == do NOT ignore case when completing filenames
@@ -113,6 +113,10 @@ set foldmethod=marker           " auto-fold code
 set foldcolumn=0                " show locations of folds in left-most column
 set printoptions=paper:letter
 
+" Setup netrw for smoother operations
+let g:netrw_banner=0
+let g:netrw_browse_split=0  " 1 = open files in horizontal split
+
 " Use mouse if it exists -- mouse is weird in ssh
 if has('mouse') && !exists("$SSH_TTY")
     set mouse=a
@@ -120,12 +124,6 @@ if has('mouse') && !exists("$SSH_TTY")
     if &term =~ '^screen'
         set ttymouse=xterm2
     endif
-
-    " if has("mouse_sgr")
-    "   set ttymouse=sgr
-    " else
-    "   ttymouse=xterm2
-    " endif
 endif
 
 " Use the_silver_searcher if available
@@ -141,10 +139,10 @@ if !exists(':Ag')
 endif
 
 " Use system clipboard properly with +X11 and +clientserver
-if (strlen(v:servername) > 0)
-    set clipboard=unnamedplus,unnamed,exclude:cons\|linux
-else
+if (strlen(v:servername) > 0) || (strlen($TMUX) > 0)
     set clipboard=autoselectplus,exclude:cons\|linux
+else
+    set clipboard=unnamed,exclude:cons\|linux
 endif
 
 " Settings for vimdiff mode
@@ -206,11 +204,12 @@ augroup code_cmds
     au BufNewFile *.sh  call MakeTemplate("$HOME/.vim/header/sh_header")
     au BufNewFile *.vim call MakeTemplate("$HOME/.vim/header/vim_header")
 
+    au FileType perl :compiler perl
     " Update 'Last Modified:' line in code files
-    au FileType c,cpp,python,matlab,fortran,vim,sh,perl 
-        \ au BufWritePre <buffer> call LastModified()
+    " au FileType c,cpp,python,matlab,fortran,vim,sh,perl 
+        " \ au BufWritePre <buffer> call LastModified()
 augroup END
-"
+
 "}}}--------------------------------------------------------------------------
 "       Key Mappings                                                     "{{{
 "-----------------------------------------------------------------------------
@@ -259,7 +258,7 @@ nmap <silent> ,s :set spell!<CR>
 nnoremap <silent> ,/ :nohls<CR>
 
 " Search/Replace current word (vs just * for search)
-nnoremap <Leader>* :%s/\<<C-r><C-w>\>/
+nnoremap <Leader>* *<C-o>:%s/\<<C-r><C-w>\>/
 
 " Wrapped lines goes down/up to next row, rather than next line in file
 " nnoremap j gj
@@ -274,8 +273,9 @@ nnoremap <silent>,n :set relativenumber!<CR>
 " Shift-tab backs up one tab stop
 inoremap <S-Tab> <C-d>
 
-" Swap word under cursor with next word, including linebreaks
-nnoremap <Leader>t :s/\v(<\S*%#\S*>)(\_.{-})(<\S+>)/\3\2\1/<CR>
+" Swap word under cursor with next word, including linebreaks, turn off search
+" and return cursor to previous position
+nnoremap <Leader>t mx:s/\v(<\S*%#\S*>)(\_.{-})(<\S+>)/\3\2\1/<CR>:nohls<CR>`x
 
 " Completion in insert mode
 inoremap <C-f> <C-X><C-F>
@@ -323,7 +323,7 @@ nnoremap <C-]> <C-]>zt
 nmap <Leader>E :Hexplore!<CR>
 
 " Timestamp in format %y%m%d, %H:%M
-nnoremap <Leader>T "=strftime("%m/%d/%Y, %H:%M")<CR>P
+nnoremap <Leader>T "=strftime("%m/%d/%Y, %H:%M")<CR>p
 
 " Use spacebar to open/close folds
 nnoremap <space> za
@@ -375,6 +375,11 @@ hi SpellLocal term=underline cterm=underline
 
 " Make comments italics
 hi Comment cterm=italic
+
+" Do not highlight cursor line number in relative number mode
+hi clear CursorLineNr
+" hi def link CursorLineNr Comment
+hi CursorLineNr ctermfg=239 ctermbg=235 cterm=italic
 
 " Status Line
 set laststatus=2                             " always show statusbar
