@@ -5,7 +5,7 @@
 # Created: 12/04/14
 #  Author: Bernie Roesler
 #
-# Last Modified: 05/18/2016, 13:37
+# Last Modified: 05/20/2016, 16:15
 #
 # Description: Contains aliases and simple functions for use with the bash shell
 #===============================================================================
@@ -75,7 +75,6 @@ function cs50()
 #-------------------------------------------------------------------------------
 #   UTILITIES
 #-------------------------------------------------------------------------------
-alias ag='ag --color-dir 1;31'
 alias clc='clear'
 alias df='df -kTh'
 alias du='du -kh'
