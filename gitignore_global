@@ -14,6 +14,7 @@ Thumbs.db
 .Trashes
 \#*\#
 ._*
+Session.vim
 # ignore all latex auxiliary files:
 *.aux
 *.bbl
@@ -34,3 +35,6 @@ Thumbs.db
 *.tmp
 *.xref
 *x.png
+# Ignore Google docs
+*.gdoc
+*.gsheet

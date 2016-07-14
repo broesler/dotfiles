@@ -108,7 +108,13 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 
   # Disable tilde expansion upon tab completion
   _expand() { return 0; }
+
+  # Run iTerm2 shell integration
+  test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
 fi
+
+# fix vim autocompletion
+complete -r vim
 
 # Source function files and aliases
 for func in "$HOME"/.bashrc.d/*.bash ; do

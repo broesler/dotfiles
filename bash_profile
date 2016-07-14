@@ -5,7 +5,7 @@
 # Created: 10/29/13
 #  Author: Bernie Roesler
 #
-# Last Modified: 02/25/2016, 20:02
+# Last Modified: 05/20/2016, 17:37
 #
 # Description: Loads for all login shells. Sets path variable and others
 #==============================================================================
@@ -39,7 +39,7 @@ export TERM='screen-256color'
 # less highlighting for man pages
 export LESS_TERMCAP_so=$'\e[30;47m'
 export LESS_TERMCAP_se=$'\e[0m'
-export LESS=-Airsx8
+export LESS=-Airsx8g
 
 # # Use vim as man pager -- nicer searching, but SLOW to load vs less
 # export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man ts=8 nomod nolist nonu noma' \
