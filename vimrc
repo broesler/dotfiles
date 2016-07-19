@@ -30,6 +30,8 @@ set path=.,/usr/include/,/usr/local/include,**
 " Ensure filetypes taken into account
 filetype plugin indent on
 
+" Enable matchit plugin
+packadd! matchit
 
 "}}}--------------------------------------------------------------------------
 "       Global Settings                                                  "{{{
@@ -155,6 +157,7 @@ endif
 "   test: $ echo -e "\e[3m foo \e[23m"
 set t_ZH=[3m
 set t_ZR=[23m
+
 
 "}}}--------------------------------------------------------------------------
 "       Autocommands                                                     "{{{
