@@ -63,8 +63,8 @@ passwd_file ~/.w3m/passwd
 use_lessopen 0
 bgextviewer 1
 extbrowser3 
-extbrowser2 
-extbrowser /usr/bin/mozilla
+extbrowser2 /Applications/Safari.app/
+extbrowser sh -c 'printf %s "$0" | pbcopy'
 mailer 
 mailto_options 1
 editor /usr/bin/vi
@@ -137,3 +137,5 @@ frame 0
 pixel_per_char 8
 indent_incr 4
 tabstop 8
+keymap y EXTERN
+keymap Y EXTERN_LINK
