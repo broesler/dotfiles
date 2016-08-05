@@ -1,0 +1,6 @@
+--leak-check=full
+--show-leak-kinds=all
+--show-reachable=yes
+--track-origins=yes
+--dsymutil=yes
+--log-file=valout
