@@ -3,4 +3,4 @@
 --show-reachable=yes
 --track-origins=yes
 --dsymutil=yes
---log-file=valout
+--suppressions=/Users/bernardroesler/.objc.supp
