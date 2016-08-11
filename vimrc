@@ -8,6 +8,8 @@
 " Description: Settings for vim. Source with \s while in vim. Functions called
 "   by autocommands are located in ~/.vim/plugin/util_functions.vim
 "=============================================================================
+" Fix occasional tmux error opening temp files '/var/folders/...'
+" set shell=/bin/sh
 
 "-----------------------------------------------------------------------------
 "       Preamble                                                         "{{{
@@ -27,6 +29,7 @@ set path=.,/usr/include/,/usr/local/include,**
 " Set vim's environment to load my .bashrc so functions/aliases are available
 " let $BASH_ENV="~/.bashrc"
 
+
 " Ensure filetypes taken into account
 filetype plugin indent on
 
@@ -36,12 +39,12 @@ packadd! matchit
 "}}}--------------------------------------------------------------------------
 "       Global Settings                                                  "{{{
 "-----------------------------------------------------------------------------
-" set autochdir       " Locally change directory
 set autoread        " Auto-read changes made outside of vim
 set autowrite       " Auto-write changes when switching buffers
+" set hidden        " Allow hidden buffers without prompt to write
 set encoding=utf-8  " Ensure files are universally readable
 
-" load man plugin so manual pages can be read in a vim window
+" load man plugin so man pages can be read in a vim window (:Man or <Leader>K)
 runtime! ftplugin/man.vim
 
 " shorten delay switching to normal mode
@@ -93,8 +96,8 @@ set autoindent      " indent based on filetype
 set nojoinspaces    " use one space, not two, after punctuation
 set modelines=20    " check 20 lines down for a modeline
 
-set nosplitbelow    " split new windows to top right of current one
-set splitright
+set nosplitbelow    " split new windows to top   of current one
+set splitright      " split new windows to right of current one
 
 " let g:LatexBox_loaded_matchparen=0
 let g:loaded_matchparen=0       " Do not highlight matching parens if == 1
@@ -113,11 +116,15 @@ set sessionoptions=blank,buffers,curdir,folds,help,resize,winsize
 set formatoptions+=lrn1j        " tcq default
 set foldmethod=marker           " auto-fold code
 set foldcolumn=0                " show locations of folds in left-most column
+set foldlevelstart=20           " 0 == all folds closed, 99 == all folds open
 set printoptions=paper:letter
 
+" Toggle "set list" or "set nolist" to view special characters
+set listchars=eol:$,tab:>-,trail:*,extends:+,precedes:<,nbsp:~
+
 " Setup netrw for smoother operations
-let g:netrw_banner=0
-let g:netrw_browse_split=0  " 1 = open files in horizontal split
+let g:netrw_banner=0        " 0 == no banner
+let g:netrw_browse_split=0  " 1 == open files in horizontal split
 
 " Use mouse if it exists -- mouse is weird in ssh
 if has('mouse') && !exists("$SSH_TTY")
@@ -130,14 +137,14 @@ endif
 
 " Use the_silver_searcher if available
 if executable('ag')
-    " set grepprg=ag\ --nogroup\ --nocolor\ --column
     set grepprg=ag\ --vimgrep\ $*
     set grepformat=%f:%l:%c:%m
-endif
 
-" Create :Ag command for using silver searcher in subwindow
-if !exists(':Ag')
-    command -nargs=+ -complete=file -bar Ag silent! grep! <args> <bar> cwindow
+    " Create :Ag command for using silver searcher in subwindow
+    if !exists(':Ag')
+        command -nargs=+ -complete=file -bar 
+                    \ Ag silent! grep! <args> <bar> cwindow
+    endif
 endif
 
 " Use system clipboard properly with +X11 and +clientserver
@@ -180,7 +187,7 @@ augroup END
 
 augroup misc_cmds
     au!
-    au FileType matlab,sh,markdown,vim,perl setlocal iskeyword+=_
+    au FileType matlab,sh,markdown,vim,perl,gitcommit setlocal iskeyword+=_
 
     " Use K to search vim help for word under cursor only in vim files
     au FileType vim setlocal keywordprg=:help
@@ -193,8 +200,6 @@ augroup misc_cmds
 
     " Adjust colorcolumn to textwidth for every filetype
     au BufEnter * if &textwidth == 0 | set colorcolumn=80 | else | set colorcolumn=+0 | endif
-    " au BufEnter * set colorcolumn = &textwidth == 0 ? 80 : +0
-
 augroup END
 
 augroup code_cmds
@@ -247,12 +252,12 @@ nnoremap <C-s> :w<CR>
 inoremap <C-s> <Esc>:w<CR>
 
 " Change between buffers quickly
-nnoremap ,b :bn!<CR>
-nnoremap ,v :bp!<CR>
+" nnoremap ,b :bn!<CR>
+" nnoremap ,v :bp!<CR>
 
 " Quickfix list movement
-nnoremap ,c :cn!<CR>
-nnoremap ,p :cp!<CR>
+" nnoremap ,c :cn!<CR>
+" nnoremap ,p :cp!<CR>
 
 " Toggle spell checking
 nmap <silent> ,s :set spell!<CR>
@@ -267,7 +272,7 @@ nnoremap <Leader>* *<C-o>:%s/\<<C-r><C-w>\>/
 " nnoremap j gj
 " nnoremap k gk
 
-" Make Y consistent with C and D
+" Make Y consistent with C and D -- doesn't always work??
 nnoremap Y y$
 
 " Toggle relative numbers
@@ -319,7 +324,7 @@ endif
 " NOTE: Does NOT work twice in a row!!
 nnoremap <C-q> :bp<bar>bd #<CR>
 
-" Move to top of page when jumping to tag (easier viewing)
+" Move to top of page when jumping to tag (like less)
 nnoremap <C-]> <C-]>zt
 
 " Open explorer in new window
@@ -331,8 +336,8 @@ nnoremap <Leader>T "=strftime("%m/%d/%Y, %H:%M")<CR>p
 " Use spacebar to open/close folds
 nnoremap <space> za
 
-" Use \L to redraw the screen
-nnoremap <Leader>L :redraw!<CR>
+" Use \l to redraw the screen
+nnoremap <Leader>l :redraw!<CR>
 
 " " Run :make
 " nnoremap <Leader>M :make<bar>redraw!<CR>
@@ -390,7 +395,7 @@ set statusline=                              " clear default status line
 set statusline+=%-4.3n\                      " buffer number
 set statusline+=%{exists('g:loaded_fugitive')?fugitive#statusline():''}
 set statusline+=\ \                          " Separator
-set statusline+=%t\                          " %t filename, %F entire path
+set statusline+=%f\                          " %t filename, %F entire path
 set statusline+=%h%m%r%w                     " status flags
 set statusline+=\[%{strlen(&ft)?&ft:'none'}] " file type
 set statusline+=%=                           " right align remainder

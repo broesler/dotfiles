@@ -1,20 +1,18 @@
-"------------------------------------------------------------------------------
+"-----------------------------------------------------------------------------
 "       Text file syntax
-"------------------------------------------------------------------------------
+"-----------------------------------------------------------------------------
 " 208 == orange
 " 6 == cyan
-
+syn match textTodo display "\(TODO\|NOTE\|FIXME\):\=" contained
 syn match Braces display '[{}()\[\]]'
-hi Braces ctermfg=darkred
-
 syn match Quotes display '[\'\`\"]'
-hi Quotes ctermfg=6
-
 syn match Stars display '[\*]'
-hi def link Stars Operator
-
-syn match textComments display '#.*$'
-hi def link textComments Comment
-
+syn match textComments display '#.*$' contains=textTodo
 syn match Important display 'NOTE:'
-hi def link Important PreProc
+
+hi Braces ctermfg=darkred
+hi Quotes ctermfg=6
+hi def link textTodo        Todo
+hi def link Stars           Operator
+hi def link textComments    Comment
+hi def link Important       PreProc

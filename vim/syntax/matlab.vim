@@ -44,7 +44,7 @@ syn match matlabCommentTitle '%\s*\%([sS]:\|\h\w*#\)\=\u\w*\(\s\+\u\w*\)*:'hs=s+
 
 " NOTE: To match block comments '%{' and '%}' must start lines by themselves,
 "+  with no other non-spaces before or after them
-syn region matlabMultilineComment start=/^%{\s*$/ end=/^%}\s*$/ contains=matlabTodo,matlabTab
+syn region matlabMultilineComment start=/^\s*%{\s*$/ end=/^\s*%}\s*$/ contains=matlabTodo,matlabTab
 
 syn match matlabContinueLine  display "\.\{3}"
 
