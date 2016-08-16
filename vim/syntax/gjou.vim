@@ -29,11 +29,12 @@ syn region myString start=+"+ end=+"+
 
 " Constants
 "  Negative lookbehind to not include numbers in variable names or commands
-syn match myConst display '\([a-zA-Z]\)\@<!\d\+'
-syn match myConst display '\([a-zA-Z]\)\@<!\d\+\.\d*'
-syn match myConst display '\([a-zA-Z]\)\@<![-+]\d\+\.\d*'
-syn match myConst display '\([a-zA-Z]\)\@<!\d\+[eE][-+]\=\d\+'
-syn match myConst display '\([a-zA-Z]\)\@<!\d\+\.\d\+[eE][-+]\=\d\+'
+syn match myConst display '\<\d\+\>'
+syn match myConst display '\<\d\+\.\d*\>'
+syn match myConst display '[-+]\=\d\+\>'
+syn match myConst display '[-+]\=\d\+\.\d*\>'
+syn match myConst display '\<\d\+[eE][-+]\=\d\+\>'
+syn match myConst display '\<\d\+\.\d\+[eE][-+]\=\d\+\>'
 syn match myConst display '\<PI\>'
 
 " Operators
