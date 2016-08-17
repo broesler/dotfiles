@@ -116,7 +116,9 @@ fi
 # fix vim autocompletion
 complete -r vim
 
+#-------------------------------------------------------------------------------
 # Source function files and aliases
+#-------------------------------------------------------------------------------
 for func in "$HOME"/.bashrc.d/*.bash ; do
   if [ -f "$func" ]; then
     source "$func"
@@ -126,3 +128,5 @@ unset -v func
 
 #==============================================================================
 #==============================================================================
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting

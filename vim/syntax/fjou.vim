@@ -25,6 +25,7 @@ syn match myConst display '\<\d\+[eE][-+]\=\d\+\>'
 syn match myConst display '\<\d\+\.\d\+[eE][-+]\=\d\+\>'
 syn match myConst display '\<PI\>'
 
+
 " Operators
 syn match myOperators display '[\*\=\+-/]'
 

@@ -137,7 +137,7 @@ endif
 
 " Use the_silver_searcher if available
 if executable('ag')
-    set grepprg=ag\ --vimgrep\ $*
+    set grepprg=command\ ag\ --vimgrep\ $*
     set grepformat=%f:%l:%c:%m
 
     " Create :Ag command for using silver searcher in subwindow
@@ -155,10 +155,10 @@ else
 endif
 
 " Settings for vimdiff mode
-if &diff
-    windo set wrap
-    set diffopt+=iwhite   " ignore trailing whitespace
-endif
+" if &diff
+    " windo set wrap
+    set diffopt+=iwhite,vertical   " ignore trailing whitespace
+" endif
 
 " Allow italics (reset terminal escape codes)
 "   test: $ echo -e "\e[3m foo \e[23m"
@@ -213,6 +213,8 @@ augroup code_cmds
     au BufNewFile *.vim call MakeTemplate("$HOME/.vim/header/vim_header")
 
     au FileType perl :compiler perl
+
+    au VimEnter,BufEnter *.gp set ft=gnuplot | set syn=gnuplot 
     " Update 'Last Modified:' line in code files
     " au FileType c,cpp,python,matlab,fortran,vim,sh,perl 
         " \ au BufWritePre <buffer> call LastModified()

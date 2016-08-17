@@ -18,15 +18,20 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   # Default PATH
   export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin"
 
-  # Ruby setup:
+  #----- Ruby setup:
+  # Load RVM into a shell session *as a function*
   [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" 
-  eval "$(rbenv init -)"
   export PATH="$PATH:$HOME/.rbenv/shims"
+  eval "$(rbenv init -)"
+  export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
   export PATH="$PATH:/usr/local/heroku/bin"
 
   # Set PATH variable correctly (last line is at front of path)
   export PATH="$PATH:/Library/TeX/texbin"          # LaTeX
   export PATH="$PATH:/usr/local/git/bin"           # git
+
+  # Add MATLAB binaries to path
+  export PATH="$PATH:/Applications/MATLAB_R2015b.app/bin"
 
   export LC_ALL=en_US.UTF-8                   # brew doctor needs this line as of El Cap update 11/17/15 
   export RES=~/Documents/School/Research/     # path to research folder

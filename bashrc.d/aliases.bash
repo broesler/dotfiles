@@ -75,6 +75,10 @@ function cs50()
 #-------------------------------------------------------------------------------
 #   UTILITIES
 #-------------------------------------------------------------------------------
+# Use a gold color for paths:
+# alias myag="ag --color-path '1;49;38;5;136' --color-line-number '3;49;38;5;242' --color-match '1;49;38;5;9'"
+# Color ag like grep:
+alias myag="ag --color-path '0;49;38;5;5' --color-line-number '3;49;38;5;242' --color-match '1;49;38;5;9'"
 alias clc='clear'
 alias df='df -kTh'
 alias du='du -kh'
