@@ -25,6 +25,23 @@ function! FollowSymlink()
 endfunction
 
 "}}}-------------------------------------------------------------------------
+" "       Evaluate current selection {{{
+" "-----------------------------------------------------------------------------
+" function! EvaluateSelection()
+"     let mcom = GetVisualSelection()
+"     " Only need to escape ; if there is no space after it (not sure why?)
+"     let mcom = substitute(mcom, ';', '; ', 'g')
+"     " Need to escape `%' so vim doesn't insert filename
+"     let mcom = substitute(mcom, '%', '\%', 'g')
+"     " Change newlines to literal carriage return so shellescape() does not
+"     " escape them (sends literal \ to tmux send-keys)
+"     let mcom = substitute(mcom, "\n", '\\\\\\\', 'g')
+"     " Call shellescape() for proper treatment of string characters
+"     call system('ts -t '''.g:matlab_pane.''' '.shellescape(mcom))
+" endfunction
+" command! -range EvaluateSelection :call EvaluateSelection()
+
+" }}}-------------------------------------------------------------------------
 "       GetVisualSelection Return string of visual selection {{{
 "----------------------------------------------------------------------------
 function! GetVisualSelection()
@@ -47,7 +64,9 @@ function! Incr()
     endif
     normal `<
 endfunction
-vnoremap <C-a> :call Incr()<CR>
+command! Incr :call Incr()
+vnoremap <C-a> :Incr<CR>
+" vnoremap <C-a> :call Incr()<CR>
 
 "}}}-------------------------------------------------------------------------
 "       JumpToCSS Jump from html tag to definition in linked CSS file {{{
