@@ -140,49 +140,49 @@ let @e='i\begin{equation}\end{equation}k'
 let @g='i\begin{gather}\end{gather}k'
 
 " Figure macro
-let @f='o\begin{figure}[h!]
-      \\centering
-      \\includegraphics[width=0.75\textwidth]{myfilename.pdf}
-      \\caption{My caption goes here.}
-      \\label{fig:label}
-      \0i\end{figure}'
+let @f="\\begin{figure}[h!]\n"
+      \ . "  \\centering\n"
+      \ . "  \\includegraphics[width=0.75\\textwidth]{myfilename.pdf}\n"
+      \ . "  \\caption{My caption goes here.}\n"
+      \ . "  \\label{fig:label}\n"
+      \ . "\\end{figure}""
 
 " Subfigure macro
-let @s='o\begin{figure}[h!]
-      \\centering
-      \  \begin{subfigure}[c]{0.48\textwidth}
-      \\centering
-      \\includegraphics[width=\textwidth]{myfilename_a.pdf}
-      \\caption{My caption for subfigure (a).}
-      \\end{subfigure}
-      \0i  \hspace{0.01cm}
-      \  \begin{subfigure}[c]{0.48\textwidth}
-      \\centering
-      \\includegraphics[width=\textwidth]{myfilename_b.pdf}
-      \\caption{My caption for subfigure (b).}
-      \\end{subfigure}
-      \0i  \caption{My caption for the entire figure.}
-      \\label{fig:whole_figure}
-      \0i\end{figure}'
+let @s="\\begin{figure}[h!]\n"
+      \ . "  \\centering\n"
+      \ . "    \\begin{subfigure}[c]{0.48\\textwidth}\n"
+      \ . "  \\centering\n"
+      \ . "  \\includegraphics[width=\\textwidth]{myfilename_a.pdf}\n"
+      \ . "  \\caption{My caption for subfigure (a).}\n"
+      \ . "  \\end{subfigure}\n"
+      \ . "    \\hspace{0.01cm}\n"
+      \ . "    \\begin{subfigure}[c]{0.48\\textwidth}\n"
+      \ . "  \\centering\n"
+      \ . "  \\includegraphics[width=\\textwidth]{myfilename_b.pdf}\n"
+      \ . "  \\caption{My caption for subfigure (b).}\n"
+      \ . "  \\end{subfigure}\n"
+      \ . "    \\caption{My caption for the entire figure.}\n"
+      \ . "  \\label{fig:whole_figure}\n"
+      \ . "\\end{figure}\n"
 
 " Table macro
-let @t='o\begin{table}[h!]
-      \\setlength{\tabcolsep}{8pt}
-      \\def\arraystretch{1.1}
-      \\caption{Coefficient of variation of thrust and side force for the data presented in \citet{Broering2012c}}
-      \\label{tab:broering}
-      \\begin{center}
-      \  \begin{tabular}{l r r}
-      \\firsthline
-      \\multicolumn{1}{c}{case} & \multicolumn{1}{c}{$\Upsilon_T$} & \multicolumn{1}{c}{$\Upsilon_S$} \\ \hline
-      \single foil         &    1.0800  &    4.8324  \\
-      \  $\phi =   0\deg$  &    0.9593  &    4.4851  \\
-      \  $\phi =  90\deg$  &    1.4826  &    5.7911  \\
-      \  $\phi = 180\deg$  &    1.0644  &    5.7090  \\
-      \\lasthline
-      \0i\end{tabular}
-      \0i  \end{center}
-      \0i\end{table}'
+let @t="\begin{table}[h!]\n"
+      \ . "  \\setlength{\\tabcolsep}{8pt}\n"
+      \ . "  \\def\\arraystretch{1.1}\n"
+      \ . "  \\caption{My table caption.}\n"
+      \ . "  \\label{tab:tab}\n"
+      \ . "    \\begin{center}\n"
+      \ . "    \\begin{tabular}{l r r}\n"
+      \ . "      \\firsthline\n"
+      \ . "      \\multicolumn{1}{c}{case} & \\multicolumn{1}{c}{$\\Upsilon_T$} & \\multicolumn{1}{c}{$\\Upsilon_S$} \\\\ \\hline\n"
+      \ . "      single foil         &    1.0800  &    4.8324  \\\\\n"
+      \ . "        $\\phi =   0\\deg$  &    0.9593  &    4.4851  \\\\\n"
+      \ . "        $\\phi =  90\\deg$  &    1.4826  &    5.7911  \\\\\n"
+      \ . "        $\\phi = 180\\deg$  &    1.0644  &    5.7090  \\\\\n"
+      \ . "      \\lasthline\n"
+      \ . "      \\end{tabular}\n"
+      \ . "    \\end{center}\n"
+      \ . "  \\end{table}\n"
 
 " Make comment header with equals signs
 let @h="o%79a=yypO%"
