@@ -7,8 +7,7 @@ function ts()
   fi
 
   # Declare local variables
-  local OPTIND opt args
-  local target="bottom-left"
+  local OPTIND opt args target
 
   while getopts ":t:" opt; do
     case $opt in
@@ -30,6 +29,11 @@ function ts()
   # including those assigned by $OPTARG above)
   shift $((OPTIND-1))     
   args="$@"
+
+  if [ -z "$target" ]; then
+    echo "Usage: ts -t [target] [keys]." >&2
+    return 1
+  fi
 
   # Execute command literally, then send carriage return
   tmux send-keys -t "$target" -l "$args" && \

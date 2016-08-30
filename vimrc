@@ -9,7 +9,9 @@
 "   by autocommands are located in ~/.vim/plugin/util_functions.vim
 "=============================================================================
 " Fix occasional tmux error opening temp files '/var/folders/...'
-" set shell=/bin/sh
+" Does not fix error in gnuplot.vim EvaluateSelection, and keeps vim from
+" redrawing screen often
+" set shell=/bin/bash
 
 "-----------------------------------------------------------------------------
 "       Preamble                                                         "{{{
@@ -29,7 +31,6 @@ set path=.,/usr/include/,/usr/local/include,**
 " Set vim's environment to load my .bashrc so functions/aliases are available
 " let $BASH_ENV="~/.bashrc"
 
-
 " Ensure filetypes taken into account
 filetype plugin indent on
 
@@ -40,16 +41,17 @@ packadd! matchit
 "       Global Settings                                                  "{{{
 "-----------------------------------------------------------------------------
 set autoread        " Auto-read changes made outside of vim
-set autowrite       " Auto-write changes when switching buffers
-" set hidden        " Allow hidden buffers without prompt to write
+" set autowrite       " Auto-write changes when switching buffers
+set hidden        " Allow hidden buffers without prompt to write
 set encoding=utf-8  " Ensure files are universally readable
 
 " load man plugin so man pages can be read in a vim window (:Man or <Leader>K)
 runtime! ftplugin/man.vim
 
-" shorten delay switching to normal mode
+" Only timeout on key codes, not mappings
+set notimeout
+set ttimeout
 set ttimeoutlen=10
-set timeoutlen=1000
 
 " keep undo history between files/saves/sessions
 set undofile
@@ -82,8 +84,9 @@ set ttyfast         " fast connection allows smoother scrolling
 set scrolloff=1     " cursor will never reach bottom of window
 set history=10000   " keep long command history
 set showcmd         " show partial commands
-set hls             " highlight all search terms
+set hlsearch        " highlight all search terms
 set incsearch       " highlight search as it's typed
+set wrapscan        " jump back to top of file when searching
 set ignorecase      " ignore case when searching
 set smartcase       " case-sensitive if capital in search
 
@@ -103,6 +106,7 @@ set splitright      " split new windows to right of current one
 let g:loaded_matchparen=0       " Do not highlight matching parens if == 1
 set showmatch                   " Show matching parens
 set matchtime=3                 " Highlight for 3 miliseconds
+set lazyredraw                  " don't redraw during macros etc.
 
 set textwidth=0                 " set to 0 for no auto-newlines
 set colorcolumn=80              " default is 80, autocmd changes for filetype
@@ -120,7 +124,7 @@ set foldlevelstart=20           " 0 == all folds closed, 99 == all folds open
 set printoptions=paper:letter
 
 " Toggle "set list" or "set nolist" to view special characters
-set listchars=eol:$,tab:>-,trail:*,extends:+,precedes:<,nbsp:~
+set listchars=eol:$,tab:>-,trail:_,extends:+,precedes:<,nbsp:~
 
 " Setup netrw for smoother operations
 let g:netrw_banner=0        " 0 == no banner
@@ -155,10 +159,10 @@ else
 endif
 
 " Settings for vimdiff mode
-" if &diff
-    " windo set wrap
-    set diffopt+=iwhite,vertical   " ignore trailing whitespace
-" endif
+if &diff
+    windo set wrap
+    set diffopt+=iwhite   " ignore trailing whitespace
+endif
 
 " Allow italics (reset terminal escape codes)
 "   test: $ echo -e "\e[3m foo \e[23m"
@@ -199,7 +203,7 @@ augroup misc_cmds
     au BufRead * call FollowSymlink()
 
     " Adjust colorcolumn to textwidth for every filetype
-    au BufEnter * if &textwidth == 0 | set colorcolumn=80 | else | set colorcolumn=+0 | endif
+    au BufEnter * if &textwidth == 0 | set colorcolumn=80 | else | set colorcolumn=+1 | endif
 augroup END
 
 augroup code_cmds
@@ -220,23 +224,32 @@ augroup code_cmds
         " \ au BufWritePre <buffer> call LastModified()
 augroup END
 
+augroup filetype_markdown
+    au!
+    " Handy operator remaps
+    au FileType markdown onoremap ih :<C-u>exe "norm! ?^==\\+$\r:nohls\rkvg_"<CR>
+    au FileType markdown onoremap ah :<C-u>exe "norm! ?^==\\+$\r:nohls\rg_vk0"<CR>
+augroup END
+
 "}}}--------------------------------------------------------------------------
 "       Key Mappings                                                     "{{{
 "-----------------------------------------------------------------------------
+let mapleader=","
+let maplocalleader="\\"
+
 " Command line mappings
 cnoremap <C-A> <Home>
-cnoremap <C-L> <Right>
 cnoremap <C-H> <Left>
-cnoremap <C-B> <S-Left>
-cnoremap <C-W> <S-Right>
 cnoremap <C-J> <Down>
 cnoremap <C-K> <Up>
+cnoremap <C-L> <Right>
+cnoremap <C-B> <S-Left>
+cnoremap <C-W> <S-Right>
 
 " Quick access .vimrc and functions
-" nnoremap <Leader>s :source $MYVIMRC<CR>
-nnoremap <Leader>v :e $MYVIMRC<CR>
-nnoremap <Leader>s :so $MYVIMRC<CR>
-nnoremap <Leader>f :e $HOME/.vim/plugin/util_functions.vim<CR>
+nnoremap <Leader>ve :e $MYVIMRC<CR>
+nnoremap <Leader>vs :so $MYVIMRC<CR>
+nnoremap <Leader>ef :e $HOME/.vim/plugin/util_functions.vim<CR>
 
 " Open URL's in browswer
 nnoremap <Leader>U :silent !open "<C-R><C-F>"<CR><bar>:redraw!<CR><CR>
@@ -253,32 +266,20 @@ nnoremap Q <nop>
 nnoremap <C-s> :w<CR>
 inoremap <C-s> <Esc>:w<CR>
 
-" Change between buffers quickly
-" nnoremap ,b :bn!<CR>
-" nnoremap ,v :bp!<CR>
-
-" Quickfix list movement
-" nnoremap ,c :cn!<CR>
-" nnoremap ,p :cp!<CR>
-
 " Toggle spell checking
-nmap <silent> ,s :set spell!<CR>
+noremap <silent> <Leader>s :set spell!<CR>
 
 " Turn off highlight search
-nnoremap <silent> ,/ :nohls<CR>
+nnoremap <silent> <Leader>/ :nohls<CR>
 
 " Search/Replace current word (vs just * for search)
 nnoremap <Leader>* *<C-o>:%s/\<<C-r><C-w>\>/
-
-" Wrapped lines goes down/up to next row, rather than next line in file
-" nnoremap j gj
-" nnoremap k gk
 
 " Make Y consistent with C and D -- doesn't always work??
 nnoremap Y y$
 
 " Toggle relative numbers
-nnoremap <silent>,n :set relativenumber!<CR>
+nnoremap <silent> <Leader>n :set relativenumber!<CR>
 
 " Shift-tab backs up one tab stop
 inoremap <S-Tab> <C-d>
@@ -330,7 +331,7 @@ nnoremap <C-q> :bp<bar>bd #<CR>
 nnoremap <C-]> <C-]>zt
 
 " Open explorer in new window
-nmap <Leader>E :Hexplore!<CR>
+noremap <Leader>E :Hexplore!<CR>
 
 " Timestamp in format %y%m%d, %H:%M
 nnoremap <Leader>T "=strftime("%m/%d/%Y, %H:%M")<CR>p
@@ -338,26 +339,33 @@ nnoremap <Leader>T "=strftime("%m/%d/%Y, %H:%M")<CR>p
 " Use spacebar to open/close folds
 nnoremap <space> za
 
-" Use \l to redraw the screen
-nnoremap <Leader>l :redraw!<CR>
-
-" " Run :make
-" nnoremap <Leader>M :make<bar>redraw!<CR>
-
-" " YankRing.vim map
-" let g:yankring_history_dir='~/.vim/'
-" nnoremap <Leader>yr :YRGetElem<CR>
+" Use \l to redraw the screen (since <C-l> is used by window switching)
+nnoremap <Leader>l :syntax sync fromstart<CR>:redraw!<CR>
 
 "}}}--------------------------------------------------------------------------
-"       Colorscheme and statusline                                       "{{{
+"        Operator mappings                                                "{{{
+"-----------------------------------------------------------------------------
+" inside/around next/last parens/curly brackets
+onoremap in( :<C-U>normal! f(vi(<CR>
+onoremap il( :<C-U>normal! F)vi(<CR>
+onoremap an( :<C-U>normal! f(va(<CR>
+onoremap al( :<C-U>normal! F)va(<CR>
+
+onoremap in{ :<C-U>normal! f{vi{<CR>
+onoremap il{ :<C-U>normal! F}vi{<CR>
+onoremap an{ :<C-U>normal! f{va{<CR>
+onoremap al{ :<C-U>normal! F}va{<CR>
+
+"}}}--------------------------------------------------------------------------
+"       Colorscheme                                                       "{{{
 "-----------------------------------------------------------------------------
 " Use solarized colorscheme
 set t_Co=256
 set background=dark
 
-" option name default optional
-"----------------------------------------------
-let g:solarized_termcolors = 256        " 256 | 16
+" Solarized options 
+" NOTE: set termcolors to 16 for "blue" background, 256 for "black"
+let g:solarized_termcolors = 16        " 256 | 16
 let g:solarized_termtrans  = 0          " 0 | 1  transparency
 let g:solarized_degrade    = 0          " 0 | 1
 let g:solarized_bold       = 1          " 1 | 0
@@ -388,10 +396,13 @@ hi Comment cterm=italic
 
 " Do not highlight cursor line number in relative number mode
 hi clear CursorLineNr
-" hi def link CursorLineNr Comment
-hi CursorLineNr ctermfg=239 ctermbg=235 cterm=italic
+hi def link CursorLineNr Comment
+" hi def link CursorLineNr LineNr
+" hi CursorLineNr ctermfg=239 ctermbg=235 cterm=italic
 
-" Status Line
+"}}}--------------------------------------------------------------------------
+"       Status Line                                                       "{{{
+"-----------------------------------------------------------------------------
 set laststatus=2                             " always show statusbar
 set statusline=                              " clear default status line
 set statusline+=%-4.3n\                      " buffer number

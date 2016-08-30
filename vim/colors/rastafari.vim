@@ -19,7 +19,7 @@ if has('eval')
 endif
 " Normal colors {{{1
 "hi Normal       guifg=#aaaaaa guibg=#000000 gui=none term=none     cterm=none    ctermfg=grey ctermbg=black
-hi Normal       guifg=#aaaaaa guibg=#000000 gui=none term=none     cterm=none    ctermfg=white
+hi Normal       guifg=#aaaaaa guibg=#000000 gui=none term=none     cterm=none    ctermfg=green
 hi Title        guifg=#ff60ff guibg=bg      gui=none term=none     cterm=none    ctermfg=magenta
 hi Ignore       guifg=#888888 guibg=bg      gui=none term=none     cterm=none    ctermfg=darkgrey
 hi Comment      guifg=#00aa00 guibg=bg      gui=none term=none     cterm=none    ctermfg=darkred
