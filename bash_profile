@@ -36,6 +36,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   export LC_ALL=en_US.UTF-8                   # brew doctor needs this line as of El Cap update 11/17/15 
   export RES=~/Documents/School/Research/     # path to research folder
   export STY=~/Library/texmf/tex/latex/       # path to latex style files
+  export MAT=~/Documents/MATLAB/              # path to Matlab files
 fi
 
 # ensure tmux uses colors
@@ -63,8 +64,8 @@ if [ -r "$HOME/.oldpwd" ]; then
 fi
 
 #------------------------------------------------------------------------------
-# If I have my own init file, then use that one, else use the
-# canonical one.
+#       Load .bashrc file for interactive shells
+#------------------------------------------------------------------------------
 if [ -f ~/.bashrc ]; then
   source ~/.bashrc
 fi

@@ -35,23 +35,24 @@ endfunction
 "     let mcom = substitute(mcom, '%', '\%', 'g')
 "     " Change newlines to literal carriage return so shellescape() does not
 "     " escape them (sends literal \ to tmux send-keys)
-"     let mcom = substitute(mcom, "\n", '\\\\\\\', 'g')
+"     " ONLY NEED FOUR BACKSLASHES!! Extra one gets added by "gcc"
+"     let mcom = substitute(mcom, "\n", '\\\\', 'g')
 "     " Call shellescape() for proper treatment of string characters
 "     call system('ts -t '''.g:matlab_pane.''' '.shellescape(mcom))
 " endfunction
 " command! -range EvaluateSelection :call EvaluateSelection()
 
 " }}}-------------------------------------------------------------------------
-"       GetVisualSelection Return string of visual selection {{{
-"----------------------------------------------------------------------------
-function! GetVisualSelection()
-    let [lnum1, col1] = getpos("'<")[1:2]
-    let [lnum2, col2] = getpos("'>")[1:2]
-    let lines = getline(lnum1, lnum2)
-    let lines[-1] = lines[-1][: col2 - (&selection == 'inclusive' ? 1 : 2)]
-    let lines[0] = lines[0][col1 - 1:]
-    return join(lines, "\n")
-endfunction
+" "       GetVisualSelection Return string of visual selection {{{
+" "----------------------------------------------------------------------------
+" function! GetVisualSelection()
+"     let [lnum1, col1] = getpos("'<")[1:2]
+"     let [lnum2, col2] = getpos("'>")[1:2]
+"     let lines = getline(lnum1, lnum2)
+"     let lines[-1] = lines[-1][: col2 - (&selection == 'inclusive' ? 1 : 2)]
+"     let lines[0] = lines[0][col1 - 1:]
+"     return join(lines, "\n")
+" endfunction
 
 "}}}-------------------------------------------------------------------------
 "       Incr increments numbers in a column (i.e. in Visual Block mode) {{{
@@ -64,9 +65,9 @@ function! Incr()
     endif
     normal `<
 endfunction
-command! Incr :call Incr()
-vnoremap <C-a> :Incr<CR>
-" vnoremap <C-a> :call Incr()<CR>
+" command! -range Incr :call Incr()
+" vnoremap <C-a> :Incr<CR>
+vnoremap <C-a> :call Incr()<CR>
 
 "}}}-------------------------------------------------------------------------
 "       JumpToCSS Jump from html tag to definition in linked CSS file {{{

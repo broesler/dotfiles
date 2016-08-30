@@ -18,7 +18,7 @@ endif
 " To highlight structure field names, use i.e.
 "+ syn keyword DotKeys contained Keyword1 Keyword2
 
-syn keyword matlabConditional           if else elseif end otherwise
+syn keyword matlabConditional           if else elseif end otherwise true false
 syn keyword matlabExceptions            try catch throw rethrow
 syn keyword matlabFunction              function warning error eval 
 syn keyword matlabImplicit              clear clc clf clr
@@ -44,7 +44,7 @@ syn match matlabCommentTitle '%\s*\%([sS]:\|\h\w*#\)\=\u\w*\(\s\+\u\w*\)*:'hs=s+
 
 " NOTE: To match block comments '%{' and '%}' must start lines by themselves,
 "+  with no other non-spaces before or after them
-syn region matlabMultilineComment start=/^\s*%{\s*$/ end=/^\s*%}\s*$/ contains=matlabTodo,matlabTab
+syn region matlabMultilineComment start=/^\s*%{\s*$/ end=/^\s*%}\s*$/ contains=matlabTodo
 
 syn match matlabContinueLine  display "\.\{3}"
 
@@ -101,39 +101,46 @@ syn match matlabError   "-\=\<\d\+\.\d\+[eEdD][-+]\=\d\+\.\([^*/\\^]\)"
 "-------------------------------------------------------------------------------
 "       Link highlights to colors
 "-------------------------------------------------------------------------------
-hi def link matlabArithmeticOperator    matlabOperator
-hi def link matlabComment               Comment
-hi def link matlabCommentTitle          PreProc
-hi def link matlabConditional           Conditional
-hi def link matlabDelimiter             Identifier
-hi def link matlabError                 Error
-hi def link matlabExceptions            Conditional
-hi def link matlabFloat                 Float
-hi def link matlabFunction              Function
-hi def link matlabImplicit              matlabStatement
-hi def link matlabLabel                 Label
-hi def link matlabContinueLine          matlabStatement
-hi def link matlabLogicalOperator       matlabOperator
-hi def link matlabMultilineComment      Comment
-hi def link matlabNumber                Number
-hi def link matlabOO                    Statement
-hi def link matlabOperator              Operator
-hi def link matlabRelationalOperator    matlabOperator
-hi def link matlabRepeat                matlabOperator
-hi def link matlabScope                 Type
-hi def link matlabSemicolon             matlabStatement
-hi def link matlabStatement             Statement
-hi def link matlabString                String
-hi def link matlabTodo                  Todo
-hi def link matlabTransposeOperator     matlabOperator
-hi def link matlabTransposeOther        Identifier
+if !exists("did_matlab_syntax_inits")
+  hi def link matlabArithmeticOperator    matlabOperator
+  hi def link matlabComment               Comment
+  hi def link matlabCommentTitle          PreProc
+  hi def link matlabConditional           Conditional
+  hi def link matlabDelimiter             Identifier
+  hi def link matlabError                 Error
+  hi def link matlabExceptions            Conditional
+  hi def link matlabFloat                 Float
+  hi def link matlabFunction              Function
+  hi def link matlabImplicit              matlabStatement
+  hi def link matlabLabel                 Label
+  hi def link matlabContinueLine          matlabStatement
+  hi def link matlabLogicalOperator       matlabOperator
+  hi def link matlabMultilineComment      Comment
+  hi def link matlabNumber                Number
+  hi def link matlabOO                    Statement
+  hi def link matlabOperator              Operator
+  hi def link matlabRelationalOperator    matlabOperator
+  hi def link matlabRepeat                matlabOperator
+  hi def link matlabScope                 Type
+  hi def link matlabSemicolon             matlabStatement
+  hi def link matlabStatement             Statement
+  hi def link matlabString                String
+  hi def link matlabTodo                  Todo
+  hi def link matlabTransposeOperator     matlabOperator
+  hi def link matlabTransposeOther        Identifier
 
-" Use magenta like in actual MATLAB instead of standard blue
-" hi matlabString                         ctermfg=125
+  " Use magenta like in actual MATLAB instead of standard blue
+  " hi matlabString                         ctermfg=125
 
-" optional highlighting
-hi def link matlabIdentifier            Identifier
-hi def link matlabTab                   Error
+  " optional highlighting
+  hi def link matlabIdentifier            Identifier
+  hi def link matlabTab                   Error
+
+endif
+
+" Make sure block comments synchronize properly, but syntax isn't super slow
+" if we have a really long file
+syn sync minlines=200
 
 " Set syntax file for current buffer
 let b:current_syntax = "matlab"
