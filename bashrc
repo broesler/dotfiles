@@ -35,7 +35,7 @@ else
 fi
 
 # Set CDPATH to quickly change to neighbor directories
-CDPATH='.:..:../..:~'
+CDPATH=".:..:../..:$HOME"
 
 # Set the default editor to vim.
 export EDITOR=vim

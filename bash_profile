@@ -18,15 +18,19 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   # Default PATH
   export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin"
 
+  # Add coreutils from homebrew
+  export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
+  export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
+
   #----- Ruby setup:
   # Load RVM into a shell session *as a function*
   [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" 
-  export PATH="$PATH:$HOME/.rbenv/shims"
+  # export PATH="$PATH:$HOME/.rbenv/shims"
   eval "$(rbenv init -)"
   export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
   export PATH="$PATH:/usr/local/heroku/bin"
 
-  # Set PATH variable correctly (last line is at front of path)
+  # Add LaTeX binaries
   export PATH="$PATH:/Library/TeX/texbin"          # LaTeX
   export PATH="$PATH:/usr/local/git/bin"           # git
 
@@ -53,8 +57,7 @@ export LESS=-Airsx8g
 #                                            -c 'nnoremap <Space> <C-f>' \
 #                                            -c 'noremap q :quit<CR>' -\""
 
-# If we can read ~/.oldpwd, make its contents our OLDPWD
-# saves OLDPWD between sessions
+# Save OLDPWD between sessions
 if [ -r "$HOME/.oldpwd" ]; then
   read -r OLDPWD < "$HOME/.oldpwd"
   export OLDPWD

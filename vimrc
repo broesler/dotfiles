@@ -120,7 +120,7 @@ set sessionoptions=blank,buffers,curdir,folds,help,resize,winsize
 set formatoptions+=lrn1j        " tcq default
 set foldmethod=marker           " auto-fold code
 set foldcolumn=0                " show locations of folds in left-most column
-set foldlevelstart=20           " 0 == all folds closed, 99 == all folds open
+set foldlevelstart=0            " 0 == all folds closed, 99 == all folds open
 set printoptions=paper:letter
 
 " Toggle "set list" or "set nolist" to view special characters
