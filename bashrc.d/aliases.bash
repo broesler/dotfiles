@@ -104,20 +104,9 @@ alias zgrep='zgrep --color=auto'
 [ -e "$HOME/.dircolors" ] && DIR_COLORS="$HOME/.dircolors"
 [ -e "$DIR_COLORS" ] || DIR_COLORS=""
 
-# if [[ "$OSTYPE" == "darwin"* ]]; then
-#   # alias lc='ls -hopG'               # Mac OS X alias
-#   eval "$(gdircolors -b ~/.dircolors)"   # set custom colors file
-#   alias lc='gls -Ghlp --color=auto'
-#   alias ldir="gls -Ghlp --color=always | command grep '^d'"
-#   alias lf="gls -Ghlp --color=always | command grep -v '^\(d\|total\)'"
-#
-# elif [[ "$OSTYPE" == "linux"* ]]; then
-  # Only need these two lines with "brew install coreutils --with-default-names"
-  eval "$(dircolors -b ~/.dircolors)"    # set custom colors file
-  alias lc='ls -Ghlp --color=auto'      # Linux ls options
-  # alias ldir="ls -Ghlp --color=always | command grep '^d'"
-  # alias lf="ls -Ghlp --color=always | command grep -v '^\(d\|total\)'"
-# fi
+# Set ls with colors
+eval "$(dircolors -b ~/.dircolors)"    # set custom colors file
+alias lc='ls -Ghlp --color=auto'      # Linux ls options
 
 # Show hidden files only
 alias lcd='lc -d .*'
