@@ -124,8 +124,8 @@ endfunction
 "----------------------------------------------------------------------------
 function! MakeTemplate(filename)
     execute 'source' a:filename
-    execute "1,10s@File:.*@File: " . expand("%:t")
-    execute "1,10s@Created:.*@Created: " . strftime("%m/%d/%Y, %H:%M")
+    execute "%s@File:.*@File: " . expand("%:t")
+    execute "%s@Created:.*@Created: " . strftime("%m/%d/%Y, %H:%M")
 endfunction
 
 "}}}-------------------------------------------------------------------------
