@@ -19,3 +19,6 @@
 [submodule "vim/bundle/unimpaired"]
 	path = vim/bundle/unimpaired
 	url = git://github.com/tpope/vim-unimpaired.git
+[submodule "vim/bundle/gnuplotvim"]
+	path = vim/bundle/gnuplotvim
+	url = git@bitbucket.org:broesler/gnuplotvim.git
