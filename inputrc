@@ -16,6 +16,12 @@ set show-all-if-ambiguous on    # one tab to show list of suggestions
 set menu-complete-display-prefix on     # just list candidates on first tab
 set completion-display-width 1  # show suggestions in one-column list
 set completion-map-case on      # auto-figure-out case mistakes, - vs _
+set colored-stats on            # use ls when tab-completing
+
+# If a tab-completed file is a symlink to a directory, treat it like
+# a directory, not a file
+set mark-symlinked-directories on 
+
 
 # NOTE: These maps require `set -o vi' in .bashrc in order to work!!!
 $if mode=vi

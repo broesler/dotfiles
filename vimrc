@@ -140,16 +140,16 @@ if has('mouse') && !exists("$SSH_TTY")
 endif
 
 " Use the_silver_searcher if available
-if executable('ag')
-    set grepprg=command\ ag\ --vimgrep\ $*
-    set grepformat=%f:%l:%c:%m
-
-    " Create :Ag command for using silver searcher in subwindow
-    if !exists(':Ag')
-        command -nargs=+ -complete=file -bar 
-                    \ Ag silent! grep! <args> <bar> cwindow
-    endif
-endif
+" if executable('ag')
+"     set grepprg=command\ ag\ --vimgrep\ $*
+"     set grepformat=%f:%l:%c:%m
+"
+"     " Create :Ag command for using silver searcher in subwindow
+"     if !exists(':Ag')
+"         command -nargs=+ -complete=file -bar 
+"                     \ Ag silent! grep! <args> <bar> cwindow
+"     endif
+" endif
 
 " Use system clipboard properly with +X11 and +clientserver
 if (strlen(v:servername) > 0) || (strlen($TMUX) > 0)
@@ -197,7 +197,7 @@ augroup misc_cmds
     au FileType vim setlocal keywordprg=:help
 
     " Treat buffers from stdin (i.e. echo foo | vim -) as scratch buffers
-    au StdinReadPost * :set buftype=nofile
+    au StdinReadPost * set buftype=nofile
 
     " Follow symlinks to actual files
     au BufRead * call FollowSymlink()
@@ -218,7 +218,6 @@ augroup code_cmds
 
     au FileType perl :compiler perl
 
-    au VimEnter,BufEnter *.gp set ft=gnuplot | set syn=gnuplot 
     " Update 'Last Modified:' line in code files
     " au FileType c,cpp,python,matlab,fortran,vim,sh,perl 
         " \ au BufWritePre <buffer> call LastModified()
@@ -249,7 +248,7 @@ cnoremap <C-W> <S-Right>
 " Quick access .vimrc and functions
 nnoremap <Leader>ve :e $MYVIMRC<CR>
 nnoremap <Leader>vs :so $MYVIMRC<CR>
-nnoremap <Leader>ef :e $HOME/.vim/plugin/util_functions.vim<CR>
+nnoremap <Leader>fe :e $HOME/.vim/plugin/util_functions.vim<CR>
 
 " Open URL's in browswer
 nnoremap <Leader>U :silent !open "<C-R><C-F>"<CR><bar>:redraw!<CR><CR>
@@ -341,6 +340,9 @@ nnoremap <space> za
 
 " Use \l to redraw the screen (since <C-l> is used by window switching)
 nnoremap <Leader>l :syntax sync fromstart<CR>:redraw!<CR>
+
+" grep for the WORD under the cursor
+" nnoremap <Leader>g :silent execute "grep! -R " . shellescape(expand("<cWORD>")) . " ."<CR>:copen<CR>
 
 "}}}--------------------------------------------------------------------------
 "        Operator mappings                                                "{{{

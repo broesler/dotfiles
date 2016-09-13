@@ -35,7 +35,7 @@ syn match matlabRelationalOperator      display "[<>]=\="
 syn match matlabLogicalOperator         display "[&|~]"
 
 " Highlight callouts in comments
-syn match matlabTodo contained "\(TODO\|NOTE\|FIXME\):\="
+syn match matlabTodo contained "\(TODO\|NOTE\|FIXME\)"
 syn match matlabTab display "\t"
 
 syn match matlabComment display "%.*$" contains=matlabTodo,matlabTab,matlabCommentTitle
