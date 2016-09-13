@@ -22,6 +22,9 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
   export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 
+  # Add my local files
+  export PATH="$PATH:$HOME/bin"
+
   #----- Ruby setup:
   # Load RVM into a shell session *as a function*
   [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" 
