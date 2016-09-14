@@ -1,6 +1,7 @@
 # Local .gitignore for my .dotfiles
 vim/view/*
 vim/undodir/*
+vim/tmp/undo/*
 mutt/cache/*
 mutt/tmp/*
 *yankring_history*
