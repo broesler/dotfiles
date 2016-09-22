@@ -115,10 +115,11 @@ set matchtime=3                 " Highlight for 3 miliseconds
 " Formatting {{{
 set wrap                        " autowrap text to screen
 set linebreak                   " Do not break words mid-word
-set autoindent      " indent based on filetype
-set formatoptions=tcqlrn1j        " tcq default
-set textwidth=0                 " set to 0 for no auto-newlines
+set autoindent                  " indent based on filetype
+set formatoptions=tcq2l1j       " tcq default, :help fo-table
+set textwidth=0                 " set to 0 by default, set by filetype
 set colorcolumn=80              " default is 80, autocmd changes for filetype
+set diffopt+=iwhite             " ignore whitespace in diff windows
 "}}}
 " Folding {{{
 set foldlevelstart=0            " 0 == all folds closed, 99 == all folds open
@@ -221,6 +222,7 @@ augroup code_cmds "{{{
 
     au FileType perl :compiler perl
 
+    " TODO figure out how to break undo and jump sequence for this operation
     " Update 'Last Modified:' line in code files
     " au FileType c,cpp,python,matlab,fortran,vim,sh,perl 
         " \ au BufWritePre <buffer> call LastModified()
@@ -266,7 +268,7 @@ nnoremap # #<C-o>
 
 " Search/Replace current word/selection (vs just * for search)
 vnoremap <Leader>* :<C-u>call <SID>VSetSearch()<CR>:%s/<C-r>//
-nnoremap <Leader>* *<C-o>:%s/\<\<C-r><C-w>\>/
+nnoremap <Leader>* *<C-o>:%s/\<<C-r><C-w>\>/
 " Repeat last substitution, including flags, with &.
 nnoremap & :&&<CR>
 xnoremap & :&&<CR>
@@ -281,8 +283,9 @@ nnoremap <Leader>fe :e $HOME/.vim/plugin/util_functions.vim<CR>
 nnoremap <Leader>U :silent !open "<C-R><C-F>"<CR><bar>:redraw!<CR><CR>
 
 " Change vim's directory to that of current file (':cd -' changes back)
-" Use '%%/...' on command line to open files in directory of current file
 nnoremap <Leader>D :cd %:p:h<CR>:pwd<CR>
+
+" Use '%%/...' on command line to open files in directory of current file
 cabbr <expr> %% expand("%:p:h")
 
 " unmap Q from entering Ex mode to avoid hitting it by accident
@@ -295,7 +298,7 @@ inoremap <C-s> <Esc>:w<CR>
 " Toggle spell checking
 noremap <silent> <Leader>s :set spell!<CR>
 
-" Turn off highlight search
+" Turn off highlighting of last search
 nnoremap <silent> ,/ :nohls<CR>
 
 " Make Y consistent with C and D -- doesn't always work??
@@ -364,12 +367,7 @@ nnoremap <space> za
 " Use \l to redraw the screen (since <C-l> is used by window switching)
 nnoremap <Leader>l :syntax sync fromstart<CR>:redraw!<CR>
 
-" grep for the WORD under the cursor (grep operator instead)
-" nnoremap <Leader>g :silent execute "grep! -R " . shellescape(expand("<cWORD>")) . " ."<CR>:copen<CR>
-
-"}}}--------------------------------------------------------------------------
-"        Operator mappings                                                "{{{
-"-----------------------------------------------------------------------------
+" Custom text objects "{{{
 " inside/around next/last parens/curly brackets
 onoremap in( :<C-U>normal! f(vi(<CR>
 onoremap il( :<C-U>normal! F)vi(<CR>
@@ -380,6 +378,7 @@ onoremap in{ :<C-U>normal! f{vi{<CR>
 onoremap il{ :<C-U>normal! F}vi{<CR>
 onoremap an{ :<C-U>normal! f{va{<CR>
 onoremap al{ :<C-U>normal! F}va{<CR>
+"}}}
 
 "}}}--------------------------------------------------------------------------
 "       Plugin Settings                                                   "{{{
@@ -390,6 +389,11 @@ if executable('ag')
     let g:ackprg = 'ag --smart-case --nogroup --nocolor --column'
 endif
 "}}}
+" BReptile {{{
+let g:breptile_mapkeys = 1              " 1 == map all keys
+let g:breptile_usetpgrep = 0            " 1 == use tpgrep to find program
+let g:breptile_defaultpane = 'top-left' " default tmux pane to use
+" }}}
 "}}}--------------------------------------------------------------------------
 "       Colorscheme                                                       "{{{
 "-----------------------------------------------------------------------------
