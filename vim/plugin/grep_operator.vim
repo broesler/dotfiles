@@ -6,12 +6,10 @@
 "  Description: vim grep operator, i.e. <Leader>giw
 "
 "=============================================================================
-nnoremap <Leader>g :set operatorfunc=<SID>GrepOperator<CR>g@
-vnoremap <Leader>g :<C-u>call <SID>GrepOperator(visualmode())<CR>
-
 function! s:GrepOperator(type)
-    let save_unnamed_register = @@
+    let save_reg = @@
 
+    " copy motion for type
     if a:type ==# 'v'
         execute "normal! `<v`>y"
     elseif a:type ==# 'char'
@@ -22,11 +20,15 @@ function! s:GrepOperator(type)
         return
     endif
 
-    silent execute "grep! -R " . shellescape(@@) . " ."
+    " Grep for literal string
+    silent execute "grep! -R -F " . shellescape(@@) . " ."
     copen
 
-    let @@ = save_unnamed_register
+    let @@ = save_reg
 endfunction
+
+nnoremap <Leader>g :set operatorfunc=<SID>GrepOperator<CR>g@
+vnoremap <Leader>g :<C-u>call <SID>GrepOperator(visualmode())<CR>
 
 "=============================================================================
 "=============================================================================

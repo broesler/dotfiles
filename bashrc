@@ -9,14 +9,14 @@
 #==============================================================================
 
 # If not running interactively, don't do anything
-#+ in order to use shopt -s expand_aliases, and access aliases within vim,
-#+ need to allow .bashrc to run for non-interactive shells!
-#+ ...OR `export -f' all functions required in vim!
+# in order to use shopt -s expand_aliases, and access aliases within vim,
+# need to allow .bashrc to run for non-interactive shells!
+# ...OR `export -f' all functions required in vim!
 [ -z "$PS1" ] && return
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
   # Set the prompt with bright green text -- include GNU screen window number
-  PS1=$"\[\e[01;32m\][\u@\h: \w]${WINDOW}\$ \[\e[0m\]"
+  PS1=$"\[\033[01;32m\][\u@\h: \w]${WINDOW}\$ \[\033[0m\]"
   # PS1=$"[\u@\h: \w]${WINDOW}\$ "
 
   # As of bash 4.3, can trim directories in prompt!
@@ -24,7 +24,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 
 elif [[ "$OSTYPE" == "linux"* ]]; then
   # Set to bright cyan text for linux machines (easy tell on ssh to babylons)
-  PS1=$"\[\e[01;36m\][\u@\h: \w]${WINDOW}\$ \[\e[0m\]"
+  PS1=$"\[\033[00;36m\][\u@\h: \w]${WINDOW}\$ \[\033[0m\]"
 
   # As of bash 4.3, can trim directories in prompt!
   PROMPT_DIRTRIM=3
@@ -41,12 +41,13 @@ CDPATH=".:..:../..:$HOME"
 export EDITOR=vim
 
 # Avoid succesive duplicates and spaces in the bash command history, ignore
-#+ simple, commonly-used commands.
-export HISTCONTROL=ignoredups:ignorespace
-export HISTIGNORE='clc:bg:fg:git st:git lol:history:h:hr'
-export HISTSIZE=$((1 << 12))                # 4096 lines in memory
-export HISTFILESIZE=$((1 << 24))            # 16e6 lines in file
-export HISTTIMEFORMAT="%F %T "
+# simple, commonly-used commands. No need to "export", these are only used in
+# interactive shells
+HISTCONTROL=ignoredups:ignorespace
+HISTIGNORE='clc:bg:fg:git st:git lol:history:h:hr'
+HISTSIZE=$((1 << 12))                # 4096 lines in memory
+HISTFILESIZE=$((1 << 24))            # 16e6 lines in file
+HISTTIMEFORMAT="%F %T "
 
 # shoptions
 shopt -s autocd         # just type directory name to cd
@@ -66,7 +67,7 @@ shopt -s shift_verbose  # warn when trying to shift if nothing is there
 set match-hidden-files off
 
 # Append commands to the history every time a prompt is shown,
-#+ instead of after closing the session.
+# instead of after closing the session.
 PROMPT_COMMAND='history -a'
 
 # Turn off <C-S> flow control (stops all I/O until <C-Q> is pressed)
@@ -80,30 +81,30 @@ set bell-style visible
 
 # Mac-only options
 if [[ "$OSTYPE" == "darwin"* ]]; then
-  # Create instance of m210 B/W printer for duplex printing
-  lpoptions -p m210__bw___thayercups/duplex \
-            -o Duplex=DuplexNoTumble \
-            -o prettyprint \
-            -o cpi=14 \
-            -o lpi=8 \
-            -o page-top=18 \
-            -o page-right=18 \
-            -o page-bottom=36 \
-            -o page-left=36
-
-  lpoptions -p m210__color___thayercups/duplex \
-            -o Duplex=DuplexNoTumble \
-            -o prettyprint \
-            -o cpi=14 \
-            -o lpi=8 \
-            -o page-top=18 \
-            -o page-right=18 \
-            -o page-bottom=36 \
-            -o page-left=36
+  # # Create instance of m210 B/W printer for duplex printing
+  # lpoptions -p m210__bw___thayercups/duplex \
+  #           -o Duplex=DuplexNoTumble \
+  #           -o prettyprint \
+  #           -o cpi=14 \
+  #           -o lpi=8 \
+  #           -o page-top=18 \
+  #           -o page-right=18 \
+  #           -o page-bottom=36 \
+  #           -o page-left=36
+  #
+  # lpoptions -p m210__color___thayercups/duplex \
+  #           -o Duplex=DuplexNoTumble \
+  #           -o prettyprint \
+  #           -o cpi=14 \
+  #           -o lpi=8 \
+  #           -o page-top=18 \
+  #           -o page-right=18 \
+  #           -o page-bottom=36 \
+  #           -o page-left=36
 
   # enable better auto-completion
-  if [ -f $(brew --prefix)/etc/bash_completion ]; then
-    source $(brew --prefix)/etc/bash_completion
+  if [ -f "$(brew --prefix)"/etc/bash_completion ]; then
+    source "$(brew --prefix)"/etc/bash_completion
   fi
 
   # Disable tilde expansion upon tab completion
