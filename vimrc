@@ -122,7 +122,6 @@ set colorcolumn=80              " default is 80, autocmd changes for filetype
 set diffopt+=iwhite             " ignore whitespace in diff windows
 "}}}
 " Folding {{{
-set foldlevelstart=0            " 0 == all folds closed, 99 == all folds open
 set foldcolumn=0                " show locations of folds in left-most column
 set foldmethod=marker           " auto-fold code
 "}}}
@@ -291,9 +290,10 @@ cabbr <expr> %% expand("%:p:h")
 " unmap Q from entering Ex mode to avoid hitting it by accident
 nnoremap Q <nop>
 
-" Save file -- MUST HAVE stty -ixon in ~/.bashrc to disable flow control
-nnoremap <C-s> :w<CR>
-inoremap <C-s> <Esc>:w<CR>
+" Save file if changed 
+" NOTE: MUST HAVE 'stty -ixon' in ~/.bashrc to disable flow control
+nnoremap <C-s> :update<CR>
+inoremap <C-s> <Esc>:update<CR>
 
 " Toggle spell checking
 noremap <silent> <Leader>s :set spell!<CR>
@@ -456,7 +456,7 @@ set statusline+=%<%P                         " file position
 
 " now set it up to change the status line based on mode
 if version >= 700
-    au InsertEnter * hi StatusLine term=reverse ctermfg=green ctermbg=black
+    au InsertEnter * hi StatusLine term=reverse ctermfg=darkgreen ctermbg=none
     au InsertLeave * hi StatusLine term=none    ctermfg=none  ctermbg=none
 endif
 "}}}
