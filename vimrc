@@ -8,10 +8,6 @@
 " Description: Settings for vim. Source with \s while in vim. Functions called
 "   by autocommands are located in ~/.vim/plugin/util_functions.vim
 "=============================================================================
-" Fix occasional tmux error opening temp files '/var/folders/...'
-" Does not fix error in gnuplot.vim EvaluateSelection, and keeps vim from
-" redrawing screen often
-" set shell=/bin/bash
 
 "-----------------------------------------------------------------------------
 "       Preamble                                                         "{{{
@@ -24,113 +20,120 @@ silent! call pathogen#helptags()
 " This must be first, because it changes other options as a side effect.
 set nocompatible
 
-" '**' recursively includes all directories below the current one
-set path=.,/usr/include/,/usr/local/include,**
-
-" Do not need following lines if we `export' required functions in .bashrc!
-" Set vim's environment to load my .bashrc so functions/aliases are available
-" let $BASH_ENV="~/.bashrc"
-
 " Ensure filetypes taken into account
 filetype plugin indent on
 
 " Enable matchit plugin
 packadd! matchit
 
-"}}}--------------------------------------------------------------------------
-"       Global Settings                                                  "{{{
-"-----------------------------------------------------------------------------
-set autoread        " Auto-read changes made outside of vim
-" set autowrite       " Auto-write changes when switching buffers
-set hidden        " Allow hidden buffers without prompt to write
-set encoding=utf-8  " Ensure files are universally readable
-
 " load man plugin so man pages can be read in a vim window (:Man or <Leader>K)
 runtime! ftplugin/man.vim
 
-" Only timeout on key codes, not mappings
-set notimeout
-set ttimeout
-set ttimeoutlen=10
+" '**' recursively includes all directories below the current one
+set path=.,/usr/include/,/usr/local/include,**
 
-" keep undo history between files/saves/sessions
-set undofile
-set undodir=~/.vim/undodir/ " directory MUST already exist
-set undolevels=1000         " How many undos
-set undoreload=10000        " number of lines to save for undo
-
+"}}}--------------------------------------------------------------------------
+"       Global Settings                                                  "{{{
+"-----------------------------------------------------------------------------
 " Enable syntax highlighting
 syntax on
 
-" Enable Omnicompletion
+set title           " show filename in title bar
+set number          " turn on line numbers
+set scrolloff=1     " cursor will never reach bottom of window
+set history=10000   " keep long command history
+set showcmd         " show partial commands
+
+set encoding=utf-8  " Ensure files are universally readable
+set modelines=20    " check 20 lines down for a modeline
+
+" It's not about the money, it's all about the timing {{{
+set notimeout           " Only timeout on key codes, not mappings
+set ttimeout
+set ttimeoutlen=10
+set ttyfast             " fast connection allows smoother scrolling
+set lazyredraw                  " don't redraw during macros etc.
+"}}}
+" Backups {{{
+set backup
+set noswapfile
+set autoread                " Auto-read changes made outside of vim
+set hidden                  " Allow hidden buffers without prompt to write
+set undofile
+set undolevels=1000         " How many undos
+set undoreload=10000        " number of lines to save for undo
+
+set undodir=~/.vim/tmp/undo//       " directory MUST already exist
+set backupdir=~/.vim/tmp/backup// 
+set directory=~/.vim/tmp/swap//
+"}}}
+" Enable Omnicompletion {{{
 set omnifunc=syntaxcomplete#Complete
 set completeopt=longest,menuone,preview     " make like bash completion
 set complete=.,w,b,u,t,kspell
 set dictionary=/usr/share/dict/words
 set thesaurus=/usr/share/thes/mthesaur.txt  " use <C-X><C-T>
 " set thesaurus+=/usr/share/thes/roget13a.txt   " slow search comment out
-
-" read local tag file first, then look up the tree from current file ';', then
-" search in specified directories
-set tags=./tags,tags;,~/.dotfiles/tags,~/Documents/MATLAB/tags
-
+"}}}
+" Wildmenu completion {{{
 set wildmenu            " Enable tab to show all menu options
-set nofileignorecase    " no == do NOT ignore case when completing filenames
 set wildmode=longest,list,full  " like bash completion
+set nofileignorecase    " no == do NOT ignore case when completing filenames
 
-set title           " show filename in title bar
-set number          " turn on line numbers
-set ttyfast         " fast connection allows smoother scrolling
-set scrolloff=1     " cursor will never reach bottom of window
-set history=10000   " keep long command history
-set showcmd         " show partial commands
+set wildignore+=.git                            " Version control
+set wildignore+=*.aux,*.bbl,*.blg,*.log         " LaTeX aux files
+set wildignore+=*.out,*.toc,*.fls
+set wildignore+=*.fdb_latexmk,*.synctex*.gz
+set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg  " binary images
+set wildignore+=*.o,*.dll,*.pyc                 " compiled object files
+set wildignore+=*.sw?                           " Vim swap files
+set wildignore+=*.DS_Store                      " OSX bullshit
+set wildignore+=*.mat                           " Matlab data files
+"}}}
+" Searching {{{
 set hlsearch        " highlight all search terms
 set incsearch       " highlight search as it's typed
 set wrapscan        " jump back to top of file when searching
 set ignorecase      " ignore case when searching
 set smartcase       " case-sensitive if capital in search
-
+"}}}
+" Tabs vs spaces {{{
 set tabstop=4       " tabs every 4 spaces
-set softtabstop=0   " set to 4 to let backspace delete indent with expandtab
+set softtabstop=4   " set to 4 to let backspace delete indent with expandtab
 set shiftwidth=4    " use >>, << for line shifting
-set shiftround      " shift to round # of tabstops
 set expandtab       " use spaces instead of tab character (need for Fortran)
-set autoindent      " indent based on filetype
+set shiftround      " shift to round # of tabstops
 set nojoinspaces    " use one space, not two, after punctuation
-set modelines=20    " check 20 lines down for a modeline
-
-set nosplitbelow    " split new windows to top   of current one
-set splitright      " split new windows to right of current one
-
+set backspace=indent,eol,start  " allow backspacing over everything
+"}}}
+" Parens {{{
 " let g:LatexBox_loaded_matchparen=0
 let g:loaded_matchparen=0       " Do not highlight matching parens if == 1
 set showmatch                   " Show matching parens
 set matchtime=3                 " Highlight for 3 miliseconds
-set lazyredraw                  " don't redraw during macros etc.
-
-set textwidth=0                 " set to 0 for no auto-newlines
-set colorcolumn=80              " default is 80, autocmd changes for filetype
+"}}}
+" Formatting {{{
 set wrap                        " autowrap text to screen
 set linebreak                   " Do not break words mid-word
-set backspace=indent,eol,start  " allow backspacing over everything
-
-" Don't save settings from session, usually we want to reset these to defaults
-" when closing/reopening a bunch of files
-set sessionoptions=blank,buffers,curdir,folds,help,resize,winsize
-set formatoptions+=lrn1j        " tcq default
-set foldmethod=marker           " auto-fold code
+set autoindent                  " indent based on filetype
+set formatoptions=tcq2l1j       " tcq default, :help fo-table
+set textwidth=0                 " set to 0 by default, set by filetype
+set colorcolumn=80              " default is 80, autocmd changes for filetype
+set diffopt+=iwhite             " ignore whitespace in diff windows
+"}}}
+" Folding {{{
 set foldcolumn=0                " show locations of folds in left-most column
-set foldlevelstart=0            " 0 == all folds closed, 99 == all folds open
-set printoptions=paper:letter
-
-" Toggle "set list" or "set nolist" to view special characters
-set listchars=eol:$,tab:>-,trail:_,extends:+,precedes:<,nbsp:~
-
-" Setup netrw for smoother operations
+set foldmethod=marker           " auto-fold code
+"}}}
+" Windows {{{
+set nosplitbelow    " split new windows to top   of current one
+set splitright      " split new windows to right of current one
+"}}}
+" Netrw {{{
 let g:netrw_banner=0        " 0 == no banner
 let g:netrw_browse_split=0  " 1 == open files in horizontal split
-
-" Use mouse if it exists -- mouse is weird in ssh
+"}}}
+" Use mouse if it exists -- mouse is weird in ssh {{{
 if has('mouse') && !exists("$SSH_TTY")
     set mouse=a
     " tmux knows the extended mouse mode
@@ -138,42 +141,42 @@ if has('mouse') && !exists("$SSH_TTY")
         set ttymouse=xterm2
     endif
 endif
-
-" Use the_silver_searcher if available
-" if executable('ag')
-"     set grepprg=command\ ag\ --vimgrep\ $*
-"     set grepformat=%f:%l:%c:%m
-"
-"     " Create :Ag command for using silver searcher in subwindow
-"     if !exists(':Ag')
-"         command -nargs=+ -complete=file -bar 
-"                     \ Ag silent! grep! <args> <bar> cwindow
-"     endif
-" endif
-
-" Use system clipboard properly with +X11 and +clientserver
+"}}}
+" System clipboard with +X11 and +clientserver {{{
 if (strlen(v:servername) > 0) || (strlen($TMUX) > 0)
     set clipboard=autoselectplus,exclude:cons\|linux
 else
     set clipboard=unnamed,exclude:cons\|linux
 endif
-
-" Settings for vimdiff mode
+"}}}
+" vimdiff {{{
 if &diff
     windo set wrap
     set diffopt+=iwhite   " ignore trailing whitespace
 endif
-
-" Allow italics (reset terminal escape codes)
+"}}}
+" Allow italics (reset terminal escape codes) {{{
 "   test: $ echo -e "\e[3m foo \e[23m"
 set t_ZH=[3m
 set t_ZR=[23m
+"}}}
+" tags session print lischars options {{{
+" read local tag file first, then look up the tree from current file ';', then
+" search in specified directories
+set tags=./tags,tags;,~/.dotfiles/tags,~/Documents/MATLAB/tags
 
+" Don't save settings from session, usually we want to reset these to defaults
+" when closing/reopening a bunch of files
+set sessionoptions=blank,buffers,curdir,folds,help,resize,winsize
+set printoptions=paper:letter
 
+" Toggle "set list" or "set nolist" to view special characters
+set listchars=eol:$,tab:>-,trail:_,extends:+,precedes:<,nbsp:~
+"}}}
 "}}}--------------------------------------------------------------------------
 "       Autocommands                                                     "{{{
 "-----------------------------------------------------------------------------
-augroup quickfix_window
+augroup quickfix_window "{{{
     au!
     " Automatically open, but do not go to (if there are errors) the quickfix
     " / location list window, or close it when is has become empty.
@@ -188,8 +191,8 @@ augroup quickfix_window
     " Quickly open/close quickfix and location list
     au BufWinEnter quickfix nnoremap <silent> <buffer> q :cclose<CR>:lclose<CR>
 augroup END
-
-augroup misc_cmds
+"}}}
+augroup misc_cmds "{{{
     au!
     au FileType matlab,sh,markdown,vim,perl,gitcommit setlocal iskeyword+=_
 
@@ -205,8 +208,8 @@ augroup misc_cmds
     " Adjust colorcolumn to textwidth for every filetype
     au BufEnter * if &textwidth == 0 | set colorcolumn=80 | else | set colorcolumn=+1 | endif
 augroup END
-
-augroup code_cmds
+"}}}
+augroup code_cmds "{{{
     au!
     " Create template for new files
     au BufNewFile *.c   call MakeTemplate("$HOME/.vim/header/c_header")
@@ -218,25 +221,26 @@ augroup code_cmds
 
     au FileType perl :compiler perl
 
+    " TODO figure out how to break undo and jump sequence for this operation
     " Update 'Last Modified:' line in code files
     " au FileType c,cpp,python,matlab,fortran,vim,sh,perl 
         " \ au BufWritePre <buffer> call LastModified()
 augroup END
-
-augroup filetype_markdown
+"}}}
+augroup filetype_markdown "{{{
     au!
     " Handy operator remaps
     au FileType markdown onoremap ih :<C-u>exe "norm! ?^==\\+$\r:nohls\rkvg_"<CR>
     au FileType markdown onoremap ah :<C-u>exe "norm! ?^==\\+$\r:nohls\rg_vk0"<CR>
 augroup END
-
+"}}}
 "}}}--------------------------------------------------------------------------
 "       Key Mappings                                                     "{{{
 "-----------------------------------------------------------------------------
-let mapleader=","
-let maplocalleader="\\"
+let mapleader="\\"
+let maplocalleader=","
 
-" Command line mappings
+" Command line mappings {{{
 cnoremap <C-A> <Home>
 cnoremap <C-H> <Left>
 cnoremap <C-J> <Down>
@@ -244,44 +248,64 @@ cnoremap <C-K> <Up>
 cnoremap <C-L> <Right>
 cnoremap <C-B> <S-Left>
 cnoremap <C-W> <S-Right>
+"}}}
+" Searching/Replacing maps {{{
+" Visual Mode */# from Scrooloose 
+function! s:VSetSearch()
+  let temp = @@
+  norm! gvy
+  let @/ = '\V' . substitute(escape(@@, '\'), '\n', '\\n', 'g')
+  let @@ = temp
+endfunction
 
-" Quick access .vimrc and functions
+vnoremap * :<C-u>call <SID>VSetSearch()<CR>//<CR><C-o>
+vnoremap # :<C-u>call <SID>VSetSearch()<CR>??<CR><C-o>
+
+" Fix */# to not jump to next match
+nnoremap * *<C-o>
+nnoremap # #<C-o>
+
+" Search/Replace current word/selection (vs just * for search)
+vnoremap <Leader>* :<C-u>call <SID>VSetSearch()<CR>:%s/<C-r>//
+nnoremap <Leader>* *<C-o>:%s/\<<C-r><C-w>\>/
+" Repeat last substitution, including flags, with &.
+nnoremap & :&&<CR>
+xnoremap & :&&<CR>
+" }}}
+" Quick access .vimrc and functions {{{
 nnoremap <Leader>ve :e $MYVIMRC<CR>
 nnoremap <Leader>vs :so $MYVIMRC<CR>
 nnoremap <Leader>fe :e $HOME/.vim/plugin/util_functions.vim<CR>
+"}}}
 
-" Open URL's in browswer
+" Open URL's in browser
 nnoremap <Leader>U :silent !open "<C-R><C-F>"<CR><bar>:redraw!<CR><CR>
 
 " Change vim's directory to that of current file (':cd -' changes back)
-" Use '%%/...' on command line to open files in directory of current file
 nnoremap <Leader>D :cd %:p:h<CR>:pwd<CR>
+
+" Use '%%/...' on command line to open files in directory of current file
 cabbr <expr> %% expand("%:p:h")
 
 " unmap Q from entering Ex mode to avoid hitting it by accident
 nnoremap Q <nop>
 
-" Save file
-nnoremap <C-s> :w<CR>
-inoremap <C-s> <Esc>:w<CR>
+" Save file if changed 
+" NOTE: MUST HAVE 'stty -ixon' in ~/.bashrc to disable flow control
+nnoremap <C-s> :update<CR>
+inoremap <C-s> <Esc>:update<CR>
 
 " Toggle spell checking
 noremap <silent> <Leader>s :set spell!<CR>
 
-" Turn off highlight search
-nnoremap <silent> <Leader>/ :nohls<CR>
-
-" Search/Replace current word (vs just * for search)
-nnoremap <Leader>* *<C-o>:%s/\<<C-r><C-w>\>/
+" Turn off highlighting of last search
+nnoremap <silent> ,/ :nohls<CR>
 
 " Make Y consistent with C and D -- doesn't always work??
 nnoremap Y y$
 
 " Toggle relative numbers
 nnoremap <silent> <Leader>n :set relativenumber!<CR>
-
-" Shift-tab backs up one tab stop
-inoremap <S-Tab> <C-d>
 
 " Swap word under cursor with next word, including linebreaks, turn off search
 " and return cursor to previous position
@@ -292,6 +316,7 @@ inoremap <C-f> <C-X><C-F>
 inoremap <C-]> <C-X><C-]>
 inoremap <C-l> <C-X><C-L>
 
+" Tmux jumps {{{
 " Jump between tmux and vim windows with <C-[hjkl]>
 if (exists('$TMUX') || exists('$SSH_IN_TMUX'))
     function! TmuxOrSplitSwitch(wincmd, tmuxdir)
@@ -321,6 +346,7 @@ else
     nnoremap <C-k> <C-w>k
     nnoremap <C-l> <C-w>l
 endif
+"}}}
 
 " Close buffer without closing split (# is 'alternate file')
 " NOTE: Does NOT work twice in a row!!
@@ -332,7 +358,7 @@ nnoremap <C-]> <C-]>zt
 " Open explorer in new window
 noremap <Leader>E :Hexplore!<CR>
 
-" Timestamp in format %y%m%d, %H:%M
+" Timestamp 
 nnoremap <Leader>T "=strftime("%m/%d/%Y, %H:%M")<CR>p
 
 " Use spacebar to open/close folds
@@ -341,12 +367,7 @@ nnoremap <space> za
 " Use \l to redraw the screen (since <C-l> is used by window switching)
 nnoremap <Leader>l :syntax sync fromstart<CR>:redraw!<CR>
 
-" grep for the WORD under the cursor
-" nnoremap <Leader>g :silent execute "grep! -R " . shellescape(expand("<cWORD>")) . " ."<CR>:copen<CR>
-
-"}}}--------------------------------------------------------------------------
-"        Operator mappings                                                "{{{
-"-----------------------------------------------------------------------------
+" Custom text objects "{{{
 " inside/around next/last parens/curly brackets
 onoremap in( :<C-U>normal! f(vi(<CR>
 onoremap il( :<C-U>normal! F)vi(<CR>
@@ -357,11 +378,26 @@ onoremap in{ :<C-U>normal! f{vi{<CR>
 onoremap il{ :<C-U>normal! F}vi{<CR>
 onoremap an{ :<C-U>normal! f{va{<CR>
 onoremap al{ :<C-U>normal! F}va{<CR>
+"}}}
 
+"}}}--------------------------------------------------------------------------
+"       Plugin Settings                                                   "{{{
+"-----------------------------------------------------------------------------
+" Ack {{{
+if executable('ag')
+    " nnoremap <leader>a :Ack!<space>
+    let g:ackprg = 'ag --smart-case --nogroup --nocolor --column'
+endif
+"}}}
+" BReptile {{{
+let g:breptile_mapkeys = 1              " 1 == map all keys
+let g:breptile_usetpgrep = 0            " 1 == use tpgrep to find program
+let g:breptile_defaultpane = 'top-left' " default tmux pane to use
+" }}}
 "}}}--------------------------------------------------------------------------
 "       Colorscheme                                                       "{{{
 "-----------------------------------------------------------------------------
-" Use solarized colorscheme
+" Use solarized colorscheme {{{
 set t_Co=256
 set background=dark
 
@@ -376,14 +412,15 @@ let g:solarized_italic     = 1          " 0 | 1  Italics not supported in Termin
 let g:solarized_contrast   = "normal"   " 'normal' | 'high' | 'low'
 let g:solarized_visibility = "normal"   " 'normal' | 'high' | 'low' = show extra chars
 colorscheme solarized
-
-" NOTE: UNCOMMENT 'hi' lines for default colorscheme
+"}}}
+" NOTE: UNCOMMENT 'hi' lines for default colorscheme {{{
 " hi Comment ctermfg=darkgreen
 " hi Type ctermfg=33
 " hi StatusLine ctermfg=none ctermbg=none
 " hi WildMenu ctermfg=yellow ctermbg=darkgrey
-
-" Spell check options -- need to be set AFTER colorscheme to work properly.
+"}}}
+" Spell check {{{
+" NOTE: need to be set AFTER colorscheme to work properly.
 hi clear SpellBad
 hi SpellBad term=standout ctermfg=1 term=underline cterm=underline
 hi clear SpellCap
@@ -392,6 +429,7 @@ hi clear SpellRare
 hi SpellRare term=underline cterm=underline
 hi clear SpellLocal
 hi SpellLocal term=underline cterm=underline
+"}}}
 
 " Make comments italics
 hi Comment cterm=italic
@@ -399,8 +437,6 @@ hi Comment cterm=italic
 " Do not highlight cursor line number in relative number mode
 hi clear CursorLineNr
 hi def link CursorLineNr Comment
-" hi def link CursorLineNr LineNr
-" hi CursorLineNr ctermfg=239 ctermbg=235 cterm=italic
 
 "}}}--------------------------------------------------------------------------
 "       Status Line                                                       "{{{
@@ -420,7 +456,7 @@ set statusline+=%<%P                         " file position
 
 " now set it up to change the status line based on mode
 if version >= 700
-    au InsertEnter * hi StatusLine term=reverse ctermfg=green ctermbg=black
+    au InsertEnter * hi StatusLine term=reverse ctermfg=darkgreen ctermbg=none
     au InsertLeave * hi StatusLine term=none    ctermfg=none  ctermbg=none
 endif
 "}}}

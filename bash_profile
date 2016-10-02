@@ -20,12 +20,11 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 
   # Add coreutils from homebrew
   export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
-  export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 
   # Add my local files
   export PATH="$PATH:$HOME/bin"
 
-  #----- Ruby setup:
+  # Ruby setup:
   # Load RVM into a shell session *as a function*
   [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" 
   # export PATH="$PATH:$HOME/.rbenv/shims"
@@ -42,8 +41,17 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 
   export LC_ALL=en_US.UTF-8                   # brew doctor needs this line as of El Cap update 11/17/15 
   export RES=~/Documents/School/Research/     # path to research folder
-  export STY=~/Library/texmf/tex/latex/       # path to latex style files
+  # export STY=~/Library/texmf/tex/latex/       # path to latex style files
   export MAT=~/Documents/MATLAB/              # path to Matlab files
+
+  # Add homebrewed utilities to the manpath
+  export MANPATH="$(brew --prefix coreutils)/libexec/gnuman:$MANPATH"
+  export MANPATH="$(brew --prefix findutils)/share/man:$MANPATH"
+  export MANPATH="$(brew --prefix ed)/share/man:$MANPATH"
+  export MANPATH="$(brew --prefix gnu-sed)/share/man:$MANPATH"
+  export MANPATH="$(brew --prefix grep)/share/man:$MANPATH"
+  export MANPATH="$(brew --prefix gnu-tar)/share/man:$MANPATH"
+  export MANPATH="$(brew --prefix gnu-which)/share/man:$MANPATH"
 fi
 
 # ensure tmux uses colors
