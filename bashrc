@@ -111,7 +111,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   _expand() { return 0; }
 
   # Run iTerm2 shell integration
-  test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+  # test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
 fi
 
 # fix vim autocompletion
