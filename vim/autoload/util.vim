@@ -1,5 +1,5 @@
 "=============================================================================
-"     File: ~/.vim/plugin/util_functions.vim
+"     File: ~/.vim/autoload/util.vim
 "  Created: 12/06/2015, 13:20
 "   Author: Bernie Roesler
 "
@@ -11,23 +11,27 @@
 "-----------------------------------------------------------------------------
 "       Functions 
 "-----------------------------------------------------------------------------
-function! CommentBlock() "{{{
+function! util#CommentBlock(...) "{{{
     " don't let vim insert comment characters automatically
     let l:save_fo = &formatoptions
     set formatoptions-=ro
 
     " Move cursor to first non-blank character on line
-    execute "normal! ^"
+    execute 'normal! ^'
+
+    " Get commentstring based on filetype
+    let l:idx = match(&commentstring, '%s')
+    let l:comm_default = &commentstring[0:l:idx-1]
 
     " Create a comment block such as the header above
-    let l:intro = a:0 >= 1 ? a:1 : "//"
-    let l:boxch = a:0 >= 2 ? a:2 : "-"
-    let l:width = a:0 >= 3 ? a:3 : &textwidth - col('.') - strlen(l:intro) + 1
+    " let l:intro = (a:0 >= 1) ? a:1 : "//"
+    let l:intro = (a:0 >= 1) ? a:1 : l:comm_default
+    let l:boxch = (a:0 >= 2) ? a:2 : "-"
+    let l:width = (a:0 >= 3) ? a:3 : &textwidth - col('.') - strlen(l:intro) + 1
 
     " Build the comment box and put the comment inside it
     let l:border = l:intro . repeat(l:boxch,l:width) 
     let l:title  = l:intro . repeat(" ",8) 
-    " let l:title  = l:intro . repeat(" ",8) . a:comment . "\r" 
 
     " Make header and leave cursor at end of line
     execute 'normal! i' . l:border "\<CR>" . l:title . "o" . l:border
@@ -36,7 +40,7 @@ function! CommentBlock() "{{{
     let &formatoptions = l:save_fo
 endfunction
 "}}}
-function! FollowSymlink() "{{{
+function! util#FollowSymlink() "{{{
     " Follow symlinks when opening files
     " Copied from here:
     "   <http://inlehmansterms.net/2014/09/04/sane-vim-working-directories/>
@@ -49,16 +53,7 @@ function! FollowSymlink() "{{{
     end
 endfunction
 "}}}
-function! Incr() "{{{
-    let a = line('.') - line("'<")
-    let c = virtcol("'<")
-    if a > 0
-        execute 'normal! '.c.'|'.a."\<C-a>"
-    endif
-    normal `<
-endfunction
-"}}}
-function! LastModified() "{{{
+function! util#LastModified() "{{{
     if &modified
         let save_cursor = getpos(".")
         " Only check maximum of 50 lines, or to the end of the file (if < 20)
@@ -82,13 +77,22 @@ function! LastModified() "{{{
     endif
 endfunction
 "}}}
-function! MakeTemplate(filename) "{{{
+function! util#MakeTemplate(filename) "{{{
     execute 'source' a:filename
     execute "%s@File:.*@File: " . expand("%:t")
     execute "%s@Created:.*@Created: " . strftime("%m/%d/%Y, %H:%M")
 endfunction
 "}}}
-function! SetTermTitle() "{{{
+function! s:Incr() "{{{
+    let a = line('.') - line("'<")
+    let c = virtcol("'<")
+    if a > 0
+        execute 'normal! '.c.'|'.a."\<C-a>"
+    endif
+    normal `<
+endfunction
+"}}}
+function! s:SetTermTitle() "{{{
     let filename = expand("%:p")
     let length = strlen(filename)
     let cols = &columns - 20          " terminal window size
@@ -101,7 +105,7 @@ function! SetTermTitle() "{{{
     silent execute "!echo -ne " . "\"\033]0;" . tstr . "\007\""
 endfunction
 "}}}
-" FIXME function! UpdateTags() " {{{
+" FIXME function! util#UpdateTags() " {{{
 "   let alltagfiles = tagfiles()
 "   if (len(alltagfiles) == 0)            " create new tags file
 "     let tagsfile = './tags'           
@@ -124,10 +128,14 @@ endfunction
 " Change terminal title when switching between files
 augroup AGSetTermTitle
     autocmd!
-    autocmd VimEnter,WinEnter,TabEnter,BufEnter * silent! call SetTermTitle()
+    autocmd VimEnter,WinEnter,TabEnter,BufEnter * silent! call <SID>SetTermTitle()
 augroup END
 
-vnoremap <C-a> :call Incr()<CR>
+" Comment block command
+command! -nargs=* MyCommentBlock call util#CommentBlock(<f-args>)
+
+" Increment numbers in block visual mode
+vnoremap <C-a> :call <SID>Incr()<CR>
 "}}}
-"============================================================================
-"============================================================================
+"=============================================================================
+"=============================================================================

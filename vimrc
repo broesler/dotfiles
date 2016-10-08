@@ -6,7 +6,7 @@
 " Last Modified: 05/26/2016, 11:31
 
 " Description: Settings for vim. Source with \s while in vim. Functions called
-"   by autocommands are located in ~/.vim/plugin/util_functions.vim
+"   by autocommands are located in ~/.vim/autoload/util.vim
 "=============================================================================
 
 "-----------------------------------------------------------------------------
@@ -189,49 +189,49 @@ augroup quickfix_window "{{{
     autocmd QuickFixCmdPost    l* nested botright lwindow
 
     " Quickly open/close quickfix and location list
-    au BufWinEnter quickfix nnoremap <silent> <buffer> q :cclose<CR>:lclose<CR>
+    autocmd BufWinEnter quickfix nnoremap <silent> <buffer> q :cclose<CR>:lclose<CR>
 augroup END
 "}}}
 augroup misc_cmds "{{{
-    au!
-    au FileType matlab,sh,markdown,vim,perl,gitcommit setlocal iskeyword+=_
+    autocmd!
+    autocmd FileType matlab,sh,markdown,vim,perl,gitcommit setlocal iskeyword+=_
 
     " Use K to search vim help for word under cursor only in vim files
-    au FileType vim setlocal keywordprg=:help
+    autocmd FileType vim setlocal keywordprg=:help
 
     " Treat buffers from stdin (i.e. echo foo | vim -) as scratch buffers
-    au StdinReadPost * set buftype=nofile
+    autocmd StdinReadPost * set buftype=nofile
 
     " Follow symlinks to actual files
-    " au BufRead * call FollowSymlink()
+    autocmd BufRead * call util#FollowSymlink()
 
     " Adjust colorcolumn to textwidth for every filetype
-    au BufEnter * if &textwidth == 0 | set colorcolumn=80 | else | set colorcolumn=+1 | endif
+    autocmd BufEnter * if &textwidth == 0 | set colorcolumn=80 | else | set colorcolumn=+1 | endif
 augroup END
 "}}}
 augroup code_cmds "{{{
-    au!
+    autocmd!
     " Create template for new files
-    au BufNewFile *.c   call MakeTemplate("$HOME/.vim/header/c_header")
-    au BufNewFile *.m   call MakeTemplate("$HOME/.vim/header/m_header")
-    au BufNewFile *.f95 call MakeTemplate("$HOME/.vim/header/f_header")
-    au BufNewFile *.py  call MakeTemplate("$HOME/.vim/header/py_header")
-    au BufNewFile *.sh  call MakeTemplate("$HOME/.vim/header/sh_header")
-    au BufNewFile *.vim call MakeTemplate("$HOME/.vim/header/vim_header")
+    autocmd BufNewFile *.c   call util#MakeTemplate("$HOME/.vim/header/c_header")
+    autocmd BufNewFile *.m   call util#MakeTemplate("$HOME/.vim/header/m_header")
+    autocmd BufNewFile *.f95 call util#MakeTemplate("$HOME/.vim/header/f_header")
+    autocmd BufNewFile *.py  call util#MakeTemplate("$HOME/.vim/header/py_header")
+    autocmd BufNewFile *.sh  call util#MakeTemplate("$HOME/.vim/header/sh_header")
+    autocmd BufNewFile *.vim call util#MakeTemplate("$HOME/.vim/header/vim_header")
 
-    au FileType perl :compiler perl
+    autocmd FileType perl :compiler perl
 
     " TODO figure out how to break undo and jump sequence for this operation
     " Update 'Last Modified:' line in code files
-    " au FileType c,cpp,python,matlab,fortran,vim,sh,perl 
-        " \ au BufWritePre <buffer> call LastModified()
+    " autocmd FileType c,cpp,python,matlab,fortran,vim,sh,perl 
+        " \ autocmd BufWritePre <buffer> call LastModified()
 augroup END
 "}}}
 augroup filetype_markdown "{{{
-    au!
+    autocmd!
     " Handy operator remaps
-    au FileType markdown onoremap ih :<C-u>exe "norm! ?^==\\+$\r:nohls\rkvg_"<CR>
-    au FileType markdown onoremap ah :<C-u>exe "norm! ?^==\\+$\r:nohls\rg_vk0"<CR>
+    autocmd FileType markdown onoremap ih :<C-u>exe "norm! ?^==\\+$\r:nohls\rkvg_"<CR>
+    autocmd FileType markdown onoremap ah :<C-u>exe "norm! ?^==\\+$\r:nohls\rg_vk0"<CR>
 augroup END
 "}}}
 "}}}--------------------------------------------------------------------------
@@ -275,8 +275,11 @@ xnoremap & :&&<CR>
 " Quick access .vimrc and functions {{{
 nnoremap <Leader>ve :e $MYVIMRC<CR>
 nnoremap <Leader>vs :so $MYVIMRC<CR>
-nnoremap <Leader>fe :e $HOME/.vim/plugin/util_functions.vim<CR>
+nnoremap <Leader>fe :e $HOME/.vim/autoload/util.vim<CR>
 "}}}
+
+" Make comment into a block/header (use default values)
+nnoremap <LocalLeader>h :MyCommentBlock<CR>
 
 " Open URL's in browser
 nnoremap <Leader>U :silent !open "<C-R><C-F>"<CR><bar>:redraw!<CR><CR>
@@ -307,15 +310,14 @@ nnoremap Y y$
 " Toggle relative numbers
 nnoremap <silent> <Leader>n :set relativenumber!<CR>
 
-" Swap word under cursor with next word, including linebreaks, turn off search
-" and return cursor to previous position
+" Swap word under cursor with next word, including linebreaks
 nnoremap <Leader>t mx:s/\v(<\S*%#\S*>)(\_.{-})(<\S+>)/\3\2\1/<CR>:nohls<CR>`x
 
-" Completion in insert mode
+" Completion in insert mode {{{
 inoremap <C-f> <C-X><C-F>
 inoremap <C-]> <C-X><C-]>
 inoremap <C-l> <C-X><C-L>
-
+"}}}
 " Tmux jumps {{{
 " Jump between tmux and vim windows with <C-[hjkl]>
 if (exists('$TMUX') || exists('$SSH_IN_TMUX'))
@@ -472,8 +474,8 @@ set statusline+=%<%P                         " file position
 
 " now set it up to change the status line based on mode
 if version >= 700
-    au InsertEnter * hi StatusLine term=reverse ctermfg=darkgreen ctermbg=none
-    au InsertLeave * hi StatusLine term=none    ctermfg=none  ctermbg=none
+    autocmd InsertEnter * hi StatusLine term=reverse ctermfg=darkgreen ctermbg=none
+    autocmd InsertLeave * hi StatusLine term=none    ctermfg=none  ctermbg=none
 endif
 "}}}
 
