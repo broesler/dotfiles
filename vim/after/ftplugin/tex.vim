@@ -20,7 +20,7 @@ let g:tex_fold_enabled=1
 let g:SuperTabDefaultCompletionType="context"
 
 " Compiler options. Use ':make mydocument' to compile
-let b:tex_flavor="pdflatex"
+let b:tex_flavor="latex"
 let b:tex_ignore_makefile=1       " ignore any makefiles in the tex dir
 
 " Call latexmk to build tex files properly. See ~/.latexmkrc for options
