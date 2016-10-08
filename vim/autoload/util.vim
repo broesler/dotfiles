@@ -7,9 +7,7 @@
 "
 "  Description: Custom utility functions called from .vimrc autocmds, etc.
 "=============================================================================
-
-"-----------------------------------------------------------------------------
-"       Functions 
+"       Functions  {{{
 "-----------------------------------------------------------------------------
 function! util#CommentBlock(...) "{{{
     " don't let vim insert comment characters automatically
@@ -40,6 +38,39 @@ function! util#CommentBlock(...) "{{{
     let &formatoptions = l:save_fo
 endfunction
 "}}}
+function! util#EnsureDirExists() "{{{
+    let required_dir = expand("%:h")
+    if !isdirectory(required_dir)
+        " Alert user of error and prompt to create directory
+        let l:msg = "Directory '" . required_dir . "' doesn't exist."
+        let l:opt = "&Create it?\n&Open buffer anyway?"
+        let l:confirm = util#AskQuit(l:msg, l:opt)
+
+        if l:confirm == 1
+            try " to make the directory
+                call mkdir( required_dir, 'p' )
+            catch
+                let l:msg = "Can't create '" . required_dir . "'"
+                let l:opt = "&Continue anyway?"
+                call util#AskQuit(l:msg, l:opt)
+            endtry
+        endif
+        " if confirm == 0 (user pressed <ESC> or <C-c>), 
+        " or confirm == 2 (user wants to open buffer without a directory)
+        " just return and open the file without a directory
+    endif
+endfunction
+"}}}
+function! util#AskQuit(msg, proposed_action) "{{{
+    " Confirm returns "1" if Quit is selected via pressing [q] or <CR>
+    let l:conf = confirm(a:msg, "&Quit?\n" . a:proposed_action)
+    if l:conf == 1
+        exit
+    else 
+        return l:conf
+    endif
+endfunction
+"}}}
 function! util#FollowSymlink() "{{{
     " Follow symlinks when opening files
     " Copied from here:
@@ -65,7 +96,7 @@ function! util#LastModified() "{{{
         call histdel('search', -1)      
         " These commands are suggested in the help to remove the last chnage
         " from the undo history/tree. We turn off 'undofile' before the change
-        " and turn it back on after the change so it is not recorded
+        " and turn it back on after the change so it is not recorded:
         " let old_undolevels = &undolevels
         " set undolevels=&undolevels-1
         " exe "normal a \<BS>\<Esc>"
@@ -83,6 +114,23 @@ function! util#MakeTemplate(filename) "{{{
     execute "%s@Created:.*@Created: " . strftime("%m/%d/%Y, %H:%M")
 endfunction
 "}}}
+" FIXME function! util#UpdateTags() " {{{
+"   TODO search along same path that vim searches for tags files
+"   let alltagfiles = tagfiles()
+"   if (len(alltagfiles) == 0)            " create new tags file
+"     let tagsfile = './tags'           
+"     silent! exe '!ctags -af ' . tagsfile . ' ' . expand("%:t")
+"   else
+"     " for each tags file, remove old tags from current buffer
+"     for ff in alltagfiles
+"       silent! exe '!sed -i -e "\@' . expand("%:t") . '@d" ' . ff
+"     endfor
+"     " Refresh nearest tag file with most up-to-date tags
+"     silent! exe '!ctags -af ' . alltagfiles[0] . ' ' . expand("%")
+"     " -e on Mac causes backup tags file to be generated, remove it
+"     silent! exe '!rm -rf ' . alltagfiles[0] . '-e'
+"   endif
+" endfunction "}}}
 function! s:Incr() "{{{
     let a = line('.') - line("'<")
     let c = virtcol("'<")
@@ -105,24 +153,7 @@ function! s:SetTermTitle() "{{{
     silent execute "!echo -ne " . "\"\033]0;" . tstr . "\007\""
 endfunction
 "}}}
-" FIXME function! util#UpdateTags() " {{{
-"   let alltagfiles = tagfiles()
-"   if (len(alltagfiles) == 0)            " create new tags file
-"     let tagsfile = './tags'           
-"     silent! exe '!ctags -af ' . tagsfile . ' ' . expand("%:t")
-"   else
-"     " for each tags file, remove old tags from current buffer
-"     for ff in alltagfiles
-"       silent! exe '!sed -i -e "\@' . expand("%:t") . '@d" ' . ff
-"     endfor
-"     " Refresh nearest tag file with most up-to-date tags
-"     silent! exe '!ctags -af ' . alltagfiles[0] . ' ' . expand("%")
-"     " -e on Mac causes backup tags file to be generated, remove it
-"     silent! exe '!rm -rf ' . alltagfiles[0] . '-e'
-"   endif
-" endfunction "}}}
-
-"-----------------------------------------------------------------------------
+"}}}--------------------------------------------------------------------------
 "       Mappings {{{
 "-----------------------------------------------------------------------------
 " Change terminal title when switching between files
@@ -135,7 +166,5 @@ augroup END
 command! -nargs=* MyCommentBlock call util#CommentBlock(<f-args>)
 
 " Increment numbers in block visual mode
-vnoremap <C-a> :call <SID>Incr()<CR>
+noremap <silent> <Plug>UtilIncr :call <SID>Incr()<CR>
 "}}}
-"=============================================================================
-"=============================================================================

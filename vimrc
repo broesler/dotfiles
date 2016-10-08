@@ -176,39 +176,6 @@ set listchars=eol:$,tab:>-,trail:_,extends:+,precedes:<,nbsp:~
 "}}}--------------------------------------------------------------------------
 "       Autocommands                                                     "{{{
 "-----------------------------------------------------------------------------
-augroup quickfix_window "{{{
-    autocmd!
-    " Automatically open, but do not go to (if there are errors) the quickfix
-    " / location list window, or close it when is has become empty.
-    " Note: Must allow nesting of autocmds to enable any customizations for
-    " quickfix buffers.
-    " Note: Normally, :cwindow jumps to the quickfix window if the command
-    " opens it (but not if it's already open); however, as part of the
-    " autocmd, this doesn't seem to happen.
-    autocmd QuickFixCmdPost [^l]* nested botright cwindow
-    autocmd QuickFixCmdPost    l* nested botright lwindow
-
-    " Quickly open/close quickfix and location list
-    autocmd BufWinEnter quickfix nnoremap <silent> <buffer> q :cclose<CR>:lclose<CR>
-augroup END
-"}}}
-augroup misc_cmds "{{{
-    autocmd!
-    autocmd FileType matlab,sh,markdown,vim,perl,gitcommit setlocal iskeyword+=_
-
-    " Use K to search vim help for word under cursor only in vim files
-    autocmd FileType vim setlocal keywordprg=:help
-
-    " Treat buffers from stdin (i.e. echo foo | vim -) as scratch buffers
-    autocmd StdinReadPost * set buftype=nofile
-
-    " Follow symlinks to actual files
-    autocmd BufRead * call util#FollowSymlink()
-
-    " Adjust colorcolumn to textwidth for every filetype
-    autocmd BufEnter * if &textwidth == 0 | set colorcolumn=80 | else | set colorcolumn=+1 | endif
-augroup END
-"}}}
 augroup code_cmds "{{{
     autocmd!
     " Create template for new files
@@ -227,11 +194,40 @@ augroup code_cmds "{{{
         " \ autocmd BufWritePre <buffer> call LastModified()
 augroup END
 "}}}
-augroup filetype_markdown "{{{
+augroup misc_cmds "{{{
     autocmd!
-    " Handy operator remaps
-    autocmd FileType markdown onoremap ih :<C-u>exe "norm! ?^==\\+$\r:nohls\rkvg_"<CR>
-    autocmd FileType markdown onoremap ah :<C-u>exe "norm! ?^==\\+$\r:nohls\rg_vk0"<CR>
+    autocmd FileType matlab,sh,markdown,vim,perl,gitcommit setlocal iskeyword+=_
+
+    " Treat buffers from stdin (i.e. echo foo | vim -) as scratch buffers
+    autocmd StdinReadPost * set buftype=nofile
+
+    " Follow symlinks to actual files
+    autocmd BufRead * call util#FollowSymlink()
+
+    " Prompt to create new directory if it doesn't exist
+    autocmd BufNewFile * call util#EnsureDirExists()
+
+    " Adjust colorcolumn to textwidth for every filetype
+    autocmd BufEnter * if &textwidth == 0 | set colorcolumn=80 | else | set colorcolumn=+1 | endif
+
+    " Use K to search vim help for word under cursor only in vim files
+    autocmd FileType vim setlocal keywordprg=:help
+augroup END
+"}}}
+augroup quickfix_window "{{{
+    autocmd!
+    " Automatically open, but do not go to (if there are errors) the quickfix
+    " / location list window, or close it when is has become empty.
+    " Note: Must allow nesting of autocmds to enable any customizations for
+    " quickfix buffers.
+    " Note: Normally, :cwindow jumps to the quickfix window if the command
+    " opens it (but not if it's already open); however, as part of the
+    " autocmd, this doesn't seem to happen.
+    autocmd QuickFixCmdPost [^l]* nested botright cwindow
+    autocmd QuickFixCmdPost    l* nested botright lwindow
+
+    " Quickly open/close quickfix and location list
+    autocmd BufWinEnter quickfix nnoremap <silent> <buffer> q :cclose<CR>:lclose<CR>
 augroup END
 "}}}
 "}}}--------------------------------------------------------------------------
@@ -273,10 +269,13 @@ nnoremap & :&&<CR>
 xnoremap & :&&<CR>
 " }}}
 " Quick access .vimrc and functions {{{
-nnoremap <Leader>ve :e $MYVIMRC<CR>
-nnoremap <Leader>vs :so $MYVIMRC<CR>
-nnoremap <Leader>fe :e $HOME/.vim/autoload/util.vim<CR>
+nnoremap <Leader>ve :split $MYVIMRC<CR>
+nnoremap <Leader>vs :source $MYVIMRC<CR>
+nnoremap <Leader>fe :edit $HOME/.vim/autoload/util.vim<CR>
 "}}}
+
+" Increment numbers in a column (no "nore" here to use <Plug>)
+vmap <C-a> <Plug>UtilIncr
 
 " Make comment into a block/header (use default values)
 nnoremap <LocalLeader>h :MyCommentBlock<CR>
@@ -381,6 +380,13 @@ onoremap il{ :<C-U>normal! F}vi{<CR>
 onoremap an{ :<C-U>normal! f{va{<CR>
 onoremap al{ :<C-U>normal! F}va{<CR>
 "}}}
+augroup filetype_markdown "{{{
+    autocmd!
+    " Handy operator remaps
+    autocmd FileType markdown onoremap ih :<C-u>exe "norm! ?^==\\+$\r:nohls\rkvg_"<CR>
+    autocmd FileType markdown onoremap ah :<C-u>exe "norm! ?^==\\+$\r:nohls\rg_vk0"<CR>
+augroup END
+"}}}
 
 "}}}--------------------------------------------------------------------------
 "       Plugin Settings                                                   "{{{
@@ -391,18 +397,12 @@ if executable('ag')
     let g:ackprg = 'ag --smart-case --nogroup --nocolor --column'
 endif
 "}}}
-" Ale {{{
-let g:ale_lint_on_text_changed = 0
-let g:ale_lint_on_save = 1
-let g:ale_sign_column_always = 0
-" }}}
 " BReptile {{{
 let g:breptile_mapkeys = 1              " 1 == map generic keys
 let g:breptile_usetpgrep = 1            " 1 == use tpgrep to find program
 " let g:breptile_defaultpane = 'top-left' " default tmux pane to use
-" gnuplot settings
+let g:breptile_bash_pane = 'bottom-left'   
 let g:breptile_tpgrep_pat_gnuplot = '[g]nuplot'
-" matlab settings:
 let g:breptile_mapkeys_matlab = 1       " 1 == map keys for matlab files
 let g:breptile_tpgrep_pat_matlab = '[r]lwrap.*matlab'
 " }}}
