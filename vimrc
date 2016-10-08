@@ -177,7 +177,7 @@ set listchars=eol:$,tab:>-,trail:_,extends:+,precedes:<,nbsp:~
 "       Autocommands                                                     "{{{
 "-----------------------------------------------------------------------------
 augroup quickfix_window "{{{
-    au!
+    autocmd!
     " Automatically open, but do not go to (if there are errors) the quickfix
     " / location list window, or close it when is has become empty.
     " Note: Must allow nesting of autocmds to enable any customizations for
@@ -185,8 +185,8 @@ augroup quickfix_window "{{{
     " Note: Normally, :cwindow jumps to the quickfix window if the command
     " opens it (but not if it's already open); however, as part of the
     " autocmd, this doesn't seem to happen.
-    au QuickFixCmdPost [^l]* nested botright cwindow
-    au QuickFixCmdPost    l* nested botright lwindow
+    autocmd QuickFixCmdPost [^l]* nested botright cwindow
+    autocmd QuickFixCmdPost    l* nested botright lwindow
 
     " Quickly open/close quickfix and location list
     au BufWinEnter quickfix nnoremap <silent> <buffer> q :cclose<CR>:lclose<CR>
@@ -203,7 +203,7 @@ augroup misc_cmds "{{{
     au StdinReadPost * set buftype=nofile
 
     " Follow symlinks to actual files
-    au BufRead * call FollowSymlink()
+    " au BufRead * call FollowSymlink()
 
     " Adjust colorcolumn to textwidth for every filetype
     au BufEnter * if &textwidth == 0 | set colorcolumn=80 | else | set colorcolumn=+1 | endif
@@ -389,10 +389,20 @@ if executable('ag')
     let g:ackprg = 'ag --smart-case --nogroup --nocolor --column'
 endif
 "}}}
+" Ale {{{
+let g:ale_lint_on_text_changed = 0
+let g:ale_lint_on_save = 1
+let g:ale_sign_column_always = 0
+" }}}
 " BReptile {{{
-let g:breptile_mapkeys = 1              " 1 == map all keys
-let g:breptile_usetpgrep = 0            " 1 == use tpgrep to find program
-let g:breptile_defaultpane = 'top-left' " default tmux pane to use
+let g:breptile_mapkeys = 1              " 1 == map generic keys
+let g:breptile_usetpgrep = 1            " 1 == use tpgrep to find program
+" let g:breptile_defaultpane = 'top-left' " default tmux pane to use
+" gnuplot settings
+let g:breptile_tpgrep_pat_gnuplot = '[g]nuplot'
+" matlab settings:
+let g:breptile_mapkeys_matlab = 1       " 1 == map keys for matlab files
+let g:breptile_tpgrep_pat_matlab = '[r]lwrap.*matlab'
 " }}}
 "}}}--------------------------------------------------------------------------
 "       Colorscheme                                                       "{{{
@@ -430,13 +440,19 @@ hi SpellRare term=underline cterm=underline
 hi clear SpellLocal
 hi SpellLocal term=underline cterm=underline
 "}}}
-
+" Comments {{{
 " Make comments italics
 hi Comment cterm=italic
 
 " Do not highlight cursor line number in relative number mode
 hi clear CursorLineNr
 hi def link CursorLineNr Comment
+"}}}
+" Highlight NOTE etc {{{
+syn match myTodo contained "\(TODO\|NOTE\|FIXME\)" 
+
+hi def link myTodo Todo
+"}}}
 
 "}}}--------------------------------------------------------------------------
 "       Status Line                                                       "{{{

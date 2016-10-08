@@ -8,56 +8,41 @@
 "  Description: Custom utility functions called from .vimrc autocmds, etc.
 "============================================================================
 
-"----------------------------------------------------------------------------
-"       FollowSymlink Follow symlinks when opening files {{{
-"----------------------------------------------------------------------------
-" Copied from here:
-"   <http://inlehmansterms.net/2014/09/04/sane-vim-working-directories/>
-function! FollowSymlink()
+"-----------------------------------------------------------------------------
+"       Functions 
+"-----------------------------------------------------------------------------
+function! CommentBlock(comment, ...) "{{{
+    " don't let vim insert comment characters automatically
+    let l:save_fo = &formatoptions
+    set formatoptions-=ro
+
+    " Create a comment block such as the header above
+    let l:intro = a:0 >= 1 ? a:1 : "#"
+    let l:box   = a:0 >= 2 ? a:2 : "-"
+    let l:width = a:0 >= 3 ? a:3 : &textwidth-col('.')
+
+    " Build the comment box and put the comment inside it
+    execute "normal i" . l:intro . repeat(l:box,l:width) . "\n" 
+                     \ . l:intro . " \t\t" . a:comment   . "\n" 
+                     \ . l:intro . repeat(l:box,l:width) . "\n"
+
+    let &formatoptions = l:save_fo
+endfunction
+"}}}
+function! FollowSymlink() "{{{
+    " Follow symlinks when opening files
+    " Copied from here:
+    "   <http://inlehmansterms.net/2014/09/04/sane-vim-working-directories/>
     let current_file = expand('%:p')
     " check if file type is a symlink
     if getftype(current_file) == 'link'
-        " if it is a symlink resolve to the actual file path and open the
-        " actual file
+        " resolve to the actual file path and open the actual file
         let actual_file = resolve(current_file)
         silent! execute 'file ' . actual_file
     end
 endfunction
-
-"}}}-------------------------------------------------------------------------
-" "       Evaluate current selection {{{
-" "-----------------------------------------------------------------------------
-" function! EvaluateSelection()
-"     let mcom = GetVisualSelection()
-"     " Only need to escape ; if there is no space after it (not sure why?)
-"     let mcom = substitute(mcom, ';', '; ', 'g')
-"     " Need to escape `%' so vim doesn't insert filename
-"     let mcom = substitute(mcom, '%', '\%', 'g')
-"     " Change newlines to literal carriage return so shellescape() does not
-"     " escape them (sends literal \ to tmux send-keys)
-"     " ONLY NEED FOUR BACKSLASHES!! Extra one gets added by "gcc"
-"     let mcom = substitute(mcom, "\n", '\\\\', 'g')
-"     " Call shellescape() for proper treatment of string characters
-"     call system('ts -t '''.g:matlab_pane.''' '.shellescape(mcom))
-" endfunction
-" command! -range EvaluateSelection :call EvaluateSelection()
-
-" }}}-------------------------------------------------------------------------
-" "       GetVisualSelection Return string of visual selection {{{
-" "----------------------------------------------------------------------------
-" function! GetVisualSelection()
-"     let [lnum1, col1] = getpos("'<")[1:2]
-"     let [lnum2, col2] = getpos("'>")[1:2]
-"     let lines = getline(lnum1, lnum2)
-"     let lines[-1] = lines[-1][: col2 - (&selection == 'inclusive' ? 1 : 2)]
-"     let lines[0] = lines[0][col1 - 1:]
-"     return join(lines, "\n")
-" endfunction
-
-"}}}-------------------------------------------------------------------------
-"       Incr increments numbers in a column (i.e. in Visual Block mode) {{{
-"----------------------------------------------------------------------------
-function! Incr()
+"}}}
+function! Incr() "{{{
     let a = line('.') - line("'<")
     let c = virtcol("'<")
     if a > 0
@@ -65,44 +50,17 @@ function! Incr()
     endif
     normal `<
 endfunction
-" command! -range Incr :call Incr()
-" vnoremap <C-a> :Incr<CR>
-vnoremap <C-a> :call Incr()<CR>
-
-"}}}-------------------------------------------------------------------------
-"       JumpToCSS Jump from html tag to definition in linked CSS file {{{
-"----------------------------------------------------------------------------
-function! JumpToCSS()
-    let id_pos = searchpos("id", "nb", line('.'))[1]
-    let class_pos = searchpos("class", "nb", line('.'))[1]
-
-    if class_pos > 0 || id_pos > 0
-        if class_pos < id_pos
-            execute ":vim '#".expand('<cword>')."' **/*.css"
-        elseif class_pos > id_pos
-            execute ":vim '.".expand('<cword>')."' **/*.css"
-        endif
-    endif
-endfunction
-nnoremap <Leader>] :call JumpToCSS()<CR>
-
-"}}}-------------------------------------------------------------------------
-"       LastModified If buffer modified, update any 'Last modified: ' {{{
-"----------------------------------------------------------------------------
-function! LastModified()
+"}}}
+function! LastModified() "{{{
     if &modified
         let save_cursor = getpos(".")
-
         " Only check maximum of 50 lines, or to the end of the file (if < 20)
         let n = min([50, line("$")])
-
         " Update line without moving cursor, do not report errors
         keepjumps exe '1,' . n . 's#\(Last Modified:\|Last Updated:\).*#\1 '
                     \ . strftime("%m/%d/%Y, %H:%M") . '#ie'
-
         " Remove update from cmd history
         call histdel('search', -1)      
-
         " These commands are suggested in the help to remove the last chnage
         " from the undo history/tree. We turn off 'undofile' before the change
         " and turn it back on after the change so it is not recorded
@@ -111,27 +69,19 @@ function! LastModified()
         " exe "normal a \<BS>\<Esc>"
         " let &undolevels = old_undolevels
         " unlet old_undolevels
-
         call setpos('.', save_cursor)
-
         " Keep other changes in undofile
         " set undofile
     endif
 endfunction
-
-"}}}-------------------------------------------------------------------------
-"       MakeTemplate Make template for code file {{{
-"----------------------------------------------------------------------------
-function! MakeTemplate(filename)
+"}}}
+function! MakeTemplate(filename) "{{{
     execute 'source' a:filename
     execute "%s@File:.*@File: " . expand("%:t")
     execute "%s@Created:.*@Created: " . strftime("%m/%d/%Y, %H:%M")
 endfunction
-
-"}}}-------------------------------------------------------------------------
-"       SetTermTitle Set terminal title the hard way (SLOW)    {{{
-"----------------------------------------------------------------------------
-function! SetTermTitle()
+"}}}
+function! SetTermTitle() "{{{
     let filename = expand("%:p")
     let length = strlen(filename)
     let cols = &columns - 20          " terminal window size
@@ -143,14 +93,8 @@ function! SetTermTitle()
     " Set terminal title
     silent execute "!echo -ne " . "\"\033]0;" . tstr . "\007\""
 endfunction
-
-"}}}ange title when switching between files
-autocmd VimEnter,WinEnter,TabEnter,BufEnter * silent! call SetTermTitle()
-
-"----------------------------------------------------------------------------
-" FIXME UpdateTags Auto-update tags file {{{
-"----------------------------------------------------------------------------
-" function! UpdateTags()
+"}}}
+" FIXME function! UpdateTags() " {{{
 "   let alltagfiles = tagfiles()
 "   if (len(alltagfiles) == 0)            " create new tags file
 "     let tagsfile = './tags'           
@@ -167,6 +111,15 @@ autocmd VimEnter,WinEnter,TabEnter,BufEnter * silent! call SetTermTitle()
 "   endif
 " endfunction "}}}
 
+"-----------------------------------------------------------------------------
+"       Mappings 
+"-----------------------------------------------------------------------------
+" Change terminal title when switching between files
+augroup AGSetTermTitle
+    autocmd!
+    autocmd VimEnter,WinEnter,TabEnter,BufEnter * silent! call SetTermTitle()
+augroup END
 
+vnoremap <C-a> :call Incr()<CR>
 "============================================================================
 "============================================================================
