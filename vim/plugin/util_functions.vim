@@ -1,4 +1,4 @@
-"============================================================================
+"=============================================================================
 "     File: ~/.vim/plugin/util_functions.vim
 "  Created: 12/06/2015, 13:20
 "   Author: Bernie Roesler
@@ -6,25 +6,32 @@
 " Last Modified: 05/16/2016, 10:28
 "
 "  Description: Custom utility functions called from .vimrc autocmds, etc.
-"============================================================================
+"=============================================================================
 
 "-----------------------------------------------------------------------------
 "       Functions 
 "-----------------------------------------------------------------------------
-function! CommentBlock(comment, ...) "{{{
+function! CommentBlock() "{{{
     " don't let vim insert comment characters automatically
     let l:save_fo = &formatoptions
     set formatoptions-=ro
 
+    " Move cursor to first non-blank character on line
+    execute "normal! ^"
+
     " Create a comment block such as the header above
-    let l:intro = a:0 >= 1 ? a:1 : "#"
-    let l:box   = a:0 >= 2 ? a:2 : "-"
-    let l:width = a:0 >= 3 ? a:3 : &textwidth-col('.')
+    let l:intro = a:0 >= 1 ? a:1 : "//"
+    let l:boxch = a:0 >= 2 ? a:2 : "-"
+    let l:width = a:0 >= 3 ? a:3 : &textwidth - col('.') - strlen(l:intro) + 1
 
     " Build the comment box and put the comment inside it
-    execute "normal i" . l:intro . repeat(l:box,l:width) . "\n" 
-                     \ . l:intro . " \t\t" . a:comment   . "\n" 
-                     \ . l:intro . repeat(l:box,l:width) . "\n"
+    let l:border = l:intro . repeat(l:boxch,l:width) 
+    let l:title  = l:intro . repeat(" ",8) 
+    " let l:title  = l:intro . repeat(" ",8) . a:comment . "\r" 
+
+    " Make header and leave cursor at end of line
+    execute 'normal! i' . l:border "\<CR>" . l:title . "o" . l:border
+    execute 'normal! k$'
 
     let &formatoptions = l:save_fo
 endfunction
@@ -112,7 +119,7 @@ endfunction
 " endfunction "}}}
 
 "-----------------------------------------------------------------------------
-"       Mappings 
+"       Mappings {{{
 "-----------------------------------------------------------------------------
 " Change terminal title when switching between files
 augroup AGSetTermTitle
@@ -121,5 +128,6 @@ augroup AGSetTermTitle
 augroup END
 
 vnoremap <C-a> :call Incr()<CR>
+"}}}
 "============================================================================
 "============================================================================
