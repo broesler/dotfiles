@@ -7,16 +7,13 @@
 #
 # Description: mutt configuration file.
 #===============================================================================
-
 # General Settings {{{
 set from     = "bernard.roesler@gmail.com"
 set sendmail = "/usr/local/bin/msmtp -a bernardroesler"
 set sendmail_wait = 0
 unset record
 set sleep_time = 0      # Don't wait when switching mailboxes
-# }}}
-#
-#-------------------------------------------------------------------------------
+#}}}----------------------------------------------------------------------------
 #       Paths {{{
 #-------------------------------------------------------------------------------
 set alias_file="~/.mutt/aliases.txt"
@@ -25,9 +22,7 @@ set header_cache     = ~/.mutt/cache/headers
 set message_cachedir = ~/.mutt/cache/bodies
 set mailcap_path     = ~/.mutt/mailcap       # entries for filetypes
 set tmpdir           = ~/.mutt/tmp
-# }}}
-
-#-------------------------------------------------------------------------------
+#}}}----------------------------------------------------------------------------
 #       Basic Options {{{
 #-------------------------------------------------------------------------------
 set wait_key = yes
@@ -44,56 +39,47 @@ set pipe_decode          # strip headers and eval mimes when piping
 set thorough_search      # strip headers and eval mimes before searching
 set sort_alias=alias
 set reverse_alias=yes
-# }}}
-
+#}}}----------------------------------------------------------------------------
+#       Sidebar Patch {{{
 #-------------------------------------------------------------------------------
-# #       Sidebar Patch {{{
-# #-------------------------------------------------------------------------------
-# set sidebar_delim   = ' | '
-# set sidebar_visible = yes
-# set sidebar_width   = 24
-# color sidebar_new color221 color233
-# # }}}
-
-#-------------------------------------------------------------------------------
+set sidebar_visible = no
+set sidebar_width   = 20
+set sidebar_short_path = yes
+set sidebar_format = "%B%?N? (%N)?%* %S"
+# Get sidebar width right by checking stats first:
+set mail_check_stats 
+color sidebar_new blue default
+#}}}----------------------------------------------------------------------------
 #       Status Bar {{{
 #-------------------------------------------------------------------------------
 set status_chars  = " *%A"
 set status_format = "---[ Folder: %f ]---[%r%m messages%?n? (%n new)?%?d? (%d to delete)?%?t? (%t tagged)? ]---%>-%?p?( %p postponed )?---"
-# }}}
-
-#-------------------------------------------------------------------------------
+#}}}----------------------------------------------------------------------------
 #       Header Options {{{
 #-------------------------------------------------------------------------------
 ignore *                                # ignore all headers
 unignore from: to: cc: date: subject:   # show only these
 unhdr_order *                           # some distros order things by default
 hdr_order from: to: cc: date: subject:  # and in this order
-# }}}
-
-#-------------------------------------------------------------------------------
+#}}}----------------------------------------------------------------------------
 #       Account Settings {{{
 #-------------------------------------------------------------------------------
-# Default inbox.
+# Default inbox
 set spoolfile = "+bernardroesler_gmail/INBOX"
-
 # Mailboxes to show in the sidebar
-mailboxes +bernardroesler_gmail/inbox \
-          +bernardroesler_gmail/archive \
-          +bernardroesler_gmail/later \
-          +bernardroesler_gmail/drafts \
-          +bernardroesler_gmail/sent \
-          +bernardroesler_gmail/spam \
-          +bernardroesler_gmail/trash \
-          +temporary/search \
-
+mailboxes +bernardroesler_gmail/inbox    \
+          +bernardroesler_gmail/archive  \
+          +bernardroesler_gmail/later    \
+          +bernardroesler_gmail/drafts   \
+          +bernardroesler_gmail/sent     \
+          +bernardroesler_gmail/spam     \
+          +bernardroesler_gmail/trash    \
+          +temporary/search              \
 # Other special folders
 set mbox      = "+bernardroesler_gmail/archive"
 set postponed = "+bernardroesler_gmail/drafts"
 set record    = "+bernardroesler_gmail/sent"
-# }}}
-
-#-------------------------------------------------------------------------------
+#}}}----------------------------------------------------------------------------
 #       Index View Options {{{
 #-------------------------------------------------------------------------------
 set date_format  = "%m/%d/%Y %T"
@@ -103,31 +89,24 @@ set sort_aux     = last-date-received
 set uncollapse_jump                        # don't collapse on an unread message
 set sort_re                                # thread based on regex
 set reply_regexp = "^(([Rr][Ee]?(\[[0-9]+\])?: *)?(\[[^]]+\] *)?)*"
-# }}}
-
-#-------------------------------------------------------------------------------
+#}}}----------------------------------------------------------------------------
 #       Pager View Options {{{
 #-------------------------------------------------------------------------------
 set display_filter="~/src/mutt/build_contact_alias.sh"
-set pager_index_lines = 0       # number of index lines to show
+set pager_index_lines = 10      # number of index lines to show
 set pager_context = 3           # number of context lines to show
 set pager_stop                  # don't go to next message automatically
 set menu_scroll                 # scroll in menus
 set tilde                       # show tildes like in vim
 unset markers                   # no ugly plus signs
-
 set quote_regexp = "^( {0,4}[>|:#%]| {0,4}[a-z0-9]+[>|]+)+"
 alternative_order text/plain text/enriched text/html
-
 auto_view text/html
-# }}}
-
-#-------------------------------------------------------------------------------
+#}}}----------------------------------------------------------------------------
 #       Compose View Options {{{
 #-------------------------------------------------------------------------------
 # Use vim, jump to end of header
 set editor = "/usr/local/bin/vim -c 'normal! }' -c 'redraw'"
-
 set realname = "Bernard Roesler"     # who am i?
 set attribution = "On %d, %n wrote:" # format of quoting header
 set edit_headers                     # show headers when composing
@@ -142,26 +121,36 @@ set reply_to                         # reply to Reply to: field
 set reverse_name                     # reply as whomever it was to
 set text_flowed=yes                  # make sure plain text looks good
 unset mime_forward                   # forward attachments as part of body
-# }}}
-
-#-------------------------------------------------------------------------------
+#}}}----------------------------------------------------------------------------
 #       Key Bindings {{{
 #-------------------------------------------------------------------------------
+# Index,pager {{{
 # Reload muttrc
 macro index,pager gr "<enter-command> source ~/.muttrc<enter>"
-
 # Go-to mailboxes
 macro index,pager gi     "<change-folder> =bernardroesler_gmail/inbox<enter>"   "go to inbox"
 macro index,pager ga     "<change-folder> =bernardroesler_gmail/archive<enter>" "go to archive"
 macro index,pager gd     "<change-folder> =bernardroesler_gmail/drafts<enter>"  "go to drafts"
 macro index,pager gs     "<change-folder> =bernardroesler_gmail/sent<enter>"    "go to sent"
 macro index,pager gl     "<change-folder> =bernardroesler_gmail/later<enter>"   "go to later"
-
-# Sidebar navigation -- requires sidebar-patch
-# bind index,pager gj         sidebar-next
-# bind index,pager gk         sidebar-prev
-# bind index,pager g<return>  sidebar-open
-
+# Sidebar navigation
+bind index,pager gj         sidebar-next
+bind index,pager gk         sidebar-prev
+bind index,pager g<return>  sidebar-open
+# Reverse the definitions of these keys from defaults
+bind index,pager \CN      next-undeleted
+bind index,pager \CP      previous-undeleted
+bind index,pager <Down>   next-thread
+bind index,pager <Up>     previous-thread
+# Send entire thread (also works for individual messages) to Gmail Archive
+macro index,pager a "<tag-thread>;s=bernardroesler_gmail/archive<enter>" "archive messages"
+# Navigation
+bind index,pager \Cf next-page
+bind index,pager \Cb previous-page
+# Open mail in vim
+macro index,pager V "|vim -c 'setlocal ft=mail' -c 'setlocal buftype=nofile' -<enter>"  "open in vim"
+#}}}
+# Index only {{{
 # General navigation
 bind index gg       first-entry
 bind index G        last-entry
@@ -170,75 +159,50 @@ bind index R        group-reply
 bind index \Cs      sync-mailbox
 bind index <space>  collapse-thread
 bind index p        recall-message
-
-# Reverse the definitions of these keys from defaults
-bind index,pager \CN      next-undeleted
-bind index,pager \CP      previous-undeleted
-bind index,pager <Down>   next-thread
-bind index,pager <Up>     previous-thread
-
-# Send entire thread (also works for individual messages) to Gmail Archive
-macro index,pager a "<tag-thread>;s=bernardroesler_gmail/archive<enter>" "archive messages"
-
+bind index <S-tab>  previous-new-then-unread
 # Mark all as read
 macro index \Cr "T~U<enter><tag-prefix><clear-flag>N<untag-pattern>.<enter>" "mark all messages as read"
-
-# Sync email
-macro index \Co "<shell-escape>offlineimap -u quiet<enter>" "run offlineimap to sync all mail"
-
+# Sync email with server
+macro index \CO "<shell-escape>offlineimap -u quiet<enter>"  "run offlineimap to sync all mail"
+macro index \Co "<shell-escape>offlineimap -qf INBOX<enter>" "run offlineimap to sync inbox only"
 # Saner copy/move dialogs
 macro index C "<copy-message>?<toggle-mailboxes>" "copy a message to a mailbox"
 macro index M "<save-message>?<toggle-mailboxes>" "move a message to a mailbox"
-
 # Searching
-bind pager N   search-opposite
 macro index A "<limit>all\n" "show all messages (undo limit)"
-
 # Search ALL mail
 macro index S "<enter-command>unset wait_key<enter><shell-escape>mutt-notmuch-py ~/.mail/temporary/search<enter><change-folder-readonly>+temporary/search<enter>" "search all mail (using notmuch)"
-
-# Open mail in vim
-macro index,pager V "|vim -c 'setlocal ft=mail' -c 'setlocal buftype=nofile' -<enter>"  "open in vim"
-
-# Pager navigation
+#}}}
+# Pager only {{{
 bind pager k   previous-line
 bind pager j   next-line
 bind pager gg  top
 bind pager G   bottom
-
 bind pager R   group-reply
-
-bind index,pager \Cf next-page
-bind index,pager \Cb previous-page
-
-# View attachments properly.
-bind attach <return> view-mailcap
-
+bind pager N   search-opposite
 # Open URLs
 macro pager \Cu "|urlview<enter>" "call urlview to open links"
 # macro pager \Cu ": unset wait_key; set pipe_decode\n|w3m\n: set wait_key; unset pipe_decode\n" "call w3m to extract URLs out of a message"
-
+#}}}
+# Others {{{
+# View attachments properly.
+bind attach <return> view-mailcap
 # Tab completion
 set query_command = "contacts -Sf '%eTOKEN%n' '%s' | sed -e 's/TOKEN/\t/g'"
 # These keybindings are reversed by default:
-# bind editor <Tab> complete-query
-# bind editor ^T    complete
-
+bind editor <Tab> complete-query
+bind editor ^T    complete
+# correspondingly, bind index p recall-message above
 bind compose p postpone-message
-
 # Save attachments to downloads
 macro attach W <save-entry><bol>~/Downloads/<eol><enter> "save attachment to Downloads"
-# }}}
-
-
-#-------------------------------------------------------------------------------
+#}}}
+#}}}----------------------------------------------------------------------------
 #       Source files {{{
 #-------------------------------------------------------------------------------
 # source ~/.mutt/colors/colors_test
 # source ~/.mutt/colors/colors_sjl
-source ~/.mutt/colors/mutt-colors-solarized/mutt-colors-solarized-light-256.muttrc
+# source ~/.mutt/colors/mutt-colors-solarized/mutt-colors-solarized-light-256.muttrc
+source ~/.mutt/colors/mutt-colors-solarized/mutt-colors-solarized-dark-16.muttrc
 source $alias_file
 # }}}
-
-#===============================================================================
-#===============================================================================
