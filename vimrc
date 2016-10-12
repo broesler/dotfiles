@@ -52,7 +52,7 @@ set notimeout           " Only timeout on key codes, not mappings
 set ttimeout
 set ttimeoutlen=10
 set ttyfast             " fast connection allows smoother scrolling
-set lazyredraw                  " don't redraw during macros etc.
+set lazyredraw           " don't redraw during macros etc.
 "}}}
 " Backups {{{
 set backup
@@ -63,9 +63,9 @@ set undofile
 set undolevels=1000         " How many undos
 set undoreload=10000        " number of lines to save for undo
 
-set undodir=~/.vim/tmp/undo//       " directory MUST already exist
-set backupdir=~/.vim/tmp/backup// 
-set directory=~/.vim/tmp/swap//
+set undodir=~/.vim/tmp/undo/       " directory MUST already exist
+set backupdir=~/.vim/tmp/backup/ 
+set directory=~/.vim/tmp/swap/
 "}}}
 " Enable Omnicompletion {{{
 set omnifunc=syntaxcomplete#Complete
@@ -88,7 +88,6 @@ set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg  " binary images
 set wildignore+=*.o,*.dll,*.pyc                 " compiled object files
 set wildignore+=*.sw?                           " Vim swap files
 set wildignore+=*.DS_Store                      " OSX bullshit
-set wildignore+=*.mat                           " Matlab data files
 "}}}
 " Searching {{{
 set hlsearch        " highlight all search terms
@@ -107,8 +106,7 @@ set nojoinspaces    " use one space, not two, after punctuation
 set backspace=indent,eol,start  " allow backspacing over everything
 "}}}
 " Parens {{{
-" let g:LatexBox_loaded_matchparen=0
-let g:loaded_matchparen=0       " Do not highlight matching parens if == 1
+let g:loaded_matchparen = 0     " Do not highlight matching parens if == 1
 set showmatch                   " Show matching parens
 set matchtime=3                 " Highlight for 3 miliseconds
 "}}}
@@ -133,7 +131,7 @@ set splitright      " split new windows to right of current one
 let g:netrw_banner=0        " 0 == no banner
 let g:netrw_browse_split=0  " 1 == open files in horizontal split
 "}}}
-" Use mouse if it exists -- mouse is weird in ssh {{{
+" mouse {{{
 if has('mouse') && !exists("$SSH_TTY")
     set mouse=a
     " tmux knows the extended mouse mode
@@ -142,7 +140,7 @@ if has('mouse') && !exists("$SSH_TTY")
     endif
 endif
 "}}}
-" System clipboard with +X11 and +clientserver {{{
+" clipboard {{{
 if (strlen(v:servername) > 0) || (strlen($TMUX) > 0)
     set clipboard=autoselectplus,exclude:cons\|linux
 else
@@ -155,8 +153,9 @@ if &diff
     set diffopt+=iwhite   " ignore trailing whitespace
 endif
 "}}}
-" Allow italics (reset terminal escape codes) {{{
+" italics  {{{
 "   test: $ echo -e "\e[3m foo \e[23m"
+"   (reset terminal escape codes)
 set t_ZH=[3m
 set t_ZR=[23m
 "}}}
@@ -178,6 +177,8 @@ set listchars=eol:$,tab:>-,trail:_,extends:+,precedes:<,nbsp:~
 "-----------------------------------------------------------------------------
 augroup code_cmds "{{{
     autocmd!
+    autocmd FileType matlab,sh,markdown,vim,perl,gitcommit setlocal iskeyword+=_
+
     " Create template for new files
     autocmd BufNewFile *.c   call util#MakeTemplate("$HOME/.vim/header/c_header")
     autocmd BufNewFile *.m   call util#MakeTemplate("$HOME/.vim/header/m_header")
@@ -196,8 +197,6 @@ augroup END
 "}}}
 augroup misc_cmds "{{{
     autocmd!
-    autocmd FileType matlab,sh,markdown,vim,perl,gitcommit setlocal iskeyword+=_
-
     " Treat buffers from stdin (i.e. echo foo | vim -) as scratch buffers
     autocmd StdinReadPost * set buftype=nofile
 
@@ -212,6 +211,11 @@ augroup misc_cmds "{{{
 
     " Use K to search vim help for word under cursor only in vim files
     autocmd FileType vim setlocal keywordprg=:help
+
+    " Turn off folding while in insert mode (speeds up syntax), see:
+    "   <http://vim.wikia.com/wiki/Keep_folds_closed_while_inserting_text>
+    " autocmd InsertEnter * if !exists('w:last_fdm') | let w:last_fdm=&foldmethod | setlocal foldmethod=manual | endif
+    " autocmd InsertLeave,WinLeave * if exists('w:last_fdm') | let &l:foldmethod=w:last_fdm | unlet w:last_fdm | endif
 augroup END
 "}}}
 augroup quickfix_window "{{{
@@ -278,7 +282,7 @@ nnoremap <Leader>fe :edit $HOME/.vim/autoload/util.vim<CR>
 vmap <C-a> <Plug>UtilIncr
 
 " Make comment into a block/header (use default values)
-nnoremap <LocalLeader>h :MyCommentBlock<CR>
+nnoremap <Leader>h :MyCommentBlock<CR>
 
 " Open URL's in browser
 nnoremap <Leader>U :silent !open "<C-R><C-F>"<CR><bar>:redraw!<CR><CR>
@@ -406,6 +410,10 @@ let g:breptile_tpgrep_pat_gnuplot = '[g]nuplot'
 let g:breptile_mapkeys_matlab = 1       " 1 == map keys for matlab files
 let g:breptile_tpgrep_pat_matlab = '[r]lwrap.*matlab'
 " }}}
+" LatexBox {{{
+let g:LatexBox_latexmk_async = 0 " run latexmk asynchronously (not really, requires vim server)
+let g:LatexBox_Folding = 1       " use LatexBox folding instead of vim folding
+"}}}
 "}}}--------------------------------------------------------------------------
 "       Colorscheme                                                       "{{{
 "-----------------------------------------------------------------------------
@@ -478,6 +486,5 @@ if version >= 700
     autocmd InsertLeave * hi StatusLine term=none    ctermfg=none  ctermbg=none
 endif
 "}}}
-
 "=============================================================================
 "=============================================================================

@@ -20,13 +20,19 @@ function! util#CommentBlock(...) "{{{
     " Get commentstring based on filetype
     let l:idx = match(&commentstring, '%s')
     let l:comm_default = &commentstring[0:l:idx-1]
+    let l:comm_default = substitute(l:comm_default, '%%', '%', 'g')
 
     " Create a comment block such as the header above
-    " let l:intro = (a:0 >= 1) ? a:1 : "//"
     let l:intro = (a:0 >= 1) ? a:1 : l:comm_default
-    let l:boxch = (a:0 >= 2) ? a:2 : "-"
+    let l:boxch = (a:0 >= 2) ? a:2 : '-'
     let l:width = (a:0 >= 3) ? a:3 : &textwidth - col('.') - strlen(l:intro) + 1
 
+    " If we don't have a textwidth for some reason, just set a width
+    if l:width <= 0
+        let l:width = 79 - strlen(l:intro)
+    endif
+
+    echom "intro: " . l:intro . ", boxch: " . l:boxch . ", width: " . width
     " Build the comment box and put the comment inside it
     let l:border = l:intro . repeat(l:boxch,l:width) 
     let l:title  = l:intro . repeat(" ",8) 
