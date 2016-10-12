@@ -2,19 +2,20 @@
 "       LaTeX Filetype Settings
 "==============================================================================
 let g:tex_stylish=1
-setlocal textwidth=80         " no auto-newlines
-setlocal tabstop=2            " tabs every 2 spaces
-setlocal softtabstop=2        " let backspace delete indent
+setlocal textwidth=80
+setlocal tabstop=2
+setlocal softtabstop=2
 setlocal shiftwidth=2
-setlocal fo-=t                " only wrap comments, not text
+setlocal formatoptions+=t     " wrap text to an actual new code line
 
 " : is included as keyword for fig: eqn: etc.,
-setlocal iskeyword+=_
+setlocal iskeyword+=:,_
 
-" setlocal foldmethod=marker    " fold between {{{ }}} comments
-setlocal foldmethod=syntax
+setlocal foldmethod=manual
+" setlocal foldmethod=syntax
 setlocal foldnestmax=3          " allow folds down to subsections
-let g:tex_fold_enabled=1
+setlocal foldminlines=4         " only fold 4+ lines
+let g:tex_fold_enabled=0
 
 " Change default SuperTabs completion to context (or try <C-x><C-o>)
 let g:SuperTabDefaultCompletionType="context"
@@ -32,7 +33,7 @@ let efm_errors="%E!\ LaTeX\ Error:\ %m,\%E!\ %m,%E!pdfTeX Error:\ %m"
 
 " Warmings output by latexmk script
 let efm_warnings="%W%.%#Citation\ %m on\ input\ line\ %l,"
-               \."%W%.%#Reference\ %m on\ input\ line\ %l"
+             \ . "%W%.%#Reference\ %m on\ input\ line\ %l"
 
 " " For use with normal pdflatex output (i.e. not via latexmk):
 " let efm_warnings="%WLaTeX\ Warning:\ Citation\ %m\ on\ input\ line\ %l%.%#,"
@@ -41,12 +42,13 @@ let efm_warnings="%W%.%#Citation\ %m on\ input\ line\ %l,"
 "                \."%WLaTeX\ Warning:\ Reference %m on\ input\ line\ %l%.%#,"
 "                \."%WLaTeX\ %.%#Warning:\ Reference %m,%C %m on input line %l%.%#"
 
-let &l:errorformat="%f:%l:%m".",".efm_errors.",".efm_warnings
+let &l:errorformat="%f:%l:%m," . efm_errors . "," . efm_warnings
 
 "------------------------------------------------------------------------------
 "       Local autocmds
 "------------------------------------------------------------------------------
-" autocmd BufWritePost,FileWritePost <buffer> silent! call UpdateTags()
+" Don't match parens
+NoMatchParen
 
 "------------------------------------------------------------------------------
 "       LaTeX-specific functions
@@ -58,7 +60,7 @@ function! LatexMakeLatexmk()
   else
     write
     lcd %:p:h
-    silent! make %
+    silent! make! %
     redraw!
     lcd -
   endif
