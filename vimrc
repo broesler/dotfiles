@@ -106,7 +106,7 @@ set nojoinspaces    " use one space, not two, after punctuation
 set backspace=indent,eol,start  " allow backspacing over everything
 "}}}
 " Parens {{{
-let g:loaded_matchparen = 0     " Do not highlight matching parens if == 1
+" let g:loaded_matchparen = 0     " Do not highlight matching parens if == 1
 set showmatch                   " Show matching parens
 set matchtime=3                 " Highlight for 3 miliseconds
 "}}}

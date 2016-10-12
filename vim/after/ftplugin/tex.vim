@@ -1,12 +1,17 @@
-"==============================================================================
-"       LaTeX Filetype Settings
-"==============================================================================
+"=============================================================================
+"   File: ~/.vim/after/ftplugin/tex.vim
+" Created: 10/12/2016, 13:46
+"  Author: Bernie Roesler
+"
+"  Description: vim settings for LaTeX filetype
+"=============================================================================
+" Buffer-local settings {{{
 let g:tex_stylish=1
 setlocal textwidth=80
 setlocal tabstop=2
 setlocal softtabstop=2
 setlocal shiftwidth=2
-setlocal formatoptions+=t     " wrap text to an actual new code line
+" setlocal formatoptions+=t     " wrap text to an actual new code line
 
 " : is included as keyword for fig: eqn: etc.,
 setlocal iskeyword+=:,_
@@ -44,17 +49,18 @@ let efm_warnings="%W%.%#Citation\ %m on\ input\ line\ %l,"
 
 let &l:errorformat="%f:%l:%m," . efm_errors . "," . efm_warnings
 
-"------------------------------------------------------------------------------
-"       Local autocmds
-"------------------------------------------------------------------------------
-" Don't match parens
-NoMatchParen
-
-"------------------------------------------------------------------------------
-"       LaTeX-specific functions
-"------------------------------------------------------------------------------
-" Make LaTeX file using latexmk (see .latexmkrc, and above makeprg)
-function! LatexMakeLatexmk()
+"}}}--------------------------------------------------------------------------
+"       LaTeX-specific functions {{{
+"-----------------------------------------------------------------------------
+function! JumpToSkim() "{{{
+  let linen = line('.')
+  let filen = expand("%:r").".pdf"
+  write
+  execute "!/Applications/Skim.app/Contents/SharedSupport/displayline " . linen . " " . filen
+  redraw!
+endfunction
+"}}}
+function! LatexMakeLatexmk() "{{{
   if (&ft != "tex")
     echoe "File ". expand("%") . " is not a .tex file! Not compiling."
   else
@@ -65,18 +71,8 @@ function! LatexMakeLatexmk()
     lcd -
   endif
 endfunction
-
-" Jump to PDF in Skim (for LaTeX files with synctex)
-function! JumpToSkim()
-  let linen = line('.')
-  let filen = expand("%:r").".pdf"
-  write
-  execute "!/Applications/Skim.app/Contents/SharedSupport/displayline " . linen . " " . filen
-  redraw!
-endfunction
-
-" make current .tex file
-function! LatexMakeOnce()
+"}}}
+function! LatexMakeOnce() "{{{
   let fileext = expand("%:e")
   if (fileext ==# "tex")
     write                               " save file
@@ -87,9 +83,8 @@ function! LatexMakeOnce()
     echom "FileType is NOT .tex! Aborted pdflatex."
   endif
 endfunction
-
-" make current .tex file with 2 latex runs
-function! LatexMakeFull()
+"}}}
+function! LatexMakeFull() "{{{
   let fileext = expand("%:e")
   if (fileext ==# "tex")
     write
@@ -100,9 +95,8 @@ function! LatexMakeFull()
     echom "FileType is NOT .tex! Aborted pdflatex."
   endif
 endfunction
-
-" make current .tex file with 2 latex runs + bibtex + latex
-function! LatexMakeBib()
+"}}}
+function! LatexMakeBib() "{{{
   let fileext = expand("%:e")
   if (fileext ==# "tex")
     write
@@ -113,11 +107,12 @@ function! LatexMakeBib()
     echom "FileType is NOT .tex! Aborted pdflatex."
   endif
 endfunction
-
-"-------------------------------------------------------------------------------
-"       Keymaps
-"-------------------------------------------------------------------------------
-nnoremap <buffer> <Leader>M :silent call LatexMakeLatexmk()<CR>
+"}}}
+"}}}--------------------------------------------------------------------------
+"       Keymaps {{{
+"-----------------------------------------------------------------------------
+" nnoremap <buffer> <Leader>M :silent call LatexMakeLatexmk()<CR>
+nnoremap <buffer> <Leader>M :Latexmk<CR>
 nnoremap <buffer>        ,r :silent! call JumpToSkim()<CR>
 nnoremap <buffer> <Leader>F :call LatexMakeFull()<CR>
 nnoremap <buffer> <Leader>T :call LatexMakeOnce()<CR>
@@ -126,9 +121,10 @@ nnoremap <buffer> <Leader>B :call LatexMakeBib()<CR>
 " wrap \left( \right) around visually selected text
 vnoremap <buffer> sp "zdi\left(<C-R>z\right)<Esc> 
 
-"------------------------------------------------------------------------------
-"       Macros -- All special characters are intentional
-"------------------------------------------------------------------------------
+"}}}--------------------------------------------------------------------------
+"       Macros -- All special characters are intentional {{{
+"-----------------------------------------------------------------------------
+" Short macros {{{
 " Align macro
 let @a='i\begin{align}\end{align}k'
 
@@ -140,16 +136,16 @@ let @e='i\begin{equation}\end{equation}k'
 
 " gather macro
 let @g='i\begin{gather}\end{gather}k'
-
-" Figure macro
+"}}}
+" Figure macro "{{{
 let @f="\\begin{figure}[h!]\n"
       \ . "  \\centering\n"
       \ . "  \\includegraphics[width=0.75\\textwidth]{myfilename.pdf}\n"
       \ . "  \\caption{My caption goes here.}\n"
       \ . "  \\label{fig:label}\n"
       \ . "\\end{figure}""
-
-" Subfigure macro
+"}}}
+" Subfigure macro {{{
 let @s="\\begin{figure}[h!]\n"
       \ . "  \\centering\n"
       \ . "    \\begin{subfigure}[c]{0.48\\textwidth}\n"
@@ -166,8 +162,8 @@ let @s="\\begin{figure}[h!]\n"
       \ . "    \\caption{My caption for the entire figure.}\n"
       \ . "  \\label{fig:whole_figure}\n"
       \ . "\\end{figure}\n"
-
-" Table macro
+"}}}
+" Table macro {{{
 let @t="\begin{table}[h!]\n"
       \ . "  \\setlength{\\tabcolsep}{8pt}\n"
       \ . "  \\def\\arraystretch{1.1}\n"
@@ -185,9 +181,7 @@ let @t="\begin{table}[h!]\n"
       \ . "      \\end{tabular}\n"
       \ . "    \\end{center}\n"
       \ . "  \\end{table}\n"
-
-" Make comment header with equals signs
-let @h="o%79a=yypO%"
-
-"==============================================================================
-"==============================================================================
+"}}}
+"}}}
+"=============================================================================
+"=============================================================================
