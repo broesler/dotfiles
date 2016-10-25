@@ -15,23 +15,23 @@
 [ -z "$PS1" ] && return
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
-  # Set the prompt with bright green text -- include GNU screen window number
-  PS1=$"\[\033[01;32m\][\u@\h: \w]${WINDOW}\$ \[\033[0m\]"
-  # PS1=$"[\u@\h: \w]${WINDOW}\$ "
+    # Set the prompt with bright green text -- include GNU screen window number
+    PS1=$"\[\033[01;32m\][\u@\h: \w]${WINDOW}\$ \[\033[0m\]"
+    # PS1=$"[\u@\h: \w]${WINDOW}\$ "
 
-  # As of bash 4.3, can trim directories in prompt!
-  PROMPT_DIRTRIM=3
+    # As of bash 4.3, can trim directories in prompt!
+    PROMPT_DIRTRIM=3
 
 elif [[ "$OSTYPE" == "linux"* ]]; then
-  # Set to bright cyan text for linux machines (easy tell on ssh to babylons)
-  PS1=$"\[\033[00;36m\][\u@\h: \w]${WINDOW}\$ \[\033[0m\]"
+    # Set to bright cyan text for linux machines (easy tell on ssh to babylons)
+    PS1=$"\[\033[00;36m\][\u@\h: \w]${WINDOW}\$ \[\033[0m\]"
 
-  # As of bash 4.3, can trim directories in prompt!
-  PROMPT_DIRTRIM=3
+    # As of bash 4.3, can trim directories in prompt!
+    PROMPT_DIRTRIM=3
 
 else
-  # default no color
-  PS1=$"[\u@\h: \W]\$ "
+    # default no color
+    PS1=$"[\u@\h: \W]\$ "
 fi
 
 # Set CDPATH to quickly change to neighbor directories
@@ -81,49 +81,50 @@ set bell-style visible
 
 # Mac-only options
 if [[ "$OSTYPE" == "darwin"* ]]; then
-  # # Create instance of m210 B/W printer for duplex printing
-  # lpoptions -p m210__bw___thayercups/duplex \
-  #           -o Duplex=DuplexNoTumble \
-  #           -o prettyprint \
-  #           -o cpi=14 \
-  #           -o lpi=8 \
-  #           -o page-top=18 \
-  #           -o page-right=18 \
-  #           -o page-bottom=36 \
-  #           -o page-left=36
-  #
-  # lpoptions -p m210__color___thayercups/duplex \
-  #           -o Duplex=DuplexNoTumble \
-  #           -o prettyprint \
-  #           -o cpi=14 \
-  #           -o lpi=8 \
-  #           -o page-top=18 \
-  #           -o page-right=18 \
-  #           -o page-bottom=36 \
-  #           -o page-left=36
+    # # Create instance of m210 B/W printer for duplex printing
+    # lpoptions -p m210__bw___thayercups/duplex \
+        #           -o Duplex=DuplexNoTumble \
+        #           -o prettyprint \
+        #           -o cpi=14 \
+        #           -o lpi=8 \
+        #           -o page-top=18 \
+        #           -o page-right=18 \
+        #           -o page-bottom=36 \
+        #           -o page-left=36
+    #
+    # lpoptions -p m210__color___thayercups/duplex \
+        #           -o Duplex=DuplexNoTumble \
+        #           -o prettyprint \
+        #           -o cpi=14 \
+        #           -o lpi=8 \
+        #           -o page-top=18 \
+        #           -o page-right=18 \
+        #           -o page-bottom=36 \
+        #           -o page-left=36
 
-  # enable better auto-completion
-  if [ -f "$(brew --prefix)"/etc/bash_completion ]; then
-    source "$(brew --prefix)"/etc/bash_completion
-  fi
+    # enable better auto-completion
+    if [ -f "$(brew --prefix)"/etc/bash_completion ]; then
+        source "$(brew --prefix)"/etc/bash_completion
+    fi
 
-  # Disable tilde expansion upon tab completion
-  _expand() { return 0; }
+    # Disable tilde expansion upon tab completion
+    _expand() { return 0; }
 
-  # Run iTerm2 shell integration
-  # test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+    # Run iTerm2 shell integration
+    # test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+
+    # fix vim autocompletion
+    complete -r vim
 fi
 
-# fix vim autocompletion
-complete -r vim
 
 #-------------------------------------------------------------------------------
 # Source function files and aliases
 #-------------------------------------------------------------------------------
 for func in "$HOME"/.bashrc.d/*.bash ; do
-  if [ -f "$func" ]; then
-    source "$func"
-  fi
+    if [ -f "$func" ]; then
+        source "$func"
+    fi
 done
 unset -v func
 
