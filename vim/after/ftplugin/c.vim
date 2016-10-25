@@ -23,6 +23,7 @@ augroup c_cmds
     " autocmd BufWritePost,FileWritePost <buffer> silent call UpdateTags()
 
     " Make comment header with dashes
+    " autocmd BufReadPost *.c let @h="o/*" . &textwidth-col('.')-1 . "a-o" . &textwidth-col('.')-3 . "a-A*/ko \t\t"
     autocmd BufEnter *.c let @h="o/*78a-o76a-A*/ko \t\t"
 augroup END
 
