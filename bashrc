@@ -81,7 +81,7 @@ set bell-style visible
 
 # Mac-only options
 if [[ "$OSTYPE" == "darwin"* ]]; then
-    # # Create instance of m210 B/W printer for duplex printing
+    # Create instance of m210 B/W printer for duplex printing
     # lpoptions -p m210__bw___thayercups/duplex \
         #           -o Duplex=DuplexNoTumble \
         #           -o prettyprint \
@@ -91,7 +91,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
         #           -o page-right=18 \
         #           -o page-bottom=36 \
         #           -o page-left=36
-    #
+
     # lpoptions -p m210__color___thayercups/duplex \
         #           -o Duplex=DuplexNoTumble \
         #           -o prettyprint \
@@ -103,8 +103,8 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
         #           -o page-left=36
 
     # enable better auto-completion
-    if [ -f "$(brew --prefix)"/etc/bash_completion ]; then
-        source "$(brew --prefix)"/etc/bash_completion
+    if [ -f '/usr/local/etc/bash_completion' ]; then
+        source '/usr/local/etc/bash_completion'
     fi
 
     # Disable tilde expansion upon tab completion
