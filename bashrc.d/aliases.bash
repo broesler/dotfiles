@@ -20,82 +20,81 @@ alias rrc='source ~/.bashrc'                 # reload JUST rc file (more common)
 #       FOLDER AND APPLICATION SHORTCUTS
 #-------------------------------------------------------------------------------
 if [[ "$OSTYPE" == "darwin"* ]]; then
-  alias cs174='cd ~/Documents/School/14F-15X/cs174_machine_learning/'
-  alias es105='cd ~/Documents/School/13F-14X/Engs_105_Numerical_PDEs_1/hw/'
-  alias es145='cd ~/Documents/School/13F-14X/Engs_145_Modern_Control_Theory/'
-  alias es148='cd ~/Documents/School/14F-15X/engg148_structural_mechanics/'
-  alias es150='cd ~/Documents/School/13F-14X/Engs_150/'
-  alias illustrator='open -a Adobe\ Illustrator'
-  alias res='cd ~/Documents/School/Research/'
-  alias skim='open -a /Applications/Skim.app'
-  alias sty='cd /Users/bernardroesler/Library/texmf/tex/latex/'
-  alias web='cd ~/Documents/Projects/web_development/'
-  alias xfoil='/Applications/Xfoil.app/Contents/Resources/xfoil'
+    alias cs174='cd ~/Documents/School/14F-15X/cs174_machine_learning/'
+    alias es105='cd ~/Documents/School/13F-14X/Engs_105_Numerical_PDEs_1/hw/'
+    alias es145='cd ~/Documents/School/13F-14X/Engs_145_Modern_Control_Theory/'
+    alias es148='cd ~/Documents/School/14F-15X/engg148_structural_mechanics/'
+    alias es150='cd ~/Documents/School/13F-14X/Engs_150/'
+    alias illustrator='open -a Adobe\ Illustrator'
+    alias res='cd ~/Documents/School/Research/'
+    alias skim='open -a /Applications/Skim.app'
+    alias sty='cd /Users/bernardroesler/Library/texmf/tex/latex/'
+    alias web='cd ~/Documents/Projects/web_development/'
+    alias xfoil='/Applications/Xfoil.app/Contents/Resources/xfoil'
 
-  function es205()
-  {
-    if [ $# -gt 0 ]; then
-      cd ~/Documents/School/14F-15X/engs205_numerical_pdes_II/labs/lab$1
-    else
-      cd ~/Documents/School/14F-15X/engs205_numerical_pdes_II/labs
-    fi
-  }
+    function es205()
+    {
+        if [ $# -gt 0 ]; then
+            cd ~/Documents/School/14F-15X/engs205_numerical_pdes_II/labs/lab$1
+        else
+            cd ~/Documents/School/14F-15X/engs205_numerical_pdes_II/labs
+        fi
+    }
 
-  function es149()
-  {
-    if [ $# -gt 0 ]; then
-      cd ~/Documents/School/15F-16X/engg149_system_identification/hw/hw$1
-    else
-      cd ~/Documents/School/15F-16X/engg149_system_identification/hw
-    fi
-  }
+    function es149()
+    {
+        if [ $# -gt 0 ]; then
+            cd ~/Documents/School/15F-16X/engg149_system_identification/hw/hw$1
+        else
+            cd ~/Documents/School/15F-16X/engg149_system_identification/hw
+        fi
+    }
 
-  function es250()
-  {
-    if [ $# -gt 0 ]; then
-      cd ~/Documents/School/15F-16X/engs250_turbulence/hw/hw$1
-    else
-      cd ~/Documents/School/15F-16X/engs250_turbulence/hw
-    fi
-  }
+    function es250()
+    {
+        if [ $# -gt 0 ]; then
+            cd ~/Documents/School/15F-16X/engs250_turbulence/hw/hw$1
+        else
+            cd ~/Documents/School/15F-16X/engs250_turbulence/hw
+        fi
+    }
 
-  # Matlab with rlwrap (use vi commands in Matlab!)
-  function matlabrl()
-  {
-    # $PATH includes: /Applications/MATLAB_R2015b.app/bin/
-    rlwrap -a dummy -c -m dummy \
-      -H $HOME/.matlab/R2015b/history.m \
-      matlab -nosplash -nodesktop "$@"
-  }
+    # Matlab with rlwrap (use vi commands in Matlab!)
+    function matlabrl()
+    {
+        # $PATH includes: /Applications/MATLAB_R2015b.app/bin/
+        rlwrap -a dummy -c -m dummy \
+            -H $HOME/.matlab/R2015b/history.m \
+            matlab -nosplash -nodesktop "$@"
+    }
 
 else    
-  # we're on a Linux machine:
-  alias flu1='/thayerfs/research/epps/VLM2D/Ramesh_FLUENT_cases/'
-  # alias fluent16='/thayerfs/research/epps/ansys_inc/v162/fluent/bin/fluent'
-  alias fluent16='/jumbo/eppsdata/ansys_inc/v162/fluent/bin/fluent'
-  # alias nicefluent='nice -n19 /thayerfs/research/epps/ansys_inc/v162/fluent/bin/fluent 2ddp -t15 -g'
-  # alias gambit='/thayerfs/research/epps/Fluent.Inc/bin/gambit'
-  alias gambit='/jumbo/eppsdata/Fluent.Inc/bin/gambit'
+    # we're on a Linux machine:
+    alias flu1='/thayerfs/research/epps/VLM2D/Ramesh_FLUENT_cases/'
+    # alias fluent16='/thayerfs/research/epps/ansys_inc/v162/fluent/bin/fluent'
+    alias fluent16='/jumbo/eppsdata/ansys_inc/v162/fluent/bin/fluent'
+    # alias gambit='/thayerfs/research/epps/Fluent.Inc/bin/gambit'
+    alias gambit='/jumbo/eppsdata/Fluent.Inc/bin/gambit'
 fi
 
 # cs50 works on Mac and ThayerFS (Linux)
 function cs50()
 {
-  if [ $# -gt 0 ]; then
-      cd ~/Documents/School/cs50_software_design/labs/lab$1/
-  else
-      cd ~/Documents/School/cs50_software_design/
-  fi
+    if [ $# -gt 0 ]; then
+        cd ~/Documents/School/cs50_software_design/labs/lab$1/
+    else
+        cd ~/Documents/School/cs50_software_design/
+    fi
 }
 
 # cs60 works on Mac and ThayerFS (Linux)
 function cs60()
 {
-  if [ $# -gt 0 ]; then
-      cd ~/Documents/School/cs60_computer_networks/labs/lab$1/
-  else
-      cd ~/Documents/School/cs60_computer_networks/
-  fi
+    if [ $# -gt 0 ]; then
+        cd ~/Documents/School/cs60_computer_networks/labs/lab$1/
+    else
+        cd ~/Documents/School/cs60_computer_networks/
+    fi
 }
 
 
@@ -103,9 +102,10 @@ function cs60()
 #       UTILITIES
 #-------------------------------------------------------------------------------
 # Use a gold color for paths:
-# alias myag="ag --color-path '1;49;38;5;136' --color-line-number '3;49;38;5;242' --color-match '1;49;38;5;9'"
+# agcolors="ag --color-path       '1;49;38;5;136'"
+# agcolors+=" --color-line-number '3;49;38;5;242'"
+# agcolors+=" --color-match       '1;49;38;5;9'"
 # Color ag like grep:
-# alias myag="ag --color-path '0;49;38;5;5' --color-line-number '3;49;38;5;242' --color-match '1;49;38;5;9'"
 agcolors="  --color-path        '0;49;38;5;5'"
 agcolors+=" --color-line-number '2;49;48'"
 agcolors+=" --color-match       '1;49;38;5;9'"
@@ -137,8 +137,8 @@ alias zgrep='zgrep --color=auto'
 [ -e "$DIR_COLORS" ] || DIR_COLORS=""
 
 # Set ls with colors
-eval "$(dircolors -b ~/.dircolors)"    # set custom colors file
-alias lc='ls -Ghlp --color=auto'      # Linux ls options
+eval "$(dircolors -b ~/.dircolors)"     # set custom colors file
+alias lc='ls -Ghlp --color=auto'        # Linux ls options
 
 # Show hidden files only
 alias lcd='lc -d .*'
