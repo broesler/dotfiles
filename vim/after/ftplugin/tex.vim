@@ -11,7 +11,7 @@ setlocal textwidth=80
 setlocal tabstop=2
 setlocal softtabstop=2
 setlocal shiftwidth=2
-" setlocal formatoptions+=t     " wrap text to an actual new code line
+setlocal formatoptions+=t     " wrap text to an actual new code line
 
 " : is included as keyword for fig: eqn: etc.,
 setlocal iskeyword+=:,_
@@ -122,14 +122,14 @@ nnoremap <buffer> <Leader>B :call LatexMakeBib()<CR>
 vnoremap <buffer> sp "zdi\left(<C-R>z\right)<Esc> 
 
 "}}}--------------------------------------------------------------------------
-"       Macros -- All special characters are intentional {{{
+"       Macros {{{
 "-----------------------------------------------------------------------------
 " Short macros {{{
 " Align macro
 let @a='i\begin{align}\end{align}k'
 
 " bar matrix macro
-let @b='a\begin{m€kbbmatrix} \end{bmatrix}Bh'
+let @b='a\begin{bmatrix} \end{bmatrix}Bh'
 
 " Equation macro
 let @e='i\begin{equation}\end{equation}k'

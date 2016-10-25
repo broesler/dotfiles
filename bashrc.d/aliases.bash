@@ -80,11 +80,22 @@ fi
 function cs50()
 {
   if [ $# -gt 0 ]; then
-      cd ~/Documents/School/cs50/labs/lab$1/
+      cd ~/Documents/School/cs50_software_design/labs/lab$1/
   else
-      cd ~/Documents/School/cs50
+      cd ~/Documents/School/cs50_software_design/
   fi
 }
+
+# cs60 works on Mac and ThayerFS (Linux)
+function cs60()
+{
+  if [ $# -gt 0 ]; then
+      cd ~/Documents/School/cs60_computer_networks/labs/lab$1/
+  else
+      cd ~/Documents/School/cs60_computer_networks/
+  fi
+}
+
 
 #-------------------------------------------------------------------------------
 #       UTILITIES
