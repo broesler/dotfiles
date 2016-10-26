@@ -101,13 +101,35 @@ function cs60()
 #-------------------------------------------------------------------------------
 #       UTILITIES
 #-------------------------------------------------------------------------------
+# Colors:   
+#   attribute = single digit
+#       1 = bold
+#       2 = dim
+#       3 = italics? 
+#       4 = underline
+#       5 = blink
+#       7 = invert fg/bg
+#       9 = hidden (i.e. for passwords) 
+#   foreground = 3? normal,  9? bright
+#   background = 4? normal, 10? bright
+#       9 = default
+#       0 = black
+#       1 = red
+#       2 = green
+#       3 = yellow
+#       4 = blue
+#       5 = magenta
+#       6 = cyan
+#       7 = light grey
+#       8;5;[0-256] = 256 ANSI colors, i.e. '38;5;[0-256]'
+
 # Use a gold color for paths:
 # agcolors="ag --color-path       '1;49;38;5;136'"
 # agcolors+=" --color-line-number '3;49;38;5;242'"
 # agcolors+=" --color-match       '1;49;38;5;9'"
 # Color ag like grep:
 agcolors="  --color-path        '0;49;38;5;5'"
-agcolors+=" --color-line-number '2;49;48'"
+agcolors+=" --color-line-number '0;49;32'"
 agcolors+=" --color-match       '1;49;38;5;9'"
 
 # gfortran options
