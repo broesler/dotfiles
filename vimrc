@@ -170,7 +170,7 @@ set sessionoptions=blank,buffers,curdir,folds,help,resize,winsize
 set printoptions=paper:letter
 
 " Toggle "set list" or "set nolist" to view special characters
-set listchars=eol:$,tab:>-,trail:_,extends:+,precedes:<,nbsp:~
+set listchars=eol:¬,tab:→\ ,trail:·,extends:»,precedes:«,nbsp:~
 "}}}
 "}}}--------------------------------------------------------------------------
 "       Autocommands                                                     "{{{
