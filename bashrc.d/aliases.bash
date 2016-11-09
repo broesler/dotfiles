@@ -136,10 +136,10 @@ agcolors+=" --color-match       '1;49;38;5;9'"
 gfopts=' -cpp -Wall -pedantic -std=f95'
 gfopts+=' -fbounds-check -ffree-line-length-0 -fbacktrace -fall-intrinsics'
 
-alias myag="ag $agcolors"
 alias clc='clear'
 alias df='df -kTh'
 alias du='du -kh'
+alias edwin='mit-scheme --edit --heap 100000'
 alias grep='grep --color=auto'
 alias h='history | command less +G'
 alias j='jobs -l'
@@ -148,9 +148,11 @@ alias lpcolor='lpr -P m210__color___thayercups/duplex'
 alias lt='tree -C'
 alias mkdir='mkdir -p'
 alias mlint='/Applications/MATLAB_R2015b.app/bin/maci64/mlint'
+alias myag="ag $agcolors"
 alias mygcc='gcc -Wall -pedantic -std=c99'
 alias mygfortran="gfortran $gfopts"
 alias path='echo $PATH | tr -s ":" "\n"'
+alias scip='rlwrap -r -c -f "$HOME"/src/scheme/mit_scheme_bindings.txt scheme'
 alias which='type -all'
 alias zgrep='zgrep --color=auto'
 
