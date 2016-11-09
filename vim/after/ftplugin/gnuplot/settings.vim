@@ -1,11 +1,9 @@
 "=============================================================================
-"     File: ~/.vim/after/ftplugin/sh.vim
-"  Created: 02/21/2016, 14:05
+"     File: settings.vim
+"  Created: 10/29/2016, 08:31
 "   Author: Bernie Roesler
 "
-" Last Modified: 02/22/2016, 21:55
-"
-"  Description: Vim settings for shell scripts
+"  Description: 
 "
 "=============================================================================
 " Buffer-local settings {{{
@@ -19,14 +17,9 @@ setlocal comments=:#
 setlocal commentstring=#%s
 
 setlocal foldmethod=indent
-setlocal foldignore=          
-" empty foldignore to NOT ignore lines starting with '#' (default)
+setlocal foldignore=
 
 setlocal nowrap
 "}}}
-
-" Make comment header with dashes
-let @h='o#79a-yypO#8a '
-
 "=============================================================================
 "=============================================================================

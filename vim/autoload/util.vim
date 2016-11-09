@@ -10,9 +10,9 @@
 "       Functions  {{{
 "-----------------------------------------------------------------------------
 function! util#CommentBlock(...) "{{{
-    " don't let vim insert comment characters automatically
+    " don't let vim insert comment characters automatically (:h fo-table)
     let l:save_fo = &formatoptions
-    set formatoptions-=ro
+    let &formatoptions=''
 
     " Move cursor to first non-blank character on line
     execute 'normal! ^'
@@ -115,9 +115,14 @@ function! util#LastModified() "{{{
 endfunction
 "}}}
 function! util#MakeTemplate(filename) "{{{
+    " Insert the text in the template header file
     execute 'source' a:filename
+    " Update the filename field to current filename
     execute "%s@File:.*@File: " . expand("%:t")
+    " Update the date created field to the current date/time
     execute "%s@Created:.*@Created: " . strftime("%m/%d/%Y, %H:%M")
+    " Move the cursor to the end of the description line
+    execute "normal! 3j$"
 endfunction
 "}}}
 " FIXME function! util#UpdateTags() " {{{

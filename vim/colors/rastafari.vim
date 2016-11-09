@@ -19,11 +19,11 @@ if has('eval')
 endif
 " Normal colors {{{1
 "hi Normal       guifg=#aaaaaa guibg=#000000 gui=none term=none     cterm=none    ctermfg=grey ctermbg=black
-hi Normal       guifg=#aaaaaa guibg=#000000 gui=none term=none     cterm=none    ctermfg=green
+hi Normal       guifg=#aaaaaa guibg=#000000 gui=none term=none     cterm=none    ctermfg=darkgreen
 hi Title        guifg=#ff60ff guibg=bg      gui=none term=none     cterm=none    ctermfg=magenta
 hi Ignore       guifg=#888888 guibg=bg      gui=none term=none     cterm=none    ctermfg=darkgrey
-hi Comment      guifg=#00aa00 guibg=bg      gui=none term=none     cterm=none    ctermfg=darkred
-hi LineNr       guifg=#ffff60 guibg=bg      gui=none term=none     cterm=none    ctermfg=yellow
+hi Comment      guifg=#00aa00 guibg=bg      gui=none term=none     cterm=italic  ctermfg=darkred
+hi LineNr       guifg=#ffff60 guibg=bg      gui=none term=none     cterm=none    ctermfg=yellow     ctermbg=233
 hi Include      guifg=#666666 guibg=bg      gui=none term=none     cterm=none    ctermfg=darkgrey
 hi Define       guifg=#666666 guibg=bg      gui=none term=none     cterm=none    ctermfg=darkgrey
 hi Macro        guifg=#666666 guibg=bg      gui=none term=none     cterm=none    ctermfg=darkgrey
@@ -41,21 +41,21 @@ hi MoreMsg      guifg=#80ff80 guibg=bg      gui=none term=none     cterm=none   
 hi Identifier   guifg=#dddddd guibg=bg      gui=none term=none     cterm=none    ctermfg=white
 hi Conditional  guifg=#dddddd guibg=bg      gui=none term=none     cterm=none    ctermfg=white
 hi Repeat       guifg=#dddddd guibg=bg      gui=none term=none     cterm=none    ctermfg=white
-hi Statement    guifg=#dddddd guibg=bg      gui=none term=none     cterm=none    ctermfg=white
+hi Statement    guifg=#dddddd guibg=bg      gui=none term=none     cterm=none    ctermfg=yellow
 hi Label        guifg=#dddddd guibg=bg      gui=none term=none     cterm=none    ctermfg=grey
 hi Operator     guifg=#dddddd guibg=bg      gui=none term=none     cterm=none    ctermfg=white
 hi Function     guifg=#dddddd guibg=bg      gui=none term=none     cterm=none    ctermfg=white
 hi MatchParen   guifg=#dddddd guibg=#0000aa gui=none term=none     cterm=none    ctermfg=grey       ctermbg=blue
 hi ErrorMsg     guifg=#ffff60 guibg=#aa0000 gui=none term=none     cterm=none    ctermfg=yellow     ctermbg=red
 hi WildMenu     guifg=#ffff00 guibg=#00aa00 gui=none term=none     cterm=none    ctermfg=yellow     ctermbg=darkgrey
-hi Folded       guifg=#444444 guibg=#00aaaa gui=none term=reverse  cterm=reverse ctermfg=cyan       ctermbg=black
+hi Folded       guifg=#444444 guibg=#00aaaa gui=none term=reverse  cterm=reverse ctermfg=darkcyan       ctermbg=black
 hi FoldColumn   guifg=#00aaaa guibg=#444444 gui=none term=none     cterm=none    ctermfg=cyan       ctermbg=black
 hi SignColumn   guifg=#8888ff guibg=bg      gui=none term=none     cterm=none    ctermfg=cyan       ctermbg=black
 hi Search       guifg=#dddddd guibg=#0000ff gui=none term=none     cterm=none    ctermfg=white      ctermbg=blue
 hi IncSearch    guifg=#dddddd guibg=#008080 gui=none term=none     cterm=none    ctermfg=white      ctermbg=cyan
 hi WarningMsg   guifg=#ffff60 guibg=#008800 gui=none term=none     cterm=none    ctermfg=yellow     ctermbg=lightgreen
 hi Question     guifg=#80ff80 guibg=#008800 gui=none term=standout cterm=none    ctermfg=lightgreen ctermbg=lightgreen
-hi Pmenu        guifg=#80ff80 guibg=#008800 gui=none term=standout cterm=none    ctermfg=green      ctermbg=green
+hi Pmenu        guifg=#80ff80 guibg=#008800 gui=none term=standout cterm=none    ctermfg=green      ctermbg=darkgrey
 hi PmenuSel     guifg=#ffcc00 guibg=#aa0000 gui=none term=standout cterm=none    ctermfg=yellow     ctermbg=red
 hi Visual       guifg=#66ff66 guibg=#008000 gui=none term=standout cterm=none    ctermfg=none       ctermbg=green
 hi TabLineFill  guifg=#80ff80 guibg=#008800 gui=none term=none     cterm=none    ctermfg=lightgreen ctermbg=green
