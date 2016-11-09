@@ -6,21 +6,18 @@
 "  Description: Control section movements in scheme files
 "
 "=============================================================================
-if exists("g:loaded_breptile_scheme_sections")
-    finish
-endif
-
 function! s:NextSection(type, backwards, visual)
     if a:visual
         normal! gv
     endif
 
     if a:type == 1
-        " In scheme use (define ...
-        let pattern ='\v(^\s*\(define|%^)'
+        " In scheme use (define, or beginning of file
+        let pattern ='\v(^\s*\(define|%^|%$)'
         let flags = ''     " 'e' move to end of pattern
     elseif a:type == 2
-        let pattern ='\v(^\s*\(define|%^)'
+        " Could define a second pattern here
+        let pattern ='\v(^\s*\(define|%^|%$)'
         let flags = ''
     endif
 
@@ -30,10 +27,7 @@ function! s:NextSection(type, backwards, visual)
         let dir = '/'
     endif
 
-    " let save_wrapscan = &wrapscan
-    " set nowrapscan
     execute 'silent normal! ' . dir . pattern . dir . flags . "\r"
-    " let &wrapscan = save_wrapscan
 endfunction
 
 " Maps that work as movements and motions
@@ -47,7 +41,5 @@ vnoremap <script> <buffer> <silent> ]] :<C-u>call <SID>NextSection(1, 0, 1)<CR>
 vnoremap <script> <buffer> <silent> [[ :<C-u>call <SID>NextSection(1, 1, 1)<CR>
 vnoremap <script> <buffer> <silent> ][ :<C-u>call <SID>NextSection(2, 0, 1)<CR>
 vnoremap <script> <buffer> <silent> [] :<C-u>call <SID>NextSection(2, 1, 1)<CR>
-
-let g:loaded_breptile_scheme_sections = 1
 "=============================================================================
 "=============================================================================

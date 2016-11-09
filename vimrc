@@ -40,7 +40,6 @@ syntax on
 
 set title           " show filename in title bar
 set number          " turn on line numbers
-set scrolloff=1     " cursor will never reach bottom of window
 set history=10000   " keep long command history
 set showcmd         " show partial commands
 
@@ -114,7 +113,7 @@ set matchtime=3                 " Highlight for 3 miliseconds
 set wrap                        " autowrap text to screen
 set linebreak                   " Do not break words mid-word
 set autoindent                  " indent based on filetype
-set formatoptions=tcq2l1j       " tcq default, :help fo-table
+set formatoptions=cqr2l1j       " tcq default, :help fo-table
 set textwidth=0                 " set to 0 by default, set by filetype
 set colorcolumn=80              " default is 80, autocmd changes for filetype
 set diffopt+=iwhite             " ignore whitespace in diff windows
@@ -122,8 +121,12 @@ set diffopt+=iwhite             " ignore whitespace in diff windows
 " Folding {{{
 set foldcolumn=0                " show locations of folds in left-most column
 set foldmethod=marker           " auto-fold code
+set foldnestmax=4
+set foldminlines=3
 "}}}
 " Windows {{{
+set scrolloff=1     " cursor will never reach bottom of window
+set sidescroll=5    " cursor will never reach edge of screen
 set nosplitbelow    " split new windows to top   of current one
 set splitright      " split new windows to right of current one
 "}}}
@@ -184,6 +187,7 @@ augroup code_cmds "{{{
     autocmd BufNewFile *.m   call util#MakeTemplate("$HOME/.vim/header/m_header")
     autocmd BufNewFile *.f95 call util#MakeTemplate("$HOME/.vim/header/f_header")
     autocmd BufNewFile *.py  call util#MakeTemplate("$HOME/.vim/header/py_header")
+    autocmd BufNewFile *.scm call util#MakeTemplate("$HOME/.vim/header/scm_header")
     autocmd BufNewFile *.sh  call util#MakeTemplate("$HOME/.vim/header/sh_header")
     autocmd BufNewFile *.vim call util#MakeTemplate("$HOME/.vim/header/vim_header")
 
@@ -326,20 +330,20 @@ inoremap <C-l> <C-X><C-L>
 if (exists('$TMUX') || exists('$SSH_IN_TMUX'))
     function! TmuxOrSplitSwitch(wincmd, tmuxdir)
         let previous_winnr = winnr()
-        silent! execute "wincmd ".a:wincmd
+        silent! execute "wincmd " . a:wincmd
         " If we didn't change vim windows, we must want to change tmux panes
         if previous_winnr == winnr()
-          call system("tmux select-pane -".a:tmuxdir)
+          call system("tmux select-pane -" . a:tmuxdir)
           redraw!
         endif
     endfunction
 
     let previous_title = substitute(system("tmux display-message -p '#{pane_title}'"), '\n', '', '')
-    let &t_ti = "\<Esc>]2;vim\<Esc>\\".&t_ti
-    let &t_te = "\<Esc>]2;".previous_title."\<Esc>\\".&t_te
+    let &t_ti = "\<Esc>]2;vim\<Esc>\\" . &t_ti
+    let &t_te = "\<Esc>]2;" . previous_title . "\<Esc>\\" . &t_te
 
     " autocmd BufReadPost,FileReadPost,BufNewFile * call system("tmux rename-window %")
-    " autocmd BufEnter * let &titlestring=' '.expand("%:p")
+    " autocmd BufEnter * let &titlestring=' ' . expand("%:p")
 
     nnoremap <silent> <C-h> :call TmuxOrSplitSwitch('h', 'L')<CR>
     nnoremap <silent> <C-j> :call TmuxOrSplitSwitch('j', 'D')<CR>
@@ -409,6 +413,8 @@ let g:breptile_bash_pane = 'bottom-left'
 let g:breptile_tpgrep_pat_gnuplot = '[g]nuplot'
 let g:breptile_mapkeys_matlab = 1       " 1 == map keys for matlab files
 let g:breptile_tpgrep_pat_matlab = '[r]lwrap.*matlab'
+let g:breptile_tpgrep_pat_scheme = '[r]lwrap.*scheme'
+" let g:breptile_tpgrep_pat_scheme = '[s]cheme'
 " }}}
 " LatexBox {{{
 let g:LatexBox_latexmk_async = 0 " run latexmk asynchronously (not really, requires vim server)
@@ -460,7 +466,6 @@ hi def link CursorLineNr Comment
 "}}}
 " Highlight NOTE etc {{{
 syn match myTodo contained "\(TODO\|NOTE\|FIXME\)" 
-
 hi def link myTodo Todo
 "}}}
 

@@ -16,15 +16,14 @@
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
     # Set the prompt with bright green text -- include GNU screen window number
-    PS1=$"\[\033[01;32m\][\u@\h: \w]${WINDOW}\$ \[\033[0m\]"
-    # PS1=$"[\u@\h: \w]${WINDOW}\$ "
+    PS1=$"\[\033[1;32m\][\u@\h: \w]${WINDOW}\$ \[\033[0m\]"
 
     # As of bash 4.3, can trim directories in prompt!
     PROMPT_DIRTRIM=3
 
 elif [[ "$OSTYPE" == "linux"* ]]; then
     # Set to bright cyan text for linux machines (easy tell on ssh to babylons)
-    PS1=$"\[\033[00;36m\][\u@\h: \w]${WINDOW}\$ \[\033[0m\]"
+    PS1=$"\[\033[0;36m\][\u@\h: \w]${WINDOW}\$ \[\033[0m\]"
 
     # As of bash 4.3, can trim directories in prompt!
     PROMPT_DIRTRIM=3
@@ -117,9 +116,8 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     complete -r vim
 fi
 
-
 #-------------------------------------------------------------------------------
-# Source function files and aliases
+#       Source function files and aliases
 #-------------------------------------------------------------------------------
 for func in "$HOME"/.bashrc.d/*.bash ; do
     if [ -f "$func" ]; then
