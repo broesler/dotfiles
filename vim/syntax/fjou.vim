@@ -30,7 +30,7 @@ syn match myConst display '\<PI\>'
 syn match myOperators display '[\*\=\+-/]'
 
 " Important callouts in notes
-syn keyword myImportant TODO: NOTE: contained 
+syn keyword myImportant TODO NOTE FIXME contained 
 
 " Comments are lines starting with '/'
 syn match myComments display "^;.*$" contains=myImportant
@@ -47,6 +47,6 @@ hi def link myVariables     Special
 hi def link myString        String
 hi def link myConst         Constant
 hi def link myOperators     Operator
-hi def link myImportant     PreProc
+hi def link myImportant     Todo
 hi def link myComments      Comment
 hi def link myEmptyLine     Error

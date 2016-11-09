@@ -13,14 +13,17 @@ setlocal softtabstop=2
 setlocal shiftwidth=2
 setlocal formatoptions+=t     " wrap text to an actual new code line
 
+" Take these OFF of wildignore, so we can complete filenames for figures
+set wildignore-=*.jpg,*.bmp,*.gif,*.png,*.jpeg
+
 " : is included as keyword for fig: eqn: etc.,
 setlocal iskeyword+=:,_
 
-setlocal foldmethod=manual
-" setlocal foldmethod=syntax
+" setlocal foldmethod=manual
+setlocal foldmethod=syntax
 setlocal foldnestmax=3          " allow folds down to subsections
 setlocal foldminlines=4         " only fold 4+ lines
-let g:tex_fold_enabled=0
+let g:tex_fold_enabled=1
 
 " Change default SuperTabs completion to context (or try <C-x><C-o>)
 let g:SuperTabDefaultCompletionType="context"
@@ -112,11 +115,13 @@ endfunction
 "       Keymaps {{{
 "-----------------------------------------------------------------------------
 " nnoremap <buffer> <Leader>M :silent call LatexMakeLatexmk()<CR>
-nnoremap <buffer> <Leader>M :Latexmk<CR>
-nnoremap <buffer>        ,r :silent! call JumpToSkim()<CR>
-nnoremap <buffer> <Leader>F :call LatexMakeFull()<CR>
-nnoremap <buffer> <Leader>T :call LatexMakeOnce()<CR>
-nnoremap <buffer> <Leader>B :call LatexMakeBib()<CR>
+"
+" Build pdf using LaTeX-Box built-in function (calls latexmk)
+nnoremap <buffer> <LocalLeader>M :Latexmk<CR>
+
+" Find spot in pdf corresponding to source code 
+"   (use cmd+shift+click to go back)
+nnoremap <buffer> ,r :silent! call JumpToSkim()<CR>
 
 " wrap \left( \right) around visually selected text
 vnoremap <buffer> sp "zdi\left(<C-R>z\right)<Esc> 
