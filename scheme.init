@@ -1,0 +1,27 @@
+;;;;============================================================================
+;;;;     File: ~/.scheme.init
+;;;;  Created: 11/09/2016, 22:22
+;;;;   Author: Bernie Roesler
+;;;;
+;;;;  Description: Scheme init file
+;;;;
+;;;;============================================================================
+
+;;; print every expression in a file as it is loaded (only works with M-o when
+;;; running inside of edwin!)
+(set! load-noisily? #t)
+
+;;; Allow use of (format #t "~a" Hello!)
+(load-option 'format)
+
+;------------------------------------------------------------------------------- 
+;        Handy utility functions
+;-------------------------------------------------------------------------------
+(define (printval f)
+  (newline)
+  (display "; Value: ")
+  (display f))
+
+
+
+; vim:ft=scheme:syn=scheme:

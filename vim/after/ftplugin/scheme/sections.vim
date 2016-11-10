@@ -30,32 +30,16 @@ function! s:NextSection(type, backwards, visual)
     execute 'silent normal! ' . dir . pattern . dir . flags . "\r"
 endfunction
 
-" Commands to take a count
-command! -nargs=+ -count SchemeNextSectionNormal :call <SID>NextSection(<f-args>)
-command! -nargs=+ -count SchemeNextSectionVisual :<C-u>call <SID>NextSection(<f-args>)
-
 " Maps that work as movements and motions
-noremap <script> <buffer> <silent> ]] :SchemeNextSectionNormal 1 0 0<CR>
-noremap <script> <buffer> <silent> [[ :SchemeNextSectionNormal 1 1 0<CR>
-noremap <script> <buffer> <silent> ][ :SchemeNextSectionNormal 2 0 0<CR>
-noremap <script> <buffer> <silent> [] :SchemeNextSectionNormal 2 1 0<CR>
+noremap <script> <buffer> <silent> ]] :call <SID>NextSection(1, 0, 0)<CR>
+noremap <script> <buffer> <silent> [[ :call <SID>NextSection(1, 1, 0)<CR>
+noremap <script> <buffer> <silent> ][ :call <SID>NextSection(2, 0, 0)<CR>
+noremap <script> <buffer> <silent> [] :call <SID>NextSection(2, 1, 0)<CR>
 
 " Visual mappings
-vnoremap <script> <buffer> <silent> ]] :SchemeNextSectionVisual 1 0 1<CR>
-vnoremap <script> <buffer> <silent> [[ :SchemeNextSectionVisual 1 1 1<CR>
-vnoremap <script> <buffer> <silent> ][ :SchemeNextSectionVisual 2 0 1<CR>
-vnoremap <script> <buffer> <silent> [] :SchemeNextSectionVisual 2 1 1<CR>
-
-" " Maps that work as movements and motions
-" noremap <script> <buffer> <silent> ]] :call <SID>NextSection(1, 0, 0)<CR>
-" noremap <script> <buffer> <silent> [[ :call <SID>NextSection(1, 1, 0)<CR>
-" noremap <script> <buffer> <silent> ][ :call <SID>NextSection(2, 0, 0)<CR>
-" noremap <script> <buffer> <silent> [] :call <SID>NextSection(2, 1, 0)<CR>
-"
-" " Visual mappings
-" vnoremap <script> <buffer> <silent> ]] :<C-u>call <SID>NextSection(1, 0, 1)<CR>
-" vnoremap <script> <buffer> <silent> [[ :<C-u>call <SID>NextSection(1, 1, 1)<CR>
-" vnoremap <script> <buffer> <silent> ][ :<C-u>call <SID>NextSection(2, 0, 1)<CR>
-" vnoremap <script> <buffer> <silent> [] :<C-u>call <SID>NextSection(2, 1, 1)<CR>
+vnoremap <script> <buffer> <silent> ]] :<C-u>call <SID>NextSection(1, 0, 1)<CR>
+vnoremap <script> <buffer> <silent> [[ :<C-u>call <SID>NextSection(1, 1, 1)<CR>
+vnoremap <script> <buffer> <silent> ][ :<C-u>call <SID>NextSection(2, 0, 1)<CR>
+vnoremap <script> <buffer> <silent> [] :<C-u>call <SID>NextSection(2, 1, 1)<CR>
 "=============================================================================
 "=============================================================================
