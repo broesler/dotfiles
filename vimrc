@@ -302,8 +302,8 @@ nnoremap Q <nop>
 
 " Save file if changed 
 " NOTE: MUST HAVE 'stty -ixon' in ~/.bashrc to disable flow control
-nnoremap <C-s> :update<CR>
-inoremap <C-s> <Esc>:update<CR>
+nnoremap <silent> <C-s> :update<CR>
+inoremap <silent> <C-s> <Esc>:update<CR>
 
 " Toggle spell checking
 noremap <silent> <Leader>s :set spell!<CR>

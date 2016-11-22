@@ -64,7 +64,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     {
         # $PATH includes: /Applications/MATLAB_R2015b.app/bin/
         rlwrap -a dummy -c -m dummy \
-            -H $HOME/.matlab/R2015b/history.m \
+            -H $HOME/.matlab/R2016b/history.m \
             matlab -nosplash -nodesktop "$@"
     }
 
@@ -147,12 +147,12 @@ alias lpbw='lpr -P m210__bw___thayercups/duplex'
 alias lpcolor='lpr -P m210__color___thayercups/duplex'
 alias lt='tree -C'
 alias mkdir='mkdir -p'
-alias mlint='/Applications/MATLAB_R2015b.app/bin/maci64/mlint'
+alias mlint='/Applications/MATLAB_R2016b.app/bin/maci64/mlint'
 alias myag="ag $agcolors"
 alias mygcc='gcc -Wall -pedantic -std=c99'
 alias mygfortran="gfortran $gfopts"
 alias path='echo $PATH | tr -s ":" "\n"'
-alias scip='rlwrap -r -c -f "$HOME"/src/scheme/mit_scheme_bindings.txt scheme'
+alias sicp='rlwrap -r -c -f "$HOME"/src/scheme/mit_scheme_bindings.txt scheme'
 alias which='type -all'
 alias zgrep='zgrep --color=auto'
 

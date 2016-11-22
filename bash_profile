@@ -37,7 +37,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     export PATH="$PATH:/usr/local/git/bin"           # git
 
     # Add MATLAB binaries to path
-    export PATH="$PATH:/Applications/MATLAB_R2015b.app/bin"
+    export PATH="$PATH:/Applications/MATLAB_R2016b.app/bin"
 
     export LC_ALL=en_US.UTF-8                   # brew doctor needs this line as of El Cap update 11/17/15 
     export RES=~/Documents/School/Research/     # path to research folder
@@ -61,6 +61,11 @@ export TERM='screen-256color'
 export LESS_TERMCAP_so=$'\e[30;47m'
 export LESS_TERMCAP_se=$'\e[0m'
 export LESS=-Airsx8g
+
+# mit scheme set-up
+export MIT_SCHEME_EXE='/usr/local/bin/mit-scheme'
+# export MIT_SCHEME_EXE='/Applications/MIT-Scheme.app/Contents/Resources/mit-scheme'
+export MITSCHEME_LIBRARY_PATH='/usr/local/lib/mit-scheme-c/'
 
 # # Use vim as man pager -- nicer searching, but SLOW to load vs less
 # export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man ts=8 nomod nolist nonu noma' \

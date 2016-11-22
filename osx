@@ -390,7 +390,7 @@ defaults write com.apple.dock expose-animation-duration -float 0.1
 # defaults write com.apple.dock expose-group-by-app -bool false
 
 # Disable Dashboard
-# defaults write com.apple.dashboard mcx-disabled -bool true
+defaults write com.apple.dashboard mcx-disabled -bool true
 
 # Don't show Dashboard as a Space
 defaults write com.apple.dock dashboard-in-overlay -bool true
@@ -440,7 +440,7 @@ defaults write com.apple.dock scroll-to-open -bool true;
 # 11: Launchpad
 # 12: Notification Center
 # Top left screen corner -> Dashboard
-defaults write com.apple.dock wvous-tl-corner -int 7
+defaults write com.apple.dock wvous-tl-corner -int 2
 defaults write com.apple.dock wvous-tl-modifier -int 0
 # Top right screen corner -> Show app windows
 defaults write com.apple.dock wvous-tr-corner -int 3
