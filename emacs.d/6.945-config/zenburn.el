@@ -268,7 +268,8 @@ static char *gnus-pointer[] = {
      `(zenburn-background-1 ((t (:background ,zenburn-bg+1))))
      `(zenburn-background-2 ((t (:background ,zenburn-bg+2))))
 
-     `(zenburn-primary-1 ((t (:foreground ,zenburn-yellow :weight bold))))
+     ;;`(zenburn-primary-1 ((t (:foreground ,zenburn-yellow :weight bold))))
+     `(zenburn-primary-1 ((t (:foreground ,zenburn-red :weight bold))))
      `(zenburn-primary-2 ((t (:foreground ,zenburn-orange :weight bold))))
      `(zenburn-primary-3 ((t (:foreground ,zenburn-primary-3-foreground :weight bold))))
      `(zenburn-primary-4 ((t (:foreground ,zenburn-primary-4-foreground :weight bold))))
