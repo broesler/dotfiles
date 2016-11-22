@@ -43,7 +43,7 @@ export EDITOR=vim
 # simple, commonly-used commands. No need to "export", these are only used in
 # interactive shells
 HISTCONTROL=ignoredups:ignorespace
-HISTIGNORE='clc:bg:fg:git st:git lol:history:h:hr'
+HISTIGNORE='clc:bg:fg:git st:git lol:history:h:hr:k'
 HISTSIZE=$((1 << 12))                # 4096 lines in memory
 HISTFILESIZE=$((1 << 24))            # 16e6 lines in file
 HISTTIMEFORMAT="%F %T "
