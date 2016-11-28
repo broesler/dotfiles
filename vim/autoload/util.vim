@@ -9,6 +9,16 @@
 "=============================================================================
 "       Functions  {{{
 "-----------------------------------------------------------------------------
+function! util#GetHighlight() "{{{
+    " get highlighting of current character 
+    let l:str = synIDattr(synID(line("."), col("."), 1), "name")
+    if strlen(l:str) == 0
+        echo "none"
+    else
+        echo l:str
+    endif
+endfunction
+"}}}
 function! util#CommentBlock(...) "{{{
     " don't let vim insert comment characters automatically (:h fo-table)
     let l:save_fo = &formatoptions
