@@ -376,6 +376,9 @@ nnoremap <space> za
 " Use \l to redraw the screen (since <C-l> is used by window switching)
 nnoremap <Leader>l :syntax sync fromstart<CR>:redraw!<CR>
 
+" Get highlighting tag of mapping under cursor
+nnoremap <Leader>H :call util#GetHighlight()<CR>
+
 " Custom text objects "{{{
 " inside/around next/last parens/curly brackets
 onoremap in( :<C-U>normal! f(vi(<CR>
@@ -476,11 +479,14 @@ set laststatus=2                             " always show statusbar
 set statusline=                              " clear default status line
 set statusline+=%-4.3n\                      " buffer number
 set statusline+=%{exists('g:loaded_fugitive')?fugitive#statusline():''}
-set statusline+=\ \                          " Separator
+set statusline+=\ \                          " separator
 set statusline+=%f\                          " %t filename, %F entire path
 set statusline+=%h%m%r%w                     " status flags
 set statusline+=\[%{strlen(&ft)?&ft:'none'}] " file type
+set statusline+=\ \             
 set statusline+=%=                           " right align remainder
+" set statusline+=%8.20{util#GetHighlight()}   " show highlighting tag
+" set statusline+=\ \             
 set statusline+=0x%-5B                       " character value under cursor
 set statusline+=%-10(%l,%c%V%)               " line, character
 set statusline+=%<%P                         " file position
@@ -491,5 +497,3 @@ if version >= 700
     autocmd InsertLeave * hi StatusLine term=none    ctermfg=none  ctermbg=none
 endif
 "}}}
-"=============================================================================
-"=============================================================================
