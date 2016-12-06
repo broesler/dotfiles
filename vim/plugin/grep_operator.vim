@@ -27,8 +27,8 @@ function! s:GrepOperator(type)
     let @@ = save_reg
 endfunction
 
-nnoremap <Leader>g :set operatorfunc=<SID>GrepOperator<CR>g@
-vnoremap <Leader>g :<C-u>call <SID>GrepOperator(visualmode())<CR>
+nnoremap <silent> <Leader>g :set operatorfunc=<SID>GrepOperator<CR>g@
+vnoremap <silent> <Leader>g :<C-u>call <SID>GrepOperator(visualmode())<CR>
 
 "=============================================================================
 "=============================================================================

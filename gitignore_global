@@ -18,6 +18,7 @@ Session.vim
 # ignore all latex auxiliary files:
 *.aux
 *.bbl
+*.bcf
 *.blg
 *.log
 *.out
@@ -29,6 +30,7 @@ Session.vim
 *.4tc
 *.idv
 *.lg
+*.run.xml
 *.tmp
 *.xref
 *x.png

@@ -173,7 +173,7 @@ set sessionoptions=blank,buffers,curdir,folds,help,resize,winsize
 set printoptions=paper:letter
 
 " Toggle "set list" or "set nolist" to view special characters
-set listchars=eol:¬,tab:→\ ,trail:·,extends:»,precedes:«,nbsp:~
+set listchars=eol:¬,tab:→\ ,trail:·,extends:»,precedes:«,nbsp:~,space:·
 "}}}
 "}}}--------------------------------------------------------------------------
 "       Autocommands                                                     "{{{
@@ -192,6 +192,8 @@ augroup code_cmds "{{{
     autocmd BufNewFile *.vim call util#MakeTemplate("$HOME/.vim/header/vim_header")
 
     autocmd FileType perl :compiler perl
+
+    autocmd FileType conf source $HOME/.vim/after/ftplugin/sh/sections.vim
 
     " TODO figure out how to break undo and jump sequence for this operation
     " Update 'Last Modified:' line in code files
@@ -236,6 +238,14 @@ augroup quickfix_window "{{{
 
     " Quickly open/close quickfix and location list
     autocmd BufWinEnter quickfix nnoremap <silent> <buffer> q :cclose<CR>:lclose<CR>
+augroup END
+"}}}
+augroup xelatex_cmds "{{{
+    autocmd!
+    " use tex syntax highlighting
+    autocmd BufRead,BufNewFile *.xtx set filetype=tex
+    " set compiler options to use xelatex
+    autocmd BufRead,BufNewFile *.xtx let g:LatexBox_latexmk_options = "-xelatex"
 augroup END
 "}}}
 "}}}--------------------------------------------------------------------------
@@ -302,8 +312,8 @@ nnoremap Q <nop>
 
 " Save file if changed 
 " NOTE: MUST HAVE 'stty -ixon' in ~/.bashrc to disable flow control
-nnoremap <C-s> :update<CR>
-inoremap <C-s> <Esc>:update<CR>
+nnoremap <silent> <C-s> :update<CR>
+inoremap <silent> <C-s> <Esc>:update<CR>
 
 " Toggle spell checking
 noremap <silent> <Leader>s :set spell!<CR>
@@ -375,6 +385,9 @@ nnoremap <space> za
 
 " Use \l to redraw the screen (since <C-l> is used by window switching)
 nnoremap <Leader>l :syntax sync fromstart<CR>:redraw!<CR>
+
+" Get highlighting tag of mapping under cursor
+nnoremap <Leader>H :call util#GetHighlight()<CR>
 
 " Custom text objects "{{{
 " inside/around next/last parens/curly brackets
@@ -476,11 +489,14 @@ set laststatus=2                             " always show statusbar
 set statusline=                              " clear default status line
 set statusline+=%-4.3n\                      " buffer number
 set statusline+=%{exists('g:loaded_fugitive')?fugitive#statusline():''}
-set statusline+=\ \                          " Separator
+set statusline+=\ \                          " separator
 set statusline+=%f\                          " %t filename, %F entire path
 set statusline+=%h%m%r%w                     " status flags
 set statusline+=\[%{strlen(&ft)?&ft:'none'}] " file type
+set statusline+=\ \             
 set statusline+=%=                           " right align remainder
+" set statusline+=%8.20{util#GetHighlight()}   " show highlighting tag
+" set statusline+=\ \             
 set statusline+=0x%-5B                       " character value under cursor
 set statusline+=%-10(%l,%c%V%)               " line, character
 set statusline+=%<%P                         " file position
@@ -491,5 +507,3 @@ if version >= 700
     autocmd InsertLeave * hi StatusLine term=none    ctermfg=none  ctermbg=none
 endif
 "}}}
-"=============================================================================
-"=============================================================================

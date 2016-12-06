@@ -13,13 +13,23 @@ setlocal shiftwidth=2
 setlocal textwidth=80
 setlocal iskeyword-=:         " colon is NOT part of keywords
 
-setlocal comments=:;
+setlocal comments=n:;
 setlocal commentstring=;%s
 
 setlocal foldmethod=indent
 setlocal foldignore=
 
 setlocal nowrap
+"}}}
+" Highlighting edits {{{
+" Make extra parens easier to see (not orange vs red)
+hi schemeError ctermfg=none ctermbg=darkred
+"}}}
+" Macros {{{
+" Add (printval ...) around current expression
+let @p='I(printval f(%a)'
+" Add '; Value: ' at end of current line
+let @v='A ; Value: '
 "}}}
 "=============================================================================
 "=============================================================================
