@@ -21,6 +21,8 @@ alias rrc='source ~/.bashrc'                 # reload JUST rc file (more common)
 #-------------------------------------------------------------------------------
 if [[ "$OSTYPE" == "darwin"* ]]; then
     alias cs174='cd ~/Documents/School/14F-15X/cs174_machine_learning/'
+    alias mycv='cd ~/Documents/School/CV_Resume/CV/cv_latex/'
+    alias myresume='cd ~/Documents/School/CV_Resume/Resume/resume_latex/'
     alias es105='cd ~/Documents/School/13F-14X/Engs_105_Numerical_PDEs_1/hw/'
     alias es145='cd ~/Documents/School/13F-14X/Engs_145_Modern_Control_Theory/'
     alias es148='cd ~/Documents/School/14F-15X/engg148_structural_mechanics/'
