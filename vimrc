@@ -173,7 +173,7 @@ set sessionoptions=blank,buffers,curdir,folds,help,resize,winsize
 set printoptions=paper:letter
 
 " Toggle "set list" or "set nolist" to view special characters
-set listchars=eol:¬,tab:→\ ,trail:·,extends:»,precedes:«,nbsp:~
+set listchars=eol:¬,tab:→\ ,trail:·,extends:»,precedes:«,nbsp:~,space:·
 "}}}
 "}}}--------------------------------------------------------------------------
 "       Autocommands                                                     "{{{
@@ -192,6 +192,8 @@ augroup code_cmds "{{{
     autocmd BufNewFile *.vim call util#MakeTemplate("$HOME/.vim/header/vim_header")
 
     autocmd FileType perl :compiler perl
+
+    autocmd FileType conf source $HOME/.vim/after/ftplugin/sh/sections.vim
 
     " TODO figure out how to break undo and jump sequence for this operation
     " Update 'Last Modified:' line in code files
@@ -236,6 +238,14 @@ augroup quickfix_window "{{{
 
     " Quickly open/close quickfix and location list
     autocmd BufWinEnter quickfix nnoremap <silent> <buffer> q :cclose<CR>:lclose<CR>
+augroup END
+"}}}
+augroup xelatex_cmds "{{{
+    autocmd!
+    " use tex syntax highlighting
+    autocmd BufRead,BufNewFile *.xtx set filetype=tex
+    " set compiler options to use xelatex
+    autocmd BufRead,BufNewFile *.xtx let g:LatexBox_latexmk_options = "-xelatex"
 augroup END
 "}}}
 "}}}--------------------------------------------------------------------------
