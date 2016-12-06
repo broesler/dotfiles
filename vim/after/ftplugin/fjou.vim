@@ -11,10 +11,5 @@ setlocal nowrap             " can have long lines
 setlocal iskeyword+=-,_
 setlocal comments=:\;
 setlocal commentstring=;%s
-
-" Make line into a comment header with dashes
-" let @h='o%79a-yypO%8a '
-let @h='O//79a-jI//8a o//79a-k$'
-
 "============================================================================
 "============================================================================
