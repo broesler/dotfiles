@@ -64,7 +64,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     # Matlab with rlwrap (use vi commands in Matlab!)
     function matlabrl()
     {
-        # $PATH includes: /Applications/MATLAB_R2015b.app/bin/
+        # $PATH includes: /Applications/MATLAB_R2016b.app/bin/
         rlwrap -a dummy -c -m dummy \
             -H $HOME/.matlab/R2016b/history.m \
             matlab -nosplash -nodesktop "$@"

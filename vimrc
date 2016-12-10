@@ -432,6 +432,8 @@ let g:breptile_tpgrep_pat_scheme = '[r]lwrap.*scheme'
 " LatexBox {{{
 let g:LatexBox_latexmk_async = 0 " run latexmk asynchronously (not really, requires vim server)
 let g:LatexBox_Folding = 1       " use LatexBox folding instead of vim folding
+let g:LatexBox_quickfix = 2      " open quickfix but do not jump to error
+let g:LatexBox_output_type = ''  " let latexmkrc choose the type
 "}}}
 "}}}--------------------------------------------------------------------------
 "       Colorscheme                                                       "{{{
