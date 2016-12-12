@@ -23,10 +23,10 @@
 
 (setq scheme-program-name
       (concat
-       scheme-root "/mit-scheme "
-       "--library " scheme-root " "
-       "--band " scheme-root "/all.com "
-       "-heap 10000"))
+        scheme-root "/mit-scheme "
+        "--library " scheme-root " "
+        "--band " scheme-root "/all.com "
+        "-heap 10000"))
 
 ;; Use the Edwin-like MIT/Scheme interpreter:
 (load "xscheme")
@@ -44,30 +44,30 @@
 ;; proper level, and use M-. to view mit-scheme-documentation for any
 ;; symbol.
 (eval-after-load
- 'scheme
- '(define-key scheme-mode-map "\t" 'scheme-complete-or-indent))
+  'scheme
+  '(define-key scheme-mode-map "\t" 'scheme-complete-or-indent))
 
 (eval-after-load
- 'cmuscheme
- '(define-key inferior-scheme-mode-map "\t" 'scheme-complete-or-indent))
+  'cmuscheme
+  '(define-key inferior-scheme-mode-map "\t" 'scheme-complete-or-indent))
 
 (eval-after-load
- 'xscheme
- '(define-key scheme-interaction-mode-map "\t" 'scheme-complete-or-indent))
+  'xscheme
+  '(define-key scheme-interaction-mode-map "\t" 'scheme-complete-or-indent))
 
 (eval-after-load
- 'scheme
- '(define-key scheme-mode-map (kbd "M-.") 'mit-scheme-doc-lookup))
+  'scheme
+  '(define-key scheme-mode-map (kbd "M-.") 'mit-scheme-doc-lookup))
 
 (eval-after-load
- 'cmuscheme
- '(define-key inferior-scheme-mode-map (kbd "M-.")
-    'mit-scheme-doc-lookup))
+  'cmuscheme
+  '(define-key inferior-scheme-mode-map (kbd "M-.")
+               'mit-scheme-doc-lookup))
 
 (eval-after-load
- 'xscheme
- '(define-key scheme-interaction-mode-map (kbd "M-.")
-    'mit-scheme-doc-lookup))
+  'xscheme
+  '(define-key scheme-interaction-mode-map (kbd "M-.")
+               'mit-scheme-doc-lookup))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;         Flash Paren Mode                         ;;;;;
@@ -84,9 +84,9 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; if we're in the GUI, run these commands
 (cond ((display-graphic-p)
-  (tool-bar-mode -1)
-  (scroll-bar-mode -1)
-  (menu-bar-mode -1)))
+       (tool-bar-mode -1)
+       (scroll-bar-mode -1)
+       (menu-bar-mode -1)))
 
 (column-number-mode 1)
 (setq inhibit-startup-message 't)
@@ -105,7 +105,7 @@
   (setq rlm-font-size (+ rlm-font-size num))
   (message (number-to-string rlm-font-size))
   (set-face-attribute 'default nil
-		      :height rlm-font-size))
+                      :height rlm-font-size))
 
 (defun font-increase ()
   (interactive)
@@ -136,11 +136,11 @@
   (interactive)
   (let ((current-value (frame-parameter nil 'fullscreen)))
     (set-frame-parameter
-     nil 'fullscreen
-     (if (equal 'fullboth current-value)
-	 (if (boundp 'old-fullscreen) old-fullscreen nil)
-       (progn (setq old-fullscreen current-value)
-	      'fullboth)))))
+      nil 'fullscreen
+      (if (equal 'fullboth current-value)
+        (if (boundp 'old-fullscreen) old-fullscreen nil)
+        (progn (setq old-fullscreen current-value)
+               'fullboth)))))
 ;; again, same bindings as firefox
 (global-set-key [f11] 'toggle-fullscreen)
 
@@ -185,8 +185,8 @@
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
 (add-hook 'scheme-mode-hook 'turn-on-auto-fill)
 (defadvice save-buffers-kill-emacs (around no-query-kill-emacs activate)
-  "Prevent annoying \"Active processes exist\" query when you quit Emacs."
-  (flet ((process-list ())) ad-do-it))
+           "Prevent annoying \"Active processes exist\" query when you quit Emacs."
+           (flet ((process-list ())) ad-do-it))
 (setq-default ispell-program-name "aspell")
 
 ;; Line numbers always
@@ -209,17 +209,16 @@
 (defun xscheme-prompt-for-expression-exit ()
   (interactive)
   (let (
-	;; In Emacs 21+, during a minibuffer read the minibuffer
-	;; contains the prompt as buffer text and that text is
-	;; read only.  So we can no longer assume that (point-min)
-	;; is where the user-entered text starts and we must avoid
-	;; modifying that prompt text.  The value we want instead
-	;; of (point-min) is (minibuffer-prompt-end).
-	(point-min (if (fboundp 'minibuffer-prompt-end)
-		              (minibuffer-prompt-end)
-		            (point-min))))
+        ;; In Emacs 21+, during a minibuffer read the minibuffer contains the
+        ;; prompt as buffer text and that text is read only. So we can no longer
+        ;; assume that (point-min) is where the user-entered text starts and we
+        ;; must avoid modifying that prompt text. The value we want instead of
+        ;; (point-min) is (minibuffer-prompt-end).
+        (point-min (if (fboundp 'minibuffer-prompt-end)
+                     (minibuffer-prompt-end)
+                     (point-min))))
     (if (eq (xscheme-region-expression-p point-min (point-max)) 'one)
-        (exit-minibuffer)
+      (exit-minibuffer)
       (error "input must be a single, complete expression"))))
 
 ; vim:ft=lisp:syn=lisp:tw=80:
