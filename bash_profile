@@ -52,26 +52,32 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     export MANPATH="/usr/local/opt/grep/share/man:$MANPATH"
     export MANPATH="/usr/local/opt/gnu-tar/share/man:$MANPATH"
     export MANPATH="/usr/local/opt/gnu-which/share/man:$MANPATH"
+
+    # mit scheme set-up
+    export MIT_SCHEME_EXE='/usr/local/bin/mit-scheme'
+    # export MIT_SCHEME_EXE='/Applications/MIT-Scheme.app/Contents/Resources/mit-scheme'
+    export MITSCHEME_LIBRARY_PATH='/usr/local/lib/mit-scheme-c/'
 fi
 
 # ensure tmux uses colors
 export TERM='screen-256color'               
 
-# less highlighting for man pages
-export LESS_TERMCAP_so=$'\e[30;47m'
-export LESS_TERMCAP_se=$'\e[0m'
-export LESS=-Airsx8g
+# less highlighting for man pages:
+# NOTE: do not actually use "tput bold" because iTerm uses "bright" colors,
+# which in Solarized scheme are just grayscale other than red
+export LESS_TERMCAP_mb=$(tput setaf 2)            # start blink
+export LESS_TERMCAP_md=$(tput setaf 3)            # start bold
+export LESS_TERMCAP_me=$(tput sgr0)               # end bold
+export LESS_TERMCAP_us=$(tput smul; tput setaf 4) # start underline
+export LESS_TERMCAP_ue=$(tput rmul; tput sgr0)    # end underline
+export LESS_TERMCAP_so=$(tput setaf 0; tput setab 3) # start highlight
+export LESS_TERMCAP_se=$(tput sgr0) # end highlight
 
-# mit scheme set-up
-export MIT_SCHEME_EXE='/usr/local/bin/mit-scheme'
-# export MIT_SCHEME_EXE='/Applications/MIT-Scheme.app/Contents/Resources/mit-scheme'
-export MITSCHEME_LIBRARY_PATH='/usr/local/lib/mit-scheme-c/'
+# old version uses raw escape codes:
+# export LESS_TERMCAP_so=$'\033[30;43m' # highlight searches in yellow
+# export LESS_TERMCAP_se=$'\033[0m'
 
-# # Use vim as man pager -- nicer searching, but SLOW to load vs less
-# export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man ts=8 nomod nolist nonu noma' \
-    #                                            -c 'nnoremap i <nop>' \
-    #                                            -c 'nnoremap <Space> <C-f>' \
-    #                                            -c 'noremap q :quit<CR>' -\""
+export LESS=-AXFirsx8g      # default less options
 
 # Save OLDPWD between sessions
 if [ -r "$HOME/.oldpwd" ]; then

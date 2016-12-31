@@ -125,10 +125,6 @@ function cs60()
 #       7 = light grey
 #       8;5;[0-256] = 256 ANSI colors, i.e. '38;5;[0-256]'
 
-# Use a gold color for paths:
-# agcolors="ag --color-path       '1;49;38;5;136'"
-# agcolors+=" --color-line-number '3;49;38;5;242'"
-# agcolors+=" --color-match       '1;49;38;5;9'"
 # Color ag like grep:
 agcolors="  --color-path        '0;49;38;5;5'"
 agcolors+=" --color-line-number '0;49;32'"
