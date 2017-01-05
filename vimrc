@@ -127,7 +127,7 @@ set foldminlines=3
 " Windows {{{
 set scrolloff=1     " cursor will never reach bottom of window
 set sidescroll=5    " cursor will never reach edge of screen
-set splitbelow      " split new windows       below current one
+set nosplitbelow      " split new windows       below current one
 set splitright      " split new windows to right of current one
 "}}}
 " Netrw {{{
