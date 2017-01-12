@@ -66,7 +66,7 @@ set undodir=~/.vim/tmp/undo/       " directory MUST already exist
 set backupdir=~/.vim/tmp/backup/ 
 set directory=~/.vim/tmp/swap/
 "}}}
-" Enable Omnicompletion {{{
+" Omnicompletion {{{
 set omnifunc=syntaxcomplete#Complete
 set completeopt=longest,menuone,preview     " make like bash completion
 set complete=.,w,b,u,t,kspell
@@ -127,11 +127,11 @@ set foldminlines=3
 " Windows {{{
 set scrolloff=1     " cursor will never reach bottom of window
 set sidescroll=5    " cursor will never reach edge of screen
-set nosplitbelow    " split new windows to top   of current one
+set nosplitbelow      " split new windows       below current one
 set splitright      " split new windows to right of current one
 "}}}
 " Netrw {{{
-let g:netrw_banner=0        " 0 == no banner
+let g:netrw_banner=1        " 0 == no banner
 let g:netrw_browse_split=0  " 1 == open files in horizontal split
 "}}}
 " mouse {{{
@@ -490,10 +490,11 @@ hi def link myTodo Todo
 set laststatus=2                             " always show statusbar
 set statusline=                              " clear default status line
 set statusline+=%-4.3n\                      " buffer number
+set statusline+=%h%m%r%w                     " status flags
+set statusline+=\                            " separator
 set statusline+=%{exists('g:loaded_fugitive')?fugitive#statusline():''}
 set statusline+=\ \                          " separator
 set statusline+=%f\                          " %t filename, %F entire path
-set statusline+=%h%m%r%w                     " status flags
 set statusline+=\[%{strlen(&ft)?&ft:'none'}] " file type
 set statusline+=\ \             
 set statusline+=%=                           " right align remainder

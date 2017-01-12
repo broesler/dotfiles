@@ -1,35 +1,41 @@
 [user]
-	name = Bernard Roesler
-	email = bernard.roesler@gmail.com
+    name = Bernard Roesler
+    email = bernard.roesler@gmail.com
 [color]
-	ui = true
+    ui = true
 [alias]
-	lol = log --oneline --graph --decorate 
-	st = status -s --branch
+    aa = add -A :/
+    br = branch -v -v
     co = checkout
-    br = branch
-	aa = add -A :/
-	conflicts = diff --name-only --diff-filter=U
-	dt = difftool
+    conflicts = diff --name-only --diff-filter=U
+    dt = difftool
+    lol = log --oneline --graph --decorate 
+    ld = log --pretty=format:"%C(auto)%h%d\\ [%ad,\\ %cn]\\ %s" \
+        --decorate --graph --date=relative
+    ll = log --pretty=format:"%C(auto)%h%d\\ %Cblue[%ad,\\ %cn]%C(auto)\\ %s" \
+        --decorate --stat=80 --date=format:"%D\\ %H:%M:%S"
+    lt = log --pretty=format:"%C(auto)%h%d\\ [%ad,\\ %cn]\\ %s" \
+        --decorate --graph --date=format:"%D\\ %H:%M:%S"
+    st = status -s --branch
     up = submodule foreach git pull origin master
 [push]
-	default = simple
+    default = simple
 [merge]
-	# tool = vimdiff
+    # tool = vimdiff
     conflictstyle = diff3
-	tool = fugitive
+    tool = fugitive
 [core]
-	excludesfile = ~/.gitignore_global
-	editor = vim -X
-	pager = less -F -X
-	filemode = false
+    excludesfile = ~/.gitignore_global
+    editor = vim -X
+    pager = less -F -X
+    filemode = false
 [diff]
-	tool = vimdiff
+    tool = vimdiff
 [difftool]
-	prompt = false
+    prompt = false
 [filter "lfs"]
-	smudge = git-lfs smudge %f
-	required = true
-	clean = git-lfs clean %f
+    smudge = git-lfs smudge %f
+    required = true
+    clean = git-lfs clean %f
 [mergetool "fugitive"]
-	cmd = vim -f -c \"Gvdiff\" \"$MERGED\"
+    cmd = vim -f -c \"Gvdiff\" \"$MERGED\"
