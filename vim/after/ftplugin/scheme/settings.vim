@@ -27,7 +27,7 @@ hi schemeError ctermfg=3 ctermbg=none
 "}}}
 " Macros {{{
 " Add (printval ...) around current expression
-let @p='I(printval f(%a)'
+let @p='I(printval f(%a)j'
 " Add '; Value: ' at end of current line
 let @v='A ; Value: '
 "}}}

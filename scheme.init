@@ -20,9 +20,15 @@
 ;------------------------------------------------------------------------------- 
 ;        Handy utility functions
 ;-------------------------------------------------------------------------------
+;; neatly print the value of an expression
 (define (printval f)
   (newline)
   (display "; Value: ")
   (display f))
+
+;; Print all the bindings in the current REPL
+(define (whos)
+  (newline)
+  (pp (environment-bindings (nearest-repl/environment))))
 
 ; vim:ft=scheme:syn=scheme:
