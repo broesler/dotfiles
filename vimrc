@@ -131,7 +131,7 @@ set nosplitbelow      " split new windows       below current one
 set splitright      " split new windows to right of current one
 "}}}
 " Netrw {{{
-let g:netrw_banner=0        " 0 == no banner
+let g:netrw_banner=1        " 0 == no banner
 let g:netrw_browse_split=0  " 1 == open files in horizontal split
 "}}}
 " mouse {{{
