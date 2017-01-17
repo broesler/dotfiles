@@ -30,7 +30,7 @@ packadd! matchit
 runtime! ftplugin/man.vim
 
 " '**' recursively includes all directories below the current one
-set path=.,/usr/include/,/usr/local/include,**
+set path=.,/usr/include/,/usr/local/include,**,../**
 
 "}}}--------------------------------------------------------------------------
 "       Global Settings                                                  "{{{
