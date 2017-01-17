@@ -21,9 +21,6 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     # Add coreutils from homebrew $(brew --prefix coreutils)
     export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 
-    # Add my local files
-    export PATH="$PATH:$HOME/bin"
-
     # # Ruby setup:
     # # Load RVM into a shell session *as a function*
     # [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" 
@@ -58,6 +55,9 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     # export MIT_SCHEME_EXE='/Applications/MIT-Scheme.app/Contents/Resources/mit-scheme'
     export MITSCHEME_LIBRARY_PATH='/usr/local/lib/mit-scheme-c/'
 fi
+
+# Add my local files
+export PATH="$PATH:$HOME/bin"
 
 # ensure tmux uses colors
 export TERM='screen-256color'               
