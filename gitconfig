@@ -14,7 +14,7 @@
         --decorate --graph --date=relative
     ll = log --pretty=format:"%C(auto)%h%d\\ %Cblue[%ad,\\ %cn]%C(auto)\\ %s" \
         --decorate --stat=80 --date=format:"%D\\ %H:%M:%S"
-    lt = log --pretty=format:"%C(auto)%h%d\\ [%ad,\\ %cn]\\ %s" \
+    lt = log --pretty=format:"%C(auto)%h%d\\ %Cblue[%ad,\\ %cn]%C(auto)%n\\ \\ ==>\\ %s" \
         --decorate --graph --date=format:"%D\\ %H:%M:%S"
     st = status -s --branch
     up = submodule foreach git pull origin master
