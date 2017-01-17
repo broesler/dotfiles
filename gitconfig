@@ -28,7 +28,7 @@
     excludesfile = ~/.gitignore_global
     editor = vim -X
     pager = less -F -X
-    filemode = false
+	fileMode = false
 [diff]
     tool = vimdiff
 [difftool]
