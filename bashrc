@@ -16,22 +16,19 @@
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
     # Set the prompt with bright green text -- include GNU screen window number
+    # Try date/time and newline in prompt:
+    # PS1=$"\[\033[1;32m\]\D{%D, %T}: \w\n[\u@\h]${WINDOW}\$ \[\033[0m\]"
     PS1=$"\[\033[1;32m\][\u@\h: \w]${WINDOW}\$ \[\033[0m\]"
-
-    # As of bash 4.3, can trim directories in prompt!
-    PROMPT_DIRTRIM=3
-
 elif [[ "$OSTYPE" == "linux"* ]]; then
     # Set to bright cyan text for linux machines (easy tell on ssh to babylons)
-    PS1=$"\[\033[0;36m\][\u@\h: \w]${WINDOW}\$ \[\033[0m\]"
-
-    # As of bash 4.3, can trim directories in prompt!
-    PROMPT_DIRTRIM=3
-
+    PS1=$"\[\033[0;36m\][\u@\h: \w]${WINDOW}\n[\t]\$ \[\033[0m\]"
 else
     # default no color
     PS1=$"[\u@\h: \W]\$ "
 fi
+
+# uses '...' to limit list of directories
+PROMPT_DIRTRIM=3
 
 # Set CDPATH to quickly change to neighbor directories
 CDPATH=".:..:../..:$HOME"
