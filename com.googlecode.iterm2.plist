@@ -1542,19 +1542,19 @@
 	<key>NSWindow Frame NSColorPanel</key>
 	<string>2336 1092 224 325 0 0 2560 1417 </string>
 	<key>NSWindow Frame NSFontPanel</key>
-	<string>959 304 481 439 0 0 1440 877 </string>
+	<string>1563 671 481 305 0 0 2560 1440 </string>
 	<key>NSWindow Frame Preferences</key>
 	<string>245 418 606 456 0 0 1440 877 </string>
 	<key>NSWindow Frame SUUpdateAlert</key>
 	<string>970 769 620 392 0 0 2560 1417 </string>
 	<key>NSWindow Frame SessionsPreferences</key>
-	<string>562 125 606 456 0 0 1440 878 </string>
+	<string>1317 199 606 456 0 0 2560 1418 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>1450 518 918 381 0 0 2560 1418 </string>
+	<string>1433 449 918 512 0 0 2560 1418 </string>
 	<key>NSWindow Frame UKCrashReporter</key>
 	<string>99 293 592 584 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>322 71 706 807 0 0 2560 1418 </string>
+	<string>1583 603 706 807 0 0 2560 1418 </string>
 	<key>NeverWarnAboutMeta</key>
 	<true/>
 	<key>NeverWarnAboutMeta_selection</key>
@@ -1570,6 +1570,10 @@
 	<key>NeverWarnAboutShortLivedSessions_91FC80F0-8D3A-4596-B1EB-46A7F27BDC71</key>
 	<true/>
 	<key>NeverWarnAboutShortLivedSessions_91FC80F0-8D3A-4596-B1EB-46A7F27BDC71_selection</key>
+	<integer>0</integer>
+	<key>NeverWarnAboutShortLivedSessions_FDEC7C31-AD03-430E-A57E-3604E264977D</key>
+	<true/>
+	<key>NeverWarnAboutShortLivedSessions_FDEC7C31-AD03-430E-A57E-3604E264977D_selection</key>
 	<integer>0</integer>
 	<key>New Bookmarks</key>
 	<array>
@@ -2304,9 +2308,7 @@
 				<real>0.69510942697525024</real>
 			</dict>
 			<key>Tags</key>
-			<array>
-				<string>dark bg</string>
-			</array>
+			<array/>
 			<key>Terminal Type</key>
 			<string>xterm-256color</string>
 			<key>Transparency</key>
@@ -3822,9 +3824,7 @@
 			<key>Sync Title</key>
 			<false/>
 			<key>Tags</key>
-			<array>
-				<string>dark bg</string>
-			</array>
+			<array/>
 			<key>Terminal Type</key>
 			<string>xterm-256color</string>
 			<key>Transparency</key>
@@ -3848,7 +3848,7 @@
 			<key>Use Tab Color</key>
 			<false/>
 			<key>Vertical Spacing</key>
-			<real>0.91721653938293457</real>
+			<real>1</real>
 			<key>Visual Bell</key>
 			<true/>
 			<key>Window Type</key>
@@ -4599,9 +4599,7 @@
 			<key>Sync Title</key>
 			<false/>
 			<key>Tags</key>
-			<array>
-				<string>dark bg</string>
-			</array>
+			<array/>
 			<key>Terminal Type</key>
 			<string>xterm-256color</string>
 			<key>Transparency</key>
@@ -5404,9 +5402,7 @@
 			<key>Sync Title</key>
 			<false/>
 			<key>Tags</key>
-			<array>
-				<string>dark bg</string>
-			</array>
+			<array/>
 			<key>Terminal Type</key>
 			<string>xterm-256color</string>
 			<key>Transparency</key>
@@ -6201,9 +6197,7 @@
 			<key>Sync Title</key>
 			<false/>
 			<key>Tags</key>
-			<array>
-				<string>light bg</string>
-			</array>
+			<array/>
 			<key>Terminal Type</key>
 			<string>xterm-256color</string>
 			<key>Transparency</key>
@@ -6980,9 +6974,7 @@
 			<key>Sync Title</key>
 			<false/>
 			<key>Tags</key>
-			<array>
-				<string>dark bg</string>
-			</array>
+			<array/>
 			<key>Terminal Type</key>
 			<string>xterm-256color</string>
 			<key>Transparency</key>
@@ -7761,9 +7753,7 @@
 			<key>Sync Title</key>
 			<false/>
 			<key>Tags</key>
-			<array>
-				<string>light bg</string>
-			</array>
+			<array/>
 			<key>Terminal Type</key>
 			<string>xterm-256color</string>
 			<key>Transparency</key>
@@ -8499,9 +8489,7 @@
 			<key>Sync Title</key>
 			<false/>
 			<key>Tags</key>
-			<array>
-				<string>light bg</string>
-			</array>
+			<array/>
 			<key>Terminal Type</key>
 			<string>xterm-256color</string>
 			<key>Transparency</key>
@@ -9408,7 +9396,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2017-01-15T14:20:51Z</date>
+	<date>2017-01-24T22:45:37Z</date>
 	<key>SavePasteHistory</key>
 	<true/>
 	<key>Show Toolbelt</key>
