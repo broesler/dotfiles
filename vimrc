@@ -248,12 +248,24 @@ augroup xelatex_cmds "{{{
     autocmd BufRead,BufNewFile *.xtx let g:LatexBox_latexmk_options = "-xelatex"
 augroup END
 "}}}
+augroup todo "{{{
+    au!
+    au Syntax * syn match myTodo /\v<(TODO|NOTE|FIXME):\=/
+                \ containedin=.*Comment,vimCommentTitle
+    au Syntax * hi def link myTodo Todo
+augroup END
+"}}}
 "}}}--------------------------------------------------------------------------
 "       Key Mappings                                                     "{{{
 "-----------------------------------------------------------------------------
 let mapleader="\\"
 let maplocalleader=","
 
+" Quick access .vimrc and functions {{{
+nnoremap <Leader>ve :split $MYVIMRC<CR>
+nnoremap <Leader>vs :source $MYVIMRC<CR>
+nnoremap <Leader>fe :edit $HOME/.vim/autoload/util.vim<CR>
+"}}}
 " Command line mappings {{{
 cnoremap <C-A> <Home>
 cnoremap <C-H> <Left>
@@ -286,11 +298,6 @@ nnoremap <Leader>* *<C-o>:%s/\<<C-r><C-w>\>/
 nnoremap & :&&<CR>
 xnoremap & :&&<CR>
 " }}}
-" Quick access .vimrc and functions {{{
-nnoremap <Leader>ve :split $MYVIMRC<CR>
-nnoremap <Leader>vs :source $MYVIMRC<CR>
-nnoremap <Leader>fe :edit $HOME/.vim/autoload/util.vim<CR>
-"}}}
 
 " Increment numbers in a column (no "nore" here to use <Plug>)
 vmap <C-a> <Plug>UtilIncr
@@ -439,6 +446,11 @@ let g:LatexBox_output_type = ''  " let latexmkrc choose the type
 "       Colorscheme                                                       "{{{
 "-----------------------------------------------------------------------------
 " Use solarized colorscheme {{{
+" Quick colorscheme swaps (includes entire iTerm + tmux scheme!)
+nnoremap <Leader>vd :ITermProf SolarizedDark<CR>
+nnoremap <Leader>vl :ITermProf SolarizedLight<CR>
+nnoremap <Leader>v2 :ITermProf LaterThisEvening<CR>
+
 set t_Co=256
 set background=dark
 
@@ -471,17 +483,19 @@ hi SpellRare term=underline cterm=underline
 hi clear SpellLocal
 hi SpellLocal term=underline cterm=underline
 "}}}
-" Comments {{{
+" Highlighting {{{
 " Make comments italics
 hi Comment cterm=italic
 
 " Do not highlight cursor line number in relative number mode
 hi clear CursorLineNr
 hi def link CursorLineNr Comment
+
+set cursorline " highlight line cursor is on for easy finding
 "}}}
 " Highlight NOTE etc {{{
-syn match myTodo contained "\(TODO\|NOTE\|FIXME\)" 
-hi def link myTodo Todo
+" syn match myTodo contained "\(TODO\|NOTE\|FIXME\):\=" 
+" hi def link myTodo Todo
 "}}}
 
 "}}}--------------------------------------------------------------------------

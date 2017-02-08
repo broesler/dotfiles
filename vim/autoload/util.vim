@@ -175,7 +175,7 @@ function! s:SetTermTitle() "{{{
 endfunction
 "}}}
 "}}}--------------------------------------------------------------------------
-"       Mappings {{{
+"       Commands and Mappings {{{
 "-----------------------------------------------------------------------------
 " Change terminal title when switching between files
 augroup AGSetTermTitle
@@ -185,6 +185,9 @@ augroup END
 
 " Comment block command
 command! -nargs=* MyCommentBlock call util#CommentBlock(<f-args>)
+
+" Switch iTerm colors quickly
+command! -nargs=1 ITermProf silent execute "!iterm_prof <args>" | source $MYVIMRC
 
 " Increment numbers in block visual mode
 noremap <silent> <Plug>UtilIncr :call <SID>Incr()<CR>
