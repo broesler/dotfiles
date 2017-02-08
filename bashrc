@@ -21,7 +21,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     PS1=$"\[\033[1;32m\][\u@\h: \w]${WINDOW}\$ \[\033[0m\]"
 elif [[ "$OSTYPE" == "linux"* ]]; then
     # Set to bright cyan text for linux machines (easy tell on ssh to babylons)
-    PS1=$"\[\033[1;36m\]\D{%D, %T}: \w\n[\u@\h]${WINDOW}\$ \[\033[0m\]"
+    PS1=$"\[\033[0;36m\]\u@\h: \w\n[\D{%D, %T}]${WINDOW}\$ \[\033[0m\]"
 else
     # default no color
     PS1=$"[\u@\h: \W]\$ "
