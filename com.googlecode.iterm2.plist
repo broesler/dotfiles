@@ -1546,15 +1546,15 @@
 	<key>NSWindow Frame Preferences</key>
 	<string>245 418 606 456 0 0 1440 877 </string>
 	<key>NSWindow Frame SUUpdateAlert</key>
-	<string>970 769 620 392 0 0 2560 1417 </string>
+	<string>970 770 620 392 0 0 2560 1418 </string>
 	<key>NSWindow Frame SessionsPreferences</key>
-	<string>1317 199 606 456 0 0 2560 1418 </string>
+	<string>1317 208 606 456 0 0 2560 1440 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>1433 449 918 512 0 0 2560 1418 </string>
+	<string>1433 420 918 512 0 0 2560 1440 </string>
 	<key>NSWindow Frame UKCrashReporter</key>
 	<string>99 293 592 584 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>1583 603 706 807 0 0 2560 1418 </string>
+	<string>155 71 706 807 0 0 2560 1440 </string>
 	<key>NeverWarnAboutMeta</key>
 	<true/>
 	<key>NeverWarnAboutMeta_selection</key>
@@ -3668,7 +3668,7 @@
 			<key>Mouse Reporting</key>
 			<true/>
 			<key>Name</key>
-			<string>Later This Evening</string>
+			<string>LaterThisEvening</string>
 			<key>Non Ascii Font</key>
 			<string>Monaco 10</string>
 			<key>Non-ASCII Anti Aliased</key>
@@ -4443,7 +4443,7 @@
 			<key>Mouse Reporting</key>
 			<true/>
 			<key>Name</key>
-			<string>Solarized Darcula</string>
+			<string>SolarizedDarcula</string>
 			<key>Non Ascii Font</key>
 			<string>Monaco 10</string>
 			<key>Non-ASCII Anti Aliased</key>
@@ -5238,7 +5238,7 @@
 			<key>Mouse Reporting</key>
 			<true/>
 			<key>Name</key>
-			<string>Solarized Dark</string>
+			<string>SolarizedDark</string>
 			<key>Non Ascii Font</key>
 			<string>Monaco 10</string>
 			<key>Non-ASCII Anti Aliased</key>
@@ -6041,7 +6041,7 @@
 			<key>Mouse Reporting</key>
 			<true/>
 			<key>Name</key>
-			<string>Solarized Light</string>
+			<string>SolarizedLight</string>
 			<key>Non Ascii Font</key>
 			<string>Monaco 10</string>
 			<key>Non-ASCII Anti Aliased</key>
@@ -6818,7 +6818,7 @@
 			<key>Mouse Reporting</key>
 			<true/>
 			<key>Name</key>
-			<string>Tango Dark</string>
+			<string>TangoDark</string>
 			<key>Non Ascii Font</key>
 			<string>Monaco 10</string>
 			<key>Non-ASCII Anti Aliased</key>
@@ -7597,7 +7597,7 @@
 			<key>Mouse Reporting</key>
 			<true/>
 			<key>Name</key>
-			<string>Tango Light</string>
+			<string>TangoLight</string>
 			<key>Non Ascii Font</key>
 			<string>Monaco 10</string>
 			<key>Non-ASCII Anti Aliased</key>
@@ -9377,6 +9377,8 @@
 	</dict>
 	<key>PrefsCustomFolder</key>
 	<string>/Users/bernardroesler/.dotfiles</string>
+	<key>Print In Black And White</key>
+	<true/>
 	<key>PromptOnQuit</key>
 	<false/>
 	<key>QuitWhenAllWindowsClosed</key>
@@ -9396,7 +9398,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2017-01-24T22:45:37Z</date>
+	<date>2017-02-07T17:36:37Z</date>
 	<key>SavePasteHistory</key>
 	<true/>
 	<key>Show Toolbelt</key>
@@ -9468,7 +9470,7 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>3.0.13</string>
+	<string>3.0.14</string>
 	<key>kCPKSelectionViewPreferredModeKey</key>
 	<integer>7</integer>
 	<key>kCPKSelectionViewShowHSBTextFieldsKey</key>
