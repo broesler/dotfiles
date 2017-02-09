@@ -3,7 +3,7 @@
 "  Created: 10/29/2016, 08:27
 "   Author: Bernie Roesler
 "
-"  Description: 
+"  Description: Matlab filetype settings
 "
 "=============================================================================
 " Buffer-local settings {{{
@@ -17,10 +17,8 @@ setlocal iskeyword-=:         " colon is NOT part of keywords
 setlocal comments=:%
 setlocal commentstring=%%%s
 
-setlocal foldlevelstart=0     " all folds open to start
+setlocal foldlevelstart=1     " all folds open to start
 setlocal foldmethod=indent
 
 setlocal nowrap
 "}}}
-"=============================================================================
-"=============================================================================
