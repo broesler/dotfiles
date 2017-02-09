@@ -73,10 +73,10 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 else    
     # we're on a Linux machine:
     alias flu1='/thayerfs/research/epps/VLM2D/Ramesh_FLUENT_cases/'
-    # alias fluent16='/thayerfs/research/epps/ansys_inc/v162/fluent/bin/fluent'
-    alias fluent16='/jumbo/eppsdata/ansys_inc/v162/fluent/bin/fluent'
-    # alias gambit='/thayerfs/research/epps/Fluent.Inc/bin/gambit'
-    alias gambit='/jumbo/eppsdata/Fluent.Inc/bin/gambit'
+    alias fluent16='/thayerfs/research/epps/ansys_inc/v162/fluent/bin/fluent'
+    # alias fluent16='/jumbo/eppsdata/ansys_inc/v162/fluent/bin/fluent'
+    alias gambit='/thayerfs/research/epps/Fluent.Inc/bin/gambit'
+    # alias gambit='/jumbo/eppsdata/Fluent.Inc/bin/gambit'
 fi
 
 # cs50 works on Mac and ThayerFS (Linux)
