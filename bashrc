@@ -5,8 +5,10 @@
 # Created: 10/29/13
 #  Author: Bernie Roesler
 #
-# Description: Contains aliases and simple functions for use with the bash shell
+# Description: Contains aliases and settings for use with the bash shell
 #==============================================================================
+
+host=$(hostname -s) # i.e. 't1854', 'babylon', 'polaris'
 
 # If not running interactively, don't do anything
 # in order to use shopt -s expand_aliases, and access aliases within vim,
@@ -14,19 +16,20 @@
 # ...OR `export -f' all functions required in vim!
 [ -z "$PS1" ] && return
 
-if [[ "$OSTYPE" == "darwin"* ]]; then
+case "$host" in
+t1854)
     # Set the prompt with bright green text -- include GNU screen window number
-    # Try date/time and newline in prompt:
-    # PS1=$"\[\033[1;32m\]\D{%D, %T}: \w\n[\u@\h]${WINDOW}\$ \[\033[0m\]"
-    PS1=$"\[\033[1;32m\][\u@\h: \w]${WINDOW}\$ \[\033[0m\]"
-elif [[ "$OSTYPE" == "linux"* ]]; then
+    PS1=$"\[\033[1;32m\][\u@\h:\w]${WINDOW}\$ \[\033[0m\]"
+    ;;
+babylon*)
     # Set to bright cyan text for linux machines (easy tell on ssh to babylons)
-    # PS1=$"\[\033[0;36m\][\u@\h: \w]${WINDOW}\n[\D{%D, %T}]\$ \[\033[0m\]"
-    PS1=$"\[\033[0;36m\][\u@\h: \w]${WINDOW}\$ \[\033[0m\]"
-else
+    PS1=$"\[\033[0;36m\][\u@\h:\w]${WINDOW}\$ \[\033[0m\]"
+    ;;
+*)
     # default no color
     PS1=$"[\u@\h: \W]\$ "
-fi
+    ;;
+esac
 
 # uses '...' to limit list of directories
 PROMPT_DIRTRIM=3
@@ -77,7 +80,7 @@ set -o vi
 set bell-style visible
 
 # Mac-only options
-if [[ "$OSTYPE" == "darwin"* ]]; then
+if [[ "$host" = t1854 ]]; then
     # Create instance of m210 B/W printer for duplex printing
     # lpoptions -p m210__bw___thayercups/duplex \
         #           -o Duplex=DuplexNoTumble \
@@ -108,15 +111,16 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     _expand() { return 0; }
 
     # Run iTerm2 shell integration
-    # test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+    # test -e "${HOME}/.iterm2_shell_integration.bash" \
+        # && source "${HOME}/.iterm2_shell_integration.bash"
 
     # fix vim autocompletion
     complete -r vim
 fi
 
-#-------------------------------------------------------------------------------
+#------------------------------------------------------------------------------
 #       Source function files and aliases
-#-------------------------------------------------------------------------------
+#------------------------------------------------------------------------------
 for func in "$HOME"/.bashrc.d/*.bash ; do
     if [ -f "$func" ]; then
         source "$func"
