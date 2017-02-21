@@ -19,7 +19,7 @@
   st = status -s --branch
   up = submodule foreach git pull origin master
 [push]
-  default = simple
+  default = current
 [merge]
     # tool = vimdiff
   conflictstyle = diff3
@@ -33,9 +33,5 @@
   tool = vimdiff
 [difftool]
   prompt = false
-[filter "lfs"]
-  smudge = git-lfs smudge %f
-  required = true
-  clean = git-lfs clean %f
 [mergetool "fugitive"]
   cmd = vim -f -c \"Gvdiff\" \"$MERGED\"
