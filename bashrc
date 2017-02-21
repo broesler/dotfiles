@@ -21,7 +21,7 @@ t1854)
     # Set the prompt with bright green text -- include GNU screen window number
     PS1=$"\[\033[1;32m\][\u@\h:\w]${WINDOW}\$ \[\033[0m\]"
     ;;
-babylon*)
+babylon*|polaris)
     # Set to bright cyan text for linux machines (easy tell on ssh to babylons)
     PS1=$"\[\033[0;36m\][\u@\h:\w]${WINDOW}\$ \[\033[0m\]"
     ;;
@@ -55,7 +55,9 @@ shopt -s cdspell        # checks for minor errors in cd typing
 shopt -s checkjobs      # displays stopped or running job status before exiting
 shopt -s checkwinsize   # auto reforemat command output
 shopt -s cmdhist        # save multi-line commands in history
-shopt -s direxpand      # expand variables in directory complete
+if [[ ${BASH_VERSINFO[1]} > 1 ]]; then
+    shopt -s direxpand      # expand variables in directory complete
+fi
 shopt -s expand_aliases # expand aliases (needed for vim :!)
 shopt -s extglob        # extend glob to regexes i.e. ?(ab)
 shopt -s globstar       # allows use of ** (like vim)
