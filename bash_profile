@@ -60,10 +60,12 @@ t1854)
 
     # ensure tmux uses colors (not sure if I need this on babylon/polaris?)
     export TERM='screen-256color'               
+
     ;;
 
 # RSTOR data server @ Dartmouth
 polaris)
+
     # Print "System Information" at login
     if [ -x /usr/local/bin/motd.make.sh ]; then
         /usr/local/bin/motd.make.sh
@@ -74,8 +76,15 @@ esac
 # Add my local files
 export PATH="$PATH:$HOME/bin"
 
-# default less options
-export LESS=-AXFirsx8g
+# default less options (-A fails on older versions)
+case "$host" in
+polaris)
+    export LESS=-XFirsx8g
+    ;;
+*)
+    export LESS=-AXFirsx8g
+    ;;
+esac
 
 # less highlighting for man pages:
 # NOTE: do not actually use "tput bold" because iTerm uses "bright" colors,

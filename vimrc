@@ -24,7 +24,9 @@ set nocompatible
 filetype plugin indent on
 
 " Enable matchit plugin
-packadd! matchit
+if version > 800
+    packadd! matchit
+endif
 
 " load man plugin so man pages can be read in a vim window (:Man or <Leader>K)
 runtime! ftplugin/man.vim
@@ -173,7 +175,11 @@ set sessionoptions=blank,buffers,curdir,folds,help,resize,winsize
 set printoptions=paper:letter
 
 " Toggle "set list" or "set nolist" to view special characters
-set listchars=eol:¬,tab:→\ ,trail:·,extends:»,precedes:«,nbsp:~,space:·
+if has("patch-7.4.710")
+    set listchars=eol:¬,tab:→\ ,trail:·,extends:»,precedes:«,nbsp:~,space:·
+else
+    set listchars=eol:¬,tab:→\ ,trail:·,extends:»,precedes:«,nbsp:~
+endif
 "}}}
 "}}}--------------------------------------------------------------------------
 "       Autocommands                                                     "{{{
