@@ -17,7 +17,7 @@
   lt = log --pretty=format:"%C(auto)%h%d\\ %Cblue[%ad,\\ %cn]%C(auto)%n\\ \\ ==>\\ %s" \
     --decorate --graph --date=format:"%D\\ %H:%M:%S"
   st = status -s --branch
-  up = submodule foreach git pull origin master
+  up = submodule update --recursive
 [push]
   default = current
 [merge]
