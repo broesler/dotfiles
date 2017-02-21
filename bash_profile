@@ -10,8 +10,11 @@
 # Description: Loads for all login shells. Sets path variable and others
 #==============================================================================
 
-# Only on OSX, assumed OK on babylon machines
-if [[ "$OSTYPE" == "darwin"* ]]; then
+host=$(hostname -s) # i.e. 't1854', 'babylon', 'polaris'
+
+# Only on my Macbook, assumed OK on other machines
+case "$host" in
+t1854)
     # Set architecture flags for compilers
     export ARCHFLAGS="-arch x86_64"
 
@@ -54,13 +57,25 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     export MIT_SCHEME_EXE='/usr/local/bin/mit-scheme'
     # export MIT_SCHEME_EXE='/Applications/MIT-Scheme.app/Contents/Resources/mit-scheme'
     export MITSCHEME_LIBRARY_PATH='/usr/local/lib/mit-scheme-c/'
-fi
+
+    # ensure tmux uses colors (not sure if I need this on babylon/polaris?)
+    export TERM='screen-256color'               
+    ;;
+
+# RSTOR data server @ Dartmouth
+polaris)
+    # Print "System Information" at login
+    if [ -x /usr/local/bin/motd.make.sh ]; then
+        /usr/local/bin/motd.make.sh
+    fi
+    ;;
+esac
 
 # Add my local files
 export PATH="$PATH:$HOME/bin"
 
-# ensure tmux uses colors
-export TERM='screen-256color'               
+# default less options
+export LESS=-AXFirsx8g
 
 # less highlighting for man pages:
 # NOTE: do not actually use "tput bold" because iTerm uses "bright" colors,
@@ -72,12 +87,6 @@ export LESS_TERMCAP_us=$(tput smul; tput setaf 4) # start underline
 export LESS_TERMCAP_ue=$(tput rmul; tput sgr0)    # end underline
 export LESS_TERMCAP_so=$(tput setaf 0; tput setab 3) # start highlight
 export LESS_TERMCAP_se=$(tput sgr0) # end highlight
-
-# old version uses raw escape codes:
-# export LESS_TERMCAP_so=$'\033[30;43m' # highlight searches in yellow
-# export LESS_TERMCAP_se=$'\033[0m'
-
-export LESS=-AXFirsx8g      # default less options
 
 # Save OLDPWD between sessions
 if [ -r "$HOME/.oldpwd" ]; then

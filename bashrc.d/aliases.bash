@@ -19,7 +19,10 @@ alias rrc='source ~/.bashrc'                 # reload JUST rc file (more common)
 #-------------------------------------------------------------------------------
 #       FOLDER AND APPLICATION SHORTCUTS
 #-------------------------------------------------------------------------------
-if [[ "$OSTYPE" == "darwin"* ]]; then
+host=$(hostname -s) # i.e. 't1854', 'babylon', 'polaris'
+
+case "$host" in
+t1854)  # my MBP
     alias cs174='cd ~/Documents/School/14F-15X/cs174_machine_learning/'
     alias mycv='cd ~/Documents/School/CV_Resume/CV/cv_latex/'
     alias myresume='cd ~/Documents/School/CV_Resume/Resume/resume_latex/'
@@ -69,15 +72,16 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
             -H $HOME/.matlab/R2016b/history.m \
             matlab -nosplash -nodesktop "$@"
     }
+    ;;
 
-else    
-    # we're on a Linux machine:
+babylon*) # we're on a Linux machine:
     alias flu1='/thayerfs/research/epps/VLM2D/Ramesh_FLUENT_cases/'
     alias fluent16='/thayerfs/research/epps/ansys_inc/v162/fluent/bin/fluent'
     # alias fluent16='/jumbo/eppsdata/ansys_inc/v162/fluent/bin/fluent'
     alias gambit='/thayerfs/research/epps/Fluent.Inc/bin/gambit'
     # alias gambit='/jumbo/eppsdata/Fluent.Inc/bin/gambit'
-fi
+    ;;
+esac
 
 # cs50 works on Mac and ThayerFS (Linux)
 function cs50()
@@ -134,7 +138,7 @@ agcolors+=" --color-match       '1;49;38;5;9'"
 gfopts=' -cpp -Wall -pedantic -std=f95'
 gfopts+=' -fbounds-check -ffree-line-length-0 -fbacktrace -fall-intrinsics'
 
-alias clc='clear; lc'
+alias clc='clear'
 alias df='df -kTh'
 alias du='du -kh'
 alias edwin='mit-scheme --edit --heap 100000'
