@@ -251,7 +251,8 @@ augroup xelatex_cmds "{{{
     " use tex syntax highlighting
     autocmd BufRead,BufNewFile *.xtx set filetype=tex
     " set compiler options to use xelatex
-    autocmd BufRead,BufNewFile *.xtx let g:LatexBox_latexmk_options = "-xelatex"
+    autocmd BufRead,BufNewFile *.xtx let g:LatexBox_latexmk_options = "-pdf -xelatex"
+    autocmd BufRead,BufNewFile *.xtx setlocal makeprg=latexmk\ \-pdf\ \-xelatex\ '%'
 augroup END
 "}}}
 augroup todo "{{{
@@ -353,9 +354,10 @@ inoremap <C-l> <C-X><C-L>
 if (exists('$TMUX') || exists('$SSH_IN_TMUX'))
     function! TmuxOrSplitSwitch(wincmd, tmuxdir)
         let previous_winnr = winnr()
-        silent! execute "wincmd " . a:wincmd
+        execute "wincmd " . a:wincmd
         " If we didn't change vim windows, we must want to change tmux panes
         if previous_winnr == winnr()
+          " execute "silent !sh -c 'sleep 0.01; tmux select-pane -" . a:tmuxdir . "' &"
           call system("tmux select-pane -" . a:tmuxdir)
           redraw!
         endif
@@ -481,7 +483,7 @@ colorscheme solarized
 " Spell check {{{
 " NOTE: need to be set AFTER colorscheme to work properly.
 hi clear SpellBad
-hi SpellBad term=standout ctermfg=1 term=underline cterm=underline
+hi SpellBad term=standout ctermfg=124 term=underline cterm=underline
 hi clear SpellCap
 hi SpellCap term=underline cterm=underline
 hi clear SpellRare

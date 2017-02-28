@@ -117,7 +117,8 @@ endfunction
 " nnoremap <buffer> <Leader>M :silent call LatexMakeLatexmk()<CR>
 "
 " Build pdf using LaTeX-Box built-in function (calls latexmk)
-nnoremap <buffer> <LocalLeader>M :Latexmk<CR>
+" nnoremap <buffer> <LocalLeader>M :Latexmk<CR>
+nnoremap <buffer> <LocalLeader>M :make<bar>redraw!<CR>
 
 " Find spot in pdf corresponding to source code 
 "   (use cmd+shift+click to go back)
