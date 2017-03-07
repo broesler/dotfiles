@@ -1,4 +1,4 @@
-"=============================================================================
+"=========================================================================={{{
 "    File: ~/.vimrc
 " Created: 04/16/2015
 "  Author: Bernie Roesler
@@ -9,7 +9,7 @@
 "   by autocommands are located in ~/.vim/autoload/util.vim
 "=============================================================================
 
-"-----------------------------------------------------------------------------
+"}}}--------------------------------------------------------------------------
 "       Preamble                                                         "{{{
 "-----------------------------------------------------------------------------
 " Run pathogen to load plugins (ignore errors on Linux machines)
@@ -46,6 +46,8 @@ set history=10000   " keep long command history
 set showcmd         " show partial commands
 
 set encoding=utf-8  " Ensure files are universally readable
+scriptencoding utf-8
+
 set modelines=20    " check 20 lines down for a modeline
 
 " It's not about the money, it's all about the timing {{{
@@ -274,7 +276,7 @@ nnoremap <Leader>vs :source $MYVIMRC<CR>
 nnoremap <Leader>fe :edit $HOME/.vim/autoload/util.vim<CR>
 "}}}
 " Command line mappings {{{
-cnoremap <C-A> <Home>
+" cnoremap <C-A> <Home>
 cnoremap <C-H> <Left>
 cnoremap <C-J> <Down>
 cnoremap <C-K> <Up>
@@ -448,7 +450,7 @@ let g:breptile_tpgrep_pat_scheme = '[r]lwrap.*scheme'
 let g:LatexBox_latexmk_async = 0 " run latexmk asynchronously (not really, requires vim server)
 let g:LatexBox_Folding = 1       " use LatexBox folding instead of vim folding
 let g:LatexBox_quickfix = 2      " open quickfix but do not jump to error
-let g:LatexBox_output_type = ''  " let latexmkrc choose the type
+let g:LatexBox_output_type = '-pdf'  " output to pdf
 "}}}
 "}}}--------------------------------------------------------------------------
 "       Colorscheme                                                       "{{{
@@ -464,7 +466,7 @@ set background=dark
 
 " Solarized options 
 " NOTE: set termcolors to 16 for "blue" background, 256 for "black"
-let g:solarized_termcolors = 256        " 256 | 16
+let g:solarized_termcolors = 16        " 256 | 16
 let g:solarized_termtrans  = 0          " 0 | 1  transparency
 let g:solarized_degrade    = 0          " 0 | 1
 let g:solarized_bold       = 1          " 1 | 0

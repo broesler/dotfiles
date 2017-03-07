@@ -1,4 +1,5 @@
 # General Mac filesystem crap:
+*Icon*
 Icon
 Icon^M
 Icon^M^M
@@ -7,7 +8,7 @@ Icon?
 *~
 *.swp
 *.swo
-.DS_Store
+*.DS_Store
 .DS_Store?
 tags
 Thumbs.db

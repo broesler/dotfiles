@@ -1462,6 +1462,8 @@
 	<integer>32</integer>
 	<key>HotkeyCode</key>
 	<integer>49</integer>
+	<key>HotkeyMigratedFromSingleToMulti</key>
+	<true/>
 	<key>HotkeyModifiers</key>
 	<integer>524288</integer>
 	<key>IRMemory</key>
@@ -1548,13 +1550,13 @@
 	<key>NSWindow Frame SUUpdateAlert</key>
 	<string>970 770 620 392 0 0 2560 1418 </string>
 	<key>NSWindow Frame SessionsPreferences</key>
-	<string>1317 208 606 456 0 0 2560 1440 </string>
+	<string>562 94 606 456 0 0 1440 900 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>1433 420 918 512 0 0 2560 1440 </string>
+	<string>1433 152 918 381 0 0 2560 1418 </string>
 	<key>NSWindow Frame UKCrashReporter</key>
 	<string>99 293 592 584 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>155 71 706 807 0 0 2560 1440 </string>
+	<string>719 376 706 807 0 0 2560 1418 </string>
 	<key>NeverWarnAboutMeta</key>
 	<true/>
 	<key>NeverWarnAboutMeta_selection</key>
@@ -9398,7 +9400,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2017-02-07T17:36:37Z</date>
+	<date>2017-03-05T00:54:55Z</date>
 	<key>SavePasteHistory</key>
 	<true/>
 	<key>Show Toolbelt</key>
@@ -9470,7 +9472,7 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>3.0.14</string>
+	<string>3.1.beta.2</string>
 	<key>kCPKSelectionViewPreferredModeKey</key>
 	<integer>7</integer>
 	<key>kCPKSelectionViewShowHSBTextFieldsKey</key>
