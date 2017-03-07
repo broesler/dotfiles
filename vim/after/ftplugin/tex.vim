@@ -19,8 +19,8 @@ set wildignore-=*.jpg,*.bmp,*.gif,*.png,*.jpeg
 " : is included as keyword for fig: eqn: etc.,
 setlocal iskeyword+=:,_
 
-" setlocal foldmethod=manual
-setlocal foldmethod=syntax
+setlocal foldmethod=manual
+" setlocal foldmethod=syntax
 setlocal foldnestmax=3          " allow folds down to subsections
 setlocal foldminlines=4         " only fold 4+ lines
 let g:tex_fold_enabled=1
@@ -117,8 +117,8 @@ endfunction
 " nnoremap <buffer> <Leader>M :silent call LatexMakeLatexmk()<CR>
 "
 " Build pdf using LaTeX-Box built-in function (calls latexmk)
-" nnoremap <buffer> <LocalLeader>M :Latexmk<CR>
-nnoremap <buffer> <LocalLeader>M :make<bar>redraw!<CR>
+nnoremap <buffer> <LocalLeader>M :Latexmk<CR>
+" nnoremap <buffer> <LocalLeader>M :make<bar>redraw!<CR>
 
 " Find spot in pdf corresponding to source code 
 "   (use cmd+shift+click to go back)
