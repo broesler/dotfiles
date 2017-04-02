@@ -9,12 +9,16 @@
 "
 "==============================================================================
 " Quit when a (custom) syntax file was already loaded
-if exists("b:current_syntax")
-  finish
+if version < 600
+    syntax clear
+elseif exists("b:current_syntax")
+    finish
 endif
 
 " Keywords
 syn keyword myKeywords create delete add subtract modify mesh attach set select
+syn keyword myKeywords IF COND ELSE ENDIF
+syn keyword myKeywords DO PARA COND INCR ENDDO
 syn keyword myKeywords COS SIN TAN ACOS ASIN ATAN
 
 " All braces
@@ -41,11 +45,12 @@ syn match myConst display '\<PI\>'
 syn match myOperators display '[\*\=\+-/]'
 
 " Important callouts in notes
-syn keyword myImportant TODO: NOTE: contained 
+" syn keyword myImportant WARNING TODO NOTE contained 
+syn match myImportant '\(WARNING\|TODO\|NOTE\):\=' contained 
 
 " Comments are lines starting with '/'
-syn match myComments display "^//.*$" contains=myImportant
-syn match myComments display "^/.*$" contains=myImportant
+syn match myComments display "^\s*//.*$" contains=myImportant
+syn match myComments display "^\s*/.*$" contains=myImportant
 
 " Map syntax groups to colors
 hi myBraces ctermfg=208
@@ -59,6 +64,5 @@ hi def link myComments      Comment
 
 " Set syntax file for current buffer
 let b:current_syntax = "gjou"
-
 "==============================================================================
 "==============================================================================
