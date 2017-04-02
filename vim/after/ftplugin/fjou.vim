@@ -9,7 +9,7 @@
 setlocal nowrap             " can have long lines
 
 setlocal iskeyword+=-,_
-setlocal comments=:\;
+setlocal comments=n:;
 setlocal commentstring=;%s
 "============================================================================
 "============================================================================
