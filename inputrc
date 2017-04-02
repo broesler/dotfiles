@@ -46,9 +46,9 @@ $if mode=vi
   "\C-j": history-search-forward
 
   # Space expands history
-  $if Bash
-    Space: magic-space
-  $endif
+  # $if Bash
+  #   Space: magic-space
+  # $endif
 
   #============================================================================
   #      Keymaps for vi-command mode
