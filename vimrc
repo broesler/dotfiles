@@ -406,6 +406,9 @@ nnoremap <Leader>l :syntax sync fromstart<CR>:redraw!<CR>
 " Get highlighting tag of mapping under cursor
 nnoremap <Leader>H :call util#GetHighlight()<CR>
 
+" Move 'title' comment to end of next line
+nnoremap <Leader>J 0Dj$pkdd
+
 " Custom text objects "{{{
 " inside/around next/last parens/curly brackets
 onoremap in( :<C-U>normal! f(vi(<CR>
