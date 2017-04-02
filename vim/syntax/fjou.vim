@@ -1,52 +1,41 @@
-"------------------------------------------------------------------------------
-"       Fluent journal file syntax
-"------------------------------------------------------------------------------
-" Keywords
-syn keyword myKeywords yes no
-syn keyword myKeywords COS SIN TAN ACOS ASIN ATAN
+"=============================================================================
+"     File: ~/.vim/syntax/fjou.vim
+"  Created: unknown
+"   Author: Bernie Roesler
+" 
+"   Description: Fluent journal file syntax
+"=============================================================================
+if version < 600
+    syntax clear
+elseif exists("b:current_syntax")
+    finish
+endif
 
-" All braces
-syn match myBraces display '[{}()\[\]]'
+" Borrow most things from scheme syntax
+source $VIMRUNTIME/syntax/scheme.vim
+unlet b:current_syntax
+
+" Keywords
+syn keyword fjouKeywords yes no
 
 " Variable names
-syn match myVariables display '\$\<[_a-zA-Z0-9]\+\>'
-
-" Strings
-syn region myString start=+'+ end=+'+
-syn region myString start=+"+ end=+"+
-
-" Constants
-"  Negative lookbehind to not include numbers in variable names or commands
-syn match myConst display '\<\d\+\>'
-syn match myConst display '\<\d\+\.\d*\>'
-syn match myConst display '[-+]\=\d\+\>'
-syn match myConst display '[-+]\=\d\+\.\d*\>'
-syn match myConst display '\<\d\+[eE][-+]\=\d\+\>'
-syn match myConst display '\<\d\+\.\d\+[eE][-+]\=\d\+\>'
-syn match myConst display '\<PI\>'
-
-
-" Operators
-syn match myOperators display '[\*\=\+-/]'
+" syn match fjouVariables display '\$\<[_a-zA-Z0-9]\+\>'
+" syn match fjouVariables display '\((define\s\+\)\@<=\<[?!-_a-zA-Z0-9]\+\>'
 
 " Important callouts in notes
-syn keyword myImportant TODO NOTE FIXME contained 
-
-" Comments are lines starting with '/'
-syn match myComments display "^;.*$" contains=myImportant
-syn match myComments display ";.*$" contains=myImportant
+syn keyword fjouImportant TODO NOTE FIXME WARNING containedin=schemeComment
 
 " Highlight empty lines as warning (false CR in journal file)
-syn match myEmptyLine display "^\s*$" containedin=ALL
+syn match fjouEmptyLine display "^\s*$" containedin=ALL
 
 " Map syntax groups to colors
-" hi myBraces ctermfg=208
-hi def link myBraces        PreProc
-hi def link myKeywords      Keyword
-hi def link myVariables     Special
-hi def link myString        String
-hi def link myConst         Constant
-hi def link myOperators     Operator
-hi def link myImportant     Todo
-hi def link myComments      Comment
-hi def link myEmptyLine     Error
+" hi def link schemeDelimiter   PreProc " doesn't work??
+hi def link fjouKeywords      Keyword
+hi def link fjouVariables     Special
+hi def link fjouImportant     Todo
+hi fjouEmptyLine ctermbg=darkred
+
+" finish
+let b:current_syntax = "fjou"
+"=============================================================================
+"=============================================================================

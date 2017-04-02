@@ -53,7 +53,7 @@ t1854)
     export MANPATH="/usr/local/opt/gnu-tar/share/man:$MANPATH"
     export MANPATH="/usr/local/opt/gnu-which/share/man:$MANPATH"
 
-    # mit scheme set-up
+    # mit-scheme set-up
     export MIT_SCHEME_EXE='/usr/local/bin/mit-scheme'
     # export MIT_SCHEME_EXE='/Applications/MIT-Scheme.app/Contents/Resources/mit-scheme'
     export MITSCHEME_LIBRARY_PATH='/usr/local/lib/mit-scheme-c/'
@@ -65,7 +65,6 @@ t1854)
 
 # RSTOR data server @ Dartmouth
 polaris)
-
     # Print "System Information" at login
     if [ -x /usr/local/bin/motd.make.sh ]; then
         /usr/local/bin/motd.make.sh

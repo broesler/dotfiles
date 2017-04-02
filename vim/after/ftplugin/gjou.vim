@@ -3,9 +3,7 @@
 "  Created: 06/28/2016, 14:47
 "   Author: Bernie Roesler
 "
-" Last Modified: 
-"
-"  Description: 
+"  Description: Gambit journal file settings
 "
 "============================================================================
 
