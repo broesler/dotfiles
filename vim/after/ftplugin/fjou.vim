@@ -11,5 +11,7 @@ setlocal nowrap             " can have long lines
 setlocal iskeyword+=-,_
 setlocal comments=n:;
 setlocal commentstring=;%s
+
+setlocal textwidth=80
 "============================================================================
 "============================================================================
