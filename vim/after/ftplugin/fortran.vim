@@ -15,7 +15,7 @@ setlocal tabstop=4
 setlocal softtabstop=4
 setlocal shiftwidth=4
 
-setlocal comments=:!
+setlocal comments=n:!
 setlocal commentstring=!%s
 
 setlocal foldlevelstart=20
@@ -34,7 +34,7 @@ if s:extfname ==? "f"
 else
   let b:fortran_free_source=1
   unlet! fortran_fixed_source
-  set textwidth=0       " no fixed width necessary
+  set textwidth=80       " no specific fixed width necessary, but it's nice
   set colorcolumn=80
 endif
 "}}}
