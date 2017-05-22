@@ -26,6 +26,8 @@ filetype plugin indent on
 " Enable matchit plugin
 if version > 800
     packadd! matchit
+else
+    runtime! macros/matchit.vim
 endif
 
 " load man plugin so man pages can be read in a vim window (:Man or <Leader>K)
@@ -148,11 +150,11 @@ if has('mouse') && !exists("$SSH_TTY")
 endif
 "}}}
 " clipboard {{{
-if (strlen(v:servername) > 0) || (strlen($TMUX) > 0)
-    set clipboard=autoselectplus,exclude:cons\|linux
-else
-    set clipboard=unnamed,exclude:cons\|linux
-endif
+" if (strlen(v:servername) > 0) || (strlen($TMUX) > 0)
+    " set clipboard=autoselectplus,exclude:cons\|linux
+" else
+    set clipboard=unnamedplus,exclude:cons\|linux
+" endif
 "}}}
 " vimdiff {{{
 if &diff
