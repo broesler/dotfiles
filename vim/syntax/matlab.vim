@@ -24,9 +24,9 @@ syn keyword matlabFunction              function warning error eval
 syn keyword matlabImplicit              clear clc clf clr
 syn keyword matlabLabel                 case switch
 syn keyword matlabOO                    classdef properties events methods
-syn keyword matlabRepeat                for while 
+syn keyword matlabRepeat                for while parfor 
 syn keyword matlabScope                 global persistent
-syn keyword matlabStatement             return break 
+syn keyword matlabStatement             return break continue
 
 syn match matlabArithmeticOperator      display "[-+]"
 syn match matlabArithmeticOperator      display "\.\=[*/\\^]"
@@ -48,7 +48,7 @@ syn region matlabMultilineComment start=/^\s*%{\s*$/ end=/^\s*%}\s*$/ contains=m
 
 syn match matlabContinueLine  display "\.\{3}"
 
-syn region matlabString display start=+'+ end=+'+ oneline skip=+''+
+syn region matlabString display start=+'+ end=+'+ oneline skip=+''+     contains=matlabCtrlSeq,matlabFormat
 
 " Standard numbers
 syn match matlabNumber   "\<\d\+[ij]\=\>"
@@ -66,6 +66,10 @@ syn match matlabFieldName       "\.\I\i*" transparent
 " Match 
 syn match matlabError   "-\=\<\d\+\.\d\+\.[^*/\\^]"
 syn match matlabError   "-\=\<\d\+\.\d\+[eEdD][-+]\=\d\+\.\([^*/\\^]\)"
+
+" Control sequences
+syn match   matlabCtrlSeq	"\\\d\d\d\|\\[abcfnrtv0]"			contained
+syn match	matlabFormat	display "%\(\d\+\$\)\=[-+' #0*]*\(\d*\|\*\|\*\d\+\$\)\(\.\(\d*\|\*\|\*\d\+\$\)\)\=\([hlL]\|ll\)\=\([bdiuoxXDOUfeEgGcCsSpn]\|\[\^\=.[^]]*\]\)" contained
 
 "-------------------------------------------------------------------------------
 "       List of ALL Matlab functions -- comment out, unnecessary    {{{
@@ -98,20 +102,22 @@ syn match matlabError   "-\=\<\d\+\.\d\+[eEdD][-+]\=\d\+\.\([^*/\\^]\)"
 " syn keyword matlabImplicit              acker allmargin append augstate balreal bandwidth bode bodemag c2d canon care chgunits conj connect covar ctrb ctrbf d2c d2d damp dare dcgain delay2z dlqr dlyap drss dsort dss dssdata esort estim evalfr feedback filt frd frdata freqresp gensig get gram hasdelay impulse initial interp inv iopzmap isct isdt isempty isproper issiso kalman kalmd lft lqgreg lqr lqrd lqry lsim ltimodels ltiprops ltiview lyap margin minreal modred ndims ngrid nichols norm nyquist obsv obsvf ord2 pade parallel place pole pzmap reg reshape rlocus rss series set sgrid sigma sisotool size sminreal ss ss2ss ssbal ssdata stack step tf tfdata totaldelay zero zgrid zpk zpkdata
 " }}}
 
-"-------------------------------------------------------------------------------
-"       Link highlights to colors
-"-------------------------------------------------------------------------------
+"------------------------------------------------------------------------------
+"       Link highlights to colors  {{{
+"------------------------------------------------------------------------------
 if !exists("did_matlab_syntax_inits")
   hi def link matlabArithmeticOperator    matlabOperator
   hi def link matlabComment               Comment
   hi def link matlabCommentTitle          PreProc
   hi def link matlabConditional           Conditional
+  hi def link matlabCtrlSeq               Special
   hi def link matlabDelimiter             Identifier
   hi def link matlabError                 Error
   hi def link matlabExceptions            Conditional
   hi def link matlabFloat                 Float
+  hi def link matlabFormat                SpecialChar
   hi def link matlabFunction              Function
-  hi def link matlabImplicit              matlabStatement
+  hi def link matlabImplicit              Statement
   hi def link matlabLabel                 Label
   hi def link matlabContinueLine          matlabStatement
   hi def link matlabLogicalOperator       matlabOperator
@@ -122,8 +128,9 @@ if !exists("did_matlab_syntax_inits")
   hi def link matlabRelationalOperator    matlabOperator
   hi def link matlabRepeat                matlabOperator
   hi def link matlabScope                 Type
-  hi def link matlabSemicolon             matlabStatement
-  hi def link matlabStatement             Statement
+  hi def link matlabSemicolon             Statement
+  " hi def link matlabStatement             Statement
+  hi def link matlabStatement             Function
   hi def link matlabString                String
   hi def link matlabTodo                  Todo
   hi def link matlabTransposeOperator     matlabOperator
@@ -137,6 +144,7 @@ if !exists("did_matlab_syntax_inits")
   hi def link matlabTab                   Error
 
 endif
+"}}}
 
 " Make sure block comments synchronize properly, but syntax isn't super slow
 " if we have a really long file

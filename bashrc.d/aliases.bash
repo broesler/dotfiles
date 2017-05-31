@@ -36,6 +36,7 @@ t1854)  # my MBP
     alias sty='cd /Users/bernardroesler/Library/texmf/tex/latex/'
     alias web='cd ~/Documents/Projects/web_development/'
     alias xfoil='/Applications/Xfoil.app/Contents/Resources/xfoil'
+    alias cyrod='~/Kite_Drive/2016_ORPC_drone_turbine_\(Roesler\)/Codes/CyROD_2D_Lumped/Examples/ORPC_RPD_rapid_prototype_device/'
 
     function es205()
     {
