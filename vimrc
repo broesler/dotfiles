@@ -151,8 +151,10 @@ endif
 "}}}
 " clipboard {{{
 " if (strlen(v:servername) > 0) || (strlen($TMUX) > 0)
+"     " Setting autoselectplus requires "+ for copy/paste outside of vim (in TMUX at least)
     " set clipboard=autoselectplus,exclude:cons\|linux
 " else
+"     " Setting unnamedplus requires "* for CTRL-V copy/paste (in TMUX at least)
     set clipboard=unnamedplus,exclude:cons\|linux
 " endif
 "}}}
