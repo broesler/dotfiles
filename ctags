@@ -1,3 +1,7 @@
+--recurse=yes
+--exclude=.git
+--exclude=log
+
 --langdef=latex
 --langmap=latex:.tex
 
@@ -26,13 +30,10 @@
 
 --regex-make=/^([^:# \t]+)[ \t]*[:]{1,2}/\1/t,targets/
 
-
-
 --langdef=bibtex
 --langmap=bibtex:.bib
 --regex-bibtex=/@string\{([^ "#%')(,=}{]+)/\1/s,BibTeX-Strings/i
 --regex-bibtex=/@(article|book|booklet|conference|electronic|inbook|incollection|inproceedings|manual|masterthesis|misc|phdthesis|proceedings|techreport|unpublished|url|webpage)\{([^,]+),/\2/e,BibTeX-Entries/i
-
 
 --regex-vim=/^function\!?[ \t]*([a-zA-Z0-9_:.#]+)/\1/f,function definitions/
 

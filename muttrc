@@ -163,7 +163,7 @@ bind index <S-tab>  previous-new-then-unread
 # Mark all as read
 macro index \Cr "T~U<enter><tag-prefix><clear-flag>N<untag-pattern>.<enter>" "mark all messages as read"
 # Sync email with server
-macro index \CO "<shell-escape>offlineimap -u quiet<enter>"  "run offlineimap to sync all mail"
+macro index \CO "<shell-escape>offlineimap -u quiet<enter>:exec display-message<enter>"  "run offlineimap to sync all mail"
 macro index \Co "<shell-escape>offlineimap -qf INBOX<enter>" "run offlineimap to sync inbox only"
 # Saner copy/move dialogs
 macro index C "<copy-message>?<toggle-mailboxes>" "copy a message to a mailbox"

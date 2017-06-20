@@ -133,8 +133,9 @@ set foldminlines=3
 " Windows {{{
 set scrolloff=1     " cursor will never reach bottom of window
 set sidescroll=5    " cursor will never reach edge of screen
-set nosplitbelow      " split new windows       below current one
+set nosplitbelow    " split new windows       above current one
 set splitright      " split new windows to right of current one
+set switchbuf=useopen " with :bn, etc. if buffer is in a window, jump to it
 "}}}
 " Netrw {{{
 let g:netrw_banner=1        " 0 == no banner
