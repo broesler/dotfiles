@@ -7,83 +7,28 @@
 "
 "  Description: Custom utility functions called from .vimrc autocmds, etc.
 "=============================================================================
-"       Functions  {{{
-"-----------------------------------------------------------------------------
-function! util#GetHighlight() "{{{
-    " get highlighting of current character 
-    let l:str = synIDattr(synID(line("."), col("."), 1), "name")
-    if strlen(l:str) == 0
-        echo "none"
-    else
-        echo l:str
-    endif
-endfunction
-"}}}
-function! util#CommentBlock(...) "{{{
-    " don't let vim insert comment characters automatically (:h fo-table)
-    let l:save_fo = &formatoptions
-    let &formatoptions=''
-
-    " Move cursor to first non-blank character on line
-    execute 'normal! ^'
-
-    " Get commentstring based on filetype
-    let l:idx = match(&commentstring, '%s')
-    let l:comm_default = &commentstring[0:l:idx-1]
-    let l:comm_default = substitute(l:comm_default, '%%', '%', 'g')
-
-    " Create a comment block such as the header above
-    let l:intro = (a:0 >= 1) ? a:1 : l:comm_default
-    let l:boxch = (a:0 >= 2) ? a:2 : '-'
-    let l:width = (a:0 >= 3) ? a:3 : &textwidth - col('.') - strlen(l:intro) + 1
-
-    " If we don't have a textwidth for some reason, just set a width
-    if l:width <= 0
-        let l:width = 79 - strlen(l:intro)
-    endif
-
-    echom "intro: " . l:intro . ", boxch: " . l:boxch . ", width: " . width
-    " Build the comment box and put the comment inside it
-    let l:border = l:intro . repeat(l:boxch,l:width) 
-    let l:title  = l:intro . repeat(" ",8) 
-
-    " Make header and leave cursor at end of line
-    execute 'normal! i' . l:border "\<CR>" . l:title . "o" . l:border
-    execute 'normal! k$'
-
-    let &formatoptions = l:save_fo
-endfunction
-"}}}
+" Functions  {{{
+" Public API {{{
 function! util#EnsureDirExists() "{{{
     let required_dir = expand("%:h")
     if !isdirectory(required_dir)
         " Alert user of error and prompt to create directory
         let l:msg = "Directory '" . required_dir . "' doesn't exist."
         let l:opt = "&Create it?\n&Open buffer anyway?"
-        let l:confirm = util#AskQuit(l:msg, l:opt)
+        let l:confirm = s:AskQuit(l:msg, l:opt)
 
         if l:confirm == 1
             try " to make the directory
-                call mkdir( required_dir, 'p' )
+                call mkdir(required_dir, 'p')
             catch
                 let l:msg = "Can't create '" . required_dir . "'"
                 let l:opt = "&Continue anyway?"
-                call util#AskQuit(l:msg, l:opt)
+                call s:AskQuit(l:msg, l:opt)
             endtry
         endif
         " if confirm == 0 (user pressed <ESC> or <C-c>), 
         " or confirm == 2 (user wants to open buffer without a directory)
         " just return and open the file without a directory
-    endif
-endfunction
-"}}}
-function! util#AskQuit(msg, proposed_action) "{{{
-    " Confirm returns "1" if Quit is selected via pressing [q] or <CR>
-    let l:conf = confirm(a:msg, "&Quit?\n" . a:proposed_action)
-    if l:conf == 1
-        exit
-    else 
-        return l:conf
     endif
 endfunction
 "}}}
@@ -135,23 +80,87 @@ function! util#MakeTemplate(filename) "{{{
     execute "normal! 3j$"
 endfunction
 "}}}
-" FIXME function! util#UpdateTags() " {{{
-"   TODO search along same path that vim searches for tags files
-"   let alltagfiles = tagfiles()
-"   if (len(alltagfiles) == 0)            " create new tags file
-"     let tagsfile = './tags'           
-"     silent! exe '!ctags -af ' . tagsfile . ' ' . expand("%:t")
-"   else
-"     " for each tags file, remove old tags from current buffer
-"     for ff in alltagfiles
-"       silent! exe '!sed -i -e "\@' . expand("%:t") . '@d" ' . ff
-"     endfor
-"     " Refresh nearest tag file with most up-to-date tags
-"     silent! exe '!ctags -af ' . alltagfiles[0] . ' ' . expand("%")
-"     " -e on Mac causes backup tags file to be generated, remove it
-"     silent! exe '!rm -rf ' . alltagfiles[0] . '-e'
-"   endif
-" endfunction "}}}
+"}}}
+" Private API {{{
+function! s:AskQuit(msg, proposed_action) "{{{
+    " Confirm returns "1" if Quit is selected via pressing [q] or <CR>
+    let l:conf = confirm(a:msg, "&Quit?\n" . a:proposed_action)
+    if l:conf == 1
+        exit
+    else 
+        return l:conf
+    endif
+endfunction
+"}}}
+function! s:GetCommentLeader() "{{{
+    " Get commentstring based on filetype
+    let l:idx = match(&commentstring, '%s')
+    let l:comm_default = &commentstring[0:l:idx-1]
+    let l:comm_default = substitute(l:comm_default, '%%', '%', 'g')
+    return l:comm_default
+endfunction
+"}}}
+function! s:CommentBlock(...) "{{{
+    " don't let vim insert comment characters automatically (:h fo-table)
+    let l:save_fo = &formatoptions
+    let &formatoptions=''
+
+    " Move cursor to first non-blank character on line
+    execute 'normal! ^'
+
+    " Get commentstring based on filetype
+    let l:comm_default = s:GetCommentLeader()
+    " let l:idx = match(&commentstring, '%s')
+    " let l:comm_default = &commentstring[0:l:idx-1]
+    " let l:comm_default = substitute(l:comm_default, '%%', '%', 'g')
+
+    " Create a comment block such as the header above
+    let l:boxch = (a:0 >= 1) ? a:1 : '-'
+    let l:intro = (a:0 >= 2) ? a:2 : l:comm_default
+    let l:width = (a:0 >= 3) ? a:3 : &textwidth - col('.') - strlen(l:intro) + 1
+
+    " If we don't have a textwidth for some reason, just set a width
+    if l:width <= 0
+        let l:width = 79 - strlen(l:intro)
+    endif
+
+    echom "intro: " . l:intro . ", boxch: " . l:boxch . ", width: " . width
+    " Build the comment box and put the comment inside it
+    let l:border = l:intro . repeat(l:boxch,l:width) 
+    let l:title  = l:intro . repeat(" ",8) 
+
+    " Make header and leave cursor at end of line
+    execute 'normal! i' . l:border "\<CR>" . l:title . "o" . l:border
+    execute 'normal! k$'
+
+    let &formatoptions = l:save_fo
+
+    " NOTE: CommentBlock("=","\"","79") produces header at top of this file
+endfunction
+"}}}
+function! s:DiffToggle() "{{{
+    " Toggle diff state, assuming only two windows open
+    if winnr('$') > 2
+        call s:Warn("DiffToggle aborted! More than two windows.") 
+    else
+        if &diff
+            windo diffoff
+        else
+            windo diffthis
+        endif
+    endif
+endfunction
+"}}}
+function! s:GetHighlight() "{{{
+    " get highlighting of current character 
+    let l:str = synIDattr(synID(line("."), col("."), 1), "name")
+    if strlen(l:str) == 0
+        echo "none"
+    else
+        echo l:str
+    endif
+endfunction
+"}}}
 function! s:Incr() "{{{
     let a = line('.') - line("'<")
     let c = virtcol("'<")
@@ -174,6 +183,29 @@ function! s:SetTermTitle() "{{{
     silent execute "!echo -ne " . "\"\033]0;" . tstr . "\007\""
 endfunction
 "}}}
+function! s:Warn(str) abort "{{{
+    echohl WarningMsg | echom a:str | echohl None
+    return
+endfunction
+"}}}
+"}}}
+" FIXME function! util#UpdateTags() " {{{
+"   TODO search along same path that vim searches for tags files
+"   let alltagfiles = tagfiles()
+"   if (len(alltagfiles) == 0)            " create new tags file
+"     let tagsfile = './tags'           
+"     silent! exe '!ctags -af ' . tagsfile . ' ' . expand("%:t")
+"   else
+"     " for each tags file, remove old tags from current buffer
+"     for ff in alltagfiles
+"       silent! exe '!sed -i -e "\@' . expand("%:t") . '@d" ' . ff
+"     endfor
+"     " Refresh nearest tag file with most up-to-date tags
+"     silent! exe '!ctags -af ' . alltagfiles[0] . ' ' . expand("%")
+"     " -e on Mac causes backup tags file to be generated, remove it
+"     silent! exe '!rm -rf ' . alltagfiles[0] . '-e'
+"   endif
+" endfunction "}}}
 "}}}--------------------------------------------------------------------------
 "       Commands and Mappings {{{
 "-----------------------------------------------------------------------------
@@ -183,12 +215,20 @@ augroup AGSetTermTitle
     autocmd VimEnter,WinEnter,TabEnter,BufEnter * silent! call <SID>SetTermTitle()
 augroup END
 
+" Get highlighting
+command! GetHighlight call s:GetHighlight()
+
 " Comment block command
-command! -nargs=* MyCommentBlock call util#CommentBlock(<f-args>)
+command! -nargs=* CommentBlock call s:CommentBlock(<f-args>)
+" NOTE: :CommentBlock = " 78 produces header at top of this file
 
 " Switch iTerm colors quickly
 command! -nargs=1 ITermProf silent execute "!iterm_prof <args>" | source $MYVIMRC
 
+" Toggle diff
+command! DiffToggle call s:DiffToggle()
+
 " Increment numbers in block visual mode
 noremap <silent> <Plug>UtilIncr :call <SID>Incr()<CR>
+
 "}}}
