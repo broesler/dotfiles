@@ -3,4 +3,5 @@
 --show-reachable=yes
 --track-origins=yes
 --dsymutil=yes
---suppressions=/Users/bernardroesler/.objc.supp
+--suppressions=/Users/bernardroesler/src/misc/objc.supp
+--suppressions=/Users/bernardroesler/src/misc/minimal.supp
