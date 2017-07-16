@@ -22,3 +22,9 @@ setlocal foldmethod=indent
 
 setlocal nowrap
 "}}}
+" Keymaps {{{
+" Global search for lines containing variable under cursor
+" TODO extend to insert any filetype comment character for '%'
+" TODO put into function + command :FindVariable <C-R><C-W>
+nnoremap <LocalLeader>g :g/\C\(%.*\)\@<!\<<C-R><C-W>\>/p<CR>
+" }}}
