@@ -35,6 +35,10 @@ command! -bar -nargs=? -complete=file CMakeThisFile call <SID>CMakeThisFile(<f-a
 nnoremap <LocalLeader>m :CMakeThisFile<CR>
 nnoremap <LocalLeader>M :silent make! <bar> :redraw!<CR>
 
+" Open header/source file corresponding to current source/header
+nnoremap <LocalLeader>c :execute "find " . expand("%:t:r") . ".c"<CR>
+nnoremap <LocalLeader>h :execute "find " . expand("%:t:r") . ".h"<CR>
+
 "-----------------------------------------------------------------------------
 "       Functions 
 "-----------------------------------------------------------------------------
@@ -48,10 +52,22 @@ function! s:CMakeThisFile(...) abort "{{{
         let l:exe    = fnameescape(expand("%:r"))
     endif
 
+    if l:source ==# l:exe
+        echo "Source and executable have the same name!! Abort."
+        return
+    endif
+
     let save_makeprg = &makeprg
 
+    " Remove original executable
+    execute "silent !rm " . l:exe
+
     " i.e. "gcc ... -o myfile myfile.c"
-    let &makeprg="gcc -Wall -pedantic -std=c99 -o " . l:exe . " " . l:source
+    let l:debug = " -DLOGSTATUS -g -ggdb "
+    let &makeprg="gcc -Wall -pedantic -std=c99 "
+                \ . l:debug
+                \ . " -I'../include/' "
+                \ . " -o " . l:exe . " " . l:source
 
     " Write and compile
     echo "Running: " . &makeprg
