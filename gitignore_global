@@ -10,13 +10,15 @@ Icon?
 *.swo
 *.DS_Store
 .DS_Store?
-tags
 Thumbs.db
 .Trashes
 \#*\#
 ._*
+# aux files
+tags
 Session.vim
-# ignore all latex auxiliary files:
+*.latexmain
+# latex auxiliary files:
 *.aux
 *.bbl
 *.bcf
@@ -35,6 +37,6 @@ Session.vim
 *.tmp
 *.xref
 *x.png
-# Ignore Google docs
+# Google docs
 *.gdoc
 *.gsheet

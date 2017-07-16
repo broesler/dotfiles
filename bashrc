@@ -1,5 +1,4 @@
 #~/.bashrc
-# vim: set ft=sh syntax=sh
 #==============================================================================
 #    File: ~/.bashrc
 # Created: 10/29/13
@@ -44,10 +43,14 @@ export EDITOR=vim
 # simple, commonly-used commands. No need to "export", these are only used in
 # interactive shells
 HISTCONTROL=ignoredups:ignorespace
-HISTIGNORE='clc:bg:fg:git st:git lol:history:h:hr:k'
+HISTIGNORE='clc:[bf]g:git st:git lol:history:h:hr:k'
 HISTSIZE=$((1 << 12))                # 4096 lines in memory
 HISTFILESIZE=$((1 << 24))            # 16e6 lines in file
 HISTTIMEFORMAT="%F %T "
+
+# Append commands to the history every time a prompt is shown,
+# instead of after closing the session.
+PROMPT_COMMAND='history -a'
 
 # shoptions
 shopt -s autocd         # just type directory name to cd
@@ -68,10 +71,6 @@ shopt -s shift_verbose  # warn when trying to shift if nothing is there
 # Completion options
 set match-hidden-files off
 
-# Append commands to the history every time a prompt is shown,
-# instead of after closing the session.
-PROMPT_COMMAND='history -a'
-
 # Turn off <C-S> flow control (stops all I/O until <C-Q> is pressed)
 stty -ixon
 
@@ -83,6 +82,7 @@ set bell-style visible
 
 # Mac-only options
 if [[ "$host" = t1854 ]]; then
+    # Comment out printer lines... slow!!
     # Create instance of m210 B/W printer for duplex printing
     # lpoptions -p m210__bw___thayercups/duplex \
         #           -o Duplex=DuplexNoTumble \
@@ -132,3 +132,4 @@ unset -v func
 
 #==============================================================================
 #==============================================================================
+# vim: set ft=sh syntax=sh
