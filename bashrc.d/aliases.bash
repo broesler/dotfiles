@@ -1,13 +1,14 @@
 #!/bin/bash
-# vim: ft=sh syntax=sh
 #===============================================================================
-#    File: ~/.bashrc.d/aliases.bash
-# Created: 12/04/14
-#  Author: Bernie Roesler
-#
-# Last Modified: 09/14/2016, 12:49
-#
-# Description: Contains aliases and simple functions for use with the bash shell
+#     File: ~/.bashrc.d/aliases.bash
+#  Created: 12/04/14
+#   Author: Bernie Roesler
+# 
+#  Last Modified: 09/14/2016, 12:49
+# 
+#  Description: Contains aliases and simple functions for use with the bash
+#       shell. This file is only loaded with ~/.bashrc for interactive shells.
+# 
 #===============================================================================
 
 alias ep='vim ~/.bash_profile'               # edit profile (loaded with login)
@@ -32,7 +33,7 @@ t1854)  # my MBP
     alias es150='cd ~/Documents/School/13F-14X/Engs_150/'
     alias illustrator='open -a Adobe\ Illustrator'
     alias res='cd ~/Documents/School/Research/'
-    alias skim='open -a /Applications/Skim.app'
+    # alias skim='open -a /Applications/Skim.app'
     alias sty='cd /Users/bernardroesler/Library/texmf/tex/latex/'
     alias web='cd ~/Documents/Projects/web_development/'
     alias xfoil='/Applications/Xfoil.app/Contents/Resources/xfoil'
@@ -84,7 +85,7 @@ babylon*) # we're on a Linux machine:
     ;;
 esac
 
-# cs50 works on Mac and ThayerFS (Linux)
+# cs[56]0 work on Mac and ThayerFS (Linux)
 function cs50()
 {
     if [ $# -gt 0 ]; then
@@ -94,7 +95,6 @@ function cs50()
     fi
 }
 
-# cs60 works on Mac and ThayerFS (Linux)
 function cs60()
 {
     if [ $# -gt 0 ]; then
@@ -109,26 +109,26 @@ function cs60()
 #       UTILITIES
 #-------------------------------------------------------------------------------
 # Colors:   
-#   attribute = single digit
-#       1 = bold
-#       2 = dim
-#       3 = italics? 
-#       4 = underline
-#       5 = blink
-#       7 = invert fg/bg
-#       9 = hidden (i.e. for passwords) 
-#   foreground = 3? normal,  9? bright
-#   background = 4? normal, 10? bright
-#       9 = default
-#       0 = black
-#       1 = red
-#       2 = green
-#       3 = yellow
-#       4 = blue
-#       5 = magenta
-#       6 = cyan
-#       7 = light grey
-#       8;5;[0-256] = 256 ANSI colors, i.e. '38;5;[0-256]'
+    #   attribute = single digit
+    #       1 = bold
+    #       2 = dim
+    #       3 = italics? 
+    #       4 = underline
+    #       5 = blink
+    #       7 = invert fg/bg
+    #       9 = hidden (i.e. for passwords) 
+    #   foreground = 3? normal,  9? bright
+    #   background = 4? normal, 10? bright
+    #       9 = default
+    #       0 = black
+    #       1 = red
+    #       2 = green
+    #       3 = yellow
+    #       4 = blue
+    #       5 = magenta
+    #       6 = cyan
+    #       7 = light grey
+    #       8;5;[0-256] = 256 ANSI colors, i.e. '38;5;[0-256]'
 
 # Color ag like grep:
 agcolors="  --color-path        '0;49;38;5;5'"
@@ -178,3 +178,4 @@ alias .4='cd ../../../../'
 
 #===============================================================================
 #===============================================================================
+# vim: ft=sh syntax=sh
