@@ -59,7 +59,7 @@ function! JumpToSkim() "{{{
   let linen = line('.')
   let filen = expand("%:r").".pdf"
   write
-  execute "!/Applications/Skim.app/Contents/SharedSupport/displayline " . linen . " " . filen
+  silent execute "!/Applications/Skim.app/Contents/SharedSupport/displayline " . linen . " " . filen
   redraw!
 endfunction
 "}}}
@@ -116,8 +116,12 @@ endfunction
 "-----------------------------------------------------------------------------
 " nnoremap <buffer> <Leader>M :silent call LatexMakeLatexmk()<CR>
 "
-" Build pdf using LaTeX-Box built-in function (calls latexmk)
+" Build pdf using LaTeX-Box built-in function
+" :Latexmk[!] does as many runs as necessary to compile the tex, and also
+" properly parses the output to *only* get warnings/errors from the final run
 nnoremap <buffer> <LocalLeader>M :Latexmk<CR>
+
+" Manually run latexmk using makeprg (set above)
 " nnoremap <buffer> <LocalLeader>M :make<bar>redraw!<CR>
 
 " Find spot in pdf corresponding to source code 
