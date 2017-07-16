@@ -12,10 +12,12 @@ function! s:NextSection(type, backwards, visual)
     endif
 
     if a:type == 1
-        " In Matlab %% gives a 'section' header
+        " In Matlab %% gives a 'section' header. 
+        " Look for beginning of section, or the beginning of the file
         let pattern ='\v(^\s*\%\%(\s|$)|%^)'
         let flags = ''     " 'e' move to end of pattern
     elseif a:type == 2
+        " Look for end of section, or the end of the file
         let pattern ='\v(\n^\s*\%\%(\s|$)|%$)'
         let flags = ''
     endif
