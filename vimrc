@@ -34,7 +34,11 @@ endif
 runtime! ftplugin/man.vim
 
 " '**' recursively includes all directories below the current one
-set path=.,/usr/include/,/usr/local/include,**,../**
+" Search recursively down from directory of current file first, 
+" then recursively down from vim's working directory, 
+" then look upward for "include" no more than 3 directories from current file
+" Finally standard c header locations
+set path=./**,**,include;../../../,/usr/local/include,/usr/include/
 
 "}}}--------------------------------------------------------------------------
 "       Global Settings                                                  "{{{
@@ -116,7 +120,7 @@ set showmatch                   " Show matching parens
 set matchtime=3                 " Highlight for 3 miliseconds
 "}}}
 " Formatting {{{
-set wrap                        " autowrap text to screen
+set nowrap                      " do not autowrap text to screen
 set linebreak                   " Do not break words mid-word
 set autoindent                  " indent based on filetype
 set formatoptions=cqr2l1j       " tcq default, :help fo-table
@@ -196,6 +200,8 @@ augroup code_cmds "{{{
     autocmd FileType matlab,sh,markdown,vim,perl,gitcommit setlocal iskeyword+=_
 
     " Create template for new files
+    " TODO merge all headers into one command that does not require a header
+    " file... just insert desired text and use CommentBlock to make header!
     autocmd BufNewFile *.c   call util#MakeTemplate("$HOME/.vim/header/c_header")
     autocmd BufNewFile *.m   call util#MakeTemplate("$HOME/.vim/header/m_header")
     autocmd BufNewFile *.f95 call util#MakeTemplate("$HOME/.vim/header/f_header")
@@ -249,7 +255,7 @@ augroup quickfix_window "{{{
     autocmd QuickFixCmdPost [^l]* nested botright cwindow
     autocmd QuickFixCmdPost    l* nested botright lwindow
 
-    " Quickly open/close quickfix and location list
+    " Quickly close quickfix and location list
     autocmd BufWinEnter quickfix nnoremap <silent> <buffer> q :cclose<CR>:lclose<CR>
 augroup END
 "}}}
@@ -312,18 +318,25 @@ nnoremap <Leader>* *<C-o>:%s/\<<C-r><C-w>\>/
 nnoremap & :&&<CR>
 xnoremap & :&&<CR>
 " }}}
-
+" Maps to functions in ~/.vim/autoload/util.vim {{{
 " Increment numbers in a column (no "nore" here to use <Plug>)
 vmap <C-a> <Plug>UtilIncr
 
 " Make comment into a block/header (use default values)
-nnoremap <Leader>h :MyCommentBlock<CR>
+nnoremap <Leader>h :CommentBlock<CR>
+
+" Diff 2 open windows
+nnoremap <Leader>D :DiffToggle<CR>
+
+" Get highlighting tag of mapping under cursor
+nnoremap <Leader>H :call util#GetHighlight()<CR>
+"}}}
 
 " Open URL's in browser
 nnoremap <Leader>U :silent !open "<C-R><C-F>"<CR><bar>:redraw!<CR><CR>
 
 " Change vim's directory to that of current file (':cd -' changes back)
-nnoremap <Leader>D :cd %:p:h<CR>:pwd<CR>
+nnoremap <Leader>d :cd %:p:h<CR>:pwd<CR>
 
 " Use '%%/...' on command line to open files in directory of current file
 cabbr <expr> %% expand("%:p:h")
@@ -408,11 +421,10 @@ nnoremap <space> za
 " Use \l to redraw the screen (since <C-l> is used by window switching)
 nnoremap <Leader>l :syntax sync fromstart<CR>:redraw!<CR>
 
-" Get highlighting tag of mapping under cursor
-nnoremap <Leader>H :call util#GetHighlight()<CR>
-
 " Move 'title' comment to end of next line
-nnoremap <Leader>J 0Dj$pkdd
+" nnoremap <Leader>J 0Dj$pkdd
+" Better to do opposite of J, append line above current line to current line
+nnoremap <Leader>J ddkPJ
 
 " Custom text objects "{{{
 " inside/around next/last parens/curly brackets
@@ -456,7 +468,7 @@ let g:breptile_tpgrep_pat_scheme = '[r]lwrap.*scheme'
 " }}}
 " LatexBox {{{
 let g:LatexBox_latexmk_async = 0 " run latexmk asynchronously (not really, requires vim server)
-let g:LatexBox_Folding = 1       " use LatexBox folding instead of vim folding
+let g:LatexBox_Folding = 0       " use LatexBox folding instead of vim folding
 let g:LatexBox_quickfix = 2      " open quickfix but do not jump to error
 let g:LatexBox_output_type = '-pdf'  " output to pdf
 "}}}
@@ -474,7 +486,7 @@ set background=dark
 
 " Solarized options 
 " NOTE: set termcolors to 16 for "blue" background, 256 for "black"
-let g:solarized_termcolors = 16        " 256 | 16
+let g:solarized_termcolors = 256        " 256 | 16
 let g:solarized_termtrans  = 0          " 0 | 1  transparency
 let g:solarized_degrade    = 0          " 0 | 1
 let g:solarized_bold       = 1          " 1 | 0
@@ -512,14 +524,15 @@ hi def link CursorLineNr Comment
 set cursorline " highlight line cursor is on for easy finding
 "}}}
 " Highlight NOTE etc {{{
-" syn match myTodo contained "\(TODO\|NOTE\|FIXME\):\=" 
-" hi def link myTodo Todo
+syn match myTodo "\(TODO\|NOTE\|FIXME\):\=" containedin=Comment
+hi def link myTodo Todo
 "}}}
 
 "}}}--------------------------------------------------------------------------
 "       Status Line                                                       "{{{
 "-----------------------------------------------------------------------------
 set laststatus=2                             " always show statusbar
+
 set statusline=                              " clear default status line
 set statusline+=%-4.3n\                      " buffer number
 set statusline+=%h%m%r%w                     " status flags
@@ -533,7 +546,7 @@ set statusline+=%=                           " right align remainder
 " set statusline+=%8.20{util#GetHighlight()}   " show highlighting tag
 " set statusline+=\ \             
 set statusline+=0x%-5B                       " character value under cursor
-set statusline+=%-10(%l,%c%V%)               " line, character
+set statusline+=%-15(%l,%c%V%)               " line, character
 set statusline+=%<%P                         " file position
 
 " now set it up to change the status line based on mode
