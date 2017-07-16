@@ -9,4 +9,11 @@
 
 syn match shTodo contained "\(TODO\|NOTE\|FIXME\):\=" 
 
-hi def link shTodo Todo
+" Control sequences
+syn match	shFormat	display "%\(\d\+\$\)\=[-+' #0*]*\(\d*\|\*\|\*\d\+\$\)\(\.\(\d*\|\*\|\*\d\+\$\)\)\=\([hlL]\|ll\)\=\([bdiuoxXDOUfeEgGcCsSpn]\|\[\^\=.[^]]*\]\)" containedin=shDoubleQuote,shSingleQuote
+
+hi def link shFormat   SpecialChar
+hi def link shTodo     Todo
+
+"=============================================================================
+"=============================================================================
