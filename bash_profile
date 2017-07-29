@@ -21,6 +21,9 @@ t1854)
     # Default PATH
     export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin"
 
+    # added by Anaconda3 4.4.0 installer
+    export PATH="/usr/local/anaconda3/bin:$PATH"
+
     # Add coreutils from homebrew $(brew --prefix coreutils)
     export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 

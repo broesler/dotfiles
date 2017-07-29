@@ -9,9 +9,10 @@
   co = checkout
   conflicts = diff --name-only --diff-filter=U
   dt = difftool
-  lol = log --oneline --graph --decorate 
-  ld = log --pretty=format:"%C(auto)%h%d\\ [%ad,\\ %cn]\\ %s" \
-    --decorate --graph --date=relative
+  lol = log --oneline --graph --decorate
+  loa = log --oneline --graph --decorate --all
+  ld = log --abbrev-commit --decorate --graph \
+    --format=format:'%C(auto)%h%d %C(bold green)(%ar)%C(auto) %s %C(dim white)- %cn%C(auto)'
   ll = log --pretty=format:"%C(auto)%h%d\\ %Cblue[%ad,\\ %cn]%C(auto)\\ %s" \
     --decorate --stat=80 --date=format:"%D\\ %H:%M:%S"
   lt = log --pretty=format:"%C(auto)%h%d\\ %Cblue[%ad,\\ %cn]%C(auto)%n\\ \\ ==>\\ %s" \

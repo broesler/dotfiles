@@ -22,15 +22,16 @@ augroup c_cmds
     " Update tags file automatically
     " autocmd BufWritePost,FileWritePost <buffer> silent call UpdateTags()
 
-    " Make comment header with dashes
-    " autocmd BufReadPost *.c let @h="o/*" . &textwidth-col('.')-1 . "a-o" . &textwidth-col('.')-3 . "a-A*/ko \t\t"
-    autocmd BufEnter *.c let @h="o/*78a-o76a-A*/ko \t\t"
+    " Make comment header with dashes (turn off auto-indenting temporarily)
+    " TODO compact command into mapping only?
+    autocmd BufEnter *.c let @h=":CCommentBlock"
 augroup END
 
 "-----------------------------------------------------------------------------
 "       Keymaps and macros
 "-----------------------------------------------------------------------------
 command! -bar -nargs=? -complete=file CMakeThisFile call <SID>CMakeThisFile(<f-args>)
+command! CCommentBlock :set nocindent | exe "norm! o/*78a-o76a-A*/ko \t\t" | set cindent
 
 nnoremap <LocalLeader>m :CMakeThisFile<CR>
 nnoremap <LocalLeader>M :silent make! <bar> :redraw!<CR>

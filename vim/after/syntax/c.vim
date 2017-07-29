@@ -7,3 +7,6 @@
 "
 "=============================================================================
 syn keyword	cTodo		contained NOTE WARNING
+syn match   cCommentTitle '%\s*\%([sS]:\|\h\w*#\)\=\u\w*\(\s\+\u\w*\)*:'hs=s+1 containedin=cComment
+
+hi def link cCommentTitle          PreProc
