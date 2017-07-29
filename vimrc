@@ -214,6 +214,12 @@ augroup code_cmds "{{{
 
     autocmd FileType conf source $HOME/.vim/after/ftplugin/sh/sections.vim
 
+    " Load .types.vim highlighting file:
+    autocmd BufRead,BufNewFile *.[ch] let fname = expand('<afile>:p:h') . '/.types.vim'
+    autocmd BufRead,BufNewFile *.[ch] if filereadable(fname)
+    autocmd BufRead,BufNewFile *.[ch]   exe 'so ' . fname
+    autocmd BufRead,BufNewFile *.[ch] endif
+
     " TODO figure out how to break undo and jump sequence for this operation
     " Update 'Last Modified:' line in code files
     " autocmd FileType c,cpp,python,matlab,fortran,vim,sh,perl 
@@ -273,6 +279,12 @@ augroup todo "{{{
     au Syntax * syn match myTodo /\v<(TODO|NOTE|FIXME):\=/
                 \ containedin=.*Comment,vimCommentTitle
     au Syntax * hi def link myTodo Todo
+augroup END
+"}}}
+augroup CursorLineOnlyInActiveWindow "{{{
+    au!
+    au VimEnter,WinEnter,BufWinEnter * silent setlocal cursorline
+    au WinLeave * silent setlocal nocursorline
 augroup END
 "}}}
 "}}}--------------------------------------------------------------------------

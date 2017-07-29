@@ -3,4 +3,4 @@ set history size 10000
 set history remove-duplicates unlimited
 set print pretty on
 set print array on
-set print address off
+# set print address off
