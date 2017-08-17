@@ -17,7 +17,7 @@ setlocal iskeyword-=:         " colon is NOT part of keywords
 setlocal comments=:%
 setlocal commentstring=%%%s
 
-setlocal foldlevelstart=1     " all folds open to start
+setlocal foldlevelstart=99
 setlocal foldmethod=indent
 
 setlocal nowrap

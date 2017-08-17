@@ -140,7 +140,8 @@ agcolors+=" --color-match       '1;49;38;5;9'"
 gfopts=' -cpp -Wall -pedantic -std=f95'
 gfopts+=' -fbounds-check -ffree-line-length-0 -fbacktrace -fall-intrinsics'
 
-alias clc='clear'
+alias clc='clear; ls -Ghlp --color=auto'
+alias clr='clear'
 alias df='df -kTh'
 alias du='du -kh'
 alias edwin='mit-scheme --edit --heap 100000'
@@ -156,6 +157,7 @@ alias myag="ag $agcolors"
 alias mygcc='gcc -Wall -pedantic -std=c99'
 alias mygfortran="gfortran $gfopts"
 alias path='echo $PATH | tr -s ":" "\n"'
+alias python='/usr/local/anaconda3/bin/python'
 alias sicp='rlwrap -r -c -f "$HOME"/src/scheme/mit_scheme_bindings.txt scheme'
 alias which='type -all'
 alias zgrep='zgrep --color=auto'

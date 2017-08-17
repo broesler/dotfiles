@@ -23,6 +23,8 @@ setlocal foldmethod=manual
 " setlocal foldmethod=syntax
 setlocal foldnestmax=3          " allow folds down to subsections
 setlocal foldminlines=4         " only fold 4+ lines
+setlocal foldlevel=99
+setlocal foldlevelstart=99
 let g:tex_fold_enabled=1
 
 " Change default SuperTabs completion to context (or try <C-x><C-o>)

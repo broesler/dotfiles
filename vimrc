@@ -38,7 +38,7 @@ runtime! ftplugin/man.vim
 " then recursively down from vim's working directory, 
 " then look upward for "include" no more than 3 directories from current file
 " Finally standard c header locations
-set path=./**,**,include;../../../,/usr/local/include,/usr/include/
+set path=./**,**,../../../**,include;../../../,/usr/local/include,/usr/include/
 
 "}}}--------------------------------------------------------------------------
 "       Global Settings                                                  "{{{
@@ -270,7 +270,7 @@ augroup xelatex_cmds "{{{
     " use tex syntax highlighting
     autocmd BufRead,BufNewFile *.xtx set filetype=tex
     " set compiler options to use xelatex
-    autocmd BufRead,BufNewFile *.xtx let g:LatexBox_latexmk_options = "-pdf -xelatex"
+    autocmd BufRead,BufNewFile *.xtx let g:LatexBox_latexmk_options = "-synctex=1 -pdf -xelatex"
     autocmd BufRead,BufNewFile *.xtx setlocal makeprg=latexmk\ \-pdf\ \-xelatex\ '%'
 augroup END
 "}}}
@@ -551,15 +551,15 @@ set statusline+=%h%m%r%w                     " status flags
 set statusline+=\                            " separator
 set statusline+=%{exists('g:loaded_fugitive')?fugitive#statusline():''}
 set statusline+=\ \                          " separator
-set statusline+=%f\                          " %t filename, %F entire path
+set statusline+=%f\                          " %t filename, %f relative path
 set statusline+=\[%{strlen(&ft)?&ft:'none'}] " file type
 set statusline+=\ \             
 set statusline+=%=                           " right align remainder
 " set statusline+=%8.20{util#GetHighlight()}   " show highlighting tag
-" set statusline+=\ \             
+" set statusline+=\ \ 
 set statusline+=0x%-5B                       " character value under cursor
 set statusline+=%-15(%l,%c%V%)               " line, character
-set statusline+=%<%P                         " file position
+set statusline+=%<%P                         " file position (percentage)
 
 " now set it up to change the status line based on mode
 if version >= 700

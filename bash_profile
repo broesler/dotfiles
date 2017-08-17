@@ -1,14 +1,14 @@
 #!/bin/bash
 # Set vim syntax: vim:ft=sh syntax=sh
-#==============================================================================
-#    File: ~/.bash_profile
-# Created: 10/29/13
-#  Author: Bernie Roesler
-#
-# Last Modified: 05/20/2016, 17:37
-#
-# Description: Loads for all login shells. Sets path variable and others
-#==============================================================================
+#===============================================================================
+#     File: ~/.bash_profile
+#  Created: 10/29/13
+#   Author: Bernie Roesler
+# 
+#  Last Modified: 05/20/2016, 17:37
+# 
+#  Description: Loads for all login shells. Sets path variable and others
+#===============================================================================
 
 host=$(hostname -s) # i.e. 't1854', 'babylon', 'polaris'
 
@@ -20,9 +20,6 @@ t1854)
 
     # Default PATH
     export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin"
-
-    # added by Anaconda3 4.4.0 installer
-    export PATH="/usr/local/anaconda3/bin:$PATH"
 
     # Add coreutils from homebrew $(brew --prefix coreutils)
     export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
@@ -41,6 +38,13 @@ t1854)
 
     # Add MATLAB binaries to path
     export PATH="$PATH:/Applications/MATLAB_R2016b.app/bin"
+
+    # added by Anaconda3 4.4.0 installer
+    export PATH="$PATH:/usr/local/anaconda3/bin"
+
+    # Include my own python utility scripts
+    export PYTHONPATH="$PYTHONPATH:$HOME/src/python/util"
+
 
     export LC_ALL=en_US.UTF-8                   # brew doctor needs this line as of El Cap update 11/17/15 
     export RES=~/Documents/School/Research/     # path to research folder

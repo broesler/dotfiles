@@ -12,7 +12,8 @@ setlocal cindent                " smarter indenting for C
 
 setlocal foldmethod=syntax
 setlocal foldminlines=4         " ignore 3-line comment headers
-setlocal foldlevelstart=20      " don't start with all lines folded
+setlocal foldlevelstart=99      " don't start with all lines folded
+setlocal foldlevel=99
 
 "-----------------------------------------------------------------------------
 "       Local autocmds

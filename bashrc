@@ -31,7 +31,7 @@ babylon*|polaris)
 esac
 
 # uses '...' to limit list of directories
-PROMPT_DIRTRIM=3
+PROMPT_DIRTRIM=4
 
 # Set CDPATH to quickly change to neighbor directories
 CDPATH=".:..:../..:$HOME"
