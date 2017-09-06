@@ -74,7 +74,7 @@ set match-hidden-files off
 # Turn off <C-S> flow control (stops all I/O until <C-Q> is pressed)
 stty -ixon
 
-# Enable vim-style editing in terminal
+# Enable vim-style editing in terminal (also see ~/.inputrc)
 set -o vi
 
 # Visual bell only
@@ -85,16 +85,6 @@ if [[ "$host" = t1854 ]]; then
     # Comment out printer lines... slow!!
     # Create instance of m210 B/W printer for duplex printing
     # lpoptions -p m210__bw___thayercups/duplex \
-        #           -o Duplex=DuplexNoTumble \
-        #           -o prettyprint \
-        #           -o cpi=14 \
-        #           -o lpi=8 \
-        #           -o page-top=18 \
-        #           -o page-right=18 \
-        #           -o page-bottom=36 \
-        #           -o page-left=36
-
-    # lpoptions -p m210__color___thayercups/duplex \
         #           -o Duplex=DuplexNoTumble \
         #           -o prettyprint \
         #           -o cpi=14 \

@@ -476,7 +476,6 @@ let g:breptile_tpgrep_pat_gnuplot = '[g]nuplot'
 let g:breptile_mapkeys_matlab = 1       " 1 == map keys for matlab files
 let g:breptile_tpgrep_pat_matlab = '[r]lwrap.*matlab'
 let g:breptile_tpgrep_pat_scheme = '[r]lwrap.*scheme'
-" let g:breptile_tpgrep_pat_scheme = '[s]cheme'
 " }}}
 " LatexBox {{{
 let g:LatexBox_latexmk_async = 0 " run latexmk asynchronously (not really, requires vim server)

@@ -45,7 +45,6 @@ t1854)
     # Include my own python utility scripts
     export PYTHONPATH="$PYTHONPATH:$HOME/src/python/util"
 
-
     export LC_ALL=en_US.UTF-8                   # brew doctor needs this line as of El Cap update 11/17/15 
     export RES=~/Documents/School/Research/     # path to research folder
     # export STY=~/Library/texmf/tex/latex/       # path to latex style files

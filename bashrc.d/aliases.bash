@@ -140,8 +140,7 @@ agcolors+=" --color-match       '1;49;38;5;9'"
 gfopts=' -cpp -Wall -pedantic -std=f95'
 gfopts+=' -fbounds-check -ffree-line-length-0 -fbacktrace -fall-intrinsics'
 
-alias clc='clear; ls -Ghlp --color=auto'
-alias clr='clear'
+alias clc='clear'
 alias df='df -kTh'
 alias du='du -kh'
 alias edwin='mit-scheme --edit --heap 100000'

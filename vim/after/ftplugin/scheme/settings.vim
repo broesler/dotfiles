@@ -18,6 +18,7 @@ setlocal commentstring=;%s
 
 setlocal foldmethod=indent
 setlocal foldignore=
+setlocal foldlevelstart=99
 
 setlocal nowrap
 "}}}
