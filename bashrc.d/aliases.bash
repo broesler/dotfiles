@@ -156,10 +156,21 @@ alias myag="ag $agcolors"
 alias mygcc='gcc -Wall -pedantic -std=c99'
 alias mygfortran="gfortran $gfopts"
 alias path='echo $PATH | tr -s ":" "\n"'
-alias python='/usr/local/anaconda3/bin/python'
+alias perseus="export PATH="${PATH//"$ANACONDA_PATH:"/}" && echo Medusa beheaded."
+alias python="$HOME/anaconda3/bin/python"
 alias sicp='rlwrap -r -c -f "$HOME"/src/scheme/mit_scheme_bindings.txt scheme'
 alias which='type -all'
 alias zgrep='zgrep --color=auto'
+
+# Add anaconda to path if it isn't there already
+function medusa ()
+{
+    if [ "$(expr "$PATH" : "$ANACONDA_PATH")" -eq 0 ]; then
+        export PATH="$ANACONDA_PATH:$PATH" && echo Perseus defeated.
+    else
+        echo Anaconda already on path.
+    fi
+}
 
 # Color list
 [ -e "$HOME/.dircolors" ] && DIR_COLORS="$HOME/.dircolors"

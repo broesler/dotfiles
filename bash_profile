@@ -4,9 +4,7 @@
 #     File: ~/.bash_profile
 #  Created: 10/29/13
 #   Author: Bernie Roesler
-# 
-#  Last Modified: 05/20/2016, 17:37
-# 
+#
 #  Description: Loads for all login shells. Sets path variable and others
 #===============================================================================
 
@@ -19,33 +17,37 @@ t1854)
     export ARCHFLAGS="-arch x86_64"
 
     # Default PATH
-    export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin"
+    export DEFAULT_PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    export PATH="$DEFAULT_PATH:/opt/X11/bin"
 
     # Add coreutils from homebrew $(brew --prefix coreutils)
     export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 
     # # Ruby setup:
     # # Load RVM into a shell session *as a function*
-    # [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" 
+    # [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
     # # export PATH="$PATH:$HOME/.rbenv/shims"
     # eval "$(rbenv init -)"
     # export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
     # export PATH="$PATH:/usr/local/heroku/bin"
 
-    # Add LaTeX binaries
+    # Add LaTeX and git binaries
     export PATH="$PATH:/Library/TeX/texbin"          # LaTeX
     export PATH="$PATH:/usr/local/git/bin"           # git
 
-    # Add MATLAB binaries to path
+    # Add MATLAB binaries to path (for mlint, etc.)
     export PATH="$PATH:/Applications/MATLAB_R2016b.app/bin"
 
     # added by Anaconda3 4.4.0 installer
-    export PATH="$PATH:/usr/local/anaconda3/bin"
+    export ANACONDA_PATH="/Users/bernardroesler/anaconda3/bin"
+    export PATH="$ANACONDA_PATH:$PATH"
+    # export PATH="/Users/bernardroesler/anaconda3/bin:$PATH"
+    export TF_CPP_MIN_LOG_LEVEL=2   # ignore some tensorflow warnings
 
     # Include my own python utility scripts
     export PYTHONPATH="$PYTHONPATH:$HOME/src/python/util"
 
-    export LC_ALL=en_US.UTF-8                   # brew doctor needs this line as of El Cap update 11/17/15 
+    export LC_ALL=en_US.UTF-8                   # brew doctor needs this line as of El Cap update 11/17/15
     export RES=~/Documents/School/Research/     # path to research folder
     # export STY=~/Library/texmf/tex/latex/       # path to latex style files
     export MAT=~/Documents/MATLAB/              # path to Matlab files
@@ -65,7 +67,7 @@ t1854)
     export MITSCHEME_LIBRARY_PATH='/usr/local/lib/mit-scheme-c/'
 
     # ensure tmux uses colors (not sure if I need this on babylon/polaris?)
-    export TERM='screen-256color'               
+    export TERM='screen-256color'
 
     ;;
 
@@ -80,6 +82,8 @@ esac
 
 # Add my local files
 export PATH="$PATH:$HOME/bin"
+
+export SAVE_PATH=$PATH
 
 # default less options (-A fails on older versions)
 case "$host" in
