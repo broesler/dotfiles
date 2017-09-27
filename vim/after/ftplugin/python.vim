@@ -34,9 +34,10 @@ let python_highlight_all = 1
 "-----------------------------------------------------------------------------
 " Set up syntax error checking
 function! PythonLint()
-  setlocal makeprg=pylint\ --reports=n\ --output-format=parseable\ %:p
-  setlocal efm=%W%f:%l:\ [%*[CRW]%.%#]\ %m,%Z%p^^
-  setlocal efm+=%E%f:%l:\ [%*[EF]%.%#]\ %m,%Z%p^^,%-G%.%#
+  let &makeprg="${HOME}/anaconda3/bin/pylint "
+              \ . "--reports=n --output-format=parseable %:p"
+  let &efm="%W%f:%l: [%*[CRW]%.%#] %m,%Z%p^^,"
+              \ . "%E%f:%l: [%*[EF]%.%#] %m,%Z%p^^,%-G%.%#"
   write | silent! make | redraw!
 endfunction
 command! PythonLint :call PythonLint()
