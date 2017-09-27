@@ -11,6 +11,11 @@
 # Array of files in directory
 files=(*)
 
+# TODO use getopt to parse flags:
+#   -f      force create all symlinks
+#   -i      interactively create symlinks
+#   none    only create symlinks for those that don't exist yet
+
 # Symlink each file to correct file (adding . to filename)
 for f in "${files[@]}";
 do

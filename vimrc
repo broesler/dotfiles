@@ -376,6 +376,9 @@ nnoremap <silent> <Leader>n :set relativenumber!<CR>
 " Swap word under cursor with next word, including linebreaks
 nnoremap <Leader>t mx:s/\v(<\S*%#\S*>)(\_.{-})(<\S+>)/\3\2\1/<CR>:nohls<CR>`x
 
+" echo full path to current file
+nnoremap <Leader>p :echo expand('%:p')<CR>
+
 " Completion in insert mode {{{
 inoremap <C-f> <C-X><C-F>
 inoremap <C-]> <C-X><C-]>
@@ -476,10 +479,12 @@ let g:breptile_tpgrep_pat_gnuplot = '[g]nuplot'
 let g:breptile_mapkeys_matlab = 1       " 1 == map keys for matlab files
 let g:breptile_tpgrep_pat_matlab = '[r]lwrap.*matlab'
 let g:breptile_tpgrep_pat_scheme = '[r]lwrap.*scheme'
+let g:breptile_mapkeys_python = 1       " 1 == map keys for python files
+let g:breptile_python_useinterp = 1     " expect python interpreter
 " }}}
 " LatexBox {{{
 let g:LatexBox_latexmk_async = 0 " run latexmk asynchronously (not really, requires vim server)
-let g:LatexBox_Folding = 0       " use LatexBox folding instead of vim folding
+let g:LatexBox_Folding = 1       " use LatexBox folding instead of vim folding
 let g:LatexBox_quickfix = 2      " open quickfix but do not jump to error
 let g:LatexBox_output_type = '-pdf'  " output to pdf
 "}}}
