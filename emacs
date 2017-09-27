@@ -1,3 +1,15 @@
+;;==============================================================================
+;;    File: ~/.emacs
+;; Created: 9/26/2017, 13:30
+;;  Author: Bernie Roesler
+;;
+;; Description: emacs config file
+;;==============================================================================
+
+;; Turn on line numbers always
+(setq global-linum-mode t)
+
+;; Load color scheme and some extra settings from MIT-scheme course
 (setq load-path (append (list "~/.emacs.d/6.945-config") load-path))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
