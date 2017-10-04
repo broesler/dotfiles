@@ -59,6 +59,9 @@ command! PythonRunScript :call PythonRunScript()
 nnoremap <LocalLeader>L :PythonLint<CR>
 nnoremap <LocalLeader>M :PythonRunScript<CR>
 
+" Edit ipython profile
+nnoremap <LocalLeader>ie :split ~/.ipython/profile_default/ipython_config.py<CR>
+
 " Make comment header with dashes
 let @h='o#78a-yypO#8a '
 

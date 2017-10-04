@@ -29,6 +29,7 @@ Session.vim
 *.eps
 *.fig
 *.gif
+*.gz
 *.idv
 *.jp*g
 *.key

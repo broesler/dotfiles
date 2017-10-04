@@ -306,6 +306,9 @@ cnoremap <C-K> <Up>
 cnoremap <C-L> <Right>
 cnoremap <C-B> <S-Left>
 cnoremap <C-W> <S-Right>
+" Use '%%/...' on command line to open files in directory of current file
+cabbr <expr> %% expand("%:p:h")
+cabbr %ip% /Users/bernardroesler/anaconda3/lib/python3.6/site-packages/IPython/
 "}}}
 " Searching/Replacing maps {{{
 " Visual Mode */# from Scrooloose 
@@ -349,9 +352,6 @@ nnoremap <Leader>U :silent !open "<C-R><C-F>"<CR><bar>:redraw!<CR><CR>
 
 " Change vim's directory to that of current file (':cd -' changes back)
 nnoremap <Leader>d :cd %:p:h<CR>:pwd<CR>
-
-" Use '%%/...' on command line to open files in directory of current file
-cabbr <expr> %% expand("%:p:h")
 
 " unmap Q from entering Ex mode to avoid hitting it by accident
 nnoremap Q <nop>
