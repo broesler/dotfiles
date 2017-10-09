@@ -11,7 +11,7 @@ setlocal textwidth=80
 setlocal tabstop=2
 setlocal softtabstop=2
 setlocal shiftwidth=2
-setlocal formatoptions+=t     " wrap text to an actual new code line
+setlocal formatoptions+=t     " wrap text to an actual new code line for speed
 
 " Take these OFF of wildignore, so we can complete filenames for figures
 set wildignore-=*.jpg,*.bmp,*.gif,*.png,*.jpeg
@@ -65,66 +65,13 @@ function! JumpToSkim() "{{{
   redraw!
 endfunction
 "}}}
-function! LatexMakeLatexmk() "{{{
-  if (&ft != "tex")
-    echoe "File ". expand("%") . " is not a .tex file! Not compiling."
-  else
-    write
-    lcd %:p:h
-    silent! make! %
-    redraw!
-    lcd -
-  endif
-endfunction
-"}}}
-function! LatexMakeOnce() "{{{
-  let fileext = expand("%:e")
-  if (fileext ==# "tex")
-    write                               " save file
-    lcd %:p:h                           " cd to that of tex file
-    let fileroot = expand("%:r")
-    execute "!pdflatex " . fileroot
-  else
-    echom "FileType is NOT .tex! Aborted pdflatex."
-  endif
-endfunction
-"}}}
-function! LatexMakeFull() "{{{
-  let fileext = expand("%:e")
-  if (fileext ==# "tex")
-    write
-    lcd %:p:h
-    let fileroot = expand("%:r")
-    execute "!makepdf " . fileroot
-  else
-    echom "FileType is NOT .tex! Aborted pdflatex."
-  endif
-endfunction
-"}}}
-function! LatexMakeBib() "{{{
-  let fileext = expand("%:e")
-  if (fileext ==# "tex")
-    write
-    lcd %:p:h
-    let fileroot = expand("%:r")
-    execute "!makepdfbib " . fileroot
-  else
-    echom "FileType is NOT .tex! Aborted pdflatex."
-  endif
-endfunction
-"}}}
 "}}}--------------------------------------------------------------------------
 "       Keymaps {{{
 "-----------------------------------------------------------------------------
-" nnoremap <buffer> <Leader>M :silent call LatexMakeLatexmk()<CR>
-"
 " Build pdf using LaTeX-Box built-in function
 " :Latexmk[!] does as many runs as necessary to compile the tex, and also
 " properly parses the output to *only* get warnings/errors from the final run
 nnoremap <buffer> <LocalLeader>M :Latexmk<CR>
-
-" Manually run latexmk using makeprg (set above)
-" nnoremap <buffer> <LocalLeader>M :make<bar>redraw!<CR>
 
 " Find spot in pdf corresponding to source code 
 "   (use cmd+shift+click to go back)
