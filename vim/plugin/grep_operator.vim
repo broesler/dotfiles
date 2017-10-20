@@ -22,6 +22,7 @@ function! s:GrepOperator(type)
 
     " Grep for literal string
     silent execute "grep! -R -F " . shellescape(@@) . " ."
+    redraw!
     copen
 
     let @@ = save_reg

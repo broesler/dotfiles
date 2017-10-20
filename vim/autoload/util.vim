@@ -114,6 +114,9 @@ function! s:CommentBlock(...) "{{{
     " let l:comm_default = &commentstring[0:l:idx-1]
     " let l:comm_default = substitute(l:comm_default, '%%', '%', 'g')
 
+    " Remove any leading comment characters that exist, preserve indent
+    execute 's/^\(\s*\)' . l:comm_default . '*\s*/\1/ge'
+
     " Create a comment block such as the header above
     let l:boxch = (a:0 >= 1) ? a:1 : '-'
     let l:intro = (a:0 >= 2) ? a:2 : l:comm_default

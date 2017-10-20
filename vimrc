@@ -160,7 +160,8 @@ endif
     " set clipboard=autoselectplus,exclude:cons\|linux
 " else
 "     " Setting unnamedplus requires "* for CTRL-V copy/paste (in TMUX at least)
-    set clipboard=unnamedplus,exclude:cons\|linux
+    " set clipboard=unnamedplus,exclude:cons\|linux
+    set clipboard=unnamed,exclude:cons\|linux
 " endif
 "}}}
 " vimdiff {{{
@@ -271,7 +272,7 @@ augroup xelatex_cmds "{{{
     autocmd BufRead,BufNewFile *.xtx set filetype=tex
     " set compiler options to use xelatex
     autocmd BufRead,BufNewFile *.xtx let g:LatexBox_latexmk_options = "-synctex=1 -pdf -xelatex"
-    autocmd BufRead,BufNewFile *.xtx setlocal makeprg=latexmk\ \-pdf\ \-xelatex\ '%'
+    autocmd BufRead,BufNewFile *.xtx setlocal makeprg=latexmk\ \-interaction=nonstopmode\ \-pdf\ \-xelatex\ '%'
 augroup END
 "}}}
 augroup todo "{{{
@@ -296,7 +297,9 @@ let maplocalleader=","
 " Quick access .vimrc and functions {{{
 nnoremap <Leader>ve :split $MYVIMRC<CR>
 nnoremap <Leader>vs :source $MYVIMRC<CR>
-nnoremap <Leader>fe :edit $HOME/.vim/autoload/util.vim<CR>
+nnoremap <Leader>fe :split $HOME/.vim/autoload/util.vim<CR>
+" Open settings for current filetype
+nnoremap <Leader>ft :execute "split $HOME/.vim/after/ftplugin/" . &filetype . ".vim"<CR>
 "}}}
 " Command line mappings {{{
 " cnoremap <C-A> <Home>
@@ -483,8 +486,8 @@ let g:breptile_mapkeys_python = 1       " 1 == map keys for python files
 let g:breptile_python_useinterp = 1     " expect python interpreter
 " }}}
 " LatexBox {{{
-let g:LatexBox_latexmk_async = 0 " run latexmk asynchronously (not really, requires vim server)
-let g:LatexBox_Folding = 1       " use LatexBox folding instead of vim folding
+let g:LatexBox_latexmk_async = 1 " run latexmk asynchronously (not really, requires vim server, no channels yet)
+let g:LatexBox_Folding = 0       " use LatexBox folding instead of vim folding
 let g:LatexBox_quickfix = 2      " open quickfix but do not jump to error
 let g:LatexBox_output_type = '-pdf'  " output to pdf
 "}}}
