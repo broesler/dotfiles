@@ -38,21 +38,23 @@ let b:tex_ignore_makefile=1       " ignore any makefiles in the tex dir
 "  include %:S to use shell-escaped current filename as main latex file
 setlocal makeprg=latexmk\ \-pdf\ '%'
 
+" Comment this block to use LaTeX-Box efm instead:
 " Errors as produced by pdflatex
-let efm_errors="%E!\ LaTeX\ Error:\ %m,\%E!\ %m,%E!pdfTeX Error:\ %m"
+setlocal efm=%f:%l:%m
+setlocal efm+=%E!\ LaTeX\ Error:\ %m
+setlocal efm+=%E!\ %m
 
-" Warmings output by latexmk script
-let efm_warnings="%W%.%#Citation\ %m on\ input\ line\ %l,"
-            \ . "%W%.%#Reference\ %m on\ input\ line\ %l"
+" More info
+setlocal efm+=%-C<%m>
+setlocal efm+=%-C%p}
+setlocal efm+=%Cl.%l\ %m
 
-" " For use with normal pdflatex output (i.e. not via latexmk):
-" let efm_warnings="%WLaTeX\ Warning:\ Citation\ %m\ on\ input\ line\ %l%.%#,"
-"                \."%WPackage\ natbib\ Warning:\ Citation %m on\ input\ line\ %l%.%#,"
-"                \."%WPackage\ %.%#Warning:\ Citation %m,%C %m on input line %l%.%#,"
-"                \."%WLaTeX\ Warning:\ Reference %m on\ input\ line\ %l%.%#,"
-"                \."%WLaTeX\ %.%#Warning:\ Reference %m,%C %m on input line %l%.%#"
+" Warnings for citations only
+setlocal efm+=%W%.%#Citation\ %m\ on\ input\ line\ %l
+setlocal efm+=%W%.%#Reference\ %m\ on\ input\ line\ %l
 
-let &l:errorformat="%f:%l:%m," . efm_errors . "," . efm_warnings
+" Ignore unmatched lines -- don't include this line to show full error message
+" setlocal efm+=%-G%.%#
 
 "}}}--------------------------------------------------------------------------
 "       LaTeX-specific functions {{{
@@ -111,7 +113,7 @@ let @e='i\begin{equation}\end{equation}k'
 let @g='i\begin{gather}\end{gather}k'
 "}}}
 " Figure macro (use <quote>fp) "{{{
-let @f="\\begin{figure}[h!]\n"
+let @f="\\begin{figure}[!h]\n"
             \ . "  \\centering\n"
             \ . "  \\includegraphics[width=0.75\\textwidth]{myfilename.pdf}\n"
             \ . "  \\caption{My caption goes here.}\n"
@@ -119,30 +121,32 @@ let @f="\\begin{figure}[h!]\n"
             \ . "\\end{figure}""
 "}}}
 " Subfigure macro {{{
-let @s="\\begin{figure}[h!]\n"
+let @s="\\begin{figure}[!h]\n"
             \ . "  \\centering\n"
             \ . "  \\begin{subfigure}[c]{0.48\\textwidth}\n"
             \ . "     \\centering\n"
             \ . "     \\includegraphics[width=\\textwidth]{myfilename_a.pdf}\n"
             \ . "     \\caption{My caption for subfigure (a).}\n"
+            \ . "     \\label{fig:label_a}\n"
             \ . "  \\end{subfigure}\n"
             \ . "  \\hspace{0.01cm}\n"
             \ . "  \\begin{subfigure}[c]{0.48\\textwidth}\n"
             \ . "     \\centering\n"
             \ . "     \\includegraphics[width=\\textwidth]{myfilename_b.pdf}\n"
             \ . "     \\caption{My caption for subfigure (b).}\n"
+            \ . "     \\label{fig:label_b}\n"
             \ . "  \\end{subfigure}\n"
             \ . "  \\caption{My caption for the entire figure.}\n"
             \ . "  \\label{fig:whole_figure}\n"
             \ . "\\end{figure}\n"
 "}}}
 " Table macro {{{
-let @t="\begin{table}[h!]\n"
+let @t="\\begin{table}[!h]\n"
             \ . "  \\setlength{\\tabcolsep}{8pt}\n"
             \ . "  \\def\\arraystretch{1.1}\n"
             \ . "  \\caption{My table caption.}\n"
             \ . "  \\label{tab:tab}\n"
-            \ . "    \centering\n"
+            \ . "    \\centering\n"
             \ . "    \\begin{tabular}{l r r}\n"
             \ . "      \\firsthline\n"
             \ . "      \\multicolumn{1}{c}{case} & \\multicolumn{1}{c}{$\\Upsilon_T$} & \\multicolumn{1}{c}{$\\Upsilon_S$} \\\\ \\hline\n"
@@ -151,8 +155,8 @@ let @t="\begin{table}[h!]\n"
             \ . "        $\\phi =  90\\deg$  &    1.4826  &    5.7911  \\\\\n"
             \ . "        $\\phi = 180\\deg$  &    1.0644  &    5.7090  \\\\\n"
             \ . "      \\lasthline\n"
-            \ . "      \\end{tabular}\n"
-            \ . "  \\end{table}\n"
+            \ . "    \\end{tabular}\n"
+            \ . "\\end{table}\n"
 "}}}
 "}}}--------------------------------------------------------------------------
 "       Highlighting {{{
