@@ -34,3 +34,6 @@
 [submodule "vim/bundle/vimtex"]
 	path = vim/bundle/vimtex
 	url = https://github.com/lervag/vimtex.git
+[submodule "vim/bundle/vim-abolish"]
+	path = vim/bundle/vim-abolish
+	url = https://github.com/tpope/vim-abolish.git

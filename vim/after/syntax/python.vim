@@ -8,5 +8,6 @@
 "=============================================================================
 "
 syn keyword pythonStatement	self
+syn match pythonExceptions	'warnings\..*warn\w*\((\)\@='
 
 hi def link pythonDecoratorName		Preproc

@@ -10,7 +10,7 @@
 syn match texTodo contained "\(WARNING\|TODO\|NOTE\|FIXME\):\=" 
 
 " Copy block from $VIMRUNTIME/syntax/tex.vim, add line for "emph"
-" particular support for bold and italic {{{1
+" particular support for bold and italic
 syn region texItalStyle	matchgroup=texTypeStyle start="\\emph\s*{" matchgroup=texTypeStyle  end="}" concealends contains=@texItalGroup,@Spell
 
 hi def link texTodo     Todo

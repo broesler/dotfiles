@@ -11,7 +11,8 @@ setlocal textwidth=80
 setlocal tabstop=2
 setlocal softtabstop=2
 setlocal shiftwidth=2
-setlocal formatoptions+=t     " wrap text to an actual new code line for speed
+setlocal formatoptions+=t   " wrap text to an actual new code line for speed
+setlocal wrap               " wrap long lines to screen width
 
 " Take these OFF of wildignore, so we can complete filenames for figures
 set wildignore-=*.jpg,*.bmp,*.gif,*.png,*.jpeg
@@ -19,13 +20,12 @@ set wildignore-=*.jpg,*.bmp,*.gif,*.png,*.jpeg
 " : is included as keyword for fig: eqn: etc.,
 setlocal iskeyword+=:,_
 
-setlocal foldmethod=manual
-" setlocal foldmethod=syntax
+setlocal foldmethod=marker
 setlocal foldnestmax=3          " allow folds down to subsections
 setlocal foldminlines=4         " only fold 4+ lines
-setlocal foldlevel=99
+" setlocal foldlevel=99
 setlocal foldlevelstart=99
-let g:tex_fold_enabled=1
+let g:tex_fold_enabled=0
 
 " Change default SuperTabs completion to context (or try <C-x><C-o>)
 let g:SuperTabDefaultCompletionType="context"
@@ -38,7 +38,30 @@ let b:tex_ignore_makefile=1       " ignore any makefiles in the tex dir
 "  include %:S to use shell-escaped current filename as main latex file
 setlocal makeprg=latexmk\ \-pdf\ '%'
 
-" Comment this block to use LaTeX-Box efm instead:
+" vimtex options {{{
+let g:vimtex_view_automatic = 0
+let g:vimtex_view_method = 'skim'
+
+let g:vimtex_compiler_latexmk = {
+    \ 'backend' : 'jobs',
+    \ 'background' : 1,
+    \ 'build_dir' : '',
+    \ 'callback' : 1,
+    \ 'continuous' : 0,
+    \ 'executable' : 'latexmk',
+    \ 'options' : [
+    \   '-pdf',
+    \   '-verbose',
+    \   '-file-line-error',
+    \   '-synctex=1',
+    \   '-interaction=nonstopmode',
+    \ ],
+    \}
+"}}}
+
+"----------------------------------------------------------------------------- 
+"        Override LaTeX-Box efm:
+"-----------------------------------------------------------------------------
 " Errors as produced by pdflatex
 setlocal efm=%f:%l:%m
 setlocal efm+=%E!\ LaTeX\ Error:\ %m
@@ -87,7 +110,8 @@ command! JumpToSkim call <SID>JumpToSkim()
 " Build pdf using LaTeX-Box built-in function
 " :Latexmk[!] does as many runs as necessary to compile the tex, and also
 " properly parses the output to *only* get warnings/errors from the final run
-nnoremap <buffer> <LocalLeader>M :Latexmk<CR>
+nnoremap <buffer> <LocalLeader>M :update<bar>:Latexmk<CR>
+" nnoremap <buffer> <LocalLeader>M :VimtexCompileSS<CR>
 
 " Find spot in pdf corresponding to source code 
 "   (use cmd+shift+click to go back)

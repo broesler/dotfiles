@@ -12,6 +12,9 @@
 "}}}--------------------------------------------------------------------------
 "       Preamble                                                         "{{{
 "-----------------------------------------------------------------------------
+" Ignore list of plugins
+let g:pathogen_disabled = ['vimtex']
+call add(g:pathogen_disabled, 'vim-badplugin')
 " Run pathogen to load plugins (ignore errors on Linux machines)
 silent! call pathogen#infect()
 silent! call pathogen#helptags()
@@ -271,7 +274,9 @@ augroup xelatex_cmds "{{{
     " use tex syntax highlighting
     autocmd BufRead,BufNewFile *.xtx set filetype=tex
     " set compiler options to use xelatex
-    autocmd BufRead,BufNewFile *.xtx let g:LatexBox_latexmk_options = "-synctex=1 -pdf -xelatex"
+    autocmd BufRead,BufNewFile *.xtx let g:LatexBox_latexmk_options = "-file-line-error -synctex=1 -pdf -xelatex"
+    " autocmd BufRead,BufNewFile *.xtx call add(g:vimtex_compiler_latexmk['options'], '-xelatex')
+    " autocmd BufRead,BufNewFile *.xtx call uniq(sort(g:vimtex_compiler_latexmk['options']))
     autocmd BufRead,BufNewFile *.xtx setlocal makeprg=latexmk\ \-interaction=nonstopmode\ \-pdf\ \-xelatex\ '%'
 augroup END
 "}}}
@@ -353,8 +358,8 @@ nnoremap <Leader>H :call util#GetHighlight()<CR>
 " Open URL's in browser
 nnoremap <Leader>U :silent !open "<C-R><C-F>"<CR><bar>:redraw!<CR><CR>
 
-" Change vim's directory to that of current file (':cd -' changes back)
-nnoremap <Leader>d :cd %:p:h<CR>:pwd<CR>
+" Change window directory to that of current file (':lcd -' changes back)
+nnoremap <Leader>d :lcd %:p:h<CR>:pwd<CR>
 
 " unmap Q from entering Ex mode to avoid hitting it by accident
 nnoremap Q <nop>
@@ -486,10 +491,11 @@ let g:breptile_mapkeys_python = 1       " 1 == map keys for python files
 let g:breptile_python_useinterp = 1     " expect python interpreter
 " }}}
 " LatexBox {{{
-let g:LatexBox_latexmk_async = 1 " run latexmk asynchronously (not really, requires vim server, no channels yet)
-let g:LatexBox_Folding = 0       " use LatexBox folding instead of vim folding
-let g:LatexBox_quickfix = 2      " open quickfix but do not jump to error
-let g:LatexBox_output_type = '-pdf'  " output to pdf
+let g:LatexBox_latexmk_async = 1    " 1 == run latexmk asynchronously (not really, requires vim server, no channels yet)
+let g:LatexBox_Folding = 0          " 1 == use LatexBox folding instead of vim folding
+let g:LatexBox_quickfix = 2         " 2 == open quickfix but do not jump to error
+let g:LatexBox_output_type = '-pdf' " output to pdf
+let g:LatexBox_show_warnings = 0    " 0 == do not show warnings (default on)
 "}}}
 "}}}--------------------------------------------------------------------------
 "       Colorscheme                                                       "{{{

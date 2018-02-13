@@ -27,7 +27,7 @@ class MyPrompt(Prompts):
         return [
             (Token.OutPrompt, '['),
             (Token.OutPromptNum, str(self.shell.execution_count)),
-            (Token.OutPrompt, ']>>> '),
+            (Token.OutPrompt, ']=== '),
         ]
 
 # Prompts, ClassicPrompts, MyPrompt
