@@ -40,3 +40,6 @@
 [submodule "vim/bundle/vim-ipython"]
 	path = vim/bundle/vim-ipython
 	url = https://github.com/broesler/vim-ipython.git
+[submodule "vim/bundle/jedi-vim"]
+	path = vim/bundle/jedi-vim
+	url = https://github.com/davidhalter/jedi-vim.git
