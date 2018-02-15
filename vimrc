@@ -3,8 +3,6 @@
 " Created: 04/16/2015
 "  Author: Bernie Roesler
 "
-" Last Modified: 05/26/2016, 11:31
-
 " Description: Settings for vim. Source with \s while in vim. Functions called
 "   by autocommands are located in ~/.vim/autoload/util.vim
 "=============================================================================
