@@ -497,9 +497,9 @@ let g:LatexBox_show_warnings = 0    " 0 == do not show warnings (default on)
 "}}}
 " Jedi-Vim {{{
 let g:jedi#goto_command = "<localleader>f"
-let g:jedi#goto_assignments_command = "<localleader>g"
+let g:jedi#goto_assignments_command = "<localleader>a"
 let g:jedi#rename_command = "<localleader>r"
-let g:jedi#usages_command = "<localleader>n"
+let g:jedi#usages_command = "<localleader>g"
 let g:jedi#auto_vim_configuration = 0   " do not change 'completeopt'
 let g:jedi#popup_on_dot = 0             " only complete if we press the key
 "}}}
