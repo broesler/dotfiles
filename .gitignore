@@ -8,3 +8,4 @@ mutt/tmp/*
 *.netrwhist
 *w3m/history
 tmux/resurrect/*
+*cache*
