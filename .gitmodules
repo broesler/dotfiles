@@ -43,3 +43,6 @@
 [submodule "vim/bundle/jedi-vim"]
 	path = vim/bundle/jedi-vim
 	url = https://github.com/davidhalter/jedi-vim.git
+[submodule "vim/bundle/vim-jupyter"]
+	path = vim/bundle/vim-jupyter
+	url = git@bitbucket.org:broesler/vim-jupyter.git
