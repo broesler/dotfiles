@@ -11,7 +11,7 @@
 "       Preamble                                                         "{{{
 "-----------------------------------------------------------------------------
 " Ignore list of plugins
-let g:pathogen_disabled = ['vimtex']
+let g:pathogen_disabled = ['vimtex', 'vim-ipython']
 call add(g:pathogen_disabled, 'vim-badplugin')
 " Run pathogen to load plugins (ignore errors on Linux machines)
 silent! call pathogen#infect()
@@ -494,6 +494,14 @@ let g:LatexBox_Folding = 0          " 1 == use LatexBox folding instead of vim f
 let g:LatexBox_quickfix = 2         " 2 == open quickfix but do not jump to error
 let g:LatexBox_output_type = '-pdf' " output to pdf
 let g:LatexBox_show_warnings = 0    " 0 == do not show warnings (default on)
+"}}}
+" Jedi-Vim {{{
+let g:jedi#goto_command = "<localleader>f"
+let g:jedi#goto_assignments_command = "<localleader>g"
+let g:jedi#rename_command = "<localleader>r"
+let g:jedi#usages_command = "<localleader>n"
+let g:jedi#auto_vim_configuration = 0   " do not change 'completeopt'
+let g:jedi#popup_on_dot = 0             " only complete if we press the key
 "}}}
 "}}}--------------------------------------------------------------------------
 "       Colorscheme                                                       "{{{
