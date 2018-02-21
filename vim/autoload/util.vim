@@ -192,6 +192,7 @@ function! s:Warn(str) abort "{{{
 endfunction
 "}}}
 function! s:QuickfixReformat() abort "{{{
+    " Adopted from: <https://github.com/romainl/vim-qf/issues/31>
     let ul = &l:undolevels
     setlocal modifiable nonumber undolevels=-1
     silent % delete _
@@ -237,6 +238,7 @@ function! s:QuickfixReformat() abort "{{{
         endif
 
         if disp_cols
+            " pipes preserve default qflist syntax highlighting
             call add(lines, printf('%s|%*s:%*s%s| %s',
                         \ spath, lnum_width, item.lnum, 
                         \ col_width, item.col, typestr, item.text))
