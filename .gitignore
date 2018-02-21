@@ -9,3 +9,5 @@ mutt/tmp/*
 *w3m/history
 tmux/resurrect/*
 *cache*
+history.sqlite
+dbhist
