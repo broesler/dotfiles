@@ -11,7 +11,7 @@
 "       Preamble                                                         "{{{
 "-----------------------------------------------------------------------------
 " Ignore list of plugins
-let g:pathogen_disabled = ['vimtex', 'vim-ipython']
+let g:pathogen_disabled = ['vimtex']
 call add(g:pathogen_disabled, 'vim-badplugin')
 " Run pathogen to load plugins (ignore errors on Linux machines)
 silent! call pathogen#infect()
@@ -162,6 +162,7 @@ endif
 " else
 "     " Setting unnamedplus requires "* for CTRL-V copy/paste (in TMUX at least)
     " set clipboard=unnamedplus,exclude:cons\|linux
+    " Setting unnamed requires "+ for copy/paste to/from MacOS
     set clipboard=unnamed,exclude:cons\|linux
 " endif
 "}}}
@@ -298,9 +299,9 @@ let mapleader="\\"
 let maplocalleader=","
 
 " Quick access .vimrc and functions {{{
-nnoremap <Leader>ve :split $MYVIMRC<CR>
+nnoremap <Leader>ve :edit $MYVIMRC<CR>
 nnoremap <Leader>vs :source $MYVIMRC<CR>
-nnoremap <Leader>fe :split $HOME/.vim/autoload/util.vim<CR>
+nnoremap <Leader>fe :edit $HOME/.vim/autoload/util.vim<CR>
 " Open settings for current filetype
 nnoremap <Leader>ft :execute "split $HOME/.vim/after/ftplugin/" . &filetype . ".vim"<CR>
 "}}}
@@ -350,7 +351,7 @@ nnoremap <Leader>h :CommentBlock<CR>
 nnoremap <Leader>D :DiffToggle<CR>
 
 " Get highlighting tag of mapping under cursor
-nnoremap <Leader>H :call util#GetHighlight()<CR>
+nnoremap <Leader>H :GetHighlight<CR>
 "}}}
 
 " Open URL's in browser

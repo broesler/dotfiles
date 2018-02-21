@@ -191,6 +191,66 @@ function! s:Warn(str) abort "{{{
     return
 endfunction
 "}}}
+function! s:QuickfixReformat() abort "{{{
+    let ul = &l:undolevels
+    setlocal modifiable nonumber undolevels=-1
+    silent % delete _
+
+    let lnum_width = 0
+    let col_width = 0
+
+    let qf_isLoc = !empty(getloclist(0))
+    if qf_isLoc
+      let qflist = getloclist(0)
+    else
+      let qflist = getqflist()
+    endif
+
+    let max_col = 0
+    for item in qflist
+        let lnum_width = max([len(item.lnum), lnum_width])
+        let col_width = max([len(item.col), col_width])
+        if item.col > max_col
+            let max_col = item.col
+        endif
+    endfor
+
+    " Only display column numbers if they are not all 0
+    let disp_cols = 1
+    if max_col == 0
+        let disp_cols = 0
+    endif
+
+    let lines = []
+    for item in qflist
+        let spath = pathshorten(fnamemodify(bufname(item.bufnr), ':~:.'))
+        let type = toupper(item.type)
+        " Include space to separate from column number
+        if empty(type)
+            let typestr = ''
+        elseif type ==# 'E'
+            let typestr = ' error'
+        elseif type ==# 'W'
+            let typestr = ' warning'
+        else
+            let typestr = type
+        endif
+
+        if disp_cols
+            call add(lines, printf('%s|%*s:%*s%s| %s',
+                        \ spath, lnum_width, item.lnum, 
+                        \ col_width, item.col, typestr, item.text))
+        else
+            call add(lines, printf('%s|%*s%s| %s',
+                        \ spath, lnum_width, item.lnum, typestr, item.text))
+        endif
+    endfor
+
+    call setline(1, lines)
+    let &l:undolevels = ul
+    setlocal nomodifiable nomodified
+endfunction
+"}}}
 "}}}
 " FIXME function! util#UpdateTags() " {{{
 "   TODO search along same path that vim searches for tags files
@@ -217,6 +277,15 @@ augroup AGSetTermTitle
     autocmd!
     autocmd VimEnter,WinEnter,TabEnter,BufEnter * silent! call <SID>SetTermTitle()
 augroup END
+
+" Auto-reformat qflist
+augroup QFList
+    autocmd!
+    autocmd FileType qf call s:QuickfixReformat()
+augroup END
+
+" Reformat quickfix window
+command! QuickfixReformat call s:QuickfixReformat()
 
 " Get highlighting
 command! GetHighlight call s:GetHighlight()
