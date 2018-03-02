@@ -38,11 +38,6 @@ t1854)
     # Add MATLAB binaries to path (for mlint, etc.)
     export PATH="$PATH:/Applications/MATLAB_R2016b.app/bin"
 
-    # added by Anaconda3 4.4.0 installer
-    export ANACONDA_PATH="/Users/bernardroesler/anaconda3/bin"
-    export PATH="$ANACONDA_PATH:$PATH"
-    export LD_LIBRARY_PATH="$HOME/anaconda3/lib:$LD_LIBRARY_PATH"
-
     export TF_CPP_MIN_LOG_LEVEL=2   # ignore some tensorflow warnings
 
     # Include my own python utility scripts
