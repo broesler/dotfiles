@@ -11,3 +11,6 @@ tmux/resurrect/*
 *cache*
 history.sqlite
 dbhist
+ipython/profile_default/db/
+matplotlib/fontList.json
+
