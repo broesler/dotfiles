@@ -189,6 +189,10 @@ c.ConsoleWidget.font_size = 9
 #  Outputs are not displayed until enter is pressed.
 c.ConsoleWidget.include_other_output = True
 
+# Prefix string to be displayed with output from other clients (only relevant
+# if c.ConsoleWidget.include_other_output is True)
+c.ConsoleWidget.other_output_prefix = ''
+
 ## The type of underlying text widget to use. Valid values are 'plain', which
 #  specifies a QPlainTextEdit, and 'rich', which specifies a QTextEdit.
 #c.ConsoleWidget.kind = 'plain'
@@ -258,12 +262,12 @@ c.ConsoleWidget.include_other_output = True
 ## A command for invoking a system text editor. If the string contains a
 #  {filename} format specifier, it will be used. Otherwise, the filename will be
 #  appended to the end the command.
-# c.JupyterWidget.editor = ''
+c.JupyterWidget.editor = 'vim'
 
 ## The editor command to use when a specific line number is requested. The string
 #  should contain two format specifiers: {line} and {filename}. If this parameter
 #  is not specified, the line number option to the %edit magic will be ignored.
-#c.JupyterWidget.editor_line = ''
+c.JupyterWidget.editor_line = 'vim +{line} {filename}'
 
 ## 
 #c.JupyterWidget.in_prompt = 'In [<span class="in-prompt-number">%i</span>]: '
