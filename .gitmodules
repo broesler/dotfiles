@@ -38,11 +38,8 @@
 	path = vim/bundle/vim-abolish
 	url = https://github.com/tpope/vim-abolish.git
 [submodule "vim/bundle/vim-ipython"]
-	path = vim/bundle/vim-ipython
+	path = vim/bundle/jupyter-vim
 	url = https://github.com/broesler/vim-ipython.git
 [submodule "vim/bundle/jedi-vim"]
 	path = vim/bundle/jedi-vim
 	url = https://github.com/davidhalter/jedi-vim.git
-[submodule "vim/bundle/vim-jupyter"]
-	path = vim/bundle/vim-jupyter
-	url = git@bitbucket.org:broesler/vim-jupyter.git

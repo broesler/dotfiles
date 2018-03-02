@@ -24,7 +24,6 @@ setlocal commentstring=#%s
 setlocal foldmethod=indent
 setlocal foldnestmax=2
 setlocal foldignore=
-setlocal foldlevel=99
 setlocal foldlevelstart=99
 
 let python_highlight_all = 1
@@ -34,22 +33,20 @@ let python_highlight_all = 1
 "-----------------------------------------------------------------------------
 " Set up syntax error checking
 function! PythonLint()
-  let &makeprg="${HOME}/anaconda3/bin/pylint "
-              \ . "--reports=n --output-format=parseable %:p"
+  let &makeprg="pylint --reports=n --output-format=parseable %:p"
   let &efm="%W%f:%l: [%*[CRW]%.%#] %m,%Z%p^^,"
               \ . "%E%f:%l: [%*[EF]%.%#] %m,%Z%p^^,%-G%.%#"
-  write | silent! make | redraw!
+  update | silent make! | redraw!
 endfunction
 command! PythonLint :call PythonLint()
 
 function! PythonRunScript()
-  " NOTE "python" will run python3
   setlocal makeprg=python\ %
 
   " This errorformat puts EVERY step of the trace in the stack. The user can
   " use :cnext to step down the stack or :cprev to step up. 
   setlocal efm=%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
-  write | silent make | redraw!
+  update | silent make! | redraw!
 endfunction
 command! PythonRunScript :call PythonRunScript()
 
