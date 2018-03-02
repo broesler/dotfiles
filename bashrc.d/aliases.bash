@@ -25,8 +25,8 @@ host=$(hostname -s) # i.e. 't1854', 'babylon', 'polaris'
 case "$host" in
 t1854)  # my MBP
     alias cs174='cd ~/Documents/School/14F-15X/cs174_machine_learning/'
-    alias mycv='cd ~/Documents/School/CV_Resume/CV/cv_latex/'
-    alias myresume='cd ~/Documents/School/CV_Resume/Resume/resume_latex/'
+    alias mycv='cd ~/Documents/CV_Resume/CV/cv_latex/'
+    alias myresume='cd ~/Documents/CV_Resume/Resume/resume_latex/'
     alias es91='cd ~/Documents/School/11F-12S/Engs_91/labs/'
     alias es105='cd ~/Documents/School/13F-14X/Engs_105_Numerical_PDEs_1/hw/'
     alias es145='cd ~/Documents/School/13F-14X/Engs_145_Modern_Control_Theory/'
@@ -39,6 +39,9 @@ t1854)  # my MBP
     alias web='cd ~/Documents/Projects/web_development/'
     alias xfoil='/Applications/Xfoil.app/Contents/Resources/xfoil'
     alias cyrod='~/Kite_Drive/2016_ORPC_drone_turbine_\(Roesler\)/Codes/CyROD_2D_Lumped/Examples/ORPC_RPD_rapid_prototype_device/'
+
+    alias pip="$(brew --prefix)/bin/pip3"
+    alias python="$(brew --prefix)/bin/python3"
 
     function es205()
     {
@@ -156,21 +159,9 @@ alias myag="ag $agcolors"
 alias mygcc='gcc -Wall -pedantic -std=c99'
 alias mygfortran="gfortran $gfopts"
 alias path='echo $PATH | tr -s ":" "\n"'
-alias perseus="export PATH="${PATH//"$ANACONDA_PATH:"/}" && echo Medusa beheaded."
-alias python="$HOME/anaconda3/bin/python"
 alias sicp='rlwrap -r -c -f "$HOME"/src/scheme/mit_scheme_bindings.txt scheme'
 alias which='type -all'
 alias zgrep='zgrep --color=auto'
-
-# Add anaconda to path if it isn't there already
-function medusa ()
-{
-    if [ "$(expr "$PATH" : "$ANACONDA_PATH")" -eq 0 ]; then
-        export PATH="$ANACONDA_PATH:$PATH" && echo Perseus defeated.
-    else
-        echo Anaconda already on path.
-    fi
-}
 
 # Color list
 [ -e "$HOME/.dircolors" ] && DIR_COLORS="$HOME/.dircolors"
