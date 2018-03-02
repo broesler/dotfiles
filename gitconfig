@@ -15,9 +15,9 @@
     --format=format:'%C(auto)%h%d %C(bold green)(%ar)%C(auto) %s %C(dim white)- %cn%C(auto)'
   ll = log --pretty=format:"%C(auto)%h%d\\ %Cblue[%ad,\\ %cn]%C(auto)\\ %s" \
     --decorate --stat=80 --date=format:"%D\\ %H:%M:%S"
-  lt = log --pretty=format:"%C(auto)%h%d\\ %Cblue[%ad,\\ %cn]%C(auto)%n\\ \\ ==>\\ %s" \
+  lt = log --pretty=format:"%C(auto)%h%d\\ %Cblue[%ad,\\ %cn]%C(auto):\\ %s" \
     --decorate --graph --date=format:"%D\\ %H:%M:%S"
-  st = status -s --branch
+  st = status --short --branch
   up = submodule update --recursive
 [push]
   default = current
