@@ -25,50 +25,18 @@ host=$(hostname -s) # i.e. 't1854', 'babylon', 'polaris'
 case "$host" in
 t1854)  # my MBP
     alias cs174='cd ~/Documents/School/14F-15X/cs174_machine_learning/'
-    alias mycv='cd ~/Documents/CV_Resume/CV/cv_latex/'
-    alias myresume='cd ~/Documents/CV_Resume/Resume/resume_latex/'
-    alias es91='cd ~/Documents/School/11F-12S/Engs_91/labs/'
     alias es105='cd ~/Documents/School/13F-14X/Engs_105_Numerical_PDEs_1/hw/'
     alias es145='cd ~/Documents/School/13F-14X/Engs_145_Modern_Control_Theory/'
+    alias es145='cd ~/Documents/School/15F-16X/engg149_system_identification/hw/'
     alias es148='cd ~/Documents/School/14F-15X/engg148_structural_mechanics/'
     alias es150='cd ~/Documents/School/13F-14X/Engs_150/'
-    alias illustrator='open -a Adobe\ Illustrator'
-    alias res='cd ~/Documents/School/Research/'
-    # alias skim='open -a /Applications/Skim.app'
+    alias es205='cd ~/Documents/School/14F-15X/engs205_numerical_pdes_II/labs/'
+    alias es91='cd ~/Documents/School/11F-12S/Engs_91/labs/'
+    alias mycv='cd ~/Documents/CV_Resume/CV/cv_latex/'
+    alias myresume='cd ~/Documents/CV_Resume/Resume/resume_latex/'
     alias sty='cd /Users/bernardroesler/Library/texmf/tex/latex/'
     alias web='cd ~/Documents/Projects/web_development/'
     alias xfoil='/Applications/Xfoil.app/Contents/Resources/xfoil'
-    alias cyrod='~/Kite_Drive/2016_ORPC_drone_turbine_\(Roesler\)/Codes/CyROD_2D_Lumped/Examples/ORPC_RPD_rapid_prototype_device/'
-
-    alias pip="$(brew --prefix)/bin/pip3"
-    alias python="$(brew --prefix)/bin/python3"
-
-    function es205()
-    {
-        if [ $# -gt 0 ]; then
-            cd ~/Documents/School/14F-15X/engs205_numerical_pdes_II/labs/lab$1
-        else
-            cd ~/Documents/School/14F-15X/engs205_numerical_pdes_II/labs
-        fi
-    }
-
-    function es149()
-    {
-        if [ $# -gt 0 ]; then
-            cd ~/Documents/School/15F-16X/engg149_system_identification/hw/hw$1
-        else
-            cd ~/Documents/School/15F-16X/engg149_system_identification/hw
-        fi
-    }
-
-    function es250()
-    {
-        if [ $# -gt 0 ]; then
-            cd ~/Documents/School/15F-16X/engs250_turbulence/hw/hw$1
-        else
-            cd ~/Documents/School/15F-16X/engs250_turbulence/hw
-        fi
-    }
 
     # Matlab with rlwrap (use vi commands in Matlab!)
     function matlabrl()
@@ -81,7 +49,6 @@ t1854)  # my MBP
     ;;
 
 babylon*) # we're on a Linux machine:
-    alias flu1='/thayerfs/research/epps/VLM2D/Ramesh_FLUENT_cases/'
     alias fluent16='/thayerfs/research/epps/ansys_inc/v162/fluent/bin/fluent'
     # alias fluent16='/jumbo/eppsdata/ansys_inc/v162/fluent/bin/fluent'
     alias gambit='/thayerfs/research/epps/Fluent.Inc/bin/gambit'
@@ -146,12 +113,9 @@ gfopts+=' -fbounds-check -ffree-line-length-0 -fbacktrace -fall-intrinsics'
 alias clc='clear'
 alias df='df -kTh'
 alias du='du -kh'
-alias edwin='mit-scheme --edit --heap 100000'
 alias grep='grep --color=auto'
 alias h='history | command less +G'
 alias j='jobs -l'
-alias lpbw='lpr -P m210__bw___thayercups/duplex'
-alias lpcolor='lpr -P m210__color___thayercups/duplex'
 alias lt='tree -C'
 alias mkdir='mkdir -p'
 alias mlint='/Applications/MATLAB_R2016b.app/bin/maci64/mlint'
@@ -160,8 +124,7 @@ alias mygcc='gcc -Wall -pedantic -std=c99'
 alias mygfortran="gfortran $gfopts"
 alias path='echo $PATH | tr -s ":" "\n"'
 alias sicp='rlwrap -r -c -f "$HOME"/src/scheme/mit_scheme_bindings.txt scheme'
-alias which='type -all'
-alias zgrep='zgrep --color=auto'
+alias ta='type -all'
 
 # Color list
 [ -e "$HOME/.dircolors" ] && DIR_COLORS="$HOME/.dircolors"
