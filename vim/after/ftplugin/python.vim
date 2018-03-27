@@ -22,9 +22,10 @@ setlocal iskeyword-=:
 setlocal commentstring=#%s
 
 setlocal foldmethod=indent
-setlocal foldnestmax=2
+setlocal foldnestmax=4
 setlocal foldignore=
 setlocal foldlevelstart=99
+let &foldlevel=&foldnestmax+1
 
 let python_highlight_all = 1
 
@@ -50,6 +51,35 @@ function! PythonRunScript()
 endfunction
 command! PythonRunScript :call PythonRunScript()
 
+function! s:PythonCom2Doc() range abort
+    " Convert comment into docstring
+    let l:reg_save = @q
+    let @q='f#cw"""'   " Replace comment with triple double quotes
+    if a:firstline == a:lastline
+        " Single line comment
+        normal! @q
+        normal! A"""
+    else
+        " Multiple lines to change
+        let l:cur_save = getpos('.')
+        execute (a:firstline+1) . ',' . a:lastline . 's/#\+\s*//'
+        execute a:firstline . ':normal! @q'
+        execute a:lastline . ':normal! o"""'
+        call cursor(l:cur_save)
+    endif
+    let @q = l:reg_save
+endfunction
+command! -range PythonCom2Doc <line1>,<line2>call <SID>PythonCom2Doc()
+
+function! s:PythonSelectDocstring(is_inside) abort
+    let the_pat = "[\"']\\{3}"
+    let l:flags = a:is_inside ? "e1" : ""
+    execute 'normal! ?' . the_pat . '?' . l:flags . "\r"
+    normal! v
+    let l:flags = a:is_inside ? "b-1" : "e;/" . the_pat . "/e"
+    execute 'normal! /' . the_pat . '/' . l:flags . "\r"
+endfunction
+
 "-----------------------------------------------------------------------------
 "        Keymaps
 "-----------------------------------------------------------------------------
@@ -58,6 +88,19 @@ nnoremap <LocalLeader>M :PythonRunScript<CR>
 
 " Edit ipython profile
 nnoremap <LocalLeader>ie :split ~/.ipython/profile_default/ipython_config.py<CR>
+nnoremap <LocalLeader>ij :split ~/.jupyter/jupyter_console_config.py<CR>
+
+" Docstring objects
+onoremap ad :<C-u>call <SID>PythonSelectDocstring(0)<CR>
+onoremap id :<C-u>call <SID>PythonSelectDocstring(1)<CR>
+vnoremap ad :<C-u>call <SID>PythonSelectDocstring(0)<CR>
+vnoremap id :<C-u>call <SID>PythonSelectDocstring(1)<CR>
+
+" onoremap id :<C-u>exe "norm! ?[\"']\\{3}?e1\r:nohls\rv//b-1\r:nohls\rgv"<CR>
+" onoremap ad :<C-u>exe "norm! ?[\"']\\{3}?\r:nohls\rv//\r:nohls\rgv"<CR>
+" vnoremap id :<C-u>exe "norm! ?[\"']\\{3}?e1\r:nohls\rv//b-1\r:nohls\rgv"<CR>
+" vnoremap ad :<C-u>exe "norm! ?[\"']\\{3}?\r:nohls\rv//\r:nohls\rgv"<CR>
+
 
 " Make comment header with dashes
 let @h='o#78a-yypO#8a '
