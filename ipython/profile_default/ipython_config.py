@@ -45,12 +45,13 @@ c.AliasManager.user_aliases = [
 #------------------------------------------------------------------------------
 #c.InteractiveShellApp.code_to_run = ''
 #c.InteractiveShellApp.exec_files = []
-c.InteractiveShellApp.exec_lines = [
-    'import sys',
-    'import os',
-]
 c.InteractiveShellApp.extensions = [
     'autoreload',
+]
+c.InteractiveShellApp.exec_lines = [
+    '%autoreload 2',
+    'import sys',
+    'import os',
 ]
 
 #c.InteractiveShellApp.extra_extension = ''
@@ -61,7 +62,7 @@ c.InteractiveShellApp.extensions = [
 c.InteractiveShellApp.hide_initial_ns = True
 
 ## Configure matplotlib for interactive use with the default matplotlib backend.
-# c.InteractiveShellApp.matplotlib = None
+c.InteractiveShellApp.matplotlib = 'auto'
 
 ## Run the module as a script.
 #c.InteractiveShellApp.module_to_run = ''
