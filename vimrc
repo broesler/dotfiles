@@ -134,6 +134,7 @@ set foldcolumn=0                " show locations of folds in left-most column
 set foldmethod=marker           " auto-fold code
 set foldnestmax=4
 set foldminlines=3
+let g:vimsyn_folding = 'aflmpPr' " fold vimscript syntactically
 "}}}
 " Windows {{{
 set scrolloff=1     " cursor will never reach bottom of window
