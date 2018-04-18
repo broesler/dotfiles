@@ -82,18 +82,6 @@ set bell-style visible
 
 # Mac-only options
 if [[ "$host" = t1854 ]]; then
-    # Comment out printer lines... slow!!
-    # Create instance of m210 B/W printer for duplex printing
-    # lpoptions -p m210__bw___thayercups/duplex \
-        #           -o Duplex=DuplexNoTumble \
-        #           -o prettyprint \
-        #           -o cpi=14 \
-        #           -o lpi=8 \
-        #           -o page-top=18 \
-        #           -o page-right=18 \
-        #           -o page-bottom=36 \
-        #           -o page-left=36
-
     # enable better auto-completion
     if [ -f '/usr/local/etc/bash_completion' ]; then
         source '/usr/local/etc/bash_completion'
