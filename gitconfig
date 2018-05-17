@@ -39,3 +39,4 @@
     cmd = vim -f -c \"Gvdiff\" \"$MERGED\"
 [merge "ours"]
 	driver = true
+# vim:ft=gitconfig:
