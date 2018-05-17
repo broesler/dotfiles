@@ -1,5 +1,5 @@
 "=============================================================================
-"       C settings
+"       C settings {{{
 "=============================================================================
 setlocal textwidth=80
 setlocal tabstop=4
@@ -13,10 +13,11 @@ setlocal cindent                " smarter indenting for C
 setlocal foldmethod=syntax
 setlocal foldminlines=4         " ignore 3-line comment headers
 setlocal foldlevelstart=99      " don't start with all lines folded
-setlocal foldlevel=99
 
-"-----------------------------------------------------------------------------
-"       Local autocmds
+setlocal keywordprg=:Man
+
+"}}}--------------------------------------------------------------------------
+"       Local autocmds {{{
 "-----------------------------------------------------------------------------
 augroup c_cmds
     autocmd!
@@ -28,21 +29,23 @@ augroup c_cmds
     autocmd BufEnter *.c let @h=":CCommentBlock"
 augroup END
 
-"-----------------------------------------------------------------------------
-"       Keymaps and macros
+"}}}--------------------------------------------------------------------------
+"       Keymaps and macros {{{
 "-----------------------------------------------------------------------------
 command! -bar -nargs=? -complete=file CMakeThisFile call <SID>CMakeThisFile(<f-args>)
 command! CCommentBlock :set nocindent | exe "norm! o/*78a-o76a-A*/ko \t\t" | set cindent
 
 nnoremap <LocalLeader>m :CMakeThisFile<CR>
-nnoremap <LocalLeader>M :silent make! <bar> :redraw!<CR>
+nnoremap <LocalLeader>M :silent make! <bar> redraw!<CR>
+nnoremap <LocalLeader>D :silent make! debug <bar> redraw!<CR>
+nnoremap <LocalLeader>C :silent make! clean <bar> redraw!<CR>
 
 " Open header/source file corresponding to current source/header
 nnoremap <LocalLeader>c :execute "find " . expand("%:t:r") . ".c"<CR>
 nnoremap <LocalLeader>h :execute "find " . expand("%:t:r") . ".h"<CR>
 
-"-----------------------------------------------------------------------------
-"       Functions 
+"}}}--------------------------------------------------------------------------
+"       Functions {{{
 "-----------------------------------------------------------------------------
 function! s:CMakeThisFile(...) abort "{{{
     " if we have an argument, it is the filename
@@ -78,6 +81,7 @@ function! s:CMakeThisFile(...) abort "{{{
     " Return makeprg to original state
     let &makeprg = save_makeprg
 endfunction 
+"}}}
 "}}}
 "=============================================================================
 "=============================================================================

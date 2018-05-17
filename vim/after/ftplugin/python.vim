@@ -73,7 +73,7 @@ command! -range PythonCom2Doc <line1>,<line2>call <SID>PythonCom2Doc()
 
 function! s:PythonSelectDocstring(is_inside) abort
     let the_pat = "[\"']\\{3}"
-    let l:flags = a:is_inside ? "e1" : ""
+    let l:flags = a:is_inside ? "e" : ""
     execute 'normal! ?' . the_pat . '?' . l:flags . "\r"
     normal! v
     let l:flags = a:is_inside ? "b-1" : "e;/" . the_pat . "/e"

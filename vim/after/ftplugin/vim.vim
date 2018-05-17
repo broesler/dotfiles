@@ -11,6 +11,8 @@ setlocal tabstop=4
 setlocal softtabstop=4
 setlocal shiftwidth=4
 
+setlocal keywordprg=:help
+
 augroup vimscript
   au!
   " Make line into a comment header with dashes
