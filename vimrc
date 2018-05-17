@@ -269,17 +269,6 @@ augroup quickfix_window "{{{
     autocmd BufWinEnter quickfix nnoremap <silent> <buffer> q :cclose<CR>:lclose<CR>
 augroup END
 "}}}
-augroup xelatex_cmds "{{{
-    autocmd!
-    " use tex syntax highlighting
-    autocmd BufRead,BufNewFile *.xtx set filetype=tex
-    " set compiler options to use xelatex
-    autocmd BufRead,BufNewFile *.xtx let g:LatexBox_latexmk_options = "-file-line-error -synctex=1 -pdf -xelatex"
-    " autocmd BufRead,BufNewFile *.xtx call add(g:vimtex_compiler_latexmk['options'], '-xelatex')
-    " autocmd BufRead,BufNewFile *.xtx call uniq(sort(g:vimtex_compiler_latexmk['options']))
-    autocmd BufRead,BufNewFile *.xtx setlocal makeprg=latexmk\ \-interaction=nonstopmode\ \-pdf\ \-xelatex\ '%'
-augroup END
-"}}}
 augroup todo "{{{
     au!
     au Syntax * syn match myTodo /\v<(TODO|NOTE|FIXME):\=/

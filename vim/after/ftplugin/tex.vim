@@ -59,8 +59,8 @@ let g:vimtex_compiler_latexmk = {
     \}
 "}}}
 
-"----------------------------------------------------------------------------- 
-"        Override LaTeX-Box efm:
+"}}}-------------------------------------------------------------------------- 
+"        Override LaTeX-Box efm: {{{
 "-----------------------------------------------------------------------------
 " Errors as produced by pdflatex
 setlocal efm=%f:%l:%m
@@ -79,6 +79,18 @@ setlocal efm+=%W%.%#Reference\ %m\ on\ input\ line\ %l
 " Ignore unmatched lines -- don't include this line to show full error message
 " setlocal efm+=%-G%.%#
 
+"}}}-------------------------------------------------------------------------- 
+"        Autocmds {{{
+"-----------------------------------------------------------------------------
+augroup xelatex_cmds "{{{
+    autocmd!
+    " set compiler options to use xelatex
+    autocmd BufRead,BufNewFile *.xtx let g:LatexBox_latexmk_options = "-file-line-error -synctex=1 -pdf -xelatex"
+    autocmd BufRead,BufNewFile *.xtx setlocal makeprg=latexmk\ \-interaction=nonstopmode\ \-pdf\ \-xelatex\ '%'
+    " autocmd BufRead,BufNewFile *.xtx call add(g:vimtex_compiler_latexmk['options'], '-xelatex')
+    " autocmd BufRead,BufNewFile *.xtx call uniq(sort(g:vimtex_compiler_latexmk['options']))
+augroup END
+"}}}
 "}}}--------------------------------------------------------------------------
 "       LaTeX-specific functions {{{
 "-----------------------------------------------------------------------------
