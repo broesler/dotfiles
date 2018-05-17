@@ -7,13 +7,14 @@
     Description: Configuration file for ipython.
 """
 #==============================================================================
+import importlib
+from IPython.terminal.prompts import Prompts, Token
+
 c = get_config()
 
 #------------------------------------------------------------------------------ 
 #        Set prompt
 #------------------------------------------------------------------------------
-from IPython.terminal.prompts import Prompts, Token
-
 # Set the prompt 
 class MyPrompt(Prompts):
     def in_prompt_tokens(self, cli=None):
@@ -124,7 +125,11 @@ c.TerminalInteractiveShell.extra_open_editor_shortcuts = True
 #  pastie, borland, trac, native, fruity, bw, vim, vs, tango, rrt, xcode, igor,
 #  paraiso-light, paraiso-dark, lovelace, algol, algol_nu, arduino,
 #  rainbow_dash, abap
-c.TerminalInteractiveShell.highlighting_style = 'vim'
+# c.TerminalInteractiveShell.highlighting_style = 'vim'
+# See <http://chriskempson.com/projects/base16/> for preview of themes
+theme = importlib.import_module('base16.base16-eighties')
+c.TerminalInteractiveShell.highlighting_style = theme.Base16Style
+c.TerminalInteractiveShell.highlighting_style_overrides = theme.overrides
 
 #------------------------------------------------------------------------------
 #       StoreMagics(Magics) configuration
