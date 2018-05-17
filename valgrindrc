@@ -3,5 +3,6 @@
 --show-reachable=yes
 --track-origins=yes
 --dsymutil=yes
---suppressions=/Users/bernardroesler/src/misc/objc.supp
---suppressions=/Users/bernardroesler/src/misc/minimal.supp
+--suppressions=/Users/bernardroesler/src/misc/valgrind/objc.supp
+--suppressions=/Users/bernardroesler/src/misc/valgrind/minimal.supp
+--suppressions=/Users/bernardroesler/src/misc/valgrind/valgrind_tmpfile.supp
