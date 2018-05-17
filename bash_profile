@@ -36,7 +36,7 @@ t1854)
     export PATH="$PATH:/usr/local/git/bin"           # git
 
     # Add MATLAB binaries to path (for mlint, etc.)
-    export PATH="$PATH:/Applications/MATLAB_R2016b.app/bin"
+    export PATH="$PATH:/Applications/MATLAB_R2018a.app/bin"
 
     export TF_CPP_MIN_LOG_LEVEL=2   # ignore some tensorflow warnings
 
