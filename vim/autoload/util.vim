@@ -110,12 +110,9 @@ function! s:CommentBlock(...) "{{{
 
     " Get commentstring based on filetype
     let l:comm_default = s:GetCommentLeader()
-    " let l:idx = match(&commentstring, '%s')
-    " let l:comm_default = &commentstring[0:l:idx-1]
-    " let l:comm_default = substitute(l:comm_default, '%%', '%', 'g')
 
     " Remove any leading comment characters that exist, preserve indent
-    execute 's/^\(\s*\)' . l:comm_default . '*\s*/\1/ge'
+    execute 's/^\(\s*\)' . escape(l:comm_default, '\\/.*$^~[]') . '*\s*/\1/ge'
 
     " Create a comment block such as the header above
     let l:boxch = (a:0 >= 1) ? a:1 : '-'
@@ -239,12 +236,24 @@ function! s:QuickfixReformat() abort "{{{
 
         if disp_cols
             " pipes preserve default qflist syntax highlighting
-            call add(lines, printf('%s|%*s:%*s%s| %s',
-                        \ spath, lnum_width, item.lnum, 
-                        \ col_width, item.col, typestr, item.text))
+            if (item.lnum == 0) && (item.col == 0)
+                " Don't print filename again for continuation lines, just
+                " indent to align with the previous error message.
+                call add(lines, printf('||%*s: %s',
+                            \ (len(spath)+lnum_width+col_width+len(typestr)), '', item.text))
+            else
+                call add(lines, printf('%s|%*s:%*s%s| %s',
+                            \ spath, lnum_width, item.lnum, 
+                            \ col_width, item.col, typestr, item.text))
+            endif
         else
-            call add(lines, printf('%s|%*s%s| %s',
-                        \ spath, lnum_width, item.lnum, typestr, item.text))
+            if (item.lnum == 0)
+                call add(lines, printf('||%*s: %s',
+                            \ (len(spath)+lnum_width+len(typestr)), '', item.text))
+            else
+                call add(lines, printf('%s|%*s%s| %s',
+                            \ spath, lnum_width, item.lnum, typestr, item.text))
+            endif
         endif
     endfor
 
@@ -253,6 +262,16 @@ function! s:QuickfixReformat() abort "{{{
     setlocal nomodifiable nomodified
 endfunction
 "}}}
+function! s:AddGitPath() abort
+    if exists('g:loaded_fugitive')
+        let l:git_root = system('git rev-parse --show-toplevel')
+        let l:git_root = substitute(l:git_root, '[\n\r]', '', 'g')
+        " Check if path already contains git_root
+        if &path !~# escape(git_root, '\\/.*$^~[]')
+            let &path .= ',' . git_root . '/**'
+        endif
+    endif
+endfunction
 "}}}
 " FIXME function! util#UpdateTags() " {{{
 "   TODO search along same path that vim searches for tags files
@@ -285,6 +304,14 @@ augroup QFList
     autocmd!
     autocmd FileType qf call s:QuickfixReformat()
 augroup END
+
+augroup AddGit
+    autocmd!
+    autocmd BufNewFile,BufReadPost * call <SID>AddGitPath()
+augroup END
+
+" Add git directory to path
+command! AddGitPath call s:AddGitPath()
 
 " Reformat quickfix window
 command! QuickfixReformat call s:QuickfixReformat()

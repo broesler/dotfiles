@@ -1,38 +1,41 @@
 [user]
-  name = Bernard Roesler
-  email = bernard.roesler@gmail.com
+    name = Bernard Roesler
+    email = bernard.roesler@gmail.com
 [color]
-  ui = true
+    ui = true
 [alias]
-  aa = add -A :/
-  br = branch -v -v
-  co = checkout
-  conflicts = diff --name-only --diff-filter=U
-  dt = difftool
-  lol = log --oneline --graph --decorate
-  loa = log --oneline --graph --decorate --all
-  ld = log --abbrev-commit --decorate --graph \
-    --format=format:'%C(auto)%h%d %C(bold green)(%ar)%C(auto) %s %C(dim white)- %cn%C(auto)'
-  ll = log --pretty=format:"%C(auto)%h%d\\ %Cblue[%ad,\\ %cn]%C(auto)\\ %s" \
-    --decorate --stat=80 --date=format:"%D\\ %H:%M:%S"
-  lt = log --pretty=format:"%C(auto)%h%d\\ %Cblue[%ad,\\ %cn]%C(auto):\\ %s" \
-    --decorate --graph --date=format:"%D\\ %H:%M:%S"
-  st = status --short --branch
-  up = submodule update --recursive
+    aa = add -A :/
+    br = branch -v -v
+    co = checkout
+    conflicts = diff --name-only --diff-filter=U
+    dt = difftool
+    lol = log --oneline --graph --decorate
+    loa = log --oneline --graph --decorate --all
+    ld = log --abbrev-commit --decorate --graph \
+        --format=format:'%C(auto)%h%d %C(bold green)(%ar)%C(auto) %s %C(dim white)- %cn%C(auto)'
+    ll = log --pretty=format:"%C(auto)%h%d\\ %Cblue[%ad,\\ %cn]%C(auto)\\ %s" \
+        --decorate --stat=80 --date=format:"%D\\ %H:%M:%S"
+    lt = log --pretty=format:"%C(auto)%h%d\\ %Cblue[%ad,\\ %cn]%C(auto):\\ %s" \
+        --decorate --graph --date=format:"%D\\ %H:%M:%S"
+    root = rev-parse --show-toplevel
+    st = status --short --branch
+    up = submodule update --recursive
 [push]
-  default = current
+    default = current
 [merge]
     # tool = vimdiff
-  conflictstyle = diff3
-  tool = fugitive
+    conflictstyle = diff3
+    tool = fugitive
 [core]
-  excludesfile = ~/.gitignore_global
-  editor = vim -X
-  pager = less -F -X
-  fileMode = false
+    excludesfile = ~/.gitignore_global
+    editor = vim -X
+    pager = less -F -X
+    fileMode = false
 [diff]
-  tool = vimdiff
+    tool = vimdiff
 [difftool]
-  prompt = false
+    prompt = false
 [mergetool "fugitive"]
-  cmd = vim -f -c \"Gvdiff\" \"$MERGED\"
+    cmd = vim -f -c \"Gvdiff\" \"$MERGED\"
+[merge "ours"]
+	driver = true

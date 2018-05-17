@@ -11,7 +11,7 @@
 "       Preamble                                                         "{{{
 "-----------------------------------------------------------------------------
 " Ignore list of plugins
-let g:pathogen_disabled = ['vimtex']
+let g:pathogen_disabled = ['vimtex', 'jupyter-vim']
 call add(g:pathogen_disabled, 'vim-badplugin')
 " Run pathogen to load plugins (ignore errors on Linux machines)
 silent! call pathogen#infect()
@@ -34,12 +34,13 @@ endif
 " load man plugin so man pages can be read in a vim window (:Man or <Leader>K)
 runtime! ftplugin/man.vim
 
-" '**' recursively includes all directories below the current one
-" Search recursively down from directory of current file first, 
-" then recursively down from vim's working directory, 
-" then look upward for "include" no more than 3 directories from current file
-" Finally standard c header locations
-set path=./**,**,../../../**,include;../../../,/usr/local/include,/usr/include/
+" ./** : recursively search below directory of current *file* 
+" **   : recursively search below directory of current *vim* working directory
+" include;  : look upward for "include"
+" ../../../ : no more than 3 directories from current file
+" /usr(/local)?/include : standard c header locations
+"
+set path=./**,**,include;../../../,/usr/local/include,/usr/include/
 
 "}}}--------------------------------------------------------------------------
 "       Global Settings                                                  "{{{
@@ -102,7 +103,6 @@ set wildignore+=*.DS_Store                      " OSX bullshit
 " Searching {{{
 set hlsearch        " highlight all search terms
 set incsearch       " highlight search as it's typed
-set wrapscan        " jump back to top of file when searching
 set ignorecase      " ignore case when searching
 set smartcase       " case-sensitive if capital in search
 "}}}
@@ -143,10 +143,6 @@ set nosplitbelow    " split new windows       above current one
 set splitright      " split new windows to right of current one
 set switchbuf=useopen " with :bn, etc. if buffer is in a window, jump to it
 "}}}
-" Netrw {{{
-let g:netrw_banner=1        " 0 == no banner
-let g:netrw_browse_split=0  " 1 == open files in horizontal split
-"}}}
 " mouse {{{
 if has('mouse') && !exists("$SSH_TTY")
     set mouse=a
@@ -157,15 +153,7 @@ if has('mouse') && !exists("$SSH_TTY")
 endif
 "}}}
 " clipboard {{{
-" if (strlen(v:servername) > 0) || (strlen($TMUX) > 0)
-"     " Setting autoselectplus requires "+ for copy/paste outside of vim (in TMUX at least)
-    " set clipboard=autoselectplus,exclude:cons\|linux
-" else
-"     " Setting unnamedplus requires "* for CTRL-V copy/paste (in TMUX at least)
-    " set clipboard=unnamedplus,exclude:cons\|linux
-    " Setting unnamed requires "+ for copy/paste to/from MacOS
     set clipboard=unnamed,exclude:cons\|linux
-" endif
 "}}}
 " vimdiff {{{
 if &diff
@@ -179,7 +167,7 @@ endif
 set t_ZH=[3m
 set t_ZR=[23m
 "}}}
-" tags session print lischars options {{{
+" tags session lischars options {{{
 " read local tag file first, then look up the tree from current file ';', then
 " search in specified directories
 set tags=./tags,tags;,~/.dotfiles/tags,~/Documents/MATLAB/tags
@@ -187,7 +175,6 @@ set tags=./tags,tags;,~/.dotfiles/tags,~/Documents/MATLAB/tags
 " Don't save settings from session, usually we want to reset these to defaults
 " when closing/reopening a bunch of files
 set sessionoptions=blank,buffers,curdir,folds,help,resize,winsize
-set printoptions=paper:letter
 
 " Toggle "set list" or "set nolist" to view special characters
 if has("patch-7.4.710")
@@ -206,19 +193,18 @@ augroup code_cmds "{{{
     " Create template for new files
     " TODO merge all headers into one command that does not require a header
     " file... just insert desired text and use CommentBlock to make header!
-    autocmd BufNewFile *.c   call util#MakeTemplate("$HOME/.vim/header/c_header")
-    autocmd BufNewFile *.m   call util#MakeTemplate("$HOME/.vim/header/m_header")
-    autocmd BufNewFile *.f95 call util#MakeTemplate("$HOME/.vim/header/f_header")
-    autocmd BufNewFile *.py  call util#MakeTemplate("$HOME/.vim/header/py_header")
-    autocmd BufNewFile *.scm call util#MakeTemplate("$HOME/.vim/header/scm_header")
-    autocmd BufNewFile *.sh  call util#MakeTemplate("$HOME/.vim/header/sh_header")
-    autocmd BufNewFile *.vim call util#MakeTemplate("$HOME/.vim/header/vim_header")
+    for the_ext in ['c', 'm', 'f95', 'py', 'scm', 'sh', 'vim']
+        let filename = '$HOME/.vim/header/' . the_ext . '_header'
+        execute 'autocmd BufNewFile *.' . the_ext . 
+                    \ ' call util#MakeTemplate("' . filename . '")'
+    endfor
 
     autocmd FileType perl :compiler perl
 
     autocmd FileType conf source $HOME/.vim/after/ftplugin/sh/sections.vim
 
     " Load .types.vim highlighting file:
+    " FIXME Move to function/ftplugin/etc.
     autocmd BufRead,BufNewFile *.[ch] let fname = expand('<afile>:p:h') . '/.types.vim'
     autocmd BufRead,BufNewFile *.[ch] if filereadable(fname)
     autocmd BufRead,BufNewFile *.[ch]   exe 'so ' . fname
@@ -227,7 +213,7 @@ augroup code_cmds "{{{
     " TODO figure out how to break undo and jump sequence for this operation
     " Update 'Last Modified:' line in code files
     " autocmd FileType c,cpp,python,matlab,fortran,vim,sh,perl 
-        " \ autocmd BufWritePre <buffer> call LastModified()
+        " \ autocmd BufWritePre <buffer> call util#LastModified()
 augroup END
 "}}}
 augroup misc_cmds "{{{
@@ -243,9 +229,6 @@ augroup misc_cmds "{{{
 
     " Adjust colorcolumn to textwidth for every filetype
     autocmd BufEnter * if &textwidth == 0 | set colorcolumn=80 | else | set colorcolumn=+1 | endif
-
-    " Use K to search vim help for word under cursor only in vim files
-    autocmd FileType vim setlocal keywordprg=:help
 
     " Turn off folding while in insert mode (speeds up syntax), see:
     "   <http://vim.wikia.com/wiki/Keep_folds_closed_while_inserting_text>
@@ -292,7 +275,8 @@ let maplocalleader=","
 nnoremap <Leader>ve :edit $MYVIMRC<CR>
 nnoremap <Leader>vs :source $MYVIMRC<CR>
 nnoremap <Leader>fe :edit $HOME/.vim/autoload/util.vim<CR>
-" Open settings for current filetype
+" Open settings for current filetype 
+" TODO add path to other ftplugin locations (turn into function...)
 nnoremap <Leader>ft :execute "split $HOME/.vim/after/ftplugin/" . &filetype . ".vim"<CR>
 "}}}
 " Command line mappings {{{
@@ -345,10 +329,10 @@ nnoremap <Leader>H :GetHighlight<CR>
 "}}}
 
 " Open URL's in browser
-nnoremap <Leader>U :silent !open "<C-R><C-F>"<CR><bar>:redraw!<CR><CR>
+nnoremap <Leader>U :silent execute '!open ' . fnameescape("<C-R><C-F>")<CR><bar>:redraw!<CR><CR>
 
-" Change window directory to that of current file (':lcd -' changes back)
-nnoremap <Leader>d :lcd %:p:h<CR>:pwd<CR>
+" Change vim directory to that of current file (':cd -' changes back)
+nnoremap <Leader>d :cd %:p:h<CR>:pwd<CR>
 
 " unmap Q from entering Ex mode to avoid hitting it by accident
 nnoremap Q <nop>
@@ -493,6 +477,7 @@ let g:jedi#rename_command = "<localleader>r"
 let g:jedi#usages_command = "<localleader>g"
 let g:jedi#auto_vim_configuration = 0   " do not change 'completeopt'
 let g:jedi#popup_on_dot = 0             " only complete if we press the key
+let g:jedi#show_call_signatures = 0     " do not show call signatures (SLOW AND BUGGY)
 "}}}
 "}}}--------------------------------------------------------------------------
 "       Colorscheme                                                       "{{{
