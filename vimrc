@@ -482,32 +482,33 @@ let g:jedi#show_call_signatures = 0     " do not show call signatures (SLOW AND 
 "}}}--------------------------------------------------------------------------
 "       Colorscheme                                                       "{{{
 "-----------------------------------------------------------------------------
-" Use solarized colorscheme {{{
+" Select colorscheme {{{
 " Quick colorscheme swaps (includes entire iTerm + tmux scheme!)
 nnoremap <Leader>vd :ITermProf SolarizedDark<CR>
 nnoremap <Leader>vl :ITermProf SolarizedLight<CR>
 nnoremap <Leader>v2 :ITermProf LaterThisEvening<CR>
 
-set t_Co=256
-set background=dark
+let g:use_base16_colors = get(g:, 'use_base16_colors', 0)
 
-" Solarized options 
-" NOTE: set termcolors to 16 for "blue" background, 256 for "black"
-let g:solarized_termcolors = 256        " 256 | 16
-let g:solarized_termtrans  = 0          " 0 | 1  transparency
-let g:solarized_degrade    = 0          " 0 | 1
-let g:solarized_bold       = 1          " 1 | 0
-let g:solarized_underline  = 1          " 1 | 0
-let g:solarized_italic     = 1          " 0 | 1  Italics not supported in Terminal
-let g:solarized_contrast   = "normal"   " 'normal' | 'high' | 'low'
-let g:solarized_visibility = "normal"   " 'normal' | 'high' | 'low' = show extra chars
-colorscheme solarized
-"}}}
-" NOTE: UNCOMMENT 'hi' lines for default colorscheme {{{
-" hi Comment ctermfg=darkgreen
-" hi Type ctermfg=33
-" hi StatusLine ctermfg=none ctermbg=none
-" hi WildMenu ctermfg=yellow ctermbg=darkgrey
+if g:use_base16_colors
+    " Use base16 colors as dictated by terminal colors
+    let base16colorspace = 256
+    let color_file = "~/.vimrc_background"
+else
+    " Use vim-colors-solarized
+    let color_file = "~/.vimrc_solarized"
+endif
+
+if filereadable(expand(color_file))
+    execute 'source' color_file
+else
+    colorscheme default
+    hi Comment ctermfg=darkgreen
+    hi Type ctermfg=33
+    hi StatusLine ctermfg=none ctermbg=none
+    hi WildMenu ctermfg=yellow ctermbg=darkgrey
+endif
+
 "}}}
 " Spell check {{{
 " NOTE: need to be set AFTER colorscheme to work properly.

@@ -324,7 +324,9 @@ command! -nargs=* CommentBlock call s:CommentBlock(<f-args>)
 " NOTE: :CommentBlock = " 78 produces header at top of this file
 
 " Switch iTerm colors quickly
-command! -nargs=1 ITermProf silent execute "!iterm_prof <args>" | source $MYVIMRC
+command! -nargs=1 ITermProf let g:use_base16_colors=0 
+                            \| silent execute "!iterm_prof <args>" 
+                            \| source $MYVIMRC
 
 " Toggle diff
 command! DiffToggle call s:DiffToggle()

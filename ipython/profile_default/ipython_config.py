@@ -127,7 +127,7 @@ c.TerminalInteractiveShell.extra_open_editor_shortcuts = True
 #  rainbow_dash, abap
 # c.TerminalInteractiveShell.highlighting_style = 'vim'
 # See <http://chriskempson.com/projects/base16/> for preview of themes
-theme = importlib.import_module('base16.base16-eighties')
+theme = importlib.import_module('base16.base16-ocean')
 c.TerminalInteractiveShell.highlighting_style = theme.Base16Style
 c.TerminalInteractiveShell.highlighting_style_overrides = theme.overrides
 
