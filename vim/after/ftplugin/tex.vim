@@ -60,24 +60,24 @@ let g:vimtex_compiler_latexmk = {
 "}}}
 
 "}}}-------------------------------------------------------------------------- 
-"        Override LaTeX-Box efm: {{{
+"        Override LaTeX-Box errorformat: {{{
 "-----------------------------------------------------------------------------
 " Errors as produced by pdflatex
-setlocal efm=%f:%l:%m
-setlocal efm+=%E!\ LaTeX\ Error:\ %m
-setlocal efm+=%E!\ %m
+setlocal errorformat=%f:%l:%m
+setlocal errorformat+=%E!\ LaTeX\ Error:\ %m
+setlocal errorformat+=%E!\ %m
 
 " More info
-setlocal efm+=%-C<%m>
-setlocal efm+=%-C%p}
-setlocal efm+=%Cl.%l\ %m
+setlocal errorformat+=%-C<%m>
+setlocal errorformat+=%-C%p}
+setlocal errorformat+=%Cl.%l\ %m
 
 " Warnings for citations only
-setlocal efm+=%W%.%#Citation\ %m\ on\ input\ line\ %l
-setlocal efm+=%W%.%#Reference\ %m\ on\ input\ line\ %l
+setlocal errorformat+=%W%.%#Citation\ %m\ on\ input\ line\ %l
+setlocal errorformat+=%W%.%#Reference\ %m\ on\ input\ line\ %l
 
 " Ignore unmatched lines -- don't include this line to show full error message
-" setlocal efm+=%-G%.%#
+" setlocal errorformat+=%-G%.%#
 
 "}}}-------------------------------------------------------------------------- 
 "        Autocmds {{{
@@ -87,6 +87,7 @@ augroup xelatex_cmds "{{{
     " set compiler options to use xelatex
     autocmd BufRead,BufNewFile *.xtx let g:LatexBox_latexmk_options = "-file-line-error -synctex=1 -pdf -xelatex"
     autocmd BufRead,BufNewFile *.xtx setlocal makeprg=latexmk\ \-interaction=nonstopmode\ \-pdf\ \-xelatex\ '%'
+	" TODO properly implement these lines for vimtex (vs LaTeX-Box)
     " autocmd BufRead,BufNewFile *.xtx call add(g:vimtex_compiler_latexmk['options'], '-xelatex')
     " autocmd BufRead,BufNewFile *.xtx call uniq(sort(g:vimtex_compiler_latexmk['options']))
 augroup END

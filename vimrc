@@ -12,7 +12,6 @@
 "-----------------------------------------------------------------------------
 " Ignore list of plugins
 let g:pathogen_disabled = ['vimtex', 'jupyter-vim']
-call add(g:pathogen_disabled, 'vim-badplugin')
 " Run pathogen to load plugins (ignore errors on Linux machines)
 silent! call pathogen#infect()
 silent! call pathogen#helptags()
@@ -34,7 +33,8 @@ endif
 " load man plugin so man pages can be read in a vim window (:Man or <Leader>K)
 runtime! ftplugin/man.vim
 
-" ./** : recursively search below directory of current *file* 
+" Setting the path:
+" ./** : recursively search below directory of current *file*
 " **   : recursively search below directory of current *vim* working directory
 " include;  : look upward for "include"
 " ../../../ : no more than 3 directories from current file
@@ -56,13 +56,10 @@ set showcmd         " show partial commands
 set encoding=utf-8  " Ensure files are universally readable
 scriptencoding utf-8
 
-set modelines=20    " check 20 lines down for a modeline
-
 " It's not about the money, it's all about the timing {{{
 set notimeout           " Only timeout on key codes, not mappings
 set ttimeout
 set ttimeoutlen=10
-set ttyfast             " fast connection allows smoother scrolling
 set lazyredraw           " don't redraw during macros etc.
 "}}}
 " Backups {{{
@@ -75,7 +72,7 @@ set undolevels=1000         " How many undos
 set undoreload=10000        " number of lines to save for undo
 
 set undodir=~/.vim/tmp/undo/       " directory MUST already exist
-set backupdir=~/.vim/tmp/backup/ 
+set backupdir=~/.vim/tmp/backup/
 set directory=~/.vim/tmp/swap/
 "}}}
 " Omnicompletion {{{
@@ -91,9 +88,8 @@ set wildmenu            " Enable tab to show all menu options
 set wildmode=longest,list,full  " like bash completion
 set nofileignorecase    " no == do NOT ignore case when completing filenames
 
-set wildignore+=.git                            " Version control
-set wildignore+=*.aux,*.bbl,*.blg,*.log         " LaTeX aux files
-set wildignore+=*.out,*.toc,*.fls
+set wildignore+=.git  " Version control
+set wildignore+=*.aux,*.bbl,*.blg,*.log,*.out,*.toc,*.fls " LaTex aux files
 set wildignore+=*.fdb_latexmk,*.synctex*.gz
 set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg  " binary images
 set wildignore+=*.o,*.dll,*.pyc                 " compiled object files
@@ -116,7 +112,6 @@ set nojoinspaces    " use one space, not two, after punctuation
 set backspace=indent,eol,start  " allow backspacing over everything
 "}}}
 " Parens {{{
-" let g:loaded_matchparen = 0     " Do not highlight matching parens if == 1
 set showmatch                   " Show matching parens
 set matchtime=3                 " Highlight for 3 miliseconds
 "}}}
@@ -125,21 +120,17 @@ set nowrap                      " do not autowrap text to screen
 set linebreak                   " Do not break words mid-word
 set autoindent                  " indent based on filetype
 set formatoptions=cqr2l1j       " tcq default, :help fo-table
-set textwidth=0                 " set to 0 by default, set by filetype
 set colorcolumn=80              " default is 80, autocmd changes for filetype
 set diffopt+=iwhite             " ignore whitespace in diff windows
 "}}}
 " Folding {{{
-set foldcolumn=0                " show locations of folds in left-most column
 set foldmethod=marker           " auto-fold code
-set foldnestmax=4
 set foldminlines=3
 let g:vimsyn_folding = 'aflmpPr' " fold vimscript syntactically
 "}}}
 " Windows {{{
 set scrolloff=1     " cursor will never reach bottom of window
 set sidescroll=5    " cursor will never reach edge of screen
-set nosplitbelow    " split new windows       above current one
 set splitright      " split new windows to right of current one
 set switchbuf=useopen " with :bn, etc. if buffer is in a window, jump to it
 "}}}
@@ -188,31 +179,23 @@ endif
 "-----------------------------------------------------------------------------
 augroup code_cmds "{{{
     autocmd!
-    autocmd FileType matlab,sh,markdown,vim,perl,gitcommit setlocal iskeyword+=_
+    autocmd FileType c,cpp,matlab,sh,markdown,vim,perl,gitcommit setlocal iskeyword+=_
 
     " Create template for new files
     " TODO merge all headers into one command that does not require a header
     " file... just insert desired text and use CommentBlock to make header!
     for the_ext in ['c', 'm', 'f95', 'py', 'scm', 'sh', 'vim']
         let filename = '$HOME/.vim/header/' . the_ext . '_header'
-        execute 'autocmd BufNewFile *.' . the_ext . 
+        execute 'autocmd BufNewFile *.' . the_ext .
                     \ ' call util#MakeTemplate("' . filename . '")'
     endfor
 
     autocmd FileType perl :compiler perl
-
     autocmd FileType conf source $HOME/.vim/after/ftplugin/sh/sections.vim
-
-    " Load .types.vim highlighting file:
-    " FIXME Move to function/ftplugin/etc.
-    autocmd BufRead,BufNewFile *.[ch] let fname = expand('<afile>:p:h') . '/.types.vim'
-    autocmd BufRead,BufNewFile *.[ch] if filereadable(fname)
-    autocmd BufRead,BufNewFile *.[ch]   exe 'so ' . fname
-    autocmd BufRead,BufNewFile *.[ch] endif
 
     " TODO figure out how to break undo and jump sequence for this operation
     " Update 'Last Modified:' line in code files
-    " autocmd FileType c,cpp,python,matlab,fortran,vim,sh,perl 
+    " autocmd FileType c,cpp,python,matlab,fortran,vim,sh,perl
         " \ autocmd BufWritePre <buffer> call util#LastModified()
 augroup END
 "}}}
@@ -269,13 +252,13 @@ augroup END
 "       Key Mappings                                                     "{{{
 "-----------------------------------------------------------------------------
 let mapleader="\\"
-let maplocalleader=","
+let maplocalleader="-"  " underscore?
 
 " Quick access .vimrc and functions {{{
 nnoremap <Leader>ve :edit $MYVIMRC<CR>
 nnoremap <Leader>vs :source $MYVIMRC<CR>
 nnoremap <Leader>fe :edit $HOME/.vim/autoload/util.vim<CR>
-" Open settings for current filetype 
+" Open settings for current filetype
 " TODO add path to other ftplugin locations (turn into function...)
 nnoremap <Leader>ft :execute "split $HOME/.vim/after/ftplugin/" . &filetype . ".vim"<CR>
 "}}}
@@ -289,10 +272,9 @@ cnoremap <C-B> <S-Left>
 cnoremap <C-W> <S-Right>
 " Use '%%/...' on command line to open files in directory of current file
 cabbr <expr> %% expand("%:p:h")
-cabbr %ip% /Users/bernardroesler/anaconda3/lib/python3.6/site-packages/IPython/
 "}}}
 " Searching/Replacing maps {{{
-" Visual Mode */# from Scrooloose 
+" Visual Mode */# from Scrooloose
 function! s:VSetSearch()
   let temp = @@
   norm! gvy
@@ -337,7 +319,7 @@ nnoremap <Leader>d :cd %:p:h<CR>:pwd<CR>
 " unmap Q from entering Ex mode to avoid hitting it by accident
 nnoremap Q <nop>
 
-" Save file if changed 
+" Save file if changed
 " NOTE: MUST HAVE 'stty -ixon' in ~/.bashrc to disable flow control
 nnoremap <silent> <C-s> :update<CR>
 inoremap <silent> <C-s> <Esc>:update<CR>
@@ -408,7 +390,7 @@ nnoremap <C-]> <C-]>zt
 " Open explorer in new window
 noremap <Leader>E :Hexplore!<CR>
 
-" Timestamp 
+" Timestamp
 nnoremap <Leader>T "=strftime("%m/%d/%Y, %H:%M")<CR>p
 
 " Use spacebar to open/close folds
@@ -452,16 +434,10 @@ if executable('ag')
 endif
 "}}}
 " BReptile {{{
-let g:breptile_mapkeys = 1              " 1 == map generic keys
-let g:breptile_usetpgrep = 1            " 1 == use tpgrep to find program
-" let g:breptile_defaultpane = 'top-left' " default tmux pane to use
-let g:breptile_bash_pane = 'bottom-left'   
-let g:breptile_tpgrep_pat_gnuplot = '[g]nuplot'
-let g:breptile_mapkeys_matlab = 1       " 1 == map keys for matlab files
+let g:breptile_bash_pane = 'bottom-left'
 let g:breptile_tpgrep_pat_matlab = '[r]lwrap.*matlab'
 let g:breptile_tpgrep_pat_scheme = '[r]lwrap.*scheme'
-let g:breptile_mapkeys_python = 1       " 1 == map keys for python files
-let g:breptile_python_useinterp = 1     " expect python interpreter
+" let g:breptile_python_interp = 2  " use ipython (0 == shell, 1 == python)
 " }}}
 " LatexBox {{{
 let g:LatexBox_latexmk_async = 1    " 1 == run latexmk asynchronously (not really, requires vim server, no channels yet)
@@ -502,6 +478,7 @@ endif
 if filereadable(expand(color_file))
     execute 'source' color_file
 else
+    echom 'Could not find: ' . color_file . '. Using default colorscheme...'
     colorscheme default
     hi Comment ctermfg=darkgreen
     hi Type ctermfg=33
@@ -528,14 +505,8 @@ hi Comment cterm=italic
 " Do not highlight cursor line number in relative number mode
 hi clear CursorLineNr
 hi def link CursorLineNr Comment
-
 set cursorline " highlight line cursor is on for easy finding
 "}}}
-" Highlight NOTE etc {{{
-syn match myTodo "\(TODO\|NOTE\|FIXME\):\=" containedin=Comment
-hi def link myTodo Todo
-"}}}
-
 "}}}--------------------------------------------------------------------------
 "       Status Line                                                       "{{{
 "-----------------------------------------------------------------------------
@@ -549,10 +520,10 @@ set statusline+=%{exists('g:loaded_fugitive')?fugitive#statusline():''}
 set statusline+=\ \                          " separator
 set statusline+=%f\                          " %t filename, %f relative path
 set statusline+=\[%{strlen(&ft)?&ft:'none'}] " file type
-set statusline+=\ \             
+set statusline+=\ \
 set statusline+=%=                           " right align remainder
 " set statusline+=%8.20{util#GetHighlight()}   " show highlighting tag
-" set statusline+=\ \ 
+" set statusline+=\ \
 set statusline+=0x%-5B                       " character value under cursor
 set statusline+=%-15(%l,%c%V%)               " line, character
 set statusline+=%<%P                         " file position (percentage)
