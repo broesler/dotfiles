@@ -21,11 +21,9 @@ setlocal iskeyword-=:
 
 setlocal commentstring=#%s
 
-setlocal foldmethod=indent
-setlocal foldnestmax=4
+setlocal foldmethod=syntax
 setlocal foldignore=
 setlocal foldlevelstart=99
-let &foldlevel=&foldnestmax+1
 
 let python_highlight_all = 1
 
@@ -80,30 +78,55 @@ function! s:PythonSelectDocstring(is_inside) abort
     execute 'normal! /' . the_pat . '/' . l:flags . "\r"
 endfunction
 
+function! s:PythonStandardImport() abort
+    let l:import =  'import pandas as pd'
+                \ . 'import numpy as np'
+                \ . 'import matplotlib.pyplot as plt'
+                \ . 'from mpl_toolkits.mplot3d import axes3d'
+                \ . 'import seaborn as sns'
+    execute ':insert ' + l:import
+endfunction
+command! -buffer PythonStandardImport call <SID>PythonStandardImport()
+
 "-----------------------------------------------------------------------------
 "        Keymaps
 "-----------------------------------------------------------------------------
-nnoremap <LocalLeader>L :PythonLint<CR>
-nnoremap <LocalLeader>M :PythonRunScript<CR>
+nnoremap <buffer> <LocalLeader>L :PythonLint<CR>
+nnoremap <buffer> <LocalLeader>M :PythonRunScript<CR>
+
+nnoremap <buffer> <LocalLeader>i :PythonStandardImport<CR>
 
 " Edit ipython profile
-nnoremap <LocalLeader>ie :split ~/.ipython/profile_default/ipython_config.py<CR>
-nnoremap <LocalLeader>ij :split ~/.jupyter/jupyter_console_config.py<CR>
+" nnoremap <buffer> <LocalLeader>ie :split ~/.ipython/profile_default/ipython_config.py<CR>
+" nnoremap <buffer> <LocalLeader>ij :split ~/.jupyter/jupyter_console_config.py<CR>
 
 " Docstring objects
-onoremap ad :<C-u>call <SID>PythonSelectDocstring(0)<CR>
-onoremap id :<C-u>call <SID>PythonSelectDocstring(1)<CR>
-vnoremap ad :<C-u>call <SID>PythonSelectDocstring(0)<CR>
-vnoremap id :<C-u>call <SID>PythonSelectDocstring(1)<CR>
+onoremap <buffer> ad :<C-u>call <SID>PythonSelectDocstring(0)<CR>
+onoremap <buffer> id :<C-u>call <SID>PythonSelectDocstring(1)<CR>
+vnoremap <buffer> ad :<C-u>call <SID>PythonSelectDocstring(0)<CR>
+vnoremap <buffer> id :<C-u>call <SID>PythonSelectDocstring(1)<CR>
 
-" onoremap id :<C-u>exe "norm! ?[\"']\\{3}?e1\r:nohls\rv//b-1\r:nohls\rgv"<CR>
-" onoremap ad :<C-u>exe "norm! ?[\"']\\{3}?\r:nohls\rv//\r:nohls\rgv"<CR>
-" vnoremap id :<C-u>exe "norm! ?[\"']\\{3}?e1\r:nohls\rv//b-1\r:nohls\rgv"<CR>
-" vnoremap ad :<C-u>exe "norm! ?[\"']\\{3}?\r:nohls\rv//\r:nohls\rgv"<CR>
+" Docstring template macro (use <quote>dp)
+let @d="\n"
+       \ . '"""Description.'
+       \ . "\n\n"
+       \ . "Parameters\n"
+       \ . "----------\n"
+       \ . "x : type, shape ()\n"
+       \ . "    describe x\n"
+       \ . "\n"
+       \ . "Returns\n"
+       \ . "-------\n"
+       \ . "y : type, shape ()\n"
+       \ . "    describe y\n"
+       \ . '"""'
 
-
-" Make comment header with dashes
-let @h='o#78a-yypO#8a '
+" Standard import
+let @i = "import pandas as pd\n"
+     \ . "import numpy as np\n"
+     \ . "import matplotlib.pyplot as plt\n"
+     \ . "from mpl_toolkits.mplot3d import axes3d\n"
+     \ . "import seaborn as sns\n"
 
 "=============================================================================
 "=============================================================================

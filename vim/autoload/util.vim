@@ -80,6 +80,17 @@ function! util#MakeTemplate(filename) "{{{
     execute "normal! 3j$"
 endfunction
 "}}}
+function! util#HighlightTypes() "{{{
+    " Read types from dotfile created by ctags/make:
+    " $ ctags --c-kinds=gstu -o- ../../**/*.[ch] |\
+    "       awk 'BEGIN{printf("syntax keyword Type\t")}\
+    "           {printf("%s ", $1)}END{print ""}' > .types.vim
+    let fname = expand('%:p:h') . '/.types.vim'
+    if filereadable(fname)
+        execute 'source ' . fname
+    endif
+endfunction
+"}}}
 "}}}
 " Private API {{{
 function! s:AskQuit(msg, proposed_action) "{{{
@@ -252,7 +263,8 @@ function! s:QuickfixReformat() abort "{{{
                             \ (len(spath)+lnum_width+len(typestr)), '', item.text))
             else
                 call add(lines, printf('%s|%*s%s| %s',
-                            \ spath, lnum_width, item.lnum, typestr, item.text))
+                            \ spath, lnum_width, item.lnum, typestr,
+                            \ substitute(item.text, '\\0', '| ', 'g')))
             endif
         endif
     endfor
@@ -262,7 +274,7 @@ function! s:QuickfixReformat() abort "{{{
     setlocal nomodifiable nomodified
 endfunction
 "}}}
-function! s:AddGitPath() abort
+function! s:AddGitPath() abort "{{{
     if exists('g:loaded_fugitive')
         let l:git_root = system('git rev-parse --show-toplevel')
         let l:git_root = substitute(l:git_root, '[\n\r]', '', 'g')
@@ -318,6 +330,7 @@ command! QuickfixReformat call s:QuickfixReformat()
 
 " Get highlighting
 command! GetHighlight call s:GetHighlight()
+" command! HighlightTypes call s:HighlightTypes()
 
 " Comment block command
 command! -nargs=* CommentBlock call s:CommentBlock(<f-args>)
@@ -335,3 +348,4 @@ command! DiffToggle call s:DiffToggle()
 noremap <silent> <Plug>UtilIncr :call <SID>Incr()<CR>
 
 "}}}
+" vim:fdm=marker:

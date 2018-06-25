@@ -43,6 +43,12 @@ t1854)
     # Include my own python utility scripts
     export PYTHONPATH="$PYTHONPATH:$HOME/src/python/util"
 
+    # added by Anaconda3 5.2.0 installer
+    export PATH="/Users/bernardroesler/anaconda3/bin:$PATH"
+
+    # FIXME HACK to make sqlalchemy work with mysql homebrew update...
+    export DYLD_LIBRARY_PATH="/usr/local/opt/mysql/lib/:$DYLD_LIBRARY_PATH"
+
     # brew doctor needs this line as of El Cap update 11/17/15
     export LC_ALL=en_US.UTF-8  
 

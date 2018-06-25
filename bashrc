@@ -102,11 +102,11 @@ if [[ "$host" = t1854 ]]; then
     complete -r vim
 
     # Set-up virtualenv wrapper for python development
-    vewrap="$(brew --prefix)/bin/virtualenvwrapper.sh"
-    if [ -f "$vewrap" ]; then
-        export WORKON_HOME="$HOME/.envs"
-        source "$vewrap"
-    fi
+    # vewrap="$(brew --prefix)/bin/virtualenvwrapper.sh"
+    # if [ -f "$vewrap" ]; then
+    #     export WORKON_HOME="$HOME/.envs"
+    #     source "$vewrap"
+    # fi
 fi
 
 #------------------------------------------------------------------------------

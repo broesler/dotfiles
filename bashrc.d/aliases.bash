@@ -120,7 +120,7 @@ alias lt='tree -C'
 alias mkdir='mkdir -p'
 alias mlint='/Applications/MATLAB_R2018a.app/bin/maci64/mlint'
 alias myag="ag $agcolors"
-alias mygcc='gcc-7 -Wall -pedantic -std=c99'
+alias mygcc='gcc-8 -Wall -pedantic -std=c99'
 alias mygfortran="gfortran $gfopts"
 alias path='echo $PATH | tr -s ":" "\n"'
 alias sicp='rlwrap -r -c -f "$HOME"/src/scheme/mit_scheme_bindings.txt scheme'

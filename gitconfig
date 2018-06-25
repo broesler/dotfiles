@@ -34,9 +34,20 @@
 [diff]
     tool = vimdiff
 [difftool]
-    prompt = false
+	prompt = false
 [mergetool "fugitive"]
     cmd = vim -f -c \"Gvdiff\" \"$MERGED\"
 [merge "ours"]
 	driver = true
 # vim:ft=gitconfig:
+[diff "jupyternotebook"]
+	command = git-nbdiffdriver diff
+[merge "jupyternotebook"]
+	driver = git-nbmergedriver merge %O %A %B %L %P
+	name = jupyter notebook merge driver
+[difftool "nbdime"]
+	cmd = git-nbdifftool diff \"$LOCAL\" \"$REMOTE\" \"$BASE\"
+[mergetool "nbdime"]
+	cmd = git-nbmergetool merge \"$BASE\" \"$LOCAL\" \"$REMOTE\" \"$MERGED\"
+[mergetool]
+	prompt = false

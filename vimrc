@@ -193,6 +193,9 @@ augroup code_cmds "{{{
     autocmd FileType perl :compiler perl
     autocmd FileType conf source $HOME/.vim/after/ftplugin/sh/sections.vim
 
+    " Load types file
+    autocmd BufRead,BufNewFile *.[ch] call util#HighlightTypes()
+
     " TODO figure out how to break undo and jump sequence for this operation
     " Update 'Last Modified:' line in code files
     " autocmd FileType c,cpp,python,matlab,fortran,vim,sh,perl
@@ -248,11 +251,22 @@ augroup CursorLineOnlyInActiveWindow "{{{
     au WinLeave * silent setlocal nocursorline
 augroup END
 "}}}
+augroup xelatex_cmds "{{{
+    autocmd!
+    " set compiler options to use xelatex
+    autocmd BufRead,BufNewFile *.xtx set ft=tex
+    autocmd BufRead,BufNewFile *.xtx let g:LatexBox_latexmk_options = "-file-line-error -synctex=1 -pdf -xelatex"
+    autocmd BufRead,BufNewFile *.xtx setlocal makeprg=latexmk\ \-interaction=nonstopmode\ \-pdf\ \-xelatex\ '%'
+	" TODO properly implement these lines for vimtex (vs LaTeX-Box)
+    " autocmd BufRead,BufNewFile *.xtx call add(g:vimtex_compiler_latexmk['options'], '-xelatex')
+    " autocmd BufRead,BufNewFile *.xtx call uniq(sort(g:vimtex_compiler_latexmk['options']))
+augroup END
+"}}}
 "}}}--------------------------------------------------------------------------
 "       Key Mappings                                                     "{{{
 "-----------------------------------------------------------------------------
 let mapleader="\\"
-let maplocalleader="-"  " underscore?
+let maplocalleader=","
 
 " Quick access .vimrc and functions {{{
 nnoremap <Leader>ve :edit $MYVIMRC<CR>
@@ -328,7 +342,7 @@ inoremap <silent> <C-s> <Esc>:update<CR>
 noremap <silent> <Leader>s :set spell!<CR>
 
 " Turn off highlighting of last search
-nnoremap <silent> ,/ :nohls<CR>
+nnoremap <silent> <LocalLeader>/ :nohls<CR>
 
 " Make Y consistent with C and D -- doesn't always work??
 nnoremap Y y$
@@ -437,7 +451,7 @@ endif
 let g:breptile_bash_pane = 'bottom-left'
 let g:breptile_tpgrep_pat_matlab = '[r]lwrap.*matlab'
 let g:breptile_tpgrep_pat_scheme = '[r]lwrap.*scheme'
-" let g:breptile_python_interp = 2  " use ipython (0 == shell, 1 == python)
+let g:breptile_python_interp = 2    " expect ipython
 " }}}
 " LatexBox {{{
 let g:LatexBox_latexmk_async = 1    " 1 == run latexmk asynchronously (not really, requires vim server, no channels yet)
@@ -513,14 +527,14 @@ set cursorline " highlight line cursor is on for easy finding
 set laststatus=2                             " always show statusbar
 
 set statusline=                              " clear default status line
-set statusline+=%-4.3n\                      " buffer number
+set statusline+=%-3.3n\                      " buffer number
 set statusline+=%h%m%r%w                     " status flags
 set statusline+=\                            " separator
 set statusline+=%{exists('g:loaded_fugitive')?fugitive#statusline():''}
-set statusline+=\ \                          " separator
+set statusline+=\                            " separator
 set statusline+=%f\                          " %t filename, %f relative path
 set statusline+=\[%{strlen(&ft)?&ft:'none'}] " file type
-set statusline+=\ \
+set statusline+=\                            " separator
 set statusline+=%=                           " right align remainder
 " set statusline+=%8.20{util#GetHighlight()}   " show highlighting tag
 " set statusline+=\ \
@@ -534,3 +548,4 @@ if version >= 700
     autocmd InsertLeave * hi StatusLine term=none    ctermfg=none  ctermbg=none
 endif
 "}}}
+" vim:fdm=marker:

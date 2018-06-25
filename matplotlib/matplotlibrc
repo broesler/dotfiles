@@ -132,7 +132,7 @@ axes.axisbelow      : True     # draw axis gridlines and ticks below
 # The font.size property is the default font size for text, given in pts.
 # 10 pt is the standard value.
 #
-font.family         : serif
+font.family         : sans-serif
 # font.style          : normal
 # font.variant        : normal
 # font.weight         : medium
@@ -160,7 +160,7 @@ font.monospace      : Consolas, DejaVu Sans Mono, Bitstream Vera Sans Mono, Anda
 # If another font is desired which can loaded using the
 # LaTeX \usepackage command, please inquire at the
 # matplotlib mailing list
-text.usetex         : True
+text.usetex : False
 
 #mathtext.default : it # The default font to use for math.
                        # Can be any of the LaTeX font names, including
