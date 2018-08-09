@@ -96,6 +96,9 @@ nnoremap <buffer> <LocalLeader>M :PythonRunScript<CR>
 
 nnoremap <buffer> <LocalLeader>i :PythonStandardImport<CR>
 
+" Make in-line comment into it's own line above
+nnoremap <Leader>j f#DOpj:s/\s\+$//
+
 " Edit ipython profile
 " nnoremap <buffer> <LocalLeader>ie :split ~/.ipython/profile_default/ipython_config.py<CR>
 " nnoremap <buffer> <LocalLeader>ij :split ~/.jupyter/jupyter_console_config.py<CR>
@@ -108,25 +111,30 @@ vnoremap <buffer> id :<C-u>call <SID>PythonSelectDocstring(1)<CR>
 
 " Docstring template macro (use <quote>dp)
 let @d="\n"
-       \ . '"""Description.'
-       \ . "\n\n"
-       \ . "Parameters\n"
-       \ . "----------\n"
-       \ . "x : type, shape ()\n"
-       \ . "    describe x\n"
-       \ . "\n"
-       \ . "Returns\n"
-       \ . "-------\n"
-       \ . "y : type, shape ()\n"
-       \ . "    describe y\n"
-       \ . '"""'
+       \ . "    Parameters\n"
+       \ . "    ----------\n"
+       \ . "    x : type, shape ()\n"
+       \ . "        describe x\n"
+       \ . "    \n"
+       \ . "    Returns\n"
+       \ . "    -------\n"
+       \ . "    y : type, shape ()\n"
+       \ . "        describe y\n\t"
+       \ . '    """'
 
 " Standard import
 let @i = "import pandas as pd\n"
      \ . "import numpy as np\n"
      \ . "import matplotlib.pyplot as plt\n"
-     \ . "from mpl_toolkits.mplot3d import axes3d\n"
+     \ . "from matplotlib.gridspec import GridSpec\n"
      \ . "import seaborn as sns\n"
 
+" Matplotlib figure set-up
+let @f = "fig = plt.figure()\n"
+     \ . "fig.clf()\n"
+     \ . "ax = fig.add_subplot(111)\n"
+     \ . "ax.plot()\n"
+     \ . "ax.set_xlabel('')\n"
+     \ . "ax.set_ylabel('')\n"
 "=============================================================================
 "=============================================================================

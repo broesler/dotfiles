@@ -405,7 +405,7 @@ nnoremap <C-]> <C-]>zt
 noremap <Leader>E :Hexplore!<CR>
 
 " Timestamp
-nnoremap <Leader>T "=strftime("%m/%d/%Y, %H:%M")<CR>p
+nnoremap <Leader>T "=strftime("%Y-%m-%d %H:%M")<CR>p
 
 " Use spacebar to open/close folds
 nnoremap <space> za

@@ -39,6 +39,9 @@ CDPATH=".:..:../..:$HOME"
 # Set the default editor to vim.
 export EDITOR=vim
 
+# Default postgresql database for psql
+export PGDATABASE=postgres
+
 # Avoid succesive duplicates and spaces in the bash command history, ignore
 # simple, commonly-used commands. No need to "export", these are only used in
 # interactive shells

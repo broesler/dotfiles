@@ -1,0 +1,27 @@
+{
+  "keys": {
+    "command": {
+      "unbind": [
+        "j",
+        "shift-j"
+      ],
+      "bind": {
+        "shift-j": "jupyter-notebook:merge-cell-with-next-cell",
+        "j": "jupyter-notebook:select-next-cell"
+      }
+    }
+  },
+  "ruler_column": [
+    80
+  ],
+  "load_extensions": {
+    "nbextensions_configurator/config_menu/main": true,
+    "contrib_nbextensions_help_item/main": true,
+    "code_prettify/autopep8": true,
+    "ruler/main": true,
+    "spellchecker/main": false,
+    "codefolding/main": true,
+    "code_prettify/code_prettify": true,
+    "equation-numbering/main": true
+  }
+}
