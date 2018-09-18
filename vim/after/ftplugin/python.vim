@@ -31,13 +31,14 @@ let python_highlight_all = 1
 "       Functions to lint + make code 
 "-----------------------------------------------------------------------------
 " Set up syntax error checking
-function! PythonLint()
-  let &makeprg="pylint --reports=n --output-format=parseable %:p"
-  let &efm="%W%f:%l: [%*[CRW]%.%#] %m,%Z%p^^,"
-              \ . "%E%f:%l: [%*[EF]%.%#] %m,%Z%p^^,%-G%.%#"
-  update | silent make! | redraw!
-endfunction
-command! PythonLint :call PythonLint()
+" function! PythonLint()
+"   let &makeprg="pylint --reports=n --output-format=parseable %:p"
+"   let &efm="%W%f:%l: [%*[CRW]%.%#] %m,%Z%p^^,"
+"               \ . "%E%f:%l: [%*[EF]%.%#] %m,%Z%p^^,%-G%.%#"
+"   update | silent make! | redraw!
+" endfunction
+" command! -buffer PythonLint :call PythonLint()
+command! -buffer PythonFlake8 :call Flake8()
 
 function! PythonRunScript()
   setlocal makeprg=python\ %
@@ -47,7 +48,7 @@ function! PythonRunScript()
   setlocal efm=%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
   update | silent make! | redraw!
 endfunction
-command! PythonRunScript :call PythonRunScript()
+command! -buffer PythonRunScript :call PythonRunScript()
 
 function! s:PythonCom2Doc() range abort
     " Convert comment into docstring
@@ -67,7 +68,7 @@ function! s:PythonCom2Doc() range abort
     endif
     let @q = l:reg_save
 endfunction
-command! -range PythonCom2Doc <line1>,<line2>call <SID>PythonCom2Doc()
+command! -buffer -range PythonCom2Doc <line1>,<line2>call <SID>PythonCom2Doc()
 
 function! s:PythonSelectDocstring(is_inside) abort
     let the_pat = "[\"']\\{3}"
@@ -78,20 +79,21 @@ function! s:PythonSelectDocstring(is_inside) abort
     execute 'normal! /' . the_pat . '/' . l:flags . "\r"
 endfunction
 
-function! s:PythonStandardImport() abort
-    let l:import =  'import pandas as pd'
-                \ . 'import numpy as np'
-                \ . 'import matplotlib.pyplot as plt'
-                \ . 'from mpl_toolkits.mplot3d import axes3d'
-                \ . 'import seaborn as sns'
-    execute ':insert ' + l:import
-endfunction
-command! -buffer PythonStandardImport call <SID>PythonStandardImport()
+" function! s:PythonStandardImport() abort
+"     let l:import =  'import pandas as pd'
+"                 \ . 'import numpy as np'
+"                 \ . 'import matplotlib.pyplot as plt'
+"                 \ . 'from mpl_toolkits.mplot3d import axes3d'
+"                 \ . "import seaborn as sns\n"
+"     execute ':insert ' + l:import
+" endfunction
+" command! -buffer PythonStandardImport call <SID>PythonStandardImport()
 
 "-----------------------------------------------------------------------------
 "        Keymaps
 "-----------------------------------------------------------------------------
-nnoremap <buffer> <LocalLeader>L :PythonLint<CR>
+" nnoremap <buffer> <LocalLeader>L :PythonLint<CR>
+nnoremap <buffer> <LocalLeader>L :PythonFlake8<CR>
 nnoremap <buffer> <LocalLeader>M :PythonRunScript<CR>
 
 nnoremap <buffer> <LocalLeader>i :PythonStandardImport<CR>
@@ -109,17 +111,24 @@ onoremap <buffer> id :<C-u>call <SID>PythonSelectDocstring(1)<CR>
 vnoremap <buffer> ad :<C-u>call <SID>PythonSelectDocstring(0)<CR>
 vnoremap <buffer> id :<C-u>call <SID>PythonSelectDocstring(1)<CR>
 
+" " Docstring template macro (use <quote>dp)
+" let @d="\n"
+"        \ . "    Parameters\n"
+"        \ . "    ----------\n"
+"        \ . "    x : type, shape ()\n"
+"        \ . "        describe x\n"
+"        \ . "    \n"
+"        \ . "    Returns\n"
+"        \ . "    -------\n"
+"        \ . "    y : type, shape ()\n"
+"        \ . "        describe y\n\t"
+"        \ . '    """'
+
 " Docstring template macro (use <quote>dp)
 let @d="\n"
-       \ . "    Parameters\n"
-       \ . "    ----------\n"
-       \ . "    x : type, shape ()\n"
-       \ . "        describe x\n"
-       \ . "    \n"
-       \ . "    Returns\n"
-       \ . "    -------\n"
-       \ . "    y : type, shape ()\n"
-       \ . "        describe y\n\t"
+       \ . "    :param ndarray x: shape (), describe x\n"
+       \ . "    :returns: y -- shape (), describe y\n"
+       \ . "    :rtype: ndarray\n"
        \ . '    """'
 
 " Standard import
@@ -127,7 +136,7 @@ let @i = "import pandas as pd\n"
      \ . "import numpy as np\n"
      \ . "import matplotlib.pyplot as plt\n"
      \ . "from matplotlib.gridspec import GridSpec\n"
-     \ . "import seaborn as sns\n"
+     \ . "import seaborn as sns\n\n"
 
 " Matplotlib figure set-up
 let @f = "fig = plt.figure()\n"
