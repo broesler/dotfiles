@@ -75,7 +75,7 @@ function! util#MakeTemplate(filename) "{{{
     " Update the filename field to current filename
     execute "%s@File:.*@File: " . expand("%:t")
     " Update the date created field to the current date/time
-    execute "%s@Created:.*@Created: " . strftime("%m/%d/%Y, %H:%M")
+    execute "%s@Created:.*@Created: " . strftime("%Y-%m-%d %H:%M")
     " Move the cursor to the end of the description line
     execute "normal! 3j$"
 endfunction
