@@ -19,7 +19,7 @@
         --decorate --graph --date=format:"%D\\ %H:%M:%S"
     root = rev-parse --show-toplevel
     st = status --short --branch
-    up = submodule update --recursive
+    up = submodule update --recursive --remote
 [push]
     default = current
 [merge]
