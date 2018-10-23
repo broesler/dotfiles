@@ -492,7 +492,7 @@ endif
 if filereadable(expand(color_file))
     execute 'source' color_file
 else
-    echom 'Could not find: ' . color_file . '. Using default colorscheme...'
+    echo 'Could not find: ' . color_file . '. Using default colorscheme...'
     colorscheme default
     hi Comment ctermfg=darkgreen
     hi Type ctermfg=33

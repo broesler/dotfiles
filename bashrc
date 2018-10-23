@@ -20,7 +20,7 @@ t1854)
     # Set the prompt with bright green text -- include GNU screen window number
     PS1=$"\[\033[1;32m\][\u@\h: \w]${WINDOW}\$ \[\033[0m\]"
     ;;
-babylon*|polaris)
+babylon*|polaris|BROESLER*)
     # Set to bright cyan text for linux machines (easy tell on ssh to babylons)
     PS1=$"\[\033[0;36m\][\u@\h: \w]${WINDOW}\$ \[\033[0m\]"
     ;;
