@@ -18,7 +18,6 @@ fsync = False
 [Account BRgmail]
 localrepository = BRgmail_Local
 remoterepository = BRgmail_Remote
-status_backend = sqlite
 postsynchook = notmuch new
 # maxage = 2500
 

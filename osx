@@ -24,7 +24,7 @@ done 2>/dev/null &
 echo "Configuring General UI/UX..."
 
 # Set computer name (as done via System Preferences -> Sharing)
-# sudo scutil --set ComputerName "0x6D746873"
+# sudo scutil --set ComputerName "0x6D746873" # ASCII: mths
 # sudo scutil --set HostName "0x6D746873"
 # sudo scutil --set LocalHostName "0x6D746873"
 # sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server \
@@ -39,9 +39,9 @@ echo "Configuring General UI/UX..."
 # Menu bar: hide the Time Machine, Volume, and User icons
 for domain in ~/Library/Preferences/ByHost/com.apple.systemuiserver.*; do
     defaults write "${domain}" dontAutoLoad -array \
-        "/System/Library/CoreServices/Menu Extras/TimeMachine.menu" \
         "/System/Library/CoreServices/Menu Extras/Volume.menu" \
         "/System/Library/CoreServices/Menu Extras/User.menu"
+        # "/System/Library/CoreServices/Menu Extras/TimeMachine.menu" \
 done
 
 defaults write com.apple.systemuiserver menuExtras -array \
@@ -358,7 +358,7 @@ echo "Configuring Dock, Dashboard, and hot corners..."
 # defaults write com.apple.dock mineffect -string "scale"
 
 # Minimize windows into their application's icon
-defaults write com.apple.dock minimize-to-application -bool true
+defaults write com.apple.dock minimize-to-application -bool false
 
 # Enable spring loading for all Dock items
 defaults write com.apple.dock enable-spring-load-actions-on-all-items -bool true
@@ -644,7 +644,7 @@ echo "Configuring Time Machine..."
 defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
 
 # Disable local Time Machine backups
-# hash tmutil &> /dev/null && sudo tmutil disablelocal
+hash tmutil &> /dev/null && sudo tmutil disablelocal
 
 ################################################################################
 #         Activity Monitor

@@ -49,3 +49,12 @@
 [submodule "vim/bundle/vim-flake8"]
 	path = vim/bundle/vim-flake8
 	url = https://github.com/nvie/vim-flake8.git
+[submodule "tmux/plugins/tmux-colors-solarized"]
+    path = tmux/plugins/tmux-colors-solarized
+    url = https://github.com/seebi/tmux-colors-solarized.git
+[submodule "tmux/plugins/tmux-resurrect"]
+    path = tmux/plugins/tmux-resurrect
+    url = https://github.com/tmux-plugins/tmux-resurrect.git
+[submodule "tmux/plugins/tpm"]
+    path = tmux/plugins/tpm
+    url = https://github.com/tmux-plugins/tpm.git

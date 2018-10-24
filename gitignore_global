@@ -24,6 +24,7 @@ Session.vim
 *.QT*
 *.ai
 *.avi
+*.bmp
 *.csv
 *.dat
 *.eps
