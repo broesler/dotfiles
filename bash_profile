@@ -36,7 +36,8 @@ t1854)
     export PATH="$PATH:/usr/local/git/bin"           # git
 
     # Add MATLAB binaries to path (for mlint, etc.)
-    export PATH="$PATH:/Applications/MATLAB_R2018a.app/bin"
+    export MATLAB_PATH="/Applications/MATLAB_R2018a.app/bin"
+    export PATH="$PATH:$MATLAB_PATH"
 
     export TF_CPP_MIN_LOG_LEVEL=2   # ignore some tensorflow warnings
 
@@ -72,33 +73,33 @@ t1854)
     # export MIT_SCHEME_EXE='/Applications/MIT-Scheme.app/Contents/Resources/mit-scheme'
     export MITSCHEME_LIBRARY_PATH='/usr/local/lib/mit-scheme-c/'
 
-    # ensure tmux uses colors (not sure if I need this on babylon/polaris?)
+    # ensure tmux uses colors (not sure if I need this on babylon)
     export TERM='screen-256color'
     ;;
 
-# RSTOR data server @ Dartmouth
-polaris)
-    # Print "System Information" at login
-    if [ -x /usr/local/bin/motd.make.sh ]; then
-        /usr/local/bin/motd.make.sh
-    fi
+BROESLER-T480)  # Ubuntu on Windows PC (Lenovo T480 for work)
+    export WINHOME='/mnt/c/Users/broesler/'  # path to home directory (C:)
+    export MAT="$WINHOME/Documents/MATLAB/"  # path to Matlab files
+
+    # add MATLAB files (mlint.exe, etc.)
+    export MATLAB_PATH="/mnt/c/Program Files/MATLAB/R2015b/bin/win64"
+    export PATH="$PATH:$MATLAB_PATH"
+
+    # added by Anaconda3 4.5.4 installer
+    export PATH="/home/broesler/anaconda3/bin:$PATH"
+
+
+    # Allow X11 to work
+    export DISPLAY=localhost:0.0
     ;;
 esac
 
 # Add my local files
 export PATH="$PATH:$HOME/bin"
-
-export SAVE_PATH=$PATH
+export SAVE_PATH=$PATH  # useful to check if anything has modified PATH
 
 # default less options (-A fails on older versions)
-case "$host" in
-polaris)
-    export LESS=-XFirsx8g
-    ;;
-*)
-    export LESS=-AXFirsx8g
-    ;;
-esac
+export LESS=-AXFirsx8g
 
 # less highlighting for man pages:
 # NOTE: do not actually use "tput bold" because iTerm uses "bright" colors,

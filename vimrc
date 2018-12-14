@@ -120,7 +120,7 @@ set nowrap                      " do not autowrap text to screen
 set linebreak                   " Do not break words mid-word
 set autoindent                  " indent based on filetype
 set formatoptions=cqr2l1j       " tcq default, :help fo-table
-set colorcolumn=80              " default is 80, autocmd changes for filetype
+set colorcolumn=80              " autocmd changes for filetype
 set diffopt+=iwhite             " ignore whitespace in diff windows
 "}}}
 " Folding {{{
@@ -491,6 +491,8 @@ endif
 
 if filereadable(expand(color_file))
     execute 'source' color_file
+    " turn off background for windows ubuntu bg=dark
+    hi Normal ctermbg=none
 else
     echo 'Could not find: ' . color_file . '. Using default colorscheme...'
     colorscheme default

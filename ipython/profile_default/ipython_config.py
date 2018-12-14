@@ -125,7 +125,7 @@ c.TerminalInteractiveShell.extra_open_editor_shortcuts = True
 #  pastie, borland, trac, native, fruity, bw, vim, vs, tango, rrt, xcode, igor,
 #  paraiso-light, paraiso-dark, lovelace, algol, algol_nu, arduino,
 #  rainbow_dash, abap
-c.TerminalInteractiveShell.highlighting_style = 'vim'
+c.TerminalInteractiveShell.highlighting_style = 'native'
 # See <http://chriskempson.com/projects/base16/> for preview of themes
 # theme = importlib.import_module('base16.base16-ocean')
 # c.TerminalInteractiveShell.highlighting_style = theme.Base16Style

@@ -22,6 +22,7 @@ set colored-stats on            # use ls when tab-completing
 # a directory, not a file
 set mark-symlinked-directories on 
 
+set bell-style none # turn off obnoxious windows bell
 
 # NOTE: These maps require `set -o vi' in .bashrc in order to work!!!
 $if mode=vi
