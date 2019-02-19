@@ -7,8 +7,10 @@
     Description: Configuration file for ipython.
 """
 #==============================================================================
-import importlib
+
 from IPython.terminal.prompts import Prompts, Token
+
+# import importlib
 
 c = get_config()
 
@@ -44,15 +46,21 @@ c.AliasManager.user_aliases = [
 #------------------------------------------------------------------------------
 #       InteractiveShellApp(Configurable) configuration
 #------------------------------------------------------------------------------
-#c.InteractiveShellApp.code_to_run = ''
+c.InteractiveShellApp.code_to_run = ''
 #c.InteractiveShellApp.exec_files = []
 c.InteractiveShellApp.extensions = [
     'autoreload',
 ]
+
 c.InteractiveShellApp.exec_lines = [
     '%autoreload 2',
     'import sys',
     'import os',
+    'import pandas as pd',
+    'import numpy as np',
+    'import matplotlib.pyplot as plt',
+    'from matplotlib.gridspec import GridSpec',
+    'import seaborn as sns'
 ]
 
 #c.InteractiveShellApp.extra_extension = ''
