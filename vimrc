@@ -131,7 +131,6 @@ let g:vimsyn_folding = 'aflmpPr' " fold vimscript syntactically
 " Windows {{{
 set scrolloff=1     " cursor will never reach bottom of window
 set sidescroll=5    " cursor will never reach edge of screen
-set splitright      " split new windows to right of current one
 set switchbuf=useopen " with :bn, etc. if buffer is in a window, jump to it
 "}}}
 " mouse {{{
@@ -144,7 +143,8 @@ if has('mouse') && !exists("$SSH_TTY")
 endif
 "}}}
 " clipboard {{{
-    set clipboard=unnamed,exclude:cons\|linux
+    " set clipboard=unnamed,exclude:cons\|linux
+    set clipboard=autoselectplus,exclude:cons\|linux
 "}}}
 " vimdiff {{{
 if &diff

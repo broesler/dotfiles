@@ -24,6 +24,7 @@ host=$(hostname -s) # i.e. 't1854', 'babylon', 'polaris'
 
 case "$host" in
 t1854)  # my MBP
+    # Quick directories
     alias cs174='cd ~/Documents/School/14F-15X/cs174_machine_learning/'
     alias es105='cd ~/Documents/School/13F-14X/Engs_105_Numerical_PDEs_1/hw/'
     alias es145='cd ~/Documents/School/13F-14X/Engs_145_Modern_Control_Theory/'
@@ -35,7 +36,9 @@ t1854)  # my MBP
     alias mycv='cd ~/Documents/CV_Resume/CV/cv_latex/'
     alias myresume='cd ~/Documents/CV_Resume/Resume/resume_latex/'
     alias sty='cd /Users/bernardroesler/Library/texmf/tex/latex/'
-    alias web='cd ~/Documents/Projects/web_development/'
+
+    # Apps
+    alias mlint='/Applications/MATLAB_R2018a.app/bin/maci64/mlint'
     alias xfoil='/Applications/Xfoil.app/Contents/Resources/xfoil'
 
     # Matlab with rlwrap (use vi commands in Matlab!)
@@ -48,36 +51,76 @@ t1854)  # my MBP
     }
     ;;
 
-babylon*) # we're on a Linux machine:
-    alias fluent16='/thayerfs/research/epps/ansys_inc/v162/fluent/bin/fluent'
-    # alias fluent16='/jumbo/eppsdata/ansys_inc/v162/fluent/bin/fluent'
-    alias gambit='/thayerfs/research/epps/Fluent.Inc/bin/gambit'
-    # alias gambit='/jumbo/eppsdata/Fluent.Inc/bin/gambit'
-    ;;
+# Add case for work PC here...
 esac
 
 # cs[56]0 work on Mac and ThayerFS (Linux)
 function cs50()
 {
+    base="$HOME/Documents/School/cs50_software_design"
     if [ $# -gt 0 ]; then
-        cd ~/Documents/School/cs50_software_design/labs/lab$1/
+        cd "$base/labs/lab$1/"
     else
-        cd ~/Documents/School/cs50_software_design/
+        cd "$base"
     fi
 }
 
 function cs60()
 {
+    base="$HOME/Documents/School/cs60_computer_networks"
     if [ $# -gt 0 ]; then
-        cd ~/Documents/School/cs60_computer_networks/labs/lab$1/
+        cd "$base/labs/lab$1/"
     else
-        cd ~/Documents/School/cs60_computer_networks/
+        cd "$base"
     fi
 }
 
-
 #-------------------------------------------------------------------------------
 #       UTILITIES
+#-------------------------------------------------------------------------------
+# Color ag like grep:
+agcolors=" --color-path '0;49;38;5;5'"
+agcolors+=" --color-line-number '0;49;32'"
+agcolors+=" --color-match '1;49;38;5;9'"
+
+# gfortran options
+gfopts=' -cpp -Wall -pedantic -std=f95'
+gfopts+=' -fbounds-check -ffree-line-length-0 -fbacktrace -fall-intrinsics'
+
+alias clc='clear'
+alias df='df -kTh'
+alias du='du -kh'
+alias grep='grep --color=auto'
+alias h='history | command less +G'
+alias j='jobs -l'
+alias lt='tree -C'
+alias mkdir='mkdir -p'
+alias myag="ag $agcolors"
+alias mygcc='gcc-8 -Wall -pedantic -std=c99'
+alias mygfortran="gfortran $gfopts"
+alias show_path='echo $PATH | tr -s ":" "\n"'
+alias sicp='rlwrap -r -c -f "$HOME"/src/scheme/mit_scheme_bindings.txt scheme'
+alias ta='type -a'
+
+# Color list
+[ -e "$HOME/.dircolors" ] && DIR_COLORS="$HOME/.dircolors"
+[ -e "$DIR_COLORS" ] || DIR_COLORS=""
+
+# Set ls with colors
+eval "$(dircolors -b ~/.dircolors)"     # set custom colors file
+alias lc='ls -Ghlp --color=auto'        # Linux ls options
+
+# Show hidden files only
+alias lcd='lc -d .*'
+
+# back up multiple directories
+alias ..='cd ..'
+alias .2='cd ../../'
+alias .3='cd ../../../'
+alias .4='cd ../../../../'
+
+#------------------------------------------------------------------------------- 
+#        Notes
 #-------------------------------------------------------------------------------
 # Colors:   
     #   attribute = single digit
@@ -100,48 +143,6 @@ function cs60()
     #       6 = cyan
     #       7 = light grey
     #       8;5;[0-256] = 256 ANSI colors, i.e. '38;5;[0-256]'
-
-# Color ag like grep:
-agcolors="  --color-path        '0;49;38;5;5'"
-agcolors+=" --color-line-number '0;49;32'"
-agcolors+=" --color-match       '1;49;38;5;9'"
-
-# gfortran options
-gfopts=' -cpp -Wall -pedantic -std=f95'
-gfopts+=' -fbounds-check -ffree-line-length-0 -fbacktrace -fall-intrinsics'
-
-alias clc='clear'
-alias df='df -kTh'
-alias du='du -kh'
-alias grep='grep --color=auto'
-alias h='history | command less +G'
-alias j='jobs -l'
-alias lt='tree -C'
-alias mkdir='mkdir -p'
-alias mlint='/Applications/MATLAB_R2018a.app/bin/maci64/mlint'
-alias myag="ag $agcolors"
-alias mygcc='gcc-8 -Wall -pedantic -std=c99'
-alias mygfortran="gfortran $gfopts"
-alias path='echo $PATH | tr -s ":" "\n"'
-alias sicp='rlwrap -r -c -f "$HOME"/src/scheme/mit_scheme_bindings.txt scheme'
-alias ta='type -all'
-
-# Color list
-[ -e "$HOME/.dircolors" ] && DIR_COLORS="$HOME/.dircolors"
-[ -e "$DIR_COLORS" ] || DIR_COLORS=""
-
-# Set ls with colors
-eval "$(dircolors -b ~/.dircolors)"     # set custom colors file
-alias lc='ls -Ghlp --color=auto'        # Linux ls options
-
-# Show hidden files only
-alias lcd='lc -d .*'
-
-# back up multiple directories
-alias ..='cd ..'
-alias .2='cd ../../'
-alias .3='cd ../../../'
-alias .4='cd ../../../../'
 
 #===============================================================================
 #===============================================================================

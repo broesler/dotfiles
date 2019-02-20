@@ -125,6 +125,7 @@ vnoremap <buffer> id :<C-u>call <SID>PythonSelectDocstring(1)<CR>
 "        \ . '    """'
 
 " Docstring template macro (use <quote>dp)
+" TODO get current indent and insert (function)
 let @d="\n"
        \ . "    :param ndarray x: shape (), describe x\n"
        \ . "    :returns: y -- shape (), describe y\n"
@@ -139,11 +140,11 @@ let @i = "import pandas as pd\n"
      \ . "import seaborn as sns\n\n"
 
 " Matplotlib figure set-up
-let @f = "fig = plt.figure()\n"
-     \ . "fig.clf()\n"
+let @f = "fig = plt.figure(1, clear=True)\n"
      \ . "ax = fig.add_subplot(111)\n"
      \ . "ax.plot()\n"
      \ . "ax.set_xlabel('')\n"
      \ . "ax.set_ylabel('')\n"
+
 "=============================================================================
 "=============================================================================
