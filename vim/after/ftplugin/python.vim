@@ -111,26 +111,17 @@ onoremap <buffer> id :<C-u>call <SID>PythonSelectDocstring(1)<CR>
 vnoremap <buffer> ad :<C-u>call <SID>PythonSelectDocstring(0)<CR>
 vnoremap <buffer> id :<C-u>call <SID>PythonSelectDocstring(1)<CR>
 
-" " Docstring template macro (use <quote>dp)
-" let @d="\n"
-"        \ . "    Parameters\n"
-"        \ . "    ----------\n"
-"        \ . "    x : type, shape ()\n"
-"        \ . "        describe x\n"
-"        \ . "    \n"
-"        \ . "    Returns\n"
-"        \ . "    -------\n"
-"        \ . "    y : type, shape ()\n"
-"        \ . "        describe y\n\t"
-"        \ . '    """'
-
 " Docstring template macro (use <quote>dp)
-" TODO get current indent and insert (function)
-let @d="\n"
-       \ . "    :param ndarray x: shape (), describe x\n"
-       \ . "    :returns: y -- shape (), describe y\n"
-       \ . "    :rtype: ndarray\n"
-       \ . '    """'
+let @d = "\n"
+     \ . "    Parameters\n"
+     \ . "    ----------\n"
+     \ . "    x : (M, N) array_like\n"
+     \ . "        Matrix of M vectors in K dimensions\n\n"
+     \ . "    Returns\n"
+     \ . "    -------\n"
+     \ . "    result : (M, N) ndarray\n"
+     \ . "        Matrix of M vectors in K dimensions\n"
+     \ . '    """'
 
 " Standard import
 let @i = "import pandas as pd\n"
@@ -140,11 +131,10 @@ let @i = "import pandas as pd\n"
      \ . "import seaborn as sns\n\n"
 
 " Matplotlib figure set-up
-let @f = "fig = plt.figure(1, clear=True)\n"
+let @f = "fig = plt.figure(clear=True)\n"
      \ . "ax = fig.add_subplot(111)\n"
      \ . "ax.plot()\n"
      \ . "ax.set_xlabel('')\n"
      \ . "ax.set_ylabel('')\n"
-
 "=============================================================================
 "=============================================================================
