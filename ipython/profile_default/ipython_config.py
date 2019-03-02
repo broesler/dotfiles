@@ -53,6 +53,11 @@ c.InteractiveShellApp.exec_lines = [
     '%autoreload 2',
     'import sys',
     'import os',
+    'import pandas as pd',
+    'import numpy as np',
+    'import matplotlib.pyplot as plt',
+    'from matplotlib.gridspec import GridSpec',
+    'import seaborn as sns'
 ]
 
 #c.InteractiveShellApp.extra_extension = ''

@@ -162,6 +162,20 @@ function! s:DiffToggle() "{{{
     endif
 endfunction
 "}}}
+function! s:DiffOrig() "{{{
+    " Open a new buffer with no file
+    vertical new
+    set buftype=nofile
+    " Re-read the file on which the alternate buffer is based
+    read ++edit #
+    " Delete blank line at top
+    normal gg0d_
+    " Diff the file buffer and the current buffer
+    diffthis
+    wincmd p
+    diffthis
+endfunction
+"}}}
 function! s:GetHighlight() "{{{
     " get highlighting of current character 
     let l:str = synIDattr(synID(line("."), col("."), 1), "name")
@@ -334,7 +348,7 @@ command! GetHighlight call s:GetHighlight()
 
 " Comment block command
 command! -nargs=* CommentBlock call s:CommentBlock(<f-args>)
-" NOTE: :CommentBlock = " 78 produces header at top of this file
+" NOTE: `:CommentBlock = " 78` produces header at top of this file
 
 " Switch iTerm colors quickly
 command! -nargs=1 ITermProf let g:use_base16_colors=0 
@@ -343,6 +357,7 @@ command! -nargs=1 ITermProf let g:use_base16_colors=0
 
 " Toggle diff
 command! DiffToggle call s:DiffToggle()
+command! DiffOrig call s:DiffOrig()
 
 " Increment numbers in block visual mode
 noremap <silent> <Plug>UtilIncr :call <SID>Incr()<CR>
