@@ -7,28 +7,27 @@
 "
 "  Description: Custom utility functions called from .vimrc autocmds, etc.
 "=============================================================================
-" Functions  {{{
+" Functions
 " Public API {{{
 function! util#EnsureDirExists() "{{{
+    " NOTE: it is assumed this function is called from autocmd BufNewFile
     let required_dir = expand("%:h")
     if !isdirectory(required_dir)
         " Alert user of error and prompt to create directory
-        let l:msg = "Directory '" . required_dir . "' doesn't exist."
-        let l:opt = "&Create it?\n&Open buffer anyway?"
-        let l:confirm = s:AskQuit(l:msg, l:opt)
+        let msg = "Directory '" . required_dir . "' doesn't exist."
+        let opt = "&Create it?\n&Open buffer anyway?"
+        let choice = s:AskQuit(msg, opt)
 
-        if l:confirm == 1
+        if choice == 0 || choice == 1
+            call s:QuitOrBDelete()
+        elseif choice == 2
             try " to make the directory
                 call mkdir(required_dir, 'p')
             catch
-                let l:msg = "Can't create '" . required_dir . "'"
-                let l:opt = "&Continue anyway?"
-                call s:AskQuit(l:msg, l:opt)
+                echom "Can't create '" . required_dir . "'"
+                call s:QuitOrBDelete()
             endtry
         endif
-        " if confirm == 0 (user pressed <ESC> or <C-c>), 
-        " or confirm == 2 (user wants to open buffer without a directory)
-        " just return and open the file without a directory
     endif
 endfunction
 "}}}
@@ -94,12 +93,16 @@ endfunction
 "}}}
 " Private API {{{
 function! s:AskQuit(msg, proposed_action) "{{{
-    " Confirm returns "1" if Quit is selected via pressing [q] or <CR>
-    let l:conf = confirm(a:msg, "&Quit?\n" . a:proposed_action)
-    if l:conf == 1
-        exit
-    else 
-        return l:conf
+    " Confirm returns "1" if Quit is selected via pressing [Qq]
+    return confirm(a:msg, "&Quit?\n" . a:proposed_action)
+endfunction
+"}}}
+function! s:QuitOrBDelete() "{{{
+    let N_buf = len(getbufinfo({'buflisted':1}))
+    if N_buf > 1
+        bdelete!
+    else
+        quit!
     endif
 endfunction
 "}}}
