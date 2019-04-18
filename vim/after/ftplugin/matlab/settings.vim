@@ -26,5 +26,6 @@ setlocal nowrap
 " Global search for lines containing variable under cursor
 " TODO extend to insert any filetype comment character for '%'
 " TODO put into function + command :FindVariable <C-R><C-W>
+" FIXME DOES NOT work for variables in printf statements following '%s', i.e.
 nnoremap <LocalLeader>g :g/\C\(%.*\)\@<!\<<C-R><C-W>\>/p<CR>
 " }}}

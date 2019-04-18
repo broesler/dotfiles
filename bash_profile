@@ -85,9 +85,14 @@ BROESLER-T480)  # Ubuntu on Windows PC (Lenovo T480 for work)
     export MATLAB_PATH="/mnt/c/Program Files/MATLAB/R2015b/bin/win64"
     export PATH="$PATH:$MATLAB_PATH"
 
+    # add Star-CCM+ path
+    export STAR_PATH="/mnt/c/Program Files/CD-adapco/13.06.012/STAR-CCM+3.06.012/star/bin/"
+    export PATH="$PATH:$STAR_PATH"
+
     # added by Anaconda3 4.5.4 installer
     export PATH="/home/broesler/anaconda3/bin:$PATH"
 
+    export WINDOWS_PATH='C:\Users\broesler\AppData\Local\Packages\CanonicalGroupLimited.UbuntuonWindows_79rhkp1fndgsc\LocalState\rootfs\home\broesler\'
 
     # Allow X11 to work
     export DISPLAY=localhost:0.0
