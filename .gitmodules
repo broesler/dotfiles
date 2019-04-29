@@ -58,3 +58,6 @@
 [submodule "tmux/plugins/tpm"]
     path = tmux/plugins/tpm
     url = https://github.com/tmux-plugins/tpm.git
+[submodule "vim/bundle/rust.vim"]
+	path = vim/bundle/rust.vim
+	url = https://github.com/rust-lang/rust.vim.git
