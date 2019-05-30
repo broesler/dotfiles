@@ -81,6 +81,9 @@ BROESLER-T480)  # Ubuntu on Windows PC (Lenovo T480 for work)
     export WINHOME='/mnt/c/Users/broesler/'  # path to home directory (C:)
     export MAT="$WINHOME/Documents/MATLAB/"  # path to Matlab files
 
+    # Rust path
+    export PATH="$PATH:$HOME/.cargo/bin"
+
     # add MATLAB files (mlint.exe, etc.)
     export MATLAB_PATH="/mnt/c/Program Files/MATLAB/R2015b/bin/win64"
     export PATH="$PATH:$MATLAB_PATH"
@@ -90,7 +93,7 @@ BROESLER-T480)  # Ubuntu on Windows PC (Lenovo T480 for work)
     export PATH="$PATH:$STAR_PATH"
 
     # added by Anaconda3 4.5.4 installer
-    export PATH="/home/broesler/anaconda3/bin:$PATH"
+    # export PATH="/home/broesler/anaconda3/bin:$PATH"
 
     export WINDOWS_PATH='C:\Users\broesler\AppData\Local\Packages\CanonicalGroupLimited.UbuntuonWindows_79rhkp1fndgsc\LocalState\rootfs\home\broesler\'
 

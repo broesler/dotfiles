@@ -83,6 +83,10 @@ set -o vi
 # Visual bell only
 set bell-style visible
 
+# Anaconda include
+source /home/broesler/anaconda3/etc/profile.d/conda.sh
+conda activate expo
+
 # Mac-only options
 if [[ "$host" = t1854 ]]; then
     # enable better auto-completion
