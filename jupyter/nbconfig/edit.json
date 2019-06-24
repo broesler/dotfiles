@@ -4,6 +4,9 @@
       "vimMode": true,
       "keyMap": "vim",
       "lineNumbers": true
+    },
+    "file_extension_modes": {
+      ".py": "Python"
     }
   }
 }
