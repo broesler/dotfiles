@@ -14,3 +14,4 @@ dbhist
 ipython/profile_default/db/
 matplotlib/fontList.json
 
+matplotlib/*fontlist*
