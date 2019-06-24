@@ -13,19 +13,14 @@
 "       Buffer local settings
 "-----------------------------------------------------------------------------
 setlocal textwidth=79    " PEP-8 standard
-setlocal tabstop=4
-setlocal shiftwidth=4
-setlocal softtabstop=4
 setlocal iskeyword+=_
 setlocal iskeyword-=:
-
-setlocal commentstring=#%s
 
 setlocal foldmethod=syntax
 setlocal foldignore=
 setlocal foldlevelstart=99
 
-let python_highlight_all = 1
+let g:python_highlight_all = 1
 
 "-----------------------------------------------------------------------------
 "       Functions to lint + make code 
