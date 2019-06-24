@@ -124,17 +124,25 @@ let @d = "\n"
      \ . '    """'
 
 " Standard import
-let @i = "import pandas as pd\n"
+let @i = "import matplotlib.pyplot as plt\n"
      \ . "import numpy as np\n"
-     \ . "import matplotlib.pyplot as plt\n"
-     \ . "from matplotlib.gridspec import GridSpec\n"
+     \ . "import pandas as pd\n"
      \ . "import seaborn as sns\n\n"
+     \ . "from matplotlib.gridspec import GridSpec\n\n"
 
 " Matplotlib figure set-up
-let @f = "fig = plt.figure(clear=True)\n"
+let @f = "fig = plt.figure(1, clear=True)\n"
      \ . "ax = fig.add_subplot(111)\n"
      \ . "ax.plot()\n"
      \ . "ax.set_xlabel('')\n"
      \ . "ax.set_ylabel('')\n"
+
+let @s = "fig = plt.figure(1, clear=True)\n"
+     \ . "gs = GridSpec(nrows=1, ncols=2)\n"
+     \ . "ax1 = fig.add_subplot(gs[0])  # left side plot\n"
+     \ . "ax2 = fig.add_subplot(gs[1])  # right side plot\n"
+     \ . "ax1.plot(x, y1, label='label1')\n"
+     \ . "ax2.plot(x, y2, label='label2')\n"
+
 "=============================================================================
 "=============================================================================
