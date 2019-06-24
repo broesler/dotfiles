@@ -144,7 +144,7 @@ if has('mouse') && !exists("$SSH_TTY")
 endif
 "}}}
 " clipboard {{{
-    set clipboard=unnamed,exclude:cons\|linux
+set clipboard=unnamed,exclude:cons\|linux
 "}}}
 " vimdiff {{{
 if &diff
@@ -413,9 +413,7 @@ nnoremap <space> za
 " Use \l to redraw the screen (since <C-l> is used by window switching)
 nnoremap <Leader>l :syntax sync fromstart<CR>:redraw!<CR>
 
-" Move 'title' comment to end of next line
-" nnoremap <Leader>J 0Dj$pkdd
-" Better to do opposite of J, append line above current line to current line
+" Append line above current line to current line (opposite of J)
 nnoremap <Leader>J ddkPJ
 
 " Custom text objects "{{{
@@ -538,8 +536,6 @@ set statusline+=%f\                          " %t filename, %f relative path
 set statusline+=\[%{strlen(&ft)?&ft:'none'}] " file type
 set statusline+=\                            " separator
 set statusline+=%=                           " right align remainder
-" set statusline+=%8.20{util#GetHighlight()}   " show highlighting tag
-" set statusline+=\ \
 set statusline+=0x%-5B                       " character value under cursor
 set statusline+=%-15(%l,%c%V%)               " line, character
 set statusline+=%<%P                         " file position (percentage)
