@@ -6,7 +6,7 @@ setlocal softtabstop=0   " set to 4 to let backspace delete indent with expandta
 setlocal shiftwidth=8    " use >>, << for line shifting
 setlocal noexpandtab     " use spaces instead of tab character
 
-setlocal textwidth=80
+setlocal textwidth=100
 setlocal fo-=l           " wrap text while writing
 
 setlocal iskeyword+=_
