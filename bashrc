@@ -30,17 +30,10 @@ babylon*|polaris|BROESLER*)
     ;;
 esac
 
-# uses '...' to limit list of directories
-PROMPT_DIRTRIM=4
+PROMPT_DIRTRIM=4  # uses '...' to limit list of directories
 
-# Set CDPATH to quickly change to neighbor directories
-CDPATH=".:..:../..:$HOME"
-
-# Set the default editor to vim.
-export EDITOR=vim
-
-# Default postgresql database for psql
-export PGDATABASE=postgres
+export EDITOR=vim                     # Set the default editor to vim.
+export PGDATABASE=postgres            # Default postgresql database for psql
 
 # Avoid succesive duplicates and spaces in the bash command history, ignore
 # simple, commonly-used commands. No need to "export", these are only used in
@@ -56,20 +49,18 @@ HISTTIMEFORMAT="%F %T "
 PROMPT_COMMAND='history -a'
 
 # shoptions
-shopt -s autocd         # just type directory name to cd
-shopt -s cdspell        # checks for minor errors in cd typing
-shopt -s checkjobs      # displays stopped or running job status before exiting
-shopt -s checkwinsize   # auto reforemat command output
-shopt -s cmdhist        # save multi-line commands in history
+shopt -s checkjobs       # displays stopped or running job status before exiting
+shopt -s checkwinsize    # auto reformat command output
+shopt -s cmdhist         # save multi-line commands in history
 if [[ ${BASH_VERSINFO[1]} > 1 ]]; then
     shopt -s direxpand      # expand variables in directory complete
 fi
-shopt -s expand_aliases # expand aliases (needed for vim :!)
-shopt -s extglob        # extend glob to regexes i.e. ?(ab)
-shopt -s globstar       # allows use of ** (like vim)
-shopt -s histappend     # append to ~/.bash_history instead of overwriting
+shopt -s expand_aliases  # expand aliases (needed for vim :!)
+shopt -s extglob         # extend glob to regexes i.e. ?(ab)
+shopt -s globstar        # allows use of ** (like vim)
+shopt -s histappend      # append to ~/.bash_history instead of overwriting
 shopt -s no_empty_cmd_completion  # ignore completion on empty line
-shopt -s shift_verbose  # warn when trying to shift if nothing is there
+shopt -s shift_verbose   # warn when trying to shift if nothing is there
 
 # Completion options
 set match-hidden-files off
@@ -83,34 +74,21 @@ set -o vi
 # Visual bell only
 set bell-style visible
 
-# Mac-only options
-if [[ "$host" = t1854 ]]; then
-    # enable better auto-completion
-    if [ -f '/usr/local/etc/bash_completion' ]; then
-        source '/usr/local/etc/bash_completion'
-    fi
-
-    # Disable tilde expansion upon tab completion
-    _expand() { return 0; }
-
-    # Run iTerm2 shell integration
-    # test -e "${HOME}/.iterm2_shell_integration.bash" \
-        # && source "${HOME}/.iterm2_shell_integration.bash"
-
-    # Include base16 shell for changing color schemes
-    # BASE16_SHELL=$HOME/.config/base16-shell/
-    # [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
-
-    # fix vim autocompletion
-    complete -r vim
-
-    # Set-up virtualenv wrapper for python development
-    # vewrap="$(brew --prefix)/bin/virtualenvwrapper.sh"
-    # if [ -f "$vewrap" ]; then
-    #     export WORKON_HOME="$HOME/.envs"
-    #     source "$vewrap"
-    # fi
+# enable better auto-completion
+if [ -f '/usr/local/etc/bash_completion' ]; then
+    source '/usr/local/etc/bash_completion'
 fi
+
+# less highlighting for man pages:
+# NOTE: do not actually use "tput bold" because iTerm uses "bright" colors,
+# which in Solarized scheme are just grayscale other than red
+# export LESS_TERMCAP_mb=$(tput setaf 2)            # start blink
+# export LESS_TERMCAP_md=$(tput setaf 3)            # start bold
+# export LESS_TERMCAP_me=$(tput sgr0)               # end bold/blink
+# export LESS_TERMCAP_us=$(tput smul; tput setaf 4) # start underline
+# export LESS_TERMCAP_ue=$(tput rmul; tput sgr0)    # end underline
+# export LESS_TERMCAP_so=$(tput setaf 0; tput setab 3) # start highlight
+# export LESS_TERMCAP_se=$(tput sgr0) # end highlight
 
 #------------------------------------------------------------------------------
 #       Source function files and aliases
@@ -124,4 +102,3 @@ unset -v func
 
 #==============================================================================
 #==============================================================================
-# vim: set ft=sh syntax=sh
