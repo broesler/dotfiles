@@ -41,7 +41,7 @@ gfopts+=' -fbounds-check -ffree-line-length-0 -fbacktrace -fall-intrinsics'
 
 alias clc='clear'
 alias df='df -kTh'
-alias du='du -kh | sort -hr'
+alias du='du -kh'
 alias grep='grep --color=auto'
 alias h='history | command less +G'
 alias j='jobs -l'
