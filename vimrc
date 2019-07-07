@@ -32,6 +32,7 @@ endif
 
 " load man plugin so man pages can be read in a vim window (:Man or <Leader>K)
 runtime! ftplugin/man.vim
+set keywordprg=:Man
 
 " Setting the path:
 " ./** : recursively search below directory of current *file*
