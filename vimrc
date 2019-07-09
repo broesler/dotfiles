@@ -484,16 +484,8 @@ nnoremap <Leader>vd :ITermProf SolarizedDark<CR>
 nnoremap <Leader>vl :ITermProf SolarizedLight<CR>
 nnoremap <Leader>v2 :ITermProf LaterThisEvening<CR>
 
-let g:use_base16_colors = get(g:, 'use_base16_colors', 0)
-
-if g:use_base16_colors
-    " Use base16 colors as dictated by terminal colors
-    let base16colorspace = 256
-    let color_file = "~/.vimrc_background"
-else
-    " Use vim-colors-solarized
-    let color_file = "~/.vimrc_solarized"
-endif
+" Use vim-colors-solarized
+let color_file = "~/.vimrc_solarized"
 
 if filereadable(expand(color_file))
     execute 'source' color_file
@@ -507,6 +499,7 @@ else
     hi StatusLine ctermfg=none ctermbg=none
     hi WildMenu ctermfg=yellow ctermbg=darkgrey
 endif
+unlet color_file
 
 "}}}
 " Spell check {{{
