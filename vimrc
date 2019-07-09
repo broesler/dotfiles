@@ -32,6 +32,7 @@ endif
 
 " load man plugin so man pages can be read in a vim window (:Man or <Leader>K)
 runtime! ftplugin/man.vim
+set keywordprg=:Man
 
 " Setting the path:
 " ./** : recursively search below directory of current *file*
@@ -120,7 +121,7 @@ set nowrap                      " do not autowrap text to screen
 set linebreak                   " Do not break words mid-word
 set autoindent                  " indent based on filetype
 set formatoptions=cqr2l1j       " tcq default, :help fo-table
-set colorcolumn=80              " autocmd changes for filetype
+set colorcolumn=80              " default is 80, autocmd changes for filetype
 set diffopt+=iwhite             " ignore whitespace in diff windows
 "}}}
 " Folding {{{
@@ -131,7 +132,6 @@ let g:vimsyn_folding = 'aflmpPr' " fold vimscript syntactically
 " Windows {{{
 set scrolloff=1     " cursor will never reach bottom of window
 set sidescroll=5    " cursor will never reach edge of screen
-set splitright      " split new windows to right of current one
 set switchbuf=useopen " with :bn, etc. if buffer is in a window, jump to it
 "}}}
 " mouse {{{
@@ -144,7 +144,7 @@ if has('mouse') && !exists("$SSH_TTY")
 endif
 "}}}
 " clipboard {{{
-set clipboard=unnamed,exclude:cons\|linux
+set clipboard=autoselectplus,exclude:cons\|linux
 "}}}
 " vimdiff {{{
 if &diff
