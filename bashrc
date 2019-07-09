@@ -32,6 +32,9 @@ esac
 
 PROMPT_DIRTRIM=4  # uses '...' to limit list of directories
 
+# Turn off <C-S> flow control (stops all I/O until <C-Q> is pressed)
+stty -ixon
+
 export EDITOR=vim                     # Set the default editor to vim.
 export PGDATABASE=postgres            # Default postgresql database for psql
 
@@ -65,14 +68,14 @@ shopt -s shift_verbose   # warn when trying to shift if nothing is there
 # Completion options
 set match-hidden-files off
 
-# Turn off <C-S> flow control (stops all I/O until <C-Q> is pressed)
-stty -ixon
-
 # Enable vim-style editing in terminal (also see ~/.inputrc)
 set -o vi
 
 # Visual bell only
 set bell-style visible
+
+# Disable tilde expansion on tab-complete
+_expand() { return 0; }
 
 # enable better auto-completion
 if [ -f '/usr/local/etc/bash_completion' ]; then
