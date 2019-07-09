@@ -100,7 +100,7 @@ c.ZMQTerminalInteractiveShell.other_output_prefix = ''
 #
 #  Only relevant if include_other_output is True. 'False' ignores statement
 #  that 'outputs are not displayed until enter is pressed.'
-c.ZMQTerminalInteractiveShell.is_blocking_kernel = False
+# c.ZMQTerminalInteractiveShell.is_blocking_kernel = False
 
 ## Timeout (in seconds) for giving up on a kernel's is_complete response.
 #  

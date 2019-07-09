@@ -1,5 +1,4 @@
 #~/.ackrc
-# Set vim syntax: vim:ft=sh syntax=sh
 #==============================================================================
 #    File: ~/.ackrc
 # Created: 03/27/15
@@ -15,5 +14,9 @@
 --pager
 less -FRSX
 
+# search is case-insentive if no capitals in pattern (like vim)
+--smart-case
+
 #==============================================================================
 #==============================================================================
+# vim: ft=sh syntax=sh

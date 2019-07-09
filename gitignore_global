@@ -77,4 +77,4 @@ Session.vim
 # Google docs
 *.gdoc
 *.gsheet
-*.egg-info/
+*.egg-info

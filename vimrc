@@ -492,7 +492,7 @@ if filereadable(expand(color_file))
     " turn off background for windows ubuntu bg=dark
     hi Normal ctermbg=none
 else
-    echo 'Could not find: ' . color_file . '. Using default colorscheme...'
+    echom 'Could not find: ' . color_file . '. Using default colorscheme...'
     colorscheme default
     hi Comment ctermfg=darkgreen
     hi Type ctermfg=33

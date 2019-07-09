@@ -1,3 +1,4 @@
+# vim:ft=gitconfig:
 [user]
     name = Bernard Roesler
     email = bernard.roesler@gmail.com
@@ -33,13 +34,13 @@
     fileMode = false
 [diff]
     tool = vimdiff
+	compactionHeuristic = true
 [difftool]
 	prompt = false
 [mergetool "fugitive"]
     cmd = vim -f -c \"Gvdiff\" \"$MERGED\"
 [merge "ours"]
 	driver = true
-# vim:ft=gitconfig:
 [diff "jupyternotebook"]
 	command = git-nbdiffdriver diff
 [merge "jupyternotebook"]

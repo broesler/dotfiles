@@ -14,7 +14,7 @@ setlocal foldmethod=syntax
 setlocal foldminlines=4         " ignore 3-line comment headers
 setlocal foldlevelstart=99      " don't start with all lines folded
 
-setlocal keywordprg=:Man
+setlocal keywordprg=:Man\ 3     " use section 3 for C Library functions
 
 "-----------------------------------------------------------------------------
 "       Functions 
