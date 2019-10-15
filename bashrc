@@ -78,8 +78,8 @@ set bell-style visible
 _expand() { return 0; }
 
 # Anaconda include
-source /home/broesler/anaconda3/etc/profile.d/conda.sh
-conda activate expo
+source /home/broesler/miniconda3/etc/profile.d/conda.sh
+conda activate dev
 
 # enable better auto-completion
 if [ -f '/usr/local/etc/bash_completion' ]; then
@@ -89,13 +89,13 @@ fi
 # less highlighting for man pages:
 # NOTE: do not actually use "tput bold" because iTerm uses "bright" colors,
 # which in Solarized scheme are just grayscale other than red
-# export LESS_TERMCAP_mb=$(tput setaf 2)            # start blink
-# export LESS_TERMCAP_md=$(tput setaf 3)            # start bold
-# export LESS_TERMCAP_me=$(tput sgr0)               # end bold/blink
-# export LESS_TERMCAP_us=$(tput smul; tput setaf 4) # start underline
-# export LESS_TERMCAP_ue=$(tput rmul; tput sgr0)    # end underline
-# export LESS_TERMCAP_so=$(tput setaf 0; tput setab 3) # start highlight
-# export LESS_TERMCAP_se=$(tput sgr0) # end highlight
+export LESS_TERMCAP_mb=$(tput setaf 2)            # start blink
+export LESS_TERMCAP_md=$(tput setaf 3)            # start bold
+export LESS_TERMCAP_me=$(tput sgr0)               # end bold/blink
+export LESS_TERMCAP_us=$(tput smul; tput setaf 4) # start underline
+export LESS_TERMCAP_ue=$(tput rmul; tput sgr0)    # end underline
+export LESS_TERMCAP_so=$(tput setaf 0; tput setab 3) # start highlight
+export LESS_TERMCAP_se=$(tput sgr0) # end highlight
 
 #------------------------------------------------------------------------------
 #       Source function files and aliases
