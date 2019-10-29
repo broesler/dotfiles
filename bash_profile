@@ -53,7 +53,7 @@ BROESLER-T480)  # Ubuntu on Windows PC (Lenovo T480 for work)
     export PATH="$PATH:$HOME/.cargo/bin"
 
     # add MATLAB files (mlint.exe, etc.)
-    export MATLAB_PATH="/mnt/c/Program Files/MATLAB/R2015b/bin/win64"
+    export MATLAB_PATH="/mnt/c/Program Files/MATLAB/R2010a/bin/win64"
     export PATH="$PATH:$MATLAB_PATH"
 
     # add Star-CCM+ path
@@ -75,8 +75,8 @@ export SAVE_PATH=$PATH  # keep the default path for reference
 export LESS=-AXFirsx8g
 
 # Save OLDPWD between sessions
-if [ -r "$HOME/.oldpwd" ]; then
-    read -r OLDPWD < "$HOME/.oldpwd"
+if [ -r ~/.oldpwd ]; then
+    read -r OLDPWD < ~/.oldpwd
     export OLDPWD
 
     # add to stack without changing into it, so 'cd -' works

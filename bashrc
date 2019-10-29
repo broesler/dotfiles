@@ -20,7 +20,7 @@ t1854)
     # Set the prompt with bright green text -- include GNU screen window number
     PS1=$"\[\033[1;32m\][\u@\h: \w]${WINDOW}\$ \[\033[0m\]"
     ;;
-babylon*|polaris|BROESLER*)
+babylon*|polaris|BROESLER-T480)
     # Set to bright cyan text for linux machines (easy tell on ssh to babylons)
     PS1=$"\[\033[0;36m\][\u@\h: \w]${WINDOW}\$ \[\033[0m\]"
     ;;
@@ -82,8 +82,8 @@ source /home/broesler/miniconda3/etc/profile.d/conda.sh
 conda activate dev
 
 # enable better auto-completion
-if [ -f '/usr/local/etc/bash_completion' ]; then
-        source '/usr/local/etc/bash_completion'
+if [ -f /usr/local/etc/bash_completion ]; then
+    source /usr/local/etc/bash_completion
 fi
 
 # less highlighting for man pages:
