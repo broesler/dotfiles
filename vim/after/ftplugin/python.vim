@@ -13,32 +13,24 @@
 "       Buffer local settings
 "-----------------------------------------------------------------------------
 setlocal textwidth=79    " PEP-8 standard
-setlocal tabstop=4
-setlocal shiftwidth=4
-setlocal softtabstop=4
 setlocal iskeyword+=_
 setlocal iskeyword-=:
 
-setlocal commentstring=#%s
+setlocal commentstring=#\ %s
 
 setlocal foldmethod=syntax
 setlocal foldignore=
 setlocal foldlevelstart=99
 
-let python_highlight_all = 1
+let g:python_highlight_all = 1
 
 "-----------------------------------------------------------------------------
 "       Functions to lint + make code 
 "-----------------------------------------------------------------------------
-" Set up syntax error checking
-" function! PythonLint()
-"   let &makeprg="pylint --reports=n --output-format=parseable %:p"
-"   let &efm="%W%f:%l: [%*[CRW]%.%#] %m,%Z%p^^,"
-"               \ . "%E%f:%l: [%*[EF]%.%#] %m,%Z%p^^,%-G%.%#"
-"   update | silent make! | redraw!
-" endfunction
-" command! -buffer PythonLint :call PythonLint()
-command! -buffer PythonFlake8 :call Flake8()
+" Set up syntax error checking (requires vim-flake8)
+if exists("*Flake8")
+    command! -buffer PythonFlake8 :call Flake8()
+endif
 
 function! PythonRunScript()
   setlocal makeprg=python\ %
@@ -79,20 +71,9 @@ function! s:PythonSelectDocstring(is_inside) abort
     execute 'normal! /' . the_pat . '/' . l:flags . "\r"
 endfunction
 
-" function! s:PythonStandardImport() abort
-"     let l:import =  'import pandas as pd'
-"                 \ . 'import numpy as np'
-"                 \ . 'import matplotlib.pyplot as plt'
-"                 \ . 'from mpl_toolkits.mplot3d import axes3d'
-"                 \ . "import seaborn as sns\n"
-"     execute ':insert ' + l:import
-" endfunction
-" command! -buffer PythonStandardImport call <SID>PythonStandardImport()
-
 "-----------------------------------------------------------------------------
 "        Keymaps
 "-----------------------------------------------------------------------------
-" nnoremap <buffer> <LocalLeader>L :PythonLint<CR>
 nnoremap <buffer> <LocalLeader>L :PythonFlake8<CR>
 nnoremap <buffer> <LocalLeader>M :PythonRunScript<CR>
 
@@ -132,10 +113,10 @@ let @i = "import matplotlib.pyplot as plt\n"
 
 " Matplotlib figure set-up
 let @f = "fig = plt.figure(1, clear=True)\n"
-     \ . "ax = fig.add_subplot(111)\n"
+     \ . "ax = fig.add_subplot()\n"
      \ . "ax.plot()\n"
-     \ . "ax.set_xlabel('')\n"
-     \ . "ax.set_ylabel('')\n"
+     \ . "ax.set(xlabel='',\n"
+     \ . "       ylabel='')\n"
 
 let @s = "fig = plt.figure(1, clear=True)\n"
      \ . "gs = GridSpec(nrows=1, ncols=2)\n"

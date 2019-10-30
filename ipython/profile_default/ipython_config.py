@@ -48,6 +48,7 @@ c.AliasManager.user_aliases = [
 #c.InteractiveShellApp.exec_files = []
 c.InteractiveShellApp.extensions = [
     'autoreload',
+    'line_profiler'
 ]
 c.InteractiveShellApp.exec_lines = [
     '%autoreload 2',
@@ -56,8 +57,10 @@ c.InteractiveShellApp.exec_lines = [
     'import pandas as pd',
     'import numpy as np',
     'import matplotlib.pyplot as plt',
+    'import seaborn as sns',
     'from matplotlib.gridspec import GridSpec',
-    'import seaborn as sns'
+    'from scipy import stats',
+    'np.set_printoptions(threshold=200)'
 ]
 
 #c.InteractiveShellApp.extra_extension = ''
@@ -91,11 +94,8 @@ c.TerminalIPythonApp.force_interact = False
 #------------------------------------------------------------------------------
 ## An enhanced, interactive shell for Python.
 
-## Make IPython automatically call any callable object even if you didn't type
-#  explicit parentheses. 
-#c.InteractiveShell.autocall = 0
-c.InteractiveShell.autoindent = True
-#c.InteractiveShell.automagic = True
+c.InteractiveShell.autoindent = False
+c.InteractiveShell.automagic = False
 c.InteractiveShell.color_info = True
 c.InteractiveShell.colors = 'Linux' ## (NoColor, Neutral, Linux, or LightBG).
 #c.InteractiveShell.disable_failing_post_execute = False
@@ -131,15 +131,6 @@ c.TerminalInteractiveShell.extra_open_editor_shortcuts = True
 #  paraiso-light, paraiso-dark, lovelace, algol, algol_nu, arduino,
 #  rainbow_dash, abap
 c.TerminalInteractiveShell.highlighting_style = 'native'
-# See <http://chriskempson.com/projects/base16/> for preview of themes
-# theme = importlib.import_module('base16.base16-ocean')
-# c.TerminalInteractiveShell.highlighting_style = theme.Base16Style
-# c.TerminalInteractiveShell.highlighting_style_overrides = theme.overrides
-
-#------------------------------------------------------------------------------
-#       StoreMagics(Magics) configuration
-#------------------------------------------------------------------------------
-#c.StoreMagics.autorestore = False
 
 #==============================================================================
 #==============================================================================

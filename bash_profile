@@ -27,7 +27,7 @@ t1854)
     done
 
     export PATH="$PATH:/Library/TeX/texbin"                  # LaTeX path
-    export PATH="$PATH:/Applications/MATLAB_R2018a.app/bin"  # for mlint, etc.
+    export PATH="$PATH:/Applications/MATLAB_R2019b.app/bin"  # for mlint, etc.
 
     # >>> conda initialize >>>
     # !! Contents within this block are managed by 'conda init' !!

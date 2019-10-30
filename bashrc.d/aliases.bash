@@ -26,7 +26,7 @@ t1854)  # my MBP
     {
         # $PATH includes: /Applications/MATLAB_R2018b.app/bin/
         rlwrap -a dummy -c -m dummy \
-            -H $HOME/.matlab/R2018a/history.m \
+            -H $HOME/.matlab/R2019b/history.m \
             matlab -nosplash -nodesktop "$@"
     }
     ;;
@@ -41,6 +41,7 @@ gfopts+=' -fbounds-check -ffree-line-length-0 -fbacktrace -fall-intrinsics'
 
 alias clc='clear'
 alias df='df -kTh'
+alias diff='diff --color=auto'
 alias du='du -kh'
 alias grep='grep --color=auto'
 alias h='history | command less +G'
