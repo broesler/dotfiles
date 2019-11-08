@@ -42,7 +42,6 @@ gfopts+=' -fbounds-check -ffree-line-length-0 -fbacktrace -fall-intrinsics'
 alias clc='clear'
 alias df='df -kTh'
 alias du='du -kh'
-alias grep='grep --color=auto'
 alias h='history | command less +G'
 alias j='jobs -l'
 alias lt='tree -C'
@@ -54,12 +53,13 @@ alias sicp='rlwrap -r -c -f "$HOME"/src/scheme/mit_scheme_bindings.txt scheme'
 alias ta='type -a'
 
 # Color list
-[ -e "$HOME/.dircolors" ] && DIR_COLORS="$HOME/.dircolors"
-[ -e "$DIR_COLORS" ] || DIR_COLORS=""
-
-# Set ls with colors
-eval "$(dircolors -b $DIR_COLORS)"  # set custom colors file
-alias lc='ls -Ghlp --color=auto'    # gnu-ls options
+if [ -x /usr/bin/dircolors ]; then
+    # set custom colors file
+    [ -r ~/.dircolors ] && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+    alias lc='ls -Ghlp --color=auto'    # gnu-ls options
+    alias grep='grep --color=auto'
+fi
 
 # Show hidden files only
 alias lcd='lc -d .*'
