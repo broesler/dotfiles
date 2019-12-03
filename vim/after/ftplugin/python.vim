@@ -13,7 +13,7 @@
 "       Buffer local settings
 "-----------------------------------------------------------------------------
 setlocal textwidth=79    " PEP-8 standard
-setlocal iskeyword+=_,.
+setlocal iskeyword+=_
 setlocal iskeyword-=:
 
 setlocal foldmethod=syntax
