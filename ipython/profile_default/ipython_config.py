@@ -50,6 +50,7 @@ c.InteractiveShellApp.extensions = [
 
 c.InteractiveShellApp.exec_lines = [
     '%autoreload 2',
+    '%autoindent off',
     'import sys',
     'import os',
     'import pandas as pd',
