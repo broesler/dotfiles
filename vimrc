@@ -61,7 +61,8 @@ scriptencoding utf-8
 set notimeout           " Only timeout on key codes, not mappings
 set ttimeout
 set ttimeoutlen=10
-set lazyredraw           " don't redraw during macros etc.
+set lazyredraw          " don't redraw during macros etc.
+set visualbell          " get rid of annoying Windows bell
 "}}}
 " Backups {{{
 set backup
@@ -514,8 +515,8 @@ hi clear SpellLocal
 hi SpellLocal term=underline cterm=underline
 "}}}
 " Highlighting {{{
-" Make comments italics
-hi Comment cterm=italic
+" Make comments italics -- does not work with tmux in WSL!!
+" hi Comment cterm=italic
 
 " Do not highlight cursor line number in relative number mode
 hi clear CursorLineNr
