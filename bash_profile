@@ -49,9 +49,6 @@ BROESLER-T480)  # Ubuntu on Windows PC (Lenovo T480 for work)
     export WINHOME='/mnt/c/Users/broesler/'  # path to home directory (C:)
     export MAT="$WINHOME/Documents/MATLAB/"  # path to Matlab files
 
-    # Rust path
-    export PATH="$PATH:$HOME/.cargo/bin"
-
     # add MATLAB files (mlint.exe, etc.)
     export MATLAB_PATH="/mnt/c/Program Files/MATLAB/R2010a/bin/win64"
     export PATH="$PATH:$MATLAB_PATH"
