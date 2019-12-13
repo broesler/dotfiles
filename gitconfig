@@ -39,7 +39,7 @@
 [difftool]
 	prompt = false
 [mergetool "fugitive"]
-    cmd = vim -f -c \"Gvdiff\" \"$MERGED\"
+    cmd = vim -f -c \"Gvdiffsplit!\" \"$MERGED\"
 [merge "ours"]
 	driver = true
 [diff "jupyternotebook"]
