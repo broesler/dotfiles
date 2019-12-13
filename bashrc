@@ -77,6 +77,10 @@ set bell-style visible
 # Disable tilde expansion on tab-complete
 _expand() { return 0; }
 
+# Anaconda include
+# source ~/miniconda3/etc/profile.d/conda.sh
+conda activate dev
+
 # enable better auto-completion
 if [ -f '/usr/local/etc/bash_completion' ]; then
     source '/usr/local/etc/bash_completion'
