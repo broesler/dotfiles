@@ -50,7 +50,7 @@ alias lt='tree -C'
 alias mkdir='mkdir -p'
 alias mygcc='gcc-8 -Wall -pedantic -std=c99'
 alias mygfortran="gfortran $gfopts"
-alias show_path='echo $PATH | tr -s ":" "\n"'
+alias showpath='echo $PATH | tr -s ":" "\n"'
 alias sicp='rlwrap -r -c -f "$HOME"/src/scheme/mit_scheme_bindings.txt scheme'
 alias ta='type -a'
 
