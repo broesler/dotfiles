@@ -9,8 +9,6 @@
 """
 #==============================================================================
 
-import pkg_resources # use for colorschemes
-
 #------------------------------------------------------------------------------
 # ConnectionFileMixin(LoggingConfigurable) configuration
 #------------------------------------------------------------------------------
@@ -115,15 +113,6 @@ c.JupyterConsoleApp.confirm_exit = False
 
 ## Use a plaintext widget instead of rich text (plain can't print/save).
 #c.JupyterQtConsoleApp.plain = False
-
-# 'base16_ocean_dark', 'monokai', 'zenburn', 'tomorrow', 'spacemacs_dark'
-# 'solarized[light|dark]', 'material_light', 'blackboard'
-color_theme = 'base16_ocean_dark'  # specify color theme
-
-## path to a custom CSS stylesheet
-#c.JupyterQtConsoleApp.stylesheet = ''
-c.JupyterQtConsoleApp.stylesheet = pkg_resources.resource_filename(\
-        "jupyter_qtconsole_colorschemes", "{}.css".format(color_theme))
 
 #------------------------------------------------------------------------------
 # ConsoleWidget(NewBase) configuration
@@ -292,8 +281,7 @@ c.JupyterWidget.editor_line = 'vim +{line} {filename}'
 
 ## If not empty, use this Pygments style for syntax highlighting. Otherwise, the
 #  style sheet is queried for Pygments style information.
-#c.JupyterWidget.syntax_style = ''
-c.JupyterWidget.syntax_style = color_theme
+c.JupyterWidget.syntax_style = ''
 
 #------------------------------------------------------------------------------
 # KernelManager(ConnectionFileMixin) configuration
