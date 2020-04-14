@@ -34,9 +34,9 @@
 [submodule "vim/bundle/vim-abolish"]
 	path = vim/bundle/abolish
 	url = https://github.com/tpope/vim-abolish.git
-[submodule "vim/bundle/vim-ipython"]
+[submodule "vim/bundle/jupyter-vim"]
 	path = vim/bundle/jupyter-vim
-	url = https://github.com/broesler/vim-ipython.git
+	url = https://github.com/broesler/jupyter-vim.git
 [submodule "vim/bundle/jedi-vim"]
 	path = vim/bundle/jedi-vim
 	url = https://github.com/davidhalter/jedi-vim.git
