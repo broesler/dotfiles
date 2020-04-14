@@ -44,7 +44,7 @@
 	path = vim/bundle/jedi-vim
 	url = https://github.com/davidhalter/jedi-vim.git
 [submodule "vim/bundle/vim-flake8"]
-	path = vim/bundle/vim-flake8
+	path = vim/bundle/flake8
 	url = https://github.com/nvie/vim-flake8.git
 [submodule "tmux/plugins/tmux-colors-solarized"]
     path = tmux/plugins/tmux-colors-solarized
