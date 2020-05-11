@@ -18,11 +18,11 @@ host=$(hostname -s) # i.e. 't1854', 'babylon', 'polaris'
 case "$host" in
 t1854)
     # Set the prompt with bright green text -- include GNU screen window number
-    PS1=$"\[\033[1;32m\][\u@\h: \w]${WINDOW}\$ \[\033[0m\]"
+    PS1=$"\[\033[1;32m\][\u@\h: \w]${WINDOW}\$(__git_ps1)\$ \[\033[0m\]"
     ;;
 babylon*|polaris|BROESLER-T480)
     # Set to bright cyan text for linux machines (easy tell on ssh to babylons)
-    PS1=$"\[\033[0;36m\][\u@\h: \w]${WINDOW}\$ \[\033[0m\]"
+    PS1=$"\[\033[0;36m\][\u@\h: \w]${WINDOW}\$(__git_ps1)\$ \[\033[0m\]"
     ;;
 *)
     # default no color
