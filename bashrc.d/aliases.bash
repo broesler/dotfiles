@@ -39,7 +39,6 @@ esac
 gfopts=' -cpp -Wall -pedantic -std=f95'
 gfopts+=' -fbounds-check -ffree-line-length-0 -fbacktrace -fall-intrinsics'
 
-alias clc='clear'
 alias df='df -kTh'
 alias du='du -kh'
 alias h='history | command less +G'
@@ -48,7 +47,7 @@ alias lt='tree -C'
 alias mkdir='mkdir -p'
 alias mygcc='gcc-8 -Wall -pedantic -std=c99'
 alias mygfortran="gfortran $gfopts"
-alias show_path='echo $PATH | tr -s ":" "\n"'
+alias showpath='echo $PATH | tr -s ":" "\n"'
 alias sicp='rlwrap -r -c -f "$HOME"/src/scheme/mit_scheme_bindings.txt scheme'
 alias ta='type -a'
 

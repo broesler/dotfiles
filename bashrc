@@ -42,7 +42,7 @@ export PGDATABASE=postgres            # Default postgresql database for psql
 # simple, commonly-used commands. No need to "export", these are only used in
 # interactive shells
 HISTCONTROL=ignoredups:ignorespace
-HISTIGNORE='clc:[bf]g:git st:git lol:history:h:hr:k'
+HISTIGNORE='clc:clear:[bf]g:git st:git lol:history:h:hr:k'
 HISTSIZE=$((1 << 12))                # 4096 lines in memory
 HISTFILESIZE=$((1 << 24))            # 16e6 lines in file
 HISTTIMEFORMAT="%F %T "
