@@ -62,7 +62,7 @@ set notimeout           " Only timeout on key codes, not mappings
 set ttimeout
 set ttimeoutlen=10
 set lazyredraw          " don't redraw during macros etc.
-set visualbell          " get rid of annoying Windows bell
+set novisualbell          " get rid of annoying Windows bell
 "}}}
 " Backups {{{
 set backup
@@ -127,6 +127,7 @@ set diffopt+=iwhite             " ignore whitespace in diff windows
 "}}}
 " Folding {{{
 set foldmethod=marker           " auto-fold code
+set foldlevelstart=99           " start with folds open
 set foldminlines=3
 let g:vimsyn_folding = 'aflmpPr' " fold vimscript syntactically
 "}}}
@@ -271,6 +272,7 @@ if executable(s:clip)
         autocmd TextYankPost * call system('echo '.shellescape(join(v:event.regcontents, "\<CR>")).' | '.s:clip)
     augroup END
 end
+"}}}
 "}}}--------------------------------------------------------------------------
 "       Key Mappings                                                     "{{{
 "-----------------------------------------------------------------------------
@@ -436,6 +438,14 @@ onoremap in{ :<C-U>normal! f{vi{<CR>
 onoremap il{ :<C-U>normal! F}vi{<CR>
 onoremap an{ :<C-U>normal! f{va{<CR>
 onoremap al{ :<C-U>normal! F}va{<CR>
+"}}}
+" Tabular mappings {{{
+if exists(":Tabularize")
+    nnoremap <Leader>a= :Tabularize /=<CR>
+    vnoremap <Leader>a= :Tabularize /=<CR>
+    nnoremap <Leader>a, :Tabularize /, \zs<CR>
+    vnoremap <Leader>a, :Tabularize /, \zs<CR>
+endif
 "}}}
 augroup filetype_markdown "{{{
     autocmd!
