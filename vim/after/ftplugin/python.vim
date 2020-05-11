@@ -16,9 +16,10 @@ setlocal textwidth=79    " PEP-8 standard
 setlocal iskeyword+=_
 setlocal iskeyword-=:
 
-setlocal foldmethod=syntax
+setlocal foldmethod=indent
 setlocal foldignore=
-setlocal foldlevelstart=99
+
+setlocal diffopt-=iwhite  " do not ignore whitespace in diffs!
 
 let g:python_highlight_all = 1
 
