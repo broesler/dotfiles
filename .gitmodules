@@ -52,9 +52,6 @@
 [submodule "tmux/plugins/tmux-resurrect"]
     path = tmux/plugins/tmux-resurrect
     url = https://github.com/tmux-plugins/tmux-resurrect.git
-[submodule "vim/bundle/rust.vim"]
-	path = vim/bundle/rust.vim
-	url = https://github.com/rust-lang/rust.vim.git
 [submodule "tmux/plugins/tmux-yank"]
 	path = tmux/plugins/tmux-yank
 	url = git@github.com:tmux-plugins/tmux-yank.git
