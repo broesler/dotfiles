@@ -22,9 +22,12 @@
         --decorate --stat=80 --date=format:"%D\\ %H:%M:%S"
     lt = log --pretty=format:"%C(auto)%h%d\\ %Cblue[%ad,\\ %cn]%C(auto):\\ %s" \
         --decorate --graph --date=format:"%D\\ %H:%M:%S"
+    lta = log --pretty=format:"%C(auto)%h%d\\ %Cblue[%ad,\\ %cn]%C(auto):\\ %s" \
+         --all --decorate --graph --date=format:"%D\\ %H:%M:%S"
     root = rev-parse --show-toplevel
     st = status --short --branch
     up = submodule update --recursive --remote
+	rv = remote -v
 [push]
     default = current
 [merge]
