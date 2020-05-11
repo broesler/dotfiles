@@ -11,7 +11,8 @@
 "       Preamble                                                         "{{{
 "-----------------------------------------------------------------------------
 " Ignore list of plugins
-let g:pathogen_disabled = ['vimtex', 'jupyter-vim']
+" let g:pathogen_disabled = ['vimtex', 'jupyter-vim']
+let g:pathogen_disabled = ['vimtex', 'breptile']
 " Run pathogen to load plugins (ignore errors on Linux machines)
 silent! call pathogen#infect()
 silent! call pathogen#helptags()
@@ -57,6 +58,8 @@ set showcmd         " show partial commands
 set encoding=utf-8  " Ensure files are universally readable
 scriptencoding utf-8
 
+set nrformats-=octal  " don't treat numbers that start with '0' as octal
+
 " It's not about the money, it's all about the timing {{{
 set notimeout           " Only timeout on key codes, not mappings
 set ttimeout
@@ -95,7 +98,7 @@ set wildignore+=*.fdb_latexmk,*.synctex*.gz
 set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg  " binary images
 set wildignore+=*.o,*.dll,*.pyc                 " compiled object files
 set wildignore+=*.sw?                           " Vim swap files
-set wildignore+=*.DS_Store                      " OSX bullshit
+set wildignore+=*.DS_Store                      " OSX garbage
 "}}}
 " Searching {{{
 set hlsearch        " highlight all search terms
@@ -125,7 +128,8 @@ set colorcolumn=80              " default is 80, autocmd changes for filetype
 set diffopt+=iwhite             " ignore whitespace in diff windows
 "}}}
 " Folding {{{
-set foldmethod=marker           " auto-fold code
+set foldlevelstart=99           " start with all folds open
+set foldmethod=marker
 set foldminlines=3
 let g:vimsyn_folding = 'aflmpPr' " fold vimscript syntactically
 "}}}
@@ -166,7 +170,7 @@ set tags=./tags,tags;,~/.dotfiles/tags,~/Documents/MATLAB/tags
 
 " Don't save settings from session, usually we want to reset these to defaults
 " when closing/reopening a bunch of files
-set sessionoptions=blank,buffers,curdir,folds,help,resize,winsize
+set sessionoptions-=options
 
 " Toggle "set list" or "set nolist" to view special characters
 if has("patch-7.4.710")
