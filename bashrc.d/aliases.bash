@@ -30,6 +30,10 @@ t1854)  # my MBP
             matlab -nosplash -nodesktop "$@"
     }
     ;;
+
+BROESLER-T480)  # Ubuntu on Windows PC (Lenovo T480 for work)
+    alias wopen='cmd.exe /C start'  # open a file with the default application
+    ;;
 esac
 
 #-------------------------------------------------------------------------------
