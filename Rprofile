@@ -12,7 +12,9 @@ options(prompt='R> ',
         useFancyQuotes=FALSE,
         max=10,
         max.print=100L,
-        width=as.integer(system("tput cols", intern=TRUE)))
+        width=as.integer(system("tput cols", intern=TRUE)),
+        repos=structure(c(CRAN="http://cran.r-project.org"))
+        )
 
 #==============================================================================
 #==============================================================================
