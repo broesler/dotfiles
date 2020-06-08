@@ -128,7 +128,7 @@ let @i = "import matplotlib.pyplot as plt\n"
 
 " Matplotlib figure set-up
 let @f = "fig = plt.figure(1, clear=True)\n"
-     \ . "ax = fig.add_subplot(111)\n"
+     \ . "ax = fig.add_subplot()\n"
      \ . "ax.plot()\n"
      \ . "ax.set(xlabel='',\n"
      \ . "       ylabel='')\n"
