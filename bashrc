@@ -15,14 +15,23 @@ host=$(hostname -s) # i.e. 't1854', 'babylon', 'polaris'
 # ...OR `export -f' all functions required in vim!
 [ -z "$PS1" ] && return
 
+# TODO consolidate code to use variables
 case "$host" in
 t1854)
     # Set the prompt with bright green text -- include GNU screen window number
-    PS1=$"\[\033[1;32m\][\u@\h: \w]${WINDOW}\$(__git_ps1)\$ \[\033[0m\]"
+    if type __git_ps1 &> /dev/null; then
+        PS1=$"\[\033[1;32m\][\u@\h: \w]${WINDOW}\$(__git_ps1)\$ \[\033[0m\]"
+    else
+        PS1=$"\[\033[1;32m\][\u@\h: \w]${WINDOW}\$ \[\033[0m\]"
+    fi
     ;;
 babylon*|polaris|BROESLER-T480)
     # Set to bright cyan text for linux machines (easy tell on ssh to babylons)
-    PS1=$"\[\033[0;36m\][\u@\h: \w]${WINDOW}\$(__git_ps1)\$ \[\033[0m\]"
+    if type __git_ps1 &> /dev/null; then
+        PS1=$"\[\033[0;36m\][\u@\h: \w]${WINDOW}\$(__git_ps1)\$ \[\033[0m\]"
+    else
+        PS1=$"\[\033[0;36m\][\u@\h: \w]${WINDOW}\$ \[\033[0m\]"
+    fi
     ;;
 *)
     # default no color
