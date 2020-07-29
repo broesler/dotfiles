@@ -9,6 +9,7 @@
 options(prompt="R> ",
         continue="... ",
         digits=4,
+        menu.graphics=FALSE,
         show.signif.stars=FALSE,
         useFancyQuotes=FALSE,
         max=10,
@@ -18,9 +19,11 @@ options(prompt="R> ",
         )
 
 .Last <- function(){
-  if(interactive()){
+  if (interactive()) {
     hist_file <- Sys.getenv("R_HISTFILE")
-    if(hist_file=="") hist_file <- "~/.RHistory"
+    if (hist_file == "") {
+        hist_file <- file.path(Sys.getenv("HOME"), ".RHistory")
+    }
     savehistory(hist_file)
   }
 }
