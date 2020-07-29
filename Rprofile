@@ -13,16 +13,17 @@ options(prompt="R> ",
         useFancyQuotes=FALSE,
         max=10,
         max.print=100L,
-        width=as.integer(system("tput cols", intern=TRUE)),
+        width=try(as.integer(system("tput cols", intern=TRUE)), silent=TRUE),
         repos=structure(c(CRAN="http://cran.r-project.org"))
         )
 
 .Last <- function(){
-  if(interactive()){
-    hist_file <- Sys.getenv("R_HISTFILE")
-    if(hist_file=="") hist_file <- "~/.RHistory"
-    savehistory(hist_file)
-  }
+    if (interactive()) {
+        hist_file <- Sys.getenv("R_HISTFILE")
+        if (hist_file == "") {
+            hist_file <- file.path(Sys.getenv("HOME", ".Rhistory"))
+        savehistory(hist_file)
+    }
 }
 
 #==============================================================================
