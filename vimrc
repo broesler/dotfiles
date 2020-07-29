@@ -12,6 +12,7 @@
 "-----------------------------------------------------------------------------
 " Ignore list of plugins
 let g:pathogen_disabled = ['vimtex', 'jupyter-vim']
+" let g:pathogen_disabled = ['vimtex', 'breptile']
 " Run pathogen to load plugins (ignore errors on Linux machines)
 silent! call pathogen#infect()
 silent! call pathogen#helptags()

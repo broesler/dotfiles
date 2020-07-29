@@ -26,49 +26,49 @@ set bell-style none # turn off obnoxious windows bell
 
 # NOTE: These maps require `set -o vi' in .bashrc in order to work!!!
 $if mode=vi
-  #============================================================================
-  #      Keymaps for vi-insert mode
-  #============================================================================
-  set keymap vi-insert
+    #==========================================================================
+    #      Keymaps for vi-insert mode
+    #==========================================================================
+    set keymap vi-insert
 
-  # Tab completes menu
-  "\C-i": complete
+    # Tab completes menu
+    "\C-i": complete
 
-  # Expand history, aliases, and shell constructs
-  "\C-x": shell-expand-line
+    # Expand history, aliases, and shell constructs
+    "\C-x": shell-expand-line
 
-  # Use * in vi-command mode for glob-expand-word 
-  "\C-g": glob-expand-word
+    # Use * in vi-command mode for glob-expand-word 
+    "\C-g": glob-expand-word
 
-  # Set UP and DOWN arrows to incremental history search
-  "\e[A": history-search-backward
-  "\e[B": history-search-forward
-  "\C-k": history-search-backward
-  "\C-j": history-search-forward
+    # Set UP and DOWN arrows to incremental history search
+    "\e[A": history-search-backward
+    "\e[B": history-search-forward
+    "\C-k": history-search-backward
+    "\C-j": history-search-forward
 
-  # Space expands history
-  # $if Bash
-  #   Space: magic-space
-  # $endif
+    # Space expands history
+    # $if Bash
+    #   Space: magic-space
+    # $endif
 
-  #============================================================================
-  #      Keymaps for vi-command mode
-  #============================================================================
-  set keymap vi-command
+    #==========================================================================
+    #      Keymaps for vi-command mode
+    #==========================================================================
+    set keymap vi-command
 
-  # Expand history, aliases, and shell constructs
-  "\C-x": shell-expand-line
+    # Expand history, aliases, and shell constructs
+    "\C-x": shell-expand-line
 
-  # Edit previous line options
-  "\C-o": "\e-0ea "
+    # Edit previous line options
+    "\C-o": "\e-0ea "
 
-  # Use j and k for history search
-  "k": history-search-backward
-  "j": history-search-forward
+    # Use j and k for history search
+    "k": history-search-backward
+    "j": history-search-forward
 
-  # Jump to beginning or end of history
-  "gg": beginning-of-history
-  "G": end-of-history
+    # Jump to beginning or end of history
+    "gg": beginning-of-history
+    "G": end-of-history
 
 $endif
 
