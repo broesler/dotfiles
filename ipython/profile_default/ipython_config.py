@@ -48,7 +48,6 @@ c.AliasManager.user_aliases = [
 #c.InteractiveShellApp.exec_files = []
 c.InteractiveShellApp.extensions = [
     'autoreload',
-    'line_profiler'
 ]
 c.InteractiveShellApp.exec_lines = [
     '%autoreload 2',
@@ -60,7 +59,7 @@ c.InteractiveShellApp.exec_lines = [
     'import seaborn as sns',
     'from matplotlib.gridspec import GridSpec',
     'from scipy import stats',
-    'np.set_printoptions(threshold=200)'
+    'np.set_printoptions(precision=4, threshold=200, suppress=True, linewidth=200)'
 ]
 
 #c.InteractiveShellApp.extra_extension = ''
