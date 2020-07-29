@@ -26,7 +26,7 @@ t1854)  # my MBP
     {
         # $PATH includes: /Applications/MATLAB_R2018b.app/bin/
         rlwrap -a dummy -c -m dummy \
-            -H $HOME/.matlab/R2019b/history.m \
+            -H $HOME/.matlab/R2020a/history.m \
             matlab -nosplash -nodesktop "$@"
     }
     ;;
@@ -48,7 +48,7 @@ alias h='history | command less +G'
 alias j='jobs -l'
 alias lt='tree -C'
 alias mkdir='mkdir -p'
-alias mygcc='gcc-8 -Wall -pedantic -std=c99'
+alias mygcc='gcc-10 -Wall -pedantic -std=c99'
 alias mygfortran="gfortran $gfopts"
 alias showpath='echo $PATH | tr -s ":" "\n"'
 alias sicp='rlwrap -r -c -f "$HOME"/src/scheme/mit_scheme_bindings.txt scheme'
