@@ -15,7 +15,7 @@ setlocal expandtab
 setlocal iskeyword-=:         " colon is NOT part of keywords
 
 setlocal comments=:%
-setlocal commentstring=%%%s
+setlocal commentstring=%%s
 
 setlocal foldlevelstart=99
 setlocal foldmethod=indent
