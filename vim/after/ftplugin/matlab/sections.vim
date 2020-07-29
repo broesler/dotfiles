@@ -14,11 +14,11 @@ function! s:NextSection(type, backwards, visual)
     if a:type == 1
         " In Matlab %% gives a 'section' header. 
         " Look for beginning of section, or the beginning of the file
-        let pattern ='\v(^\s*\%\%(\s|$)|%^)'
+        let pattern ='\v(^\s*\%\%(\s|$)|^\s*<(for|if|switch)>|%^)'
         let flags = ''     " 'e' move to end of pattern
     elseif a:type == 2
         " Look for end of section, or the end of the file
-        let pattern ='\v(\n^\s*\%\%(\s|$)|%$)'
+        let pattern ='\v(\n^\s*\%\%(\s|$)|^\s*<end>|%$)'
         let flags = ''
     endif
 
