@@ -48,6 +48,8 @@ Session.vim
 *.psd
 *.pyc
 *.tiff
+*.doc
+*.docx
 *.xlsx
 *.zip
 *x.png
