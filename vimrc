@@ -442,10 +442,15 @@ onoremap al{ :<C-U>normal! F}va{<CR>
 "}}}
 " Tabular mappings {{{
 if exists(":Tabularize")
+    " TODO write as function that accepts as input the character on which to align
     nnoremap <Leader>a= :Tabularize /=<CR>
     vnoremap <Leader>a= :Tabularize /=<CR>
     nnoremap <Leader>a, :Tabularize /, \zs<CR>
     vnoremap <Leader>a, :Tabularize /, \zs<CR>
+    nnoremap <Leader>a# :Tabularize / #<CR>
+    vnoremap <Leader>a# :Tabularize / #<CR>
+    nnoremap <Leader>a% :Tabularize / %<CR>
+    vnoremap <Leader>a% :Tabularize / %<CR>
 endif
 "}}}
 augroup filetype_markdown "{{{
@@ -502,7 +507,7 @@ let color_file = "~/.vimrc_solarized"
 if filereadable(expand(color_file))
     execute 'source' color_file
     " turn off background for windows ubuntu bg=dark
-    hi Normal ctermbg=none
+    " hi Normal ctermbg=none
 else
     echom 'Could not find: ' . color_file . '. Using default colorscheme...'
     colorscheme default
@@ -530,8 +535,8 @@ hi SpellLocal term=underline cterm=underline
 " hi Comment cterm=italic
 
 " Do not highlight cursor line number in relative number mode
-hi clear CursorLineNr
-hi def link CursorLineNr Comment
+" hi clear CursorLineNr
+" hi def link CursorLineNr Comment
 set cursorline " highlight line cursor is on for easy finding
 "}}}
 "}}}--------------------------------------------------------------------------

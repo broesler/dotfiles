@@ -57,7 +57,8 @@ c.InteractiveShellApp.exec_lines = [
     'import numpy as np',
     'import matplotlib.pyplot as plt',
     'from matplotlib.gridspec import GridSpec',
-    'import seaborn as sns'
+    'import seaborn as sns',
+    'np.set_printoptions(precision=4)',
 ]
 
 #c.InteractiveShellApp.extra_extension = ''

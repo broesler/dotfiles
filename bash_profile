@@ -57,6 +57,13 @@ BROESLER-T480)  # Ubuntu on Windows PC (Lenovo T480 for work)
     export STAR_PATH="/mnt/c/Program Files/CD-adapco/13.06.012/STAR-CCM+3.06.012/star/bin/"
     export PATH="$PATH:$STAR_PATH"
 
+    # Add Latex path
+    export MANPATH="$MANPATH:/usr/local/texlive/2020/texmf-dist/doc/man"
+    export INFOPATH="$INFOPATH:/usr/local/texlive/2020/texmf-dist/doc/info"
+    
+    export TEX_PATH="/usr/local/texlive/2020/bin/x86_64-linux"
+    export PATH="$PATH:$TEX_PATH"
+
     export WINDOWS_PATH='C:\Users\broesler\AppData\Local\Packages\CanonicalGroupLimited.UbuntuonWindows_79rhkp1fndgsc\LocalState\rootfs\home\broesler\'
 
     # Allow X11 to work
@@ -87,3 +94,4 @@ fi
 #==============================================================================
 #==============================================================================
 # vim: ft=sh syntax=sh
+
