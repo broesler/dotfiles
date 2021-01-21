@@ -20,17 +20,17 @@ case "$host" in
 t1854)
     # Set the prompt with bright green text -- include GNU screen window number
     if type __git_ps1 &> /dev/null; then
-        PS1=$"\[\033[1;32m\][\u@\h: \w]${WINDOW}\$(__git_ps1)\$ \[\033[0m\]"
+        PS1=$"\[\033[1;32m\][\u@\h: \W]${WINDOW}\$(__git_ps1)\$ \[\033[0m\]"
     else
-        PS1=$"\[\033[1;32m\][\u@\h: \w]${WINDOW}\$ \[\033[0m\]"
+        PS1=$"\[\033[1;32m\][\u@\h: \W]${WINDOW}\$ \[\033[0m\]"
     fi
     ;;
 babylon*|polaris|BROESLER-T480)
     # Set to bright cyan text for linux machines (easy tell on ssh to babylons)
     if type __git_ps1 &> /dev/null; then
-        PS1=$"\[\033[0;36m\][\u@\h: \w]${WINDOW}\$(__git_ps1)\$ \[\033[0m\]"
+        PS1=$"\[\033[0;36m\][\u@\h: \W]${WINDOW}\$(__git_ps1)\$ \[\033[0m\]"
     else
-        PS1=$"\[\033[0;36m\][\u@\h: \w]${WINDOW}\$ \[\033[0m\]"
+        PS1=$"\[\033[0;36m\][\u@\h: \W]${WINDOW}\$ \[\033[0m\]"
     fi
     ;;
 *)
@@ -39,7 +39,7 @@ babylon*|polaris|BROESLER-T480)
     ;;
 esac
 
-PROMPT_DIRTRIM=4  # uses '...' to limit list of directories
+PROMPT_DIRTRIM=3  # uses '...' to limit list of directories
 
 # Turn off <C-S> flow control (stops all I/O until <C-Q> is pressed)
 stty -ixon
@@ -87,8 +87,8 @@ set bell-style visible
 _expand() { return 0; }
 
 # Anaconda include
-source /home/broesler/miniconda3/etc/profile.d/conda.sh
-conda activate dev
+source /home/broesler/miniconda3/etc/profile.d/conda.sh  # commented out by conda initialize
+conda activate dev  # commented out by conda initialize
 
 # enable better auto-completion
 if [ -f /usr/local/etc/bash_completion ]; then
