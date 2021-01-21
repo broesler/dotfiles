@@ -92,12 +92,12 @@ set wildmode=longest,list,full  " like bash completion
 set nofileignorecase    " no == do NOT ignore case when completing filenames
 
 set wildignore+=.git  " Version control
-set wildignore+=*.aux,*.bbl,*.blg,*.log,*.out,*.toc,*.fls " LaTex aux files
+set wildignore+=*.aux,*.bbl,*.blg,*.log,*.toc,*.fls " LaTex aux files
 set wildignore+=*.fdb_latexmk,*.synctex*.gz
 set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg  " binary images
 set wildignore+=*.o,*.dll,*.pyc                 " compiled object files
 set wildignore+=*.sw?                           " Vim swap files
-set wildignore+=*.DS_Store                      " OSX bullshit
+set wildignore+=*.DS_Store                      " OSX garbage
 "}}}
 " Searching {{{
 set hlsearch        " highlight all search terms
@@ -337,7 +337,7 @@ nnoremap <Leader>H :GetHighlight<CR>
 "}}}
 
 " Open URL's in browser
-nnoremap <Leader>U :silent execute '!open ' . fnameescape("<C-R><C-F>")<CR><bar>:redraw!<CR><CR>
+nnoremap <Leader>U :silent execute '!wopen ' . fnameescape("<C-R><C-F>")<CR><bar>:redraw!<CR><CR>
 
 " Change vim directory to that of current file (':cd -' changes back)
 nnoremap <Leader>d :cd %:p:h<CR>:pwd<CR>
