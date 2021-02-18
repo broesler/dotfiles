@@ -532,7 +532,7 @@ hi SpellLocal term=underline cterm=underline
 "}}}
 " Highlighting {{{
 " Make comments italics -- does not work with tmux in WSL!!
-hi Comment cterm=italic
+" hi Comment cterm=italic
 
 " Do not highlight cursor line number in relative number mode
 " hi clear CursorLineNr
