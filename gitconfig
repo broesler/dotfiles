@@ -15,16 +15,19 @@
     dt = difftool
     lol = log --oneline --graph --decorate  # only current branch
     loa = log --oneline --graph --decorate --all
-    los = log --oneline --graph --decorate --all --stat
+    los = log --oneline --graph --decorate --all --name-status
     ld = log --abbrev-commit --decorate --graph \
         --format=format:'%C(auto)%h%d %C(bold green)(%ar)%C(auto) %s %C(dim white)- %cn%C(auto)'
     ll = log --pretty=format:"%C(auto)%h%d\\ %Cblue[%ad,\\ %cn]%C(auto)\\ %s" \
         --decorate --stat=80 --date=format:"%D\\ %H:%M:%S"
     lt = log --pretty=format:"%C(auto)%h%d\\ %Cblue[%ad,\\ %cn]%C(auto):\\ %s" \
         --decorate --graph --date=format:"%D\\ %H:%M:%S"
+    lta = log --pretty=format:"%C(auto)%h%d\\ %Cblue[%ad,\\ %cn]%C(auto):\\ %s" \
+         --all --decorate --graph --date=format:"%D\\ %H:%M:%S"
     root = rev-parse --show-toplevel
     st = status --short --branch
     up = submodule update --recursive --remote
+	rv = remote -v
 [push]
     default = current
 [merge]
@@ -56,3 +59,5 @@
 	cmd = git-nbmergetool merge \"$BASE\" \"$LOCAL\" \"$REMOTE\" \"$MERGED\"
 [mergetool]
 	prompt = false
+[pull]
+	rebase = false
