@@ -61,3 +61,6 @@
 [submodule "vim/bundle/scriptease"]
 	path = vim/bundle/scriptease
 	url = https://github.com/tpope/vim-scriptease.git
+[submodule "vim/bundle/python-syntax"]
+	path = vim/bundle/python-syntax
+	url = https://github.com/vim-python/python-syntax
