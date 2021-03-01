@@ -50,6 +50,7 @@ alias lt='tree -C'
 alias mkdir='mkdir -p'
 alias mygcc='gcc-10 -Wall -pedantic -std=c99'
 alias mygfortran="gfortran $gfopts"
+alias pandoc='/usr/local/bin/pandoc'
 alias showpath='echo $PATH | tr -s ":" "\n"'
 alias sicp='rlwrap -r -c -f "$HOME"/src/scheme/mit_scheme_bindings.txt scheme'
 alias ta='type -a'
