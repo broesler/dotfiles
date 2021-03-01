@@ -11,6 +11,7 @@
 "       Preamble                                                         "{{{
 "-----------------------------------------------------------------------------
 " Ignore list of plugins
+" let g:pathogen_disabled = ['LaTeX-Box', 'jupyter-vim']
 let g:pathogen_disabled = ['vimtex', 'jupyter-vim']
 " let g:pathogen_disabled = ['vimtex', 'breptile']
 " Run pathogen to load plugins (ignore errors on Linux machines)
@@ -205,6 +206,8 @@ augroup code_cmds "{{{
     " Update 'Last Modified:' line in code files
     " autocmd FileType c,cpp,python,matlab,fortran,vim,sh,perl
         " \ autocmd BufWritePre <buffer> call util#LastModified()
+
+    autocmd FileType css,scss,sass setlocal iskeyword+=-
 augroup END
 "}}}
 augroup misc_cmds "{{{
@@ -262,9 +265,6 @@ augroup xelatex_cmds "{{{
     autocmd BufRead,BufNewFile *.xtx set ft=tex
     autocmd BufRead,BufNewFile *.xtx let g:LatexBox_latexmk_options = "-file-line-error -synctex=1 -pdf -xelatex"
     autocmd BufRead,BufNewFile *.xtx setlocal makeprg=latexmk\ \-interaction=nonstopmode\ \-pdf\ \-xelatex\ '%'
-	" TODO properly implement these lines for vimtex (vs LaTeX-Box)
-    " autocmd BufRead,BufNewFile *.xtx call add(g:vimtex_compiler_latexmk['options'], '-xelatex')
-    " autocmd BufRead,BufNewFile *.xtx call uniq(sort(g:vimtex_compiler_latexmk['options']))
 augroup END
 "}}}
 "}}}--------------------------------------------------------------------------
@@ -459,8 +459,8 @@ let g:breptile_tpgrep_pat_scheme = '[r]lwrap.*scheme'
 let g:breptile_python_interp = 2    " expect ipython
 " }}}
 " LatexBox {{{
-let g:LatexBox_latexmk_async = 1    " 1 == run latexmk asynchronously (not really, requires vim server, no channels yet)
-let g:LatexBox_Folding = 0          " 1 == use LatexBox folding instead of vim folding
+let g:LatexBox_latexmk_async = 0    " 1 == run latexmk asynchronously (not really, requires vim server, no channels yet)
+let g:LatexBox_Folding = 1          " 1 == use LatexBox folding instead of vim folding
 let g:LatexBox_quickfix = 2         " 2 == open quickfix but do not jump to error
 let g:LatexBox_output_type = '-pdf' " output to pdf
 let g:LatexBox_show_warnings = 0    " 0 == do not show warnings (default on)
@@ -514,7 +514,7 @@ hi SpellLocal term=underline cterm=underline
 " Make comments italics
 hi Comment cterm=italic
 
-" Do not highlight cursor line number in relative number mode
+" Do not highlight cursor line number
 hi clear CursorLineNr
 hi def link CursorLineNr Comment
 set cursorline " highlight line cursor is on for easy finding

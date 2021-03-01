@@ -6,7 +6,6 @@
 "  Description: vim settings for LaTeX filetype
 "=============================================================================
 " Buffer-local settings {{{
-let g:tex_stylish=1
 setlocal textwidth=80
 setlocal tabstop=2
 setlocal softtabstop=2
@@ -20,44 +19,24 @@ set wildignore-=*.jpg,*.bmp,*.gif,*.png,*.jpeg
 " : is included as keyword for fig: eqn: etc.,
 setlocal iskeyword+=:,_
 
-setlocal foldmethod=marker
-setlocal foldnestmax=3          " allow folds down to subsections
-setlocal foldminlines=4         " only fold 4+ lines
-" setlocal foldlevel=99
-setlocal foldlevelstart=99
-let g:tex_fold_enabled=0
+let g:tex_fold_enabled=0    " vim folding slows insert mode, use LaTeX-Box
+let g:tex_flavor='latex'
+let b:tex_stylish=1         " \makeatletter allows @ as symbol
 
 " Change default SuperTabs completion to context (or try <C-x><C-o>)
 let g:SuperTabDefaultCompletionType="context"
 
 " Compiler options. Use ':make mydocument' to compile
-let b:tex_flavor="latex"
-let b:tex_ignore_makefile=1       " ignore any makefiles in the tex dir
-
 " Call latexmk to build tex files properly. See ~/.latexmkrc for options
 "  include %:S to use shell-escaped current filename as main latex file
-setlocal makeprg=latexmk\ \-pdf\ '%'
+" setlocal makeprg=latexmk\ \-pdf\ '%'
 
-" vimtex options {{{
-let g:vimtex_view_automatic = 0
-let g:vimtex_view_method = 'skim'
-
-let g:vimtex_compiler_latexmk = {
-    \ 'backend' : 'jobs',
-    \ 'background' : 1,
-    \ 'build_dir' : '',
-    \ 'callback' : 1,
-    \ 'continuous' : 0,
-    \ 'executable' : 'latexmk',
-    \ 'options' : [
-    \   '-pdf',
-    \   '-verbose',
-    \   '-file-line-error',
-    \   '-synctex=1',
-    \   '-interaction=nonstopmode',
-    \ ],
-    \}
-"}}}
+"" vimtex options {{{
+"let g:vimtex_view_automatic = 0
+"let g:vimtex_view_method = 'skim'
+"let g:vimtex_view_general_viewer = 'skim'  " used by :VimtexView
+"let g:vimtex_compiler_latexmk = {'continuous' : 0}  " single-shot compilation
+""}}}
 
 "}}}-------------------------------------------------------------------------- 
 "        Override LaTeX-Box errorformat: {{{
@@ -125,16 +104,16 @@ vnoremap <buffer> sp "zdi\left(<C-R>z\right)<Esc>
 "-----------------------------------------------------------------------------
 " Short macros (use @a) {{{
 " Align macro
-let @a='i\begin{align}\end{align}k'
+let @a='o\begin{align*}\end{align*}k'
 
 " bar matrix macro
 let @b='a\begin{bmatrix} \end{bmatrix}Bh'
 
 " Equation macro
-let @e='i\begin{equation}\end{equation}k'
+let @e='o\begin{equation}\end{equation}k'
 
 " gather macro
-let @g='i\begin{gather}\end{gather}k'
+let @g='o\begin{gather}\end{gather}k'
 "}}}
 " Figure macro (use <quote>fp) "{{{
 let @f="\\begin{figure}[!h]\n"
@@ -185,6 +164,6 @@ let @t="\\begin{table}[!h]\n"
 "}}}--------------------------------------------------------------------------
 "       Highlighting {{{
 "-----------------------------------------------------------------------------
-" make errors stand out a bit more
-hi texMathError ctermfg=none ctermbg=darkred
+" make errors stand out
+hi texMathError ctermfg=darkred ctermbg=none
 "}}}
