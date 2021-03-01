@@ -26,9 +26,23 @@ t1854)
         export MANPATH="/usr/local/opt/${name}/libexec/gnuman:$MANPATH"
     done
 
-    export PATH="$PATH:/Library/TeX/texbin"                  # LaTeX path
-    export PATH="$PATH:/Applications/MATLAB_R2020a.app/bin"  # for matlab, etc.
+    export PATH="$PATH:/Library/TeX/texbin"                         # LaTeX path
+    export PATH="$PATH:/Applications/MATLAB_R2020a.app/bin"         # for matlab, etc.
     export PATH="$PATH:/Applications/MATLAB_R2020a.app/bin/maci64"  # for mlint
+
+    # Ruby for jekyll
+    export PATH="/usr/local/opt/ruby/bin:$PATH"
+    export PATH="$HOME/.local/share/gem/ruby/3.0.0/bin:$PATH"
+    # export GEM_HOME="$HOME/.gems"
+    # export PATH="$HOME/.gems/bin:$PATH"
+    # export PATH="$HOME/.gem/ruby/3.0.0/bin:$PATH"
+    # export PATH="$HOME/.rbenv/bin:$PATH"
+    # eval "$(rbenv init -)"
+    export LDFLAGS="-L/usr/local/opt/libffi/lib"
+    export PKG_CONFIG_PATH="/usr/local/opt/libffi/lib/pkgconfig"
+
+    # Need for matplotlib Qt5Agg backend to work on Big Sur
+    export QT_MAC_WANTS_LAYER=1
 
     # >>> conda initialize >>>
     # !! Contents within this block are managed by 'conda init' !!
