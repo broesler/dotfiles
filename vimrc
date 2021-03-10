@@ -475,6 +475,7 @@ let g:breptile_bash_pane = 'bottom-left'
 let g:breptile_tpgrep_pat_matlab = '[r]lwrap.*matlab'
 let g:breptile_tpgrep_pat_scheme = '[r]lwrap.*scheme'
 let g:breptile_python_interp = 2    " expect ipython
+let g:breptile_python_pytestops = '-v'  " verbose testing output
 " }}}
 " LatexBox {{{
 let g:LatexBox_latexmk_async = 1    " 1 == run latexmk asynchronously (not really, requires vim server, no channels yet)
