@@ -22,6 +22,8 @@ setlocal foldmethod=syntax
 setlocal foldignore=
 setlocal foldlevelstart=99
 
+compiler pytest  " Dispatch.vim, see `.vim/after/compiler/pytest.vim`
+
 let g:python_highlight_all = 1
 let g:python_highlight_func_calls = 0
 
