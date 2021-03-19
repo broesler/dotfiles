@@ -21,7 +21,10 @@ setlocal foldignore=
 
 setlocal diffopt-=iwhite  " do not ignore whitespace in diffs!
 
+compiler pytest  " Dispatch.vim, see `.vim/after/compiler/pytest.vim`
+
 let g:python_highlight_all = 1
+let g:python_highlight_func_calls = 0
 
 "-----------------------------------------------------------------------------
 "       Functions to lint + make code 
@@ -38,7 +41,6 @@ command! -buffer PythonFlake8 :call Flake8()
 
 function! PythonRunScript()
   setlocal makeprg=python\ %
-
   " This errorformat puts EVERY step of the trace in the stack. The user can
   " use :cnext to step down the stack or :cprev to step up. 
   setlocal efm=%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
