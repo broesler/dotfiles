@@ -1,9 +1,9 @@
 set t_Co=256
-set background=light
+set background=dark
 
 " Solarized options 
 " NOTE: set termcolors to 16 for "blue" background, 256 for "black"
-let g:solarized_termcolors = 16        " 256 | 16
+let g:solarized_termcolors = 256        " 256 | 16
 let g:solarized_termtrans  = 0          " 0 | 1  transparency
 let g:solarized_degrade    = 0          " 0 | 1
 let g:solarized_bold       = 1          " 1 | 0
