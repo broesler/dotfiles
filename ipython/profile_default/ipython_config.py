@@ -44,26 +44,6 @@ c.AliasManager.user_aliases = [
 #------------------------------------------------------------------------------
 #       InteractiveShellApp(Configurable) configuration
 #------------------------------------------------------------------------------
-c.InteractiveShellApp.extensions = [
-    'autoreload',
-]
-
-c.InteractiveShellApp.exec_lines = [
-    '%autoreload 2',
-    '%autoindent off',
-    'import sys',
-    'import os',
-    'import pandas as pd',
-    'import numpy as np',
-    'import matplotlib.pyplot as plt',
-    'from matplotlib.gridspec import GridSpec',
-    'import seaborn as sns',
-    'np.set_printoptions(precision=4)',
-]
-
-#c.InteractiveShellApp.extra_extension = ''
-#c.InteractiveShellApp.file_to_run = ''
-
 ## Should variables loaded at startup (by startup files, exec_lines, etc.) be
 #  hidden from tools like %who?
 c.InteractiveShellApp.hide_initial_ns = True
