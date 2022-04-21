@@ -59,6 +59,11 @@ t1854)
     unset __conda_setup
     # <<< conda initialize <<<
 
+    # C compilation flags
+    export CPATH=`xcrun --show-sdk-path`/usr/include
+    export LDFLAGS="$LDFLAGS -L/usr/local/opt/llvm/lib"
+    export CPPFLAGS="-I/usr/local/opt/llvm/include"
+    export ASAN_OPTIONS=detect_leaks=1
     ;;
 esac
 
