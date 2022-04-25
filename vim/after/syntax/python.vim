@@ -16,6 +16,8 @@ syn match pythonRelationalOperator      display "[=!]="
 syn match pythonRelationalOperator      display "[<>]=\="
 syn match pythonLogicalOperator         display "[|^&~]"
 
+" syn match pythonBreakReturn '\<(break|return)\>'
+
 " Include "fold" capability
 " Triple-quoted strings can contain doctests.
 syn region  pythonString matchgroup=pythonTripleQuotes
@@ -30,3 +32,4 @@ hi def link pythonRelationalOperator    pythonOperator
 hi def link pythonLogicalOperator       pythonOperator
 hi def link pythonOperator              Operator
 hi def link pythonDecoratorName		    Preproc
+" hi def link pythonBreakReturn           Preproc
