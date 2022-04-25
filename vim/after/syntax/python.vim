@@ -6,9 +6,11 @@
 "  Description: Additional syntax highlighting for python files
 "
 "=============================================================================
-"
+
+syn keyword pythonFunction break return
 syn keyword pythonStatement	self
 syn match pythonExceptions	'warnings\..*warn\w*\((\)\@='
+
 
 syn match pythonArithmeticOperator      display "[-+]"
 syn match pythonArithmeticOperator      display "[*/%]"
