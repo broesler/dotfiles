@@ -65,7 +65,7 @@ c.TerminalIPythonApp.display_banner = True
 ## Make IPython automatically call any callable object even if you didn't type
 #  explicit parentheses.
 #c.InteractiveShell.autocall = 0     # 0 (off), 1, 2 (full)
-c.InteractiveShell.colors = 'Linux'  # (NoColor, Neutral, Linux, or LightBG).
+c.InteractiveShell.colors = 'Neutral'  # (NoColor, Neutral, Linux, or LightBG).
 c.InteractiveShell.enable_html_pager = True
 c.InteractiveShell.separate_in = ''  # no newlines before prompt, default: '\\n'
 c.InteractiveShell.sphinxify_docstring = True
@@ -93,7 +93,7 @@ c.TerminalInteractiveShell.extra_open_editor_shortcuts = True
 #    perldoc, pastie, borland, trac, native, fruity, bw, vim, vs, tango, rrt,
 #    xcode, igor, paraiso-light, paraiso-dark, lovelace, algol, algol_nu,
 #    arduino, rainbow_dash, abap
-c.TerminalInteractiveShell.highlighting_style = 'native'
+c.TerminalInteractiveShell.highlighting_style = 'tango'
 
 #==============================================================================
 #==============================================================================

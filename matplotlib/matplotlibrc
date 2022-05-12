@@ -20,7 +20,7 @@
 # You can also deploy your own backend outside of matplotlib by
 # referring to the module name (which must be in the PYTHONPATH) as
 # 'module://my_backend'.
-backend      : qt5agg # tkagg, macosx, 
+backend      : tkagg # tkagg, macosx, qt5agg
 
 #interactive  : False
 #toolbar      : toolbar2   # None | toolbar2  ("classic" is deprecated)
