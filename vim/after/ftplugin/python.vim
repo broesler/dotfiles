@@ -124,10 +124,10 @@ let @d = "\n\n"
 " Standard import
 let @i = "import matplotlib.pyplot as plt\n"
      \ . "import numpy as np\n"
-     \ . "import scipy.linalg as la\n\n"
-     \ . "from scipy.sparse import diags, linalg as sla"
-     " \ . "import pandas as pd\n"
+     \ . "import pandas as pd\n"
      " \ . "import seaborn as sns\n\n"
+     " \ . "import scipy.linalg as la\n\n"
+     " \ . "from scipy.sparse import diags, linalg as sla"
 
 " Matplotlib figure set-up
 let @f = "fig = plt.figure(1, clear=True, tight_layout=True)\n"
