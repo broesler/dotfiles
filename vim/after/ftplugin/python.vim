@@ -22,6 +22,8 @@ setlocal foldmethod=syntax
 setlocal foldignore=
 setlocal foldlevelstart=99
 
+setlocal diffopt-=iwhite  " do not ignore whitespace in diffs!
+
 compiler pytest  " Dispatch.vim, see `.vim/after/compiler/pytest.vim`
 
 let g:python_highlight_all = 1
@@ -96,35 +98,34 @@ vnoremap <buffer> ad :<C-u>call <SID>PythonSelectDocstring(0)<CR>
 vnoremap <buffer> id :<C-u>call <SID>PythonSelectDocstring(1)<CR>
 
 " Docstring template macro (use <quote>dp)
-let @d = "\n"
+let @d = "\n\n"
      \ . "    Parameters\n"
      \ . "    ----------\n"
      \ . "    x : (M, N) array_like\n"
-     \ . "        Matrix of M vectors in K dimensions\n\n"
+     \ . "        Matrix of M vectors in N dimensions\n\n"
      \ . "    Returns\n"
      \ . "    -------\n"
      \ . "    result : (M, N) ndarray\n"
-     \ . "        Matrix of M vectors in K dimensions\n"
+     \ . "        Matrix of M vectors in N dimensions\n"
      \ . '    """'
 
 " Standard import
 let @i = "import matplotlib.pyplot as plt\n"
      \ . "import numpy as np\n"
-     \ . "import scipy.linalg as la\n\n"
-     \ . "from matplotlib.gridspec import GridSpec\n"
-     \ . "from scipy.sparse import diags, linalg as sla\n\n"
-     " \ . "import pandas as pd\n"
-     " \ . "import seaborn as sns\n\n"
+     \ . "import pandas as pd\n"
+     \ . "import seaborn as sns\n\n"
+     " \ . "import scipy.linalg as la\n\n"
+     " \ . "from scipy.sparse import diags, linalg as sla\n\n"
 
 " Matplotlib figure set-up
-let @f = "fig = plt.figure(1, clear=True)\n"
+let @f = "fig = plt.figure(1, clear=True, constrained_layout=True)\n"
      \ . "ax = fig.add_subplot()\n"
      \ . "ax.plot()\n"
-     \ . "ax.set(xlabel='',\n"
-     \ . "       ylabel='')\n"
+     \ . "ax.set(xlabel='x',\n"
+     \ . "       ylabel='y')\n"
 
 let @s = "fig = plt.figure(1, clear=True)\n"
-     \ . "gs = GridSpec(nrows=1, ncols=2)\n"
+     \ . "gs = fig.add_gridspec(nrows=1, ncols=2)\n"
      \ . "ax1 = fig.add_subplot(gs[0])  # left side plot\n"
      \ . "ax2 = fig.add_subplot(gs[1])  # right side plot\n"
      \ . "ax1.plot(x, y1, label='label1')\n"
