@@ -88,7 +88,7 @@ _expand() { return 0; }
 
 # Anaconda include
 source /home/broesler/miniconda3/etc/profile.d/conda.sh  # commented out by conda initialize
-conda activate dev  # commented out by conda initialize
+conda activate dev39  # commented out by conda initialize
 
 # enable better auto-completion
 if [ -f /usr/local/etc/bash_completion ]; then
