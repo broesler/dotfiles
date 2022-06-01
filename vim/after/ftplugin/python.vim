@@ -92,7 +92,8 @@ endfunction
 "-----------------------------------------------------------------------------
 " nnoremap <buffer> <LocalLeader>L :PythonLint<CR>
 nnoremap <buffer> <LocalLeader>L :PythonFlake8<CR>
-nnoremap <buffer> <LocalLeader>M :PythonRunScript<CR>
+" nnoremap <buffer> <LocalLeader>M :PythonRunScript<CR>
+nnoremap <buffer> <LocalLeader>M :Make<CR>
 
 nnoremap <buffer> <LocalLeader>i :PythonStandardImport<CR>
 
