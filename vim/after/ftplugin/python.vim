@@ -16,11 +16,10 @@ setlocal textwidth=79    " PEP-8 standard
 setlocal iskeyword+=_
 setlocal iskeyword-=:
 
-setlocal commentstring=#\ %s
-
-setlocal foldmethod=syntax
+setlocal foldmethod=indent
 setlocal foldignore=
-setlocal foldlevelstart=99
+
+setlocal diffopt-=iwhite  " do not ignore whitespace in diffs!
 
 compiler pytest  " Dispatch.vim, see `.vim/after/compiler/pytest.vim`
 
@@ -30,14 +29,18 @@ let g:python_highlight_func_calls = 0
 "-----------------------------------------------------------------------------
 "       Functions to lint + make code 
 "-----------------------------------------------------------------------------
-" Set up syntax error checking (requires vim-flake8)
-if exists("*Flake8")
-    command! -buffer PythonFlake8 :call Flake8()
-endif
+" Set up syntax error checking
+" function! PythonLint()
+"   let &makeprg="pylint --reports=n --output-format=parseable %:p"
+"   let &efm="%W%f:%l: [%*[CRW]%.%#] %m,%Z%p^^,"
+"               \ . "%E%f:%l: [%*[EF]%.%#] %m,%Z%p^^,%-G%.%#"
+"   update | silent make! | redraw!
+" endfunction
+" command! -buffer PythonLint :call PythonLint()
+command! -buffer PythonFlake8 :call Flake8()
 
 function! PythonRunScript()
   setlocal makeprg=python\ %
-
   " This errorformat puts EVERY step of the trace in the stack. The user can
   " use :cnext to step down the stack or :cprev to step up. 
   setlocal efm=%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
@@ -74,11 +77,23 @@ function! s:PythonSelectDocstring(is_inside) abort
     execute 'normal! /' . the_pat . '/' . l:flags . "\r"
 endfunction
 
+" function! s:PythonStandardImport() abort
+"     let l:import =  'import pandas as pd'
+"                 \ . 'import numpy as np'
+"                 \ . 'import matplotlib.pyplot as plt'
+"                 \ . 'from mpl_toolkits.mplot3d import axes3d'
+"                 \ . "import seaborn as sns\n"
+"     execute ':insert ' + l:import
+" endfunction
+" command! -buffer PythonStandardImport call <SID>PythonStandardImport()
+
 "-----------------------------------------------------------------------------
 "        Keymaps
 "-----------------------------------------------------------------------------
+" nnoremap <buffer> <LocalLeader>L :PythonLint<CR>
 nnoremap <buffer> <LocalLeader>L :PythonFlake8<CR>
-nnoremap <buffer> <LocalLeader>M :PythonRunScript<CR>
+" nnoremap <buffer> <LocalLeader>M :PythonRunScript<CR>
+nnoremap <buffer> <LocalLeader>M :Make<CR>
 
 nnoremap <buffer> <LocalLeader>i :PythonStandardImport<CR>
 
@@ -96,7 +111,7 @@ vnoremap <buffer> ad :<C-u>call <SID>PythonSelectDocstring(0)<CR>
 vnoremap <buffer> id :<C-u>call <SID>PythonSelectDocstring(1)<CR>
 
 " Docstring template macro (use <quote>dp)
-let @d = "\n"
+let @d = "\n\n"
      \ . "    Parameters\n"
      \ . "    ----------\n"
      \ . "    x : (M, N) array_like\n"
@@ -110,21 +125,20 @@ let @d = "\n"
 " Standard import
 let @i = "import matplotlib.pyplot as plt\n"
      \ . "import numpy as np\n"
-     \ . "import scipy.linalg as la\n\n"
-     \ . "from matplotlib.gridspec import GridSpec\n"
-     \ . "from scipy.sparse import diags, linalg as sla\n\n"
-     " \ . "import pandas as pd\n"
+     \ . "import pandas as pd\n"
      " \ . "import seaborn as sns\n\n"
+     " \ . "import scipy.linalg as la\n\n"
+     " \ . "from scipy.sparse import diags, linalg as sla"
 
 " Matplotlib figure set-up
-let @f = "fig = plt.figure(1, clear=True)\n"
+let @f = "fig = plt.figure(1, clear=True, tight_layout=True)\n"
      \ . "ax = fig.add_subplot()\n"
      \ . "ax.plot()\n"
-     \ . "ax.set(xlabel='',\n"
-     \ . "       ylabel='')\n"
+     \ . "ax.set(xlabel='x',\n"
+     \ . "       ylabel='y')\n"
 
 let @s = "fig = plt.figure(1, clear=True)\n"
-     \ . "gs = GridSpec(nrows=1, ncols=2)\n"
+     \ . "gs = fig.add_gridspec(nrows=1, ncols=2)\n"
      \ . "ax1 = fig.add_subplot(gs[0])  # left side plot\n"
      \ . "ax2 = fig.add_subplot(gs[1])  # right side plot\n"
      \ . "ax1.plot(x, y1, label='label1')\n"

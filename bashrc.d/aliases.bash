@@ -26,7 +26,7 @@ t1854)  # my MBP
     {
         # $PATH includes: /Applications/MATLAB_R2018b.app/bin/
         rlwrap -a dummy -c -m dummy \
-            -H $HOME/.matlab/R2020a/history.m \
+            -H $HOME/.matlab/R2018a/history.m \
             matlab -nosplash -nodesktop "$@"
     }
     ;;
@@ -39,29 +39,26 @@ esac
 gfopts=' -cpp -Wall -pedantic -std=f95'
 gfopts+=' -fbounds-check -ffree-line-length-0 -fbacktrace -fall-intrinsics'
 
-alias clc='clear'
 alias df='df -kTh'
-alias diff='diff --color=auto'
 alias du='du -kh'
-alias grep='grep --color=auto'
 alias h='history | command less +G'
 alias j='jobs -l'
 alias lt='tree -C'
 alias mkdir='mkdir -p'
-alias mygcc='gcc-10 -Wall -pedantic -std=c99'
+alias mygcc='gcc-8 -Wall -pedantic -std=c99'
 alias mygfortran="gfortran $gfopts"
-alias pandoc='/usr/local/bin/pandoc'
 alias showpath='echo $PATH | tr -s ":" "\n"'
 alias sicp='rlwrap -r -c -f "$HOME"/src/scheme/mit_scheme_bindings.txt scheme'
 alias ta='type -a'
 
 # Color list
-[ -e "$HOME/.dircolors" ] && DIR_COLORS="$HOME/.dircolors"
-[ -e "$DIR_COLORS" ] || DIR_COLORS=""
-
-# Set ls with colors
-eval "$(dircolors -b $DIR_COLORS)"  # set custom colors file
-alias lc='ls -Ghlp --color=auto'    # gnu-ls options
+if [ -x /usr/bin/dircolors ]; then
+    # set custom colors file
+    [ -r ~/.dircolors ] && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+    alias lc='ls -Ghlp --color=auto'    # gnu-ls options
+    alias grep='grep --color=auto'
+fi
 
 # Show hidden files only
 alias lcd='lc -d .*'

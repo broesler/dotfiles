@@ -6,7 +6,7 @@ setlocal softtabstop=0
 setlocal shiftwidth=8
 setlocal noexpandtab
 
-setlocal textwidth=80
+setlocal textwidth=100
 setlocal fo-=l           " wrap text while writing
 
 setlocal iskeyword+=_

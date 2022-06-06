@@ -1,21 +1,21 @@
 #==============================================================================
-#     File: ~/.ipython/profile_default/ipython_config.py 
+#     File: ~/.ipython/profile_default/ipython_config.py
 #  Created: 09/26/2017, 22:08
 #   Author: Bernie Roesler
 #
-"""  
+"""
     Description: Configuration file for ipython.
 """
 #==============================================================================
-import importlib
+
 from IPython.terminal.prompts import Prompts, Token
 
 c = get_config()
 
-#------------------------------------------------------------------------------ 
+#------------------------------------------------------------------------------
 #        Set prompt
 #------------------------------------------------------------------------------
-# Set the prompt 
+# Set the prompt
 class MyPrompt(Prompts):
     def in_prompt_tokens(self, cli=None):
         return [
@@ -34,7 +34,7 @@ class MyPrompt(Prompts):
 # Prompts, ClassicPrompts, MyPrompt
 c.TerminalInteractiveShell.prompts_class = MyPrompt
 
-#------------------------------------------------------------------------------ 
+#------------------------------------------------------------------------------
 #        Aliases
 #------------------------------------------------------------------------------
 c.AliasManager.user_aliases = [
@@ -44,27 +44,6 @@ c.AliasManager.user_aliases = [
 #------------------------------------------------------------------------------
 #       InteractiveShellApp(Configurable) configuration
 #------------------------------------------------------------------------------
-#c.InteractiveShellApp.code_to_run = ''
-#c.InteractiveShellApp.exec_files = []
-c.InteractiveShellApp.extensions = [
-    'autoreload',
-]
-c.InteractiveShellApp.exec_lines = [
-    '%autoreload 2',
-    'import sys',
-    'import os',
-    'import pandas as pd',
-    'import numpy as np',
-    'import matplotlib.pyplot as plt',
-    'import seaborn as sns',
-    'from matplotlib.gridspec import GridSpec',
-    'from scipy import stats',
-    'np.set_printoptions(precision=4, threshold=99, suppress=True, linewidth=200)'
-]
-
-#c.InteractiveShellApp.extra_extension = ''
-#c.InteractiveShellApp.file_to_run = ''
-
 ## Should variables loaded at startup (by startup files, exec_lines, etc.) be
 #  hidden from tools like %who?
 c.InteractiveShellApp.hide_initial_ns = True
@@ -72,38 +51,24 @@ c.InteractiveShellApp.hide_initial_ns = True
 ## Configure matplotlib for interactive use with the default matplotlib backend.
 c.InteractiveShellApp.matplotlib = 'auto'
 
-## Run the module as a script.
-#c.InteractiveShellApp.module_to_run = ''
-
 #------------------------------------------------------------------------------
 #       TerminalIPythonApp(BaseIPythonApplication,InteractiveShellApp) configuration
 #------------------------------------------------------------------------------
 ## Whether to display a banner upon starting IPython.
 c.TerminalIPythonApp.display_banner = True
 
-## If a command or file is given via the command-line, e.g. 'ipython foo.py',
-#  start an interactive shell after executing the file or command.
-c.TerminalIPythonApp.force_interact = False
-
-## Start IPython quickly by skipping the loading of config files.
-#c.TerminalIPythonApp.quick = False
-
 #------------------------------------------------------------------------------
 #       InteractiveShell(SingletonConfigurable) configuration
 #------------------------------------------------------------------------------
 ## An enhanced, interactive shell for Python.
 
-c.InteractiveShell.autoindent = False
-c.InteractiveShell.automagic = False
-c.InteractiveShell.color_info = True
-c.InteractiveShell.colors = 'Linux' ## (NoColor, Neutral, Linux, or LightBG).
-#c.InteractiveShell.disable_failing_post_execute = False
+## Make IPython automatically call any callable object even if you didn't type
+#  explicit parentheses.
+#c.InteractiveShell.autocall = 0     # 0 (off), 1, 2 (full)
+c.InteractiveShell.colors = 'Neutral'  # (NoColor, Neutral, Linux, or LightBG).
 c.InteractiveShell.enable_html_pager = True
-#c.InteractiveShell.pdb = False
-c.InteractiveShell.separate_in = '' ## Do not include blank lines before prompt
-#c.InteractiveShell.show_rewritten_input = True
+c.InteractiveShell.separate_in = ''  # no newlines before prompt, default: '\\n'
 c.InteractiveShell.sphinxify_docstring = True
-#c.InteractiveShell.wildcards_case_sensitive = True
 c.InteractiveShell.xmode = 'Context'
 
 #------------------------------------------------------------------------------
@@ -123,13 +88,12 @@ c.TerminalInteractiveShell.editor = 'vim'
 #  in addition to the F2 binding, which is always enabled.
 c.TerminalInteractiveShell.extra_open_editor_shortcuts = True
 
-## The name or class of a Pygments style to use for syntax
-#         highlighting: 
-#  default, emacs, friendly, colorful, autumn, murphy, manni, monokai, perldoc,
-#  pastie, borland, trac, native, fruity, bw, vim, vs, tango, rrt, xcode, igor,
-#  paraiso-light, paraiso-dark, lovelace, algol, algol_nu, arduino,
-#  rainbow_dash, abap
-c.TerminalInteractiveShell.highlighting_style = 'native'
+## The name or class of a Pygments style to use for syntax highlighting:
+#    default, emacs, friendly, colorful, autumn, murphy, manni, monokai,
+#    perldoc, pastie, borland, trac, native, fruity, bw, vim, vs, tango, rrt,
+#    xcode, igor, paraiso-light, paraiso-dark, lovelace, algol, algol_nu,
+#    arduino, rainbow_dash, abap
+c.TerminalInteractiveShell.highlighting_style = 'tango'
 
 #==============================================================================
 #==============================================================================

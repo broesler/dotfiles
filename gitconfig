@@ -61,3 +61,6 @@
 	prompt = false
 [pull]
 	rebase = false
+[http]
+	sslCAinfo = /etc/ssl/certs/ca-certificates.crt
+	sslverify = false
