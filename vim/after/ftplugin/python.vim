@@ -18,7 +18,7 @@ setlocal iskeyword-=:
 
 setlocal commentstring=#\ %s
 
-setlocal foldmethod=syntax
+setlocal foldmethod=indent
 setlocal foldignore=
 setlocal foldlevelstart=99
 
@@ -80,7 +80,8 @@ endfunction
 "        Keymaps
 "-----------------------------------------------------------------------------
 nnoremap <buffer> <LocalLeader>L :PythonFlake8<CR>
-nnoremap <buffer> <LocalLeader>M :PythonRunScript<CR>
+" nnoremap <buffer> <LocalLeader>M :PythonRunScript<CR>
+nnoremap <buffer> <LocalLeader>M :Make<CR>
 
 nnoremap <buffer> <LocalLeader>i :PythonStandardImport<CR>
 

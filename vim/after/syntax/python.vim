@@ -6,7 +6,9 @@
 "  Description: Additional syntax highlighting for python files
 "
 "=============================================================================
-"
+
+syn keyword pythonTodo		FIXME NOTE NOTES TODO XXX contained
+
 syn keyword pythonFunction	break, return
 syn keyword pythonStatement	self
 syn match pythonExceptions	'warnings\..*warn\w*\((\)\@='
@@ -31,3 +33,4 @@ hi def link pythonRelationalOperator    pythonOperator
 hi def link pythonLogicalOperator       pythonOperator
 hi def link pythonOperator              Operator
 hi def link pythonDecoratorName		    Preproc
+hi def link pythonTodo			        Todo
