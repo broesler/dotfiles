@@ -15,14 +15,23 @@ host=$(hostname -s) # i.e. 't1854', 'babylon', 'polaris'
 # ...OR `export -f' all functions required in vim!
 [ -z "$PS1" ] && return
 
+# TODO consolidate code to use variables
 case "$host" in
 t1854)
     # Set the prompt with bright green text -- include GNU screen window number
-    PS1=$"\[\033[1;32m\][\u@\h: \W]${WINDOW}\$(__git_ps1)\$ \[\033[0m\]"
+    if type __git_ps1 &> /dev/null; then
+        PS1=$"\[\033[1;32m\][\u@\h: \W]${WINDOW}\$(__git_ps1)\$ \[\033[0m\]"
+    else
+        PS1=$"\[\033[1;32m\][\u@\h: \W]${WINDOW}\$ \[\033[0m\]"
+    fi
     ;;
-babylon*|polaris|BROESLER*)
+babylon*|polaris|BROESLER-T480)
     # Set to bright cyan text for linux machines (easy tell on ssh to babylons)
-    PS1=$"\[\033[0;36m\][\u@\h: \w]${WINDOW}\$ \[\033[0m\]"
+    if type __git_ps1 &> /dev/null; then
+        PS1=$"\[\033[0;36m\][\u@\h: \W]${WINDOW}\$(__git_ps1)\$ \[\033[0m\]"
+    else
+        PS1=$"\[\033[0;36m\][\u@\h: \W]${WINDOW}\$ \[\033[0m\]"
+    fi
     ;;
 *)
     # default no color
@@ -30,7 +39,7 @@ babylon*|polaris|BROESLER*)
     ;;
 esac
 
-PROMPT_DIRTRIM=4  # uses '...' to limit list of directories
+PROMPT_DIRTRIM=3  # uses '...' to limit list of directories
 
 # Turn off <C-S> flow control (stops all I/O until <C-Q> is pressed)
 stty -ixon
@@ -42,7 +51,7 @@ export PGDATABASE=postgres            # Default postgresql database for psql
 # simple, commonly-used commands. No need to "export", these are only used in
 # interactive shells
 HISTCONTROL=ignoredups:ignorespace
-HISTIGNORE='clc:[bf]g:git st:git lol:history:h:hr:k'
+HISTIGNORE='clc:clear:[bf]g:git st:git lol:history:h:hr:k'
 HISTSIZE=$((1 << 12))                # 4096 lines in memory
 HISTFILESIZE=$((1 << 24))            # 16e6 lines in file
 HISTTIMEFORMAT="%F %T "
@@ -52,18 +61,18 @@ HISTTIMEFORMAT="%F %T "
 PROMPT_COMMAND='history -a'
 
 # shoptions
-shopt -s checkjobs       # displays stopped or running job status before exiting
+shopt -s checkjobs      # displays stopped or running job status before exiting
 shopt -s checkwinsize    # auto reformat command output
-shopt -s cmdhist         # save multi-line commands in history
+shopt -s cmdhist        # save multi-line commands in history
 if [[ ${BASH_VERSINFO[1]} > 1 ]]; then
     shopt -s direxpand      # expand variables in directory complete
 fi
-shopt -s expand_aliases  # expand aliases (needed for vim :!)
-shopt -s extglob         # extend glob to regexes i.e. ?(ab)
-shopt -s globstar        # allows use of ** (like vim)
-shopt -s histappend      # append to ~/.bash_history instead of overwriting
+shopt -s expand_aliases # expand aliases (needed for vim :!)
+shopt -s extglob        # extend glob to regexes i.e. ?(ab)
+shopt -s globstar       # allows use of ** (like vim)
+shopt -s histappend     # append to ~/.bash_history instead of overwriting
 shopt -s no_empty_cmd_completion  # ignore completion on empty line
-shopt -s shift_verbose   # warn when trying to shift if nothing is there
+shopt -s shift_verbose  # warn when trying to shift if nothing is there
 
 # Completion options
 set match-hidden-files off
@@ -81,8 +90,8 @@ _expand() { return 0; }
 conda activate dev39 2> /dev/null
 
 # enable better auto-completion
-if [ -f '/usr/local/etc/bash_completion' ]; then
-    source '/usr/local/etc/bash_completion'
+if [ -f /usr/local/etc/bash_completion ]; then
+    source /usr/local/etc/bash_completion
 fi
 
 # less highlighting for man pages:

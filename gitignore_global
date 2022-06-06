@@ -46,11 +46,9 @@ Session.vim
 *.png
 *.pptx
 *.psd
-*.py[cod]
+*.pyc
 *.tiff
-*.doc
-*.docx
-*.xlsx
+*.xls*
 *.zip
 *x.png
 
