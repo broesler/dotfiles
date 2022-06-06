@@ -78,7 +78,7 @@ set bell-style visible
 _expand() { return 0; }
 
 # Anaconda include
-conda activate dev 2> /dev/null
+conda activate dev39 2> /dev/null
 
 # enable better auto-completion
 if [ -f '/usr/local/etc/bash_completion' ]; then
