@@ -6,16 +6,16 @@
 	url = https://github.com/ervandew/supertab.git
 [submodule "vim/bundle/LaTeX-Box"]
 	path = vim/bundle/LaTeX-Box
-	url = git://github.com/LaTeX-Box-Team/LaTeX-Box.git
+	url = https://github.com/LaTeX-Box-Team/LaTeX-Box.git
 [submodule "vim/bundle/rename"]
 	path = vim/bundle/rename
 	url = https://github.com/danro/rename.vim.git
 [submodule "vim/bundle/vim-colors-solarized"]
 	path = vim/bundle/vim-colors-solarized
-	url = git://github.com/altercation/vim-colors-solarized.git
+	url = https://github.com/altercation/vim-colors-solarized.git
 [submodule "vim/bundle/unimpaired"]
 	path = vim/bundle/unimpaired
-	url = git://github.com/tpope/vim-unimpaired.git
+	url = https://github.com/tpope/vim-unimpaired.git
 [submodule "vim/bundle/breptile"]
 	path = vim/bundle/breptile
 	url = https://github.com/broesler/breptile.git
@@ -24,19 +24,19 @@
 	url = https://github.com/mileszs/ack.vim.git
 [submodule "vim/bundle/surround"]
 	path = vim/bundle/surround
-	url = git://github.com/tpope/vim-surround.git
+	url = https://github.com/tpope/vim-surround.git
 [submodule "vim/bundle/tabular"]
 	path = vim/bundle/tabular
-	url = git://github.com/godlygeek/tabular.git
+	url = https://github.com/godlygeek/tabular.git
 [submodule "vim/bundle/vimtex"]
 	path = vim/bundle/vimtex
 	url = https://github.com/lervag/vimtex.git
 [submodule "vim/bundle/abolish"]
 	path = vim/bundle/abolish
 	url = https://github.com/tpope/vim-abolish.git
-[submodule "vim/bundle/vim-ipython"]
+[submodule "vim/bundle/jupyter-vim"]
 	path = vim/bundle/jupyter-vim
-	url = https://github.com/broesler/vim-ipython.git
+	url = https://github.com/broesler/jupyter-vim.git
 [submodule "vim/bundle/jedi-vim"]
 	path = vim/bundle/jedi-vim
 	url = https://github.com/davidhalter/jedi-vim.git
@@ -51,7 +51,7 @@
     url = https://github.com/tmux-plugins/tmux-resurrect.git
 [submodule "tmux/plugins/tmux-yank"]
 	path = tmux/plugins/tmux-yank
-	url = git@github.com:tmux-plugins/tmux-yank.git
+	url = https://github.com/tmux-plugins/tmux-yank.git
 [submodule "vim/bundle/commentary"]
 	path = vim/bundle/commentary
 	url = https://github.com/tpope/vim-commentary.git
