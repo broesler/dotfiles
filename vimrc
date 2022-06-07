@@ -58,12 +58,13 @@ set showcmd         " show partial commands
 set encoding=utf-8  " Ensure files are universally readable
 scriptencoding utf-8
 
+set nrformats-=octal  " don't treat numbers that start with '0' as octal
+
 " It's not about the money, it's all about the timing {{{
 set notimeout           " Only timeout on key codes, not mappings
 set ttimeout
 set ttimeoutlen=10
 set lazyredraw          " don't redraw during macros etc.
-set novisualbell          " get rid of annoying Windows bell
 "}}}
 " Backups {{{
 set backup
@@ -92,7 +93,7 @@ set wildmode=longest,list,full  " like bash completion
 set nofileignorecase    " no == do NOT ignore case when completing filenames
 
 set wildignore+=.git  " Version control
-set wildignore+=*.aux,*.bbl,*.blg,*.log,*.toc,*.fls " LaTex aux files
+set wildignore+=*.aux,*.bbl,*.blg,*.log,*.out,*.toc,*.fls " LaTex aux files
 set wildignore+=*.fdb_latexmk,*.synctex*.gz
 set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg  " binary images
 set wildignore+=*.o,*.dll,*.pyc                 " compiled object files
@@ -127,8 +128,8 @@ set colorcolumn=80              " default is 80, autocmd changes for filetype
 set diffopt+=iwhite             " ignore whitespace in diff windows
 "}}}
 " Folding {{{
-set foldmethod=marker           " auto-fold code
 set foldlevelstart=99           " start with folds open
+set foldmethod=marker           " auto-fold code
 set foldminlines=3
 let g:vimsyn_folding = 'aflmpPr' " fold vimscript syntactically
 "}}}
@@ -168,7 +169,7 @@ set tags=./tags,tags;,~/.dotfiles/tags,~/Documents/MATLAB/tags
 
 " Don't save settings from session, usually we want to reset these to defaults
 " when closing/reopening a bunch of files
-set sessionoptions=blank,buffers,curdir,folds,help,resize,winsize
+set sessionoptions-=options
 
 " Toggle "set list" or "set nolist" to view special characters
 if has("patch-7.4.710")
@@ -203,6 +204,8 @@ augroup code_cmds "{{{
     " Update 'Last Modified:' line in code files
     " autocmd FileType c,cpp,python,matlab,fortran,vim,sh,perl
         " \ autocmd BufWritePre <buffer> call util#LastModified()
+
+    autocmd FileType css,scss,sass setlocal iskeyword+=-
 augroup END
 "}}}
 augroup misc_cmds "{{{
@@ -260,19 +263,7 @@ augroup xelatex_cmds "{{{
     autocmd BufRead,BufNewFile *.xtx set ft=tex
     autocmd BufRead,BufNewFile *.xtx let g:LatexBox_latexmk_options = "-file-line-error -synctex=1 -pdf -xelatex"
     autocmd BufRead,BufNewFile *.xtx setlocal makeprg=latexmk\ \-interaction=nonstopmode\ \-pdf\ \-xelatex\ '%'
-	" TODO properly implement these lines for vimtex (vs LaTeX-Box)
-    " autocmd BufRead,BufNewFile *.xtx call add(g:vimtex_compiler_latexmk['options'], '-xelatex')
-    " autocmd BufRead,BufNewFile *.xtx call uniq(sort(g:vimtex_compiler_latexmk['options']))
 augroup END
-"}}}
-" WSL yank support {{{
-let s:clip = '/mnt/c/Windows/System32/clip.exe'  " default location
-if executable(s:clip)
-    augroup WSLYank
-        autocmd!
-        autocmd TextYankPost * call system('echo '.shellescape(join(v:event.regcontents, "\<CR>")).' | '.s:clip)
-    augroup END
-end
 "}}}
 "}}}--------------------------------------------------------------------------
 "       Key Mappings                                                     "{{{
@@ -337,7 +328,7 @@ nnoremap <Leader>H :GetHighlight<CR>
 "}}}
 
 " Open URL's in browser
-nnoremap <Leader>U :silent execute '!wopen ' . fnameescape("<C-R><C-F>")<CR><bar>:redraw!<CR><CR>
+nnoremap <Leader>U :silent execute '!open ' . fnameescape("<C-R><C-F>")<CR><bar>:redraw!<CR><CR>
 
 " Change vim directory to that of current file (':cd -' changes back)
 nnoremap <Leader>d :cd %:p:h<CR>:pwd<CR>
@@ -425,7 +416,9 @@ nnoremap <space> za
 " Use \l to redraw the screen (since <C-l> is used by window switching)
 nnoremap <Leader>l :syntax sync fromstart<CR>:redraw!<CR>
 
-" Append line above current line to current line (opposite of J)
+" Move 'title' comment to end of next line
+" nnoremap <Leader>J 0Dj$pkdd
+" Better to do opposite of J, append line above current line to current line
 nnoremap <Leader>J ddkPJ
 
 " Custom text objects "{{{
@@ -478,8 +471,8 @@ let g:breptile_python_interp = 2    " expect ipython
 let g:breptile_python_pytestops = '-v'  " verbose testing output
 " }}}
 " LatexBox {{{
-let g:LatexBox_latexmk_async = 1    " 1 == run latexmk asynchronously (not really, requires vim server, no channels yet)
-let g:LatexBox_Folding = 0          " 1 == use LatexBox folding instead of vim folding
+let g:LatexBox_latexmk_async = 0    " 1 == run latexmk asynchronously (not really, requires vim server, no channels yet)
+let g:LatexBox_Folding = 1          " 1 == use LatexBox folding instead of vim folding
 let g:LatexBox_quickfix = 2         " 2 == open quickfix but do not jump to error
 let g:LatexBox_output_type = '-pdf' " output to pdf
 let g:LatexBox_show_warnings = 0    " 0 == do not show warnings (default on)
@@ -507,8 +500,6 @@ let color_file = "~/.vimrc_solarized"
 
 if filereadable(expand(color_file))
     execute 'source' color_file
-    " turn off background for windows ubuntu bg=dark
-    " hi Normal ctermbg=none
 else
     echom 'Could not find: ' . color_file . '. Using default colorscheme...'
     colorscheme default
@@ -532,12 +523,12 @@ hi clear SpellLocal
 hi SpellLocal term=underline cterm=underline
 "}}}
 " Highlighting {{{
-" Make comments italics -- does not work with tmux in WSL!!
-" hi Comment cterm=italic
+" Make comments italics
+hi Comment cterm=italic
 
-" Do not highlight cursor line number in relative number mode
-" hi clear CursorLineNr
-" hi def link CursorLineNr Comment
+" Do not highlight cursor line number
+hi clear CursorLineNr
+hi def link CursorLineNr Comment
 set cursorline " highlight line cursor is on for easy finding
 "}}}
 "}}}--------------------------------------------------------------------------
@@ -555,6 +546,8 @@ set statusline+=%f\                          " %t filename, %f relative path
 set statusline+=\[%{strlen(&ft)?&ft:'none'}] " file type
 set statusline+=\                            " separator
 set statusline+=%=                           " right align remainder
+" set statusline+=%8.20{util#GetHighlight()}   " show highlighting tag
+" set statusline+=\ \
 set statusline+=0x%-5B                       " character value under cursor
 set statusline+=%-15(%l,%c%V%)               " line, character
 set statusline+=%<%P                         " file position (percentage)

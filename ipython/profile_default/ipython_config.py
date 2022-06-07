@@ -65,6 +65,9 @@ c.TerminalIPythonApp.display_banner = True
 ## Make IPython automatically call any callable object even if you didn't type
 #  explicit parentheses.
 #c.InteractiveShell.autocall = 0     # 0 (off), 1, 2 (full)
+c.InteractiveShell.autoindent = False
+c.InteractiveShell.automagic = False
+c.InteractiveShell.color_info = True
 c.InteractiveShell.colors = 'Neutral'  # (NoColor, Neutral, Linux, or LightBG).
 c.InteractiveShell.enable_html_pager = True
 c.InteractiveShell.separate_in = ''  # no newlines before prompt, default: '\\n'

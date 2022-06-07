@@ -7,7 +7,7 @@
 #  Description: Loads for all login shells. Sets path variable and others
 #===============================================================================
 
-host=$(hostname -s) # i.e. 't1854', 'babylon', 'polaris'
+host=$(hostname -s)  # i.e. 't1854', 'babylon', 'polaris'
 
 # Only on my Macbook, assumed ok on other machines
 case "$host" in
@@ -26,8 +26,23 @@ t1854)
         export MANPATH="/usr/local/opt/${name}/libexec/gnuman:$MANPATH"
     done
 
-    export PATH="$PATH:/Library/TeX/texbin"                  # LaTeX path
-    export PATH="$PATH:/Applications/MATLAB_R2018a.app/bin"  # for mlint, etc.
+    export PATH="$PATH:/Library/TeX/texbin"                         # LaTeX path
+    export PATH="$PATH:/Applications/MATLAB_R2020a.app/bin"         # for matlab, etc.
+    export PATH="$PATH:/Applications/MATLAB_R2020a.app/bin/maci64"  # for mlint
+
+    # Ruby for jekyll
+    export PATH="/usr/local/opt/ruby/bin:$PATH"
+    export PATH="$HOME/.local/share/gem/ruby/3.0.0/bin:$PATH"
+    # export GEM_HOME="$HOME/.gems"
+    # export PATH="$HOME/.gems/bin:$PATH"
+    # export PATH="$HOME/.gem/ruby/3.0.0/bin:$PATH"
+    # export PATH="$HOME/.rbenv/bin:$PATH"
+    # eval "$(rbenv init -)"
+    export LDFLAGS="-L/usr/local/opt/libffi/lib"
+    export PKG_CONFIG_PATH="/usr/local/opt/libffi/lib/pkgconfig"
+
+    # Need for matplotlib Qt5Agg backend to work on Big Sur
+    export QT_MAC_WANTS_LAYER=1
 
     # >>> conda initialize >>>
     # !! Contents within this block are managed by 'conda init' !!
@@ -43,46 +58,12 @@ t1854)
     fi
     unset __conda_setup
     # <<< conda initialize <<<
-    ;;
 
-BROESLER-T480)  # Ubuntu on Windows PC (Lenovo T480 for work)
-    export WH='/mnt/c/Users/broesler/'  # path to home directory (C:)
-    export MAT="$WH/Documents/MATLAB/"  # path to Matlab files
-
-    # add MATLAB files (mlint.exe, etc.)
-    export MATLAB_PATH="/mnt/c/Program Files/MATLAB/R2010a/bin/win64"
-    export PATH="$PATH:$MATLAB_PATH"
-
-    # add Star-CCM+ path
-    export STAR_PATH="/mnt/c/Program Files/CD-adapco/13.06.012/STAR-CCM+3.06.012/star/bin/"
-    export PATH="$PATH:$STAR_PATH"
-
-    # Add Latex path
-    export MANPATH="$MANPATH:/usr/local/texlive/2020/texmf-dist/doc/man"
-    export INFOPATH="$INFOPATH:/usr/local/texlive/2020/texmf-dist/doc/info"
-    
-    export TEX_PATH="/usr/local/texlive/2020/bin/x86_64-linux"
-    export PATH="$PATH:$TEX_PATH"
-
-    export WINDOWS_PATH='C:\Users\broesler\AppData\Local\Packages\CanonicalGroupLimited.UbuntuonWindows_79rhkp1fndgsc\LocalState\rootfs\home\broesler\'
-
-    # Allow X11 to work
-    export DISPLAY=localhost:0.0
-
-    # >>> conda initialize >>>
-    # !! Contents within this block are managed by 'conda init' !!
-    __conda_setup="$('/home/broesler/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-    if [ $? -eq 0 ]; then
-        eval "$__conda_setup"
-    else
-        if [ -f "/home/broesler/miniconda3/etc/profile.d/conda.sh" ]; then
-            . "/home/broesler/miniconda3/etc/profile.d/conda.sh"
-        else
-            export PATH="/home/broesler/miniconda3/bin:$PATH"
-        fi
-    fi
-    unset __conda_setup
-    # <<< conda initialize <<<
+    # C compilation flags
+    export CPATH=`xcrun --show-sdk-path`/usr/include
+    export LDFLAGS="$LDFLAGS -L/usr/local/opt/llvm/lib"
+    export CPPFLAGS="-I/usr/local/opt/llvm/include"
+    export ASAN_OPTIONS=detect_leaks=1
     ;;
 esac
 
@@ -94,8 +75,8 @@ export SAVE_PATH=$PATH  # keep the default path for reference
 export LESS=-AXFirsx8g
 
 # Save OLDPWD between sessions
-if [ -r ~/.oldpwd ]; then
-    read -r OLDPWD < ~/.oldpwd
+if [ -r "$HOME/.oldpwd" ]; then
+    read -r OLDPWD < "$HOME/.oldpwd"
     export OLDPWD
 
     # add to stack without changing into it, so 'cd -' works
@@ -109,4 +90,3 @@ fi
 #==============================================================================
 #==============================================================================
 # vim: ft=sh syntax=sh
-
