@@ -64,5 +64,6 @@
 [http]
 	sslCAinfo = /etc/ssl/certs/ca-certificates.crt
 	sslverify = false
+	postBuffer = 1048576000
 [credential]
 	helper = store

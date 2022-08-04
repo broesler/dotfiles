@@ -131,7 +131,7 @@ let @i = "import matplotlib.pyplot as plt\n"
      " \ . "from scipy.sparse import diags, linalg as sla"
 
 " Matplotlib figure set-up
-let @f = "fig = plt.figure(1, clear=True, tight_layout=True)\n"
+let @f = "fig = plt.figure(1, clear=True, constrained_layout=True)\n"
      \ . "ax = fig.add_subplot()\n"
      \ . "ax.plot()\n"
      \ . "ax.set(xlabel='x',\n"

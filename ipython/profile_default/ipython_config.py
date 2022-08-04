@@ -93,7 +93,8 @@ c.TerminalInteractiveShell.extra_open_editor_shortcuts = True
 #    perldoc, pastie, borland, trac, native, fruity, bw, vim, vs, tango, rrt,
 #    xcode, igor, paraiso-light, paraiso-dark, lovelace, algol, algol_nu,
 #    arduino, rainbow_dash, abap
-c.TerminalInteractiveShell.highlighting_style = 'tango'
+# c.TerminalInteractiveShell.highlighting_style = 'tango'  # light bg
+c.TerminalInteractiveShell.highlighting_style = 'emacs'  # dark bg
 
 #==============================================================================
 #==============================================================================

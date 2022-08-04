@@ -1,5 +1,5 @@
 set t_Co=256
-set background=light
+set background=dark
 
 " Solarized options 
 " NOTE: set termcolors to 16 for "blue" background, 256 for "black"
