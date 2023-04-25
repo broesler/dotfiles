@@ -25,7 +25,7 @@ t1854)
         PS1=$"\[\033[1;32m\][\u@\h: \W]${WINDOW}\$ \[\033[0m\]"
     fi
     ;;
-babylon*|polaris|BROESLER-T480)
+babylon*|polaris|BROESLER-T480|BROESLER-X13)
     # Set to bright cyan text for linux machines (easy tell on ssh to babylons)
     if type __git_ps1 &> /dev/null; then
         PS1=$"\[\033[0;36m\][\u@\h: \W]${WINDOW}\$(__git_ps1)\$ \[\033[0m\]"
@@ -88,7 +88,7 @@ _expand() { return 0; }
 
 # Anaconda include
 source /home/broesler/miniconda3/etc/profile.d/conda.sh  # commented out by conda initialize
-conda activate dev39  # commented out by conda initialize
+conda activate dev39
 
 # enable better auto-completion
 if [ -f /usr/local/etc/bash_completion ]; then

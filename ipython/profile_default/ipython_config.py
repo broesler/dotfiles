@@ -49,7 +49,7 @@ c.AliasManager.user_aliases = [
 c.InteractiveShellApp.hide_initial_ns = True
 
 ## Configure matplotlib for interactive use with the default matplotlib backend.
-c.InteractiveShellApp.matplotlib = 'auto'
+c.InteractiveShellApp.matplotlib = 'tk'  # 'auto', 'tkagg'
 
 #------------------------------------------------------------------------------
 #       TerminalIPythonApp(BaseIPythonApplication,InteractiveShellApp) configuration
@@ -94,7 +94,7 @@ c.TerminalInteractiveShell.extra_open_editor_shortcuts = True
 #    xcode, igor, paraiso-light, paraiso-dark, lovelace, algol, algol_nu,
 #    arduino, rainbow_dash, abap
 # c.TerminalInteractiveShell.highlighting_style = 'tango'  # light bg
-c.TerminalInteractiveShell.highlighting_style = 'emacs'  # dark bg
+c.TerminalInteractiveShell.highlighting_style = 'fruity'  # dark bg
 
 #==============================================================================
 #==============================================================================

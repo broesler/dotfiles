@@ -45,7 +45,7 @@ t1854)
     # <<< conda initialize <<<
     ;;
 
-BROESLER-T480)  # Ubuntu on Windows PC (Lenovo T480 for work)
+BROESLER-T480|BROESLER-X13)  # Ubuntu on Windows PC (Lenovo T480 for work)
     export WH='/mnt/c/Users/broesler/'  # path to home directory (C:)
     export MAT="$WH/Documents/MATLAB/"  # path to Matlab files
 
@@ -67,7 +67,13 @@ BROESLER-T480)  # Ubuntu on Windows PC (Lenovo T480 for work)
     export WINDOWS_PATH='C:\Users\broesler\AppData\Local\Packages\CanonicalGroupLimited.UbuntuonWindows_79rhkp1fndgsc\LocalState\rootfs\home\broesler\'
 
     # Allow X11 to work
-    export DISPLAY=localhost:0.0
+    # WSL 1:
+    # export DISPLAY=localhost:0.0
+    # WSL 2:
+    # see: <https://stackoverflow.com/questions/43397162/show-matplotlib-plots-and-other-gui-in-ubuntu-wsl1-wsl2>
+    export DISPLAY=$(grep -oP "(?<=nameserver ).+" /etc/resolv.conf):0.0
+    # WSL 2(b):
+    # export DISPLAY=$(route.exe print | grep 0.0.0.0 | head -1 | awk '{print $4}'):0.0
 
     # >>> conda initialize >>>
     # !! Contents within this block are managed by 'conda init' !!
