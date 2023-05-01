@@ -22,7 +22,7 @@ ipython = get_ipython()
 
 if 'ipython' in globals():
     ipython.run_line_magic('load_ext', 'autoreload')
-    ipython.run_line_magic('autoreload', 2)
+    ipython.run_line_magic('autoreload', '2')
     ipython.run_line_magic('autoindent', 'off')  # for use with BReptile
 
 np.set_printoptions(precision=4, linewidth=300, suppress=True)
