@@ -114,7 +114,7 @@ let @d = "\n\n"
 let @i = "import matplotlib.pyplot as plt\n"
      \ . "import numpy as np\n"
      \ . "import pandas as pd\n"
-     \ . "import seaborn as sns\n\n"
+     " \ . "import seaborn as sns\n\n"
      " \ . "import scipy.linalg as la\n\n"
      " \ . "from scipy.sparse import diags, linalg as sla\n\n"
 

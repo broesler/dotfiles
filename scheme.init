@@ -12,7 +12,7 @@
 
 ;; print every expression in a file as it is loaded (only works with M-o when
 ;; running inside of edwin!)
-(set! load-noisily? #t)
+; (set! load-noisily? #t)
 
 ;; Allow use of (format #t "~a" Hello!)
 (load-option 'format)

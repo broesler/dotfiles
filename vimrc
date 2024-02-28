@@ -257,13 +257,13 @@ augroup CursorLineOnlyInActiveWindow "{{{
     au WinLeave * silent setlocal nocursorline
 augroup END
 "}}}
-augroup xelatex_cmds "{{{
-    autocmd!
-    " set compiler options to use xelatex
-    autocmd BufRead,BufNewFile *.xtx set ft=tex
-    autocmd BufRead,BufNewFile *.xtx let g:LatexBox_latexmk_options = "-file-line-error -synctex=1 -pdf -xelatex"
-    autocmd BufRead,BufNewFile *.xtx setlocal makeprg=latexmk\ \-interaction=nonstopmode\ \-pdf\ \-xelatex\ '%'
-augroup END
+ augroup xelatex_cmds "{{{
+     autocmd!
+     " set compiler options to use xelatex
+     autocmd BufRead,BufNewFile *.xtx set ft=tex
+     autocmd BufRead,BufNewFile *.xtx let g:LatexBox_latexmk_options = "-file-line-error -synctex=1 -pdf -xelatex"
+     autocmd BufRead,BufNewFile *.xtx setlocal makeprg=latexmk\ \-interaction=nonstopmode\ \-pdf\ \-xelatex\ '%'
+ augroup END
 "}}}
 "}}}--------------------------------------------------------------------------
 "       Key Mappings                                                     "{{{

@@ -39,9 +39,9 @@ function! s:CMakeThisFile(...) abort "
     " Remove original executable
     execute "silent !rm " . l:exe
 
-    " i.e. "gcc ... -o myfile myfile.c"
+    " i.e. "clang ... -o myfile myfile.c"
     let l:debug = " -DLOGSTATUS -g -ggdb "
-    let &makeprg="gcc -Wall -pedantic -std=c99 "
+    let &makeprg="clang -Wall -pedantic -std=c99 "
                 \ . l:debug
                 \ . " -I'../include/' "
                 \ . " -o " . l:exe . " " . l:source
@@ -70,9 +70,12 @@ command! -buffer -bar -nargs=? -complete=file CMakeThisFile call <SID>CMakeThisF
 command! -buffer CCommentBlock :set nocindent | exe "norm! o/*78a-o76a-A*/ko \t\t" | set cindent
 
 nnoremap <buffer> <LocalLeader>m :CMakeThisFile<CR>
-nnoremap <buffer> <LocalLeader>M :silent make! <bar> redraw!<CR>
-nnoremap <buffer> <LocalLeader>D :silent make! debug <bar> redraw!<CR>
-nnoremap <buffer> <LocalLeader>C :silent make! clean <bar> redraw!<CR>
+" nnoremap <buffer> <LocalLeader>M :silent make! <bar> redraw!<CR>
+" nnoremap <buffer> <LocalLeader>D :silent make! debug <bar> redraw!<CR>
+" nnoremap <buffer> <LocalLeader>C :silent make! clean <bar> redraw!<CR>
+nnoremap <buffer> <LocalLeader>M :Make<CR>
+nnoremap <buffer> <LocalLeader>D :Make debug<CR>
+nnoremap <buffer> <LocalLeader>C :Make clean<CR>
 
 " Open header/source file corresponding to current source/header
 nnoremap <buffer> <LocalLeader>c :execute 'find ' . expand('%:t:r') . '.c'<CR>

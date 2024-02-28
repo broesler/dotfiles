@@ -30,8 +30,8 @@ timezone     : US/Eastern # a pytz timezone string, e.g., US/Central or Europe/P
 ### LINES
 # See http://matplotlib.org/api/artist_api.html#module-matplotlib.lines for more
 # information on line properties.
-lines.linewidth   : 2    # line width in points
-lines.markersize  : 5    # markersize, in points
+# lines.linewidth   : 2    # line width in points
+# lines.markersize  : 5    # markersize, in points
 
 ### AXES
 # default face and edge color, default tick sizes,
@@ -40,7 +40,7 @@ lines.markersize  : 5    # markersize, in points
 #axes.facecolor      : white   # axes background color
 #axes.edgecolor      : black   # axes edge color
 #axes.linewidth      : 0.8     # edge linewidth
-axes.grid           : True    # display grid or not
+# axes.grid           : True    # display grid or not
 #axes.titlesize      : large   # fontsize of the axes title
 #axes.titlepad       : 6.0     # pad between axes and title in points
 #axes.labelsize      : medium  # fontsize of the x any y labels
@@ -110,15 +110,16 @@ font.family         : sans-serif
 
 ### FIGURE
 # See http://matplotlib.org/api/figure_api.html#matplotlib.figure.Figure
-#figure.titlesize : large      # size of the figure title (Figure.suptitle())
-figure.titleweight : bold   # weight of the figure title
-figure.figsize   : 8.0, 6.0   # figure size in inches
+figure.constrained_layout.use : True  # always constrain layout
+#figure.titlesize : large             # size of the figure title (Figure.suptitle())
+# figure.titleweight : bold           # weight of the figure title
+# figure.figsize   : 8.0, 6.0         # figure size in inches
 
 ### SAVING FIGURES
 # the default savefig params can be different from the display params
 # e.g., you may want a higher resolution, or to make the figure
 # background white
-savefig.format      : pdf      # png, ps, pdf, svg
+# savefig.format      : pdf      # png, ps, pdf, svg
 #savefig.bbox        : standard # 'tight' or 'standard'.
                                 # 'tight' is incompatible with pipe-based animation
                                 # backends but will workd with temporary file based ones:

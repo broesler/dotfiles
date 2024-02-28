@@ -68,7 +68,9 @@ c.TerminalIPythonApp.display_banner = True
 c.InteractiveShell.autoindent = False
 c.InteractiveShell.automagic = False
 c.InteractiveShell.color_info = True
-c.InteractiveShell.colors = 'Neutral'  # (NoColor, Neutral, Linux, or LightBG).
+# (NoColor, Neutral, Linux, or LightBG).
+c.InteractiveShell.colors = 'Neutral'  # use for any? bg
+# c.InteractiveShell.colors = 'Linux'  # use for dark bg
 c.InteractiveShell.enable_html_pager = True
 c.InteractiveShell.separate_in = ''  # no newlines before prompt, default: '\\n'
 c.InteractiveShell.sphinxify_docstring = True
@@ -83,7 +85,7 @@ c.InteractiveShell.xmode = 'Context'
 c.TerminalInteractiveShell.confirm_exit = False
 
 ##  'column', 'multicolumn', 'readlinelike'
-c.TerminalInteractiveShell.display_completions = 'multicolumn'
+c.TerminalInteractiveShell.display_completions = 'column'
 c.TerminalInteractiveShell.editing_mode = 'vi'
 c.TerminalInteractiveShell.editor = 'vim'
 
@@ -96,7 +98,8 @@ c.TerminalInteractiveShell.extra_open_editor_shortcuts = True
 #    perldoc, pastie, borland, trac, native, fruity, bw, vim, vs, tango, rrt,
 #    xcode, igor, paraiso-light, paraiso-dark, lovelace, algol, algol_nu,
 #    arduino, rainbow_dash, abap
-c.TerminalInteractiveShell.highlighting_style = 'tango'
+# c.TerminalInteractiveShell.highlighting_style = 'native'  # for dark bg
+# c.TerminalInteractiveShell.highlighting_style = 'emacs'  # for light bg
 
 #==============================================================================
 #==============================================================================

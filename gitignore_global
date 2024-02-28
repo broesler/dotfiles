@@ -80,3 +80,7 @@ Session.vim
 *.gdoc
 *.gsheet
 *.egg-info
+
+# R files
+*.RData
+*.Rhistory

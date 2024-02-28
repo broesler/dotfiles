@@ -87,7 +87,12 @@ set bell-style visible
 _expand() { return 0; }
 
 # Anaconda include
-conda activate dev39 2> /dev/null
+conda activate stats311 2> /dev/null
+
+# Allow changing ruby versions <https://jekyllrb.com/docs/installation/macos/>
+source $(brew --prefix)/opt/chruby/share/chruby/chruby.sh
+source $(brew --prefix)/opt/chruby/share/chruby/auto.sh
+chruby ruby-3.1.4  # automatically use the desired version
 
 # enable better auto-completion
 if [ -f /usr/local/etc/bash_completion ]; then
@@ -104,6 +109,9 @@ export LESS_TERMCAP_us=$(tput smul; tput setaf 4) # start underline
 export LESS_TERMCAP_ue=$(tput rmul; tput sgr0)    # end underline
 export LESS_TERMCAP_so=$(tput setaf 0; tput setab 3) # start highlight
 export LESS_TERMCAP_se=$(tput sgr0) # end highlight
+
+# Enable fzf key bindings
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 #------------------------------------------------------------------------------
 #       Source function files and aliases
