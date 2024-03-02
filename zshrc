@@ -36,15 +36,7 @@ if [[ -n "$SSH_CLIENT" ]]; then
     PS1="%B%F{cyan}[%n@%m %3~] %# %f%b"
 fi
 
-# Enable vim-style editing in terminal (also see ~/.inputrc)
-export EDITOR=vim  # Set the default editor to vim.
-bindkey -v
-
-# Avoid succesive duplicates and spaces in the bash command history, ignore
-# simple, commonly-used commands. No need to "export", these are only used in
-# interactive shells
 HISTFILE=${ZDOTDIR:-$HOME}/.zsh_history
-
 SAVEHIST=$((1 << 12))  # 4096 lines in memory
 HISTSIZE=$((1 << 24))  # 16e6 lines in file
 
@@ -53,25 +45,34 @@ setopt INC_APPEND_HISTORY  # append to history as commandas are entered
 setopt SHARE_HISTORY       # share history across multiple sessions
 setopt HIST_IGNORE_DUPS    # do not save lines if they are duplicates
 setopt HIST_IGNORE_SPACE   # remove command from history with leading space
+setopt HIST_VERIFY         # do not execute immediately upon history expansion
 
-# TODO test me:
-HISTIGNORE='(clc|clear|[bf]g|git st|git lol|history|h|hr|k)'
-
-# Shell options
 setopt AUTO_CD        # don't need `cd` before a path, replaces '..' alias.
 setopt AUTO_PUSHD     # keep all directories on the stack for each changing
+setopt PUSHD_IGNORE_DUPS
+
 setopt ALIASES        # expand aliases (needed for vim :!)
 setopt NO_CASE_GLOB   # ignore case for globbing and completion
 setopt CHECK_JOBS     # displays stopped or running job status before exiting
-setopt CORRECT_ALL  # try to correct all options
+setopt CORRECT_ALL    # try to correct all options
 setopt EXTENDED_GLOB  # extend glob to regexes ^,#,~
 
-# ----------------------------------------------------------------------------- 
-#         Completion options
-# -----------------------------------------------------------------------------
+# Completion options
 autoload -Uz compinit && compinit
 zstyle ':completion:*' list-suffixes
 zstyle ':completion:*' expand prefix suffix
+
+# Color list
+[ -e "$HOME/.dircolors" ] && DIR_COLORS="$HOME/.dircolors"
+[ -e "$DIR_COLORS" ] || DIR_COLORS=""
+
+# Set ls with colors
+if ! command -v dircolors &> /dev/null; then
+    eval "$(dircolors -b $DIR_COLORS)"  # set custom colors file
+fi
+
+# Colored completion?
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 
 # less highlighting for man pages:
 # NOTE: do not actually use "tput bold" because iTerm uses "bright" colors,
@@ -106,6 +107,8 @@ alias du='du -kh'
 alias grep='grep --color=auto'
 alias h='history | command less +G'
 alias j='jobs -l'
+alias lc='ls -Ghlp --color=auto'  # gnu-ls options
+alias lcd='lc -d .*'              # Show hidden files only
 alias lt='tree -C'
 alias mkdir='mkdir -p'
 alias mygcc='gcc-10 -Wall -pedantic -std=c99'
@@ -115,17 +118,23 @@ alias showfpath='echo $FPATH | tr -s ":" "\n"'
 alias sicp='rlwrap -r -c -f "$HOME"/src/scheme/mit_scheme_bindings.txt scheme'
 alias ta='type -a'
 
-# Color list
-[ -e "$HOME/.dircolors" ] && DIR_COLORS="$HOME/.dircolors"
-[ -e "$DIR_COLORS" ] || DIR_COLORS=""
+# ----------------------------------------------------------------------------- 
+#         Key bindings (see ~/.inputrc)
+# -----------------------------------------------------------------------------
+# Enable vim-style editing in terminal (also see ~/.inputrc)
+export EDITOR=vim
+bindkey -v
 
-# Set ls with colors
-if ! command -v dircolors &> /dev/null; then
-    eval "$(dircolors -b $DIR_COLORS)"  # set custom colors file
-fi
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey -M vicmd '^v' edit-command-line
 
-alias lc='ls -Ghlp --color=auto'  # gnu-ls options
-alias lcd='lc -d .*'              # Show hidden files only
+bindkey -M viins '^k' history-search-backward
+bindkey -M viins '^j' history-search-forward
+
+bindkey -M vicmd 'k' history-search-backward
+bindkey -M vicmd 'j' history-search-forward
+
 
 #------------------------------------------------------------------------------
 #       Source function files
