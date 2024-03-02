@@ -1,0 +1,5 @@
+#!/bin/zsh
+function skim ()
+{
+    open -a /Applications/Skim.app "$@"
+}

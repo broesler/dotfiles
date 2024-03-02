@@ -73,32 +73,69 @@ autoload -Uz compinit && compinit
 zstyle ':completion:*' list-suffixes
 zstyle ':completion:*' expand prefix suffix
 
-
 # less highlighting for man pages:
 # NOTE: do not actually use "tput bold" because iTerm uses "bright" colors,
 # which in Solarized scheme are just grayscale other than red
-# export LESS_TERMCAP_mb=$(tput setaf 2)            # start blink
-# export LESS_TERMCAP_md=$(tput setaf 3)            # start bold
-# export LESS_TERMCAP_me=$(tput sgr0)               # end bold/blink
-# export LESS_TERMCAP_us=$(tput smul; tput setaf 4) # start underline
-# export LESS_TERMCAP_ue=$(tput rmul; tput sgr0)    # end underline
-# export LESS_TERMCAP_so=$(tput setaf 0; tput setab 3) # start highlight
-# export LESS_TERMCAP_se=$(tput sgr0) # end highlight
+export LESS_TERMCAP_mb=$(tput setaf 2)                # start blink
+export LESS_TERMCAP_md=$(tput setaf 3)                # start bold
+export LESS_TERMCAP_me=$(tput sgr0)                   # end bold/blink
+export LESS_TERMCAP_us=$(tput smul; tput setaf 4)     # start underline
+export LESS_TERMCAP_ue=$(tput rmul; tput sgr0)        # end underline
+export LESS_TERMCAP_so=$(tput setaf 0; tput setab 3)  # start highlight
+export LESS_TERMCAP_se=$(tput sgr0)                   # end highlight
 
 # Anaconda include
 # if ! command -v conda &> /dev/null; then
 #     conda activate stats311 2> /dev/null
 # fi
 
+# ----------------------------------------------------------------------------- 
+#         Aliases
+# -----------------------------------------------------------------------------
+alias ep='vim ~/.bash_profile'     # edit profile (loaded with login)
+alias erc='vim ~/.bashrc'          # edit rc file (loaded with bash)
+alias rp='source ~/.bash_profile'  # reload profile
+
+# gfortran options
+gfopts=' -cpp -Wall -pedantic -std=f95'
+gfopts+=' -fbounds-check -ffree-line-length-0 -fbacktrace -fall-intrinsics'
+
+alias df='df -kTh'
+alias diff='diff --color=auto'
+alias du='du -kh'
+alias grep='grep --color=auto'
+alias h='history | command less +G'
+alias j='jobs -l'
+alias lt='tree -C'
+alias mkdir='mkdir -p'
+alias mygcc='gcc-10 -Wall -pedantic -std=c99'
+alias mygfortran="gfortran $gfopts"
+alias showpath='echo $PATH | tr -s ":" "\n"'
+alias showfpath='echo $FPATH | tr -s ":" "\n"'
+alias sicp='rlwrap -r -c -f "$HOME"/src/scheme/mit_scheme_bindings.txt scheme'
+alias ta='type -a'
+
+# Color list
+[ -e "$HOME/.dircolors" ] && DIR_COLORS="$HOME/.dircolors"
+[ -e "$DIR_COLORS" ] || DIR_COLORS=""
+
+# Set ls with colors
+if ! command -v dircolors &> /dev/null; then
+    eval "$(dircolors -b $DIR_COLORS)"  # set custom colors file
+fi
+
+alias lc='ls -Ghlp --color=auto'  # gnu-ls options
+alias lcd='lc -d .*'              # Show hidden files only
+
 #------------------------------------------------------------------------------
-#       Source function files and aliases
+#       Source function files
 #------------------------------------------------------------------------------
-# for func in "$HOME"/.bashrc.d/*.bash ; do
-#     if [ -f "$func" ]; then
-#         source "$func"
-#     fi
-# done
-# unset -v func
+funcs=$HOME/.zshfunctions
+typeset -TUg +x FPATH=$funcs:$FPATH fpath  # only unique entries
+if [[ -d $funcs ]]; then
+    autoload -Uz ${=$(cd "$funcs" && echo *)}
+fi
+unset -v funcs
 
 #==============================================================================
 #==============================================================================
