@@ -18,7 +18,7 @@ Bernards-MBP)
     precmd_functions+=( precmd_vcs_info )
     setopt PROMPT_SUBST
     RPS1='${vcs_info_msg_0_}'
-    zstyle ':vcs_info:git:*' formats '(%b) %a %m%u%c'
+    zstyle ':vcs_info:git:*' formats '%F{purple}%a%f (%b)%m%u%c'
     zstyle ':vcs_info:*' enable git
 
     # Set the prompt with bold green text
@@ -26,7 +26,7 @@ Bernards-MBP)
     ;;
 *)
     # default no color
-    PS1="%n@%m %3~ %# "
+    PS1="%n@%m %1~ %# "
     ;;
 esac
 
@@ -36,7 +36,9 @@ if [[ -n "$SSH_CLIENT" ]]; then
     PS1="%B%F{cyan}[%n@%m %3~] %# %f%b"
 fi
 
+# Enable vim-style editing in terminal (also see ~/.inputrc)
 export EDITOR=vim  # Set the default editor to vim.
+bindkey -v
 
 # Avoid succesive duplicates and spaces in the bash command history, ignore
 # simple, commonly-used commands. No need to "export", these are only used in
@@ -57,16 +59,20 @@ HISTIGNORE='(clc|clear|[bf]g|git st|git lol|history|h|hr|k)'
 
 # Shell options
 setopt AUTO_CD        # don't need `cd` before a path, replaces '..' alias.
+setopt AUTO_PUSHD     # keep all directories on the stack for each changing
 setopt ALIASES        # expand aliases (needed for vim :!)
 setopt NO_CASE_GLOB   # ignore case for globbing and completion
 setopt CHECK_JOBS     # displays stopped or running job status before exiting
 setopt CORRECT_ALL  # try to correct all options
 setopt EXTENDED_GLOB  # extend glob to regexes ^,#,~
 
-# Completion options
+# ----------------------------------------------------------------------------- 
+#         Completion options
+# -----------------------------------------------------------------------------
+autoload -Uz compinit && compinit
+zstyle ':completion:*' list-suffixes
+zstyle ':completion:*' expand prefix suffix
 
-# Enable vim-style editing in terminal (also see ~/.inputrc)
-bindkey -v
 
 # less highlighting for man pages:
 # NOTE: do not actually use "tput bold" because iTerm uses "bright" colors,
