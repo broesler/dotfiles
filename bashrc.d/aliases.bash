@@ -60,7 +60,9 @@ alias ta='type -a'
 [ -e "$DIR_COLORS" ] || DIR_COLORS=""
 
 # Set ls with colors
-eval "$(dircolors -b $DIR_COLORS)"  # set custom colors file
+if ! command -v dircolors &> /dev/null; then
+    eval "$(dircolors -b $DIR_COLORS)"  # set custom colors file
+fi
 alias lc='ls -Ghlp --color=auto'    # gnu-ls options
 
 # Show hidden files only

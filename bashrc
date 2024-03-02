@@ -15,7 +15,6 @@ host=$(hostname -s) # i.e. 't1854', 'babylon', 'polaris'
 # ...OR `export -f' all functions required in vim!
 [ -z "$PS1" ] && return
 
-# TODO consolidate code to use variables
 case "$host" in
 t1854)
     # Set the prompt with bright green text -- include GNU screen window number
@@ -24,6 +23,7 @@ t1854)
     else
         PS1=$"\[\033[1;32m\][\u@\h: \W]${WINDOW}\$ \[\033[0m\]"
     fi
+    export PGDATABASE=postgres            # Default postgresql database for psql
     ;;
 babylon*|polaris|BROESLER-T480)
     # Set to bright cyan text for linux machines (easy tell on ssh to babylons)
@@ -45,7 +45,6 @@ PROMPT_DIRTRIM=3  # uses '...' to limit list of directories
 stty -ixon
 
 export EDITOR=vim                     # Set the default editor to vim.
-export PGDATABASE=postgres            # Default postgresql database for psql
 
 # Avoid succesive duplicates and spaces in the bash command history, ignore
 # simple, commonly-used commands. No need to "export", these are only used in
@@ -87,12 +86,14 @@ set bell-style visible
 _expand() { return 0; }
 
 # Anaconda include
-conda activate stats311 2> /dev/null
+if ! command -v conda &> /dev/null; then
+    conda activate stats311 2> /dev/null
+fi
 
 # Allow changing ruby versions <https://jekyllrb.com/docs/installation/macos/>
-source $(brew --prefix)/opt/chruby/share/chruby/chruby.sh
-source $(brew --prefix)/opt/chruby/share/chruby/auto.sh
-chruby ruby-3.1.4  # automatically use the desired version
+# source $(brew --prefix)/opt/chruby/share/chruby/chruby.sh
+# source $(brew --prefix)/opt/chruby/share/chruby/auto.sh
+# chruby ruby-3.1.4  # automatically use the desired version
 
 # enable better auto-completion
 if [ -f /usr/local/etc/bash_completion ]; then

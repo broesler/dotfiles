@@ -3,7 +3,7 @@ brew ()
 {
     # Remove anaconda from path, run brew command, add anaconda to path
     save_path="$PATH"
-    export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    export PATH="$(command brew --prefix)/bin:/usr/bin:/bin:/usr/sbin:/sbin"
     command brew "$@"
     export PATH="$save_path"
 }

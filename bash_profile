@@ -34,14 +34,6 @@ t1854)
     export LDFLAGS="-L/usr/local/opt/ruby/lib"
     export CPPFLAGS="-I/usr/local/opt/ruby/include"
     export PATH="/usr/local/opt/ruby/bin:$PATH"
-    # export PATH="$HOME/.local/share/gem/ruby/3.0.0/bin:$PATH"
-    # # export GEM_HOME="$HOME/.gems"
-    # # export PATH="$HOME/.gems/bin:$PATH"
-    # # export PATH="$HOME/.gem/ruby/3.0.0/bin:$PATH"
-    # # export PATH="$HOME/.rbenv/bin:$PATH"
-    # # eval "$(rbenv init -)"
-    # export LDFLAGS="-L/usr/local/opt/libffi/lib"
-    # export PKG_CONFIG_PATH="/usr/local/opt/libffi/lib/pkgconfig"
 
     # Need for matplotlib Qt5Agg backend to work on Big Sur
     export QT_MAC_WANTS_LAYER=1
@@ -66,6 +58,22 @@ t1854)
     export LDFLAGS="$LDFLAGS -L/usr/local/opt/llvm/lib"
     export CPPFLAGS="-I/usr/local/opt/llvm/include"
     export ASAN_OPTIONS=detect_leaks=1
+    ;;
+
+Bernards-MBP)
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+
+    # export TERM='screen-256color'    # required by tmux
+
+    # Add coreutils from homebrew, i.e. $(brew --prefix coreutils)
+    brew_prefix="$(brew --prefix)"
+    gnu_names=('coreutils' 'ed' 'findutils' 'gnu-sed' 'grep' 'gnu-tar' 'gnu-which')
+    MANPATH=''
+    for name in ${gnu_names[@]}; do
+        export PATH="${brew_prefix}/opt/${name}/libexec/gnubin:$PATH"
+        export MANPATH="${brew_prefix}/opt/${name}/libexec/gnuman:$MANPATH"
+    done
+
     ;;
 esac
 
