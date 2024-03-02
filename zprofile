@@ -34,15 +34,6 @@ export SAVE_PATH=$PATH  # keep the default path for reference
 # default less options (-A fails on older versions)
 export LESS=-AXFirsx8g
 
-# Restore OLDPWD between sessions
-if [ -r "$HOME/.oldpwd" ]; then
-    read -r OLDPWD < "$HOME/.oldpwd"
-    export OLDPWD
-
-    # add to stack without changing into it, so 'cd -' works
-    pushd -n "$OLDPWD" > /dev/null
-fi
-
 #==============================================================================
 #==============================================================================
 # vim: ft=sh syntax=sh
