@@ -18,16 +18,19 @@ Bernards-MBP)
     gnu_names=('coreutils' 'ed' 'findutils' 'gnu-sed' 'grep' 'gnu-tar' 'gnu-which')
     MANPATH=''
     for name in ${gnu_names[@]}; do
-        export PATH="${brew_prefix}/opt/${name}/libexec/gnubin:$PATH"
-        export MANPATH="${brew_prefix}/opt/${name}/libexec/gnuman:$MANPATH"
+        typeset -TUgx PATH="${brew_prefix}/opt/${name}/libexec/gnubin:$PATH" path
+        typeset -TUgx MANPATH="${brew_prefix}/opt/${name}/libexec/gnuman:$MANPATH" manpath
     done
+
+    # Add zsh functions
+    typeset -TUgx FPATH="${brew_prefix}/share/zsh/site-functions":$FPATH fpath
 
     ;;
 esac
 
 # Add my local files
 if [[ -d "$HOME/bin" ]]; then
-    export PATH="$PATH:$HOME/bin"
+    typeset -TUgx PATH="$PATH:$HOME/bin" path
 fi
 export SAVE_PATH=$PATH  # keep the default path for reference
 
