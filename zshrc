@@ -57,10 +57,20 @@ setopt CHECK_JOBS     # displays stopped or running job status before exiting
 setopt CORRECT_ALL    # try to correct all options
 setopt EXTENDED_GLOB  # extend glob to regexes ^,#,~
 
-# Completion options
-autoload -Uz compinit && compinit
+# Completion
 zstyle ':completion:*' list-suffixes
 zstyle ':completion:*' expand prefix suffix
+zstyle ':completion:*' menu select
+
+# Use hjkl to navigate the completion list
+zmodload zsh/complist
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'j' vi-down-line-or-history
+bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'l' vi-forward-char
+
+# Load this AFTER all of the completions
+autoload -Uz compinit && compinit
 
 # Color list
 [ -e "$HOME/.dircolors" ] && DIR_COLORS="$HOME/.dircolors"
@@ -68,11 +78,8 @@ zstyle ':completion:*' expand prefix suffix
 
 # Set ls with colors
 if ! command -v dircolors &> /dev/null; then
-    eval "$(dircolors -b $DIR_COLORS)"  # set custom colors file
+    eval "$(dircolors -b $DIR_COLORS)"
 fi
-
-# Colored completion?
-zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 
 # less highlighting for man pages:
 # NOTE: do not actually use "tput bold" because iTerm uses "bright" colors,
@@ -119,7 +126,7 @@ alias sicp='rlwrap -r -c -f "$HOME"/src/scheme/mit_scheme_bindings.txt scheme'
 alias ta='type -a'
 
 # ----------------------------------------------------------------------------- 
-#         Key bindings (see ~/.inputrc)
+#         Key bindings
 # -----------------------------------------------------------------------------
 # Enable vim-style editing in terminal (also see ~/.inputrc)
 export EDITOR=vim
@@ -135,7 +142,6 @@ bindkey -M viins '^j' history-search-forward
 bindkey -M vicmd 'k' history-search-backward
 bindkey -M vicmd 'j' history-search-forward
 
-
 #------------------------------------------------------------------------------
 #       Source function files
 #------------------------------------------------------------------------------
@@ -148,4 +154,3 @@ unset -v funcs
 
 #==============================================================================
 #==============================================================================
-# vim: ft=sh syntax=sh
