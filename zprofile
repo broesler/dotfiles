@@ -26,25 +26,22 @@ Bernards-MBP)
 esac
 
 # Add my local files
-export PATH="$PATH:$HOME/bin"
+if [[ -d "$HOME/bin" ]]; then
+    export PATH="$PATH:$HOME/bin"
+fi
 export SAVE_PATH=$PATH  # keep the default path for reference
 
 # default less options (-A fails on older versions)
-# export LESS=-AXFirsx8g
+export LESS=-AXFirsx8g
 
-# Save OLDPWD between sessions
-# if [ -r "$HOME/.oldpwd" ]; then
-#     read -r OLDPWD < "$HOME/.oldpwd"
-#     export OLDPWD
+# Restore OLDPWD between sessions
+if [ -r "$HOME/.oldpwd" ]; then
+    read -r OLDPWD < "$HOME/.oldpwd"
+    export OLDPWD
 
-#     # add to stack without changing into it, so 'cd -' works
-#     pushd -n "$OLDPWD" > /dev/null
-# fi
-
-# # Load .zshrc file for interactive shells
-# if [ -f ~/.zshrc ]; then
-#     source ~/.zshrc
-# fi
+    # add to stack without changing into it, so 'cd -' works
+    pushd -n "$OLDPWD" > /dev/null
+fi
 
 #==============================================================================
 #==============================================================================
