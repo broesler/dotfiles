@@ -11,7 +11,7 @@ Bernards-MBP)
     # Set up homebrew
     eval "$(/opt/homebrew/bin/brew shellenv)"
 
-    # export TERM='screen-256color'    # required by tmux?
+    export TERM='tmux-256color'    # required by tmux?
 
     # Add coreutils from homebrew, i.e. $(brew --prefix coreutils)
     brew_prefix="$(brew --prefix)"
