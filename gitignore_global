@@ -51,6 +51,7 @@ Session.vim
 *.xls*
 *.zip
 *x.png
+*.pkl
 
 # latex auxiliary files:
 *.4ct
@@ -78,3 +79,7 @@ Session.vim
 *.gdoc
 *.gsheet
 *.egg-info
+
+# R files
+*.RData
+*.Rhistory
