@@ -1,0 +1,8 @@
+options(radian.color_scheme = "emacs")
+options(radian.editing_mode = "vi")
+options(radian.show_vi_mode_prompt = FALSE)
+options(radian.auto_match = FALSE)
+options(radian.highlight_matching_bracket = TRUE)
+options(radian.complete_while_typing = FALSE)
+options(radian.insert_new_line = FALSE)
+# vim: ft=r
