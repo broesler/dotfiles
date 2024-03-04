@@ -17,7 +17,7 @@ options(prompt="R> ",
         repos=structure(c(CRAN="http://cran.r-project.org"))
         )
 
-cmdstanr::set_cmdstan_path("~/miniconda3/envs/stats311/bin/cmdstan/")
+# cmdstanr::set_cmdstan_path("~/miniconda3/envs/stats311/bin/cmdstan/")
 
 .Last <- function(){
     if (interactive()) {
