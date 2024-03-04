@@ -67,3 +67,6 @@
 [submodule "vim/bundle/dispatch"]
 	path = vim/bundle/dispatch
 	url = https://github.com/tpope/vim-dispatch.git
+[submodule "vim/pack/github/start/copilot.vim"]
+	path = vim/pack/github/start/copilot.vim
+	url = https://github.com/github/copilot.vim.git

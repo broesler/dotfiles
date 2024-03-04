@@ -16,7 +16,7 @@ setlocal textwidth=79    " PEP-8 standard
 setlocal iskeyword+=_
 setlocal iskeyword-=:
 
-setlocal foldmethod=indent
+setlocal foldmethod=syntax
 setlocal foldignore=
 
 setlocal diffopt-=iwhite  " do not ignore whitespace in diffs!
@@ -126,23 +126,28 @@ let @d = "\n\n"
 let @i = "import matplotlib.pyplot as plt\n"
      \ . "import numpy as np\n"
      \ . "import pandas as pd\n"
+     \ . "import seaborn as sns\n"
+     \ . "import pymc as pm\n"
+     \ . "import xarray as xr\n"
+     \ . "\n"
+     \ . "from pathlib import Path\n"
+     \ . "from scipy import stats\n"
+     \ . "\n"
+     \ . "import stats_rethinking as sts\n" 
      " \ . "import seaborn as sns\n\n"
      " \ . "import scipy.linalg as la\n\n"
      " \ . "from scipy.sparse import diags, linalg as sla"
 
 " Matplotlib figure set-up
-let @f = "fig = plt.figure(1, clear=True, constrained_layout=True)\n"
-     \ . "ax = fig.add_subplot()\n"
+let @f = "fig, ax = plt.subplots(num=1, clear=True)\n"
      \ . "ax.plot()\n"
      \ . "ax.set(xlabel='x',\n"
      \ . "       ylabel='y')\n"
 
-let @s = "fig = plt.figure(1, clear=True)\n"
-     \ . "gs = fig.add_gridspec(nrows=1, ncols=2)\n"
-     \ . "ax1 = fig.add_subplot(gs[0])  # left side plot\n"
-     \ . "ax2 = fig.add_subplot(gs[1])  # right side plot\n"
-     \ . "ax1.plot(x, y1, label='label1')\n"
-     \ . "ax2.plot(x, y2, label='label2')\n"
+let @s = "fig, axs = plt.subplots(num=1, nrows=1, ncols=2, clear=True)\n"
+     \ . "ax0, ax1 = axs\n"
+     \ . "ax0.plot(x, y1, label='label1')\n"
+     \ . "ax1.plot(x, y2, label='label2')\n"
 
 "=============================================================================
 "=============================================================================

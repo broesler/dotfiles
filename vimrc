@@ -95,7 +95,7 @@ set wildignore+=.git  " Version control
 set wildignore+=*.aux,*.bbl,*.blg,*.log,*.toc,*.fls " LaTex aux files
 set wildignore+=*.fdb_latexmk,*.synctex*.gz
 set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg  " binary images
-set wildignore+=*.o,*.dll,*.pyc                 " compiled object files
+set wildignore+=*.o,*.dll,*.pyc,*.pkl,*.RData   " compiled object files
 set wildignore+=*.sw?                           " Vim swap files
 set wildignore+=*.DS_Store                      " OSX garbage
 "}}}
@@ -465,9 +465,14 @@ augroup END
 "       Plugin Settings                                                   "{{{
 "-----------------------------------------------------------------------------
 " Ack {{{
-if executable('ag')
+" if executable('ag')
+if executable('rg')
     " nnoremap <leader>a :Ack!<space>
-    let g:ackprg = 'ag --smart-case --nogroup --nocolor --column'
+    " let g:ackprg = 'ag --smart-case --nogroup --nocolor --column'
+    let g:ackprg = 'rg --vimgrep --smart-case'
+    let g:ack_use_cword_for_empty_search = 1
+    cnoreabbrev Ack Ack!
+    nnoremap <Leader>/ :Ack!<Space>
 endif
 "}}}
 " BReptile {{{
@@ -535,8 +540,8 @@ hi SpellLocal term=underline cterm=underline
 " Make comments italics -- does not work with tmux in WSL!!
 " hi Comment cterm=italic
 " Do not highlight cursor line number in relative number mode
-hi clear CursorLineNr
-hi def link CursorLineNr Comment
+" hi clear CursorLineNr
+" hi def link CursorLineNr Comment
 set cursorline " highlight line cursor is on for easy finding
 "}}}
 "}}}--------------------------------------------------------------------------

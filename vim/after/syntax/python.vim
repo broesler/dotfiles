@@ -10,7 +10,7 @@
 syn keyword pythonTodo		FIXME NOTE NOTES TODO XXX contained
 
 syn keyword pythonFunction break return
-syn keyword pythonStatement	self
+syn keyword pythonStatement	self match case
 syn match pythonExceptions	'warnings\..*warn\w*\((\)\@='
 
 
