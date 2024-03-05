@@ -76,9 +76,8 @@ autoload -Uz compinit && compinit
 [ -e "$DIR_COLORS" ] || DIR_COLORS=""
 
 # Set ls with colors
-if ! command -v dircolors &> /dev/null; then
-    eval "$(dircolors -b $DIR_COLORS)"
-fi
+eval "$(dircolors -b $DIR_COLORS)"
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
 # less highlighting for man pages:
 # NOTE: do not actually use "tput bold" because iTerm uses "bright" colors,
