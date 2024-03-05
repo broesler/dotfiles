@@ -11,7 +11,7 @@
 [ -z "$PS1" ] && return
 
 case "$(hostname -s)" in
-Bernards-MBP)
+Bernard-MBP)
     # Enable git in the prompt
     autoload -Uz vcs_info
     precmd_vcs_info() { vcs_info }
@@ -22,8 +22,7 @@ Bernards-MBP)
     zstyle ':vcs_info:*' enable git
 
     # Set the prompt with bold green text
-    PS1="%B%F{green}%3~ %# %f%b"
-
+    PS1="%B%F{green}%1~ %# %f%b"
     # >>> conda initialize >>>
     # !! Contents within this block are managed by 'conda init' !!
     __conda_setup="$('/Users/bernardroesler/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
