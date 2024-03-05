@@ -23,21 +23,6 @@ Bernard-MBP)
 
     # Set the prompt with bold green text
     PS1="%B%F{green}%1~ %# %f%b"
-    # >>> conda initialize >>>
-    # !! Contents within this block are managed by 'conda init' !!
-    __conda_setup="$('/Users/bernardroesler/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-    if [ $? -eq 0 ]; then
-        eval "$__conda_setup"
-    else
-        if [ -f "/Users/bernardroesler/miniconda3/etc/profile.d/conda.sh" ]; then
-            . "/Users/bernardroesler/miniconda3/etc/profile.d/conda.sh"
-        else
-            export PATH="/Users/bernardroesler/miniconda3/bin:$PATH"
-        fi
-    fi
-    unset __conda_setup
-    # <<< conda initialize <<<
-
     ;;
 *)
     # default no color
@@ -107,9 +92,8 @@ export LESS_TERMCAP_so=$(tput setaf 0; tput setab 3)  # start highlight
 export LESS_TERMCAP_se=$(tput sgr0)                   # end highlight
 
 # Anaconda include
-# if ! command -v conda &> /dev/null; then
+# TODO set variable with the name of the environment?
 #     conda activate stats311 2> /dev/null
-# fi
 
 # ----------------------------------------------------------------------------- 
 #         Aliases
