@@ -114,9 +114,10 @@ export LESS_TERMCAP_se=$(tput sgr0)                   # end highlight
 # ----------------------------------------------------------------------------- 
 #         Aliases
 # -----------------------------------------------------------------------------
-alias ep='vim ~/.bash_profile'     # edit profile (loaded with login)
-alias erc='vim ~/.bashrc'          # edit rc file (loaded with bash)
-alias rp='source ~/.bash_profile'  # reload profile
+alias ep='vim ~/.zprofile'     # edit profile (loaded with login)
+alias erc='vim ~/.zshrc'       # edit rc file (loaded with bash)
+alias rp='source ~/.zprofile'  # reload profile
+alias rrc='source ~/.zshrc'    # reload profile
 
 # gfortran options
 gfopts=' -cpp -Wall -pedantic -std=f95'
