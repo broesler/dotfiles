@@ -67,9 +67,8 @@ setopt AUTO_PUSHD     # keep all directories on the stack for each changing
 setopt PUSHD_IGNORE_DUPS
 
 setopt ALIASES        # expand aliases (needed for vim :!)
-setopt NO_CASE_GLOB   # ignore case for globbing and completion
 setopt CHECK_JOBS     # displays stopped or running job status before exiting
-setopt CORRECT_ALL    # try to correct all options
+setopt CORRECT        # try to correct all options
 setopt EXTENDED_GLOB  # extend glob to regexes ^,#,~
 
 # Completion
