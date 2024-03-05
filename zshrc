@@ -134,11 +134,14 @@ autoload -Uz edit-command-line
 zle -N edit-command-line
 bindkey -M vicmd '^v' edit-command-line
 
-bindkey -M viins '^k' history-search-backward
-bindkey -M viins '^j' history-search-forward
+bindkey -M viins '^n' history-beginning-search-backward
+bindkey -M viins '^p' history-beginning-search-forward
 
-bindkey -M vicmd 'k' history-search-backward
-bindkey -M vicmd 'j' history-search-forward
+bindkey -M vicmd 'k' history-beginning-search-backward
+bindkey -M vicmd 'j' history-beginning-search-forward
+
+bindkey -M vicmd '/' history-incremental-search-backward
+bindkey -M vicmd '?' history-incremental-search-forward
 
 #------------------------------------------------------------------------------
 #       Source function files
