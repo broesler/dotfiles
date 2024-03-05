@@ -7,11 +7,11 @@
 #===============================================================================
 
 case "$(hostname -s)" in
-Bernards-MBP)
+Bernard-MBP)
     # Set up homebrew
     eval "$(/opt/homebrew/bin/brew shellenv)"
 
-    export TERM='tmux-256color'    # required by tmux?
+    export TERM='tmux-256color'    # required by tmux for italics
 
     # Add coreutils from homebrew, i.e. $(brew --prefix coreutils)
     brew_prefix="$(brew --prefix)"
