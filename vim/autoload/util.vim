@@ -144,7 +144,7 @@ function! s:CommentBlock(...) "{{{
     let l:title  = l:intro . repeat(" ",8) 
 
     " Make header and leave cursor at end of line
-    execute 'normal! i' . l:border "\<CR>" . l:title . "o" . l:border
+    execute 'normal! i' . l:border . "\<CR>" . l:title . "o" . l:border
     execute 'normal! k$'
 
     let &formatoptions = l:save_fo
