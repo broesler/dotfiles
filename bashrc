@@ -25,7 +25,7 @@ t1854|Bernard-MBP)
     fi
     export PGDATABASE=postgres            # Default postgresql database for psql
     ;;
-babylon*|polaris|BROESLER-T480)
+babylon*|polaris|openfoam)
     # Set to bright cyan text for linux machines (easy tell on ssh to babylons)
     if type __git_ps1 &> /dev/null; then
         PS1=$"\[\033[0;36m\][\u@\h: \W]${WINDOW}\$(__git_ps1)\$ \[\033[0m\]"
@@ -112,6 +112,18 @@ export LESS_TERMCAP_se=$(tput sgr0) # end highlight
 # Enable fzf key bindings
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
+# Enable openfoam usage (requires `multipass shell openfoam`)
+if [ "$host" = "openfoam" ]; then
+    # Run the OpenFOAM configuration
+    openfoam_rc='/opt/openfoam12/etc/bashrc'
+    if [ -f "$openfoam_rc" ]; then
+        source "$openfoam_rc"
+    fi
+
+    # Update my own path
+    export FOAM_RUN="$HOME/OpenFOAM/bernie-12/run/"
+fi
+
 #------------------------------------------------------------------------------
 #       Source function files and aliases
 #------------------------------------------------------------------------------
@@ -125,3 +137,7 @@ unset -v func
 #==============================================================================
 #==============================================================================
 # vim: ft=sh syntax=sh
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
