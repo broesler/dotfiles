@@ -18,7 +18,7 @@ setlocal iskeyword-=:
 
 setlocal commentstring=#\ %s
 
-setlocal foldmethod=indent
+setlocal foldmethod=syntax
 setlocal foldignore=
 setlocal foldlevelstart=99
 
@@ -32,11 +32,6 @@ let g:python_highlight_func_calls = 0
 "-----------------------------------------------------------------------------
 "       Functions to lint + make code 
 "-----------------------------------------------------------------------------
-" Set up syntax error checking (requires vim-flake8)
-if exists("*Flake8")
-    command! -buffer PythonFlake8 :call Flake8()
-endif
-
 function! PythonRunScript()
   setlocal makeprg=python\ %
 
@@ -49,21 +44,18 @@ command! -buffer PythonRunScript :call PythonRunScript()
 
 function! s:PythonCom2Doc() range abort
     " Convert comment into docstring
-    let l:reg_save = @q
-    let @q='f#cw"""'   " Replace comment with triple double quotes
     if a:firstline == a:lastline
-        " Single line comment
-        normal! @q
+        " Single line comment, replace comment with triple double quotes
+        normal! 0f#cw"""
         normal! A"""
     else
         " Multiple lines to change
         let l:cur_save = getpos('.')
+        execute a:firstline . 's/#/"""/'
         execute (a:firstline+1) . ',' . a:lastline . 's/#\+\s*//'
-        execute a:firstline . ':normal! @q'
         execute a:lastline . ':normal! o"""'
         call cursor(l:cur_save)
     endif
-    let @q = l:reg_save
 endfunction
 command! -buffer -range PythonCom2Doc <line1>,<line2>call <SID>PythonCom2Doc()
 
@@ -79,11 +71,13 @@ endfunction
 "-----------------------------------------------------------------------------
 "        Keymaps
 "-----------------------------------------------------------------------------
-nnoremap <buffer> <LocalLeader>L :PythonFlake8<CR>
+" Use the vim-flake8 built-in command
+nnoremap <buffer> <LocalLeader>L :Flake<CR>
+" nnoremap <buffer> <LocalLeader>L :PythonFlake8<CR>
 " nnoremap <buffer> <LocalLeader>M :PythonRunScript<CR>
 nnoremap <buffer> <LocalLeader>M :Make<CR>
 
-nnoremap <buffer> <LocalLeader>i :PythonStandardImport<CR>
+" nnoremap <buffer> <LocalLeader>i :PythonStandardImport<CR>
 
 " Make in-line comment into it's own line above
 nnoremap <Leader>j f#DOpj:s/\s\+$//
@@ -113,24 +107,32 @@ let @d = "\n\n"
 " Standard import
 let @i = "import matplotlib.pyplot as plt\n"
      \ . "import numpy as np\n"
-     \ . "import pandas as pd\n"
+     " \ . "import pandas as pd\n"
      " \ . "import seaborn as sns\n\n"
      " \ . "import scipy.linalg as la\n\n"
      " \ . "from scipy.sparse import diags, linalg as sla\n\n"
 
 " Matplotlib figure set-up
-let @f = "fig = plt.figure(1, clear=True, constrained_layout=True)\n"
-     \ . "ax = fig.add_subplot()\n"
+let @f = "fig, ax = plt.subplots(num=1, clear=True)\n"
      \ . "ax.plot()\n"
-     \ . "ax.set(xlabel='x',\n"
-     \ . "       ylabel='y')\n"
+     \ . "ax.set(\n"
+     \ . "    xlabel='x',\n"
+     \ . "    ylabel='y',\n"
+     \ . ")\n"
 
-let @s = "fig = plt.figure(1, clear=True)\n"
-     \ . "gs = fig.add_gridspec(nrows=1, ncols=2)\n"
-     \ . "ax1 = fig.add_subplot(gs[0])  # left side plot\n"
-     \ . "ax2 = fig.add_subplot(gs[1])  # right side plot\n"
-     \ . "ax1.plot(x, y1, label='label1')\n"
-     \ . "ax2.plot(x, y2, label='label2')\n"
+let @s = "fig, axs = plt.subplots(num=1, nrows=1, ncols=2, clear=True)\n"
+     \ . "ax = axs[0]\n"
+     \ . "ax.plot(x, y1, label='label1')\n"
+     \ . "ax.set(\n"
+     \ . "    xlabel='x',\n"
+     \ . "    ylabel='y',\n"
+     \ . ")\n"
+     \ . "ax = axs[1]\n"
+     \ . "ax.plot(x, y2, label='label2')\n"
+     \ . "ax.set(\n"
+     \ . "    xlabel='x',\n"
+     \ . "    ylabel='y',\n"
+     \ . ")\n"
 
 "=============================================================================
 "=============================================================================

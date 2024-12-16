@@ -81,9 +81,12 @@ endfunction
 "}}}
 function! util#HighlightTypes() "{{{
     " Read types from dotfile created by ctags/make:
-    " $ ctags --c-kinds=gstu -o- ../../**/*.[ch] |\
-    "       awk 'BEGIN{printf("syntax keyword Type\t")}\
-    "           {printf("%s ", $1)}END{print ""}' > .types.vim
+    " TODO write a bash/zsh function to run this command in a given directory
+    " $ find . -type f \( -name '*.c' -o -name '*.cpp' -o -name '*.h' \) \
+    "     | xargs -I{} ctags --c-kinds=cgstu -o- {} \
+    "     | awk 'BEGIN { printf("syntax keyword Type\t") }\
+    "         { printf("%s ", $1) }'\
+    "     > .types.vim
     let fname = expand('%:p:h') . '/.types.vim'
     if filereadable(fname)
         execute 'source ' . fname
@@ -347,7 +350,7 @@ command! QuickfixReformat call s:QuickfixReformat()
 
 " Get highlighting
 command! GetHighlight call s:GetHighlight()
-" command! HighlightTypes call s:HighlightTypes()
+command! HighlightTypes call util#HighlightTypes()
 
 " Comment block command
 command! -nargs=* CommentBlock call s:CommentBlock(<f-args>)

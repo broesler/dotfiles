@@ -1,2 +1,2 @@
 " use tex syntax highlighting
-autocmd BufRead,BufNewFile *.xtx setfiletype=tex
+autocmd BufRead,BufNewFile *.xtx set filetype=tex
