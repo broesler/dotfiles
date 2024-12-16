@@ -23,7 +23,7 @@ Bernard-MBP)
     done
 
     # Add zsh functions
-    export FPATH="${brew_prefix}/share/zsh/site-functions":$FPATH fpath
+    typeset -TUgx FPATH="${brew_prefix}/share/zsh/site-functions:$FPATH" fpath
 
     # >>> conda initialize >>>
     # !! Contents within this block are managed by 'conda init' !!
@@ -39,6 +39,12 @@ Bernard-MBP)
     fi
     unset __conda_setup
     # <<< conda initialize <<<
+    
+    # C compilation flags for Homebrew llvm
+    export PATH="${brew_prefix}/opt/llvm/bin:$PATH"
+    export LDFLAGS="-L${brew_prefix}/opt/llvm/lib"
+    export CPPFLAGS="-I${brew_prefix}/opt/llvm/include"
+    export ASAN_OPTIONS=detect_leaks=1
     ;;
 esac
 
@@ -51,6 +57,16 @@ export SAVE_PATH=$PATH  # keep the default path for reference
 # default less options (-A fails on older versions)
 export LESS=-AXFirsx8g
 
+#------------------------------------------------------------------------------
+#       Source function files
+#------------------------------------------------------------------------------
+funcs=$HOME/.zshfunctions
+typeset -TUgx FPATH=$funcs:$FPATH fpath  # only unique entries
+if [[ -d $funcs ]]; then
+    autoload -Uz ${=$(cd "$funcs" && echo *)}
+fi
+unset -v funcs
+
 #==============================================================================
 #==============================================================================
-# vim: ft=sh syntax=sh
+# vim: ft=zsh syntax=zsh

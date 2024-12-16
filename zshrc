@@ -23,6 +23,11 @@ Bernard-MBP)
 
     # Set the prompt with bold green text
     PS1="%B%F{green}%1~ %# %f%b"
+
+    # Ruby initialization
+    source /opt/homebrew/opt/chruby/share/chruby/chruby.sh
+    source /opt/homebrew/opt/chruby/share/chruby/auto.sh
+    chruby ruby-3.1.3
     ;;
 *)
     # default no color
@@ -60,6 +65,8 @@ setopt EXTENDED_GLOB  # extend glob to regexes ^,#,~
 zstyle ':completion:*' list-suffixes
 zstyle ':completion:*' expand prefix suffix
 zstyle ':completion:*' menu select
+zstyle ':completion:*:*:*:*:corrections' format '%F{yellow}!- %d (errors: %e) -!%f'
+zstyle ':completion:*:messages' format ' %F{purple} -- %d --%f'
 
 # Use hjkl to navigate the completion list
 zmodload zsh/complist
@@ -92,7 +99,7 @@ export LESS_TERMCAP_se=$(tput sgr0)                   # end highlight
 
 # Anaconda include
 # TODO set variable with the name of the environment?
-#     conda activate stats311 2> /dev/null
+conda activate dev311 2> /dev/null
 
 # ----------------------------------------------------------------------------- 
 #         Aliases
@@ -116,12 +123,24 @@ alias lc='ls -Ghlp --color=auto'  # gnu-ls options
 alias lcd='lc -d .*'              # Show hidden files only
 alias lt='tree -C'
 alias mkdir='mkdir -p'
-alias mygcc='gcc-10 -Wall -pedantic -std=c99'
+alias mygcc='gcc-14 -Wall -pedantic -std=c99'
+alias myg++='g++-14 -Wall -pedantic -std=c++20'
+alias myclang++='clang++ -Wall -pedantic -std=c++20'
 alias mygfortran="gfortran $gfopts"
 alias showpath='echo $PATH | tr -s ":" "\n"'
 alias showfpath='echo $FPATH | tr -s ":" "\n"'
-alias sicp='rlwrap -r -c -f "$HOME"/src/scheme/mit_scheme_bindings.txt scheme'
+# alias sicp='rlwrap -r -c -f "$HOME"/src/scheme/mit_scheme_bindings.txt scheme'
+alias sicp='mechanics.sh'
 alias ta='type -a'
+
+# back up multiple directories
+alias ..='cd ..'
+alias .2='cd ../../'
+alias .3='cd ../../../'
+alias .4='cd ../../../../'
+
+# Enable fzf completions
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # ----------------------------------------------------------------------------- 
 #         Key bindings
@@ -143,16 +162,5 @@ bindkey -M vicmd 'j' history-beginning-search-forward
 bindkey -M vicmd '/' history-incremental-search-backward
 bindkey -M vicmd '?' history-incremental-search-forward
 
-#------------------------------------------------------------------------------
-#       Source function files
-#------------------------------------------------------------------------------
-funcs=$HOME/.zshfunctions
-typeset -TUg +x FPATH=$funcs:$FPATH fpath  # only unique entries
-if [[ -d $funcs ]]; then
-    autoload -Uz ${=$(cd "$funcs" && echo *)}
-fi
-unset -v funcs
-
 #==============================================================================
 #==============================================================================
-
