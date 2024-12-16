@@ -16,7 +16,7 @@ host=$(hostname -s) # i.e. 't1854', 'babylon', 'polaris'
 [ -z "$PS1" ] && return
 
 case "$host" in
-t1854)
+t1854|Bernard-MBP)
     # Set the prompt with bright green text -- include GNU screen window number
     if type __git_ps1 &> /dev/null; then
         PS1=$"\[\033[1;32m\][\u@\h: \W]${WINDOW}\$(__git_ps1)\$ \[\033[0m\]"
@@ -86,9 +86,7 @@ set bell-style visible
 _expand() { return 0; }
 
 # Anaconda include
-if ! command -v conda &> /dev/null; then
-    conda activate stats311 2> /dev/null
-fi
+# conda activate stats311 2> /dev/null
 
 # Allow changing ruby versions <https://jekyllrb.com/docs/installation/macos/>
 # source $(brew --prefix)/opt/chruby/share/chruby/chruby.sh

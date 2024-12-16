@@ -43,12 +43,6 @@ t1854)
     __conda_setup="$('/Users/bernardroesler/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
     if [ $? -eq 0 ]; then
         eval "$__conda_setup"
-    else
-        if [ -f "/Users/bernardroesler/miniconda3/etc/profile.d/conda.sh" ]; then
-            . "/Users/bernardroesler/miniconda3/etc/profile.d/conda.sh"  # commented out by conda initialize
-        else
-            export PATH="/Users/bernardroesler/miniconda3/bin:$PATH"  # commented out by conda initialize
-        fi
     fi
     unset __conda_setup
     # <<< conda initialize <<<
@@ -63,7 +57,7 @@ t1854)
 Bernards-MBP)
     eval "$(/opt/homebrew/bin/brew shellenv)"
 
-    # export TERM='screen-256color'    # required by tmux
+    export TERM='tmux-256color'  # required for italics in tmux
 
     # Add coreutils from homebrew, i.e. $(brew --prefix coreutils)
     brew_prefix="$(brew --prefix)"
