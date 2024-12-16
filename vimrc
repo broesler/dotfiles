@@ -44,6 +44,9 @@ set keywordprg=:Man
 "
 set path=./**,**,include;../../../,/usr/local/include,/usr/include/
 
+" Allow shell to run as login shell (and load .zprofile or .bash_profile)
+set shellcmdflag=-cl
+
 "}}}--------------------------------------------------------------------------
 "       Global Settings                                                  "{{{
 "-----------------------------------------------------------------------------
@@ -96,6 +99,7 @@ set wildignore+=.git  " Version control
 set wildignore+=*.aux,*.bbl,*.blg,*.log,*.out,*.toc,*.fls " LaTex aux files
 set wildignore+=*.fdb_latexmk,*.synctex*.gz
 set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg  " binary images
+set wildignore+=*.mp4                           " videos
 set wildignore+=*.o,*.dll,*.pyc                 " compiled object files
 set wildignore+=*.sw?                           " Vim swap files
 set wildignore+=*.DS_Store                      " OSX garbage
@@ -188,7 +192,7 @@ augroup code_cmds "{{{
     " Create template for new files
     " TODO merge all headers into one command that does not require a header
     " file... just insert desired text and use CommentBlock to make header!
-    for the_ext in ['c', 'm', 'f95', 'py', 'scm', 'sh', 'vim']
+    for the_ext in ['c', 'cpp', 'm', 'f95', 'py', 'scm', 'sh', 'vim']
         let filename = '$HOME/.vim/header/' . the_ext . '_header'
         execute 'autocmd BufNewFile *.' . the_ext .
                     \ ' call util#MakeTemplate("' . filename . '")'
@@ -199,6 +203,7 @@ augroup code_cmds "{{{
 
     " Load types file
     autocmd BufRead,BufNewFile *.[ch] call util#HighlightTypes()
+    autocmd BufRead,BufNewFile *.cpp call util#HighlightTypes()
 
     " TODO figure out how to break undo and jump sequence for this operation
     " Update 'Last Modified:' line in code files
@@ -257,13 +262,13 @@ augroup CursorLineOnlyInActiveWindow "{{{
     au WinLeave * silent setlocal nocursorline
 augroup END
 "}}}
- augroup xelatex_cmds "{{{
-     autocmd!
-     " set compiler options to use xelatex
-     autocmd BufRead,BufNewFile *.xtx set ft=tex
-     autocmd BufRead,BufNewFile *.xtx let g:LatexBox_latexmk_options = "-file-line-error -synctex=1 -pdf -xelatex"
-     autocmd BufRead,BufNewFile *.xtx setlocal makeprg=latexmk\ \-interaction=nonstopmode\ \-pdf\ \-xelatex\ '%'
- augroup END
+augroup xelatex_cmds "{{{
+    autocmd!
+    " set compiler options to use xelatex
+    autocmd BufRead,BufNewFile *.xtx set ft=tex
+    autocmd BufRead,BufNewFile *.xtx let g:LatexBox_latexmk_options = "-file-line-error -synctex=1 -pdf -xelatex"
+    autocmd BufRead,BufNewFile *.xtx setlocal makeprg=latexmk\ \-interaction=nonstopmode\ \-pdf\ \-xelatex\ '%'
+augroup END
 "}}}
 "}}}--------------------------------------------------------------------------
 "       Key Mappings                                                     "{{{
@@ -465,7 +470,9 @@ endif
 "}}}
 " BReptile {{{
 let g:breptile_bash_pane = 'bottom-left'
-let g:breptile_tpgrep_pat_matlab = '[r]lwrap.*matlab'
+let g:breptile_tpgrep_pat_python = 'ipython'
+" let g:breptile_tpgrep_pat_matlab = '[r]lwrap.*matlab'
+let g:breptile_tpgrep_pat_matlab = '\(matlab\|octave\)'
 let g:breptile_tpgrep_pat_scheme = '[r]lwrap.*scheme'
 let g:breptile_python_interp = 2    " expect ipython
 let g:breptile_python_pytestops = '-v'  " verbose testing output
@@ -474,8 +481,9 @@ let g:breptile_python_pytestops = '-v'  " verbose testing output
 let g:LatexBox_latexmk_async = 0    " 1 == run latexmk asynchronously (not really, requires vim server, no channels yet)
 let g:LatexBox_Folding = 1          " 1 == use LatexBox folding instead of vim folding
 let g:LatexBox_quickfix = 2         " 2 == open quickfix but do not jump to error
-let g:LatexBox_output_type = '-pdf' " output to pdf
+let g:LatexBox_output_type = 'pdf'  " output to pdf
 let g:LatexBox_show_warnings = 0    " 0 == do not show warnings (default on)
+let g:LatexBox_viewer = 'skim'      " use Skim.app as the pdf viewer.
 "}}}
 " Jedi-Vim {{{
 let g:jedi#goto_command = "<localleader>f"

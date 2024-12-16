@@ -78,7 +78,7 @@ nnoremap <buffer> <LocalLeader>D :Make debug<CR>
 nnoremap <buffer> <LocalLeader>C :Make clean<CR>
 
 " Open header/source file corresponding to current source/header
-nnoremap <buffer> <LocalLeader>c :execute 'find ' . expand('%:t:r') . '.c'<CR>
+nnoremap <buffer> <LocalLeader>c :execute 'find ' . expand('%:t:r') . '.c*'<CR>
 nnoremap <buffer> <LocalLeader>h :execute 'find ' . expand('%:t:r') . '.h'<CR>
 
 nnoremap <buffer> <Leader>h :CCommentBlock<CR>
