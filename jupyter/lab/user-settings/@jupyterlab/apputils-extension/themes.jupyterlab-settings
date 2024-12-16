@@ -4,7 +4,15 @@
     // Theme manager settings.
     // *************************************
 
+    // Adaptive Theme
+    // Synchronize visual styling theme with system settings
+    "adaptive-theme": true,
+
     // Selected Theme
-    // Application-level visual styling theme
-    "theme": "JupyterLab Dark"
+    // Application-level visual styling theme. Ignored when Adaptive Theme is enabled.
+    "theme": "JupyterLab Dark",
+
+    // Scrollbar Theming
+    // Enable/disable styling of the application scrollbars
+    "theme-scrollbars": false
 }

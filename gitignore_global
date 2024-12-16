@@ -43,6 +43,7 @@ Session.vim
 *.mp4
 *.pages
 *.pdf
+*.pkl
 *.png
 *.pptx
 *.psd
@@ -84,3 +85,6 @@ Session.vim
 # R files
 *.RData
 *.Rhistory
+
+# Jupyter Notebook files
+.ipynb_checkpoints
