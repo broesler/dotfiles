@@ -1,47 +1,47 @@
 [submodule "vim/bundle/fugitive"]
-	path = vim/bundle/fugitive
+	path = vim/pack/all/start/fugitive
 	url = https://github.com/tpope/vim-fugitive.git
 [submodule "vim/bundle/supertab"]
-	path = vim/bundle/supertab
+	path = vim/pack/all/start/supertab
 	url = https://github.com/ervandew/supertab.git
 [submodule "vim/bundle/LaTeX-Box"]
-	path = vim/bundle/LaTeX-Box
+	path = vim/pack/all/start/LaTeX-Box
 	url = https://github.com/LaTeX-Box-Team/LaTeX-Box.git
 [submodule "vim/bundle/rename"]
-	path = vim/bundle/rename
+	path = vim/pack/all/start/rename
 	url = https://github.com/danro/rename.vim.git
 [submodule "vim/bundle/vim-colors-solarized"]
-	path = vim/bundle/vim-colors-solarized
+	path = vim/pack/all/start/vim-colors-solarized
 	url = https://github.com/altercation/vim-colors-solarized.git
 [submodule "vim/bundle/unimpaired"]
-	path = vim/bundle/unimpaired
+	path = vim/pack/all/start/unimpaired
 	url = https://github.com/tpope/vim-unimpaired.git
 [submodule "vim/bundle/breptile"]
-	path = vim/bundle/breptile
+	path = vim/pack/all/start/breptile
 	url = https://github.com/broesler/breptile.git
 [submodule "vim/bundle/ack.vim"]
-	path = vim/bundle/ack.vim
+	path = vim/pack/all/start/ack.vim
 	url = https://github.com/mileszs/ack.vim.git
 [submodule "vim/bundle/surround"]
-	path = vim/bundle/surround
+	path = vim/pack/all/start/surround
 	url = https://github.com/tpope/vim-surround.git
 [submodule "vim/bundle/tabular"]
 	path = vim/bundle/tabular
 	url = https://github.com/godlygeek/tabular.git
 [submodule "vim/bundle/vimtex"]
-	path = vim/bundle/vimtex
+	path = vim/pack/all/opt/vimtex
 	url = https://github.com/lervag/vimtex.git
 [submodule "vim/bundle/abolish"]
-	path = vim/bundle/abolish
+	path = vim/pack/all/start/abolish
 	url = https://github.com/tpope/vim-abolish.git
 [submodule "vim/bundle/jupyter-vim"]
-	path = vim/bundle/jupyter-vim
+	path = vim/pack/all/opt/jupyter-vim
 	url = https://github.com/broesler/jupyter-vim.git
 [submodule "vim/bundle/jedi-vim"]
-	path = vim/bundle/jedi-vim
+	path = vim/pack/all/start/jedi-vim
 	url = https://github.com/davidhalter/jedi-vim.git
 [submodule "vim/bundle/flake8"]
-	path = vim/bundle/flake8
+	path = vim/pack/all/start/flake8
 	url = https://github.com/nvie/vim-flake8.git
 [submodule "tmux/plugins/tmux-colors-solarized"]
     path = tmux/plugins/tmux-colors-solarized
@@ -50,20 +50,20 @@
     path = tmux/plugins/tmux-resurrect
     url = https://github.com/tmux-plugins/tmux-resurrect.git
 [submodule "vim/bundle/vim-scriptease"]
-	path = vim/bundle/scriptease
+	path = vim/pack/all/start/scriptease
 	url = https://github.com/tpope/vim-scriptease.git
 [submodule "vim/bundle/repeat"]
-	path = vim/bundle/repeat
+	path = vim/pack/all/start/repeat
 	url = https://github.com/tpope/vim-repeat.git
 [submodule "vim/bundle/commentary"]
-	path = vim/bundle/commentary
+	path = vim/pack/all/start/commentary
 	url = https://github.com/tpope/vim-commentary.git
 [submodule "vim/bundle/python-syntax"]
-	path = vim/bundle/python-syntax
+	path = vim/pack/all/start/python-syntax
 	url = https://github.com/vim-python/python-syntax.git
 [submodule "vim/bundle/dispatch"]
-	path = vim/bundle/dispatch
+	path = vim/pack/all/start/dispatch
 	url = https://github.com/tpope/vim-dispatch.git
 [submodule "vim/bundle/copilot"]
-	path = vim/bundle/copilot
+	path = vim/pack/all/start/copilot
 	url = https://github.com/github/copilot.vim.git

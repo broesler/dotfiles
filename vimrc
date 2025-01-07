@@ -10,12 +10,9 @@
 "}}}--------------------------------------------------------------------------
 "       Preamble                                                         "{{{
 "-----------------------------------------------------------------------------
-" Ignore list of plugins
-let g:pathogen_disabled = ['vimtex', 'jupyter-vim']
-" let g:pathogen_disabled = ['vimtex', 'breptile']
-" Run pathogen to load plugins (ignore errors on Linux machines)
-silent! call pathogen#infect()
-silent! call pathogen#helptags()
+" Optional packages:
+" packadd jupyter-vim
+" packadd vimtex
 
 " Use Vim settings, rather than Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
