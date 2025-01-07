@@ -211,7 +211,7 @@ function! s:SetTermTitle() "{{{
         let tstr = strpart(filename,0,32) . "..." . strpart(filename, length-50)
     endif
     " Set terminal title
-    silent execute "!echo -ne " . "\"\033]0;" . tstr . "\007\""
+    silent system("echo -ne " . "\"\033]0;" . tstr . "\007\""
 endfunction
 "}}}
 function! s:Warn(str) abort "{{{

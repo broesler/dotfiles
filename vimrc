@@ -377,7 +377,6 @@ if (exists('$TMUX') || exists('$SSH_IN_TMUX'))
         execute "wincmd " . a:wincmd
         " If we didn't change vim windows, we must want to change tmux panes
         if previous_winnr == winnr()
-          " execute "silent !sh -c 'sleep 0.01; tmux select-pane -" . a:tmuxdir . "' &"
           call system("tmux select-pane -" . a:tmuxdir)
           redraw!
         endif
