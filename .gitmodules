@@ -19,9 +19,6 @@
 [submodule "vim/bundle/breptile"]
 	path = vim/pack/all/start/breptile
 	url = https://github.com/broesler/breptile.git
-[submodule "vim/bundle/ack.vim"]
-	path = vim/pack/all/start/ack.vim
-	url = https://github.com/mileszs/ack.vim.git
 [submodule "vim/bundle/surround"]
 	path = vim/pack/all/start/surround
 	url = https://github.com/tpope/vim-surround.git
