@@ -196,7 +196,7 @@ augroup code_cmds "{{{
     " Create template for new files
     " TODO merge all headers into one command that does not require a header
     " file... just insert desired text and use CommentBlock to make header!
-    for the_ext in ['c', 'cpp', 'm', 'f95', 'py', 'scm', 'sh', 'vim']
+    for the_ext in ['c', 'cpp', 'h', 'f95', 'm', 'py', 'scm', 'sh', 'vim']
         let filename = '$HOME/.vim/header/' . the_ext . '_header'
         execute 'autocmd BufNewFile *.' . the_ext .
                     \ ' call util#MakeTemplate("' . filename . '")'
