@@ -8,5 +8,4 @@
 "=============================================================================
 
 setlocal commentstring=//%s
-
-" setlocal formatoptions-=o  " don't continue comments on "o" command.
+setlocal formatoptions-=o  " don't continue comments on "o" command.

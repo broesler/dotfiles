@@ -163,11 +163,27 @@ endif
 set t_ZH=[3m
 set t_ZR=[23m
 "}}}
-" tags session lischars options {{{
+" tags & cscope {{{ 
 " read local tag file first, then look up the tree from current file ';', then
 " search in specified directories
 set tags=./tags,tags;,~/.dotfiles/tags,~/Documents/MATLAB/tags
 
+if has("cscope") && executable("/opt/homebrew/bin/cscope")
+    set csprg=/opt/homebrew/bin/cscope
+    set csto=0
+    set cst
+    set nocsverb
+    " add any database in current directory
+    if filereadable("cscope.out")
+        cs add cscope.out
+    " else add database pointed to by environment
+    elseif $CSCOPE_DB != ""
+        cs add $CSCOPE_DB
+    endif
+    set csverb
+endif
+"}}}
+" session lischars options {{{
 " Don't save settings from session, usually we want to reset these to defaults
 " when closing/reopening a bunch of files
 set sessionoptions-=options
