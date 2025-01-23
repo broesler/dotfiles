@@ -179,6 +179,13 @@ else
     set listchars=eol:¬,tab:→\ ,trail:·,extends:»,precedes:«,nbsp:~
 endif
 "}}}
+" grep {{{
+" Use ripgrep if available
+if executable('rg')
+    set grepprg=rg\ --vimgrep
+    set grepformat=%f:%l:%c:%m
+endif
+" }}}
 "}}}--------------------------------------------------------------------------
 "       Autocommands                                                     "{{{
 "-----------------------------------------------------------------------------
@@ -458,12 +465,6 @@ augroup END
 "}}}--------------------------------------------------------------------------
 "       Plugin Settings                                                   "{{{
 "-----------------------------------------------------------------------------
-" Ack {{{
-if executable('ag')
-    " nnoremap <leader>a :Ack!<space>
-    let g:ackprg = 'ag --smart-case --nogroup --nocolor --column'
-endif
-"}}}
 " BReptile {{{
 let g:breptile_bash_pane = 'bottom-left'
 let g:breptile_tpgrep_pat_python = 'ipython'

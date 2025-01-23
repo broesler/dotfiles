@@ -21,7 +21,7 @@ function! s:GrepOperator(type)
     endif
 
     " Grep for literal string
-    silent execute "grep! -R -F " . shellescape(@@) . " ."
+    silent execute "grep! " . shellescape(@@) . " ."
     redraw!
     copen
 
