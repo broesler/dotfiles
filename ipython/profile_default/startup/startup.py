@@ -17,6 +17,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 
+from scipy import sparse as sps
+from scipy import linalg as la
+
 from IPython import get_ipython
 ipython = get_ipython()
 
