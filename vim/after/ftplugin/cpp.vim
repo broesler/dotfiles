@@ -9,3 +9,9 @@
 
 setlocal commentstring=//%s
 setlocal formatoptions-=o  " don't continue comments on "o" command.
+
+" Create CScope mappings
+call util#MapCScope()
+
+"=============================================================================
+"=============================================================================
