@@ -14,7 +14,10 @@ Bernard-MBP)
     export TERM='tmux-256color'    # required by tmux for italics
 
     # Add coreutils from homebrew, i.e. $(brew --prefix coreutils)
-    brew_prefix="$(brew --prefix)"
+    brew_prefix="/opt/homebrew"
+
+    export PATH="${brew_prefix}/bin:${brew_prefix}/sbin:$PATH"
+
     gnu_names=('coreutils' 'ed' 'findutils' 'gnu-sed' 'grep' 'gnu-tar' 'gnu-which')
     MANPATH=''
     for name in ${gnu_names[@]}; do
