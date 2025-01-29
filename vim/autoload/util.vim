@@ -87,9 +87,12 @@ function! util#HighlightTypes() "{{{
     "     | awk 'BEGIN { printf("syntax keyword Type\t") }\
     "         { printf("%s ", $1) }'\
     "     > .types.vim
-    let fname = expand('%:p:h') . '/.types.vim'
-    if filereadable(fname)
-        execute 'source ' . fname
+    let l:fname = expand('%:p:h') . '/.types.vim'
+    let l:alt_fname = expand('%:p:h') . '/../.types.vim'
+    if filereadable(l:fname)
+        execute 'source ' . l:fname
+    elseif filereadable(l:alt_fname)
+        execute 'source ' . l:alt_fname
     endif
 endfunction
 "}}}
