@@ -18,6 +18,8 @@ setlocal foldmethod=indent
 
 setlocal nowrap
 
+setlocal keywordprg=info\ octave\ --vi-keys\ --index-search
+
 " Optional highlighting from $VIMRUNTIME/syntax/matlab.vim
 syn match matlabTab             "\t"
 syn match matlabIdentifier      "\<\a\w*\>"
@@ -31,3 +33,6 @@ hi def link matlabTab           Error
 " TODO put into function + command :FindVariable <C-R><C-W>
 " FIXME DOES NOT work for variables in printf statements following '%s', i.e.
 nnoremap <LocalLeader>g :g/\C\(%.*\)\@<!\<<C-R><C-W>\>/p<CR>
+
+"=============================================================================
+"=============================================================================
