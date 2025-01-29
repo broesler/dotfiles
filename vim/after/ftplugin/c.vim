@@ -67,7 +67,13 @@ endfunction
 "       Keymaps and macros 
 "-----------------------------------------------------------------------------
 command! -buffer -bar -nargs=? -complete=file CMakeThisFile call <SID>CMakeThisFile(<f-args>)
-command! -buffer CCommentBlock :set nocindent | exe "norm! o/*78a-o76a-A*/ko \t\t" | set cindent
+" TODO make CCommentBlock a function
+command! -buffer CCommentBlock
+            \ :set nocindent
+            \ | set fo+=o
+            \ | exe "norm! o/*78a-o76a-A*/ko \t\t"
+            \ | set fo-=o
+            \ | set cindent
 
 nnoremap <buffer> <LocalLeader>m :CMakeThisFile<CR>
 " nnoremap <buffer> <LocalLeader>M :silent make! <bar> redraw!<CR>
