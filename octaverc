@@ -1,3 +1,4 @@
+PS1("\033[1;34moctave:\\# >> \033[0m");
 addpath('~/src/MATLAB/');
-addpath(genpath('.'));
+% addpath(genpath('.'));
 more on
