@@ -7,11 +7,13 @@
 "
 "=============================================================================
 
-setlocal commentstring=//%s
-setlocal formatoptions-=o  " don't continue comments on "o" command.
+runtime after/ftplugin/c.vim  " apply C settings
 
-" Create CScope mappings
-call util#MapCScope()
+augroup cpp_cmds
+    autocmd!
+    " Load types file
+    autocmd BufRead,BufNewFile *.[ch]pp call util#HighlightTypes()
+augroup END
 
 "=============================================================================
 "=============================================================================

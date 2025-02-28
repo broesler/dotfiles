@@ -6,6 +6,7 @@
 "  Description: vim C filetype settings beyond defaults
 "
 "=============================================================================
+
 setlocal cindent                " smarter indenting for C
 
 setlocal textwidth=80
@@ -17,11 +18,11 @@ setlocal foldlevelstart=99      " don't start with all lines folded
 setlocal keywordprg=:Man\ 3     " use section 3 for C Library functions
 
 "-----------------------------------------------------------------------------
-"       Functions 
+"       Functions
 "-----------------------------------------------------------------------------
 function! s:CMakeThisFile(...) abort "
     " if we have an argument, it is the filename
-    if a:0 
+    if a:0
         let l:source = fnameescape(a:1)
         let l:exe    = fnameescape(fnamemodify(a:1, ":r"))
     else
@@ -52,19 +53,23 @@ function! s:CMakeThisFile(...) abort "
 
     " Return makeprg to original state
     let &makeprg = save_makeprg
-endfunction 
+endfunction
 
 "-----------------------------------------------------------------------------
-"       Local autocmds 
+"       Local autocmds
 "-----------------------------------------------------------------------------
-" augroup c_cmds
-    " autocmd!
+augroup c_cmds
+    autocmd!
     " Update tags file automatically
     " autocmd BufWritePost,FileWritePost <buffer> silent call UpdateTags()
-" augroup END
+
+    " Load types file
+    autocmd BufRead,BufNewFile *.[ch] call util#HighlightTypes()
+
+augroup END
 
 "-----------------------------------------------------------------------------
-"       Keymaps and macros 
+"       Keymaps and macros
 "-----------------------------------------------------------------------------
 command! -buffer -bar -nargs=? -complete=file CMakeThisFile call <SID>CMakeThisFile(<f-args>)
 " TODO make CCommentBlock a function

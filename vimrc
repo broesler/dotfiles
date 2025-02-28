@@ -222,10 +222,6 @@ augroup code_cmds "{{{
     autocmd FileType perl :compiler perl
     autocmd FileType conf source $HOME/.vim/after/ftplugin/sh/sections.vim
 
-    " Load types file
-    autocmd BufRead,BufNewFile *.[ch] call util#HighlightTypes()
-    autocmd BufRead,BufNewFile *.cpp call util#HighlightTypes()
-
     " TODO figure out how to break undo and jump sequence for this operation
     " Update 'Last Modified:' line in code files
     " autocmd FileType c,cpp,python,matlab,fortran,vim,sh,perl
