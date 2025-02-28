@@ -107,10 +107,11 @@ let @d = "\n\n"
 " Standard import
 let @i = "import matplotlib.pyplot as plt\n"
      \ . "import numpy as np\n"
+     \ . "import scipy.linalg as la\n\n"
+     \ . "from scipy import sparse\n"
+     \ . "from scipy.sparse import linalg as spla\n\n"
      " \ . "import pandas as pd\n"
      " \ . "import seaborn as sns\n\n"
-     " \ . "import scipy.linalg as la\n\n"
-     " \ . "from scipy.sparse import diags, linalg as sla\n\n"
 
 " Matplotlib figure set-up
 let @f = "fig, ax = plt.subplots(num=1, clear=True)\n"
