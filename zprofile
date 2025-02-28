@@ -7,7 +7,7 @@
 #===============================================================================
 
 case "$(hostname -s)" in
-Bernard-MBP)
+(Bernard-MBP | Mac)
     # Set up homebrew
     eval "$(/opt/homebrew/bin/brew shellenv)"
 

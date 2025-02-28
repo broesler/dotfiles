@@ -11,7 +11,7 @@
 [ -z "$PS1" ] && return
 
 case "$(hostname -s)" in
-Bernard-MBP)
+(Bernard-MBP | Mac)
     # Enable git in the prompt
     autoload -Uz vcs_info
     precmd_vcs_info() { vcs_info }
