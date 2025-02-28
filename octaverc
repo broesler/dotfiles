@@ -1,4 +1,9 @@
 PS1("\033[1;34moctave:\\# >> \033[0m");
 addpath('~/src/MATLAB/');
 % addpath(genpath('.'));
+addpath('~/src/SuiteSparse-7.7.0/CSparse/MATLAB/CSparse/');
+addpath('~/src/SuiteSparse-7.7.0/CSparse/MATLAB/Test/');
+addpath('~/src/SuiteSparse-7.7.0/CSparse/MATLAB/Demo/');
+addpath('~/src/SuiteSparse-7.7.0/CSparse/MATLAB/ssget/');
 more on
+set(groot, 'DefaultAxesFontSize', 12);
