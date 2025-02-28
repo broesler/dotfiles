@@ -140,7 +140,7 @@ alias .3='cd ../../../'
 alias .4='cd ../../../../'
 
 # Enable fzf completions
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+source <(fzf --zsh)
 
 # ----------------------------------------------------------------------------- 
 #         Key bindings
