@@ -40,6 +40,8 @@ set keywordprg=:Man
 " /usr(/local)?/include : standard c header locations
 "
 set path=./**,**,include;../../../,/usr/local/include,/usr/include/
+" Allow fzf use within vim
+set rtp+=/opt/homebrew/opt/fzf
 
 " Allow shell to run as login shell (and load .zprofile or .bash_profile)
 set shellcmdflag=-cl
