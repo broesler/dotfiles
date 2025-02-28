@@ -287,6 +287,12 @@ augroup xelatex_cmds "{{{
     autocmd BufRead,BufNewFile *.xtx setlocal makeprg=latexmk\ \-interaction=nonstopmode\ \-pdf\ \-xelatex\ '%'
 augroup END
 "}}}
+augroup fugitive_au "{{{
+    autocmd!
+    autocmd FileType fugitive resize 20
+    autocmd FileType fugitive setlocal winfixheight
+augroup END
+"}}}
 "}}}--------------------------------------------------------------------------
 "       Key Mappings                                                     "{{{
 "-----------------------------------------------------------------------------
