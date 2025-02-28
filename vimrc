@@ -167,6 +167,7 @@ set t_ZR=[23m
 " read local tag file first, then look up the tree from current file ';', then
 " search in specified directories
 set tags=./tags,tags;,~/.dotfiles/tags,~/Documents/MATLAB/tags
+set tags+=~/src/SuiteSparse-7.7.0/CSparse/tags
 
 if has("cscope") && executable("/opt/homebrew/bin/cscope")
     set csprg=/opt/homebrew/bin/cscope
@@ -176,8 +177,8 @@ if has("cscope") && executable("/opt/homebrew/bin/cscope")
     " add any database in current directory
     if filereadable("cscope.out")
         cs add cscope.out
-    " else add database pointed to by environment
     elseif $CSCOPE_DB != ""
+        " add database pointed to by environment
         cs add $CSCOPE_DB
     endif
     set csverb
