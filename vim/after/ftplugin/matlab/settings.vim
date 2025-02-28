@@ -6,6 +6,7 @@
 "  Description: Matlab filetype settings
 "
 "=============================================================================
+
 " Buffer-local settings
 setlocal textwidth=80
 setlocal iskeyword-=:         " colon is NOT part of keywords
@@ -15,17 +16,9 @@ setlocal commentstring=%%s
 
 " setlocal foldlevelstart=99
 setlocal foldmethod=indent
-
 setlocal nowrap
 
 setlocal keywordprg=info\ octave\ --vi-keys\ --index-search
-
-" Optional highlighting from $VIMRUNTIME/syntax/matlab.vim
-syn match matlabTab             "\t"
-syn match matlabIdentifier      "\<\a\w*\>"
-
-hi def link matlabIdentifier    Identifier
-hi def link matlabTab           Error
 
 " Keymaps
 " Global search for lines containing variable under cursor
