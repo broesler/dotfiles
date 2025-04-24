@@ -11,7 +11,9 @@ case "$(hostname -s)" in
     # Set up homebrew
     eval "$(/opt/homebrew/bin/brew shellenv)"
 
+    if [[ -n "$TMUX" ]]; then
     export TERM='tmux-256color'    # required by tmux for italics
+    fi
 
     # Add coreutils from homebrew, i.e. $(brew --prefix coreutils)
     brew_prefix="/opt/homebrew"

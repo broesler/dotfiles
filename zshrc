@@ -40,6 +40,17 @@ case "$(hostname -s)" in
 
     RPS1=''  # no right prompt
 
+    # Wrap prompt in escape sequence for tmux search
+    local ESC=$'\033]'
+    local ST=$'\007'
+
+    # Define the OSC 133 sequences
+    local tmux_osc_a="%{${ESC}133;A${ST}%}"  # prompt start
+    local tmux_osc_b="%{${ESC}133;B${ST}%}"  # prompt end/input start
+    local tmux_osc_c="%{${ESC}133;C${ST}%}"  # command output start
+    local tmux_osc_d="%{${ESC}133;D${ST}%}"  # command finished
+
+    PS1="${tmux_osc_a}${PS1}${tmux_osc_b}"
 
     # Ruby initialization
     source /opt/homebrew/opt/chruby/share/chruby/chruby.sh
