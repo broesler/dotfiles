@@ -270,7 +270,7 @@ augroup END
 augroup todo "{{{
     au!
     au Syntax * syn match myTodo /\v<(TODO|NOTE|FIXME):\=/
-                \ containedin=.*Comment,vimCommentTitle
+                \ display contained containedin=.*Comment,vimCommentTitle
     au Syntax * hi def link myTodo Todo
 augroup END
 "}}}
