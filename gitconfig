@@ -4,6 +4,10 @@
     email = bernard.roesler@gmail.com
 [color]
     ui = true
+[color "branch"]
+	current = magenta
+[color "status"]
+	branch = magenta
 [alias]
     aa = add -A :/
     br = branch -vv
