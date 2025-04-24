@@ -67,7 +67,7 @@ c.TerminalIPythonApp.display_banner = True
 #c.InteractiveShell.autocall = 0     # 0 (off), 1, 2 (full)
 c.InteractiveShell.autoindent = False
 c.InteractiveShell.automagic = False
-c.InteractiveShell.color_info = True
+# c.InteractiveShell.color_info = True  # not recognized?
 # (NoColor, Neutral, Linux, or LightBG).
 c.InteractiveShell.colors = 'Neutral'  # use for any? bg
 # c.InteractiveShell.colors = 'Linux'  # use for dark bg
