@@ -223,11 +223,6 @@ augroup code_cmds "{{{
 
     autocmd FileType conf source $HOME/.vim/after/ftplugin/sh/sections.vim
 
-    " TODO figure out how to break undo and jump sequence for this operation
-    " Update 'Last Modified:' line in code files
-    " autocmd FileType c,cpp,python,matlab,fortran,vim,sh,perl
-        " \ autocmd BufWritePre <buffer> call util#LastModified()
-
     autocmd FileType css,scss,sass setlocal iskeyword+=-
 augroup END
 "}}}
