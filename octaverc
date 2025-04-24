@@ -1,9 +1,14 @@
-PS1("\033[1;34moctave:\\# >> \033[0m");
+% vim: ft=matlab
+PS1("\033[1;34moctave:\\# >> \033[0m");  % blue prompt!
 addpath('~/src/MATLAB/');
-% addpath(genpath('.'));
+% addpath(genpath('.'));  % this also adds .git etc. and gives odd results
 addpath('~/src/SuiteSparse-7.7.0/CSparse/MATLAB/CSparse/');
 addpath('~/src/SuiteSparse-7.7.0/CSparse/MATLAB/Test/');
 addpath('~/src/SuiteSparse-7.7.0/CSparse/MATLAB/Demo/');
 addpath('~/src/SuiteSparse-7.7.0/CSparse/MATLAB/ssget/');
-more on
+addpath('~/src/CSparse++/MATLAB/');
+% more on  % use the pager for long output
 set(groot, 'DefaultAxesFontSize', 12);
+% Load packages
+pkg load control;
+pkg load signal;
