@@ -12,7 +12,7 @@ case "$(hostname -s)" in
     eval "$(/opt/homebrew/bin/brew shellenv)"
 
     if [[ -n "$TMUX" ]]; then
-    export TERM='tmux-256color'    # required by tmux for italics
+        export TERM='tmux-256color'    # required by tmux for italics
     fi
 
     # Add coreutils from homebrew, i.e. $(brew --prefix coreutils)
@@ -50,6 +50,12 @@ case "$(hostname -s)" in
     export LDFLAGS="-L${brew_prefix}/opt/llvm/lib"
     export CPPFLAGS="-I${brew_prefix}/opt/llvm/include"
     export ASAN_OPTIONS=detect_leaks=1
+    
+    # Allow Octave to find the Homebrew version of liboctinterp for compiling
+    # CSparse and other mexfunctions
+    octlib="$(find ${brew_prefix} -name 'liboctinterp.*' -print -quit)"
+    export LDFLAGS="${LDFLAGS} -L$(dirname $octlib)"
+    unset -v octlib
     ;;
 esac
 
