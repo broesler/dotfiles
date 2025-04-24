@@ -6,6 +6,9 @@
 "  Description: Extra highlighting for C files 
 "
 "=============================================================================
+
+call util#HighlightTypes()      " highlight types from local .types.vim
+
 syn keyword	cTodo		contained NOTE WARNING
 syn match   cCommentTitle '%\s*\%([sS]:\|\h\w*#\)\=\u\w*\(\s\+\u\w*\)*:'hs=s+1 containedin=cComment
 

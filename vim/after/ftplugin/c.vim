@@ -18,7 +18,7 @@ setlocal foldlevelstart=99      " don't start with all lines folded
 setlocal keywordprg=:Man\ 3     " use section 3 for C Library functions
 
 "-----------------------------------------------------------------------------
-"       Functions
+"       Functions {{{
 "-----------------------------------------------------------------------------
 function! s:CMakeThisFile(...) abort "
     " if we have an argument, it is the filename
@@ -55,21 +55,19 @@ function! s:CMakeThisFile(...) abort "
     let &makeprg = save_makeprg
 endfunction
 
-"-----------------------------------------------------------------------------
-"       Local autocmds
+
+"}}}--------------------------------------------------------------------------
+"       Local autocmds {{{
 "-----------------------------------------------------------------------------
 augroup c_cmds
     autocmd!
     " Update tags file automatically
-    " autocmd BufWritePost,FileWritePost <buffer> silent call UpdateTags()
-
-    " Load types file
-    autocmd BufRead,BufNewFile *.[ch] call util#HighlightTypes()
-
+    " autocmd BufWritePost,FileWritePost <buffer> silent call util#UpdateTags()
 augroup END
 
-"-----------------------------------------------------------------------------
-"       Keymaps and macros
+
+"}}}--------------------------------------------------------------------------
+"       Keymaps and macros {{{
 "-----------------------------------------------------------------------------
 command! -buffer -bar -nargs=? -complete=file CMakeThisFile call <SID>CMakeThisFile(<f-args>)
 " TODO make CCommentBlock a function
