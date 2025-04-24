@@ -12,17 +12,34 @@
 
 case "$(hostname -s)" in
 (Bernard-MBP | Mac)
-    # Enable git in the prompt
-    autoload -Uz vcs_info
-    precmd_vcs_info() { vcs_info }
-    precmd_functions+=( precmd_vcs_info )
+    # Allow prompt to substitute variable names
     setopt PROMPT_SUBST
-    RPS1='${vcs_info_msg_0_}'
-    zstyle ':vcs_info:git:*' formats '%F{purple}%a%f (%b)%m%u%c'
-    zstyle ':vcs_info:*' enable git
 
-    # Set the prompt with bold green text
-    PS1="%B%F{green}%1~ %# %f%b"
+    prompt_conda='${CONDA_DEFAULT_ENV:+(${CONDA_DEFAULT_ENV})}'
+    prompt_default='%B%F{green}%1~ %# %f%b'
+
+    # --- git-prompt.sh Configuration ---
+    GIT_PROMPT_PATH='/Library/Developer/CommandLineTools/usr/share/git-core/git-prompt.sh'
+
+    if [ -f "$GIT_PROMPT_PATH" ]; then
+        source "$GIT_PROMPT_PATH"
+
+        # Configure git-prompt.sh appearance
+        export GIT_PS1_SHOWDIRTYSTATE=1      # staged (*) and unstaged (+)
+        export GIT_PS1_SHOWUNTRACKEDFILES=1  # untracked (%)
+        export GIT_PS1_SHOWUPSTREAM="auto"   # upstream (< > =)
+        export GIT_PS1_SHOWCOLORHINTS=1      # if true, git status colors inside ()
+
+        # Includes: Conda env, magenta git status, standard prompt elements
+        prompt_git='$( __git_ps1 )'
+        PS1="${prompt_conda}${prompt_git} ${prompt_default}"
+    else
+        # Fallback prompt if git-prompt.sh is not found
+        PS1="${prompt_conda} ${prompt_default}"
+    fi
+
+    RPS1=''  # no right prompt
+
 
     # Ruby initialization
     source /opt/homebrew/opt/chruby/share/chruby/chruby.sh
@@ -66,7 +83,7 @@ zstyle ':completion:*' list-suffixes
 zstyle ':completion:*' expand prefix suffix
 zstyle ':completion:*' menu select
 zstyle ':completion:*:*:*:*:corrections' format '%F{yellow}!- %d (errors: %e) -!%f'
-zstyle ':completion:*:messages' format ' %F{purple} -- %d --%f'
+zstyle ':completion:*:messages' format ' %F{magenta} -- %d --%f'
 
 # Use hjkl to navigate the completion list
 zmodload zsh/complist
