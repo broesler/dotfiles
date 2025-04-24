@@ -221,7 +221,6 @@ augroup code_cmds "{{{
                     \ ' call util#MakeTemplate("' . filename . '")'
     endfor
 
-    autocmd FileType perl :compiler perl
     autocmd FileType conf source $HOME/.vim/after/ftplugin/sh/sections.vim
 
     " TODO figure out how to break undo and jump sequence for this operation
