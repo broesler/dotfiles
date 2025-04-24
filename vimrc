@@ -476,13 +476,6 @@ if exists(":Tabularize")
     vnoremap <Leader>a/ :Tabularize / \/\/<CR>
 endif
 "}}}
-augroup filetype_markdown "{{{
-    autocmd!
-    " Handy operator remaps
-    autocmd FileType markdown onoremap ih :<C-u>exe "norm! ?^==\\+$\r:nohls\rkvg_"<CR>
-    autocmd FileType markdown onoremap ah :<C-u>exe "norm! ?^==\\+$\r:nohls\rg_vk0"<CR>
-augroup END
-"}}}
 
 "}}}--------------------------------------------------------------------------
 "       Plugin Settings                                                   "{{{
