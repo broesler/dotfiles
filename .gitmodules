@@ -38,7 +38,7 @@
 	path = vim/pack/all/start/jedi-vim
 	url = https://github.com/davidhalter/jedi-vim.git
 [submodule "vim/bundle/flake8"]
-	path = vim/pack/all/start/flake8
+	path = vim/pack/all/opt/flake8
 	url = https://github.com/nvie/vim-flake8.git
 [submodule "tmux/plugins/tmux-colors-solarized"]
     path = tmux/plugins/tmux-colors-solarized
@@ -64,3 +64,6 @@
 [submodule "vim/bundle/copilot"]
 	path = vim/pack/all/start/copilot
 	url = https://github.com/github/copilot.vim.git
+[submodule "vim/pack/all/start/ale"]
+	path = vim/pack/all/start/ale
+	url = https://github.com/dense-analysis/ale.git
