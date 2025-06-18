@@ -2,12 +2,15 @@
 PS1("\033[1;34moctave:\\# >> \033[0m");  % blue prompt!
 addpath('~/src/MATLAB/');
 % addpath(genpath('.'));  % this also adds .git etc. and gives odd results
+addpath('~/src/SuiteSparse-7.7.0/AMD/MATLAB/');
+addpath('~/src/SuiteSparse-7.7.0/COLAMD/MATLAB/');
 addpath('~/src/SuiteSparse-7.7.0/CSparse/MATLAB/CSparse/');
 addpath('~/src/SuiteSparse-7.7.0/CSparse/MATLAB/Test/');
 addpath('~/src/SuiteSparse-7.7.0/CSparse/MATLAB/Demo/');
 addpath('~/src/SuiteSparse-7.7.0/CSparse/MATLAB/ssget/');
-addpath('~/src/CSparse++/MATLAB/');
+addpath('~/src/C++Sparse/MATLAB/');
 % more on  % use the pager for long output
+warning off  % stops annoying warnings about MATLAB-style short-circuit
 set(groot, 'DefaultAxesFontSize', 12);
 % Load packages
 pkg load control;
