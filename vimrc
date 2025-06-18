@@ -98,6 +98,7 @@ set wildignore+=.git  " Version control
 set wildignore+=*.aux,*.bbl,*.blg,*.log,*.out,*.toc,*.fls " LaTex aux files
 set wildignore+=*.fdb_latexmk,*.synctex*.gz
 set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg  " binary images
+set wildignore+=*.mat,*.pkl                     " MATLAB and python binaries
 set wildignore+=*.mp4                           " videos
 set wildignore+=*.o,*.dll,*.pyc                 " compiled object files
 set wildignore+=*.sw?                           " Vim swap files
