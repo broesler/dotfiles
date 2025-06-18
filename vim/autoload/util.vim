@@ -340,10 +340,10 @@ augroup QFList
     autocmd FileType qf call s:QuickfixReformat()
 augroup END
 
-augroup AddGit
-    autocmd!
-    autocmd BufNewFile,BufReadPost * call <SID>AddGitPath()
-augroup END
+" augroup AddGit
+"     autocmd!
+"     autocmd BufNewFile,BufReadPost * call <SID>AddGitPath()
+" augroup END
 
 " Add git directory to path
 command! AddGitPath call s:AddGitPath()
