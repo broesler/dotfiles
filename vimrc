@@ -356,7 +356,8 @@ nnoremap <Leader>H :GetHighlight<CR>
 nnoremap <Leader>U :silent execute '!open ' . fnameescape("<C-R><C-F>")<CR><bar>:redraw!<CR><CR>
 
 " Change vim directory to that of current file (':cd -' changes back)
-nnoremap <Leader>d :cd %:p:h<CR>:pwd<CR>
+nnoremap <Leader>c :lcd %:p:h<CR>:pwd<CR>
+nnoremap <Leader>C :cd %:p:h<CR>:pwd<CR>
 
 " unmap Q from entering Ex mode to avoid hitting it by accident
 nnoremap Q <nop>
