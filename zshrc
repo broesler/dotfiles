@@ -170,6 +170,15 @@ alias .4='cd ../../../../'
 # Enable fzf completions
 source <(fzf --zsh)
 
+# Matlab with rlwrap (use vi commands in Matlab!)
+function matlabrl()
+{
+    # $PATH includes: /Applications/MATLAB_R2015b.app/bin/
+    rlwrap -adummy -c -mdummy \
+        -H $HOME/.matlab/R2025a/history.m \
+        matlab -nosplash -nodesktop "$@"
+}
+
 # ----------------------------------------------------------------------------- 
 #         Key bindings
 # -----------------------------------------------------------------------------

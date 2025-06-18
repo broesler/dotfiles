@@ -56,6 +56,10 @@ case "$(hostname -s)" in
     octlib="$(find ${brew_prefix} -name 'liboctinterp.*' -print -quit)"
     export LDFLAGS="${LDFLAGS} -L$(dirname $octlib)"
     unset -v octlib
+
+    export PATH="$PATH:/Applications/MATLAB_R2025a.app/bin"         # for matlab, etc.
+    export PATH="$PATH:/Applications/MATLAB_R2025a.app/bin/maca64"  # for mlint
+    export PATH="/Users/bernardroesler/.pixi/bin:$PATH"
     ;;
 esac
 

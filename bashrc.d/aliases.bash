@@ -24,9 +24,9 @@ t1854)  # my MBP
     # Matlab with rlwrap (use vi commands in Matlab!)
     function matlabrl()
     {
-        # $PATH includes: /Applications/MATLAB_R2018b.app/bin/
+        # $PATH includes: /Applications/MATLAB_R2015b.app/bin/
         rlwrap -a dummy -c -m dummy \
-            -H $HOME/.matlab/R2020a/history.m \
+            -H $HOME/.matlab/R2025a/history.m \
             matlab -nosplash -nodesktop "$@"
     }
     ;;
