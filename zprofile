@@ -60,6 +60,9 @@ case "$(hostname -s)" in
     export PATH="$PATH:/Applications/MATLAB_R2025a.app/bin"         # for matlab, etc.
     export PATH="$PATH:/Applications/MATLAB_R2025a.app/bin/maca64"  # for mlint
     export PATH="/Users/bernardroesler/.pixi/bin:$PATH"
+
+    # Set up OpenBLAS for SciPy build
+    export PKG_CONFIG_PATH="/opt/homebrew/opt/openblas/lib/pkgconfig"
     ;;
 esac
 
