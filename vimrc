@@ -506,6 +506,24 @@ let g:jedi#auto_vim_configuration = 0   " do not change 'completeopt'
 let g:jedi#popup_on_dot = 0             " only complete if we press the key
 let g:jedi#show_call_signatures = 0     " do not show call signatures (SLOW AND BUGGY)
 "}}}
+" FZF {{{
+let g:fzf_layout = { 'down': '40%' }
+
+" Define custom action function
+function! s:build_quickfix_list(lines)
+  call setqflist(map(copy(a:lines), '{ "filename": v:val, "lnum": 1 }'))
+  copen
+endfunction
+
+" Ensure g:fzf_action exists (fzf.vim typically initializes it)
+if !exists('g:fzf_action')
+  let g:fzf_action = {}
+endif
+
+call extend(g:fzf_action, {
+  \ 'ctrl-q': function('s:build_quickfix_list')
+  \ })
+" }}}
 "}}}--------------------------------------------------------------------------
 "       Colorscheme                                                       "{{{
 "-----------------------------------------------------------------------------

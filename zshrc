@@ -170,6 +170,9 @@ alias .4='cd ../../../../'
 # Enable fzf completions
 source <(fzf --zsh)
 
+export FZF_DEFAULT_OPTS="--preview 'bat --color=always {}'"
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow'
+
 # Matlab with rlwrap (use vi commands in Matlab!)
 function matlabrl()
 {
