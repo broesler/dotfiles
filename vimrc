@@ -597,7 +597,7 @@ set statusline+=%h%m%r%w                     " status flags
 set statusline+=\                            " separator
 set statusline+=%{exists('g:loaded_fugitive')?fugitive#statusline():''}
 set statusline+=\                            " separator
-set statusline+=%f\                          " %t filename, %f relative path
+set statusline+=%<%f\                        " %t filename, %f relative path
 set statusline+=\[%{strlen(&ft)?&ft:'none'}] " file type
 set statusline+=\                            " separator
 set statusline+=%=                           " right align remainder
