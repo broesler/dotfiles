@@ -49,7 +49,7 @@ case "$(hostname -s)" in
     export PATH="${brew_prefix}/opt/llvm/bin:$PATH"
     export LDFLAGS="-L${brew_prefix}/opt/llvm/lib"
     export CPPFLAGS="-I${brew_prefix}/opt/llvm/include"
-    export ASAN_OPTIONS=detect_leaks=1
+    # export ASAN_OPTIONS=detect_leaks=1  # XXX not supported on MacOS
     
     # Allow Octave to find the Homebrew version of liboctinterp for compiling
     # CSparse and other mexfunctions
