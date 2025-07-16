@@ -32,6 +32,13 @@ let g:python_highlight_func_calls = 0
 "-----------------------------------------------------------------------------
 "       Functions to lint + make code 
 "-----------------------------------------------------------------------------
+function! PythonRuffCheckAll()
+    let &l:makeprg = g:ale_python_ruff_executable . ' check'
+    let &l:errorformat = '%f:%l:%c: %m'
+    update | silent make! | redraw!
+endfunction
+command! -buffer PythonRuffCheckAll :call PythonRuffCheckAll()
+
 function! PythonRunScript()
   setlocal makeprg=python\ %
 
@@ -72,7 +79,8 @@ endfunction
 "        Keymaps
 "-----------------------------------------------------------------------------
 " Use the vim-flake8 built-in command
-nnoremap <buffer> <LocalLeader>L :Flake<CR>
+nnoremap <buffer> <LocalLeader>L :ALELint<CR>
+" nnoremap <buffer> <LocalLeader>L :Flake<CR>
 " nnoremap <buffer> <LocalLeader>L :PythonFlake8<CR>
 " nnoremap <buffer> <LocalLeader>M :PythonRunScript<CR>
 nnoremap <buffer> <LocalLeader>M :Make<CR>
