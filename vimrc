@@ -442,7 +442,7 @@ nnoremap <Leader>T "=strftime("%Y-%m-%d %H:%M")<CR>p
 nnoremap <space> za
 
 " Use \l to redraw the screen (since <C-l> is used by window switching)
-nnoremap <Leader>l :syntax sync fromstart<CR>:redraw!<CR>
+nnoremap <Leader>L :syntax sync fromstart<CR>:redraw!<CR>
 
 " Move 'title' comment to end of next line
 " nnoremap <Leader>J 0Dj$pkdd
