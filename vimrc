@@ -506,6 +506,23 @@ let g:jedi#auto_vim_configuration = 0   " do not change 'completeopt'
 let g:jedi#popup_on_dot = 0             " only complete if we press the key
 let g:jedi#show_call_signatures = 0     " do not show call signatures (SLOW AND BUGGY)
 "}}}
+" ALE {{{
+let g:ale_enabled = 1
+let g:ale_linters_explicit = 0            " if true, only use listed linters
+let g:ale_lint_on_text_changed = 'never'  " only lint manually
+let g:ale_lint_on_filetype_changed = 0
+let g:ale_lint_on_insert_leave = 0
+let g:ale_lint_on_enter = 0
+let g:ale_lint_on_save = 0
+let g:ale_open_list = 1  " open the loclist window when there are errors
+let g:ale_linters = {
+\   'python': ['ruff'],
+\}
+let g:ale_fixers = {
+\   'python': ['ruff', 'ruff_format'],
+\}
+let g:ale_python_ruff_executable = '/Users/bernardroesler/miniconda3/envs/dev311/bin/ruff'
+"}}}
 " FZF {{{
 let g:fzf_layout = { 'down': '40%' }
 
