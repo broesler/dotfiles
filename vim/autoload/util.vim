@@ -69,6 +69,10 @@ function! util#LastModified() "{{{
 endfunction
 "}}}
 function! util#MakeTemplate(filename) "{{{
+    " Skip generic template for scikit-sparse files
+    if expand('%:p') =~# '/scikit-sparse/'
+        return
+    endif
     " Insert the text in the template header file
     execute 'source' a:filename
     " Update the filename field to current filename
@@ -77,6 +81,17 @@ function! util#MakeTemplate(filename) "{{{
     execute "%s@Created:.*@Created: " . strftime("%Y-%m-%d %H:%M")
     " Move the cursor to the end of the description line
     execute "normal! 3j$"
+endfunction
+"}}}
+function! util#InsertScikitSparseTemplate() "{{{
+    let l:ext = expand("%:e")
+    if l:ext ==# 'py' || ext ==# 'pyx' || ext ==# 'pxd'
+        execute '0r ~/.vim/header/sksparse_template.py'
+        %s/{YEAR}/\=strftime("%Y")/
+        %s/{FILENAME}/\=expand("%:t")/
+        %s/{DATE}/\=strftime("%Y-%m-%d %H:%M")/
+        %s/{DOCSTRING}/Module description here./
+    endif
 endfunction
 "}}}
 function! util#HighlightTypes() "{{{

@@ -213,6 +213,13 @@ augroup code_cmds "{{{
     autocmd!
     autocmd FileType c,cpp,matlab,sh,markdown,vim,perl,gitcommit setlocal iskeyword+=_
 
+    autocmd FileType conf source $HOME/.vim/after/ftplugin/sh/sections.vim
+
+    autocmd FileType css,scss,sass setlocal iskeyword+=-
+augroup END
+"}}}
+augroup template_cmds "{{{
+    autocmd!
     " Create template for new files
     " TODO merge all headers into one command that does not require a header
     " file... just insert desired text and use CommentBlock to make header!
@@ -222,9 +229,7 @@ augroup code_cmds "{{{
                     \ ' call util#MakeTemplate("' . filename . '")'
     endfor
 
-    autocmd FileType conf source $HOME/.vim/after/ftplugin/sh/sections.vim
-
-    autocmd FileType css,scss,sass setlocal iskeyword+=-
+    autocmd BufNewFile ~/src/scikit-sparse/**/* call util#InsertScikitSparseTemplate()
 augroup END
 "}}}
 augroup misc_cmds "{{{
