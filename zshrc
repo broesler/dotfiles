@@ -153,7 +153,7 @@ alias lt='tree -C'
 alias mkdir='mkdir -p'
 alias mygcc='gcc-14 -Wall -pedantic -std=c99'
 alias myg++='g++-14 -Wall -pedantic -std=c++20'
-alias myclang++='clang++ -Wall -pedantic -std=c++20'
+alias myclang++='clang++ -std=c++20 -Wall -pedantic -Wextra'
 alias mygfortran="gfortran $gfopts"
 alias showpath='echo $PATH | tr -s ":" "\n"'
 alias showfpath='echo $FPATH | tr -s ":" "\n"'
