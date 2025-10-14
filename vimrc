@@ -521,12 +521,24 @@ let g:ale_lint_on_enter = 0
 let g:ale_lint_on_save = 0
 let g:ale_open_list = 1  " open the loclist window when there are errors
 let g:ale_linters = {
+\   'pyrex': ['cython-lint'],
 \   'python': ['ruff'],
+\   'rst': ['rstcheck'],
 \}
 let g:ale_fixers = {
 \   'python': ['ruff', 'ruff_format'],
 \}
-let g:ale_python_ruff_executable = '/Users/bernardroesler/miniconda3/envs/dev311/bin/ruff'
+if !empty($CONDA_PREFIX)
+    let g:ale_python_ruff_executable = $CONDA_PREFIX . '/bin/ruff'
+    let g:ale_python_ruff_format_executable = $CONDA_PREFIX . '/bin/ruff'
+    let g:ale_rst_rstcheck_executable = $CONDA_PREFIX . '/bin/rstcheck'
+    call ale#linter#Define('pyrex', {
+    \   'name': 'cython-lint',
+    \   'executable': $CONDA_PREFIX . '/bin/cython-lint',
+    \   'command': '%e %t',
+    \   'callback': 'ale#handlers#cython_lint#Handle',
+    \})
+endif
 "}}}
 " FZF {{{
 let g:fzf_layout = { 'down': '40%' }
