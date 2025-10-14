@@ -171,7 +171,7 @@ alias .4='cd ../../../../'
 source <(fzf --zsh)
 
 export FZF_DEFAULT_OPTS="--preview 'bat --color=always {}'"
-export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow'
+export FZF_DEFAULT_COMMAND='fd --hidden --follow'
 
 # Matlab with rlwrap (use vi commands in Matlab!)
 function matlabrl()
