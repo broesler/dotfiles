@@ -125,9 +125,11 @@ export LESS_TERMCAP_ue=$(tput rmul; tput sgr0)        # end underline
 export LESS_TERMCAP_so=$(tput setaf 0; tput setab 3)  # start highlight
 export LESS_TERMCAP_se=$(tput sgr0)                   # end highlight
 
-# Anaconda include
-# TODO set variable with the name of the environment?
-conda activate dev311 2> /dev/null
+# Acitvate conda environment if not already active
+while [ ! -z "$CONDA_PREFIX" ]; do
+    conda deactivate 2> /dev/null
+done
+conda activate dev313 2> /dev/null
 
 # ----------------------------------------------------------------------------- 
 #         Aliases
