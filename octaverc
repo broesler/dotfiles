@@ -3,7 +3,11 @@ PS1("\033[1;34moctave:\\# >> \033[0m");  % blue prompt!
 addpath('~/src/MATLAB/');
 % addpath(genpath('.'));  % this also adds .git etc. and gives odd results
 addpath('~/src/SuiteSparse-7.7.0/AMD/MATLAB/');
+addpath('~/src/SuiteSparse-7.7.0/BTF/MATLAB/');
+addpath('~/src/SuiteSparse-7.7.0/CAMD/MATLAB/');
 addpath('~/src/SuiteSparse-7.7.0/COLAMD/MATLAB/');
+addpath('~/src/SuiteSparse-7.7.0/CCOLAMD/MATLAB/');
+addpath('~/src/SuiteSparse-7.7.0/CHOLMOD/MATLAB/');
 addpath('~/src/SuiteSparse-7.7.0/CSparse/MATLAB/CSparse/');
 addpath('~/src/SuiteSparse-7.7.0/CSparse/MATLAB/Test/');
 addpath('~/src/SuiteSparse-7.7.0/CSparse/MATLAB/Demo/');
