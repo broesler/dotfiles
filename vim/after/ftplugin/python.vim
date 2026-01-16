@@ -12,7 +12,8 @@
 "-----------------------------------------------------------------------------
 "       Buffer local settings
 "-----------------------------------------------------------------------------
-setlocal textwidth=79    " PEP-8 standard
+setlocal textwidth=79    " 79 is PEP-8 standard, 87 is numpy/scipy standard
+setlocal colorcolumn=88  " Highlight at 88 characters, but wrap to tw=79
 setlocal iskeyword+=_
 setlocal iskeyword-=:
 
@@ -113,9 +114,10 @@ let @d = "\n\n"
      \ . '    """'
 
 " Standard import
-let @i = "import matplotlib.pyplot as plt\n"
+let @i = "from pathlib import Path\n\n"
+     \ . "import matplotlib.pyplot as plt\n"
      \ . "import numpy as np\n"
-     \ . "import scipy.linalg as la\n\n"
+     \ . "import scipy.linalg as la\n"
      \ . "from scipy import sparse\n"
      \ . "from scipy.sparse import linalg as spla\n\n"
      " \ . "import pandas as pd\n"
