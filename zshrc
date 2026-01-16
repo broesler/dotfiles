@@ -15,7 +15,7 @@ case "$(hostname -s)" in
     # Allow prompt to substitute variable names
     setopt PROMPT_SUBST
 
-    prompt_conda='${CONDA_DEFAULT_ENV:+(${CONDA_DEFAULT_ENV})}'
+    prompt_conda='${CONDA_DEFAULT_ENV:+(${CONDA_DEFAULT_ENV}) }'
     prompt_default='%B%F{green}%1~ %# %f%b'
 
     # --- git-prompt.sh Configuration ---
@@ -31,11 +31,11 @@ case "$(hostname -s)" in
         export GIT_PS1_SHOWCOLORHINTS=1      # if true, git status colors inside ()
 
         # Includes: Conda env, magenta git status, standard prompt elements
-        prompt_git='$( __git_ps1 )'
-        PS1="${prompt_conda}${prompt_git} ${prompt_default}"
+        prompt_git='$( __git_ps1 "(%s) " )'
+        PS1="${prompt_conda}${prompt_git}${prompt_default}"
     else
         # Fallback prompt if git-prompt.sh is not found
-        PS1="${prompt_conda} ${prompt_default}"
+        PS1="${prompt_conda}${prompt_default}"
     fi
 
     RPS1=''  # no right prompt
@@ -51,6 +51,12 @@ case "$(hostname -s)" in
     local tmux_osc_d="%{${ESC}133;D${ST}%}"  # command finished
 
     PS1="${tmux_osc_a}${PS1}${tmux_osc_b}"
+
+    # Use Starship prompt
+    # if [[ -z "${STARSHIP_INIT_DONE:-}" ]]; then
+    #     eval "$(starship init zsh)"
+    #     typeset -g STARSHIP_INIT_DONE=1
+    # fi
 
     # Ruby initialization
     source /opt/homebrew/opt/chruby/share/chruby/chruby.sh
