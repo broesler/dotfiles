@@ -128,7 +128,7 @@ set nowrap                      " do not autowrap text to screen
 set linebreak                   " Do not break words mid-word
 set autoindent                  " indent based on filetype
 set formatoptions=cqr2l1j       " tcq default, :help fo-table
-set colorcolumn=80              " default is 80, autocmd changes for filetype
+set colorcolumn=81              " default is 81, autocmd changes for filetype
 set diffopt+=iwhite             " ignore whitespace in diff windows
 "}}}
 " Folding {{{
@@ -229,7 +229,7 @@ augroup template_cmds "{{{
                     \ ' call util#MakeTemplate("' . filename . '")'
     endfor
 
-    autocmd BufNewFile ~/src/scikit-sparse/**/* call util#InsertScikitSparseTemplate()
+    autocmd BufNewFile ~/src/**/scikit-sparse*/**/* call util#InsertScikitSparseTemplate()
 augroup END
 "}}}
 augroup misc_cmds "{{{
@@ -521,6 +521,7 @@ let g:ale_lint_on_enter = 0
 let g:ale_lint_on_save = 0
 let g:ale_open_list = 1  " open the loclist window when there are errors
 let g:ale_linters = {
+\   'cpp': ['clangd', 'cspell'],
 \   'pyrex': ['cython-lint'],
 \   'python': ['ruff'],
 \   'rst': ['rstcheck'],
@@ -528,6 +529,7 @@ let g:ale_linters = {
 let g:ale_fixers = {
 \   'python': ['ruff', 'ruff_format'],
 \}
+let g:ale_cpp_clangd_options = '-clang-tidy'
 if !empty($CONDA_PREFIX)
     let g:ale_python_ruff_executable = $CONDA_PREFIX . '/bin/ruff'
     let g:ale_python_ruff_format_executable = $CONDA_PREFIX . '/bin/ruff'
