@@ -1,3 +1,17 @@
+# Continued line prompt symbol (default: '[∙](bright-black) ')
+continuation_prompt = '[>](bright-black) '
+
+# Change the default prompt symbols
 [character]
 success_symbol = "[%](bold green)"
 error_symbol = "[%](bold red)"
+vimcmd_symbol = "[%](bold blue)"
+
+[pixi]
+disabled = true
+
+[python]
+disabled = true  # hide python version by default (described by conda env)
+
+[ruby]
+detect_variables = []
