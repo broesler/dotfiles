@@ -19,6 +19,8 @@ tags
 Session.vim
 *.latexmain
 *.swp
+.envrc
+cscope.*
 
 # large binary/data files
 *.QT*
